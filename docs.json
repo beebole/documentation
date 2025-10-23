@@ -1,24 +1,35 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Beebole Help Center",
+  "description": "Get help with Beebole’s time tracking app. Explore guides, FAQs, and tutorials on tracking time, managing projects, generating reports, and using Beebole’s features. Visit the Beebole Help Center for tips, troubleshooting, and step-by-step support.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#004D43",
+    "light": "#B6D3D1",
+    "dark": "#004D43"
+  },
+  "background": {
+    "decoration": "gradient"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/logo.svg",
+    "dark": "/logo/logo-dark.svg"
+  },
+  "appearance": {
+    "default": "light",
+    "strict": true
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
@@ -29,7 +40,7 @@
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Reports",
             "pages": [
               "essentials/markdown",
               "essentials/code",
@@ -43,6 +54,39 @@
               "ai-tools/cursor",
               "ai-tools/claude-code",
               "ai-tools/windsurf"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
+          {
+            "group": "Productivity",
+            "pages": [
+              "integrations/asana",
+              "integrations/jira",
+              "integrations/trello"
             ]
           }
         ]
@@ -66,43 +110,31 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "News",
+        "groups": [
+          {
+            "group": "News",
+            "pages": [
+              "news/releases"
+            ]
+          }
+        ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    ]
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact Support",
+        "href": "mailto:support@beebole.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Login",
+      "href": "https://app.beebole-test.com/signin"
     }
   },
   "contextual": {
@@ -111,10 +143,7 @@
      "view",
      "chatgpt",
      "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
+     "perplexity"
    ]
   },
   "footer": {
