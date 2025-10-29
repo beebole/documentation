@@ -92,21 +92,20 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "GraphQL API",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "GraphQL Documentation",
             "pages": [
-              "api-reference/introduction"
+              "graphql/introduction",
+              "graphql/schema-explorer"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Queries",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "graphql/queries/getOrganisation",
+              "graphql/queries/getPersons"
             ]
           }
         ]
