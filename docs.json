@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "Beebole Help Center",
   "description": "Get help with Beebole’s time tracking app. Explore guides, FAQs, and tutorials on tracking time, managing projects, generating reports, and using Beebole’s features. Visit the Beebole Help Center for tips, troubleshooting, and step-by-step support.",
   "colors": {
