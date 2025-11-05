@@ -82,7 +82,7 @@
         "tab": "Integrations",
         "groups": [
           {
-            "group": "Productivity",
+            "group": "All integrations",
             "pages": [
               "integrations/asana",
               "integrations/jira",
