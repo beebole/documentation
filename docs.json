@@ -133,7 +133,7 @@
     "primary": {
       "type": "button",
       "label": "Login",
-      "href": "https://app.beebole-test.com/signin"
+      "href": "https://qa.beebole.com/signin"
     }
   },
   "contextual": {
