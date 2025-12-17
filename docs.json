@@ -11,16 +11,36 @@
   "background": {
     "decoration": "gradient"
   },
-  "favicon": "help/favicon.svg",
+  "favicon": "/help/favicon.svg",
   "logo": {
-    "light": "help/logo/logo.svg",
-    "dark": "help/logo/logo-dark.svg"
+    "light": "/help/logo/logo.svg",
+    "dark": "/help/logo/logo-dark.svg"
   },
   "appearance": {
     "default": "light",
     "strict": true
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Community",
+          "icon": "house",
+          "href": "https://slack.com"
+        },
+        {
+          "anchor": "Contact us",
+          "icon": "envelope",
+          "href": "mailto:support@beebole.com"
+        },
+        {
+          "anchor": "To beebole.com",
+          "icon": "browser",
+          "href": "https://beebole.com"
+        }
+
+      ]
+    },
     "tabs": [
       {
         "tab": "Documentation",
@@ -29,14 +49,18 @@
             "group": "Getting started",
             "pages": [
               "help/index",
-              "help/quickstart"
+              "help/documentation/quickstart",
+              "help/documentation/projects",
+              "help/documentation/people",
+              "help/documentation/journal"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Time Tracking",
             "pages": [
-              "help/essentials/settings",
-              "help/essentials/navigation"
+              "help/documentation/timesheets",
+              "help/documentation/timesheetSettings",
+              "help/documentation/approval"
             ]
           },
           {
@@ -92,13 +116,13 @@
         ]
       },
       {
-        "tab": "GraphQL API",
+        "tab": "API",
         "groups": [
           {
-            "group": "GraphQL Documentation",
+            "group": "API",
             "pages": [
-              "help/graphql/introduction",
-              "help/graphql/schema-explorer"
+              "help/api/introduction",
+              "help/api/schema-explorer"
             ]
           },
           {
