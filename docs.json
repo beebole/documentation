@@ -11,10 +11,10 @@
   "background": {
     "decoration": "gradient"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "help/favicon.svg",
   "logo": {
-    "light": "/logo/logo.svg",
-    "dark": "/logo/logo-dark.svg"
+    "light": "help/logo/logo.svg",
+    "dark": "help/logo/logo-dark.svg"
   },
   "appearance": {
     "default": "light",
@@ -28,32 +28,32 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart"
+              "help/index",
+              "help/quickstart"
             ]
           },
           {
             "group": "Customization",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "help/essentials/settings",
+              "help/essentials/navigation"
             ]
           },
           {
             "group": "Reports",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "help/essentials/markdown",
+              "help/essentials/code",
+              "help/essentials/images",
+              "help/essentials/reusable-snippets"
             ]
           },
           {
             "group": "AI tools",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "help/ai-tools/cursor",
+              "help/ai-tools/claude-code",
+              "help/ai-tools/windsurf"
             ]
           }
         ]
@@ -64,16 +64,16 @@
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "help/api-reference/introduction"
             ]
           },
           {
             "group": "Endpoint examples",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "help/api-reference/endpoint/get",
+              "help/api-reference/endpoint/create",
+              "help/api-reference/endpoint/delete",
+              "help/api-reference/endpoint/webhook"
             ]
           }
         ]
@@ -84,9 +84,9 @@
           {
             "group": "All integrations",
             "pages": [
-              "integrations/asana",
-              "integrations/jira",
-              "integrations/trello"
+              "help/integrations/asana",
+              "help/integrations/jira",
+              "help/integrations/trello"
             ]
           }
         ]
@@ -97,15 +97,15 @@
           {
             "group": "GraphQL Documentation",
             "pages": [
-              "graphql/introduction",
-              "graphql/schema-explorer"
+              "help/graphql/introduction",
+              "help/graphql/schema-explorer"
             ]
           },
           {
             "group": "Queries",
             "pages": [
-              "graphql/queries/getOrganisation",
-              "graphql/queries/getPersons"
+              "help/graphql/queries/getOrganisation",
+              "help/graphql/queries/getPersons"
             ]
           }
         ]
@@ -116,7 +116,7 @@
           {
             "group": "News",
             "pages": [
-              "news/releases"
+              "help/news/releases"
             ]
           }
         ]
