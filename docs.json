@@ -24,21 +24,15 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Community",
-          "icon": "house",
-          "href": "https://slack.com"
-        },
-        {
           "anchor": "Contact us",
           "icon": "envelope",
           "href": "mailto:support@beebole.com"
         },
         {
-          "anchor": "To beebole.com",
-          "icon": "browser",
-          "href": "https://beebole.com"
+          "anchor": "Ask our Community",
+          "icon": "house",
+          "href": "https://slack.com"
         }
-
       ]
     },
     "tabs": [
@@ -106,11 +100,25 @@
         "tab": "Integrations",
         "groups": [
           {
-            "group": "All integrations",
+            "group": "Productivity",
             "pages": [
               "help/integrations/asana",
-              "help/integrations/jira",
-              "help/integrations/trello"
+              "help/integrations/jira"
+            ]
+          },
+          {
+            "group": "Communication & Calendars",
+            "pages": [
+              "help/integrations/google",
+              "help/integrations/google-calendar",
+              "help/integrations/microsoft",
+              "help/integrations/microsoft-calendar"
+            ]
+          },
+          {
+            "group": "Finance & HR",
+            "pages": [
+              "help/integrations/quickbooks"
             ]
           }
         ]
@@ -119,39 +127,36 @@
         "tab": "API",
         "groups": [
           {
-            "group": "API",
+            "group": "GraphQL API",
             "pages": [
               "help/api/introduction",
-              "help/api/schema-explorer"
+              "help/api/schema-explorer",
+              "help/api/queries",
+              "help/api/mutations"
             ]
           },
           {
-            "group": "Queries",
+            "group": "Examples",
             "pages": [
-              "help/graphql/queries/getOrganisation",
-              "help/graphql/queries/getPersons"
+              "help/api/examples/example-1",
+              "help/api/examples/example-2"
             ]
           }
         ]
       },
       {
         "tab": "News",
-        "groups": [
-          {
-            "group": "News",
-            "pages": [
+        "pages": [
               "help/news/releases"
             ]
-          }
-        ]
       }
     ]
   },
   "navbar": {
     "links": [
       {
-        "label": "Contact Support",
-        "href": "mailto:support@beebole.com"
+        "label": "Go to beebole.com",
+        "href": "https://beebole.com"
       }
     ],
     "primary": {
