@@ -4,9 +4,7 @@
   "name": "Beebole Help Center",
   "description": "Get help with Beebole’s time tracking app. Explore guides, FAQs, and tutorials on tracking time, managing projects, generating reports, and using Beebole’s features. Visit the Beebole Help Center for tips, troubleshooting, and step-by-step support.",
   "colors": {
-    "primary": "#004D43",
-    "light": "#B6D3D1",
-    "dark": "#004D43"
+    "primary": "#004D43"
   },
   "background": {
     "decoration": "gradient"
@@ -18,7 +16,7 @@
   },
   "appearance": {
     "default": "light",
-    "strict": true
+    "strict": false
   },
   "navigation": {
     "global": {
@@ -30,7 +28,7 @@
         },
         {
           "anchor": "Ask our Community",
-          "icon": "house",
+          "icon": "comments",
           "href": "https://slack.com"
         }
       ]
@@ -58,20 +56,64 @@
             ]
           },
           {
-            "group": "Reports",
+            "group": "Planning",
             "pages": [
-              "help/essentials/markdown",
-              "help/essentials/code",
-              "help/essentials/images",
-              "help/essentials/reusable-snippets"
+              "help/documentation/planning",
+              "help/documentation/gantt",
+              "help/documentation/kanban"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Time Off",
             "pages": [
-              "help/ai-tools/cursor",
-              "help/ai-tools/claude-code",
-              "help/ai-tools/windsurf"
+              "help/documentation/timeoff",
+              "help/documentation/accruals",
+              "help/documentation/public-holidays"
+            ]
+          },
+          {
+            "group": "Financial",
+            "pages": [
+              "help/documentation/billing",
+              "help/documentation/costs",
+              "help/documentation/budgets",
+              "help/documentation/expenses"
+            ]
+          },
+          {
+            "group": "Reporting",
+            "pages": [
+              "help/documentation/reports",
+              "help/documentation/custom-reports",
+              "help/documentation/data-exports",
+              "help/documentation/excel-addin",
+              "help/documentation/gsheets-addon"
+            ]
+          },
+          {
+            "group": "Advanced features",
+            "pages": [
+              "help/documentation/work-schedule",
+              "help/documentation/tags",
+              "help/documentation/custom-fields",
+              "help/documentation/roles-authorisations",
+              "help/documentation/assignments"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "help/documentation/account-settings",
+              "help/documentation/subscription",
+              "help/documentation/sso",
+              "help/documentation/custom-domain",
+              "help/documentation/audit-trail"
+            ]
+          },
+          {
+            "group": "Devices",
+            "pages": [
+              "help/documentation/mobile"
             ]
           }
         ]
@@ -80,18 +122,17 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Per Roles",
             "pages": [
-              "help/api-reference/introduction"
+              "help/guides/employee",
+              "help/guides/project-manager",
+              "help/guides/team-leader"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "FAQ & Troubleshooting",
             "pages": [
-              "help/api-reference/endpoint/get",
-              "help/api-reference/endpoint/create",
-              "help/api-reference/endpoint/delete",
-              "help/api-reference/endpoint/webhook"
+              "help/guides/faq"
             ]
           }
         ]
@@ -99,6 +140,13 @@
       {
         "tab": "Integrations",
         "groups": [
+      {
+            "group": "Overview",
+            "pages": [
+              "help/integrations/introduction",
+              "help/integrations/custom-integrations"
+            ]
+          },
           {
             "group": "Productivity",
             "pages": [
@@ -153,16 +201,10 @@
     ]
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Go to beebole.com",
-        "href": "https://beebole.com"
-      }
-    ],
     "primary": {
       "type": "button",
-      "label": "Login",
-      "href": "https://qa.beebole.com/signin"
+      "label": "Go to beebole.com",
+      "href": "https://beebole.com"
     }
   },
   "contextual": {
