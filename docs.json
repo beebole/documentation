@@ -140,7 +140,7 @@
       {
         "tab": "Integrations",
         "groups": [
-      {
+          {
             "group": "Overview",
             "pages": [
               "help/integrations/introduction",
@@ -195,8 +195,15 @@
       {
         "tab": "News",
         "pages": [
-              "help/news/releases"
-            ]
+          "help/news/releases"
+        ]
+      },
+      {
+        "tab": "App",
+        "hidden": true,
+        "pages": [
+          "app/help-invite-en"
+        ]
       }
     ]
   },
