@@ -173,7 +173,8 @@
       },
       {
         "tab": "API",
-        "groups": [
+        "pages": [
+          "api/test",
           {
             "group": "GraphQL API",
             "pages": [
@@ -196,6 +197,13 @@
         "tab": "News",
         "pages": [
           "help/news/releases"
+        ]
+      },
+      {
+        "tab": "App",
+        "hidden": true,
+        "pages": [
+          "app/untitled-page"
         ]
       }
     ]
