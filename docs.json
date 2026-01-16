@@ -203,7 +203,8 @@
         "tab": "App",
         "hidden": true,
         "pages": [
-          "app/untitled-page"
+          "help/app/dff",
+          "help/app/helpInviteEN2"
         ]
       }
     ]
