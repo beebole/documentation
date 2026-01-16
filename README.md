@@ -1,1 +1,0 @@
-# Beebole Documentation
