@@ -198,15 +198,6 @@
         "pages": [
           "help/news/releases"
         ]
-      },
-      {
-        "tab": "App",
-        "hidden": true,
-        "pages": [
-          "help/app/test",
-          "help/app/dff",
-          "help/app/helpInviteEN2"
-        ]
       }
     ]
   },
