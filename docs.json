@@ -197,13 +197,6 @@
         "pages": [
           "help/news/releases"
         ]
-      },
-      {
-        "tab": "App",
-        "hidden": true,
-        "pages": [
-          "app/help-invite-en"
-        ]
       }
     ]
   },
