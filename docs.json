@@ -3,35 +3,13 @@
   "theme": "willow",
   "name": "Beebole Help Center",
   "seo": {
-    "name": "Beebole Help Center - {pageTitle}",
+  "metatags": {
     "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
-    "keywords": [
-      "Beebole help",
-      "Beebole documentation",
-      "time tracking software",
-      "project time tracking",
-      "how to use Beebole"
-    ],
-    "noindex": false,
-    "og": {
-      "title": "Beebole Help Center - {pageTitle}",
-      "description": "Everything you need to know to track and manage time with Beebole.",
-      "image": "https://beebole.com/help/assets/og-image.png",
-      "url": "https://beebole.com/help",
-      "type": "website",
-      "imageWidth": 1200,
-      "imageHeight": 628
-    },
-    "twitter": {
-      "title": "Beebole Help Center - {pageTitle}",
-      "description": "Everything you need to know to track and manage time with Beebole.",
-      "image": "https://beebole.com/help/assets/twitter-og-image.png",
-      "card": "summary_large_image",
-      "site": "@beebole",
-      "imageWidth": 1200,
-      "imageHeight": 675
-    }
-  },
+    "keywords": "Beebole help, Beebole documentation, time tracking software, project time tracking, how to use Beebole",
+    "og:image": "https://beebole.com/help/assets/placeholder-og-image.png",
+    "og:description": "Everything you need to know to track and manage time with Beebole."
+  }
+},
   "colors": {
     "primary": "#004D43"
   },
