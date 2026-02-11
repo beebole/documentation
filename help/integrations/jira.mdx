@@ -2,3 +2,140 @@
 title: "Jira"
 description: "Integrate Beebole with Jira for project tracking and time logging"
 ---
+
+## Integration Overview
+
+**Objective:** Provide a high-level summary of the Jira-Beebole sync capabilities so Project Managers can understand what data is transferred and the value of the integration.
+
+**Writing Guidance:** Use active voice. Clearly state that this is a one-way pull from Jira to Beebole. Define "Resource Planning" and "Time Tracking" contextually. Ensure keywords like "Jira synchronization" and "automated project import" are used for SEO/GEO.
+
+**Internal Linking:** Project Setup, Resource Planning Basics, User Management.
+
+**Visual Asset Suggestion:** A conceptual diagram or high-level screenshot showing Jira Projects/Issues mapping to Beebole Projects/Tasks.
+
+### Component Implementation
+
+<Info>The Jira integration is available on all Pro and Enterprise plans. Ensure you have Administrative privileges in both Jira and Beebole before starting.</Info>
+
+<div className="grid grid-cols-2 gap-4">
+<div>
+### What syncs from Jira
+* **Projects:** Imported as Beebole Projects.
+* **Issues/Tasks:** Imported as Beebole Tasks.
+* **Users:** Jira users are mapped to Beebole personnel.
+</div>
+<div>
+### What stays in Beebole
+* **Billing Rates:** Managed exclusively in Beebole.
+* **Budgets:** Set within Beebole's financial module.
+* **Approval Workflows:** Beebole handles the timesheet lifecycle.
+</div>
+</div>
+
+---
+
+## Connecting Your Jira Account
+
+**Objective:** Guide IT professionals through the authentication process between the two platforms.
+
+**Writing Guidance:** Focus on technical accuracy. Mention API tokens or OAuth if applicable. Use a step-by-step format to reduce cognitive load.
+
+**Internal Linking:** API Documentation, Security & Permissions.
+
+**Visual Asset Suggestion:** Screenshot of the "Integrations" gallery in Beebole with the Jira "Connect" button highlighted.
+
+### Component Implementation
+
+<Steps>
+<Step title="Access Integration Settings">
+Navigate to **Settings** > **Integrations** from your Beebole dashboard.
+</Step>
+<Step title="Select Jira">
+Locate the Jira card and click <Badge text="Connect" color="blue" />.
+</Step>
+<Step title="Authenticate">
+Enter your Jira Cloud URL and follow the OAuth prompts to authorize Beebole to access your Jira site data.
+<img src="/images/jira-auth-screen.png" alt="Jira OAuth authentication screen" />
+</Step>
+</Steps>
+
+---
+
+## Configuration & Data Mapping
+
+**Objective:** Instruct Project Managers on how to select specific Jira projects to pull into Beebole.
+
+**Writing Guidance:** Use task-based language. Explain the "why" behind mapping choices. Use a Note callout for limitations on nested sub-tasks if they exist.
+
+**Internal Linking:** Custom Fields, Task Categories.
+
+**Visual Asset Suggestion:** Screenshot of the mapping interface showing the dropdown menus for selecting Jira projects.
+
+### Component Implementation
+
+<Note>Only "Active" projects in Jira are visible for synchronization. Archived projects will not appear in the selection list.</Note>
+
+<Steps>
+<Step title="Select Projects">
+Choose the specific Jira projects you wish to track in Beebole using the multi-select dropdown.
+</Step>
+<Step title="Map Task Hierarchy">
+Define if Jira "Epics" or "Stories" should represent "Tasks" or "Sub-tasks" in your Beebole structure.
+</Step>
+<Step title="Run Initial Sync">
+Click **Sync Now** to perform the first data pull.
+</Step>
+</Steps>
+
+---
+
+## Automating the Sync
+
+**Objective:** Explain how to keep data up-to-date without manual intervention.
+
+**Writing Guidance:** Keep it brief. Emphasize the "set it and forget it" nature of the feature.
+
+**Internal Linking:** Automated Notifications, Report Scheduling.
+
+**Visual Asset Suggestion:** Screenshot of the "Auto-sync" toggle switch in the Beebole settings.
+
+### Component Implementation
+
+<Tip>Enable auto-sync to ensure that when a developer adds a new issue in Jira, it is immediately available for time tracking in Beebole.</Tip>
+
+<Accordion title="How often does data sync?">
+By default, Beebole polls Jira every 60 minutes for updates. You can trigger a manual sync at any time by clicking the "Refresh" icon on the Integrations page.
+</Accordion>
+
+---
+
+## Troubleshooting & FAQs
+
+**Objective:** Address common friction points to reduce support tickets.
+
+**Writing Guidance:** Use clear Q&A format. Address common errors like "Project not found" or "User mismatch."
+
+**Internal Linking:** Contact Support, Common Error Codes.
+
+**Visual Asset Suggestion:** Video (Iframe) showing a 60-second walkthrough of the most common setup mistake and its fix.
+
+### Component Implementation
+
+<Accordion group="troubleshooting" title="Why aren't my Jira users showing up?">
+Ensure that the email addresses used in Jira match the email addresses of your users in Beebole. The integration uses the email address as the unique identifier for mapping.
+</Accordion>
+
+<Accordion group="troubleshooting" title="I added a new project in Jira but don't see it.">
+Verify that the integration has permission to access the new project's workspace. You may need to update your "Scope" settings in the Jira App configuration.
+</Accordion>
+
+<Frame>
+<iframe
+src="[https://www.youtube.com/embed/placeholder-jira-troubleshooting](https://www.google.com/search?q=https://www.youtube.com/embed/placeholder-jira-troubleshooting)"
+title="Jira Sync Troubleshooting Guide"
+/>
+</Frame>
+
+<Warning>
+Disconnecting the integration will stop all data flows, but previously imported Jira data will remain in Beebole as "Local" records.
+</Warning>
