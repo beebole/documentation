@@ -181,7 +181,6 @@
       {
         "tab": "API",
         "pages": [
-          "api/test",
           {
             "group": "GraphQL API",
             "pages": [
