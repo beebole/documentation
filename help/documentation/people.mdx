@@ -1,4 +1,129 @@
 ---
 title: "People"
-description: "Learn all about how to quikly and easily add and invite your team to Beebole."
+description: "Learn all about how to quickly and easily add and invite your team to Beebole."
 ---
+
+## Understanding People & Permissions
+
+**Objective:** Define "People" in the context of Beebole as the core workforce entity and explain the default organizational hierarchy to ensure managers assign correct access levels. 
+
+**Writing Guidance:** Use clear, authoritative language. Define the three base roles (Admin, Manager, Employee) immediately. Explain that "People" represents both the user account and the data profile (rates, schedules, etc.). 
+
+**Internal Linking:** Permissions Matrix, Custom Roles, Security Settings. 
+
+**Visual Asset Suggestion:** A table or graphic comparing the default capabilities of Administrators vs. Managers vs. Employees.
+
+### Component Implementation
+
+<Info>
+  In Beebole, **People** refers to any user or team member tracking time, managing projects, or viewing reports. Each person is assigned a role that determines what they can see and do.
+</Info>
+
+<Accordion title="Default User Roles">
+  - <Badge color="red" /> Full access to all data, billing, and system settings.
+  - <Badge color="blue" /> Can view and approve time for their assigned teams/projects.
+  - <Badge color="green" /> Standard access to log time and view their own personal dashboard.
+</Accordion>
+
+---
+
+## Adding Your Team
+
+**Objective:** Walk through the manual and bulk methods of importing users into the system. 
+
+**Writing Guidance:** Focus on the "Getting Started" efficiency. Highlight the "Copy/Paste" feature as the fastest way to migrate from a spreadsheet. Mention that adding a person does not automatically invite them to log in. 
+
+**Internal Linking:** Bulk Import Guide, Invitations. 
+
+**Visual Asset Suggestion:** Screenshot of the "Add Person" modal and the "Import from Spreadsheet" toggle.
+
+### Component Implementation
+
+<Steps>
+  <Step title="Individual Entry">
+    Click the **[+]** icon in the People module. Enter the required fields: Name, Email, and Initial Role.
+  </Step>
+  <Step title="Bulk Import">
+    If you have a large team, use the **Import** tool. Copy rows directly from your HR spreadsheet or CSV and paste them into the Beebole grid.
+
+    ![Interface for pasting member data from a spreadsheet](/images/people-bulk-import.png)
+  </Step>
+  <Step title="Verification">
+    Review the list to ensure email addresses are accurate, as these will be used for login invitations later.
+  </Step>
+</Steps>
+
+---
+
+## Configuring Individual Profiles
+
+**Objective:** Guide managers through the granular settings that define a person's work parameters, from financial rates to time-off logic. 
+
+**Writing Guidance:** Organize by sub-topic. Use a task-based approach (e.g., "To set a schedule..."). Emphasize that these settings power the accuracy of labor cost reports and capacity planning. 
+
+**Internal Linking:** Work Schedules, Time Off Allowances, Labor Costs, Custom Fields. 
+
+**Visual Asset Suggestion:** Video (Frame/Iframe) navigating through a single person's profile tabs (Settings, Rates, Schedule).
+
+### Component Implementation
+
+Once a person is added, click their name to configure their specific profile:
+
+- **Work Schedules:** Define standard working hours and holidays to calculate capacity.
+- **Costs & Rates:** Input internal labor costs for margin reporting.
+- **Managers:** Assign who is responsible for approving this person's timesheet.
+- **Custom Fields:** Add unique identifiers like "Department," "Office Location," or "Employee ID."
+
+<Tip>
+  Setting up **Work Schedules** early is critical if you plan to use Beebole for tracking absences or calculating overtime.
+</Tip>
+
+---
+
+## Onboarding: Sending Invitations
+
+**Objective:** Explain how to grant users access to the platform once their profiles are configured. 
+
+**Writing Guidance:** Clarify that adding a person is a two-step process: Creation, then Invitation. Explain the "Invite" button location clearly. 
+
+**Internal Linking:** Login Troubleshooting, Password Resets. 
+
+**Visual Asset Suggestion:** Screenshot of the "Send Invitation" button on an individual profile.
+
+### Component Implementation
+
+<Steps>
+  <Step title="Open Profile">
+    Navigate to the person's profile page.
+  </Step>
+  <Step title="Send Email">
+    Click the **Send Invitation** button. Beebole will send a secure link to the email address on file.
+  </Step>
+  <Step title="Track Status">
+    The profile will show a "Pending" status until the user sets their password and logs in for the first time.
+  </Step>
+</Steps>
+
+<Note>
+  You can also resend invitations from this screen if a user misses their initial onboarding email.
+</Note>
+
+---
+
+## Advanced Management & FAQ
+
+**Objective:** Address common management tasks like offboarding and modifying roles. 
+
+**Writing Guidance:** Use accordions for secondary information. Maintain a focus on data integrity. 
+
+**Internal Linking:** Archiving Users, Audit Logs.
+
+### Component Implementation
+
+<Accordion title="What happens when someone leaves the company?">
+  Do not delete the user, as this removes their historical time data. Instead, **Archive** the profile. This frees up a user seat while preserving all reported data for your archives.
+</Accordion>
+
+<Accordion title="Can I create a custom role (e.g., 'External Auditor')?">
+  Yes. Under **Settings \> Roles**, you can clone an existing role and modify specific permissions to create a tailored access level.
+</Accordion>

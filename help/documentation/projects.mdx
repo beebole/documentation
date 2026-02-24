@@ -1,9 +1,143 @@
 ---
-title: Projects
-description: Learn how projects work, how to create and manage them, and how they’re used for planning and time tracking.
-keywords: ["Beebole projects", "project setup", "project time tracking", "project planning", "how to create projects", "project management software"]
-"og:title": "Creating Projects in Beebole"
-"og:description": "Learn how to create and manage projects in Beebole for planning and time tracking."
-"og:image": https://beebole.com/help/placeholder-og-image.png
-"og:type": article
+title: "Projects"
+description: "Learn how projects work, how to create and manage them, and how they’re used for planning and time tracking."
+keywords: ["Beebole projects","project setup","project time tracking","project planning","how to create projects","project management software"]
+og:title: "Creating Projects in Beebole"
+og:description: "Learn how to create and manage projects in Beebole for planning and time tracking."
+og:image: "https://beebole.com/help/placeholder-og-image.png"
+og:type: "article"
 ---
+
+## Project Management Overview
+
+**Objective:** Provide managers with a foundational understanding of how Projects function as the primary organizational unit for time tracking and financial reporting in Beebole. 
+
+**Writing Guidance:** Use a professional yet accessible tone. Define "Projects" broadly (clients, internal tasks, etc.) and emphasize the flexible, infinite hierarchy. Use active voice to describe the relationship between categories and sub-activities.
+
+**Internal Linking:** Quickstart
+
+**Visual Asset Suggestion:** A high-level diagram or screenshot showing a nested project structure (Category \> Project \> Activity \> Sub-activity).
+
+### Component Implementation
+
+<Info>
+  Projects are the backbone of your Beebole data. Whether you are tracking billable client work or internal administrative tasks, everything starts with a Project.
+</Info>
+
+<Accordion title="Understanding the Project Hierarchy">
+  Beebole does not limit your depth. You can organize your work into:
+
+  - **Categories:** The top-level folder (e.g., Client Name or Department).
+  - **Projects:** The specific engagement or work stream.
+  - **Activities:** Tasks within a project. You can nest these infinitely to create sub-tasks and granular work breakdowns.
+</Accordion>
+
+---
+
+## Planning Your Structure
+
+**Objective:** Guide users to conceptualize their project architecture before data entry to ensure long-term reporting accuracy.
+
+**Writing Guidance:** Emphasize the "measure twice, cut once" philosophy. Recommend mapping the hierarchy on paper or a spreadsheet first. Mention that while easy to create, restructuring complex hierarchies later can be time-consuming.
+
+**Internal Linking:** Custom Fields, Tags, Manager roles.
+
+**Visual Asset Suggestion:** A "Best Practice" vs "Too Complex" comparison graphic.
+
+### Component Implementation
+
+<Tip>
+  Before hitting the "New Project" button, we highly recommend mapping your hierarchy on paper—especially if you have multi-level sub-activities or complex billing requirements.
+</Tip>
+
+---
+
+## Creating Projects
+
+**Objective:** Instruct users on the two primary methods of data entry: manual creation and bulk import.
+
+**Writing Guidance:** Use a step-by-step format. Ensure the distinction between adding a single entity and using the "Copy/Paste" bulk method is clear.
+
+**Internal Linking:** Bulk Import Tool, Permission Roles.
+
+**Visual Asset Suggestion:** A short video (Frame/Iframe) showing the transition from a spreadsheet to the Beebole bulk upload interface.
+
+### Component Implementation
+
+<Steps>
+  <Step title="Manual Creation">
+    Navigate to the **Projects** module and click the **[+]** icon to add an individual project or category.
+  </Step>
+  <Step title="Bulk Import">
+    To add multiple projects at once, select the **Import** option. You can copy and paste data directly from Excel or Google Sheets.
+
+    ![Screenshot showing the copy-paste interface for bulk project creation](/images/bulk-import-projects.png)
+  </Step>
+  <Step title="Define Hierarchy">
+    Drag and drop projects into categories or nest activities within projects to establish your structure.
+  </Step>
+</Steps>
+
+---
+
+## Configuring Project Details
+
+**Objective:** Inform managers on how to enrich project data with costs, billing rules, and ownership. 
+
+**Writing Guidance:** Focus on the "Configuration" phase. Use a list to show the breadth of options available per project.
+
+**Internal Linking:** Billing, Costs, Budgets, Project Managers, Custom Fields, Tags.
+
+**Visual Asset Suggestion:** Screenshot of the Project Settings sidebar highlighting where to find Costs and Billing tabs.
+
+### Component Implementation
+
+<Badge color="orange" />
+
+Once a project is created, you can define specific parameters to power your reports:
+
+- **Managers:** Assign specific users to oversee the project.
+- **Costs & Billing:** Set hourly rates or fixed budgets.
+- **Tags & Custom Fields:** Add metadata for advanced filtering (e.g., "Priority: High" or "Region: EMEA").
+
+---
+
+## Advanced Management & Troubleshooting
+
+**Objective:** Address common edge cases like archiving old projects or fixing hierarchy errors. 
+
+**Writing Guidance:** Use accordions to keep the page clean. Focus on "Safety First" when discussing deleting or moving projects.
+
+**Internal Linking:** Archiving Projects, Data Migration, Reporting
+
+**Visual Asset Suggestion:** Screenshot of the "Archive" button vs the "Delete" button.
+
+### Component Implementation
+
+<Accordion title="How do I move a project to a different category?">
+  You can move projects using the organizational tree view. However, be aware that moving projects may impact existing reports filtered by the original category.
+</Accordion>
+
+<Warning>
+  **Deleting vs. Archiving:** Deleting a project removes all associated time logs permanently. We recommend **Archiving** completed projects to retain historical data for your reports.
+</Warning>
+
+---
+
+## Frequently Asked Questions
+
+**Objective:** Provide quick answers to common logistical questions about project limits and visibility. 
+
+**Writing Guidance:** Concise, direct answers to common support queries.
+
+**Internal Linking:** User Permissions, Client Portal.
+
+### Component Implementation
+
+<Accordion title="Is there a limit to how many sub-levels I can create?">
+  No. Beebole supports infinite levels of nesting for activities. However, for the best user experience for your employees, we recommend keeping it under four levels.
+</Accordion>
+
+<Accordion title="Can I restrict which employees see certain projects?">
+  Yes. Project visibility is managed through **Groups** and **Permissions**. You can assign specific teams to specific projects.
+</Accordion>
