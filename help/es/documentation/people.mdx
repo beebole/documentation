@@ -1,0 +1,129 @@
+---
+title: "Personas"
+description: "Aprenda todo sobre cómo agregar e invitar rápida y fácilmente a su equipo en Beebole."
+---
+
+## Comprender las personas y los permisos
+
+**Objetivo:** Definir "Personas" en el contexto de Beebole como la entidad principal de la fuerza laboral y explicar la jerarquía organizacional predeterminada para asegurar que los responsables asignen los niveles de acceso correctos.
+
+**Guía de redacción:** Use un lenguaje claro y con autoridad. Defina los tres roles base (Administrador, Responsable, Empleado) inmediatamente. Explique que "Personas" representa tanto la cuenta de usuario como el perfil de datos (tarifas, horarios, etc.).
+
+**Enlaces internos:** Matriz de permisos, Roles personalizados, Configuración de seguridad.
+
+**Sugerencia de recurso visual:** Una tabla o gráfico comparando las capacidades predeterminadas de Administradores, Responsables y Empleados.
+
+### Implementación de componentes
+
+<Info>
+  En Beebole, **Personas** se refiere a cualquier usuario o miembro del equipo que registra tiempo, gestiona proyectos o consulta informes. A cada persona se le asigna un rol que determina lo que puede ver y hacer.
+</Info>
+
+<Accordion title="Roles de usuario predeterminados">
+  - <Badge color="red" /> Acceso completo a todos los datos, la facturación y la configuración del sistema.
+  - <Badge color="blue" /> Puede consultar y aprobar el tiempo de sus equipos/proyectos asignados.
+  - <Badge color="green" /> Acceso estándar para registrar tiempo y consultar su panel de control personal.
+</Accordion>
+
+---
+
+## Agregar su equipo
+
+**Objetivo:** Recorrer los métodos manuales y masivos de importación de usuarios en el sistema.
+
+**Guía de redacción:** Concéntrese en la eficiencia del "Inicio". Destaque la funcionalidad "Copiar/Pegar" como la forma más rápida de migrar desde una hoja de cálculo. Mencione que agregar una persona no la invita automáticamente a iniciar sesión.
+
+**Enlaces internos:** Guía de importación masiva, Invitaciones.
+
+**Sugerencia de recurso visual:** Captura de pantalla de la ventana "Agregar persona" y del botón "Importar desde hoja de cálculo".
+
+### Implementación de componentes
+
+<Steps>
+  <Step title="Entrada individual">
+    Haga clic en el icono **[+]** en el módulo Personas. Complete los campos requeridos: Nombre, Correo electrónico y Rol inicial.
+  </Step>
+  <Step title="Importación masiva">
+    Si tiene un equipo grande, use la herramienta **Importar**. Copie las filas directamente desde su hoja de cálculo de RRHH o CSV y péguelas en la cuadrícula de Beebole.
+
+    ![Interfaz para pegar datos de miembros desde una hoja de cálculo](/images/people-bulk-import.png)
+  </Step>
+  <Step title="Verificación">
+    Revise la lista para asegurarse de que las direcciones de correo electrónico sean correctas, ya que se usarán para las invitaciones de inicio de sesión más adelante.
+  </Step>
+</Steps>
+
+---
+
+## Configurar perfiles individuales
+
+**Objetivo:** Guiar a los responsables a través de las configuraciones granulares que definen los parámetros de trabajo de una persona, desde las tarifas financieras hasta la lógica de ausencias.
+
+**Guía de redacción:** Organice por subtema. Use un enfoque basado en tareas (por ej., "Para establecer un horario..."). Enfatice que estas configuraciones alimentan la precisión de los informes de costos laborales y planificación de capacidad.
+
+**Enlaces internos:** Horarios de trabajo, Derechos de ausencias, Costos laborales, Campos personalizados.
+
+**Sugerencia de recurso visual:** Video (Frame/Iframe) navegando a través de las pestañas del perfil de una persona (Configuración, Tarifas, Horario).
+
+### Implementación de componentes
+
+Una vez que una persona es agregada, haga clic en su nombre para configurar su perfil específico:
+
+- **Horarios de trabajo:** Defina las horas de trabajo estándar y los días festivos para calcular la capacidad.
+- **Costos y tarifas:** Ingrese los costos laborales internos para los informes de margen.
+- **Responsables:** Asigne quién es responsable de aprobar la hoja de horas de esta persona.
+- **Campos personalizados:** Agregue identificadores únicos como "Departamento", "Ubicación de oficina" o "Número de empleado".
+
+<Tip>
+  Configurar los **Horarios de trabajo** temprano es fundamental si planea usar Beebole para el seguimiento de ausencias o el cálculo de horas extras.
+</Tip>
+
+---
+
+## Incorporación: Envío de invitaciones
+
+**Objetivo:** Explicar cómo otorgar a los usuarios acceso a la plataforma una vez que sus perfiles estén configurados.
+
+**Guía de redacción:** Aclare que agregar una persona es un proceso de dos pasos: Creación, luego Invitación. Explique claramente la ubicación del botón "Invitar".
+
+**Enlaces internos:** Solución de problemas de inicio de sesión, Restablecimiento de contraseña.
+
+**Sugerencia de recurso visual:** Captura de pantalla del botón "Enviar invitación" en un perfil individual.
+
+### Implementación de componentes
+
+<Steps>
+  <Step title="Abrir perfil">
+    Navegue a la página de perfil de la persona.
+  </Step>
+  <Step title="Enviar correo electrónico">
+    Haga clic en el botón **Enviar invitación**. Beebole enviará un enlace seguro a la dirección de correo electrónico registrada.
+  </Step>
+  <Step title="Seguir el estado">
+    El perfil mostrará un estado "Pendiente" hasta que el usuario establezca su contraseña e inicie sesión por primera vez.
+  </Step>
+</Steps>
+
+<Note>
+  También puede reenviar invitaciones desde esta pantalla si un usuario no recibió su correo electrónico de incorporación inicial.
+</Note>
+
+---
+
+## Gestión avanzada y preguntas frecuentes
+
+**Objetivo:** Abordar tareas de gestión comunes como la baja de empleados y la modificación de roles.
+
+**Guía de redacción:** Use acordeones para información secundaria. Mantenga el enfoque en la integridad de los datos.
+
+**Enlaces internos:** Archivado de usuarios, Registros de auditoría.
+
+### Implementación de componentes
+
+<Accordion title="¿Qué sucede cuando alguien deja la empresa?">
+  No elimine al usuario, ya que esto borra sus datos históricos de tiempo. En su lugar, **archive** el perfil. Esto libera un puesto de usuario mientras preserva todos los datos reportados para sus archivos.
+</Accordion>
+
+<Accordion title="¿Puedo crear un rol personalizado (por ej., 'Auditor externo')?">
+  Sí. En **Configuración \> Roles**, puede clonar un rol existente y modificar permisos específicos para crear un nivel de acceso personalizado.
+</Accordion>

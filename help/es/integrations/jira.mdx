@@ -1,0 +1,141 @@
+---
+title: "Jira"
+description: "Integra Beebole con Jira para el seguimiento de proyectos y el registro de tiempo"
+---
+
+## Descripción general de la integración
+
+**Objetivo:** Proporcionar un resumen de alto nivel de las capacidades de sincronización Jira-Beebole para que los jefes de proyecto puedan comprender qué datos se transfieren y el valor de la integración.
+
+**Guía de redacción:** Usa voz activa. Indica claramente que se trata de una sincronización unidireccional de Jira a Beebole. Define "Planificación de recursos" y "Seguimiento de tiempo" de forma contextual. Asegúrate de que palabras clave como "sincronización de Jira" e "importación automatizada de proyectos" se utilicen para SEO/GEO.
+
+**Enlaces internos:** Configuración de proyecto, Conceptos básicos de planificación de recursos, Gestión de usuarios.
+
+**Sugerencia de recurso visual:** Un diagrama conceptual o captura de pantalla de alto nivel que muestre el mapeo de Proyectos/Issues de Jira a Proyectos/Tareas de Beebole.
+
+### Implementación de componentes
+
+<Info>La integración con Jira está disponible en todos los planes Pro y Enterprise. Asegúrate de tener privilegios de Administrador tanto en Jira como en Beebole antes de comenzar.</Info>
+
+<div className="grid grid-cols-2 gap-4">
+<div>
+### Qué se sincroniza desde Jira
+* **Proyectos:** Importados como Proyectos de Beebole.
+* **Issues/Tareas:** Importados como Tareas de Beebole.
+* **Usuarios:** Los usuarios de Jira se asocian al personal de Beebole.
+</div>
+<div>
+### Qué permanece en Beebole
+* **Tarifas de facturación:** Gestionadas exclusivamente en Beebole.
+* **Presupuestos:** Definidos en el módulo financiero de Beebole.
+* **Flujos de aprobación:** Beebole gestiona el ciclo de vida de la hoja de horas.
+</div>
+</div>
+
+---
+
+## Conexión de tu cuenta de Jira
+
+**Objetivo:** Guiar a los profesionales de TI a través del proceso de autenticación entre las dos plataformas.
+
+**Guía de redacción:** Enfócate en la precisión técnica. Menciona los tokens de API u OAuth si corresponde. Usa un formato paso a paso para reducir la carga cognitiva.
+
+**Enlaces internos:** Documentación de API, Seguridad y permisos.
+
+**Sugerencia de recurso visual:** Captura de pantalla de la galería de "Integraciones" en Beebole con el botón "Conectar" de Jira resaltado.
+
+### Implementación de componentes
+
+<Steps>
+<Step title="Acceder a la configuración de integración">
+Navega a **Configuración** > **Integraciones** desde tu panel de Beebole.
+</Step>
+<Step title="Seleccionar Jira">
+Localiza la tarjeta de Jira y haz clic en **Conectar**.
+</Step>
+<Step title="Autenticarse">
+Ingresa la URL de tu Jira Cloud y sigue las indicaciones de OAuth para autorizar a Beebole a acceder a los datos de tu sitio Jira.
+<img src="/images/jira-auth-screen.png" alt="Pantalla de autenticación OAuth de Jira" />
+</Step>
+</Steps>
+
+---
+
+## Configuración y mapeo de datos
+
+**Objetivo:** Indicar a los jefes de proyecto cómo seleccionar proyectos específicos de Jira para importar a Beebole.
+
+**Guía de redacción:** Usa un lenguaje orientado a tareas. Explica el "por qué" detrás de las opciones de mapeo. Usa una nota para las limitaciones en subtareas anidadas si existen.
+
+**Enlaces internos:** Campos personalizados, Categorías de tareas.
+
+**Sugerencia de recurso visual:** Captura de pantalla de la interfaz de mapeo que muestra los menús desplegables para seleccionar proyectos de Jira.
+
+### Implementación de componentes
+
+<Note>Solo los proyectos "Activos" en Jira son visibles para la sincronización. Los proyectos archivados no aparecerán en la lista de selección.</Note>
+
+<Steps>
+<Step title="Seleccionar proyectos">
+Elige los proyectos específicos de Jira que deseas rastrear en Beebole usando el menú desplegable de selección múltiple.
+</Step>
+<Step title="Mapear la jerarquía de tareas">
+Define si los "Epics" o "Stories" de Jira deben representar "Tareas" o "Subtareas" en tu estructura de Beebole.
+</Step>
+<Step title="Ejecutar la sincronización inicial">
+Haz clic en **Sincronizar ahora** para realizar la primera extracción de datos.
+</Step>
+</Steps>
+
+---
+
+## Automatización de la sincronización
+
+**Objetivo:** Explicar cómo mantener los datos actualizados sin intervención manual.
+
+**Guía de redacción:** Sé breve. Enfatiza la naturaleza de "configurar y olvidar" de la funcionalidad.
+
+**Enlaces internos:** Notificaciones automatizadas, Programación de informes.
+
+**Sugerencia de recurso visual:** Captura de pantalla del interruptor de "Sincronización automática" en la configuración de Beebole.
+
+### Implementación de componentes
+
+<Tip>Habilita la sincronización automática para asegurarte de que cuando un desarrollador agregue un nuevo issue en Jira, esté disponible inmediatamente para el registro de tiempo en Beebole.</Tip>
+
+<Accordion title="¿Con qué frecuencia se sincronizan los datos?">
+Por defecto, Beebole consulta Jira cada 60 minutos en busca de actualizaciones. Puedes activar una sincronización manual en cualquier momento haciendo clic en el icono "Actualizar" en la página de Integraciones.
+</Accordion>
+
+---
+
+## Solución de problemas y preguntas frecuentes
+
+**Objetivo:** Abordar los puntos de fricción comunes para reducir los tickets de soporte.
+
+**Guía de redacción:** Usa un formato claro de preguntas y respuestas. Aborda errores comunes como "Proyecto no encontrado" o "Incompatibilidad de usuario".
+
+**Enlaces internos:** Contactar soporte, Códigos de error comunes.
+
+**Sugerencia de recurso visual:** Video (Iframe) que muestra un recorrido de 60 segundos del error de configuración más común y su solución.
+
+### Implementación de componentes
+
+<Accordion group="troubleshooting" title="¿Por qué no aparecen mis usuarios de Jira?">
+Asegúrate de que las direcciones de correo electrónico utilizadas en Jira coincidan con las direcciones de correo electrónico de tus usuarios en Beebole. La integración utiliza la dirección de correo electrónico como identificador único para el mapeo.
+</Accordion>
+
+<Accordion group="troubleshooting" title="Agregué un nuevo proyecto en Jira pero no lo veo.">
+Verifica que la integración tenga permiso para acceder al espacio de trabajo del nuevo proyecto. Es posible que necesites actualizar la configuración de "Alcance" en la configuración de la aplicación Jira.
+</Accordion>
+
+<Frame>
+<iframe
+src="https://www.youtube.com/embed/placeholder-jira-troubleshooting"
+title="Guía de solución de problemas de sincronización de Jira"
+/>
+</Frame>
+
+<Warning>
+Desconectar la integración detendrá todos los flujos de datos, pero los datos de Jira importados previamente permanecerán en Beebole como registros "Locales".
+</Warning>

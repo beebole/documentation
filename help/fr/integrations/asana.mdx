@@ -1,0 +1,84 @@
+---
+title: "Asana"
+description: "Intégrez Beebole avec Asana pour le suivi des tâches et la saisie du temps"
+---
+
+## Aperçu de l'intégration
+Vous utilisez actuellement Asana pour organiser votre travail par projets et tâches. Cette intégration réplique la structure de vos tâches Asana dans Beebole, afin que vos employés puissent préciser le temps consacré à chaque tâche.
+
+La structure Asana peut être répliquée dans le tableau de bord de Planification des ressources de Beebole ou dans sa structure de suivi du temps par Projet, que vous pouvez exploiter avec les coûts, la facturation et les dépenses, pour un meilleur contrôle financier.
+
+Tous vos projets et tâches seront automatiquement synchronisés, vous n'avez donc pas à vous soucier de la double maintenance. La synchronisation automatique avec Asana peut être arrêtée et reprise à tout moment.
+```mermaid actions={false}
+erDiagram
+    Project-tracking {
+        Project Project
+        Task Sub-project
+        Sub-task Sub-sub-project
+    }
+    Planning {
+        Project Task
+        Task Sub-task
+        Sub-task Sub-sub-task
+    }
+```
+
+### Exigences d'abonnement
+
+<Info>L'intégration Asana est disponible sur tous les plans Pro et Enterprise. Assurez-vous de disposer des privilèges d'administrateur dans Asana et Beebole avant de commencer.</Info>
+
+<div className="grid grid-cols-2 gap-4">
+<div>
+### Ce qui est synchronisé depuis Jira
+* **Projets :** Importés en tant que Projets ou Tâches Beebole.
+* **Tâches :** Importées en tant que Sous-projets ou Sous-tâches Beebole.
+* **Sous-tâches :** Importées en tant que Sous-sous-projets ou Sous-sous-tâches Beebole.
+* **Utilisateurs :** Les utilisateurs actifs Asana sont associés aux personnes Beebole.
+</div>
+<div>
+### Ce qui reste dans Beebole
+* **Flux de validation :** Beebole gère le cycle de vie de la feuille de temps.
+* **Taux de facturation :** Gérés exclusivement dans les projets Beebole.
+* **Budgets :** Définis dans le module financier de Beebole.
+</div>
+</div>
+
+## Ce qui est inclus
+<AccordionGroup>
+  <Accordion title="Projets, tâches et sous-tâches Asana">
+    Les projets et tâches actifs au moment de l'activation de l'intégration seront créés dans Beebole. Tout changement de nom de ces tâches sera reflété dans Beebole tant que l'intégration est active. Les nouveaux projets et tâches seront également automatiquement créés dans Beebole.
+  </Accordion>
+
+  <Accordion title="Utilisateurs Asana">
+    Tous les utilisateurs actifs dans Asana seront automatiquement créés dans Beebole lors de la première activation de l'intégration. Le rôle de ces utilisateurs dans Beebole doit être spécifié.
+  </Accordion>
+
+  <Accordion title="Éléments supplémentaires restant dans Beebole">
+    Les saisies de feuille de temps, le processus de validation, les taux de facturation, les budgets et les dépenses seront maintenus dans Beebole.
+  </Accordion>
+</AccordionGroup>
+
+## Configuration étape par étape
+<Steps>
+    <Step title="Se connecter à Asana">Allez dans **Paramètres >> Intégrations >> Asana**. Cliquez sur le bouton pour vous connecter à votre compte Asana.<br/><img src="/help/images/integrations/asanaConnect.png" className="rounded-lg" style={{width: "600px", height: "auto"}}/><br/>
+      Suivez les instructions de la fenêtre contextuelle pour vous connecter à votre compte Asana. La fenêtre se fermera automatiquement une fois l'authentification terminée.</Step>
+    <Step title="Configurer les paramètres d'intégration">Si votre compte Asana est lié à plus d'un espace de travail,
+    sélectionnez celui que vous souhaitez synchroniser avec Beebole.<br/>Sélectionnez le _Rôle_ par défaut à utiliser pour les employés lors du processus d'importation. (*)_Vous pouvez consulter les rôles existants via *Paramètres >> Rôles des personnes* si nécessaire._<br/>
+    Définissez si vous souhaitez importer vos tâches pour la Planification et l'affectation ou pour le suivi du temps par projet et les taux.<br/><img src="/help/images/integrations/asanaParams.png" className="rounded-lg" style={{width: "500px", height: "auto"}}/></Step>
+    <Step title="Activer l'intégration">Cliquez sur le bouton bascule pour activer l'intégration. Le système importera tous vos projets et tâches actifs.
+    _Veuillez noter que cela peut prendre quelques instants selon votre compte Asana_.<img src="/help/images/integrations/asanaUpdating.png" className="rounded-lg" style={{width: "300px", height: "auto"}}/>
+    Vous pouvez naviguer et utiliser l'application pendant que le processus d'intégration se poursuit. Une fois terminé, l'intégration est activée et tous les changements depuis Asana seront reflétés dans Beebole.</Step>
+    <Step title="Valider l'intégration">Cliquez sur l'icône Projets dans le menu de gauche pour accéder à la page Projets. Développez les catégories. Vous devriez voir une nouvelle catégorie appelée Asana incluant tous vos projets et tâches. N'hésitez pas à modifier le nom de la catégorie si nécessaire.<br/><img src="/help/images/integrations/asanaValidate.png" className="rounded-lg" style={{width: "500px", height: "auto"}}/></Step>
+    <Step title="Configurer la feuille de temps">Si vous souhaitez que la nouvelle catégorie soit utilisée dans la Feuille de temps, allez dans **Paramètres >> Paramètres du compte >> Paramètres de la feuille de temps** et sélectionnez la catégorie Asana.</Step>
+</Steps>
+
+## Foire aux questions (FAQ)
+<AccordionGroup>
+  <Accordion title="Quelle est la différence entre Projets et activités vs Planification et tâches ?">
+    La gestion du temps de Beebole est divisée en deux sections, Projets et Planification. Les Projets peuvent être configurés avec des taux de facturation, des coûts, un budget et des dépenses. La Planification est une liste de tâches que vous pouvez attribuer dans différents graphiques. Les deux peuvent être utilisés dans la feuille de temps pour suivre le temps.<br/>Pour plus de détails, allez à **Lien interne vers l'explication principale entre Projets et Planification**.
+  </Accordion>
+
+  <Accordion title="À quelle fréquence Beebole est-il synchronisé avec Asana ?">
+    Chaque fois que vous mettez à jour ou créez un projet ou une tâche dans Asana, cela sera immédiatement reflété dans Beebole. Parfois, en raison de la congestion du réseau ou des files d'attente de données, cela peut prendre de quelques minutes à quelques heures.<br/>Si votre modification n'est pas reflétée dans Beebole sous 24 heures, veuillez nous contacter.
+  </Accordion>
+</AccordionGroup>

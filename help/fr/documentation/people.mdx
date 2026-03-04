@@ -1,0 +1,129 @@
+---
+title: "Personnes"
+description: "Apprenez tout sur la facon d'ajouter et d'inviter rapidement et facilement votre équipe dans Beebole."
+---
+
+## Comprendre les personnes et les permissions
+
+**Objectif :** Définir « Personnes » dans le contexte de Beebole comme l'entité principale de la main-d'oeuvre et expliquer la hiérarchie organisationnelle par défaut pour s'assurer que les responsables attribuent les niveaux d'acces corrects.
+
+**Conseils de rédaction :** Utilisez un langage clair et autoritaire. Définissez les trois roles de base (Administrateur, Responsable, Employé) immédiatement. Expliquez que « Personnes » représente a la fois le compte utilisateur et le profil de données (taux, horaires, etc.).
+
+**Liens internes :** Matrice des permissions, Roles personnalisés, Paramètres de sécurité.
+
+**Suggestion de ressource visuelle :** Un tableau ou graphique comparant les capacités par défaut des Administrateurs, des Responsables et des Employés.
+
+### Implémentation des composants
+
+<Info>
+  Dans Beebole, **Personnes** désigne tout utilisateur ou membre d'équipe qui suit le temps, gere des projets ou consulte des rapports. Chaque personne se voit attribuer un role qui détermine ce qu'elle peut voir et faire.
+</Info>
+
+<Accordion title="Roles utilisateur par défaut">
+  - <Badge color="red" /> Acces complet a toutes les données, la facturation et les paramètres systeme.
+  - <Badge color="blue" /> Peut consulter et approuver le temps pour ses équipes/projets assignés.
+  - <Badge color="green" /> Acces standard pour enregistrer le temps et consulter son tableau de bord personnel.
+</Accordion>
+
+---
+
+## Ajouter votre équipe
+
+**Objectif :** Parcourir les méthodes manuelles et en masse d'importation des utilisateurs dans le systeme.
+
+**Conseils de rédaction :** Concentrez-vous sur l'efficacité du « Démarrage ». Mettez en avant la fonctionnalité « Copier/Coller » comme le moyen le plus rapide de migrer depuis un tableur. Mentionnez que l'ajout d'une personne ne l'invite pas automatiquement a se connecter.
+
+**Liens internes :** Guide d'import en masse, Invitations.
+
+**Suggestion de ressource visuelle :** Capture d'écran de la fenetre « Ajouter une personne » et du bouton « Importer depuis un tableur ».
+
+### Implémentation des composants
+
+<Steps>
+  <Step title="Saisie individuelle">
+    Cliquez sur l'icone **[+]** dans le module Personnes. Remplissez les champs requis : Nom, E-mail et Role initial.
+  </Step>
+  <Step title="Import en masse">
+    Si vous avez une grande équipe, utilisez l'outil **Importer**. Copiez les lignes directement depuis votre tableur RH ou CSV et collez-les dans la grille Beebole.
+
+    ![Interface pour coller les données des membres depuis un tableur](/images/people-bulk-import.png)
+  </Step>
+  <Step title="Vérification">
+    Vérifiez la liste pour vous assurer que les adresses e-mail sont exactes, car elles seront utilisées pour les invitations de connexion ultérieurement.
+  </Step>
+</Steps>
+
+---
+
+## Configurer les profils individuels
+
+**Objectif :** Guider les responsables a travers les paramètres granulaires qui définissent les paramètres de travail d'une personne, des taux financiers a la logique des congés.
+
+**Conseils de rédaction :** Organisez par sous-sujet. Utilisez une approche basée sur les taches (par ex., « Pour définir un horaire... »). Soulignez que ces paramètres alimentent la précision des rapports de couts de main-d'oeuvre et de planification de capacité.
+
+**Liens internes :** Horaires de travail, Droits aux congés, Couts de main-d'oeuvre, Champs personnalisés.
+
+**Suggestion de ressource visuelle :** Vidéo (Frame/Iframe) naviguant a travers les onglets du profil d'une personne (Paramètres, Taux, Horaire).
+
+### Implémentation des composants
+
+Une fois qu'une personne est ajoutée, cliquez sur son nom pour configurer son profil spécifique :
+
+- **Horaires de travail :** Définissez les heures de travail standard et les jours fériés pour calculer la capacité.
+- **Couts et taux :** Saisissez les couts de main-d'oeuvre internes pour les rapports de marge.
+- **Responsables :** Assignez qui est responsable de l'approbation de la feuille de temps de cette personne.
+- **Champs personnalisés :** Ajoutez des identifiants uniques comme « Département », « Lieu du bureau » ou « Numéro d'employé ».
+
+<Tip>
+  Configurer les **Horaires de travail** tot est essentiel si vous prévoyez d'utiliser Beebole pour le suivi des absences ou le calcul des heures supplémentaires.
+</Tip>
+
+---
+
+## Intégration : Envoi des invitations
+
+**Objectif :** Expliquer comment accorder aux utilisateurs l'acces a la plateforme une fois leurs profils configurés.
+
+**Conseils de rédaction :** Clarifiez que l'ajout d'une personne est un processus en deux étapes : Création, puis Invitation. Expliquez clairement l'emplacement du bouton « Inviter ».
+
+**Liens internes :** Dépannage de connexion, Réinitialisation de mot de passe.
+
+**Suggestion de ressource visuelle :** Capture d'écran du bouton « Envoyer l'invitation » sur un profil individuel.
+
+### Implémentation des composants
+
+<Steps>
+  <Step title="Ouvrir le profil">
+    Accédez a la page de profil de la personne.
+  </Step>
+  <Step title="Envoyer l'e-mail">
+    Cliquez sur le bouton **Envoyer l'invitation**. Beebole enverra un lien sécurisé a l'adresse e-mail enregistrée.
+  </Step>
+  <Step title="Suivre le statut">
+    Le profil affichera un statut « En attente » jusqu'a ce que l'utilisateur définisse son mot de passe et se connecte pour la premiere fois.
+  </Step>
+</Steps>
+
+<Note>
+  Vous pouvez également renvoyer les invitations depuis cet écran si un utilisateur a manqué son e-mail d'intégration initial.
+</Note>
+
+---
+
+## Gestion avancée et FAQ
+
+**Objectif :** Traiter les taches de gestion courantes comme le départ d'un employé et la modification des roles.
+
+**Conseils de rédaction :** Utilisez des accordéons pour les informations secondaires. Maintenez l'accent sur l'intégrité des données.
+
+**Liens internes :** Archivage des utilisateurs, Journaux d'audit.
+
+### Implémentation des composants
+
+<Accordion title="Que se passe-t-il quand quelqu'un quitte l'entreprise ?">
+  Ne supprimez pas l'utilisateur, car cela supprime ses données historiques de temps. A la place, **archivez** le profil. Cela libere un siege utilisateur tout en préservant toutes les données déclarées pour vos archives.
+</Accordion>
+
+<Accordion title="Puis-je créer un role personnalisé (par ex., « Auditeur externe ») ?">
+  Oui. Sous **Paramètres \> Roles**, vous pouvez cloner un role existant et modifier des permissions spécifiques pour créer un niveau d'acces sur mesure.
+</Accordion>

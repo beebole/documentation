@@ -40,169 +40,513 @@
         }
       ]
     },
-    "tabs": [
+    "languages": [
       {
-        "tab": "Documentation",
-        "groups": [
+        "language": "en",
+        "default": true,
+        "tabs": [
           {
-            "group": "Getting started",
-            "pages": [
-              "help/index",
-              "help/documentation/quickstart",
-              "help/documentation/projects",
-              "help/documentation/people",
-              "help/documentation/journal"
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "help/index",
+                  "help/documentation/quickstart",
+                  "help/documentation/projects",
+                  "help/documentation/people",
+                  "help/documentation/journal"
+                ]
+              },
+              {
+                "group": "Time Tracking",
+                "pages": [
+                  "help/documentation/timesheets",
+                  "help/documentation/timesheetSettings",
+                  "help/documentation/approval"
+                ]
+              },
+              {
+                "group": "Planning",
+                "pages": [
+                  "help/documentation/planning",
+                  "help/documentation/gantt",
+                  "help/documentation/kanban"
+                ]
+              },
+              {
+                "group": "Time Off",
+                "pages": [
+                  "help/documentation/timeoff",
+                  "help/documentation/accruals",
+                  "help/documentation/public-holidays"
+                ]
+              },
+              {
+                "group": "Financial",
+                "pages": [
+                  "help/documentation/billing",
+                  "help/documentation/costs",
+                  "help/documentation/budgets",
+                  "help/documentation/expenses"
+                ]
+              },
+              {
+                "group": "Reporting",
+                "pages": [
+                  "help/documentation/reports",
+                  "help/documentation/custom-reports",
+                  "help/documentation/data-exports",
+                  "help/documentation/excel-addin",
+                  "help/documentation/gsheets-addon"
+                ]
+              },
+              {
+                "group": "Advanced features",
+                "pages": [
+                  "help/documentation/work-schedule",
+                  "help/documentation/tags",
+                  "help/documentation/custom-fields",
+                  "help/documentation/roles-authorisations",
+                  "help/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Account",
+                "pages": [
+                  "help/documentation/account-settings",
+                  "help/documentation/subscription",
+                  "help/documentation/sso",
+                  "help/documentation/custom-domain",
+                  "help/documentation/audit-trail"
+                ]
+              },
+              {
+                "group": "Devices",
+                "pages": [
+                  "help/documentation/mobile"
+                ]
+              }
             ]
           },
           {
-            "group": "Time Tracking",
-            "pages": [
-              "help/documentation/timesheets",
-              "help/documentation/timesheetSettings",
-              "help/documentation/approval"
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Per Roles",
+                "pages": [
+                  "help/guides/employee",
+                  "help/guides/project-manager",
+                  "help/guides/team-leader"
+                ]
+              },
+              {
+                "group": "FAQ & Troubleshooting",
+                "pages": [
+                  "help/guides/faq"
+                ]
+              }
             ]
           },
           {
-            "group": "Planning",
-            "pages": [
-              "help/documentation/planning",
-              "help/documentation/gantt",
-              "help/documentation/kanban"
+            "tab": "Integrations",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "help/integrations/introduction",
+                  "help/integrations/custom-integrations"
+                ]
+              },
+              {
+                "group": "Productivity",
+                "pages": [
+                  "help/integrations/asana",
+                  "help/integrations/jira"
+                ]
+              },
+              {
+                "group": "Communication & Calendars",
+                "pages": [
+                  "help/integrations/google",
+                  "help/integrations/google-calendar",
+                  "help/integrations/microsoft",
+                  "help/integrations/microsoft-calendar"
+                ]
+              },
+              {
+                "group": "Finance & HR",
+                "pages": [
+                  "help/integrations/quickbooks"
+                ]
+              }
             ]
           },
           {
-            "group": "Time Off",
+            "tab": "API",
             "pages": [
-              "help/documentation/timeoff",
-              "help/documentation/accruals",
-              "help/documentation/public-holidays"
+              {
+                "group": "GraphQL API",
+                "pages": [
+                  "help/api/introduction",
+                  "help/api/schema-explorer",
+                  "help/api/queries",
+                  "help/api/mutations"
+                ]
+              },
+              {
+                "group": "Examples",
+                "pages": [
+                  "help/api/examples/example-1",
+                  "help/api/examples/example-2"
+                ]
+              }
             ]
           },
           {
-            "group": "Financial",
+            "tab": "News",
             "pages": [
-              "help/documentation/billing",
-              "help/documentation/costs",
-              "help/documentation/budgets",
-              "help/documentation/expenses"
-            ]
-          },
-          {
-            "group": "Reporting",
-            "pages": [
-              "help/documentation/reports",
-              "help/documentation/custom-reports",
-              "help/documentation/data-exports",
-              "help/documentation/excel-addin",
-              "help/documentation/gsheets-addon"
-            ]
-          },
-          {
-            "group": "Advanced features",
-            "pages": [
-              "help/documentation/work-schedule",
-              "help/documentation/tags",
-              "help/documentation/custom-fields",
-              "help/documentation/roles-authorisations",
-              "help/documentation/assignments"
-            ]
-          },
-          {
-            "group": "Account",
-            "pages": [
-              "help/documentation/account-settings",
-              "help/documentation/subscription",
-              "help/documentation/sso",
-              "help/documentation/custom-domain",
-              "help/documentation/audit-trail"
-            ]
-          },
-          {
-            "group": "Devices",
-            "pages": [
-              "help/documentation/mobile"
+              "help/news/releases"
             ]
           }
         ]
       },
       {
-        "tab": "Guides",
-        "groups": [
+        "language": "fr",
+        "tabs": [
           {
-            "group": "Per Roles",
-            "pages": [
-              "help/guides/employee",
-              "help/guides/project-manager",
-              "help/guides/team-leader"
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Pour commencer",
+                "pages": [
+                  "help/fr/index",
+                  "help/fr/documentation/quickstart",
+                  "help/fr/documentation/projects",
+                  "help/fr/documentation/people",
+                  "help/fr/documentation/journal"
+                ]
+              },
+              {
+                "group": "Suivi du temps",
+                "pages": [
+                  "help/fr/documentation/timesheets",
+                  "help/fr/documentation/timesheetSettings",
+                  "help/fr/documentation/approval"
+                ]
+              },
+              {
+                "group": "Planification",
+                "pages": [
+                  "help/fr/documentation/planning",
+                  "help/fr/documentation/gantt",
+                  "help/fr/documentation/kanban"
+                ]
+              },
+              {
+                "group": "Congés",
+                "pages": [
+                  "help/fr/documentation/timeoff",
+                  "help/fr/documentation/accruals",
+                  "help/fr/documentation/public-holidays"
+                ]
+              },
+              {
+                "group": "Finances",
+                "pages": [
+                  "help/fr/documentation/billing",
+                  "help/fr/documentation/costs",
+                  "help/fr/documentation/budgets",
+                  "help/fr/documentation/expenses"
+                ]
+              },
+              {
+                "group": "Rapports",
+                "pages": [
+                  "help/fr/documentation/reports",
+                  "help/fr/documentation/custom-reports",
+                  "help/fr/documentation/data-exports",
+                  "help/fr/documentation/excel-addin",
+                  "help/fr/documentation/gsheets-addon"
+                ]
+              },
+              {
+                "group": "Fonctionnalités avancées",
+                "pages": [
+                  "help/fr/documentation/work-schedule",
+                  "help/fr/documentation/tags",
+                  "help/fr/documentation/custom-fields",
+                  "help/fr/documentation/roles-authorisations",
+                  "help/fr/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Compte",
+                "pages": [
+                  "help/fr/documentation/account-settings",
+                  "help/fr/documentation/subscription",
+                  "help/fr/documentation/sso",
+                  "help/fr/documentation/custom-domain",
+                  "help/fr/documentation/audit-trail"
+                ]
+              },
+              {
+                "group": "Appareils",
+                "pages": [
+                  "help/fr/documentation/mobile"
+                ]
+              }
             ]
           },
           {
-            "group": "FAQ & Troubleshooting",
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Par rôles",
+                "pages": [
+                  "help/fr/guides/employee",
+                  "help/fr/guides/project-manager",
+                  "help/fr/guides/team-leader"
+                ]
+              },
+              {
+                "group": "FAQ & Dépannage",
+                "pages": [
+                  "help/fr/guides/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Intégrations",
+            "groups": [
+              {
+                "group": "Vue d'ensemble",
+                "pages": [
+                  "help/fr/integrations/introduction",
+                  "help/fr/integrations/custom-integrations"
+                ]
+              },
+              {
+                "group": "Productivité",
+                "pages": [
+                  "help/fr/integrations/asana",
+                  "help/fr/integrations/jira"
+                ]
+              },
+              {
+                "group": "Communication & Calendriers",
+                "pages": [
+                  "help/fr/integrations/google",
+                  "help/fr/integrations/google-calendar",
+                  "help/fr/integrations/microsoft",
+                  "help/fr/integrations/microsoft-calendar"
+                ]
+              },
+              {
+                "group": "Finance & RH",
+                "pages": [
+                  "help/fr/integrations/quickbooks"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API",
             "pages": [
-              "help/guides/faq"
+              {
+                "group": "API GraphQL",
+                "pages": [
+                  "help/fr/api/introduction",
+                  "help/fr/api/schema-explorer",
+                  "help/fr/api/queries",
+                  "help/fr/api/mutations"
+                ]
+              },
+              {
+                "group": "Exemples",
+                "pages": [
+                  "help/fr/api/examples/example-1",
+                  "help/fr/api/examples/example-2"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Actualités",
+            "pages": [
+              "help/fr/news/releases"
             ]
           }
         ]
       },
       {
-        "tab": "Integrations",
-        "groups": [
+        "language": "es",
+        "tabs": [
           {
-            "group": "Overview",
-            "pages": [
-              "help/integrations/introduction",
-              "help/integrations/custom-integrations"
+            "tab": "Documentación",
+            "groups": [
+              {
+                "group": "Primeros pasos",
+                "pages": [
+                  "help/es/index",
+                  "help/es/documentation/quickstart",
+                  "help/es/documentation/projects",
+                  "help/es/documentation/people",
+                  "help/es/documentation/journal"
+                ]
+              },
+              {
+                "group": "Control de horas",
+                "pages": [
+                  "help/es/documentation/timesheets",
+                  "help/es/documentation/timesheetSettings",
+                  "help/es/documentation/approval"
+                ]
+              },
+              {
+                "group": "Planificación",
+                "pages": [
+                  "help/es/documentation/planning",
+                  "help/es/documentation/gantt",
+                  "help/es/documentation/kanban"
+                ]
+              },
+              {
+                "group": "Ausencias",
+                "pages": [
+                  "help/es/documentation/timeoff",
+                  "help/es/documentation/accruals",
+                  "help/es/documentation/public-holidays"
+                ]
+              },
+              {
+                "group": "Finanzas",
+                "pages": [
+                  "help/es/documentation/billing",
+                  "help/es/documentation/costs",
+                  "help/es/documentation/budgets",
+                  "help/es/documentation/expenses"
+                ]
+              },
+              {
+                "group": "Informes",
+                "pages": [
+                  "help/es/documentation/reports",
+                  "help/es/documentation/custom-reports",
+                  "help/es/documentation/data-exports",
+                  "help/es/documentation/excel-addin",
+                  "help/es/documentation/gsheets-addon"
+                ]
+              },
+              {
+                "group": "Funciones avanzadas",
+                "pages": [
+                  "help/es/documentation/work-schedule",
+                  "help/es/documentation/tags",
+                  "help/es/documentation/custom-fields",
+                  "help/es/documentation/roles-authorisations",
+                  "help/es/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Cuenta",
+                "pages": [
+                  "help/es/documentation/account-settings",
+                  "help/es/documentation/subscription",
+                  "help/es/documentation/sso",
+                  "help/es/documentation/custom-domain",
+                  "help/es/documentation/audit-trail"
+                ]
+              },
+              {
+                "group": "Dispositivos",
+                "pages": [
+                  "help/es/documentation/mobile"
+                ]
+              }
             ]
           },
           {
-            "group": "Productivity",
-            "pages": [
-              "help/integrations/asana",
-              "help/integrations/jira"
+            "tab": "Guías",
+            "groups": [
+              {
+                "group": "Por roles",
+                "pages": [
+                  "help/es/guides/employee",
+                  "help/es/guides/project-manager",
+                  "help/es/guides/team-leader"
+                ]
+              },
+              {
+                "group": "FAQ y Resolución de problemas",
+                "pages": [
+                  "help/es/guides/faq"
+                ]
+              }
             ]
           },
           {
-            "group": "Communication & Calendars",
-            "pages": [
-              "help/integrations/google",
-              "help/integrations/google-calendar",
-              "help/integrations/microsoft",
-              "help/integrations/microsoft-calendar"
+            "tab": "Integraciones",
+            "groups": [
+              {
+                "group": "Descripción general",
+                "pages": [
+                  "help/es/integrations/introduction",
+                  "help/es/integrations/custom-integrations"
+                ]
+              },
+              {
+                "group": "Productividad",
+                "pages": [
+                  "help/es/integrations/asana",
+                  "help/es/integrations/jira"
+                ]
+              },
+              {
+                "group": "Comunicación y Calendarios",
+                "pages": [
+                  "help/es/integrations/google",
+                  "help/es/integrations/google-calendar",
+                  "help/es/integrations/microsoft",
+                  "help/es/integrations/microsoft-calendar"
+                ]
+              },
+              {
+                "group": "Finanzas y RRHH",
+                "pages": [
+                  "help/es/integrations/quickbooks"
+                ]
+              }
             ]
           },
           {
-            "group": "Finance & HR",
+            "tab": "API",
             "pages": [
-              "help/integrations/quickbooks"
+              {
+                "group": "API GraphQL",
+                "pages": [
+                  "help/es/api/introduction",
+                  "help/es/api/schema-explorer",
+                  "help/es/api/queries",
+                  "help/es/api/mutations"
+                ]
+              },
+              {
+                "group": "Ejemplos",
+                "pages": [
+                  "help/es/api/examples/example-1",
+                  "help/es/api/examples/example-2"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Novedades",
+            "pages": [
+              "help/es/news/releases"
             ]
           }
-        ]
-      },
-      {
-        "tab": "API",
-        "pages": [
-          {
-            "group": "GraphQL API",
-            "pages": [
-              "help/api/introduction",
-              "help/api/schema-explorer",
-              "help/api/queries",
-              "help/api/mutations"
-            ]
-          },
-          {
-            "group": "Examples",
-            "pages": [
-              "help/api/examples/example-1",
-              "help/api/examples/example-2"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "News",
-        "pages": [
-          "help/news/releases"
         ]
       }
     ]
