@@ -274,38 +274,24 @@ All images should be optimized **before committing** to keep the repository lean
 - **Maximum file size:** Aim for **under 200 KB** per image. Mintlify's hard limit is 20 MB, but large images hurt page load time.
 - **Resolution:** Use 2x resolution for retina screens (e.g., capture at 1440px wide for a 720px display width), then compress.
 
-### Automatic optimization (pre-commit hook)
+### Automatic optimization (GitHub Action)
 
-A shared Git pre-commit hook at `.githooks/pre-commit` automatically converts any staged PNG or JPG in `help/images/` to WebP at quality 80. The hook:
+A GitHub Action (`.github/workflows/optimize-images.yml`) runs automatically whenever PNG or JPG files are pushed to `help/images/`. It:
 
 - **Renames** the image for SEO: prefixes it with the page slug of the `.mdx` file that references it, and cleans the name to kebab-case
-- **Converts** to `.webp` using `cwebp`
+- **Converts** to `.webp` using `cwebp` at quality 80
 - **Updates** all `.mdx` references to point to the new filename
-- **Stages** everything (new WebP, updated `.mdx` files) and removes the original
+- **Commits** the optimized images and updated references back to the repo
 
-**Example:** you add `Screenshot 2.PNG` to `help/images/` and reference it in `help/documentation/timesheets.mdx`. On commit, the hook produces `timesheets-screenshot-2.webp` and updates the `.mdx` automatically.
+**No local setup required.** Contributors just drop screenshots into `help/images/`, reference them in `.mdx` files, commit and push. The action handles the rest.
 
-**You just drop your screenshots into `help/images/`, reference them in your `.mdx` files, and commit.** The hook handles naming, conversion, and reference updates in one pass.
+**Example:** you push `Screenshot 2.PNG` referenced in `help/documentation/timesheets.mdx`. The action produces `timesheets-screenshot-2.webp`, updates the `.mdx`, and commits the changes.
 
 If the filename already starts with the page slug, it won't duplicate the prefix. If the image isn't referenced in any `.mdx` file yet, it's still converted and cleaned to kebab-case.
 
-**Important:** GitHub Desktop does not run Git hooks. Always commit from the terminal (`git commit`) for the hook to run.
+### Running optimization locally (optional)
 
-**Setup for new contributors:**
-
-```bash
-# 1. Install cwebp
-brew install webp
-
-# 2. Point Git to the shared hooks directory
-git config core.hooksPath .githooks
-```
-
-If `cwebp` is missing, the hook skips optimization and lets the commit through with a warning.
-
-### Running optimization on demand
-
-A standalone script at `scripts/optimize-images.sh` does the same thing as the pre-commit hook but on **all** PNG/JPG files in `help/images/`, not just staged ones. Run it via:
+A standalone script at `scripts/optimize-images.sh` converts all PNG/JPG files in `help/images/` locally. Requires `cwebp` (`brew install webp`).
 
 ```bash
 bash scripts/optimize-images.sh
@@ -313,35 +299,11 @@ bash scripts/optimize-images.sh
 
 When the user asks to "optimize images" or similar, run this script.
 
-### Manual conversion
-
-If you need to convert an image outside of a commit (e.g., to check the result first):
-
-```bash
-cwebp -q 80 input.png -o output.webp
-```
-
-If the result is still over 200 KB, reduce quality (`-q 70`) or resize the source image before converting.
-
 ### Naming conventions
 
 - Use lowercase, kebab-case: `project-settings-form.webp`
 - Include the feature or context: `approval-workflow-pending.webp` — not `screenshot-3.webp`
 - For language-specific images (e.g., UI in French), use subdirectories: `help/images/fr/timesheet-weekly-view.webp`
-
-### Batch optimization
-
-To optimize all PNG/JPG images in the `help/images/` directory at once:
-
-```bash
-# Convert all PNGs to WebP at quality 80
-for f in help/images/*.png; do cwebp -q 80 "$f" -o "${f%.png}.webp"; done
-
-# Convert all JPGs to WebP at quality 80
-for f in help/images/*.jpg; do cwebp -q 80 "$f" -o "${f%.jpg}.webp"; done
-```
-
-After converting, update the image references in `.mdx` files to use the `.webp` extension and remove the original PNG/JPG files.
 
 ### Don'ts
 

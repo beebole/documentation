@@ -1,0 +1,101 @@
+name: Optimize images
+
+on:
+  push:
+    paths:
+      - 'help/images/**/*.png'
+      - 'help/images/**/*.jpg'
+      - 'help/images/**/*.jpeg'
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install cwebp
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Convert PNG/JPG to WebP and update references
+        run: |
+          QUALITY=80
+          CONVERTED=0
+
+          to_kebab() {
+            echo "$1" \
+              | sed 's/\.[^.]*$//' \
+              | tr '[:upper:]' '[:lower:]' \
+              | sed 's/[^a-z0-9]/-/g' \
+              | sed 's/--*/-/g' \
+              | sed 's/^-//' \
+              | sed 's/-$//'
+          }
+
+          for img in $(find help/images -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \)); do
+            img_dir=$(dirname "$img")
+            img_basename=$(basename "$img")
+            old_ref="/images/${img#help/images/}"
+
+            clean_name=$(to_kebab "$img_basename")
+
+            # Find the .mdx file referencing this image
+            page_slug=""
+            mdx_match=$(grep -rl "$old_ref" help/ --include='*.mdx' 2>/dev/null | head -1)
+            if [ -n "$mdx_match" ]; then
+              page_slug=$(basename "$mdx_match" .mdx)
+            fi
+
+            # Build new filename
+            if [ -n "$page_slug" ]; then
+              if echo "$clean_name" | grep -q "^${page_slug}"; then
+                new_name="${clean_name}.webp"
+              else
+                new_name="${page_slug}-${clean_name}.webp"
+              fi
+            else
+              new_name="${clean_name}.webp"
+            fi
+
+            webp_path="${img_dir}/${new_name}"
+
+            if cwebp -q "$QUALITY" "$img" -o "$webp_path" -quiet; then
+              orig_size=$(wc -c < "$img" | tr -d ' ')
+              webp_size=$(wc -c < "$webp_path" | tr -d ' ')
+              savings=$(( (orig_size - webp_size) * 100 / orig_size ))
+              echo "✅ $(basename "$img") → ${new_name} (${savings}% smaller)"
+
+              new_ref="/images/${webp_path#help/images/}"
+
+              # Update .mdx references
+              mdx_files=$(grep -rl "$old_ref" help/ --include='*.mdx' 2>/dev/null)
+              if [ -n "$mdx_files" ]; then
+                for mdx in $mdx_files; do
+                  sed -i "s|${old_ref}|${new_ref}|g" "$mdx"
+                  echo "📝 Updated reference in $(basename "$mdx")"
+                done
+              fi
+
+              rm "$img"
+              CONVERTED=$((CONVERTED + 1))
+            else
+              echo "❌ Failed to convert $(basename "$img")"
+            fi
+          done
+
+          echo "Total converted: $CONVERTED"
+
+      - name: Commit optimized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add help/
+          if git diff --cached --quiet; then
+            echo "No images to optimize."
+          else
+            git commit -m "Optimize images: convert PNG/JPG to WebP"
+            git push
+          fi
