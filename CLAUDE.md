@@ -58,7 +58,8 @@ The JSON is organized by feature area (e.g., `absenceTypeQuota`, `timesheet`, `p
 - The site has 5 tabs per language: Documentation, Guides, Integrations, API, News
 - Brand color: `#004D43`
 - Support email: support@beebole.com
-
+ 
+ 
 ## Content sections
 
 | Section | Description |
@@ -301,6 +302,16 @@ git config core.hooksPath .githooks
 ```
 
 If `cwebp` is missing, the hook skips optimization and lets the commit through with a warning.
+
+### Running optimization on demand
+
+A standalone script at `scripts/optimize-images.sh` does the same thing as the pre-commit hook but on **all** PNG/JPG files in `help/images/`, not just staged ones. Run it via:
+
+```bash
+bash scripts/optimize-images.sh
+```
+
+When the user asks to "optimize images" or similar, run this script.
 
 ### Manual conversion
 
