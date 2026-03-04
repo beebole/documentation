@@ -288,6 +288,8 @@ A shared Git pre-commit hook at `.githooks/pre-commit` automatically converts an
 
 If the filename already starts with the page slug, it won't duplicate the prefix. If the image isn't referenced in any `.mdx` file yet, it's still converted and cleaned to kebab-case.
 
+**Important:** GitHub Desktop does not run Git hooks. Always commit from the terminal (`git commit`) for the hook to run.
+
 **Setup for new contributors:**
 
 ```bash
