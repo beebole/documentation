@@ -1,0 +1,118 @@
+---
+title: "Linear"
+description: "Intégrez Beebole avec Linear pour importer vos projets et tickets et suivre le temps. Synchronisez automatiquement votre espace de travail Linear avec Beebole."
+keywords: ["beebole", "linear", "intégration", "gestion de projet", "suivi des tickets", "suivi du temps", "synchronisation des tâches"]
+---
+
+## Aperçu de l'intégration
+
+L'intégration Linear de Beebole importe vos projets, tickets et membres d'équipe Linear dans Beebole afin que vos employés puissent saisir le temps consacré à leur travail dans Linear. L'intégration maintient votre espace de travail Linear et votre compte Beebole synchronisés automatiquement — lorsqu'un projet ou un ticket est créé ou renommé dans Linear, le changement est reflété dans Beebole.
+
+Vous pouvez importer votre structure Linear dans les **Projets et activités** de Beebole pour le suivi du temps avec les coûts, la facturation et les dépenses, ou dans la **Planification et tâches** pour l'affectation des ressources.
+
+```mermaid actions={false}
+erDiagram
+    Project-tracking {
+        Project Project
+        Issue Sub-project
+    }
+    Planning {
+        Project Task
+        Issue Sub-task
+    }
+```
+
+### Exigences d'abonnement
+
+<Info>L'intégration Linear est disponible sur les plans Pro et Enterprise. Vous devez disposer des privilèges d'administrateur dans Linear et Beebole avant de commencer.</Info>
+
+| Ce qui est synchronisé depuis Linear | Ce qui reste dans Beebole |
+|---|---|
+| **Projets :** Importés en tant que projets ou tâches Beebole. | **Flux de validation :** Beebole gère le cycle de vie de la feuille de temps. |
+| **Tickets :** Importés en tant que sous-projets ou sous-tâches Beebole. | **Taux de facturation :** Gérés exclusivement dans Beebole. |
+| **Membres :** Les membres actifs de Linear sont associés aux personnes Beebole. | **Budgets :** Définis dans le module financier de Beebole. |
+
+## Ce qui est inclus
+
+<AccordionGroup>
+  <Accordion title="Projets et tickets Linear">
+    Les projets et tickets actifs au moment de l'activation de l'intégration sont créés dans Beebole. Tout changement de nom est reflété dans Beebole tant que l'intégration est active. Les nouveaux projets et tickets créés dans Linear sont également ajoutés automatiquement à Beebole.
+  </Accordion>
+
+  <Accordion title="Membres Linear">
+    Tous les membres actifs de votre espace de travail Linear sont automatiquement créés en tant que personnes dans Beebole lors de la première activation de l'intégration. Vous choisissez un rôle par défaut pour ces employés importés lors de la configuration.
+  </Accordion>
+
+  <Accordion title="Éléments gérés dans Beebole">
+    Les saisies de feuille de temps, les flux de validation, les taux de facturation, les budgets et les dépenses restent dans Beebole et ne sont pas affectés par l'intégration.
+  </Accordion>
+</AccordionGroup>
+
+## Configuration étape par étape
+
+<Steps>
+  <Step title="Se connecter à Linear">
+    Allez dans **Paramètres** > **Intégrations** > **Linear**. Cliquez sur **Se connecter à Linear**.
+
+    ![Bouton de connexion de l'intégration Linear dans Beebole](/help/images/integrations/linear-connect.webp)
+
+    Suivez les instructions de la fenêtre contextuelle pour autoriser Beebole à accéder à votre espace de travail Linear. La fenêtre se ferme automatiquement une fois la connexion établie.
+  </Step>
+  <Step title="Configurer les paramètres d'intégration">
+    Une fois connecté, configurez les options suivantes :
+
+    - **Où importer vos tâches** — Choisissez entre **Projets et activités** (pour le suivi du temps par projet avec taux et facturation) ou **Planification et tâches** (pour la planification et l'affectation des ressources).
+    - **Rôle par défaut pour les employés importés** — Sélectionnez le rôle à attribuer aux membres Linear lors de leur importation dans Beebole.
+
+    ![Paramètres de l'intégration Linear dans Beebole](/help/images/integrations/linear-params.webp)
+
+    <Tip>Vous pouvez consulter et gérer les rôles existants dans **Paramètres** > **Rôles des personnes**.</Tip>
+  </Step>
+  <Step title="Activer l'intégration">
+    Cliquez sur le bouton bascule pour **Activer l'intégration**. Beebole importe tous vos projets et tickets Linear actifs.
+
+    <Note>L'importation initiale peut prendre quelques instants selon la taille de votre espace de travail Linear. Vous pouvez continuer à utiliser Beebole pendant que l'importation s'exécute en arrière-plan.</Note>
+
+    Une fois terminé, l'intégration est active. Tous les changements futurs dans Linear sont automatiquement reflétés dans Beebole.
+  </Step>
+  <Step title="Valider l'intégration">
+    Cliquez sur l'icône **Projets** dans le menu de gauche pour ouvrir la page Projets. Développez les catégories — vous devriez voir une nouvelle catégorie appelée **Linear** contenant tous vos projets et tickets importés. Vous pouvez renommer cette catégorie si nécessaire.
+
+    ![Page projets Beebole avec la catégorie Linear importée](/help/images/integrations/linear-validate.webp)
+  </Step>
+  <Step title="Configurer la feuille de temps">
+    Si vous souhaitez que la nouvelle catégorie Linear apparaisse dans la feuille de temps, allez dans **Paramètres** > **Paramètres du compte** > **Paramètres de la feuille de temps** et sélectionnez la catégorie Linear.
+  </Step>
+</Steps>
+
+## Désactiver l'intégration
+
+<Warning>Si vous désactivez l'intégration, les changements futurs effectués dans Linear ne seront plus synchronisés avec Beebole. Les données précédemment importées restent dans Beebole en tant qu'enregistrements locaux.</Warning>
+
+Pour désactiver l'intégration, allez dans **Paramètres** > **Intégrations** > **Linear** et désactivez le bouton bascule. Vous pouvez la réactiver à tout moment pour reprendre la synchronisation.
+
+Pour déconnecter entièrement votre compte Linear, cliquez sur **Réinitialiser la connexion**.
+
+## Foire aux questions
+
+<AccordionGroup>
+  <Accordion title="Quelle est la différence entre Projets et activités et Planification et tâches ?">
+    La gestion du temps de Beebole comporte deux structures. Les **Projets et activités** peuvent être configurés avec des taux de facturation, des coûts, des budgets et des dépenses. La **Planification et tâches** est une liste de tâches que vous pouvez attribuer dans les graphiques de planification des ressources. Les deux peuvent être utilisés dans la feuille de temps pour suivre le temps. Choisissez l'option qui correspond le mieux à la façon dont votre organisation gère le travail.
+  </Accordion>
+
+  <Accordion title="À quelle fréquence Beebole se synchronise-t-il avec Linear ?">
+    Les changements effectués dans Linear (nouveaux projets, tickets ou modifications de noms) sont reflétés automatiquement dans Beebole. Dans la plupart des cas, cela se produit en quelques minutes. Si un changement n'est pas reflété sous 24 heures, contactez [support@beebole.com](mailto:support@beebole.com).
+  </Accordion>
+
+  <Accordion title="Puis-je choisir quels projets Linear importer ?">
+    L'intégration importe tous les projets et tickets actifs de votre espace de travail Linear. Vous ne pouvez pas importer sélectivement des projets individuels. Cependant, vous pouvez organiser et filtrer les éléments importés dans Beebole après l'importation.
+  </Accordion>
+
+  <Accordion title="Que deviennent les données importées si je désactive l'intégration ?">
+    Tous les projets, tickets et personnes précédemment importés restent dans Beebole en tant qu'enregistrements locaux. Ils ne sont pas supprimés. Seuls les changements futurs provenant de Linear cesseront de se synchroniser jusqu'à ce que vous réactiviez l'intégration.
+  </Accordion>
+
+  <Accordion title="Ai-je besoin d'un accès administrateur dans Linear et Beebole ?">
+    Oui. Vous devez disposer des privilèges d'administrateur dans votre espace de travail Linear et dans votre compte Beebole pour configurer l'intégration.
+  </Accordion>
+</AccordionGroup>

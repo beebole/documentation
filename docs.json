@@ -161,7 +161,9 @@
                 "group": "Productivity",
                 "pages": [
                   "help/integrations/asana",
-                  "help/integrations/jira"                ]
+                  "help/integrations/jira",
+                  "help/integrations/linear"
+                ]
               },
               {
                 "group": "Communication & Calendars",
@@ -329,7 +331,8 @@
                 "group": "Productivité",
                 "pages": [
                   "help/fr/integrations/asana",
-                  "help/fr/integrations/jira"
+                  "help/fr/integrations/jira",
+                  "help/fr/integrations/linear"
                 ]
               },
               {
@@ -498,7 +501,8 @@
                 "group": "Productividad",
                 "pages": [
                   "help/es/integrations/asana",
-                  "help/es/integrations/jira"
+                  "help/es/integrations/jira",
+                  "help/es/integrations/linear"
                 ]
               },
               {
