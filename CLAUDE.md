@@ -4,7 +4,20 @@
 
 This is the **Beebole Help Center**, a Mintlify-powered documentation website for [Beebole](https://beebole.com), a project time tracking application available at [app.beebole.com](https://app.beebole.com).
 
-This is **functional documentation** (not technical), aimed at helping end users understand and use Beebole.
+This is **functional documentation** (not technical), except for the API section, aimed at helping end users understand and use Beebole.
+
+## Slash commands
+
+| Command | What it does |
+|---------|-------------|
+| `/optimize-images` | Compress and convert images to WebP |
+| `/translate` | Detect stale translations and sync FR/ES with English |
+| `/generate-faqs` | Find pages missing FAQ sections and generate them |
+| `/seo-geo-audit` | Run a full SEO & GEO audit across all pages with actionable report |
+| `/generate-blueprint` | Generate a page skeleton/blueprint for contributors to follow |
+| `/draft-page` | Turn a raw dictation transcript into a complete documentation page |
+
+Each skill's full instructions are in `.claude/skills/`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
 ## Languages
 
@@ -20,7 +33,7 @@ All three languages share the same structure and page slugs. When adding or modi
 
 ```
 docs.json          # Mintlify configuration (navigation, theme, SEO, languages)
-pollen.js          # Mintlify component config
+pollen.js          # Analytics script (Pollen/GTM)
 help/
   index.mdx        # English landing page
   documentation/   # Core feature docs (EN)
@@ -32,6 +45,10 @@ help/
   logo/            # Logo assets
   fr/              # French translations (same structure as help/)
   es/              # Spanish translations (same structure as help/)
+scripts/
+  optimize-images.sh  # Local image optimization script (optional, requires cwebp)
+  generate-faq.sh     # Detect pages missing FAQ sections (for batch FAQ generation)
+  translate.sh        # Detect stale translations (for batch translation sync)
 ```
 
 ## Mintlify compliance
@@ -51,29 +68,25 @@ gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/en.json --jq '.
 
 The JSON is organized by feature area (e.g., `absenceTypeQuota`, `timesheet`, `project`, etc.). Look up the relevant section when documenting a feature to use the correct wording.
 
+## Prerequisites — auto-check before running skills
+
+Before running any skill or script, check that the required tools are installed. If a tool is missing, install it automatically (macOS with Homebrew) or tell the user what to install.
+
+| Tool | Required by | Check command | Install command |
+|------|------------|---------------|-----------------|
+| `cwebp` | `/optimize-images` | `command -v cwebp` | `brew install webp` |
+| `gh` (GitHub CLI) | `/translate`, `/generate-faqs`, app terminology lookups | `command -v gh` | `brew install gh && gh auth login` |
+| `python3` | `/translate`, `/generate-faqs` (JSON escaping in scripts) | `command -v python3` | Pre-installed on macOS; otherwise `brew install python` |
+| `mintlify` | Local preview (`mintlify dev`) | `command -v mintlify` | `npm install -g mintlify` |
+
+When a skill fails because a tool is missing, install it with the corresponding install command and retry — don't just report the error.
+
 ## Key conventions
 
 - Pages are `.mdx` files using Mintlify components and frontmatter
 - Navigation structure is defined in `docs.json` under `navigation.languages`
-- The site has 5 tabs per language: Documentation, Guides, Integrations, API, News
-- Brand color: `#004D43`
-- Support email: support@beebole.com
- 
- 
-## Content sections
-
-| Section | Description |
-|---------|-------------|
-| Getting started | Quickstart, projects, people, journal |
-| Time Tracking | Timesheets, settings, approval workflows |
-| Planning | Planning views, Gantt, Kanban |
-| Time Off | Leave management, accruals, public holidays |
-| Financial | Billing, costs, budgets, expenses |
-| Reporting | Reports, custom reports, data exports, Excel/Sheets add-ons |
-| Advanced | Work schedules, tags, custom fields, roles, assignments |
-| Account | Settings, subscription, SSO, custom domain, audit trail |
-| Integrations | Asana, Jira, Google, Microsoft, QuickBooks |
-| API | GraphQL API reference and examples |
+- 5 tabs per language: Documentation, Guides, Integrations, API, News
+- Brand color: `#004D43` | Support: support@beebole.com
 
 ---
 
@@ -83,10 +96,8 @@ This section defines how documentation pages should be written. The goal is to p
 
 ### Voice and tone
 
-- **Professional but approachable.** Write as a knowledgeable colleague explaining a feature, not as a manual or legal document.
-- **Action-oriented.** Lead with what the user can do, not with abstract descriptions. Prefer "To create a project, click **Projects** in the sidebar" over "The Projects module allows for the creation of projects."
-- **Reassuring.** When a feature involves data changes (archiving, deleting, modifying permissions), acknowledge the user's concern and explain what happens clearly.
-- **Concise.** Every sentence should earn its place. Remove filler words, redundant explanations, and unnecessary qualifiers.
+- **Professional but approachable.** Write as a knowledgeable colleague, not a manual. Lead with what the user can do ("To create a project, click **Projects**"), not abstract descriptions.
+- **Concise and reassuring.** Every sentence earns its place. When a feature involves data changes, explain what happens clearly.
 
 ### Writing rules
 
@@ -97,17 +108,22 @@ This section defines how documentation pages should be written. The goal is to p
 5. **One idea per sentence.** Break complex sentences into shorter ones.
 6. **Avoid jargon.** No developer terms (payload, endpoint, instance) in user-facing docs. The API section is the exception.
 7. **Don't assume prior knowledge.** Briefly explain what a feature does before explaining how to use it.
+8. **Define key terms before first use.** If a concept is central to the page, define it clearly before using it in instructions or details.
 
 ### Page structure
 
-Every documentation page should follow this general flow:
+Every documentation page should follow this general flow. Not every section applies to every page — skip sections that aren't relevant.
 
-1. **Frontmatter** — `title`, `description` (1-2 sentences for SEO), and optional `keywords`.
-2. **Introduction** — A short paragraph (2-4 sentences) explaining what the feature is and why it matters. Answer: *What is this? When would I use it?*
-3. **How it works** — Explain the feature's behavior and key concepts. Use subheadings (`##`) to break into logical sections.
-4. **Step-by-step instructions** — Use the `<Steps>` / `<Step>` Mintlify components for sequential tasks. Each step should be one clear action.
-5. **Tips, warnings, notes** — Use callout components (`<Tip>`, `<Warning>`, `<Info>`, `<Note>`) to highlight important information inline, near the relevant content.
-6. **Related links** — Point to related pages at the end when useful.
+1. **Frontmatter** — `title`, `description` (1-2 sentences for SEO), and `keywords` (3-8 terms).
+2. **Introduction / Orientation** — A short paragraph (2-4 sentences) explaining what the feature is and why it matters. Answer: *What is this? When would I use it?* Use a definition-style opening ("Beebole's X lets you...").
+3. **Core tasks** — The main actions users perform with this feature. Use subheadings (`##`) to break into logical sections. Use `<Steps>` / `<Step>` for sequential tasks.
+4. **Configuration** — Settings, options, and customization related to the feature. Include this when the feature has configurable behavior.
+5. **Advanced use cases / Edge cases** — Less common scenarios, power-user tips, or nuanced behavior. Use `<Accordion>` for details most users won't need.
+6. **Troubleshooting** — Common problems and their solutions. Include this when users frequently run into issues with the feature.
+7. **FAQ section** — A "Frequently asked questions" section at the bottom of every page (see FAQ generation skill).
+8. **Related links** — Point to related pages at the end when useful.
+
+Use callout components (`<Tip>`, `<Warning>`, `<Info>`, `<Note>`) inline throughout, near the content they relate to.
 
 ### Writing step-by-step instructions
 
@@ -145,6 +161,7 @@ Example pattern:
 | `<Tip>` | Best practices, shortcuts, or "pro tips" |
 | `<Warning>` | Actions that can't be undone, data loss risks, or common mistakes |
 | `<Note>` | Secondary information that's good to know but not critical |
+| `<Badge>` | Role-based or plan-based limitations (e.g., `<Badge>Admin only</Badge>`) |
 
 Place callouts **near the content they relate to**, not grouped at the top or bottom of the page.
 
@@ -155,6 +172,13 @@ Place callouts **near the content they relate to**, not grouped at the top or bo
 - Use `code formatting` only in the API section or when referencing field names in a technical context.
 - Use tables for comparing options, listing settings, or showing role permissions.
 - Use `<Accordion>` for secondary details, FAQs, or advanced configurations that most users won't need.
+- Use `<Frame>` to wrap images or embedded videos for consistent styling and visual separation. For video embeds, use an `<iframe>` inside a `<Frame>`:
+  ```mdx
+  <Frame>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Descriptive title" />
+  </Frame>
+  ```
+- Prefer **screenshots** for UI orientation (finding buttons, seeing a screen). Prefer **videos** for complex multi-step workflows that span multiple pages.
 
 ### Content workflow — from app to page
 
@@ -166,7 +190,8 @@ When documenting a feature:
 4. **Document the workflow.** Walk through the feature step by step, using `<Steps>` for sequential actions.
 5. **Add callouts.** Insert `<Tip>`, `<Warning>`, or `<Info>` where the user needs extra guidance.
 6. **Add screenshots.** Place images after the step they illustrate. Use descriptive alt text.
-7. **Write for all three languages.** Create or update the English version first, then produce the French (`help/fr/`) and Spanish (`help/es/`) equivalents with the same structure and translated UI labels.
+7. **Add FAQs.** Generate 3-5 Q&A pairs for the FAQ section at the bottom of the page (see `/generate-faqs` skill).
+8. **Write for all three languages.** Create or update the English version first, then produce the French (`help/fr/`) and Spanish (`help/es/`) equivalents with the same structure and translated UI labels.
 
 ### What NOT to do
 
@@ -244,69 +269,54 @@ The `description` field often appears directly in search results. Write it as if
 
 ### Pages to exclude from indexing
 
-For draft pages, internal-only content, or deprecated pages not yet removed, add:
+For draft pages, internal-only content, or deprecated pages not yet removed, add `noindex: true` to frontmatter.
 
-```yaml
----
-noindex: true
----
-```
+### Publishing checklist
 
-### Checklist before publishing a page
-
-- [ ] `title` is 50-60 characters, includes the feature name
-- [ ] `description` is 120-160 characters, reads as a useful search snippet
-- [ ] `keywords` array includes 3-8 relevant terms
-- [ ] All images have descriptive alt text
-- [ ] Headings use natural, searchable phrases
-- [ ] Internal links point to related pages with descriptive anchor text
-- [ ] French and Spanish versions have translated metadata (not just body text)
+Before publishing, verify: frontmatter has `title` (50-60 chars), `description` (120-160 chars), `keywords` (3-8 terms) — all images have descriptive alt text — headings use natural, searchable phrases — internal links use descriptive anchor text — FAQ section with 3-5 Q&A pairs exists — FR/ES versions have translated metadata (not just body text).
 
 ---
 
-## Image optimization
+## GEO best practices (Generative Engine Optimization)
 
-All images should be optimized **before committing** to keep the repository lean and pages fast. Mintlify serves images from its own CDN, but it does not compress or convert them — what you commit is what gets served.
+LLM-powered answer engines (ChatGPT, Perplexity, Google AI Overviews, Copilot) increasingly surface documentation content as cited answers. GEO ensures our pages are structured for LLMs to extract, attribute, and reference accurately.
 
-### Target format and size
+### Why it matters
 
-- **Preferred format:** WebP (best compression-to-quality ratio for screenshots and UI images). Mintlify supports PNG, JPG, SVG, GIF, and WebP.
-- **Maximum file size:** Aim for **under 200 KB** per image. Mintlify's hard limit is 20 MB, but large images hurt page load time.
-- **Resolution:** Use 2x resolution for retina screens (e.g., capture at 1440px wide for a 720px display width), then compress.
+Unlike traditional search (where users click through to our site), generative engines synthesize answers from multiple sources. Pages that are well-structured for LLM consumption get cited more often and more accurately — driving brand visibility even when users don't visit directly.
 
-### Automatic optimization (GitHub Action)
+### Writing for LLM extraction
 
-A GitHub Action (`.github/workflows/optimize-images.yml`) runs automatically whenever PNG or JPG files are pushed to `help/images/`. It:
+- **Lead every section with a direct answer.** LLMs extract the first sentence or two of a section as the answer. Put the key information first, details after.
+- **Use self-contained paragraphs.** Each paragraph should make sense on its own, without requiring context from surrounding text. LLMs may extract a single paragraph as a citation.
+- **Include the feature name in answers, not just headings.** Instead of "This feature allows...", write "Beebole's time-off management allows...". LLMs need entity context within the extracted text.
+- **State facts, not references.** "Beebole supports 5 leave types" is extractable. "As mentioned above, there are several types" is not.
 
-- **Renames** the image for SEO: prefixes it with the page slug of the `.mdx` file that references it, and cleans the name to kebab-case
-- **Converts** to `.webp` using `cwebp` at quality 80
-- **Updates** all `.mdx` references to point to the new filename
-- **Commits** the optimized images and updated references back to the repo
+### Structured content patterns LLMs prefer
 
-**No local setup required.** Contributors just drop screenshots into `help/images/`, reference them in `.mdx` files, commit and push. The action handles the rest.
+- **FAQ sections** — Pre-structured Q&A pairs are the highest-value GEO content. Every page must have one (see `/generate-faqs` skill).
+- **Definition-style openings** — Start pages or sections with "X is..." or "X lets you..." patterns. These map directly to how users ask LLMs questions.
+- **Comparison tables** — When explaining options, permissions, or plan differences, use tables. LLMs extract tabular data cleanly.
+- **Step-by-step lists** — Numbered steps with clear action verbs are preferred by LLMs for "how to" queries.
+- **Explicit scope statements** — "This applies to all users with the Admin role" or "Available on all plans" helps LLMs qualify their answers.
 
-**Example:** you push `Screenshot 2.PNG` referenced in `help/documentation/timesheets.mdx`. The action produces `timesheets-screenshot-2.webp`, updates the `.mdx`, and commits the changes.
+### Entity and brand signals
 
-If the filename already starts with the page slug, it won't duplicate the prefix. If the image isn't referenced in any `.mdx` file yet, it's still converted and cleaned to kebab-case.
+- **Use "Beebole" by name** in introductions, FAQ answers, and key definitions — not just in the page title. LLMs need repeated entity mentions to correctly attribute information.
+- **Include the canonical URL pattern** naturally in descriptions: "in Beebole" or "in your Beebole account" rather than "in the app."
+- **Mention related Beebole features by name** when they connect to the current page. This builds an entity graph LLMs can navigate.
 
-### Running optimization locally (optional)
+### What NOT to do for GEO
 
-A standalone script at `scripts/optimize-images.sh` converts all PNG/JPG files in `help/images/` locally. Requires `cwebp` (`brew install webp`).
+- Don't write content only for LLMs — it must still be useful for human readers.
+- Don't stuff keywords or repeat the brand name unnaturally.
+- Don't add hidden or collapsed text meant only for LLM consumption.
+- Don't contradict information across pages — LLMs cross-reference sources and penalize inconsistency.
 
-```bash
-bash scripts/optimize-images.sh
-```
+---
 
-When the user asks to "optimize images" or similar, run this script.
+## Quick reference
 
-### Naming conventions
-
-- Use lowercase, kebab-case: `project-settings-form.webp`
-- Include the feature or context: `approval-workflow-pending.webp` — not `screenshot-3.webp`
-- For language-specific images (e.g., UI in French), use subdirectories: `help/images/fr/timesheet-weekly-view.webp`
-
-### Don'ts
-
-- Don't commit uncompressed screenshots straight from a screen capture tool.
-- Don't use BMP or TIFF formats.
-- Don't keep both the original and the optimized version in the repo — only commit the optimized file.
+- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Run `/optimize-images` manually before committing.
+- **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
+- **Translations:** English is the master language. FR/ES must stay in sync. Use correct localized UI labels from the i18n files.

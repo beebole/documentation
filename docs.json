@@ -11,10 +11,9 @@
   }
 },
   "colors": {
-    "primary": "#4338CA"
-  },
-  "background": {
-    "decoration": "gradient"
+    "primary": "#4338CA",
+    "light": "#6466F1",
+    "dark": "#6466F1"
   },
   "favicon": "/help/favicon.svg",
   "logo": {
@@ -22,7 +21,7 @@
     "dark": "/help/logo/logo-dark.svg"
   },
   "appearance": {
-    "default": "light",
+    "default": "system",
     "strict": false
   },
   "navigation": {
