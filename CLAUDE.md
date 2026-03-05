@@ -16,6 +16,7 @@ This is **functional documentation** (not technical), except for the API section
 | `/seo-geo-audit` | Run a full SEO & GEO audit across all pages with actionable report |
 | `/generate-blueprint` | Generate a page skeleton/blueprint for contributors to follow |
 | `/draft-page` | Turn a raw dictation transcript into a complete documentation page |
+| `/review-page` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations) |
 
 Each skill's full instructions are in `.claude/skills/`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -170,7 +171,7 @@ Place callouts **near the content they relate to**, not grouped at the top or bo
 - **Bold** for UI elements: button labels, menu items, field names, page titles.
 - *Italic* sparingly, for emphasis on a word or to introduce a term for the first time.
 - Use `code formatting` only in the API section or when referencing field names in a technical context.
-- Use tables for comparing options, listing settings, or showing role permissions.
+- Use **standard Markdown tables** for comparing options, listing settings, or showing role permissions. Never use `<div>` grids or custom HTML layouts for tabular content.
 - Use `<Accordion>` for secondary details, FAQs, or advanced configurations that most users won't need.
 - Use `<Frame>` to wrap images or embedded videos for consistent styling and visual separation. For video embeds, use an `<iframe>` inside a `<Frame>`:
   ```mdx
