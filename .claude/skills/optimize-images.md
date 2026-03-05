@@ -24,10 +24,6 @@ This converts all PNG/JPG files in `help/images/` to WebP format using `cwebp` a
 - **Language-specific images:** Use subdirectories like `help/images/fr/`
 - **Don'ts:** No uncompressed screenshots, no BMP/TIFF, don't keep both original and optimized versions
 
-## Automatic optimization (GitHub Action)
-
-A GitHub Action (`.github/workflows/optimize-images.yml`) also runs on push for PNG/JPG files in `help/images/`. It renames images for SEO (prefixes with page slug, kebab-case), converts to WebP, updates `.mdx` references, and commits changes. The local script is for manual/preview use.
-
 ## Report
 
 After running, print a summary:

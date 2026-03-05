@@ -28,7 +28,7 @@ Do NOT ask about page structure, formatting, or components — apply CLAUDE.md c
 
 Fetch English i18n labels to ensure correct UI terminology:
 ```bash
-gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/en.json --jq '.content' | base64 -d
+gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
 ```
 
 ### 3. Clean the transcript
@@ -48,9 +48,9 @@ Additional rules specific to this skill:
 - **Use exact UI labels** from the i18n file, not the user's approximate wording.
 - **Mark screenshot locations** with descriptive placeholder alt text: `![Descriptive alt text](/help/images/feature-context.webp)`
 
-### 5. Handle the navigation
+### 5. Update the navigation
 
-Check if the target file path exists in `docs.json` navigation. If not, tell the user where it should be added — but do NOT modify `docs.json` automatically.
+After writing the page, add it to `docs.json` navigation in the correct position. Place it in the appropriate tab and group, mirroring where similar pages appear in the English navigation structure.
 
 ### 6. Output
 
@@ -64,7 +64,7 @@ Write the complete `.mdx` file to the target path, then print a summary:
 **Sections:** [list of H2 sections created]
 **FAQ questions:** [count]
 **Screenshot placeholders:** [count]
-**Nav status:** [Already in docs.json / Needs to be added under "Group > Tab"]
+**Nav status:** [Already in docs.json / Added under "Group > Tab"]
 
 ### What to review
 - [ ] Verify all UI labels match the app

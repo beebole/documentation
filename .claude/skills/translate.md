@@ -25,7 +25,9 @@ English (`help/`) is the master language. A translation is **stale** when:
    - Review the `diff` field to understand what specifically changed
    - Write a complete updated translation of the full EN page
 
-3. Print a summary table at the end.
+3. After all translations are written, update `docs.json` if any new pages were added. Ensure every translated page appears in the correct language navigation section (`navigation.languages.fr` / `navigation.languages.es`) mirroring its position in the English navigation.
+
+4. Print a summary table at the end.
 
 ## Translation rules
 
@@ -33,8 +35,8 @@ English (`help/`) is the master language. A translation is **stale** when:
 - **Keywords must reflect natural search terms** in the target language — not literal translations
 - **Preserve all Mintlify components, image paths, links, and code blocks unchanged**
 - **Use the correct localized UI labels** from the app's i18n files:
-  - French: `gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/fr.json --jq '.content' | base64 -d`
-  - Spanish: `gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/es.json --jq '.content' | base64 -d`
+  - French: `gh api repos/beebole/reboot/contents/shared/i18n/languages/fr.json --jq '.content' | base64 -d`
+  - Spanish: `gh api repos/beebole/reboot/contents/shared/i18n/languages/es.json --jq '.content' | base64 -d`
 - **Write natural, idiomatic prose** — not literal word-for-word translations
 - **Maintain the same page structure** (headings, step order, callout placement)
 

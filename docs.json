@@ -3,13 +3,13 @@
   "theme": "willow",
   "name": "Beebole Help Center",
   "seo": {
-  "metatags": {
-    "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
-    "keywords": "Beebole help, Beebole documentation, time tracking software, project time tracking, how to use Beebole",
-    "og:image": "https://beebole.com/help/assets/placeholder-og-image.png",
-    "og:description": "Everything you need to know to track and manage time with Beebole."
-  }
-},
+    "metatags": {
+      "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
+      "keywords": "Beebole help, Beebole documentation, time tracking software, project time tracking, how to use Beebole",
+      "og:image": "https://beebole.com/help/assets/placeholder-og-image.png",
+      "og:description": "Everything you need to know to track and manage time with Beebole."
+    }
+  },
   "colors": {
     "primary": "#4338CA",
     "light": "#6466F1",
@@ -161,8 +161,7 @@
                 "group": "Productivity",
                 "pages": [
                   "help/integrations/asana",
-                  "help/integrations/jira"
-                ]
+                  "help/integrations/jira"                ]
               },
               {
                 "group": "Communication & Calendars",
@@ -183,7 +182,7 @@
           },
           {
             "tab": "API",
-            "pages": [
+            "groups": [
               {
                 "group": "GraphQL API",
                 "pages": [
@@ -352,7 +351,7 @@
           },
           {
             "tab": "API",
-            "pages": [
+            "groups": [
               {
                 "group": "API GraphQL",
                 "pages": [
@@ -521,7 +520,7 @@
           },
           {
             "tab": "API",
-            "pages": [
+            "groups": [
               {
                 "group": "API GraphQL",
                 "pages": [
@@ -562,8 +561,7 @@
      "copy",
      "view",
      "chatgpt",
-     "claude",
-     "perplexity"
+     "claude"
    ]
   },
   "footer": {

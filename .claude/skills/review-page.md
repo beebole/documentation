@@ -32,7 +32,7 @@ Perform every check below on the English page. For FR/ES versions, only run chec
 - Second person ("you") — not "the user" or passive constructions
 - UI labels are **bolded** and match the app's exact wording (fetch i18n labels to verify):
   ```bash
-  gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/en.json --jq '.content' | base64 -d
+  gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
   ```
 - Present tense (not future: "displays" not "will display")
 - One idea per sentence

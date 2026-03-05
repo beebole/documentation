@@ -17,6 +17,7 @@ This is **functional documentation** (not technical), except for the API section
 | `/generate-blueprint` | Generate a page skeleton/blueprint for contributors to follow |
 | `/draft-page` | Turn a raw dictation transcript into a complete documentation page |
 | `/review-page` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations) |
+| `/generate-news` | Analyze recent doc changes and draft a news update for the releases page |
 
 Each skill's full instructions are in `.claude/skills/`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -64,7 +65,7 @@ The exact UI labels used in the Beebole app are defined in the app's i18n file. 
 
 Fetch the English labels with:
 ```bash
-gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/en.json --jq '.content' | base64 -d
+gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
 ```
 
 The JSON is organized by feature area (e.g., `absenceTypeQuota`, `timesheet`, `project`, etc.). Look up the relevant section when documenting a feature to use the correct wording.
@@ -86,14 +87,41 @@ When a skill fails because a tool is missing, install it with the corresponding 
 
 - Pages are `.mdx` files using Mintlify components and frontmatter
 - Navigation structure is defined in `docs.json` under `navigation.languages`
-- 5 tabs per language: Documentation, Guides, Integrations, API, News
-- Brand color: `#004D43` | Support: support@beebole.com
+- 5 tabs per language, each with a distinct purpose:
+  - **Documentation** — Core feature documentation. Most Beebole features are explained here (timesheets, projects, users, settings, etc.).
+  - **Guides** — Role-based and audience-specific guides. Targeted at specific user populations: employees, managers (e.g., how to run reports), administrators. May later include industry-specific guides.
+  - **Integrations** — Integration-specific documentation. Covers all integrations available in the app.
+  - **API** — Technical documentation for the Beebole GraphQL API. Aimed at developers, not end users.
+  - **News** — Release notes and changelogs. Documents changes pushed into the system.
+- Brand color: `#4338CA` | Support: support@beebole.com
 
 ---
 
 ## Writing content — tone, style, and structure
 
 This section defines how documentation pages should be written. The goal is to produce clear, helpful, and consistent content that any Beebole user can follow — regardless of their technical background.
+
+### Audience
+
+The primary audience for most pages is **account administrators** — the people who set up and configure Beebole for their organization. They are the main readers of the Documentation tab (projects, users, settings, permissions, etc.).
+
+Other audiences appear in specific contexts:
+
+| Audience | Typical content | Tab |
+|----------|----------------|-----|
+| **Administrators** | Account setup, configuration, permissions, billing, all features | Documentation |
+| **Team leaders / Project managers** | Approving timesheets, running reports, managing their team | Guides |
+| **Employees** | Recording time, submitting timesheets, requesting time off | Guides |
+| **Developers** | API authentication, queries, mutations | API |
+
+When drafting a page, identify the target audience first. This affects the level of detail, the assumed context, and the framing:
+
+- **Admin pages** can reference settings, permissions, and configuration — admins need the full picture.
+- **Manager/team leader pages** should focus on day-to-day oversight tasks and assume the account is already set up.
+- **Employee pages** should be the simplest — assume minimal familiarity with Beebole and focus on the specific task at hand.
+- **API pages** can use technical language and assume developer knowledge.
+
+If a page serves multiple audiences (e.g., a feature used by both admins and employees), lead with the most common use case and use callouts or separate sections for role-specific details.
 
 ### Voice and tone
 

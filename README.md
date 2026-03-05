@@ -43,6 +43,8 @@ Type these directly in Claude Code:
 | `/seo-geo-audit` | Run a full SEO & GEO audit across all pages |
 | `/generate-blueprint` | Generate a page skeleton for contributors |
 | `/draft-page` | Turn a raw transcript into a documentation page |
+| `/review-page` | Full audit of a page before publishing |
+| `/generate-news` | Analyze recent doc changes and draft a news update |
 
 You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
 
@@ -75,7 +77,7 @@ Content is maintained in three languages: English (default), French, and Spanish
 - **Images:** Always use WebP format, under 200 KB. Run `/optimize-images` before committing new screenshots.
 - **UI labels:** Always bold UI labels and match the exact wording from the app. Fetch labels with:
   ```bash
-  gh api repos/beebole/reboot/contents/frontend/src/i18n/languages/en.json --jq '.content' | base64 -d
+  gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
   ```
 - **FAQs:** Every content page needs a FAQ section at the bottom (3-5 Q&A pairs). Run `/generate-faqs` to find pages that are missing one.
 - **Translations:** After editing English pages, run `/translate` to detect and sync stale French/Spanish translations.
