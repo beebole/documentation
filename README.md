@@ -33,20 +33,32 @@ Open this repository in VS Code, then open Claude Code from the sidebar (or `Cmd
 
 ## Slash commands
 
-Type these directly in Claude Code:
+Type these directly in Claude Code. You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
+
+### Workflow
 
 | Command | What it does |
 |---------|-------------|
-| `/optimize-images` | Compress and convert images to WebP |
+| `/draft` | Turn a raw transcript into a documentation page (English only) |
+| `/review` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations, code accuracy) |
 | `/translate` | Detect stale translations and sync FR/ES with English |
-| `/generate-faqs` | Find pages missing FAQ sections and generate them |
-| `/seo-geo-audit` | Run a full SEO & GEO audit across all pages |
-| `/generate-blueprint` | Generate a page skeleton for contributors |
-| `/draft-page` | Turn a raw transcript into a documentation page |
-| `/review-page` | Full audit of a page before publishing |
-| `/generate-news` | Analyze recent doc changes and draft a news update |
 
-You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
+### Tools
+
+| Command | What it does |
+|---------|-------------|
+| `/audit-code` | Cross-reference doc pages against the app source code to find inaccuracies and gaps |
+| `/audit-seo-geo` | Run a full SEO & GEO audit across all pages with actionable report |
+| `/generate-faqs` | Find pages missing FAQ sections and generate them |
+| `/optimize-images` | Compress and convert images to WebP |
+
+### Helpers
+
+| Command | What it does |
+|---------|-------------|
+| `/track-app-changes` | Analyze app repo commits and maintain a human-readable changelog in `.todo/app-changes.md` |
+| `/propose-updates` | Map tracked app changes to doc pages, audit them, and propose prioritized updates |
+| `/generate-news` | Analyze recent doc changes and draft a news update for the releases page |
 
 ## Project structure
 
@@ -66,6 +78,10 @@ scripts/
   optimize-images.sh   # Image optimization script
   generate-faq.sh      # Detect pages missing FAQ sections
   translate.sh         # Detect stale translations
+.claude/
+  skills/              # Slash command skill files (workflow & helper skills)
+    tools/             # Tool skill files (audit, FAQ generation, image optimization)
+.todo/                 # Working files for app change tracking and proposed updates
 ```
 
 ## Languages

@@ -47,14 +47,14 @@ Perform every check below on the English page. For FR/ES versions, only run chec
 - Logical heading hierarchy (no skipped levels)
 - Sections follow the recommended flow: intro → core tasks → configuration → advanced → troubleshooting → FAQ → related links
 
-#### 2.4 SEO compliance (same checks as `/seo-geo-audit`, scoped to the page)
+#### 2.4 SEO compliance (same checks as `/audit-seo-geo`, scoped to the page)
 - `title`: 50-60 characters, includes feature name
 - `description`: 120-160 characters, reads as a search snippet, doesn't repeat title
 - `keywords`: 3-8 terms including "beebole"
 - Images have descriptive alt text with relevant keywords
 - Internal links use descriptive anchor text (not "click here")
 
-#### 2.5 GEO compliance (same checks as `/seo-geo-audit`, scoped to the page)
+#### 2.5 GEO compliance (same checks as `/audit-seo-geo`, scoped to the page)
 - Sections lead with a direct answer (LLM-extractable first sentence)
 - Paragraphs are self-contained
 - "Beebole" mentioned by name in intro and FAQ answers (not just "the app")
@@ -80,6 +80,17 @@ Perform every check below on the English page. For FR/ES versions, only run chec
 - Naming follows kebab-case with feature context
 - No PNG/JPG files that should have been converted
 
+#### 2.9 Code accuracy (cross-reference with source code)
+- Run the same checks as the `/audit-code` skill, scoped to this page
+- Fetch relevant source code from `beebole/reboot` via the GitHub API (`gh`)
+- Verify **UI labels** match the current i18n strings
+- Verify **documented behavior** matches actual code logic (workflows, conditions, settings)
+- Flag **undocumented settings or options** that exist in the code but are missing from the page
+- Flag **stale content** referencing features or labels that no longer exist in the code
+- Check **permissions and roles** mentioned on the page against access control logic in the code
+- Check **default values and limits** against model/form defaults and validation rules in the code
+- See `/audit-code` skill for full methodology and GitHub API commands
+
 ## 3. Compile the report
 
 **Do NOT make any changes.** Present findings as a structured report:
@@ -102,6 +113,7 @@ Perform every check below on the English page. For FR/ES versions, only run chec
 | Translations (FR) | Up to date / Stale / Missing |
 | Translations (ES) | Up to date / Stale / Missing |
 | Images | Pass / X issues |
+| Code accuracy | Pass / X issues |
 
 ### Issues found
 

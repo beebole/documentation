@@ -18,9 +18,9 @@ This converts all PNG/JPG files in `help/images/` to WebP format using `cwebp` a
 
 ## Image guidelines
 
-- **Format:** WebP, under 200 KB per image
+Follow the image conventions in CLAUDE.md (WebP, under 200 KB, kebab-case naming). Additional notes:
+
 - **Resolution:** 2x for retina (e.g., capture at 1440px wide for 720px display), then compress
-- **Naming:** Lowercase kebab-case with feature context (e.g., `approval-workflow-pending.webp`)
 - **Language-specific images:** Use subdirectories like `help/images/fr/`
 - **Don'ts:** No uncompressed screenshots, no BMP/TIFF, don't keep both original and optimized versions
 

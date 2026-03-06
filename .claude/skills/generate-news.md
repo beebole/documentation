@@ -1,20 +1,14 @@
 # Generate News Update
 
-Analyze recent documentation changes to infer what changed in the Beebole app, then draft product-focused news entries for the releases page.
+Use the app changes tracker to draft product-focused news entries for the releases page, with user validation before publishing.
 
 ## When to use
 
 When the user runs `/generate-news` or asks to "update the news", "write release notes", or "add a news entry".
 
-## Core principle
+## Prerequisites
 
-Documentation changes are **signals of product changes**. The news page communicates what changed in the Beebole app — not what changed on the documentation website. Your job is to reverse-engineer the product changes from the doc diffs.
-
-Examples of this reasoning:
-- A new integration page was added → the app likely added a new integration
-- An existing feature page was heavily rewritten → the feature likely changed significantly in the app
-- A new section about permissions was added to a page → the app likely introduced new permission controls for that feature
-- A page got a few FAQ additions or typo fixes → nothing changed in the app, skip it
+- `.todo/app-changes.md` must exist and contain tracked app changes. If it doesn't exist or is empty, run the `/track-app-changes` skill first to populate it.
 
 ## Workflow
 
@@ -22,61 +16,63 @@ Examples of this reasoning:
 
 Read `help/news/releases.mdx` and extract the `label` from the first `<Update>` component (e.g., "March 2025"). This is the most recent published update.
 
-### 2. Get commits since the last news entry
+### 2. Read app changes since the last news entry
 
-Use `git log` to list all commits on the main branch since the 1st of the month of the last news entry. Focus on commits that changed documentation content files (`help/**/*.mdx`), excluding the news files themselves and translation-only commits.
+Read `.todo/app-changes.md` and collect all entries dated after the last published news entry. These are the product changes that need to be communicated.
 
-```bash
-git log --oneline --after="YYYY-MM-01" -- 'help/**/*.mdx' ':!help/news/' ':!help/fr/' ':!help/es/'
-```
+If there are no new entries since the last news update, report "No new app changes to report" and stop.
 
-### 3. Analyze the changes and infer product updates
+### 3. Group and select newsworthy changes
 
-For each relevant commit, inspect what changed:
+Not every app change deserves a news entry. Filter and group:
 
-```bash
-git diff <commit>^ <commit> --stat -- 'help/**/*.mdx' ':!help/news/' ':!help/fr/' ':!help/es/'
-```
+**Include:**
+- New features or capabilities users can now access
+- Significant improvements to existing features
+- New integrations
+- Changes to workflows users will notice
 
-For significant changes, read the actual content diff to understand what was added or rewritten:
+**Exclude:**
+- Internal infrastructure, CI/CD, or code quality changes
+- Minor CSS fixes or polish (unless part of a larger UX overhaul)
+- Translation/i18n tooling changes (not user-facing)
+- Analytics or tracking additions
+- Bug fixes that users wouldn't have noticed
 
-```bash
-git diff <commit>^ <commit> -- 'help/**/*.mdx' ':!help/news/' ':!help/fr/' ':!help/es/'
-```
+Group related changes into single news items (e.g., multiple "tags as relations" entries become one announcement).
 
-For each significant change, ask: **"What must have changed in the Beebole app to require this documentation update?"**
+### 4. Present the draft to the user for validation
 
-Categorize inferred product changes into:
-- **New features / integrations** — a new doc page suggests a new capability in the app
-- **Major feature updates** — a heavily rewritten page suggests the feature changed significantly
-- **Not product-related** — SEO tweaks, FAQ additions, typo fixes, structural refactors, image optimizations, metadata updates → skip these
-
-### 4. Propose the news entry
-
-Present a summary to the user before writing anything. Frame everything as **product changes**, not documentation changes:
+Present the proposed news entry to the user **before writing any files**. Use this format:
 
 ```
 ## Proposed news entry
 
 **Period:** [Month Year]
-**Commits analyzed:** [count]
+**Based on:** [count] app changes from .todo/app-changes.md
 
-### Inferred product changes:
-1. [What likely changed in the app] — inferred from [brief evidence]
-2. [What likely changed in the app] — inferred from [brief evidence]
+### Proposed items:
+1. [News item as it would appear in the update] — based on: [source entries from app-changes.md]
+2. [News item] — based on: [source entries]
 ...
 
-### Skipped (no product change detected):
-- [reason] — [commit summary]
+### Excluded (not newsworthy):
+- [reason] — [change summary]
 
-Shall I draft the update entry?
+### Proposed tags: [Tag1, Tag2, ...]
+
+Do you want me to proceed? You can:
+- Remove or edit any item
+- Add items I missed
+- Change the wording
+- Adjust the tags
 ```
 
-Wait for user confirmation and feedback before proceeding. The user may correct your inferences (e.g., "actually the Asana integration didn't change, we just documented the existing one better").
+**Wait for explicit user confirmation before proceeding.** Do not write any files until the user approves or adjusts the draft.
 
 ### 5. Draft the update
 
-Once confirmed, write the `<Update>` block. Follow the existing format in `releases.mdx`:
+Once the user confirms (with any adjustments), write the `<Update>` block following the existing format in `releases.mdx`:
 
 ```mdx
 <Update label="[Month Year]" tags={["Tag1", "Tag2"]}>
@@ -91,7 +87,6 @@ Rules for writing update entries:
 - **Focus on what the user can now do in the app**, not what they can read about.
 - **Use tags** that match the feature area (e.g., "Timesheet", "Reports", "Planning", "Projects", "API", "Integrations"). Use tags already present in the file when possible.
 - **Keep each item to 1-2 sentences.** Be concise.
-- **Do NOT include items where no product change occurred** (documentation-only improvements).
 
 ### 6. Update all three language files
 

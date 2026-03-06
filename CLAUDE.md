@@ -6,17 +6,33 @@ This is the **Beebole Help Center**, a Mintlify-powered documentation website fo
 
 This is **functional documentation** (not technical), except for the API section, aimed at helping end users understand and use Beebole.
 
+**The Beebole application source code** lives at [github.com/beebole/reboot](https://github.com/beebole/reboot.git). This documentation is entirely linked to that codebase — features, UI labels, workflows, and behavior described in these pages correspond directly to the code in that repository. When documenting a feature, always refer to the application code as the source of truth for how things work.
+
 ## Slash commands
+
+### Workflow
 
 | Command | What it does |
 |---------|-------------|
-| `/optimize-images` | Compress and convert images to WebP |
+| `/draft` | Turn a raw dictation transcript into a complete documentation page (English only) |
+| `/review` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations, code accuracy) |
 | `/translate` | Detect stale translations and sync FR/ES with English |
+
+### Tools
+
+| Command | What it does |
+|---------|-------------|
+| `/audit-code` | Cross-reference doc pages against the app source code to find inaccuracies and gaps |
+| `/audit-seo-geo` | Run a full SEO & GEO audit across all pages with actionable report |
 | `/generate-faqs` | Find pages missing FAQ sections and generate them |
-| `/seo-geo-audit` | Run a full SEO & GEO audit across all pages with actionable report |
-| `/generate-blueprint` | Generate a page skeleton/blueprint for contributors to follow |
-| `/draft-page` | Turn a raw dictation transcript into a complete documentation page |
-| `/review-page` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations) |
+| `/optimize-images` | Compress and convert images to WebP |
+
+### Helpers
+
+| Command | What it does |
+|---------|-------------|
+| `/track-app-changes` | Analyze app repo commits and maintain a human-readable changelog in `.todo/app-changes.md` |
+| `/propose-updates` | Map tracked app changes to doc pages, audit them, and propose prioritized updates |
 | `/generate-news` | Analyze recent doc changes and draft a news update for the releases page |
 
 Each skill's full instructions are in `.claude/skills/`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
@@ -51,6 +67,10 @@ scripts/
   optimize-images.sh  # Local image optimization script (optional, requires cwebp)
   generate-faq.sh     # Detect pages missing FAQ sections (for batch FAQ generation)
   translate.sh        # Detect stale translations (for batch translation sync)
+.claude/
+  skills/             # Slash command skill files (workflow & helper skills)
+    tools/            # Tool skill files (audit, FAQ generation, image optimization)
+.todo/                # Working files for app change tracking and proposed updates
 ```
 
 ## Mintlify compliance
