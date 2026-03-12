@@ -149,7 +149,7 @@ When a skill fails because a tool is missing, install it with the corresponding 
   - **Integrations** — Integration-specific documentation. Covers all integrations available in the app.
   - **API** — Technical documentation for the Beebole GraphQL API. Aimed at developers, not end users.
   - **News** — Release notes and changelogs. Documents changes pushed into the system.
-- **Internal links must start with `/help/`** — The site is served behind a reverse proxy at `/help/`, so all internal page links must include the `/help/` prefix. Use `](/help/documentation/projects)` not `](/documentation/projects)`. This applies to all tabs: `/help/documentation/`, `/help/guides/`, `/help/integrations/`, `/help/api/`, `/help/news/`, and language variants like `/help/fr/`, `/help/es/`.
+- **Internal links must start with `/help/`** — The site is served behind a reverse proxy at `/help/`, so all internal page links must include the `/help/` prefix. This applies to both markdown links (`](/help/documentation/projects)`) and component `href` attributes (`href="/help/documentation/projects"`). Covers all tabs: `/help/documentation/`, `/help/guides/`, `/help/integrations/`, `/help/api/`, `/help/news/`, and language variants like `/help/fr/`, `/help/es/`.
 - Brand color: `#4338CA` | Support: support@beebole.com
 
 ---

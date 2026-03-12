@@ -59,7 +59,7 @@ Perform every check below on the English page. For FR/ES versions, only run chec
 - `keywords`: 3-8 terms including "beebole"
 - Images have descriptive alt text with relevant keywords
 - Internal links use descriptive anchor text (not "click here")
-- Internal links start with `/help/` (e.g., `](/help/documentation/projects)` not `](/documentation/projects)`). The site is served behind a reverse proxy at `/help/`, so bare paths like `/documentation/`, `/guides/`, `/integrations/`, `/api/`, `/news/` are broken.
+- Internal links start with `/help/` — both markdown links (`](/help/documentation/projects)`) and component `href` attributes (`href="/help/documentation/projects"`). The site is served behind a reverse proxy at `/help/`, so bare paths like `/documentation/`, `/guides/`, `/integrations/`, `/api/`, `/news/` are broken.
 
 #### 2.5 GEO compliance (same checks as `/audit-seo-geo`, scoped to the page)
 - Sections lead with a direct answer (LLM-extractable first sentence)
