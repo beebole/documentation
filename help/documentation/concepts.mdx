@@ -1,7 +1,7 @@
 ---
 title: "Key Concepts"
-description: "Understand the core building blocks of Beebole: projects, people, tags, and how cross-cutting features like rates, schedules, and custom fields connect them."
-keywords: ["Beebole concepts", "how Beebole works", "Beebole entities", "Beebole structure", "projects people tags", "Beebole overview"]
+description: "Understand the core building blocks of Beebole: projects, tasks, people, tags, and how cross-cutting features like rates, schedules, and custom fields connect them."
+keywords: ["Beebole concepts", "how Beebole works", "Beebole entities", "Beebole structure", "projects tasks people tags", "Beebole overview"]
 "og:title": "Key Concepts in Beebole"
 "og:description": "Understand the core entities and features that make up Beebole's time tracking system."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
@@ -12,17 +12,18 @@ Before diving into individual features, it helps to understand how Beebole is st
 
 ---
 
-## The three core entities
+## The core entities
 
-Everything in Beebole revolves around three types of entities:
+Everything in Beebole revolves around four types of entities:
 
 | Entity | What it represents | Examples |
 |--------|--------------------|----------|
 | **Projects** | The work your team tracks time against | Client engagements, internal initiatives, departments |
 | **People** | The users and team members in your account | Employees, managers, contractors, administrators |
+| **Tasks** | The activities you plan, schedule, and assign | Deliverables, milestones, work items |
 | **Tags** | Organizational labels that group and classify entities | Departments, teams, locations, cost centers |
 
-These three entities form the foundation of your Beebole account. Time entries, reports, budgets, and approval workflows all build on top of them.
+These four entities form the foundation of your Beebole account. Time entries, reports, budgets, planning, and approval workflows all build on top of them.
 
 ---
 
@@ -33,10 +34,11 @@ Beebole's entities don't exist in isolation — they connect to create a complet
 - **People work on projects.** When someone logs time, they select a project (and optionally a sub-project or task). This is the core relationship in Beebole.
 - **Tags group both people and projects.** A tag like "Engineering" can contain both the engineering team members and the engineering projects, making it easy to filter and report by department.
 - **Projects have hierarchies.** Categories contain projects, which can contain sub-projects, nested as deep as you need.
+- **Tasks can be linked to projects.** Tasks are independent planning entities that can be associated with projects, connecting your planning and time tracking.
 - **Tags have hierarchies too.** Tags can be organized into parent/child structures (e.g., "Europe" > "France" > "Paris office").
 
 <Info>
-  Think of projects as *what* your team works on, people as *who* does the work, and tags as *how you organize* both for reporting and management.
+  Think of projects as *what* your team tracks time against, tasks as *what you plan and schedule*, people as *who* does the work, and tags as *how you organize* everything for reporting and management.
 </Info>
 
 ---
@@ -108,6 +110,9 @@ Here's a typical setup to illustrate how these concepts connect:
 | Organize with tags | [Tags](/documentation/tags) |
 | Track time on your projects | [Timesheets](/documentation/timesheets) |
 | Configure timesheet behavior | [Timesheet settings](/documentation/timesheetSettings) |
+| Plan and schedule work with tasks | [Planning](/documentation/planning) |
+| Visualize tasks on a timeline | [Gantt chart](/documentation/gantt) |
+| Manage tasks by status | [Kanban board](/documentation/kanban) |
 | Set up approval workflows | [Approvals](/documentation/approval) |
 | Configure billing rates | [Billing rates](/documentation/billing) |
 | Set up work schedules | [Work schedules](/documentation/work-schedule) |
@@ -129,5 +134,8 @@ Here's a typical setup to illustrate how these concepts connect:
   </Accordion>
   <Accordion title="Can I change my structure after my team has started tracking time?">
     Yes. You can reorganize projects, update tags, and change rates at any time. Historical time entries are preserved. However, structural changes may affect how existing data appears in filtered reports.
+  </Accordion>
+  <Accordion title="What's the difference between a sub-project and a task?">
+    Sub-projects are part of the project hierarchy — they represent a subdivision of a larger project and are used for time tracking. Tasks are independent planning entities with their own properties like status, owner, dependencies, and effort tracking. Tasks can be linked to projects but exist separately, and are managed visually on the Gantt chart and Kanban board.
   </Accordion>
 </AccordionGroup>

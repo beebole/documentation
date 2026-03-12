@@ -8,7 +8,7 @@ keywords: ["Beebole costs", "cost tracking", "project costs", "labor costs", "pr
 "og:type": "article"
 ---
 
-Cost rates in Beebole track your internal cost of work — what it actually costs your organization when someone spends time on a project. Combined with [billing rates](/documentation/billing), cost data gives you a clear picture of profitability.
+Beebole's cost rates track your internal cost of work — what it actually costs your organization when someone spends time on a project. While [billing rates](/documentation/billing) represent what you charge, cost rates capture what you spend. Together, they give you a clear picture of profitability across your projects and teams.
 
 ---
 
@@ -26,7 +26,7 @@ Cost rates follow the same structure as billing rates. They can be set at multip
 
 ### Rate methods
 
-Cost rates support the same methods as billing: **hourly**, **daily**, **fixed amount**, or **no cost**.
+Cost rates support the same methods as billing: **Hourly rate**, **Daily rate**, **Fixed fee**, or **No cost**.
 
 ---
 
@@ -38,7 +38,7 @@ Open a person's profile in [People](/documentation/people) and configure their c
 
 ### On a project
 
-Open a project in [Projects](/documentation/projects) and set a project-level cost rate. Use **split by person** when team members have different cost rates on the same project.
+Open a project in [Projects](/documentation/projects) and set a project-level cost rate. Use **Split by persons** when team members have different cost rates on the same project.
 
 ### On a tag
 
@@ -50,9 +50,10 @@ Set a cost rate on a [tag](/documentation/tags) to apply a default cost to every
 
 For projects where different team members have different internal costs, use rate splits:
 
-- **Split by person** — Set a specific cost rate for each person assigned to the project.
-- **Split by project** — When a tag-level cost rate needs per-project overrides.
-- **Flat** — One cost rate applies to everyone equally.
+- **Split by persons** — Set a specific cost rate for each person assigned to the project.
+- **Split by projects** — When a tag-level cost rate needs per-project overrides.
+- **Split by tags** — Apply different cost rates based on tags assigned to work.
+- **No split** — One cost rate applies to everyone equally.
 
 ---
 
@@ -69,6 +70,8 @@ Cost rates can have start and end dates so they change automatically over time. 
 ## Recurring rates
 
 Recurring cost rates let you define a repeating rate pattern that applies automatically. This is useful when costs follow a predictable cycle — for example, quarterly adjustments to contractor rates.
+
+You can set a rate to repeat **By day**, **By week**, **By month**, or **By year**. Select **Do not repeat** to disable recurrence on an existing recurring rate.
 
 ---
 
@@ -90,16 +93,16 @@ When both billing and cost rates are configured, Beebole calculates profitabilit
 
 <AccordionGroup>
   <Accordion title="What's the difference between billing rates and cost rates?">
-    Billing rates represent what you charge (revenue). Cost rates represent what it costs you internally (expenses). The difference is your margin.
+    In Beebole, billing rates represent what you charge (revenue). Cost rates represent what it costs you internally (expenses). The difference is your margin.
   </Accordion>
   <Accordion title="Do I need to set both billing and cost rates?">
-    No. You can use either independently. Billing rates alone track revenue; cost rates alone track internal costs. Both together enable profitability analysis.
+    No. You can use either independently in Beebole. Billing rates alone track revenue; cost rates alone track internal costs. Both together enable profitability analysis.
   </Accordion>
   <Accordion title="Can cost rates have effective dates?">
-    Yes. Like billing rates, cost rates support start and end dates for automatic rate changes over time.
+    Yes. Like billing rates, Beebole cost rates support start and end dates for automatic rate changes over time.
   </Accordion>
   <Accordion title="Can I set different cost rates per person on the same project?">
-    Yes. Use project-level rate splits by person to assign a specific cost rate to each team member on that project.
+    Yes. In Beebole, use project-level **Split by persons** to assign a specific cost rate to each team member on that project.
   </Accordion>
 </AccordionGroup>
 
