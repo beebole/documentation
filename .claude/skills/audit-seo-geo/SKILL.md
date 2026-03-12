@@ -1,3 +1,9 @@
+---
+name: audit-seo-geo
+description: Run a comprehensive SEO and GEO audit across all documentation pages with an actionable report
+disable-model-invocation: true
+---
+
 # SEO & GEO Audit
 
 Run a comprehensive audit of SEO and GEO best practices across all documentation pages, then present a clear report with actionable fixes.

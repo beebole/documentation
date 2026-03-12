@@ -1,3 +1,9 @@
+---
+name: audit-code
+description: Cross-reference a documentation page against the Beebole application source code to find inaccuracies, missing features, outdated content, and undocumented behavior
+disable-model-invocation: true
+---
+
 # Code Audit — Cross-reference Documentation Against Source Code
 
 Audit a documentation page by comparing it against the Beebole application source code (https://github.com/beebole/reboot). Identifies inaccuracies, missing features, outdated content, and undocumented behavior.

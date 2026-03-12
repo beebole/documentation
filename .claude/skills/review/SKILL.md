@@ -1,3 +1,9 @@
+---
+name: review
+description: Run a comprehensive audit on a documentation page before publishing — checks spelling, grammar, style, SEO, GEO, images, FAQ, translations, and code accuracy
+disable-model-invocation: true
+---
+
 # Review Page — Full Page Audit
 
 Run a comprehensive audit on a documentation page before publishing. Checks spelling, grammar, style, SEO, GEO, images, FAQ, and translation status — then presents a report for approval before making any changes.

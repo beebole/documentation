@@ -1,3 +1,9 @@
+---
+name: generate-faqs
+description: Detect documentation pages missing FAQ sections and generate them with 3-5 Q&A pairs per page
+disable-model-invocation: true
+---
+
 # Generate FAQs
 
 Detect documentation pages missing FAQ sections and generate them.

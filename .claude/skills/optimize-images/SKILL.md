@@ -1,3 +1,9 @@
+---
+name: optimize-images
+description: Optimize all images in help/images/ by converting PNG/JPG to WebP format and compressing them
+disable-model-invocation: true
+---
+
 # Optimize Images
 
 Optimize all images in `help/images/` for the Beebole documentation site.

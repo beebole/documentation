@@ -1,3 +1,9 @@
+---
+name: track-app-changes
+description: Analyze commits from the Beebole app repository (beebole/reboot) and maintain a human-readable changelog of product changes in .todo/app-changes.md
+disable-model-invocation: true
+---
+
 # Track App Changes
 
 Analyze commits from the Beebole application repository (beebole/reboot) and maintain a human-readable changelog of product changes in `.todo/app-changes.md`.

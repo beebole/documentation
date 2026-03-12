@@ -1,3 +1,9 @@
+---
+name: translate
+description: Detect and update stale French and Spanish translations to match the English source files
+disable-model-invocation: true
+---
+
 # Translate — Sync Translations
 
 Detect and update stale French and Spanish translations to match the English source files.

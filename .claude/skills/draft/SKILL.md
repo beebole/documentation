@@ -1,3 +1,9 @@
+---
+name: draft
+description: Turn raw input (dictation, notes, feature description) into a complete Beebole documentation page through an interactive, collaborative process with checkpoints
+disable-model-invocation: true
+---
+
 # Draft Page — Interactive Documentation Builder
 
 Collaboratively build a complete Beebole documentation page through an interactive conversation. The user provides raw input (dictation transcript, notes, or a feature description), and we refine the page together step by step.

@@ -1,3 +1,9 @@
+---
+name: generate-news
+description: Draft product-focused news entries for the releases page based on tracked app changes, with user validation before publishing
+disable-model-invocation: true
+---
+
 # Generate News Update
 
 Use the app changes tracker to draft product-focused news entries for the releases page, with user validation before publishing.

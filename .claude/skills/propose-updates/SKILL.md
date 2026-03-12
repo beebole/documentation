@@ -1,3 +1,9 @@
+---
+name: propose-updates
+description: Map tracked app changes to documentation pages, audit them against source code, and produce a prioritized report of proposed updates
+disable-model-invocation: true
+---
+
 # Propose Documentation Updates
 
 Read the app changes tracker, map each change to affected documentation pages, audit those pages against the source code, and produce a prioritized report of proposed documentation updates — without making any changes.

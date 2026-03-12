@@ -35,7 +35,7 @@ This is **functional documentation** (not technical), except for the API section
 | `/propose-updates` | Map tracked app changes to doc pages, audit them, and propose prioritized updates |
 | `/generate-news` | Analyze recent doc changes and draft a news update for the releases page |
 
-Each skill's full instructions are in `.claude/skills/`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
+Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
 ## Languages
 
@@ -68,8 +68,18 @@ scripts/
   generate-faq.sh     # Detect pages missing FAQ sections (for batch FAQ generation)
   translate.sh        # Detect stale translations (for batch translation sync)
 .claude/
-  skills/             # Slash command skill files (workflow & helper skills)
-    tools/            # Tool skill files (audit, FAQ generation, image optimization)
+  skills/             # Skills directory — each skill is a subdirectory with a SKILL.md entrypoint
+    draft/SKILL.md
+    review/SKILL.md
+    translate/SKILL.md
+    audit-code/SKILL.md
+    audit-seo-geo/SKILL.md
+    generate-faqs/SKILL.md
+    optimize-images/SKILL.md
+    track-app-changes/SKILL.md
+    propose-updates/SKILL.md
+    generate-news/SKILL.md
+    sync-features/SKILL.md
 .todo/                # Working files for app change tracking and proposed updates
 ```
 
@@ -78,6 +88,31 @@ scripts/
 All content, configuration, and components in this project **must follow Mintlify's official documentation**. When in doubt about syntax, components, frontmatter options, or `docs.json` configuration, always refer to the Mintlify docs rather than guessing.
 
 Use the Mintlify MCP server to look up official Mintlify documentation when working on this project.
+
+## Skills architecture
+
+Skills follow the [Claude Code skills standard](https://code.claude.com/docs/en/skills). Every skill **must** use the directory-based structure:
+
+```
+.claude/skills/<skill-name>/SKILL.md
+```
+
+**Rules:**
+- Each skill is a **directory** (not a flat `.md` file) containing a `SKILL.md` entrypoint.
+- `SKILL.md` must start with YAML frontmatter between `---` markers, with at least `name` and `description` fields.
+- Add `disable-model-invocation: true` for skills that should only be triggered manually via `/skill-name` (not auto-invoked by Claude).
+- Supporting files (templates, scripts, examples) can live alongside `SKILL.md` in the same directory.
+- Never place skills as flat `.md` files directly in `.claude/skills/` — always use `<skill-name>/SKILL.md`.
+- Do not nest skills inside subdirectories like `tools/` — all skills live as direct children of `.claude/skills/`.
+
+**Frontmatter example:**
+```yaml
+---
+name: my-skill
+description: What this skill does and when to use it
+disable-model-invocation: true
+---
+```
 
 ## App terminology
 
