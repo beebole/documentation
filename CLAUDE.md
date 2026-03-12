@@ -63,6 +63,7 @@ help/
   logo/            # Logo assets
   fr/              # French translations (same structure as help/)
   es/              # Spanish translations (same structure as help/)
+snippets/              # Reusable content fragments (imported via <Snippet file="..." />)
 scripts/
   optimize-images.sh  # Local image optimization script (optional, requires cwebp)
   generate-faq.sh     # Detect pages missing FAQ sections (for batch FAQ generation)
@@ -158,7 +159,7 @@ This section defines how documentation pages should be written. The goal is to p
 
 ### Audience
 
-The primary audience for most pages is **account administrators** — the people who set up and configure Beebole for their organization. They are the main readers of the Documentation tab (projects, users, settings, permissions, etc.).
+The primary audience for most pages is **account administrators** — the people who set up and configure Beebole for their organization. In practice, these are often office managers, team leads, project managers, accountants, HR staff, or business owners. They are the main readers of the Documentation tab (projects, users, settings, permissions, etc.).
 
 Other audiences appear in specific contexts:
 
@@ -245,9 +246,10 @@ Example pattern:
 | `<Tip>` | Best practices, shortcuts, or "pro tips" |
 | `<Warning>` | Actions that can't be undone, data loss risks, or common mistakes |
 | `<Note>` | Secondary information that's good to know but not critical |
+| `<Check>` | Confirmation of a successful outcome or prerequisite met |
 | `<Badge>` | Role-based or plan-based limitations (e.g., `<Badge>Admin only</Badge>`) |
 
-Place callouts **near the content they relate to**, not grouped at the top or bottom of the page.
+Place callouts **near the content they relate to**, not grouped at the top or bottom of the page. **Limit to two callouts per page section** — if you need more, the body text itself needs rewriting.
 
 ### Formatting conventions
 
@@ -263,6 +265,8 @@ Place callouts **near the content they relate to**, not grouped at the top or bo
   </Frame>
   ```
 - Prefer **screenshots** for UI orientation (finding buttons, seeing a screen). Prefer **videos** for complex multi-step workflows that span multiple pages.
+- Use `<Tabs>` when the reader needs to choose between parallel paths (e.g., different plans, different user roles, desktop vs. mobile).
+- Use `<Card>` or `<CardGroup>` for navigation hubs that link to multiple related pages (e.g., a feature overview page linking to sub-topics).
 
 ### Content workflow — from app to page
 
@@ -283,6 +287,13 @@ When documenting a feature:
 - Don't describe the UI layout in excessive detail ("In the top-right corner of the second panel, below the header..."). Keep navigation instructions minimal and clear.
 - Don't write marketing copy. This is a help center, not a sales page.
 - Don't leave placeholder text, TODO comments, or draft notes in published pages.
+
+### Snippets and reusability
+
+- Store reusable content fragments in the `/snippets/` directory.
+- Use snippets for content that appears on multiple pages (e.g., a standard note about permissions, a recurring prerequisites block).
+- Name snippets descriptively using kebab-case (e.g., `admin-permission-note.mdx`).
+- Import snippets using: `<Snippet file="snippet-name.mdx" />`
 
 ---
 
@@ -357,7 +368,7 @@ For draft pages, internal-only content, or deprecated pages not yet removed, add
 
 ### Publishing checklist
 
-Before publishing, verify: frontmatter has `title` (50-60 chars), `description` (120-160 chars), `keywords` (3-8 terms) — all images have descriptive alt text — headings use natural, searchable phrases — internal links use descriptive anchor text — FAQ section with 3-5 Q&A pairs exists — FR/ES versions have translated metadata (not just body text).
+Before publishing, verify: frontmatter has `title` (50-60 chars), `description` (120-160 chars), `keywords` (3-8 terms) — written in second person, active voice, present tense — no internal jargon or technical implementation details (unless API docs) — navigation path provided for any UI action (e.g., "Go to **Settings** > **Team**") — headings are descriptive, hierarchical (`##` then `###`, no skipped levels), and use natural searchable phrases — all images have descriptive alt text — no more than two callouts per section — `<Steps>` used for procedures with 3+ steps — internal links use descriptive anchor text — FAQ section with 3-5 Q&A pairs exists — page is listed in `docs.json` under the correct group — FR/ES versions have translated metadata (not just body text).
 
 ---
 
@@ -401,6 +412,6 @@ Unlike traditional search (where users click through to our site), generative en
 
 ## Quick reference
 
-- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Run `/optimize-images` manually before committing.
+- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/optimize-images` manually before committing.
 - **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
 - **Translations:** English is the master language. FR/ES must stay in sync. Use correct localized UI labels from the i18n files.

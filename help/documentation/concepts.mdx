@@ -1,0 +1,130 @@
+---
+title: "Key Concepts"
+description: "Understand the core building blocks of Beebole: projects, people, tags, and how cross-cutting features like rates, schedules, and custom fields connect them."
+keywords: ["Beebole concepts", "how Beebole works", "Beebole entities", "Beebole structure", "projects people tags", "Beebole overview"]
+"og:title": "Key Concepts in Beebole"
+"og:description": "Understand the core entities and features that make up Beebole's time tracking system."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Before diving into individual features, it helps to understand how Beebole is structured. This page introduces the core entities you'll work with and explains how features like billing rates, schedules, and custom fields connect across them.
+
+---
+
+## The three core entities
+
+Everything in Beebole revolves around three types of entities:
+
+| Entity | What it represents | Examples |
+|--------|--------------------|----------|
+| **Projects** | The work your team tracks time against | Client engagements, internal initiatives, departments |
+| **People** | The users and team members in your account | Employees, managers, contractors, administrators |
+| **Tags** | Organizational labels that group and classify entities | Departments, teams, locations, cost centers |
+
+These three entities form the foundation of your Beebole account. Time entries, reports, budgets, and approval workflows all build on top of them.
+
+---
+
+## How entities relate to each other
+
+Beebole's entities don't exist in isolation — they connect to create a complete picture of your organization's work:
+
+- **People work on projects.** When someone logs time, they select a project (and optionally a sub-project or task). This is the core relationship in Beebole.
+- **Tags group both people and projects.** A tag like "Engineering" can contain both the engineering team members and the engineering projects, making it easy to filter and report by department.
+- **Projects have hierarchies.** Categories contain projects, which can contain sub-projects, nested as deep as you need.
+- **Tags have hierarchies too.** Tags can be organized into parent/child structures (e.g., "Europe" > "France" > "Paris office").
+
+<Info>
+  Think of projects as *what* your team works on, people as *who* does the work, and tags as *how you organize* both for reporting and management.
+</Info>
+
+---
+
+## Cross-cutting features
+
+Several features in Beebole aren't tied to a single entity — they apply across projects, people, and tags. Understanding this pattern is key to configuring Beebole effectively.
+
+### Billing and cost rates
+
+Billing and cost rates can be set at multiple levels:
+
+| Level | What it controls |
+|-------|-----------------|
+| **Organisation** | Default rates for the entire account |
+| **Tag** | Rates for everyone and everything in a department or team |
+| **Project** | Rates specific to a client or engagement |
+| **Person** | Rates for an individual team member |
+
+When multiple rates exist, Beebole uses a priority system: **person > project > tag > organisation**. The most specific rate always wins.
+
+Learn more: [Billing rates](/documentation/billing) · [Cost rates](/documentation/costs)
+
+### Work schedules
+
+Work schedules define standard working hours per day of the week. Like rates, they can be assigned at the organisation, tag, or person level — and follow the same priority system.
+
+Learn more: [Work schedules](/documentation/work-schedule)
+
+### Custom fields
+
+Custom fields let you add your own data to entities. You can create fields that appear on:
+- **People** (e.g., Employee ID, Office Location)
+- **Projects** (e.g., Priority, Contract Type)
+- **Tasks** (e.g., Sprint, Story Points)
+- **Time entries** (e.g., Activity Type, Deliverable)
+
+Learn more: [Custom fields](/documentation/custom-fields)
+
+### Assignments and availability
+
+You control which projects, tasks, absence types, and expense types each person can access. These assignments can be managed at the organisation, tag, or individual level.
+
+Learn more: [Assignments](/documentation/assignments)
+
+---
+
+## How it all comes together
+
+Here's a typical setup to illustrate how these concepts connect:
+
+1. **You create projects** organized by client (categories) and engagement (projects).
+2. **You add people** and assign them roles that control their permissions.
+3. **You create tags** for departments and teams, then tag both people and projects.
+4. **You set billing rates** on projects (what you charge clients) and **cost rates** on people (what they cost internally). Tags can provide default rates for entire departments.
+5. **You assign work schedules** to define expected working hours — at the org level for most people, with overrides on specific tags or individuals.
+6. **People log time** against projects on their timesheets. Each entry captures who, what, when, and how long.
+7. **Reports** combine all of this — showing time, costs, billing, and budgets across any combination of projects, people, and tags.
+
+---
+
+## Where to go next
+
+| Topic | Page |
+|-------|------|
+| Set up your first project, team, and report | [Quickstart](/documentation/quickstart) |
+| Create and organize projects | [Projects](/documentation/projects) |
+| Add and manage team members | [People](/documentation/people) |
+| Organize with tags | [Tags](/documentation/tags) |
+| Configure billing rates | [Billing rates](/documentation/billing) |
+| Set up work schedules | [Work schedules](/documentation/work-schedule) |
+| Define roles and permissions | [Roles & permissions](/documentation/roles-authorisations) |
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Do I need to set up all three entities before my team can track time?">
+    You need at least one project and one person. Tags are optional but recommended — they unlock powerful reporting capabilities. See the [Quickstart](/documentation/quickstart) for the minimum setup.
+  </Accordion>
+  <Accordion title="What's the difference between a tag and a project category?">
+    A project category is part of the project hierarchy — it groups projects together. A tag is a cross-cutting label that can be applied to both people and projects. Use categories for your project structure and tags for organizational dimensions like departments, locations, or cost centers.
+  </Accordion>
+  <Accordion title="If I set a billing rate on a tag and a different rate on a project, which one applies?">
+    The project rate takes priority. Beebole resolves rates in this order: person > project > tag > organisation. The most specific rate always wins.
+  </Accordion>
+  <Accordion title="Can I change my structure after my team has started tracking time?">
+    Yes. You can reorganize projects, update tags, and change rates at any time. Historical time entries are preserved. However, structural changes may affect how existing data appears in filtered reports.
+  </Accordion>
+</AccordionGroup>

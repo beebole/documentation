@@ -1,0 +1,115 @@
+---
+title: "Notifications"
+description: "Configurez la manière dont Beebole notifie votre équipe concernant les approbations, les mentions, les rappels de feuilles de temps et autres événements."
+keywords: ["notifications Beebole", "notifications par e-mail", "rappels feuille de temps", "notifications approbation", "paramètres notifications", "modèles e-mail"]
+"og:title": "Notifications dans Beebole"
+"og:description": "Découvrez comment configurer les notifications par e-mail et dans l'application pour les approbations, les rappels et les événements d'équipe dans Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Beebole tient votre équipe informée grâce à des notifications dans l'application et par e-mail. Les notifications vous alertent sur les actions d'approbation, les mentions, les rappels de feuilles de temps et d'autres événements — pour que rien ne passe entre les mailles du filet.
+
+---
+
+## Types de notifications
+
+Beebole envoie des notifications pour les événements suivants :
+
+| Événement | Description |
+|-----------|-------------|
+| **Feuille de temps soumise** | Un membre de l'équipe soumet sa feuille de temps pour approbation |
+| **Action d'approbation** | Une feuille de temps est approuvée, rejetée ou renvoyée pour modification |
+| **Mentions** | Quelqu'un vous @mentionne dans un message du journal |
+| **Rappels de feuille de temps** | Rappels automatiques pour les feuilles de temps non remplies ou non soumises |
+| **Rappels d'approbation** | Rappels automatiques pour les actions d'approbation en attente |
+| **Événements d'équipe** | Nouveaux membres, changements d'horaires et autres mises à jour organisationnelles |
+
+---
+
+## Canaux de notification
+
+### Notifications dans l'application
+
+Les notifications apparaissent dans le **Journal** avec des indicateurs de non-lu. Beebole affiche un compteur pour les notifications non lues et utilise un séparateur « nouveau » pour vous aider à retrouver rapidement ce que vous n'avez pas encore vu.
+
+### Notifications par e-mail
+
+Beebole envoie des notifications par e-mail pour les événements importants. Les e-mails incluent le contexte pertinent — par exemple, les e-mails de notification d'approbation contiennent un récapitulatif de la feuille de temps soumise.
+
+<Info>
+  Vous pouvez approuver ou rejeter des feuilles de temps directement depuis l'e-mail de notification, sans ouvrir Beebole.
+</Info>
+
+### Regroupement en résumés
+
+Au lieu de recevoir un e-mail individuel pour chaque événement, Beebole peut regrouper les notifications en résumés périodiques. Cela réduit le volume d'e-mails tout en vous tenant informé.
+
+---
+
+## Configurer vos préférences de notification
+
+Chaque personne peut personnaliser les notifications qu'elle reçoit :
+
+<Steps>
+  <Step title="Ouvrez les paramètres de votre profil">
+    Cliquez sur votre photo de profil ou votre nom, puis sélectionnez **Paramètres**.
+  </Step>
+  <Step title="Accédez aux Notifications">
+    Sélectionnez l'onglet **Notifications**.
+  </Step>
+  <Step title="Choisissez vos préférences">
+    Activez ou désactivez les notifications pour chaque type d'événement. Choisissez entre les e-mails individuels et le regroupement en résumés.
+  </Step>
+</Steps>
+
+<Tip>
+  Chaque e-mail de notification inclut un lien **Se désabonner** en un clic, ce qui vous permet de gérer facilement vos préférences directement depuis votre boîte de réception.
+</Tip>
+
+---
+
+## Rappels de feuille de temps
+
+Beebole peut rappeler automatiquement aux membres de l'équipe de remplir et soumettre leurs feuilles de temps. Les administrateurs configurent les rappels au niveau de l'organisation :
+
+- **Fréquence des rappels** — Choisissez quand les rappels sont envoyés (par ex. quotidiennement, hebdomadairement).
+- **Conditions de déclenchement** — Les rappels se déclenchent lorsqu'une feuille de temps est incomplète ou non soumise au-delà d'un nombre de jours configurable.
+- **Portée** — Appliquez les rappels à tout le monde, ou configurez-les par personne.
+
+---
+
+## Rappels d'approbation
+
+Indépendamment des rappels de feuille de temps, les rappels d'approbation notifient les approbateurs lorsque des feuilles de temps sont en attente de leur action. Cela permet d'éviter les goulots d'étranglement dans le [workflow d'approbation](/documentation/approval).
+
+---
+
+## Modèles d'e-mail
+
+Les administrateurs peuvent personnaliser le contenu des e-mails de notification :
+
+- Modifiez l'objet et le corps du texte pour les différents types de notification.
+- Incluez des champs dynamiques (nom de la personne, nom du projet, période) qui se remplissent automatiquement.
+- Prévisualisez les modèles avant de les activer.
+
+Pour gérer les modèles d'e-mail, allez dans **Paramètres** > **Modèles d'e-mail**.
+
+---
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Puis-je désactiver toutes les notifications par e-mail ?">
+    Oui. Dans vos préférences de notification, désactivez les e-mails pour chaque type d'événement. Vous continuerez à voir les notifications dans le Journal de l'application.
+  </Accordion>
+  <Accordion title="Un administrateur peut-il configurer les paramètres de notification pour toute l'équipe ?">
+    Les administrateurs contrôlent les paramètres au niveau de l'organisation comme la fréquence des rappels et les modèles d'e-mail. Les préférences de notification individuelles (quels événements recevoir) sont gérées par chaque personne.
+  </Accordion>
+  <Accordion title="Que se passe-t-il si un e-mail de notification échoue à la livraison ?">
+    Beebole retente automatiquement l'envoi des notifications échouées. Si le problème persiste, la notification reste disponible dans le Journal de l'application.
+  </Accordion>
+  <Accordion title="Puis-je répondre aux notifications d'approbation par e-mail ?">
+    Oui. Vous pouvez approuver ou rejeter des feuilles de temps directement depuis l'e-mail de notification. Vous pouvez également répondre aux messages du journal par e-mail.
+  </Accordion>
+</AccordionGroup>

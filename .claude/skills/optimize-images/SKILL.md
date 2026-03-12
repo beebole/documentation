@@ -26,6 +26,7 @@ This converts all PNG/JPG files in `help/images/` to WebP format using `cwebp` a
 
 Follow the image conventions in CLAUDE.md (WebP, under 200 KB, kebab-case naming). Additional notes:
 
+- **Organization:** Place images in section subdirectories (e.g., `help/images/timesheets/`, `help/images/billing/`). Do not dump all images flat in `help/images/`.
 - **Resolution:** 2x for retina (e.g., capture at 1440px wide for 720px display), then compress
 - **Language-specific images:** Use subdirectories like `help/images/fr/`
 - **Don'ts:** No uncompressed screenshots, no BMP/TIFF, don't keep both original and optimized versions

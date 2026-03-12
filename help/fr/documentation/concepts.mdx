@@ -1,0 +1,130 @@
+---
+title: "Concepts clés"
+description: "Comprenez les éléments fondamentaux de Beebole : projets, personnes, tags, et comment les fonctionnalités transversales comme les taux, les horaires et les champs personnalisés les relient."
+keywords: ["concepts Beebole", "fonctionnement Beebole", "structure Beebole", "entités Beebole", "projets personnes tags", "présentation Beebole"]
+"og:title": "Concepts clés de Beebole"
+"og:description": "Comprenez les entités principales et les fonctionnalités qui composent le système de suivi du temps Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Avant de plonger dans les fonctionnalités individuelles, il est utile de comprendre comment Beebole est structuré. Cette page présente les entités principales avec lesquelles vous travaillerez et explique comment des fonctionnalités comme les taux de facturation, les horaires de travail et les champs personnalisés s'articulent entre elles.
+
+---
+
+## Les trois entités principales
+
+Tout dans Beebole s'articule autour de trois types d'entités :
+
+| Entité | Ce qu'elle représente | Exemples |
+|--------|-----------------------|----------|
+| **Projets** | Le travail sur lequel votre équipe enregistre du temps | Missions clients, initiatives internes, départements |
+| **Personnes** | Les utilisateurs et membres d'équipe de votre compte | Employés, responsables, prestataires, administrateurs |
+| **Tags** | Des étiquettes organisationnelles qui regroupent et classifient les entités | Départements, équipes, sites, centres de coûts |
+
+Ces trois entités constituent la base de votre compte Beebole. Les entrées de temps, les rapports, les budgets et les workflows d'approbation reposent tous sur elles.
+
+---
+
+## Comment les entités sont liées entre elles
+
+Les entités de Beebole n'existent pas de manière isolée — elles se connectent pour créer une vue complète du travail de votre organisation :
+
+- **Les personnes travaillent sur des projets.** Quand quelqu'un enregistre du temps, il sélectionne un projet (et éventuellement une sous-activité ou une tâche). C'est la relation fondamentale dans Beebole.
+- **Les tags regroupent à la fois des personnes et des projets.** Un tag comme « Ingénierie » peut contenir à la fois les membres de l'équipe d'ingénierie et les projets d'ingénierie, ce qui facilite le filtrage et les rapports par département.
+- **Les projets ont des hiérarchies.** Les catégories contiennent des projets, qui peuvent contenir des sous-activités, imbriquées aussi profondément que nécessaire.
+- **Les tags ont aussi des hiérarchies.** Les tags peuvent être organisés en structures parent/enfant (par ex. « Europe » > « France » > « Bureau de Paris »).
+
+<Info>
+  Considérez les projets comme *ce sur quoi* votre équipe travaille, les personnes comme *qui* fait le travail, et les tags comme *la manière dont vous organisez* les deux pour les rapports et la gestion.
+</Info>
+
+---
+
+## Fonctionnalités transversales
+
+Plusieurs fonctionnalités de Beebole ne sont pas liées à une seule entité — elles s'appliquent à travers les projets, les personnes et les tags. Comprendre ce principe est essentiel pour configurer Beebole efficacement.
+
+### Taux de facturation et taux de coût
+
+Les taux de facturation et de coût peuvent être définis à plusieurs niveaux :
+
+| Niveau | Ce qu'il contrôle |
+|--------|-------------------|
+| **Organisation** | Taux par défaut pour l'ensemble du compte |
+| **Tag** | Taux pour toutes les personnes et tous les éléments d'un département ou d'une équipe |
+| **Projet** | Taux spécifiques à un client ou une mission |
+| **Personne** | Taux pour un membre d'équipe individuel |
+
+Lorsque plusieurs taux existent, Beebole utilise un système de priorité : **personne > projet > tag > organisation**. Le taux le plus spécifique l'emporte toujours.
+
+En savoir plus : [Taux de facturation](/documentation/billing) · [Taux de coût](/documentation/costs)
+
+### Horaires de travail
+
+Les horaires de travail définissent les heures de travail standard par jour de la semaine. Comme les taux, ils peuvent être assignés au niveau de l'organisation, du tag ou de la personne — et suivent le même système de priorité.
+
+En savoir plus : [Horaires de travail](/documentation/work-schedule)
+
+### Champs personnalisés
+
+Les champs personnalisés vous permettent d'ajouter vos propres données aux entités. Vous pouvez créer des champs qui apparaissent sur :
+- **Personnes** (par ex. Matricule, Site)
+- **Projets** (par ex. Priorité, Type de contrat)
+- **Tâches** (par ex. Sprint, Story Points)
+- **Entrées de temps** (par ex. Type d'activité, Livrable)
+
+En savoir plus : [Champs personnalisés](/documentation/custom-fields)
+
+### Assignations et disponibilité
+
+Vous contrôlez à quels projets, tâches, types d'absence et types de dépense chaque personne a accès. Ces assignations peuvent être gérées au niveau de l'organisation, du tag ou individuellement.
+
+En savoir plus : [Assignations](/documentation/assignments)
+
+---
+
+## Comment tout s'articule
+
+Voici une configuration typique pour illustrer comment ces concepts se combinent :
+
+1. **Vous créez des projets** organisés par client (catégories) et mission (projets).
+2. **Vous ajoutez des personnes** et leur assignez des rôles qui définissent leurs permissions.
+3. **Vous créez des tags** pour les départements et les équipes, puis vous les appliquez aux personnes et aux projets.
+4. **Vous définissez des taux de facturation** sur les projets (ce que vous facturez aux clients) et des **taux de coût** sur les personnes (ce qu'elles coûtent en interne). Les tags peuvent fournir des taux par défaut pour des départements entiers.
+5. **Vous assignez des horaires de travail** pour définir les heures attendues — au niveau de l'organisation pour la plupart des personnes, avec des exceptions sur des tags ou des individus spécifiques.
+6. **Les personnes enregistrent du temps** sur des projets via leurs feuilles de temps. Chaque entrée capture qui, quoi, quand et combien de temps.
+7. **Les rapports** combinent tout cela — en affichant le temps, les coûts, la facturation et les budgets pour toute combinaison de projets, personnes et tags.
+
+---
+
+## Pour aller plus loin
+
+| Sujet | Page |
+|-------|------|
+| Configurer votre premier projet, équipe et rapport | [Démarrage rapide](/documentation/quickstart) |
+| Créer et organiser des projets | [Projets](/documentation/projects) |
+| Ajouter et gérer des membres d'équipe | [Personnes](/documentation/people) |
+| Organiser avec des tags | [Tags](/documentation/tags) |
+| Configurer les taux de facturation | [Taux de facturation](/documentation/billing) |
+| Mettre en place les horaires de travail | [Horaires de travail](/documentation/work-schedule) |
+| Définir les rôles et permissions | [Rôles et permissions](/documentation/roles-authorisations) |
+
+---
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Faut-il configurer les trois entités avant que mon équipe puisse enregistrer du temps ?">
+    Vous avez besoin d'au moins un projet et une personne. Les tags sont optionnels mais recommandés — ils offrent des capacités de reporting puissantes. Consultez le [Démarrage rapide](/documentation/quickstart) pour la configuration minimale.
+  </Accordion>
+  <Accordion title="Quelle est la différence entre un tag et une catégorie de projet ?">
+    Une catégorie de projet fait partie de la hiérarchie des projets — elle regroupe des projets ensemble. Un tag est une étiquette transversale qui peut être appliquée à la fois aux personnes et aux projets. Utilisez les catégories pour structurer vos projets et les tags pour les dimensions organisationnelles comme les départements, les sites ou les centres de coûts.
+  </Accordion>
+  <Accordion title="Si je définis un taux de facturation sur un tag et un taux différent sur un projet, lequel s'applique ?">
+    Le taux du projet a la priorité. Beebole résout les taux dans cet ordre : personne > projet > tag > organisation. Le taux le plus spécifique l'emporte toujours.
+  </Accordion>
+  <Accordion title="Puis-je modifier ma structure après que mon équipe a commencé à enregistrer du temps ?">
+    Oui. Vous pouvez réorganiser les projets, mettre à jour les tags et modifier les taux à tout moment. Les entrées de temps existantes sont conservées. Cependant, les changements de structure peuvent affecter la manière dont les données existantes apparaissent dans les rapports filtrés.
+  </Accordion>
+</AccordionGroup>

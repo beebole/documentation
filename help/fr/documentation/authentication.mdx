@@ -1,0 +1,104 @@
+---
+title: "Authentification et sécurité"
+description: "Gérez la manière dont votre équipe se connecte à Beebole — de l'e-mail/mot de passe au SSO, aux clés d'accès et aux clés API."
+keywords: ["authentification Beebole", "connexion Beebole", "SSO", "authentification unique", "clés d'accès", "connexion Google", "connexion Microsoft", "clés API", "sécurité Beebole"]
+"og:title": "Authentification et sécurité dans Beebole"
+"og:description": "Découvrez les options de connexion de Beebole : SSO, clés d'accès, OAuth et gestion des clés API."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Beebole prend en charge plusieurs méthodes d'authentification pour que votre équipe puisse se connecter de manière sécurisée et pratique. Vous pouvez combiner plusieurs méthodes selon les exigences de sécurité de votre organisation.
+
+---
+
+## Méthodes de connexion
+
+### E-mail et mot de passe
+
+La méthode de connexion par défaut. Chaque personne crée un mot de passe lorsqu'elle accepte son invitation à rejoindre Beebole.
+
+### Connexion Google et Microsoft
+
+Les membres de l'équipe peuvent se connecter avec leur compte Google ou Microsoft existant. C'est particulièrement pratique pour les organisations qui utilisent déjà Google Workspace ou Microsoft 365.
+
+<Info>
+  La connexion OAuth utilise l'adresse e-mail associée au compte Google ou Microsoft. Le profil Beebole de la personne doit utiliser la même adresse e-mail.
+</Info>
+
+### Clés d'accès (Passkeys)
+
+Beebole prend en charge la connexion sans mot de passe grâce aux clés d'accès — via l'empreinte digitale, la reconnaissance faciale ou une clé de sécurité physique. Les clés d'accès fonctionnent sur tous vos appareils et offrent une connexion rapide et résistante au phishing.
+
+Pour configurer une clé d'accès, accédez aux paramètres de votre profil et sélectionnez **Sécurité** > **Ajouter une clé d'accès**.
+
+### Connexion par code PIN
+
+Pour un accès rapide, Beebole propose l'authentification par code PIN. Chaque personne peut définir un code PIN personnel pour se connecter plus rapidement sur les appareils de confiance.
+
+---
+
+## Authentification unique (SSO)
+
+Pour les organisations qui ont besoin d'une authentification centralisée, Beebole prend en charge le SSO via OpenID Connect. Cela permet à votre équipe de se connecter avec votre fournisseur d'identité existant (par ex. Okta, Azure AD, Google Workspace).
+
+<Steps>
+  <Step title="Ouvrez les paramètres du compte">
+    Allez dans **Paramètres** > **Compte**.
+  </Step>
+  <Step title="Configurez le SSO">
+    Dans la section **Authentification unique**, entrez les détails de votre configuration OpenID Connect : URL de l'émetteur, ID client et secret client.
+  </Step>
+  <Step title="Testez la connexion">
+    Utilisez l'option de test pour vérifier que la connexion fonctionne correctement avant d'activer le SSO pour toute votre équipe.
+  </Step>
+  <Step title="Activez le SSO">
+    Une fois le test réussi, activez le SSO. Les membres de l'équipe seront redirigés vers votre fournisseur d'identité lors de la connexion.
+  </Step>
+</Steps>
+
+<Warning>
+  Lorsque le SSO est activé, assurez-vous qu'au moins un administrateur conserve un accès par e-mail/mot de passe en secours, au cas où le fournisseur d'identité serait indisponible.
+</Warning>
+
+---
+
+## Clés API
+
+Les développeurs qui intègrent l'[API GraphQL](/api/introduction) de Beebole s'authentifient à l'aide de clés API.
+
+- Les clés API peuvent être générées dans les paramètres de votre profil sous **Sécurité** > **Clés API**.
+- Chaque clé a une date d'expiration configurable.
+- Traitez les clés API comme des mots de passe — ne les partagez pas et ne les incluez pas dans le contrôle de version.
+
+---
+
+## Suppression de compte
+
+Vous pouvez supprimer définitivement votre compte Beebole et toutes les données associées depuis les paramètres de votre profil. Cette action est irréversible.
+
+<Warning>
+  La suppression du compte efface toutes vos données — entrées de temps, projets, personnes et configuration. Cette action est irréversible. Exportez toutes les données dont vous avez besoin avant de procéder.
+</Warning>
+
+---
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Puis-je utiliser plusieurs méthodes de connexion en même temps ?">
+    Oui. Une personne peut avoir un e-mail/mot de passe, un compte Google ou Microsoft lié et une clé d'accès — le tout actif simultanément. Elle peut utiliser la méthode la plus pratique.
+  </Accordion>
+  <Accordion title="Le SSO remplace-t-il les autres méthodes de connexion ?">
+    Lorsque le SSO est activé, il devient la méthode de connexion principale. Cependant, les administrateurs peuvent conserver un accès par e-mail/mot de passe en secours.
+  </Accordion>
+  <Accordion title="Puis-je exiger que tous les membres de l'équipe utilisent le SSO ?">
+    Oui. Une fois le SSO configuré, vous pouvez l'imposer comme seule méthode de connexion pour votre organisation.
+  </Accordion>
+  <Accordion title="Comment réinitialiser le mot de passe d'un membre de l'équipe ?">
+    En tant qu'administrateur, vous pouvez renvoyer une invitation depuis le profil de la personne, ce qui lui permet de définir un nouveau mot de passe. La personne peut aussi utiliser le lien « Mot de passe oublié » sur la page de connexion.
+  </Accordion>
+  <Accordion title="Que deviennent les clés API lorsqu'une personne est archivée ?">
+    Les clés API appartenant aux utilisateurs archivés sont désactivées. Si vous réactivez la personne, vous devrez générer de nouvelles clés.
+  </Accordion>
+</AccordionGroup>

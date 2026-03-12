@@ -1,9 +1,74 @@
 ---
-title: Costs
-description: Learn how to define and track costs for people and projects to better understand profitability.
-keywords: ["Beebole costs", "cost tracking", "project costs", "labor costs", "project profitability", "client costs", "how to define costs"]
-"og:title": "Managing Costs in Beebole"
+title: "Cost Rates"
+description: "Define and track internal costs for people, projects, and tags in Beebole to understand profitability and labor costs."
+keywords: ["Beebole costs", "cost tracking", "project costs", "labor costs", "project profitability", "cost rates", "how to define costs"]
+"og:title": "Cost Rates in Beebole"
 "og:description": "Learn how to define and track costs for people and projects in Beebole."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Cost rates in Beebole track your internal cost of work — what it actually costs your organization when someone spends time on a project. Combined with [billing rates](/documentation/billing), cost data gives you a clear picture of profitability.
+
+---
+
+## How cost rates work
+
+Cost rates follow the same structure as billing rates. They can be set at multiple levels, and the most specific rate always takes priority:
+
+| Priority | Level | Example |
+|----------|-------|---------|
+| 1 (highest) | **Person** | A senior engineer with a higher cost rate |
+| 2 | **Project** | A project with outsourced work at a fixed cost |
+| 3 | **Tag** | A department-wide average cost |
+| 4 (lowest) | **Organisation** | A company-wide default cost |
+
+### Rate methods
+
+Cost rates support the same methods as billing: **hourly**, **daily**, **fixed amount**, or **no cost**.
+
+---
+
+## Setting cost rates
+
+### On a person
+
+Open a person's profile in [People](/documentation/people) and configure their cost rate. This typically represents the person's loaded labor cost (salary + benefits + overhead).
+
+### On a project
+
+Open a project in [Projects](/documentation/projects) and set a project-level cost rate. Use **split by person** when team members have different cost rates on the same project.
+
+### On a tag
+
+Set a cost rate on a [tag](/documentation/tags) to apply a default cost to everyone in a department or team.
+
+---
+
+## Profitability analysis
+
+When both billing and cost rates are configured, Beebole calculates profitability automatically in [Reports](/documentation/reports):
+
+- **Billing amount** — Revenue generated
+- **Cost amount** — Internal cost
+- **Margin** — The difference between billing and cost
+
+<Tip>
+  Set up cost rates early, even if approximate. Having both billing and cost data from the start makes profitability reports immediately useful.
+</Tip>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What's the difference between billing rates and cost rates?">
+    Billing rates represent what you charge (revenue). Cost rates represent what it costs you internally (expenses). The difference is your margin.
+  </Accordion>
+  <Accordion title="Do I need to set both billing and cost rates?">
+    No. You can use either independently. Billing rates alone track revenue; cost rates alone track internal costs. Both together enable profitability analysis.
+  </Accordion>
+  <Accordion title="Can cost rates have effective dates?">
+    Yes. Like billing rates, cost rates support start and end dates for automatic rate changes over time.
+  </Accordion>
+</AccordionGroup>

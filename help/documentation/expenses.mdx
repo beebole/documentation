@@ -1,9 +1,88 @@
 ---
-title: Expenses
-description: Configure and track labor and project expenses for accurate cost management.
-keywords: ["Beebole expenses", "project expenses", "expense tracking", "labor expenses", "tracking expenses", "how to track expenses", "configuring expenses"]
-"og:title": "Tracking Expenses in Beebole"
-"og:description": "Learn how to track labor and project expenses in Beebole."
+title: "Expenses"
+description: "Configure expense types and track project expenses in Beebole for accurate cost management and reporting."
+keywords: ["Beebole expenses", "expense tracking", "project expenses", "expense types", "expense reports", "how to track expenses"]
+"og:title": "Expense Tracking in Beebole"
+"og:description": "Learn how to configure expense types and track project expenses in Beebole."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's expense tracking lets you record and manage project-related expenses alongside time entries. Expenses are categorized by type and can be included in reports for a complete picture of project costs.
+
+---
+
+## Expense types
+
+Before your team can log expenses, you need to define the expense types they'll use. Expense types categorize spending into meaningful groups.
+
+### Creating expense types
+
+<Steps>
+  <Step title="Open Settings">
+    Go to **Settings** > **Expense types**.
+  </Step>
+  <Step title="Add an expense type">
+    Click **[+]** and enter a name for the type (e.g., Travel, Meals, Equipment, Software licenses).
+  </Step>
+  <Step title="Configure the type">
+    Choose whether the expense is **monetary** (a currency amount) or **quantity-based** (units, like kilometers or meals). Optionally set a **markup percentage** for client billing.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The expense type is now available for logging.
+  </Step>
+</Steps>
+
+---
+
+## Controlling expense types per project
+
+Not every expense type applies to every project. You can control which expense types are available on each project through [Assignments](/documentation/assignments):
+
+- By default, all expense types are available on all projects.
+- Restrict specific types to specific projects when needed.
+- Override availability at the tag or person level.
+
+---
+
+## Logging expenses
+
+Team members log expenses from their timesheet or from the project view:
+
+<Steps>
+  <Step title="Select the project">
+    Choose the project the expense relates to.
+  </Step>
+  <Step title="Add an expense entry">
+    Select the expense type, enter the amount (or quantity), date, and an optional description.
+  </Step>
+  <Step title="Save">
+    The expense is recorded and included in project cost tracking.
+  </Step>
+</Steps>
+
+---
+
+## Expenses in reports
+
+Expense data appears in [Reports](/documentation/reports) when you select the **Expense records** dimension. You can group and filter expenses by project, person, expense type, and date range.
+
+<Info>
+  Expenses with markup are automatically calculated in reports — showing both the base cost and the marked-up amount for client billing.
+</Info>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can expenses go through the approval workflow?">
+    Yes. Expenses are included in the [approval workflow](/documentation/approval) alongside time entries.
+  </Accordion>
+  <Accordion title="Can I set a budget for expenses?">
+    Expense amounts contribute to project [budgets](/documentation/budgets) when cost budgets are configured.
+  </Accordion>
+  <Accordion title="Can I restrict who can log certain expense types?">
+    Yes. Use [Assignments](/documentation/assignments) to control expense type availability by person, tag, or project.
+  </Accordion>
+</AccordionGroup>

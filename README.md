@@ -88,6 +88,10 @@ scripts/
 
 Content is maintained in three languages: English (default), French, and Spanish. English is the source of truth — French and Spanish pages mirror the same structure and slugs.
 
+## Writing conventions
+
+All writing style, page structure, SEO, and GEO guidelines are defined in `CLAUDE.md`. Refer to that file for tone, formatting, component usage, and the publishing checklist.
+
 ## Quick tips
 
 - **Images:** Always use WebP format, under 200 KB. Run `/optimize-images` before committing new screenshots.

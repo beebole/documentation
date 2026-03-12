@@ -52,8 +52,15 @@
                 "pages": [
                   "help/index",
                   "help/documentation/quickstart",
+                  "help/documentation/concepts"
+                ]
+              },
+              {
+                "group": "Entities",
+                "pages": [
                   "help/documentation/projects",
                   "help/documentation/people",
+                  "help/documentation/tags",
                   "help/documentation/journal"
                 ]
               },
@@ -101,21 +108,21 @@
                 ]
               },
               {
-                "group": "Advanced features",
+                "group": "Configuration",
                 "pages": [
                   "help/documentation/work-schedule",
-                  "help/documentation/tags",
                   "help/documentation/custom-fields",
                   "help/documentation/roles-authorisations",
-                  "help/documentation/assignments"
+                  "help/documentation/assignments",
+                  "help/documentation/notifications"
                 ]
               },
               {
                 "group": "Account",
                 "pages": [
                   "help/documentation/account-settings",
+                  "help/documentation/authentication",
                   "help/documentation/subscription",
-                  "help/documentation/sso",
                   "help/documentation/custom-domain",
                   "help/documentation/audit-trail"
                 ]
@@ -222,8 +229,15 @@
                 "pages": [
                   "help/fr/index",
                   "help/fr/documentation/quickstart",
+                  "help/fr/documentation/concepts"
+                ]
+              },
+              {
+                "group": "Entités",
+                "pages": [
                   "help/fr/documentation/projects",
                   "help/fr/documentation/people",
+                  "help/fr/documentation/tags",
                   "help/fr/documentation/journal"
                 ]
               },
@@ -271,21 +285,21 @@
                 ]
               },
               {
-                "group": "Fonctionnalités avancées",
+                "group": "Configuration",
                 "pages": [
                   "help/fr/documentation/work-schedule",
-                  "help/fr/documentation/tags",
                   "help/fr/documentation/custom-fields",
                   "help/fr/documentation/roles-authorisations",
-                  "help/fr/documentation/assignments"
+                  "help/fr/documentation/assignments",
+                  "help/fr/documentation/notifications"
                 ]
               },
               {
                 "group": "Compte",
                 "pages": [
                   "help/fr/documentation/account-settings",
+                  "help/fr/documentation/authentication",
                   "help/fr/documentation/subscription",
-                  "help/fr/documentation/sso",
                   "help/fr/documentation/custom-domain",
                   "help/fr/documentation/audit-trail"
                 ]
@@ -392,8 +406,15 @@
                 "pages": [
                   "help/es/index",
                   "help/es/documentation/quickstart",
+                  "help/es/documentation/concepts"
+                ]
+              },
+              {
+                "group": "Entidades",
+                "pages": [
                   "help/es/documentation/projects",
                   "help/es/documentation/people",
+                  "help/es/documentation/tags",
                   "help/es/documentation/journal"
                 ]
               },
@@ -441,21 +462,21 @@
                 ]
               },
               {
-                "group": "Funciones avanzadas",
+                "group": "Configuración",
                 "pages": [
                   "help/es/documentation/work-schedule",
-                  "help/es/documentation/tags",
                   "help/es/documentation/custom-fields",
                   "help/es/documentation/roles-authorisations",
-                  "help/es/documentation/assignments"
+                  "help/es/documentation/assignments",
+                  "help/es/documentation/notifications"
                 ]
               },
               {
                 "group": "Cuenta",
                 "pages": [
                   "help/es/documentation/account-settings",
+                  "help/es/documentation/authentication",
                   "help/es/documentation/subscription",
-                  "help/es/documentation/sso",
                   "help/es/documentation/custom-domain",
                   "help/es/documentation/audit-trail"
                 ]

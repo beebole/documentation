@@ -1,0 +1,130 @@
+---
+title: "Conceptos clave"
+description: "Comprenda los pilares de Beebole: proyectos, personas, etiquetas, y cómo las funcionalidades transversales como tarifas, horarios y campos personalizados los conectan."
+keywords: ["conceptos Beebole", "cómo funciona Beebole", "entidades Beebole", "estructura Beebole", "proyectos personas etiquetas", "guía Beebole"]
+"og:title": "Conceptos clave en Beebole"
+"og:description": "Comprenda las entidades principales y las funcionalidades que componen el sistema de seguimiento de tiempo de Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Antes de explorar las funcionalidades individuales, es útil comprender cómo está estructurado Beebole. Esta página presenta las entidades principales con las que trabajará y explica cómo funcionalidades como tarifas de facturación, horarios y campos personalizados las conectan entre sí.
+
+---
+
+## Las tres entidades principales
+
+Todo en Beebole gira en torno a tres tipos de entidades:
+
+| Entidad | Qué representa | Ejemplos |
+|---------|----------------|----------|
+| **Proyectos** | El trabajo contra el cual su equipo registra tiempo | Compromisos con clientes, iniciativas internas, departamentos |
+| **Personas** | Los usuarios y miembros del equipo en su cuenta | Empleados, gerentes, contratistas, administradores |
+| **Etiquetas** | Clasificaciones organizativas que agrupan y categorizan entidades | Departamentos, equipos, ubicaciones, centros de costo |
+
+Estas tres entidades forman la base de su cuenta de Beebole. Las entradas de tiempo, los informes, los presupuestos y los flujos de aprobación se construyen sobre ellas.
+
+---
+
+## Cómo se relacionan las entidades
+
+Las entidades de Beebole no existen de forma aislada — se conectan para crear una imagen completa del trabajo de su organización:
+
+- **Las personas trabajan en proyectos.** Cuando alguien registra tiempo, selecciona un proyecto (y opcionalmente un subproyecto o tarea). Esta es la relación principal en Beebole.
+- **Las etiquetas agrupan tanto personas como proyectos.** Una etiqueta como "Ingeniería" puede contener tanto a los miembros del equipo de ingeniería como a los proyectos de ingeniería, facilitando filtrar e informar por departamento.
+- **Los proyectos tienen jerarquías.** Las categorías contienen proyectos, que a su vez pueden contener subproyectos, con la profundidad que necesite.
+- **Las etiquetas también tienen jerarquías.** Las etiquetas pueden organizarse en estructuras de padre/hijo (por ejemplo, "Europa" > "Francia" > "Oficina de París").
+
+<Info>
+  Piense en los proyectos como *en qué* trabaja su equipo, las personas como *quién* realiza el trabajo, y las etiquetas como *cómo organiza* ambos para informes y gestión.
+</Info>
+
+---
+
+## Funcionalidades transversales
+
+Varias funcionalidades de Beebole no están vinculadas a una sola entidad — se aplican a proyectos, personas y etiquetas. Comprender este patrón es clave para configurar Beebole de forma eficaz.
+
+### Tarifas de facturación y de costo
+
+Las tarifas de facturación y de costo pueden definirse en múltiples niveles:
+
+| Nivel | Qué controla |
+|-------|-------------|
+| **Organización** | Tarifas predeterminadas para toda la cuenta |
+| **Etiqueta** | Tarifas para todas las personas y elementos de un departamento o equipo |
+| **Proyecto** | Tarifas específicas para un cliente o compromiso |
+| **Persona** | Tarifas para un miembro individual del equipo |
+
+Cuando existen múltiples tarifas, Beebole utiliza un sistema de prioridad: **persona > proyecto > etiqueta > organización**. La tarifa más específica siempre prevalece.
+
+Más información: [Tarifas de facturación](/documentation/billing) · [Tarifas de costo](/documentation/costs)
+
+### Horarios de trabajo
+
+Los horarios de trabajo definen las horas laborales estándar por día de la semana. Al igual que las tarifas, pueden asignarse a nivel de organización, etiqueta o persona, y siguen el mismo sistema de prioridad.
+
+Más información: [Horarios de trabajo](/documentation/work-schedule)
+
+### Campos personalizados
+
+Los campos personalizados le permiten agregar sus propios datos a las entidades. Puede crear campos que aparezcan en:
+- **Personas** (por ejemplo, ID de empleado, ubicación de oficina)
+- **Proyectos** (por ejemplo, prioridad, tipo de contrato)
+- **Tareas** (por ejemplo, sprint, puntos de historia)
+- **Entradas de tiempo** (por ejemplo, tipo de actividad, entregable)
+
+Más información: [Campos personalizados](/documentation/custom-fields)
+
+### Asignaciones y disponibilidad
+
+Usted controla a qué proyectos, tareas, tipos de ausencia y tipos de gasto puede acceder cada persona. Estas asignaciones pueden gestionarse a nivel de organización, etiqueta o individualmente.
+
+Más información: [Asignaciones](/documentation/assignments)
+
+---
+
+## Cómo encaja todo
+
+A continuación, un ejemplo típico de configuración que ilustra cómo se conectan estos conceptos:
+
+1. **Crea proyectos** organizados por cliente (categorías) y compromiso (proyectos).
+2. **Agrega personas** y les asigna roles que controlan sus permisos.
+3. **Crea etiquetas** para departamentos y equipos, y luego etiqueta tanto a personas como a proyectos.
+4. **Define tarifas de facturación** en los proyectos (lo que cobra a los clientes) y **tarifas de costo** en las personas (lo que cuestan internamente). Las etiquetas pueden proporcionar tarifas predeterminadas para departamentos completos.
+5. **Asigna horarios de trabajo** para definir las horas laborales esperadas — a nivel de organización para la mayoría de las personas, con excepciones en etiquetas o personas específicas.
+6. **Las personas registran tiempo** contra proyectos en sus hojas de tiempo. Cada entrada captura quién, qué, cuándo y cuánto tiempo.
+7. **Los informes** combinan todo esto — mostrando tiempo, costos, facturación y presupuestos a través de cualquier combinación de proyectos, personas y etiquetas.
+
+---
+
+## Próximos pasos
+
+| Tema | Página |
+|------|--------|
+| Configure su primer proyecto, equipo e informe | [Inicio rápido](/documentation/quickstart) |
+| Cree y organice proyectos | [Proyectos](/documentation/projects) |
+| Agregue y gestione miembros del equipo | [Personas](/documentation/people) |
+| Organice con etiquetas | [Etiquetas](/documentation/tags) |
+| Configure tarifas de facturación | [Tarifas de facturación](/documentation/billing) |
+| Defina horarios de trabajo | [Horarios de trabajo](/documentation/work-schedule) |
+| Defina roles y permisos | [Roles y permisos](/documentation/roles-authorisations) |
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Necesito configurar las tres entidades antes de que mi equipo pueda registrar tiempo?">
+    Necesita al menos un proyecto y una persona. Las etiquetas son opcionales pero recomendadas — desbloquean potentes capacidades de informes. Consulte el [Inicio rápido](/documentation/quickstart) para la configuración mínima.
+  </Accordion>
+  <Accordion title="¿Cuál es la diferencia entre una etiqueta y una categoría de proyecto?">
+    Una categoría de proyecto es parte de la jerarquía de proyectos — agrupa proyectos. Una etiqueta es una clasificación transversal que puede aplicarse tanto a personas como a proyectos. Use categorías para la estructura de sus proyectos y etiquetas para dimensiones organizativas como departamentos, ubicaciones o centros de costo.
+  </Accordion>
+  <Accordion title="Si defino una tarifa de facturación en una etiqueta y otra diferente en un proyecto, ¿cuál se aplica?">
+    La tarifa del proyecto tiene prioridad. Beebole resuelve las tarifas en este orden: persona > proyecto > etiqueta > organización. La tarifa más específica siempre prevalece.
+  </Accordion>
+  <Accordion title="¿Puedo cambiar mi estructura después de que mi equipo haya comenzado a registrar tiempo?">
+    Sí. Puede reorganizar proyectos, actualizar etiquetas y cambiar tarifas en cualquier momento. Las entradas de tiempo históricas se conservan. Sin embargo, los cambios estructurales pueden afectar cómo los datos existentes aparecen en informes filtrados.
+  </Accordion>
+</AccordionGroup>

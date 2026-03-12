@@ -1,9 +1,98 @@
 ---
-title: Billing
-description: Learn how to configure billing rates for people, projects, and clients to accurately track billable revenue.
+title: "Billing Rates"
+description: "Configure billing rates in Beebole at the person, project, tag, or organisation level to accurately track billable revenue."
 keywords: ["Beebole billing", "billing rates", "billable time", "billable hours", "project billing", "client billing", "how to set billing rates"]
-"og:title": "Billing Rates and Revenue in Beebole"
+"og:title": "Billing Rates in Beebole"
 "og:description": "Learn how to configure billing rates in Beebole for accurate revenue tracking."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's billing rates let you track how much revenue your team's work generates. Billing rates can be configured at multiple levels — organisation, tag, project, or person — and Beebole automatically calculates billable amounts based on tracked time.
+
+---
+
+## Rate methods
+
+Beebole supports several billing rate methods:
+
+| Method | Description |
+|--------|-------------|
+| **Hourly** | A fixed amount per hour worked |
+| **Daily** | A fixed amount per day worked |
+| **Fixed amount** | A flat fee regardless of time spent |
+| **Non-billable** | Mark time as non-billable (no revenue calculated) |
+
+---
+
+## Where to set billing rates
+
+Billing rates can be defined at four levels. When multiple rates exist, Beebole uses the most specific one:
+
+| Priority | Level | Use case |
+|----------|-------|----------|
+| 1 (highest) | **Person** | A contractor with a unique rate |
+| 2 | **Project** | A client project with a negotiated rate |
+| 3 | **Tag** | A department-wide default rate |
+| 4 (lowest) | **Organisation** | A company-wide default rate |
+
+### On a person
+
+Open a person's profile in [People](/documentation/people) and navigate to their billing settings. This rate applies to all time this person logs, unless overridden by a project-level rate.
+
+### On a project
+
+Open a project in [Projects](/documentation/projects) and configure its billing rate. You can optionally **split by person** to set different rates for different team members on the same project.
+
+### On a tag
+
+Open a tag in [Tags](/documentation/tags) and set a billing rate. This rate applies to all people and projects within that tag, unless overridden at a more specific level.
+
+### At the organisation level
+
+Go to **Settings** > **Account** to define the default billing rate for your entire account. This serves as the fallback when no other rate is configured.
+
+---
+
+## Rate splits
+
+For projects where different team members bill at different rates, use **rate splits**:
+
+- **Split by person** — Set a specific rate for each person assigned to the project.
+- **Split by project** — When a tag-level rate needs per-project overrides.
+- **Flat** — One rate applies to everyone equally.
+
+---
+
+## Effective dates
+
+Billing rates can have start and end dates, so rates change automatically over time. This is useful for:
+
+- Annual rate increases
+- Contract renewals with new terms
+- Temporary promotional rates
+
+---
+
+## Viewing billing data in reports
+
+Billing amounts appear automatically in [Reports](/documentation/reports) when you include billing-related columns. You can group and filter by project, person, tag, or time period to analyze revenue from any angle.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What happens if no billing rate is set?">
+    Time entries without a billing rate are treated as non-billable. They still appear in reports but with zero billing amount.
+  </Accordion>
+  <Accordion title="Can I mark individual time entries as non-billable?">
+    Yes. Each time entry has a non-billable flag that overrides the default rate for that specific entry.
+  </Accordion>
+  <Accordion title="Can I set different rates for the same person on different projects?">
+    Yes. Use project-level rate splits by person. The project rate takes priority over the person's default rate.
+  </Accordion>
+  <Accordion title="How do recurring rates work?">
+    Recurring rates repeat a rate pattern over time. This is useful for rates that follow a predictable cycle, such as seasonal adjustments.
+  </Accordion>
+</AccordionGroup>

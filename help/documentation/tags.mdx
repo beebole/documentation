@@ -1,9 +1,101 @@
 ---
-title: Tags
-description: Learn how to use tags in Beebole to classify and organize people, projects, and other entities for better planning, tracking, and reporting.
-keywords: ["Beebole tags", "tagging projects", "classify projects", "organize time tracking data", "project metadata", "how to organize projects", "how to organize people"]
-"og:title": "Classifying Data with Tags in Beebole"
-"og:description": "Use tags in Beebole to categorize people, projects, and data, making planning, tracking, and reporting more precise and powerful."
+title: "Tags"
+description: "Use tags in Beebole to organize people, projects, and tasks into departments, teams, locations, or any custom grouping for reporting and configuration."
+keywords: ["Beebole tags", "organize projects", "organize people", "departments", "teams", "tag hierarchy", "how to organize data"]
+"og:title": "Organizing with Tags in Beebole"
+"og:description": "Use tags in Beebole to categorize people, projects, and data for better reporting and management."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Tags are Beebole's organizational layer. While [projects](/documentation/projects) define *what* your team works on and [people](/documentation/people) define *who* does the work, tags let you classify both into meaningful groups — departments, teams, locations, cost centers, or any structure that matters to your organization.
+
+<Info>
+  Tags add a cross-cutting dimension to your data. A tag like "Engineering" can include both the engineering team members and the engineering projects, so you can report on everything related to that department in one view.
+</Info>
+
+---
+
+## Tag hierarchy
+
+Tags are organized in a hierarchical tree structure, similar to projects:
+
+- **Tag groups** — Top-level categories that define what kind of information the tags capture (e.g., "Department", "Location", "Cost Center").
+- **Tags** — Individual labels within a group (e.g., "Engineering", "Marketing", "Sales").
+- **Sub-tags** — Nested tags for more granular classification (e.g., "Engineering" > "Backend" > "Platform Team").
+
+You can name each level of your hierarchy with custom labels (e.g., "Division" > "Department" > "Team") to match your organization's vocabulary.
+
+---
+
+## Creating tags
+
+<Steps>
+  <Step title="Open tag settings">
+    Go to **Settings** > **Tags**.
+  </Step>
+  <Step title="Create a tag group">
+    Click **[+]** to add a new group. Give it a name that reflects the dimension it captures — for example, **Department**, **Location**, or **Work Type**.
+  </Step>
+  <Step title="Add tags to the group">
+    Within the group, add the individual tags your organization uses (e.g., **Engineering**, **Marketing**, **Operations**).
+  </Step>
+  <Step title="Nest sub-tags (optional)">
+    Drag tags into a parent tag to create a hierarchy, or use the **[+]** button on a tag to add children directly.
+  </Step>
+</Steps>
+
+---
+
+## Tagging people and projects
+
+Once tags exist, you can apply them to people and projects:
+
+- **On a person** — Open their profile in [People](/documentation/people) and assign tags. A person tagged "Engineering" inherits any configuration set on that tag (schedules, rates, availability).
+- **On a project** — Open the project in [Projects](/documentation/projects) and assign tags. This is useful for grouping projects by client type, service line, or business unit.
+
+---
+
+## Inheritance through tags
+
+Tags are powerful because configuration cascades through them. When you set something on a tag, it applies to all people and projects within that tag:
+
+| Feature | What inherits |
+|---------|---------------|
+| **Work schedules** | People in the tag inherit the tag's schedule (unless overridden individually). See [Work schedules](/documentation/work-schedule). |
+| **Billing rates** | A tag-level billing rate applies to all tagged entities. See [Billing rates](/documentation/billing). |
+| **Cost rates** | Same inheritance pattern as billing. See [Cost rates](/documentation/costs). |
+| **Assignments** | Control which projects, absence types, and expense types are available to people in the tag. See [Assignments](/documentation/assignments). |
+
+<Tip>
+  Use tag inheritance to configure settings once for a group rather than repeating the same setup on each person individually. For example, set a work schedule on a "Full-time" tag and assign all full-time employees to it.
+</Tip>
+
+---
+
+## Tags in reports
+
+Tags appear as grouping and filtering dimensions in [Reports](/documentation/reports). You can:
+
+- **Group by tag** to see time, costs, and billing broken down by department, team, or location.
+- **Filter by tag** to narrow a report to a specific organizational unit.
+- **Compare tags** to see how different teams or departments perform side by side.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What's the difference between tags and project categories?">
+    Project categories are part of the project hierarchy — they group projects together structurally. Tags are a separate, cross-cutting dimension that can be applied to both people and projects. Use categories for your project structure; use tags for organizational dimensions like departments or locations.
+  </Accordion>
+  <Accordion title="Can a person or project have multiple tags?">
+    Yes. A person can belong to multiple tag groups (e.g., tagged as both "Engineering" and "London Office"), and a project can be tagged similarly.
+  </Accordion>
+  <Accordion title="Are tags required for time tracking?">
+    No. Tags are optional. Your team can track time without any tags. However, tags significantly enhance your reporting and organizational capabilities.
+  </Accordion>
+  <Accordion title="Can I use tags to control which projects a person sees?">
+    Yes. Through [Assignments](/documentation/assignments), you can use tags to control project availability — so people only see the projects relevant to their team or department.
+  </Accordion>
+</AccordionGroup>

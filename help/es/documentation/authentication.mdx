@@ -1,0 +1,104 @@
+---
+title: "Autenticación y seguridad"
+description: "Gestione cómo su equipo inicia sesión en Beebole — desde correo/contraseña hasta SSO, claves de acceso y claves de API."
+keywords: ["autenticación Beebole", "inicio de sesión Beebole", "SSO", "inicio de sesión único", "claves de acceso", "inicio de sesión con Google", "inicio de sesión con Microsoft", "claves API", "seguridad Beebole"]
+"og:title": "Autenticación y seguridad en Beebole"
+"og:description": "Conozca las opciones de inicio de sesión de Beebole, incluyendo SSO, claves de acceso, OAuth y gestión de claves de API."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Beebole admite múltiples métodos de autenticación para que su equipo pueda iniciar sesión de forma segura y conveniente. Puede usar una combinación de métodos según los requisitos de seguridad de su organización.
+
+---
+
+## Métodos de inicio de sesión
+
+### Correo electrónico y contraseña
+
+El método de inicio de sesión predeterminado. Cada persona crea una contraseña cuando acepta su invitación a Beebole.
+
+### Inicio de sesión con Google y Microsoft
+
+Los miembros del equipo pueden iniciar sesión usando su cuenta existente de Google o Microsoft. Esto es especialmente conveniente para organizaciones que ya utilizan Google Workspace o Microsoft 365.
+
+<Info>
+  El inicio de sesión con OAuth utiliza la dirección de correo electrónico asociada a la cuenta de Google o Microsoft. El perfil de Beebole de la persona debe usar la misma dirección de correo.
+</Info>
+
+### Claves de acceso (passkeys)
+
+Beebole admite el inicio de sesión sin contraseña con claves de acceso — usando huella dactilar, reconocimiento facial o una llave de seguridad física. Las claves de acceso funcionan en todos sus dispositivos y proporcionan una experiencia de inicio de sesión rápida y resistente al phishing.
+
+Para configurar una clave de acceso, vaya a la configuración de su perfil y seleccione **Seguridad** > **Agregar clave de acceso**.
+
+### Inicio de sesión con PIN
+
+Para un acceso rápido, Beebole ofrece autenticación basada en PIN. Cada persona puede establecer un código PIN personal para iniciar sesión más rápido en dispositivos de confianza.
+
+---
+
+## Inicio de sesión único (SSO)
+
+Para organizaciones que necesitan autenticación centralizada, Beebole admite SSO a través de OpenID Connect. Esto permite que su equipo inicie sesión con su proveedor de identidad existente (por ejemplo, Okta, Azure AD, Google Workspace).
+
+<Steps>
+  <Step title="Abra la configuración de la cuenta">
+    Vaya a **Configuración** > **Cuenta**.
+  </Step>
+  <Step title="Configure SSO">
+    En la sección **Inicio de sesión único**, ingrese los detalles de configuración de OpenID Connect: URL del emisor, ID de cliente y secreto de cliente.
+  </Step>
+  <Step title="Pruebe la conexión">
+    Use la opción de prueba para verificar que el inicio de sesión funcione correctamente antes de activar SSO para todo su equipo.
+  </Step>
+  <Step title="Active SSO">
+    Una vez probado, active SSO. Los miembros del equipo serán redirigidos a su proveedor de identidad al iniciar sesión.
+  </Step>
+</Steps>
+
+<Warning>
+  Cuando SSO esté activado, asegúrese de que al menos un administrador conserve el acceso por correo/contraseña como respaldo en caso de que el proveedor de identidad no esté disponible.
+</Warning>
+
+---
+
+## Claves de API
+
+Los desarrolladores que se integran con la [API GraphQL](/api/introduction) de Beebole se autentican usando claves de API.
+
+- Las claves de API pueden generarse en la configuración de su perfil en **Seguridad** > **Claves de API**.
+- Cada clave tiene una fecha de expiración configurable.
+- Trate las claves de API como contraseñas — no las comparta ni las incluya en el control de versiones.
+
+---
+
+## Eliminación de cuenta
+
+Puede eliminar permanentemente su cuenta de Beebole y todos los datos asociados desde la configuración de su perfil. Esta acción es irreversible.
+
+<Warning>
+  La eliminación de la cuenta borra todos sus datos — entradas de tiempo, proyectos, personas y configuración. Esta acción no puede deshacerse. Exporte cualquier dato que necesite antes de proceder.
+</Warning>
+
+---
+
+## Preguntas frecuentes
+
+<AccordionGroup>
+  <Accordion title="¿Puedo usar varios métodos de inicio de sesión al mismo tiempo?">
+    Sí. Una persona puede tener correo/contraseña, una cuenta vinculada de Google o Microsoft, y una clave de acceso — todo activo simultáneamente. Puede usar el que le resulte más conveniente.
+  </Accordion>
+  <Accordion title="¿SSO reemplaza los otros métodos de inicio de sesión?">
+    Cuando SSO está activado, se convierte en el método de inicio de sesión principal. Sin embargo, los administradores pueden conservar el acceso por correo/contraseña como respaldo.
+  </Accordion>
+  <Accordion title="¿Puedo exigir que todos los miembros del equipo usen SSO?">
+    Sí. Una vez configurado SSO, puede aplicarlo como el único método de inicio de sesión para su organización.
+  </Accordion>
+  <Accordion title="¿Cómo restablezco la contraseña de un miembro del equipo?">
+    Como administrador, puede reenviar una invitación desde el perfil de la persona, lo que le permite establecer una nueva contraseña. Alternativamente, la persona puede usar el flujo de "Olvidé mi contraseña" en la página de inicio de sesión.
+  </Accordion>
+  <Accordion title="¿Qué ocurre con las claves de API cuando una persona es archivada?">
+    Las claves de API de usuarios archivados se desactivan. Si reactiva a la persona, deberá generar nuevas claves.
+  </Accordion>
+</AccordionGroup>
