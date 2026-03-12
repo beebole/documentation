@@ -32,13 +32,18 @@ Billing rates can be defined at four levels. When multiple rates exist, Beebole 
 | Priority | Level | Use case |
 |----------|-------|----------|
 | 1 (highest) | **Person** | A contractor with a unique rate |
-| 2 | **Project** | A client project with a negotiated rate |
-| 3 | **Tag** | A department-wide default rate |
-| 4 (lowest) | **Organisation** | A company-wide default rate |
+| 2 | **Task** | A specific task billed at a different rate |
+| 3 | **Project** | A client project with a negotiated rate |
+| 4 | **Tag** | A department-wide default rate |
+| 5 (lowest) | **Organisation** | A company-wide default rate |
 
 ### On a person
 
 Open a person's profile in [People](/documentation/people) and navigate to their billing settings. This rate applies to all time this person logs, unless overridden by a project-level rate.
+
+### On a task
+
+Open a project in [Projects](/documentation/projects) and navigate to its tasks. Set a billing rate on a specific task to override the project-level rate for that task only.
 
 ### On a project
 
@@ -74,6 +79,14 @@ Billing rates can have start and end dates, so rates change automatically over t
 
 ---
 
+## Recurring rates
+
+Recurring rates let you define a repeating rate pattern that applies automatically over time. This is useful when rates follow a predictable cycle — for example, seasonal adjustments or periodic rate increases that repeat annually.
+
+To set up a recurring rate, configure the rate with a start date and a recurrence interval. Beebole applies the rate pattern automatically for each cycle.
+
+---
+
 ## Viewing billing data in reports
 
 Billing amounts appear automatically in [Reports](/documentation/reports) when you include billing-related columns. You can group and filter by project, person, tag, or time period to analyze revenue from any angle.
@@ -95,4 +108,16 @@ Billing amounts appear automatically in [Reports](/documentation/reports) when y
   <Accordion title="How do recurring rates work?">
     Recurring rates repeat a rate pattern over time. This is useful for rates that follow a predictable cycle, such as seasonal adjustments.
   </Accordion>
+  <Accordion title="Can I set a billing rate on a specific task?">
+    Yes. Task-level billing rates override the project-level rate. This is useful when certain tasks within a project are billed at a different rate.
+  </Accordion>
 </AccordionGroup>
+
+---
+
+## Related pages
+
+- [Cost rates](/documentation/costs) — Track internal costs alongside billing for profitability analysis
+- [Budgets](/documentation/budgets) — Set billing, cost, and hours targets on your projects
+- [Expenses](/documentation/expenses) — Record and manage project-related expenses
+- [Reports](/documentation/reports) — Analyze billing data across projects, people, and time periods

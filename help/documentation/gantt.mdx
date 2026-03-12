@@ -1,4 +1,149 @@
 ---
-title: "Planning Gantt View"
-description: "Visualize project planning and timelines using Gantt charts."
+title: "Gantt Chart"
+description: "Visualize task timelines, track dependencies, and manage project schedules with Beebole's interactive Gantt chart view."
+keywords: ["beebole", "gantt chart", "task timeline", "project scheduling", "task dependencies", "project planning", "timeline view"]
+"og:title": "Gantt Chart View in Beebole"
+"og:description": "Plan and visualize project timelines with Beebole's interactive Gantt chart. Track task dependencies and deadlines at a glance."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's Gantt chart gives you a visual timeline of all tasks within a project. You can see start and end dates, track task dependencies, and identify scheduling conflicts — all from a single view. The Gantt chart is ideal for projects where the order and timing of tasks matter.
+
+<Info>
+  The Gantt chart is one of three task views available in Beebole, alongside the [Kanban board](/documentation/kanban) and the calendar view. You can switch between views at any time without losing data.
+</Info>
+
+---
+
+## Accessing the Gantt chart
+
+<Steps>
+  <Step title="Open a project">
+    Click **Projects** in the left sidebar, then select the project you want to visualize.
+  </Step>
+  <Step title="Switch to the Gantt view">
+    Click the **Gantt** tab at the top of the task area. The timeline displays all tasks with their scheduled dates.
+  </Step>
+</Steps>
+
+---
+
+## Reading the Gantt chart
+
+The Gantt chart displays tasks as horizontal bars on a timeline. Each bar represents a task's duration from its **Start date** to its **End date**.
+
+- **Task bars** — The length of each bar reflects the task's scheduled duration. Tasks are grouped by their category in the project hierarchy.
+- **Today marker** — A vertical line indicates the current date, helping you see which tasks are on schedule, overdue, or upcoming.
+- **Dependencies** — Arrows between task bars show predecessor-successor relationships. A task linked as a successor cannot start before its predecessor ends.
+- **Milestones** — Tasks with the same start and end date appear as diamond-shaped markers on the timeline.
+
+<Tip>
+  Use the zoom controls to switch between day, week, and month views. Zoom out for a high-level overview of the full project, or zoom in to focus on a specific week.
+</Tip>
+
+---
+
+## Managing tasks from the Gantt chart
+
+You can create and edit tasks directly in the Gantt view without switching to another screen.
+
+### Creating a task
+
+<Steps>
+  <Step title="Add a new task">
+    Click the **+** button in the task list on the left side of the Gantt chart. Enter a **Name** for the task.
+  </Step>
+  <Step title="Set the schedule">
+    Enter a **Start date** and **End date** for the task. Alternatively, click and drag on the timeline to create a task bar spanning your desired dates.
+  </Step>
+  <Step title="Assign the task">
+    Select a team member from the **Assigned to** field. This person is responsible for completing the task.
+  </Step>
+  <Step title="Set the status">
+    Choose an initial **Status** for the task (for example, **To Do**). Statuses are configurable per project.
+  </Step>
+</Steps>
+
+### Editing task dates
+
+You can adjust task timing directly on the chart:
+
+- **Move a task** — Drag the entire task bar left or right to shift its start and end dates while preserving the duration.
+- **Resize a task** — Drag the left or right edge of a task bar to change the start or end date independently.
+
+<Warning>
+  Moving or resizing a task that has dependents may create scheduling conflicts. Beebole highlights conflicts so you can resolve them.
+</Warning>
+
+---
+
+## Task dependencies
+
+Dependencies define the order in which tasks must be completed. In Beebole, you can link tasks as predecessors and successors to enforce scheduling logic.
+
+### Adding a dependency
+
+<Steps>
+  <Step title="Select the predecessor task">
+    Hover over the task bar of the task that must finish first. A connector handle appears at the end of the bar.
+  </Step>
+  <Step title="Draw the connection">
+    Click the connector handle and drag the arrow to the successor task. Release to create the dependency link.
+  </Step>
+</Steps>
+
+Once a dependency is set, the Gantt chart draws an arrow from the predecessor to the successor. If you move the predecessor, Beebole flags any conflicts with the successor's scheduled dates.
+
+### Removing a dependency
+
+Click the dependency arrow between two tasks, then click **Remove** to delete the link. The successor task retains its current dates but is no longer constrained by the predecessor.
+
+---
+
+## Effort and occupancy tracking
+
+Each task can include an **Effort** value that represents the percentage of a person's time allocated to that task. This helps you plan workloads without overbooking team members.
+
+- Set the effort as a percentage (e.g., 50% means the person spends half their working time on this task).
+- When combined with [Planning](/documentation/planning), effort values feed into capacity and workload calculations.
+
+<Info>
+  Effort tracking is optional. If you do not set an effort value, the task still appears on the Gantt chart based on its dates alone.
+</Info>
+
+---
+
+## Customizing the Gantt view
+
+You can adjust the Gantt chart to focus on what matters most:
+
+| Option | What it does |
+|--------|-------------|
+| **Zoom level** | Switch between day, week, and month scales on the timeline |
+| **Filter by status** | Show only tasks in specific statuses (e.g., **In Progress**) |
+| **Filter by person** | Show only tasks assigned to a specific team member |
+| **Group by category** | Organize tasks by their parent category in the project hierarchy |
+| **Show dependencies** | Toggle dependency arrows on or off for a cleaner view |
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I print or export the Gantt chart?">
+    You can export task data through Beebole's [data export](/documentation/data-exports) features. The visual Gantt chart itself is designed for on-screen use.
+  </Accordion>
+  <Accordion title="What happens if two dependent tasks overlap?">
+    Beebole highlights scheduling conflicts when a successor task is scheduled to start before its predecessor ends. You can resolve the conflict by adjusting either task's dates.
+  </Accordion>
+  <Accordion title="Can I set dependencies across different projects?">
+    No. Task dependencies are scoped to a single project. If you need to coordinate work across projects, use the [Planning](/documentation/planning) view for a cross-project overview.
+  </Accordion>
+  <Accordion title="How does the Gantt chart relate to the Kanban board?">
+    Both views display the same tasks. The [Kanban board](/documentation/kanban) organizes tasks by status, while the Gantt chart organizes them by timeline. Changes made in one view are immediately reflected in the other.
+  </Accordion>
+  <Accordion title="Is there a limit to the number of tasks on the Gantt chart?">
+    There is no hard limit. However, for readability, consider using filters or grouping when working with projects that have a large number of tasks.
+  </Accordion>
+</AccordionGroup>

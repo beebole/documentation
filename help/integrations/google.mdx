@@ -1,4 +1,85 @@
 ---
-title: "Google Workspace"
-description: "Integrate Beebole with Google Workspace applications"
+title: "Google SSO"
+description: "Sign in to Beebole with your Google account using single sign-on. Simplify access for your team with Google OAuth authentication."
+keywords: ["beebole", "Google SSO", "single sign-on", "Google login", "OAuth", "Google Workspace", "authentication"]
+"og:title": "Beebole Google SSO Integration"
+"og:description": "Sign in to Beebole with your Google account using single sign-on for faster, more secure access."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's Google SSO integration lets your team sign in to Beebole using their existing Google accounts. Instead of managing a separate Beebole password, users authenticate through Google's secure OAuth flow. This simplifies access for organizations that already use Google Workspace.
+
+---
+
+## How it works
+
+When Google SSO is enabled, users see a **Sign in with Google** button on the Beebole login page. Clicking it redirects them to Google's authentication screen, where they sign in with their Google account. After successful authentication, they are redirected back to Beebole and logged in automatically.
+
+Beebole matches the Google account to an existing Beebole user by email address. The email address on the Google account must match the email address registered in Beebole.
+
+<Info>Google SSO does not create new Beebole accounts automatically. Users must already exist in your Beebole account with a matching email address before they can sign in with Google.</Info>
+
+---
+
+## Setting up Google SSO
+
+<Steps>
+  <Step title="Open integration settings">
+    Go to **Settings** > **Integrations** in your Beebole account.
+  </Step>
+  <Step title="Enable Google SSO">
+    Locate the **Google** card and click **Connect**. Follow the OAuth prompts to authorize Beebole to verify your identity through Google.
+  </Step>
+  <Step title="Verify the connection">
+    Once connected, the Google integration shows as active in your integration settings. Users in your account can now sign in using the **Sign in with Google** button on the login page.
+  </Step>
+</Steps>
+
+<Tip>Encourage your team to use Google SSO if your organization already uses Google Workspace. It reduces the number of passwords your employees need to manage.</Tip>
+
+---
+
+## Linking an existing Beebole account to Google
+
+If a user already has a Beebole account with a password and wants to start using Google SSO:
+
+1. The user's Beebole email address must match their Google email address.
+2. On the next login, they click **Sign in with Google** instead of entering their password.
+3. Beebole links the Google account to their existing profile automatically.
+
+No data is lost during this process. All existing timesheet entries, settings, and permissions remain unchanged.
+
+---
+
+## Disabling Google SSO
+
+To disable Google SSO, go to **Settings** > **Integrations**, locate the Google card, and disconnect. Users will need to sign in with their Beebole email and password after disconnection.
+
+<Warning>Before disabling Google SSO, ensure all users have a working password set for their Beebole account. Otherwise, they will be unable to sign in.</Warning>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Does Google SSO create new Beebole users automatically?">
+    No. Users must already exist in your Beebole account with a matching email address. Google SSO is an authentication method, not a user provisioning tool.
+  </Accordion>
+
+  <Accordion title="Can I use Google SSO and a regular password at the same time?">
+    Yes. Users can sign in using either method. Google SSO is an alternative login option, not a replacement for password-based access.
+  </Accordion>
+
+  <Accordion title="What if my Google email is different from my Beebole email?">
+    Beebole matches users by email address. If your Google email does not match your Beebole email, you will not be able to use Google SSO. Update your email in one of the two systems so they match.
+  </Accordion>
+
+  <Accordion title="Is Google SSO available on all Beebole plans?">
+    Yes. Google SSO is available on all Beebole plans, including the free trial.
+  </Accordion>
+
+  <Accordion title="Does Beebole store my Google password?">
+    No. Beebole never sees or stores your Google password. Authentication happens entirely through Google's secure OAuth flow. Beebole only receives confirmation that you authenticated successfully.
+  </Accordion>
+</AccordionGroup>

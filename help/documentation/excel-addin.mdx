@@ -1,9 +1,124 @@
 ---
-title: Excel Add-in
-description: Learn how to connect Beebole with Excel using the official add-in and enhance your project reporting.
-keywords: ["Beebole Excel add-in", "Excel integration", "spreadsheet reporting", "integrate with Excel", "time tracking with Excel", "reporting integrations"]
-"og:title": "How to integrate Beebole with Excel"
-"og:description": "Learn how to connect your time tracking data with Excel using the official add-in."
+title: "Excel Add-in"
+description: "Use the Beebole Excel add-in to pull time tracking, billing, and project data directly into your Excel spreadsheets."
+keywords: ["Beebole Excel add-in", "Excel integration", "spreadsheet reporting", "Excel time tracking", "pull data into Excel", "beebole"]
+"og:title": "Beebole Excel Add-in"
+"og:description": "Pull Beebole time, billing, and project data directly into Excel with the official add-in."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+The Beebole Excel add-in connects your Beebole account directly to Microsoft Excel. Instead of exporting CSV files and importing them manually, you can pull time tracking, billing, cost, and project data into your spreadsheet with a few clicks — and refresh it whenever you need updated figures.
+
+---
+
+## What the add-in does
+
+The Excel add-in lets you:
+
+- **Pull report data** directly into Excel worksheets
+- **Choose dimensions and filters** using the same options available in [Beebole reports](/documentation/reports)
+- **Refresh data on demand** to get the latest figures without reconfiguring
+- **Build custom dashboards** by combining Beebole data with Excel formulas, charts, and pivot tables
+
+<Info>
+  The add-in pulls data from your Beebole account in real time. It does not store a copy of your data — each refresh fetches the latest information.
+</Info>
+
+---
+
+## Installing the add-in
+
+<Steps>
+  <Step title="Open Excel">
+    Launch Microsoft Excel on your desktop (Windows or macOS).
+  </Step>
+  <Step title="Go to the Add-ins store">
+    Click **Insert** in the Excel ribbon, then select **Get Add-ins** (or **Office Add-ins**).
+  </Step>
+  <Step title="Search for Beebole">
+    In the add-ins store, search for **Beebole** and click **Add** to install it.
+  </Step>
+  <Step title="Sign in to your Beebole account">
+    Once installed, open the Beebole add-in from the **Home** tab or the add-ins menu. Sign in with your Beebole credentials.
+  </Step>
+</Steps>
+
+<Tip>
+  The add-in works with Microsoft 365 (formerly Office 365) and Excel 2016 or later on both Windows and macOS.
+</Tip>
+
+---
+
+## Pulling data into Excel
+
+<Steps>
+  <Step title="Open the Beebole add-in panel">
+    Click the **Beebole** button in the Excel ribbon to open the add-in panel.
+  </Step>
+  <Step title="Select a dimension">
+    Choose the type of data you want: **Time records**, **Expense records**, or **Task records**.
+  </Step>
+  <Step title="Configure filters">
+    Set a date range and apply filters for people, projects, tags, or custom fields — just like in [Beebole reports](/documentation/reports).
+  </Step>
+  <Step title="Choose columns">
+    Select which data fields to include: hours, billing amounts, cost rates, project codes, custom fields, and more.
+  </Step>
+  <Step title="Insert the data">
+    Click **Insert** to pull the data into the active worksheet. The add-in populates the cells starting from your selected position.
+  </Step>
+</Steps>
+
+---
+
+## Refreshing data
+
+When you need updated figures, click **Refresh** in the Beebole add-in panel. The add-in re-runs your query with the same configuration and updates the data in your spreadsheet.
+
+<Warning>
+  Refreshing replaces the existing data in the cells populated by the add-in. If you have added formulas or notes in those cells, they will be overwritten. Place your own formulas and analysis in separate columns or rows.
+</Warning>
+
+---
+
+## Building reports in Excel
+
+Once your Beebole data is in Excel, you can use all of Excel's features to analyze it:
+
+- **Pivot tables** — Summarize and slice data by any dimension
+- **Charts** — Create visual dashboards from your time and billing data
+- **Formulas** — Apply calculations, conditional formatting, or lookups
+- **Multiple queries** — Pull different datasets into separate worksheets and cross-reference them
+
+<Tip>
+  Create a workbook template with your preferred layout, charts, and formulas. Each time you refresh the data, your entire dashboard updates automatically.
+</Tip>
+
+---
+
+## Permissions and data access
+
+The add-in respects your Beebole account permissions. You only see data for the projects and people your role allows. If you need access to additional data, ask your Beebole account administrator to adjust your [role and authorisations](/documentation/roles-authorisations).
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Does the add-in work with Excel for the web?">
+    The add-in is designed for the Excel desktop application (Windows and macOS). Check the Microsoft add-ins store for the latest compatibility information.
+  </Accordion>
+  <Accordion title="Can multiple people use the add-in on the same workbook?">
+    Each person signs in with their own Beebole credentials and sees only the data their permissions allow. You can share the workbook, but each user's data refresh uses their own access level.
+  </Accordion>
+  <Accordion title="Is there a limit to how much data I can pull?">
+    The add-in can pull large datasets. For very broad queries (e.g., all time records with no date filter), the request may take longer. Use date range filters to keep queries performant.
+  </Accordion>
+  <Accordion title="How is this different from exporting a CSV?">
+    The add-in maintains a live connection to your Beebole account. You configure the query once and refresh data on demand. With CSV [exports](/documentation/data-exports), you download a snapshot each time and import it manually.
+  </Accordion>
+  <Accordion title="Can I use the add-in with saved reports from Beebole?">
+    The add-in uses its own query configuration within Excel. You set up the dimension, filters, and columns directly in the add-in panel. For saved report templates, use the [custom reports](/documentation/custom-reports) feature in Beebole.
+  </Accordion>
+</AccordionGroup>

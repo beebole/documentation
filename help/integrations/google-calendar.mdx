@@ -1,4 +1,101 @@
 ---
 title: "Google Calendar"
-description: "Sync your calendar events with Beebole"
+description: "Import Google Calendar events into your Beebole timesheet. Drag and drop calendar events onto timesheet rows to log time faster."
+keywords: ["beebole", "Google Calendar", "calendar sync", "timesheet", "time tracking", "calendar events", "import events"]
+"og:title": "Beebole Google Calendar Integration"
+"og:description": "Import Google Calendar events into your Beebole timesheet and assign them to projects with drag and drop."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's Google Calendar integration lets you import your calendar events directly into your timesheet. Instead of manually entering time for meetings and appointments, you can view your Google Calendar events alongside your timesheet and drag them onto the correct project rows to log time instantly.
+
+---
+
+## How it works
+
+Once connected, your Google Calendar events appear in a panel next to your timesheet. You can drag and drop events onto timesheet rows to create time entries. Beebole automatically fills in the duration based on the calendar event length.
+
+Events that have already been assigned to a timesheet row are marked as **Already tracked**, so you always know which events still need to be logged.
+
+<Info>The Google Calendar integration is a personal connection. Each user connects their own Google Calendar from their timesheet view. Account administrators do not need to configure this centrally.</Info>
+
+---
+
+## Connecting your Google Calendar
+
+<Steps>
+  <Step title="Open your timesheet">
+    Navigate to your **Timesheet** page in Beebole.
+  </Step>
+  <Step title="Open the calendar panel">
+    Click the **Calendar** icon in the timesheet toolbar to open the calendar events panel.
+  </Step>
+  <Step title="Connect to Google Calendar">
+    Click **Connect to Google Calendar**. A popup appears asking you to sign in to your Google account and authorize Beebole to read your calendar events.
+  </Step>
+  <Step title="Authorize access">
+    Follow the Google OAuth prompts to grant Beebole read-only access to your calendar. The popup closes automatically when the connection is complete.
+  </Step>
+  <Step title="View your events">
+    Your Google Calendar events for the current timesheet period now appear in the calendar panel. You can drag and drop them onto timesheet rows to log time.
+  </Step>
+</Steps>
+
+---
+
+## Using calendar events in your timesheet
+
+Once connected, your workflow is straightforward:
+
+1. Open your **Timesheet** and click the **Calendar** icon to show the events panel.
+2. Your events for the current week (or day, depending on your timesheet view) are listed.
+3. Drag an event onto the appropriate project row to create a time entry. The duration is filled in automatically.
+4. Events already assigned to a row display an **Already tracked** indicator.
+
+<Tip>If an event spans multiple projects, you can split it manually. Drag the event once, then adjust the duration and add another entry for the remaining time.</Tip>
+
+---
+
+## What data is imported
+
+| Calendar data | Beebole behavior |
+|---------------|------------------|
+| **Event title** | Displayed in the calendar panel for reference. |
+| **Event time and duration** | Used to pre-fill the time entry duration when dragged to a row. |
+| **Event date** | Matched to the corresponding day in your timesheet. |
+| **All-day events** | Displayed in the panel but do not pre-fill a duration. |
+
+<Note>Beebole reads your calendar events in read-only mode. It does not create, modify, or delete any events in your Google Calendar.</Note>
+
+---
+
+## Disconnecting Google Calendar
+
+To disconnect your Google Calendar, click the **Calendar** icon in your timesheet toolbar, then click **Disconnect**. Your previously logged time entries remain in Beebole. Only the live calendar feed is removed.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can my administrator see my calendar events?">
+    No. The Google Calendar connection is personal to each user. Administrators cannot see your calendar events. They can only see the time entries you create in your timesheet.
+  </Accordion>
+
+  <Accordion title="Does Beebole modify my Google Calendar?">
+    No. Beebole accesses your calendar in read-only mode. It cannot create, edit, or delete events in your Google Calendar.
+  </Accordion>
+
+  <Accordion title="What happens if I update an event in Google Calendar?">
+    Changes to your calendar events (time, title, deletion) are reflected in the Beebole calendar panel the next time you open it. However, time entries you have already created from a previous version of the event are not automatically updated.
+  </Accordion>
+
+  <Accordion title="Can I import events from multiple Google Calendars?">
+    Beebole imports events from your primary Google Calendar. If you have multiple calendars in your Google account, only the primary calendar events are shown.
+  </Accordion>
+
+  <Accordion title="Do I need admin access to connect Google Calendar?">
+    No. Any Beebole user can connect their own Google Calendar from their timesheet view. No administrator setup is required.
+  </Accordion>
+</AccordionGroup>

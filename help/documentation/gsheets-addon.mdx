@@ -1,9 +1,125 @@
 ---
-title: Google Sheets Add-on
-description: Connect your Beebole account with Google Sheets to power up your reporting.
-keywords: ["Beebole Google Sheets add-on", "Google Sheets integration", "spreadsheet reporting", "integrate with Google Sheets", "time tracking with Google Sheets", "reporting integrations"]
-"og:title": "How to Integrate Beebole with Google Sheets"
-"og:description": "Learn how to connect your project data with Google Sheets using the official add-on."
+title: "Google Sheets Add-on"
+description: "Use the Beebole Google Sheets add-on to pull time tracking, billing, and project data directly into your spreadsheets."
+keywords: ["Beebole Google Sheets add-on", "Google Sheets integration", "spreadsheet reporting", "Google Sheets time tracking", "pull data into Google Sheets", "beebole"]
+"og:title": "Beebole Google Sheets Add-on"
+"og:description": "Pull Beebole time, billing, and project data directly into Google Sheets with the official add-on."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+The Beebole Google Sheets add-on connects your Beebole account directly to Google Sheets. Pull time tracking, billing, cost, and project data into your spreadsheet without manual exports — and refresh it whenever you need the latest figures.
+
+---
+
+## What the add-on does
+
+The Google Sheets add-on lets you:
+
+- **Pull report data** directly into Google Sheets
+- **Choose dimensions and filters** using the same options available in [Beebole reports](/documentation/reports)
+- **Refresh data on demand** to get updated figures without reconfiguring
+- **Build shared dashboards** by combining Beebole data with Google Sheets formulas, charts, and pivot tables
+
+<Info>
+  The add-on pulls data from your Beebole account in real time. It does not store a copy of your data — each refresh fetches the latest information.
+</Info>
+
+---
+
+## Installing the add-on
+
+<Steps>
+  <Step title="Open Google Sheets">
+    Go to [sheets.google.com](https://sheets.google.com) and open a new or existing spreadsheet.
+  </Step>
+  <Step title="Open the add-ons menu">
+    Click **Extensions** > **Add-ons** > **Get add-ons** to open the Google Workspace Marketplace.
+  </Step>
+  <Step title="Search for Beebole">
+    Search for **Beebole** in the marketplace and click **Install**. Grant the requested permissions when prompted.
+  </Step>
+  <Step title="Sign in to your Beebole account">
+    After installation, open the add-on from **Extensions** > **Beebole**. Sign in with your Beebole credentials.
+  </Step>
+</Steps>
+
+<Tip>
+  The add-on works in any modern web browser. Since Google Sheets is cloud-based, your data and dashboards are accessible from any device.
+</Tip>
+
+---
+
+## Pulling data into Google Sheets
+
+<Steps>
+  <Step title="Open the Beebole add-on">
+    Go to **Extensions** > **Beebole** to open the add-on sidebar.
+  </Step>
+  <Step title="Select a dimension">
+    Choose the type of data you want: **Time records**, **Expense records**, or **Task records**.
+  </Step>
+  <Step title="Configure filters">
+    Set a date range and apply filters for people, projects, tags, or custom fields — just like in [Beebole reports](/documentation/reports).
+  </Step>
+  <Step title="Choose columns">
+    Select which data fields to include: hours, billing amounts, cost rates, project codes, custom fields, and more.
+  </Step>
+  <Step title="Insert the data">
+    Click **Insert** to pull the data into the active sheet. The add-on populates cells starting from your selected position.
+  </Step>
+</Steps>
+
+---
+
+## Refreshing data
+
+Click **Refresh** in the Beebole add-on sidebar to re-run your query and update the data in your spreadsheet with the latest figures from Beebole.
+
+<Warning>
+  Refreshing replaces the existing data in cells populated by the add-on. Place your own formulas, charts, and analysis in separate columns or sheets to avoid them being overwritten.
+</Warning>
+
+---
+
+## Building dashboards in Google Sheets
+
+With Beebole data in Google Sheets, you can take advantage of the full Google Sheets feature set:
+
+- **Charts and graphs** — Create visual dashboards from time and billing data
+- **Pivot tables** — Summarize and slice data by any dimension
+- **Formulas** — Apply calculations, conditional logic, or cross-sheet references
+- **Sharing** — Share the spreadsheet with colleagues or stakeholders for collaborative review
+- **Multiple queries** — Pull different datasets into separate sheets within the same spreadsheet
+
+<Tip>
+  Create a template spreadsheet with your preferred charts, formulas, and layout. Each time you refresh, the entire dashboard updates with the latest Beebole data. Share the spreadsheet with stakeholders who do not have Beebole accounts for easy read-only access to reports.
+</Tip>
+
+---
+
+## Permissions and data access
+
+The add-on respects your Beebole account permissions. You only see data for the projects and people your role allows. If you need access to additional data, ask your Beebole account administrator to adjust your [role and authorisations](/documentation/roles-authorisations).
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I share a spreadsheet with people who do not have Beebole accounts?">
+    Yes. You can share the Google Sheets spreadsheet with anyone using standard Google Sheets sharing. They see the data that was last refreshed, but they cannot refresh the data themselves without a Beebole account.
+  </Accordion>
+  <Accordion title="Can I set up automatic data refreshes?">
+    The add-on supports on-demand refreshes. To automate reporting workflows, you can combine the add-on with Google Sheets scripts or scheduled triggers for periodic updates.
+  </Accordion>
+  <Accordion title="Is there a limit to how much data I can pull?">
+    The add-on can pull large datasets. For very broad queries, the request may take longer. Use date range filters to keep queries performant. Google Sheets also has a cell limit (currently 10 million cells per spreadsheet).
+  </Accordion>
+  <Accordion title="How is this different from downloading a CSV export?">
+    The add-on maintains a live connection to your Beebole account. You configure the query once and refresh data on demand. With CSV [exports](/documentation/data-exports), you download a static file each time and import it manually.
+  </Accordion>
+  <Accordion title="Can I pull data from multiple Beebole accounts into one spreadsheet?">
+    The add-on connects to one Beebole account at a time. To combine data from multiple accounts, pull each into a separate sheet and use formulas to consolidate.
+  </Accordion>
+</AccordionGroup>

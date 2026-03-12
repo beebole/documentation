@@ -1,4 +1,188 @@
 ---
 title: "Roles & Authorisations"
-description: "Configure user roles and permissions for your organization to give the right access to the right people."
+description: "Set up role-based access control in Beebole. Define roles with granular permissions across 24+ scopes to control what each team member can see and do."
+keywords: ["Beebole roles", "permissions", "authorisations", "access control", "RBAC", "role-based permissions", "user roles", "beebole"]
+"og:title": "Roles & Authorisations in Beebole"
+"og:description": "Learn how to configure roles and permissions to control access across your Beebole account."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's role-based access control lets you define exactly what each person can see and do. Every person in your account is assigned a role, and each role is a collection of permissions across more than 24 scopes — from time tracking and project management to billing, expenses, and custom fields. This gives you fine-grained control over who accesses what.
+
+<Info>
+  Beebole includes default roles (Administrator, Manager, Employee) that cover common setups. You can use them as-is or create custom roles tailored to your organisation's structure.
+</Info>
+
+---
+
+## How roles work
+
+A role is a named set of permissions. Each person has exactly one role, and that role determines:
+
+- Which pages and features they can access
+- Whether they can view or manage data
+- What scope of data they can reach (their own, their team's, or the entire organisation's)
+
+When you change a role's permissions, the change applies immediately to everyone assigned that role.
+
+---
+
+## Creating and managing roles
+
+<Steps>
+  <Step title="Open the Roles page">
+    Go to **Settings** > **Roles**.
+  </Step>
+  <Step title="Add a new role">
+    Click the **[+]** button. Enter a **Name** for the role (e.g., "Project Manager", "Finance Viewer", "Team Lead").
+  </Step>
+  <Step title="Configure permissions">
+    For each authorisation scope, choose the permission level. See the sections below for details on scopes and targets.
+  </Step>
+  <Step title="Save the role">
+    Click **Save**. The role is now available for assignment to people.
+  </Step>
+</Steps>
+
+<Tip>
+  Start with one of the default roles and duplicate it to create variations. This is faster than building a new role from scratch and helps you avoid accidentally missing a scope.
+</Tip>
+
+---
+
+## Authorisation scopes
+
+Beebole organises permissions into more than 24 scopes, each covering a specific area of the application. Here are the main scope categories:
+
+| Scope category | What it controls |
+|---------------|-----------------|
+| **Admin** | Account-wide settings, subscription, and configuration |
+| **Organisation** | Organisation structure, companies, and global preferences |
+| **Staff / People** | Viewing and managing people profiles, invitations, and personal data |
+| **Projects** | Creating, editing, and archiving projects and sub-projects |
+| **Tasks** | Managing tasks within projects |
+| **Time tracking** | Viewing and editing time entries on timesheets |
+| **Absences** | Managing time-off requests, leave types, and quotas |
+| **Expenses** | Viewing and managing expense entries |
+| **Custom fields** | Accessing and editing custom field values |
+| **Budgets** | Viewing and managing project and task budgets |
+| **Billing / Costs** | Accessing billing rates, cost rates, and financial data |
+| **Messages / Journal** | Reading and writing journal messages |
+| **Schedules** | Viewing and managing work schedules |
+| **Email templates** | Editing notification email templates |
+
+---
+
+## Permission targets
+
+For most scopes, you choose not only the action (view or manage) but also the target — the range of data the permission covers:
+
+| Target | Description |
+|--------|-------------|
+| **Me only** | The person can access only their own data |
+| **My people** | The person can access data for people they manage (directly or via tags) |
+| **My projects** | The person can access data for projects they are assigned to as manager |
+| **Organisation** | The person can access all data across the entire organisation |
+
+<Info>
+  Combining scope and target gives you precise control. For example, a team leader might have **Time tracking — Manage — My people** (can edit their team's timesheets) but only **Billing — View — My projects** (can see billing rates on their projects, but not change them).
+</Info>
+
+---
+
+## View vs. manage permissions
+
+Each scope offers two levels of access:
+
+- **View** — The person can see the data but cannot create, edit, or delete it.
+- **Manage** — The person can view, create, edit, and delete data within the scope.
+
+Setting a scope to **None** hides it entirely — the person does not see that area of the application.
+
+| Level | Can see | Can create/edit/delete |
+|-------|---------|----------------------|
+| **None** | No | No |
+| **View** | Yes | No |
+| **Manage** | Yes | Yes |
+
+---
+
+## Field-level permissions
+
+Some permissions go beyond page-level access and control visibility of specific fields. For example:
+
+- **Billing rates** can be hidden from people who do not need to see financial data.
+- **Cost rates** can be restricted so only finance or admin roles see internal costs.
+- **Personal information** fields (phone number, address) can be limited to HR or admin roles.
+
+When a field is hidden by permissions, it does not appear on the interface at all — there is no indication that the field exists.
+
+<Warning>
+  Review field-level permissions carefully when creating roles. A person who cannot see billing rates will not see rate columns in reports, on timesheets, or on project settings — which may affect their ability to do their job if they need that information.
+</Warning>
+
+---
+
+## Default roles
+
+Beebole ships with three built-in roles:
+
+| Role | Typical use |
+|------|------------|
+| **Administrator** | Full access to everything. At least one person must have this role. |
+| **Manager** | Can manage their team's timesheets, view projects, and run reports for their scope. |
+| **Employee** | Can track their own time, submit timesheets, and view their own data. |
+
+You can modify the permissions of default roles or create additional roles as needed.
+
+---
+
+## Assigning roles to people
+
+<Steps>
+  <Step title="Open the person's profile">
+    Go to **People** and click the person's name.
+  </Step>
+  <Step title="Select a role">
+    In the **Role** dropdown, choose the role you want to assign.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The person's access updates immediately.
+  </Step>
+</Steps>
+
+<Note>
+  Changing a person's role takes effect immediately. If you reduce their permissions, features and data they previously accessed become hidden right away.
+</Note>
+
+---
+
+## Best practices
+
+- **Principle of least privilege** — Give each role only the permissions it needs. Start restrictive and add permissions as needed.
+- **Use descriptive role names** — Names like "Finance Viewer" or "Project Lead" make it clear what the role is for.
+- **Audit regularly** — Review roles periodically to ensure permissions still match your team structure, especially after organisational changes.
+- **Test before deploying** — After creating a new role, assign it to a test person and verify they see the correct pages and data.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can one person have multiple roles?">
+    No. Each person is assigned exactly one role. If someone needs a combination of permissions, create a custom role that includes everything they need.
+  </Accordion>
+  <Accordion title="What happens if I delete a role that people are using?">
+    You cannot delete a role that is currently assigned to people. Reassign those people to a different role first, then delete the unused role.
+  </Accordion>
+  <Accordion title="Can I restrict access to specific projects?">
+    Role permissions control the scope of access (me, my people, my projects, or organisation). For project-specific access, combine role permissions with [assignments](/documentation/assignments) to control which projects appear for each person.
+  </Accordion>
+  <Accordion title="Do permission changes take effect immediately?">
+    Yes. When you save changes to a role, every person assigned to that role sees the updated access immediately — no logout or refresh required.
+  </Accordion>
+  <Accordion title="Is there a minimum role I must keep?">
+    Yes. At least one person in your account must have the **Administrator** role to ensure account management is always possible. Beebole prevents you from removing the last administrator.
+  </Accordion>
+</AccordionGroup>

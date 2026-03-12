@@ -1,14 +1,14 @@
 ---
 title: "Authentication & Security"
-description: "Manage how your team signs in to Beebole — from email/password to SSO, passkeys, and API keys."
-keywords: ["Beebole authentication", "Beebole login", "SSO", "single sign-on", "passkeys", "Google sign-in", "Microsoft sign-in", "API keys", "Beebole security"]
+description: "Manage how your team signs in to Beebole -- from email and password to SSO, passkeys, PIN codes, and API keys."
+keywords: ["beebole", "authentication", "login", "SSO", "single sign-on", "passkeys", "Google sign-in", "Microsoft sign-in", "API keys", "security", "OpenID Connect"]
 "og:title": "Authentication & Security in Beebole"
-"og:description": "Learn about Beebole's sign-in options including SSO, passkeys, OAuth, and API key management."
+"og:description": "Learn about Beebole's sign-in options including SSO, passkeys, OAuth, PIN codes, and API key management."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
 
-Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organization's security requirements.
+Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organisation's security requirements -- from simple email and password to enterprise SSO with OpenID Connect.
 
 ---
 
@@ -16,11 +16,11 @@ Beebole supports multiple authentication methods so your team can sign in secure
 
 ### Email and password
 
-The default sign-in method. Each person creates a password when they accept their invitation to Beebole.
+The default sign-in method. Each person creates a password when they accept their invitation to Beebole. Passwords must meet minimum security requirements and can be changed at any time from the person's profile.
 
 ### Google and Microsoft sign-in
 
-Team members can sign in using their existing Google or Microsoft account. This is especially convenient for organizations already using Google Workspace or Microsoft 365.
+Team members can sign in using their existing Google or Microsoft account. This is especially convenient for organisations already using Google Workspace or Microsoft 365.
 
 <Info>
   OAuth sign-in uses the email address associated with the Google or Microsoft account. The person's Beebole profile must use the same email address.
@@ -28,19 +28,35 @@ Team members can sign in using their existing Google or Microsoft account. This 
 
 ### Passkeys
 
-Beebole supports passwordless sign-in with passkeys — using fingerprint, face recognition, or a hardware security key. Passkeys work across all your devices and provide a fast, phishing-resistant sign-in experience.
+Beebole supports passwordless sign-in with passkeys -- using fingerprint, face recognition, or a hardware security key. Passkeys work across all your devices and provide a fast, phishing-resistant sign-in experience.
 
-To set up a passkey, go to your profile settings and select **Security** > **Add passkey**.
+<Steps>
+  <Step title="Open your profile">
+    Click your profile avatar, then select **Profile**.
+  </Step>
+  <Step title="Go to the security section">
+    Select the **Security** tab.
+  </Step>
+  <Step title="Add a passkey">
+    Click **Add passkey** and follow your browser's prompts to register a fingerprint, face, or hardware key.
+  </Step>
+</Steps>
+
+<Tip>
+  You can register multiple passkeys -- for example, one on your laptop and another on your phone -- so you always have a way to sign in.
+</Tip>
 
 ### PIN-based sign-in
 
-For quick access, Beebole offers PIN-based authentication. Each person can set a personal PIN code for faster sign-in on trusted devices.
+For quick access, Beebole offers PIN-based authentication. Each person can set a personal PIN code for faster sign-in on trusted devices. This is useful in shared environments like workshops or kiosks where speed matters.
+
+To set up a PIN, go to your profile and look for the **PIN** option in the **Security** section.
 
 ---
 
 ## Single sign-on (SSO)
 
-For organizations that need centralized authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider (e.g., Okta, Azure AD, Google Workspace).
+For organisations that need centralised authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider (e.g., Okta, Azure AD, Google Workspace).
 
 <Steps>
   <Step title="Open account settings">
@@ -53,7 +69,7 @@ For organizations that need centralized authentication, Beebole supports SSO via
     Use the test option to verify that sign-in works correctly before enabling SSO for your entire team.
   </Step>
   <Step title="Enable SSO">
-    Once tested, enable SSO. Team members will be redirected to your identity provider when signing in.
+    Once tested, enable SSO. Team members are redirected to your identity provider when signing in.
   </Step>
 </Steps>
 
@@ -67,19 +83,73 @@ For organizations that need centralized authentication, Beebole supports SSO via
 
 Developers who integrate with Beebole's [GraphQL API](/api/introduction) authenticate using API keys.
 
-- API keys can be generated in your profile settings under **Security** > **API keys**.
+<Steps>
+  <Step title="Open your profile">
+    Click your profile avatar, then select **Profile**.
+  </Step>
+  <Step title="Go to the security section">
+    Select the **Security** tab.
+  </Step>
+  <Step title="Generate an API key">
+    Click **Add API key**. Set an expiration date and click **Create**. Copy the key immediately -- it is only shown once.
+  </Step>
+</Steps>
+
 - Each key has a configurable expiration date.
-- Treat API keys like passwords — do not share them or commit them to version control.
+- You can have multiple active API keys.
+- Treat API keys like passwords -- do not share them or commit them to version control.
+
+<Warning>
+  If an API key is compromised, delete it immediately from your profile and generate a new one.
+</Warning>
+
+---
+
+## Admin takeover
+
+Administrators can sign in as another person in the organisation to troubleshoot issues, verify settings, or assist with configuration. This is called admin takeover.
+
+<Steps>
+  <Step title="Open the person's profile">
+    Go to **People** and select the person you want to sign in as.
+  </Step>
+  <Step title="Use the takeover option">
+    Click **Sign in as this person**. You are now viewing Beebole exactly as that person sees it.
+  </Step>
+  <Step title="Return to your account">
+    Click **Back to my account** in the notification bar at the top of the screen to return to your own session.
+  </Step>
+</Steps>
+
+<Info>
+  Admin takeover actions are recorded in the [audit trail](/documentation/audit-trail). The log shows that the action was performed by the administrator, not the person being impersonated.
+</Info>
+
+---
+
+## Session management
+
+Beebole manages active sessions to keep your account secure. Each time you sign in from a new device or browser, a session is created.
+
+- Sessions expire after a period of inactivity.
+- You can view your active sessions from your profile under the **Security** tab.
+- Sign out of individual sessions or all sessions at once if you suspect unauthorised access.
 
 ---
 
 ## Account deletion
 
-You can permanently delete your Beebole account and all associated data from your profile settings. This action is irreversible.
+You can permanently delete your Beebole account and all associated data from your profile settings. This action is irreversible and removes your personal data from the platform.
 
 <Warning>
-  Account deletion removes all your data — time entries, projects, people, and configuration. This cannot be undone. Export any data you need before proceeding.
+  Account deletion removes all your data -- time entries, profile information, and configuration. This cannot be undone. Export any data you need before proceeding.
 </Warning>
+
+To delete your account, go to your profile, scroll to the bottom, and click **Delete my account**. Follow the confirmation prompts.
+
+<Note>
+  If you are the only administrator in your organisation, you must either transfer admin rights to another person or [delete the organisation](/documentation/account-settings) first.
+</Note>
 
 ---
 
@@ -87,18 +157,18 @@ You can permanently delete your Beebole account and all associated data from you
 
 <AccordionGroup>
   <Accordion title="Can I use multiple sign-in methods at the same time?">
-    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey — all active simultaneously. They can use whichever is most convenient.
+    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey -- all active simultaneously. They can use whichever is most convenient.
   </Accordion>
   <Accordion title="Does SSO replace other sign-in methods?">
     When SSO is enabled, it becomes the primary sign-in method. However, administrators can retain email/password access as a backup.
   </Accordion>
   <Accordion title="Can I require all team members to use SSO?">
-    Yes. Once SSO is configured, you can enforce it as the only sign-in method for your organization.
+    Yes. Once SSO is configured, you can enforce it as the only sign-in method for your organisation.
   </Accordion>
   <Accordion title="How do I reset a team member's password?">
-    As an administrator, you can resend an invitation from the person's profile, which lets them set a new password. Alternatively, the person can use the "Forgot password" flow on the sign-in page.
+    As an administrator, you can resend an invitation from the person's profile, which lets them set a new password. Alternatively, the person can use the **Forgot password** flow on the sign-in page.
   </Accordion>
   <Accordion title="What happens to API keys when a person is archived?">
-    API keys belonging to archived users are deactivated. If you reactivate the person, you'll need to generate new keys.
+    API keys belonging to archived users are deactivated. If you reactivate the person, you need to generate new keys.
   </Accordion>
 </AccordionGroup>

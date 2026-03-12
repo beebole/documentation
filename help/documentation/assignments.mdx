@@ -1,4 +1,199 @@
 ---
 title: "Assignments"
-description: "Read more about assigning tasks and projects to certain team members."
+description: "Control which projects, absence types, expense types, tasks, and custom fields are available to each person or group in Beebole."
+keywords: ["Beebole assignments", "project availability", "task assignments", "absence type visibility", "expense type visibility", "availability controls", "beebole"]
+"og:title": "Assignments in Beebole"
+"og:description": "Learn how to control which projects, tasks, and other items are available to each person or group in Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's assignments control what each person sees and can use in their timesheet. Instead of showing every project, absence type, and expense type to everyone, you configure which items are available by default — and then override those defaults for specific people, tags, or projects. This keeps timesheets clean and relevant.
+
+<Info>
+  Assignments complement [Roles & authorisations](/documentation/roles-authorisations). Roles determine what a person **can do** (permissions), while assignments determine what a person **can see** (available items).
+</Info>
+
+---
+
+## What you can assign
+
+Assignments apply to five types of items:
+
+| Item type | What it controls |
+|-----------|-----------------|
+| **Projects** | Which projects appear on a person's timesheet for time logging |
+| **Tasks** | Which tasks within a project are available for a person to select |
+| **Absence types** | Which leave types (vacation, sick leave, etc.) a person can request |
+| **Expense types** | Which expense categories a person can submit |
+| **Custom fields** | Which custom fields appear for a person when filling in their timesheet |
+
+---
+
+## Default availability
+
+Every item has a default availability setting that determines whether it is available to everyone or no one by default:
+
+- **Available by default** — The item appears for all people unless explicitly removed for specific people or groups.
+- **Not available by default** — The item is hidden from everyone unless explicitly added for specific people or groups.
+
+To set the default availability:
+
+<Steps>
+  <Step title="Open the item's settings">
+    Navigate to the item (e.g., a project, an absence type) and open its settings.
+  </Step>
+  <Step title="Set the default">
+    Look for the **Availability** or **Assignment** section. Toggle whether the item is available by default.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The default availability applies to everyone unless overridden.
+  </Step>
+</Steps>
+
+<Tip>
+  For items that most people need (like a general "Vacation" absence type), set them as available by default. For items that only some people use (like a project for a specific client team), set them as not available by default and add specific people or tags.
+</Tip>
+
+---
+
+## Overriding availability
+
+You can override the default at three levels:
+
+| Override level | How it works |
+|---------------|-------------|
+| **Person** | Add or remove the item for a specific individual |
+| **Tag** | Add or remove the item for everyone in a tag (department, team, location) |
+| **Project** | For tasks, control which tasks are available within a specific project |
+
+### Adding an override
+
+<Steps>
+  <Step title="Open the item or person">
+    You can configure overrides from either direction — from the item's settings (e.g., a project's member list) or from the person/tag profile.
+  </Step>
+  <Step title="Add or remove availability">
+    In the **Availability** section, add people or tags to include them, or remove them to exclude them from accessing the item.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The override takes effect immediately.
+  </Step>
+</Steps>
+
+### How overrides resolve
+
+Beebole evaluates availability in this order:
+
+1. **Person-level override** — If the item is explicitly added or removed for a person, that setting wins.
+2. **Tag-level override** — If no person-level override exists, Beebole checks the person's tags.
+3. **Default availability** — If no overrides exist, the item's default setting applies.
+
+<Info>
+  Person-level overrides always take priority. If a tag makes a project available but the person has an explicit exclusion, the person will not see the project.
+</Info>
+
+---
+
+## Assigning projects
+
+Project assignments determine which projects a person can log time against on their timesheet.
+
+- Go to **Projects**, select a project, and open the **Members** or **Availability** section.
+- Add specific people or tags to grant access, or rely on the default availability.
+- People who are not assigned to a project will not see it on their timesheet.
+
+This is especially useful when you have many projects but each person works on only a few. It prevents timesheet clutter and reduces selection errors.
+
+---
+
+## Assigning absence types
+
+Absence type assignments control which leave types appear when a person requests time off.
+
+- Go to **Settings** > **Absence Types**, select a type, and configure its availability.
+- Common types like **Vacation** are typically available by default.
+- Specialised types like **Parental leave** or **Sabbatical** can be restricted to eligible people or tags.
+
+See [Time off](/documentation/timeoff) for more on configuring absence types.
+
+---
+
+## Assigning expense types
+
+Expense type assignments work the same way as absence types:
+
+- Go to **Settings** > **Expense Types**, select a type, and configure availability.
+- Restrict expense types to people who actually incur those expenses (e.g., mileage reimbursement for field staff only).
+
+See [Expenses](/documentation/expenses) for more on expense configuration.
+
+---
+
+## Assigning tasks
+
+Task assignments control which tasks appear within a project for a given person:
+
+- Open a project and go to its **Tasks** section.
+- Set each task's default availability, then add overrides for specific people or tags.
+- This is useful when a project has many tasks but each team member works on a subset.
+
+---
+
+## Assigning custom fields
+
+Custom field assignments determine which custom fields appear on a person's timesheet or profile:
+
+- Go to **Settings** > **Custom Fields** and configure the field's availability.
+- Use this to show different fields to different teams — for example, a "Client PO Number" field only for client-facing staff.
+
+See [Custom fields](/documentation/custom-fields) for more on field configuration.
+
+---
+
+## Practical examples
+
+### Example 1: Client project with a dedicated team
+
+A client project should only be visible to the five people working on it:
+
+1. Set the project's default availability to **Not available by default**.
+2. Add the five team members (or their shared tag) as overrides.
+3. Only those five people see the project on their timesheet.
+
+### Example 2: Company-wide vacation type
+
+Everyone should be able to request vacation:
+
+1. Set the "Vacation" absence type to **Available by default**.
+2. No overrides needed — it appears for everyone automatically.
+
+### Example 3: Department-specific expense type
+
+Only the sales team can submit "Client entertainment" expenses:
+
+1. Set the expense type to **Not available by default**.
+2. Add the "Sales" tag as an override.
+3. Anyone tagged "Sales" can submit this expense type.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What is the difference between assignments and role permissions?">
+    Roles control what a person can do — view data, edit timesheets, approve requests. Assignments control what items are visible — which projects, tasks, absence types, and expense types appear on a person's timesheet. Both work together to shape each person's experience.
+  </Accordion>
+  <Accordion title="Can I assign items to a whole department at once?">
+    Yes. Use tags to group people by department, team, or any other category. Then add the tag as an override instead of adding individual people. Everyone in the tag gets the same availability.
+  </Accordion>
+  <Accordion title="What happens if I remove a project assignment after someone has logged time on it?">
+    Existing time entries are preserved — they do not disappear from timesheets or reports. The person simply cannot log new time against that project going forward.
+  </Accordion>
+  <Accordion title="Do assignments affect what managers see when approving timesheets?">
+    Assignments control what people can log time against. Managers with appropriate role permissions can still see and approve all time entries submitted by their team, regardless of their own project assignments.
+  </Accordion>
+  <Accordion title="Can I bulk-assign multiple projects to a person?">
+    Yes. From a person's profile or from the project list, you can select multiple items and configure their availability in one action.
+  </Accordion>
+</AccordionGroup>

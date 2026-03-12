@@ -1,9 +1,215 @@
 ---
-title: Custom Reports
-description: Learn how to create custom reports to analyze your time, resource, and financial data exactly the way you need.
-keywords: ["Beebole custom reports", "project reports", "report builder", "custom analytics", "tailored reports", "reporting tools"]
-"og:title": "Creating Custom Reports in Beebole"
-"og:description": "Learn how to create custom reports in Beebole for more advanced project analysis."
+title: "Custom Reports"
+description: "Build custom reports in Beebole by choosing dimensions, grouping, filters, and columns — then save them as reusable templates."
+keywords: ["Beebole custom reports", "report builder", "saved reports", "report templates", "custom analytics", "report categories", "beebole"]
+"og:title": "Custom Reports in Beebole"
+"og:description": "Create tailored reports with custom dimensions, filters, and groupings. Save and organize templates for your team."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's custom reports let you build multi-dimensional reports tailored to your exact needs. Choose which data to include, how to group it, and which filters to apply — then save your configuration as a reusable template you can run anytime.
+
+<Info>
+  Custom reports build on the same data as [built-in reports](/documentation/reports). The difference is that you control every aspect of the report layout and can save configurations for repeated use.
+</Info>
+
+---
+
+## Creating a custom report
+
+<Steps>
+  <Step title="Open the Reports page">
+    Click **Reports** in the left sidebar.
+  </Step>
+  <Step title="Start a new report">
+    Click the **+** button or **New report** to open the report builder.
+  </Step>
+  <Step title="Choose a dimension">
+    Select the type of record you want to analyze. Your choice determines the available columns and filters. See [Report dimensions](#report-dimensions) below.
+  </Step>
+  <Step title="Add grouping">
+    Choose how to group your data — by project, person, tag, or time period. You can add multiple grouping levels for multi-dimensional analysis.
+  </Step>
+  <Step title="Select columns">
+    Pick the data fields you want to display. Available columns depend on your chosen dimension and include time, financial, budget, and metadata fields.
+  </Step>
+  <Step title="Apply filters">
+    Narrow the report to specific people, projects, tags, date ranges, or custom field values. See [Filtering your report](#filtering-your-report) below.
+  </Step>
+  <Step title="Run the report">
+    Click **Run** to generate the report. Results appear in a table that you can sort by any column.
+  </Step>
+</Steps>
+
+---
+
+## Report dimensions
+
+The dimension defines what type of data your report analyzes. Each dimension gives you access to different columns and metrics.
+
+| Dimension | Best for | Example use case |
+|-----------|----------|-----------------|
+| **Time records** | Analyzing hours, billing, and costs | "Show all billable hours by project for Q1" |
+| **Expense records** | Reviewing project expenses | "List all travel expenses by person this year" |
+| **Task records** | Examining task assignments and activity | "Show task completion across active projects" |
+
+<Tip>
+  Start with **Time records** if you are unsure — it is the most commonly used dimension and includes the widest range of financial and time data.
+</Tip>
+
+---
+
+## Grouping options
+
+Grouping determines how rows are organized in your report. You can combine multiple grouping levels to create multi-dimensional views.
+
+### Group by entity
+
+- **Project** — Group by project, category, or sub-project
+- **Person** — Group by individual team members
+- **Tag** — Group by tag for department or team-level views
+- **Task** — Group by specific tasks within projects
+
+### Group by time period
+
+- **Year** — Annual totals
+- **Quarter** — Quarterly breakdowns
+- **Month** — Monthly summaries
+- **Week** — Weekly details
+
+<Tip>
+  Multi-level grouping is powerful. For example, group by **Tag**, then by **Project**, then by **Month** to see how each department's projects perform over time.
+</Tip>
+
+---
+
+## Selecting columns
+
+Columns control what data appears in each row of your report. Available columns depend on your chosen dimension:
+
+### Time and effort
+
+- Hours, days, overtime hours
+- Work-from-home indicator
+- Approval status
+
+### Financial
+
+- Billing amount, billing rate
+- Cost amount, cost rate
+- Profit (billing minus cost)
+- Margin percentage
+
+### Budget
+
+- Budget target (hours, billing, or cost)
+- Budget consumed
+- Budget remaining
+- Budget percentage used
+
+### Metadata
+
+- Project code, project name
+- Person name, person email
+- Tag name
+- Comments and notes
+- [Custom field](/documentation/custom-fields) values
+
+<Info>
+  Custom fields you have created appear as available columns in the report builder. This lets you include data like project type, region, client reference, or any other attribute you track.
+</Info>
+
+---
+
+## Filtering your report
+
+Filters narrow the data included in your report. You can combine multiple filters for precise results.
+
+| Filter | What it controls |
+|--------|-----------------|
+| **Date range** | Start and end date, or presets like "This month", "Last quarter", "Year to date" |
+| **People** | Include or exclude specific team members |
+| **Projects** | Filter by specific projects or categories |
+| **Tags** | Include one or more tags |
+| **Tasks** | Narrow to specific tasks |
+| **Approval status** | Show only approved, pending, or rejected entries |
+| **Custom fields** | Filter by any custom field value |
+
+<Warning>
+  Filters affect the data included in the report, not just the display. If you export a filtered report, only the filtered data is exported.
+</Warning>
+
+---
+
+## Saving report templates
+
+Once you have configured a report you want to reuse, save it as a template.
+
+<Steps>
+  <Step title="Configure your report">
+    Set up the dimension, grouping, columns, and filters as described above.
+  </Step>
+  <Step title="Save the report">
+    Click **Save** and give your report a descriptive name (e.g., "Monthly billing by project" or "Q1 team utilization").
+  </Step>
+  <Step title="Assign a category (optional)">
+    Select or create a category to organize your saved reports. Categories help you group related templates together.
+  </Step>
+</Steps>
+
+Saved reports preserve all your settings — dimension, grouping, columns, and filters. When you open a saved report, it runs with the latest data using your saved configuration.
+
+<Tip>
+  Use descriptive names that include the period and grouping, like "Weekly hours by person" or "Monthly billing by tag". This makes it easy to find the right report later.
+</Tip>
+
+---
+
+## Organizing reports with categories
+
+As your collection of saved reports grows, use categories to keep them organized.
+
+- **Create categories** based on purpose (e.g., "Client billing", "Team utilization", "Budget monitoring") or audience (e.g., "Management reports", "Project manager reports").
+- **Move reports** between categories as your needs evolve.
+- **Rename or delete** categories at any time without affecting the reports inside them.
+
+Categories are visible to all users who have access to the reports area, making it easy for your team to find the reports they need.
+
+---
+
+## Billing and cost attributes in reports
+
+Custom reports give you full access to financial data alongside time data:
+
+| Attribute | Description |
+|-----------|-------------|
+| **Billing amount** | Revenue calculated from billing rates and tracked time |
+| **Cost amount** | Internal cost calculated from cost rates and tracked time |
+| **Profit** | Billing amount minus cost amount |
+| **Margin** | Profit as a percentage of billing amount |
+| **Budget consumed** | How much of the budget has been used |
+
+For financial columns to show data, you need to have [billing rates](/documentation/billing) and/or [cost rates](/documentation/costs) configured on your projects, people, or tags.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I share saved reports with other users?">
+    Saved reports are available to all users who have access to the reports area. Each user sees the same templates but only the data their permissions allow.
+  </Accordion>
+  <Accordion title="Can I edit a saved report?">
+    Yes. Open the saved report, modify any settings (grouping, columns, filters), and click **Save** to update it. You can also use **Save as** to create a copy with different settings.
+  </Accordion>
+  <Accordion title="How many grouping levels can I use?">
+    You can combine multiple grouping levels — for example, group by tag, then by project, then by month. There is no hard limit, but reports with many grouping levels can become complex to read.
+  </Accordion>
+  <Accordion title="Do custom fields appear in reports automatically?">
+    Yes. Any [custom field](/documentation/custom-fields) you create is automatically available as both a column and a filter in the report builder. You do not need to enable them separately.
+  </Accordion>
+  <Accordion title="Can I include both billing and cost data in the same report?">
+    Yes. You can add billing, cost, profit, and margin columns to the same report. This gives you a complete financial view alongside time data. Make sure you have [billing rates](/documentation/billing) and [cost rates](/documentation/costs) configured.
+  </Accordion>
+</AccordionGroup>

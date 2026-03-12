@@ -1,4 +1,161 @@
 ---
 title: "Custom Fields"
-description: "Create and manage custom fields to organize your company's data for more precise planning, tracking, and reporting."
+description: "Create custom fields in Beebole to capture additional data on people, projects, tasks, and time entries. Configure field types, validation, and visibility rules."
+keywords: ["Beebole custom fields", "custom data fields", "field types", "custom field validation", "time entry metadata", "project custom fields", "beebole"]
+"og:title": "Custom Fields in Beebole"
+"og:description": "Learn how to create and manage custom fields for people, projects, tasks, and time entries in Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's custom fields let you capture additional information beyond the standard fields. You can add custom fields to people, projects, tasks, and time entries — then use that data for filtering, reporting, and analysis. Whether you need an employee ID on every person, a client reference on each project, or a billing code on every time entry, custom fields make it possible.
+
+<Info>
+  Custom fields appear in reports and data exports, so they are a powerful way to segment and analyze your data by dimensions that matter to your organisation.
+</Info>
+
+---
+
+## Field types
+
+Beebole supports several field types, each suited to a different kind of data:
+
+| Type | Description | Example use |
+|------|------------|-------------|
+| **Text** | Free-form text input | Employee ID, client reference |
+| **Number** | Numeric values | Hourly rate override, mileage |
+| **Date** | A calendar date | Contract start date, certification expiry |
+| **Datetime** | A date and time | Shift start time |
+| **URL** | A clickable web link | Link to external project tracker |
+| **Boolean** | A yes/no toggle | Billable flag, remote worker indicator |
+
+---
+
+## Creating a custom field
+
+<Steps>
+  <Step title="Open the Custom Fields page">
+    Go to **Settings** > **Custom Fields**.
+  </Step>
+  <Step title="Add a new field">
+    Click the **[+]** button. Enter a **Name** for the field (e.g., "Employee ID", "Cost Center").
+  </Step>
+  <Step title="Choose the field type">
+    Select the appropriate type from the **Type** dropdown: **Text**, **Number**, **Date**, **Datetime**, **URL**, or **Boolean**.
+  </Step>
+  <Step title="Set the entity visibility">
+    Choose where this field appears: **Person**, **Project**, **Task**, or **Time entry**. A single field can apply to one or more entity types.
+  </Step>
+  <Step title="Configure optional settings">
+    Set a **Default value**, **Placeholder text**, or validation rules as needed (see sections below).
+  </Step>
+  <Step title="Save the field">
+    Click **Save**. The field now appears on the relevant entity forms.
+  </Step>
+</Steps>
+
+---
+
+## Entity visibility
+
+Each custom field is attached to one or more entity types. This controls where the field appears in the interface:
+
+- **Person** — The field appears on each person's profile. Use it for employment details, department codes, or any person-specific metadata.
+- **Project** — The field appears on project settings. Use it for client references, billing codes, or project classification.
+- **Task** — The field appears on task settings. Use it for task-level metadata like priority or complexity.
+- **Time entry** — The field appears on the timesheet when logging time. Use it to capture details per entry, such as a ticket number or activity type.
+
+<Tip>
+  Time entry custom fields are especially useful for capturing context at the moment of tracking. They show up as additional columns or fields on the timesheet and are included in reports.
+</Tip>
+
+---
+
+## Validation rules
+
+You can add validation rules to ensure data quality and consistency:
+
+- **Min / Max values** — For number fields, set minimum and maximum allowed values.
+- **Regex pattern** — For text fields, define a regular expression pattern that entries must match (e.g., a specific format for reference codes).
+- **Allowed values** — Restrict input to a predefined list of options. When configured, the field becomes a dropdown instead of free-text input.
+
+<Info>
+  Validation rules are enforced when users fill in the field. Invalid entries are flagged with an error message, and the form cannot be saved until the value is corrected.
+</Info>
+
+---
+
+## Default values and placeholders
+
+- **Default value** — Pre-fills the field with a value when a new entity is created. Users can change it, but it ensures the field is never accidentally left blank.
+- **Placeholder** — Displays hint text inside the field (e.g., "Enter your cost center code"). Placeholders disappear once the user starts typing and are not saved as data.
+
+---
+
+## Category-level visibility
+
+For projects and tasks organized into categories, you can control which custom fields appear for each category. This keeps forms clean — a field relevant to client projects does not need to appear on internal overhead projects.
+
+To configure category-level visibility:
+
+<Steps>
+  <Step title="Open the custom field settings">
+    Go to **Settings** > **Custom Fields** and click the field you want to configure.
+  </Step>
+  <Step title="Set category visibility">
+    In the **Visibility** section, select the specific project or task categories where this field should appear. Leave it blank to show the field on all categories.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The field now only appears on entities within the selected categories.
+  </Step>
+</Steps>
+
+---
+
+## Custom fields in reports
+
+Custom field values are available in Beebole's reporting tools:
+
+- **Standard reports** — Filter and group data by custom field values. For example, group time entries by a "Cost Center" custom field.
+- **Custom reports** — Include custom fields as columns in your report layout for detailed analysis.
+- **Data exports** — Custom field values are included in CSV and Excel exports.
+
+See [Reports](/documentation/reports) and [Custom reports](/documentation/custom-reports) for more details.
+
+---
+
+## Managing custom fields
+
+### Editing a field
+
+Open the field from **Settings** > **Custom Fields** and modify its name, type, validation, or visibility. Changes apply to all existing entities — existing values are preserved unless the type change makes them incompatible.
+
+### Deleting a field
+
+Delete a custom field from its settings page. Deleting a field removes it from all entities and permanently deletes its stored values.
+
+<Warning>
+  Deleting a custom field is permanent and cannot be undone. All data stored in that field across every entity is lost. Export your data first if you need to keep it.
+</Warning>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I make a custom field required?">
+    Yes. When configuring a custom field, you can mark it as required. Users must fill in the field before they can save the entity or time entry.
+  </Accordion>
+  <Accordion title="Do custom fields appear on the timesheet?">
+    Custom fields with **Time entry** visibility appear directly on the timesheet as additional input fields. Other field types (person, project, task) appear on their respective settings pages.
+  </Accordion>
+  <Accordion title="Can I use custom fields to filter reports?">
+    Yes. Custom field values are available as filters and grouping options in both standard and custom reports. This lets you analyze data by any dimension you define.
+  </Accordion>
+  <Accordion title="Is there a limit to the number of custom fields I can create?">
+    Beebole does not impose a hard limit on the number of custom fields. However, for usability, keep the number of fields manageable — especially for time entry fields that your team fills in daily.
+  </Accordion>
+  <Accordion title="Can I restrict a custom field to specific project categories?">
+    Yes. Use the category-level visibility setting to show a custom field only on projects or tasks within selected categories. This keeps forms relevant and uncluttered.
+  </Accordion>
+</AccordionGroup>

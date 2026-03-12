@@ -1,4 +1,98 @@
 ---
-title: "Create Custom Integrations"
-description: "Build custom integrations to connect Beebole with your tools"
+title: "Custom Integrations"
+description: "Build custom integrations with Beebole using the GraphQL API. Connect Beebole to any tool, automate data flows, and extend your time tracking workflows."
+keywords: ["beebole", "custom integrations", "GraphQL API", "automation", "time tracking API", "developer", "webhook"]
+"og:title": "Beebole Custom Integrations"
+"og:description": "Build custom integrations with Beebole using the GraphQL API to automate data flows and extend time tracking workflows."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's GraphQL API lets you build custom integrations that connect Beebole to any tool or internal system your organization uses. You can automate time entry creation, export reports to your own dashboards, sync employee data with your HR system, or build entirely custom workflows.
+
+If the built-in integrations (Asana, Jira, Linear, Google, Microsoft, QuickBooks) do not cover your needs, the API gives you full programmatic access to your Beebole account.
+
+---
+
+## What you can do with the API
+
+Beebole's GraphQL API supports both **queries** (reading data) and **mutations** (creating or updating data). Common use cases for custom integrations include:
+
+| Use case | Description |
+|----------|-------------|
+| **HR system sync** | Automatically create and update people in Beebole when employees are added to your HR platform. |
+| **Custom reporting** | Pull time entries, project data, and financial summaries into your own BI tool or dashboard. |
+| **Automated time entries** | Create timesheet entries programmatically based on data from other systems. |
+| **Project provisioning** | Create projects and sub-projects in Beebole when new projects are created in your internal tools. |
+| **Payroll export** | Extract approved time data in a format your payroll provider requires. |
+| **ERP integration** | Sync billing rates, budgets, and expenses between Beebole and your ERP system. |
+
+---
+
+## Getting started
+
+<Steps>
+  <Step title="Access the API documentation">
+    Review the full API reference in the [API documentation](/api/introduction) tab. It covers authentication, the schema explorer, available queries, and mutations.
+  </Step>
+  <Step title="Generate an API token">
+    Go to **Settings** > **API** in your Beebole account to generate an API token. This token authenticates your requests.
+
+    <Warning>Keep your API token secure. Do not share it in client-side code or public repositories.</Warning>
+  </Step>
+  <Step title="Explore the schema">
+    Use the [schema explorer](/api/schema-explorer) to browse all available types, queries, and mutations. This helps you understand the data model before writing your integration.
+  </Step>
+  <Step title="Build and test your integration">
+    Start with simple queries to read data, then move to mutations when you are ready to create or update records. Test thoroughly in a development environment before deploying to production.
+  </Step>
+</Steps>
+
+---
+
+## Example: syncing employees from an HR system
+
+A typical custom integration might sync employee records from your HR system into Beebole. The flow would look like this:
+
+1. Your HR system triggers an event when a new employee is added.
+2. Your integration script calls the Beebole API to create a new person with the employee's name, email, and role.
+3. The employee appears in Beebole and can begin tracking time immediately.
+
+For detailed query and mutation examples, see the [API examples](/api/examples/example-1) section.
+
+---
+
+## Best practices
+
+<Tip>Start small. Build a read-only integration first (queries only) to validate your data mapping before writing data back to Beebole.</Tip>
+
+- **Use meaningful names** for projects and people created via the API so they are easy to identify in the Beebole interface.
+- **Handle errors gracefully.** The API returns descriptive error messages. Log and handle them in your integration code.
+- **Respect rate limits.** Avoid sending excessive requests in short bursts. Batch operations where possible.
+- **Keep tokens secure.** Store API tokens in environment variables or a secrets manager, not in source code.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Do I need a specific Beebole plan to use the API?">
+    The GraphQL API is available on Pro and Enterprise plans. Contact [support@beebole.com](mailto:support@beebole.com) if you are unsure about your plan's API access.
+  </Accordion>
+
+  <Accordion title="What programming languages can I use?">
+    You can use any language that supports HTTP requests. The API uses standard GraphQL over HTTPS, so Python, JavaScript, Ruby, Go, Java, and any other language with an HTTP client will work.
+  </Accordion>
+
+  <Accordion title="Can I create time entries via the API?">
+    Yes. The API supports mutations for creating and updating timesheet entries, projects, people, and most other Beebole entities.
+  </Accordion>
+
+  <Accordion title="Is there a rate limit?">
+    Yes. The API enforces rate limits to ensure fair usage. If you encounter rate-limiting errors, reduce your request frequency or batch your operations.
+  </Accordion>
+
+  <Accordion title="Where can I get help building a custom integration?">
+    For technical questions about the API, refer to the [API documentation](/api/introduction) or contact [support@beebole.com](mailto:support@beebole.com).
+  </Accordion>
+</AccordionGroup>

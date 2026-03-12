@@ -1,4 +1,225 @@
 ---
 title: "Approvals"
-description: "Learn how to manage timesheet approvals to ensure accurate, compliant time tracking."
+description: "Set up and manage timesheet approval workflows in Beebole. Configure multi-stage approvals, assign approvers, and track approval status across your team."
+keywords: ["Beebole approvals", "timesheet approval", "approval workflow", "approve timesheets", "multi-stage approval", "approval process", "beebole"]
+"og:title": "Timesheet Approval Workflows in Beebole"
+"og:description": "Learn how to configure and manage timesheet approval workflows in Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's approval system lets you review and validate your team's timesheets before they are finalized. Approvals ensure that time data is accurate, complete, and authorized -- giving you confidence in your reports, billing, and payroll calculations.
+
+<Info>
+  Approval workflows in Beebole support multiple stages, flexible approver types, and configurable quorum rules. You can build a simple one-step approval or a multi-stage pipeline that matches your organization's sign-off process.
+</Info>
+
+---
+
+## How approvals work
+
+The approval process follows a clear lifecycle:
+
+1. A team member fills in their [timesheet](/documentation/timesheets) and clicks **Submit**.
+2. The timesheet enters the first approval stage. Designated approvers are notified.
+3. Each approver reviews the entries and chooses to **Approve**, **Reject**, or **Request changes**.
+4. If there are additional stages, the timesheet advances to the next stage upon approval.
+5. Once all stages are complete, the timesheet is fully approved and locked.
+
+<Note>
+  Submitted timesheets are locked for editing until an approver takes action. If a timesheet is rejected or changes are requested, it returns to the team member for corrections.
+</Note>
+
+---
+
+## Submitting a timesheet
+
+<Steps>
+  <Step title="Complete your timesheet">
+    Fill in all your time entries for the period. Make sure your totals match your expected hours.
+  </Step>
+  <Step title="Click Submit">
+    Click the **Submit** button at the top of your timesheet. A confirmation dialog appears.
+  </Step>
+  <Step title="Confirm submission">
+    Review the summary and click **Submit** to confirm. Your timesheet is now in the approval queue.
+  </Step>
+</Steps>
+
+<Tip>
+  If [auto-submit](/documentation/timesheetSettings#auto-submit) is enabled, timesheets are submitted automatically after the configured deadline, even if you don't click **Submit** manually.
+</Tip>
+
+---
+
+## Configuring approval stages
+
+Administrators set up approval workflows in the account settings. You can create one or more sequential stages, each with its own approver type and quorum rules.
+
+<Steps>
+  <Step title="Open approval settings">
+    Go to **Settings** > **Approval**.
+  </Step>
+  <Step title="Add an approval stage">
+    Click **Add stage**. Give the stage a name (e.g., "Manager review", "Finance validation").
+  </Step>
+  <Step title="Choose the approver type">
+    Select who approves at this stage. See [Approver types](#approver-types) below for the full list of options.
+  </Step>
+  <Step title="Set the quorum">
+    Choose whether **all** approvers must approve or **any single** approver is sufficient to advance the timesheet.
+  </Step>
+  <Step title="Add more stages (optional)">
+    Repeat to add additional stages. Stages run in sequence -- a timesheet must pass each stage before moving to the next.
+  </Step>
+  <Step title="Save">
+    Click **Save** to activate the workflow.
+  </Step>
+</Steps>
+
+---
+
+## Approver types
+
+Each approval stage specifies who can approve. Beebole supports several approver types that are resolved dynamically based on the timesheet's content:
+
+| Approver type | Who approves |
+|---------------|-------------|
+| **Administrators** | Any account administrator |
+| **Project managers** | The manager(s) assigned to the projects in the timesheet |
+| **People managers** | The manager assigned to the person who submitted the timesheet |
+| **Task managers** | The manager(s) assigned to the tasks in the timesheet |
+| **Tagged people** | People who share a specific tag with the submitter |
+| **Specific people** | Named individuals you select manually |
+
+<Info>
+  Beebole discovers approvers dynamically. For example, if a timesheet contains entries for three different projects, the "Project managers" approver type automatically includes the managers of all three projects.
+</Info>
+
+---
+
+## Approving, rejecting, and requesting changes
+
+When a timesheet reaches your approval stage, you receive a notification. Open the approval view to take action.
+
+<Steps>
+  <Step title="Open the approval queue">
+    Click **Approvals** in the left sidebar, or click the notification link in your email.
+  </Step>
+  <Step title="Review the timesheet">
+    Examine the time entries, totals, and any comments. Beebole highlights entries that were **added**, **modified**, or **deleted** since the last submission so you can see exactly what changed.
+  </Step>
+  <Step title="Take action">
+    Choose one of the following:
+    - **Approve** -- Accept the timesheet and advance it to the next stage (or finalize it).
+    - **Reject** -- Return the timesheet to the submitter. Add a comment explaining why.
+    - **Request changes** -- Ask the submitter to correct specific entries before resubmitting.
+  </Step>
+</Steps>
+
+<Warning>
+  Rejecting a timesheet rolls it back to the submitter. All subsequent approval stages are reset, and the submitter must make corrections and resubmit.
+</Warning>
+
+---
+
+## Change tracking
+
+Beebole tracks every modification to a timesheet and highlights changes in the approval view:
+
+- **Added entries** -- New rows or time values that were not in the previous version.
+- **Modified entries** -- Existing entries where the duration, project, or other details changed.
+- **Deleted entries** -- Rows or values that were removed.
+
+This change tracking gives approvers full visibility into what was updated between submissions, making it easier to review resubmitted timesheets.
+
+---
+
+## Team approval overview
+
+Managers and administrators can see the approval status of their entire team from the **Approvals** page. The overview shows:
+
+- Which timesheets are pending submission.
+- Which timesheets are awaiting approval at each stage.
+- Which timesheets have been approved or rejected.
+
+Use filters to narrow the view by person, date range, or approval status.
+
+---
+
+## Approval from email
+
+Approvers can take action directly from email notifications without logging into Beebole.
+
+Each approval notification email includes:
+
+- A **summary of the timesheet** -- total hours, projects, and key details.
+- **Approve** and **Reject** buttons that work directly from the email.
+
+<Tip>
+  Email approvals are ideal for managers on the go. The approval is processed immediately, and the submitter is notified of the outcome.
+</Tip>
+
+---
+
+## Approval history and audit trail
+
+Beebole maintains a complete history of every approval action:
+
+- Who approved or rejected the timesheet, and when.
+- Comments left at each stage.
+- The exact state of the timesheet at each approval step.
+
+This audit trail is available in the timesheet's approval history and in your account's [audit trail](/documentation/audit-trail) for compliance and record-keeping.
+
+---
+
+## Approval reminders
+
+Beebole can send email reminders to approvers when timesheets are waiting for their review. Reminders help prevent bottlenecks in the approval pipeline.
+
+Your administrator configures approval reminders in **Settings** > **Approval**, including how frequently reminders are sent and which stages trigger them.
+
+---
+
+## Resubmission after rejection
+
+When a timesheet is rejected or changes are requested:
+
+<Steps>
+  <Step title="Review the feedback">
+    Open your timesheet. The rejection comment from your approver appears at the top.
+  </Step>
+  <Step title="Make corrections">
+    Edit the entries your approver flagged. Your timesheet is unlocked for editing.
+  </Step>
+  <Step title="Resubmit">
+    Click **Submit** again. The timesheet re-enters the approval workflow from the first stage.
+  </Step>
+</Steps>
+
+<Note>
+  Resubmitted timesheets go through all approval stages again from the beginning. Approvers can use the [change tracking](#change-tracking) highlights to quickly see what was updated.
+</Note>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I approve timesheets on my phone?">
+    Yes. The approval interface works on mobile devices, and you can also approve directly from email notifications. See [Mobile](/documentation/mobile).
+  </Accordion>
+  <Accordion title="What happens if an approver leaves the company?">
+    If the approver is removed or archived, Beebole's dynamic approver discovery selects the next eligible approver based on the stage's approver type. For "Specific people" stages, an administrator should update the configuration.
+  </Accordion>
+  <Accordion title="Can I have different approval workflows for different teams?">
+    The approval workflow is account-wide. However, because approver types are resolved dynamically (e.g., "Project managers" or "People managers"), different timesheets naturally route to different approvers based on their content.
+  </Accordion>
+  <Accordion title="Can I skip an approval stage for certain people?">
+    Approval stages apply to all submitted timesheets. If you need a simpler process for some teams, consider using a single-stage workflow with a broad approver type like "People managers."
+  </Accordion>
+  <Accordion title="Is there an audit trail for approvals?">
+    Yes. Beebole records every approval action -- who approved or rejected, when, and with what comments. This history is available on the timesheet and in the account-wide [audit trail](/documentation/audit-trail).
+  </Accordion>
+</AccordionGroup>

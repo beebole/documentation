@@ -1,4 +1,104 @@
 ---
 title: "Data Exports"
-description: "Export your data in various formats for backup or more advanced analysis."
+description: "Export report data from Beebole in CSV or Excel format for backup, analysis, or sharing with external stakeholders."
+keywords: ["Beebole data export", "export CSV", "export Excel", "download report", "export time data", "reporting export", "beebole"]
+"og:title": "Exporting Data from Beebole"
+"og:description": "Download your Beebole reports in CSV or Excel format for offline analysis and sharing."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole lets you export report data so you can analyze it offline, share it with stakeholders who do not use Beebole, or integrate it into external tools. Exports capture the exact data shown in your report, including all applied filters and groupings.
+
+---
+
+## Export formats
+
+Beebole supports two export formats:
+
+| Format | Best for |
+|--------|----------|
+| **CSV** | Importing into databases, BI tools, or any software that reads plain text files |
+| **Excel (.xlsx)** | Sharing with colleagues, creating formatted spreadsheets, or further analysis in Excel |
+
+Both formats include all visible columns and respect the filters applied to the report.
+
+---
+
+## Exporting a report
+
+<Steps>
+  <Step title="Run your report">
+    Open [Reports](/documentation/reports) and run a built-in or [custom report](/documentation/custom-reports) with the dimensions, grouping, and filters you need.
+  </Step>
+  <Step title="Click Export">
+    Click the **Export** button in the report toolbar.
+  </Step>
+  <Step title="Choose a format">
+    Select **CSV** or **Excel** as your export format.
+  </Step>
+  <Step title="Download the file">
+    Your browser downloads the file. The filename includes the report name and date range for easy identification.
+  </Step>
+</Steps>
+
+<Info>
+  The exported file contains exactly the data displayed in your report. If you need different data, adjust your filters or columns before exporting.
+</Info>
+
+---
+
+## What is included in exports
+
+Exports contain:
+
+- All rows visible in the report, respecting applied filters
+- All selected columns, including financial data (billing, cost, profit) and custom field values
+- Grouped data with subtotals matching the report layout
+- Date range and grouping period information
+
+<Warning>
+  Exports respect user permissions. If a user cannot see certain projects or people in reports, that data is excluded from their export as well.
+</Warning>
+
+---
+
+## Tips for working with exported data
+
+<Tip>
+  When opening a CSV file in Excel, use the **Import** function rather than double-clicking the file. This ensures that special characters, dates, and number formats are handled correctly.
+</Tip>
+
+- **Filter before exporting** — Apply all necessary filters in Beebole before exporting to reduce the amount of post-processing needed in your spreadsheet.
+- **Use consistent naming** — Save your reports with descriptive names so exported files are easy to identify later.
+- **Include metadata columns** — Add project codes, person emails, or custom field values to your report columns before exporting if you plan to merge the data with other systems.
+
+---
+
+## Alternatives for recurring exports
+
+If you need to pull Beebole data into a spreadsheet regularly, consider using a direct connection instead of manual exports:
+
+- [Excel add-in](/documentation/excel-addin) — Refresh Beebole data directly in Excel without manual downloads
+- [Google Sheets add-on](/documentation/gsheets-addon) — Keep a Google Sheets spreadsheet synced with your Beebole data
+
+These tools let you set up a report once and refresh the data on demand, saving time on repetitive exports.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I export all data from my account at once?">
+    Exports are based on the report you have configured. To export all time data, create a report with no filters and a date range covering your entire account history, then export it.
+  </Accordion>
+  <Accordion title="Are exported files limited in size?">
+    Beebole exports all matching data. For very large datasets, the download may take a moment. If performance is an issue, narrow your date range or apply additional filters.
+  </Accordion>
+  <Accordion title="Can I export expense data?">
+    Yes. Create a report using the **Expense records** dimension, configure the columns you need, and export it. Expense data supports the same CSV and Excel formats as time data.
+  </Accordion>
+  <Accordion title="Do exports include budget information?">
+    Yes. If you add budget columns (target, consumed, remaining) to your report, they are included in the export alongside time and financial data.
+  </Accordion>
+</AccordionGroup>

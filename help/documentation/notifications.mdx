@@ -1,14 +1,18 @@
 ---
 title: "Notifications"
-description: "Configure how Beebole notifies you and your team about approvals, mentions, timesheet reminders, and other events."
-keywords: ["Beebole notifications", "email notifications", "timesheet reminders", "approval notifications", "notification settings", "email templates"]
+description: "Configure how Beebole notifies you and your team about approvals, mentions, timesheet reminders, and other events via email and in-app alerts."
+keywords: ["Beebole notifications", "email notifications", "timesheet reminders", "approval notifications", "notification settings", "email templates", "push notifications", "beebole"]
 "og:title": "Notifications in Beebole"
 "og:description": "Learn how to configure email and in-app notifications for approvals, reminders, and team events in Beebole."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
 
-Beebole keeps your team informed through in-app and email notifications. Notifications alert you to approval actions, mentions, timesheet reminders, and other events — so nothing slips through the cracks.
+Beebole keeps your team informed through in-app and email notifications. Notifications alert you to approval actions, mentions, timesheet reminders, and other important events — so nothing slips through the cracks. Each person can customize their notification preferences, and administrators can configure organisation-wide settings like reminders and email templates.
+
+<Info>
+  Beebole's notification system is designed to reduce noise. Digest batching, customizable preferences, and one-click unsubscribe ensure your team gets the right information without email overload.
+</Info>
 
 ---
 
@@ -16,14 +20,15 @@ Beebole keeps your team informed through in-app and email notifications. Notific
 
 Beebole sends notifications for the following events:
 
-| Event | Description |
-|-------|-------------|
-| **Timesheet submitted** | A team member submits their timesheet for approval |
-| **Approval action** | A timesheet is approved, rejected, or sent back for changes |
-| **Mentions** | Someone @mentions you in a journal message |
-| **Timesheet reminders** | Automated reminders for unfilled or unsubmitted timesheets |
-| **Approval reminders** | Automated reminders for pending approval actions |
-| **Team events** | New team members, schedule changes, and other organizational updates |
+| Event | Description | Who receives it |
+|-------|-------------|----------------|
+| **Timesheet submitted** | A team member submits their timesheet for approval | The assigned approver |
+| **Timesheet approved** | A timesheet is approved | The person who submitted it |
+| **Timesheet rejected** | A timesheet is rejected or sent back for changes | The person who submitted it |
+| **Mentions** | Someone @mentions you in a journal message | The mentioned person |
+| **Timesheet reminders** | Automated reminders for unfilled or unsubmitted timesheets | People with incomplete timesheets |
+| **Approval reminders** | Automated reminders for pending approval actions | Approvers with pending timesheets |
+| **Team events** | New team members, schedule changes, and other organisational updates | Relevant team members and managers |
 
 ---
 
@@ -31,40 +36,51 @@ Beebole sends notifications for the following events:
 
 ### In-app notifications
 
-Notifications appear in the **Journal** with unread indicators. Beebole shows a badge count for unread notifications, and uses a "new" separator to help you quickly find what you haven't seen yet.
+Notifications appear in the **Journal** with unread indicators. Beebole displays a badge count for unread notifications on the Journal icon, and uses a "new" separator line to help you quickly spot what you have not seen yet.
 
 ### Email notifications
 
-Beebole sends email notifications for important events. Emails include relevant context — for example, approval notification emails include a summary of the submitted timesheet.
+Beebole sends email notifications for important events. Each email includes relevant context — for example, an approval notification email includes a summary of the submitted timesheet with dates, hours, and projects.
 
 <Info>
-  You can approve or reject timesheets directly from the email notification without opening Beebole.
+  You can approve or reject timesheets directly from the email notification without opening Beebole. Reply-to-journal functionality also lets you respond to messages via email.
 </Info>
 
-### Digest batching
+### Web push notifications
 
-Instead of receiving individual emails for every event, Beebole can aggregate notifications into periodic digests. This reduces email volume while keeping you informed.
+Beebole supports browser push notifications for real-time alerts. When enabled, you receive desktop notifications even when you are not actively using the Beebole tab.
+
+---
+
+## Digest batching
+
+Instead of receiving individual emails for every event, Beebole can aggregate notifications into periodic digests. This reduces email volume while keeping you informed of all activity.
+
+Digests group related events together — for example, multiple timesheet submissions from your team appear as a single summary email rather than separate messages for each submission.
 
 ---
 
 ## Configuring your notification preferences
 
-Each person can customize which notifications they receive:
+Each person can customize which notifications they receive and how they receive them:
 
 <Steps>
   <Step title="Open your profile settings">
-    Click your profile picture or name, then select **Settings**.
+    Click your profile picture or name in the top-right corner, then select **Settings**.
   </Step>
   <Step title="Go to Notifications">
     Select the **Notifications** tab.
   </Step>
   <Step title="Choose your preferences">
-    Toggle notifications on or off for each event type. Choose between individual emails and digest batching.
+    For each event type, toggle notifications on or off. Where available, choose between individual emails and digest batching.
+  </Step>
+  <Step title="Save your preferences">
+    Click **Save**. Your preferences take effect immediately.
   </Step>
 </Steps>
 
 <Tip>
-  Every notification email includes a one-click **Unsubscribe** link, making it easy to manage your preferences directly from your inbox.
+  Every notification email includes a one-click **Unsubscribe** link at the bottom. You can manage your preferences directly from your inbox without logging into Beebole.
 </Tip>
 
 ---
@@ -73,9 +89,23 @@ Each person can customize which notifications they receive:
 
 Beebole can automatically remind team members to fill in and submit their timesheets. Administrators configure reminders at the organisation level:
 
-- **Reminder frequency** — Choose when reminders are sent (e.g., daily, weekly).
-- **Trigger conditions** — Reminders fire when a timesheet is incomplete or unsubmitted past a configurable number of days.
-- **Scope** — Apply reminders to everyone, or configure them per person.
+<Steps>
+  <Step title="Open reminder settings">
+    Go to **Settings** > **Notifications** (or **Settings** > **Reminders**, depending on your configuration).
+  </Step>
+  <Step title="Enable timesheet reminders">
+    Toggle timesheet reminders on and configure the frequency — for example, daily or weekly.
+  </Step>
+  <Step title="Set trigger conditions">
+    Define when reminders fire: after a timesheet has been incomplete for a configurable number of days, or when a submission deadline approaches.
+  </Step>
+  <Step title="Choose the scope">
+    Apply reminders to everyone in the organisation, or configure them per person or tag.
+  </Step>
+  <Step title="Save">
+    Click **Save**. Reminders are sent automatically according to your schedule.
+  </Step>
+</Steps>
 
 ---
 
@@ -83,17 +113,45 @@ Beebole can automatically remind team members to fill in and submit their timesh
 
 Separate from timesheet reminders, approval reminders notify approvers when timesheets are waiting for their action. This helps prevent bottlenecks in the [approval workflow](/documentation/approval).
 
+Approval reminders are configured alongside timesheet reminders. You can set:
+
+- **Frequency** — How often the reminder is sent while timesheets remain pending.
+- **Delay** — How many days after submission before the first reminder is sent.
+
 ---
 
 ## Email templates
 
-Administrators can customize the content of notification emails:
+Administrators can customize the content of notification emails to match your organisation's tone and branding:
 
-- Edit the subject line and body text for different notification types.
-- Include dynamic fields (person name, project name, date range) that populate automatically.
-- Preview templates before activating them.
+<Steps>
+  <Step title="Open email templates">
+    Go to **Settings** > **Email Templates**.
+  </Step>
+  <Step title="Select a template">
+    Choose the notification type you want to customize (e.g., submission confirmation, approval notification, reminder).
+  </Step>
+  <Step title="Edit the template">
+    Modify the subject line and body text. Use dynamic fields to insert data automatically — such as the person's name, project name, date range, or hours total.
+  </Step>
+  <Step title="Preview and save">
+    Preview the template to verify the layout and dynamic fields. Click **Save** to activate it.
+  </Step>
+</Steps>
 
-To manage email templates, go to **Settings** > **Email templates**.
+<Note>
+  Email template changes apply to all future notifications of that type. Previously sent emails are not affected.
+</Note>
+
+---
+
+## Unread counts and management
+
+Beebole tracks unread notifications per person:
+
+- The **Journal** icon in the sidebar displays a badge with the number of unread items.
+- Opening the Journal and scrolling past a notification marks it as read.
+- A "new" separator line distinguishes items you have not yet seen from older ones.
 
 ---
 
@@ -104,12 +162,15 @@ To manage email templates, go to **Settings** > **Email templates**.
     Yes. In your notification preferences, disable email for each event type. You will still see notifications in the in-app Journal.
   </Accordion>
   <Accordion title="Can an administrator configure notification settings for the whole team?">
-    Administrators control organisation-wide settings like reminder frequency and email templates. Individual notification preferences (which events to receive) are managed by each person.
-  </Accordion>
-  <Accordion title="What happens if an email notification fails to deliver?">
-    Beebole automatically retries failed notification deliveries. If the issue persists, the notification remains available in the in-app Journal.
+    Administrators control organisation-wide settings like reminder frequency, trigger conditions, and email templates. Individual notification preferences — such as which events to receive — are managed by each person from their own profile.
   </Accordion>
   <Accordion title="Can I respond to approval notifications by email?">
-    Yes. You can approve or reject timesheets directly from the notification email. You can also reply to journal messages via email.
+    Yes. Beebole's approval notification emails include action buttons to approve or reject timesheets directly. You can also reply to journal messages via email.
+  </Accordion>
+  <Accordion title="What is the difference between individual notifications and digests?">
+    Individual notifications send one email per event as it happens. Digests group multiple events into a single periodic summary email. Digests reduce inbox volume while still keeping you informed of all activity.
+  </Accordion>
+  <Accordion title="Do notification preferences sync across devices?">
+    Yes. Your notification preferences are stored in your Beebole profile and apply everywhere — web browser, mobile, and email. Changing preferences on one device updates them for all.
   </Accordion>
 </AccordionGroup>

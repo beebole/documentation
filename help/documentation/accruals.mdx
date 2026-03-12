@@ -1,4 +1,157 @@
 ---
-title: "Accruals & Allowances"
-description: "Configure and manage employee accruals and allowances for tracking time off."
+title: "Accruals"
+description: "Set up automatic time-off accrual policies in Beebole with configurable frequency, carry-forward rules, and award timing."
+keywords: ["beebole", "accruals", "time off accrual", "leave accrual", "carry forward", "PTO accrual", "allowance rollover"]
+"og:title": "Time-Off Accruals in Beebole"
+"og:description": "Configure automatic time-off accrual policies with flexible frequency, carry-forward, and award timing options."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's accrual system lets you automatically award time off to your team on a recurring schedule. Instead of granting the full annual allowance on day one, you can configure policies that accumulate leave gradually — monthly, quarterly, or at whatever frequency matches your company's rules.
+
+<Info>
+  Accrual policies are linked to absence types. Each absence type can have its own accrual policy with independent settings for frequency, carry-forward, and award timing.
+</Info>
+
+---
+
+## How accruals work
+
+An accrual policy defines three things:
+
+1. **How much** time off is awarded per period.
+2. **How often** the accrual is awarded (the frequency).
+3. **When** within each period the accrual is credited to the person's balance (the award timing).
+
+As each accrual period completes, Beebole automatically adds the configured amount to the person's available balance for that absence type. The updated balance appears in real time on their profile and in time-off reports.
+
+---
+
+## Creating an accrual policy
+
+<Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** > **Time Off** and click the absence type you want to configure accruals for.
+  </Step>
+  <Step title="Enable accruals">
+    In the absence type settings, look for the accrual configuration section and enable it.
+  </Step>
+  <Step title="Set the accrual amount">
+    Enter the number of hours or days to award per accrual period. This amount is added to each person's balance at the configured frequency.
+  </Step>
+  <Step title="Choose the frequency">
+    Select how often the accrual is awarded. Common options include monthly, quarterly, semi-annually, or annually.
+  </Step>
+  <Step title="Set the award timing">
+    Choose when the accrual is credited within each period:
+    - **First day of the period** — The balance is credited at the start.
+    - **Last day of the period** — The balance is credited at the end.
+    - **Day after the period** — The balance is credited on the first day of the next period.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The accrual policy is now active and Beebole begins awarding time off according to your schedule.
+  </Step>
+</Steps>
+
+<Tip>
+  Choose "First day of the period" if you want people to use their accrued time immediately. Choose "Last day" or "Day after" if you want them to earn the time before they can use it.
+</Tip>
+
+---
+
+## Carry-forward rules
+
+Carry-forward controls what happens to unused time off when a quota period ends. Without carry-forward, any remaining balance resets to zero at the start of the new period. With carry-forward enabled, some or all of the unused balance rolls over.
+
+You can configure carry-forward per absence type:
+
+- **No carry-forward** — Unused time off expires at the end of the period. This is a "use it or lose it" policy.
+- **Full carry-forward** — All unused time off rolls over to the next period with no limit.
+- **Capped carry-forward** — Unused time off rolls over up to a maximum number of hours or days. Any excess is forfeited.
+
+<Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** > **Time Off** and click the relevant absence type.
+  </Step>
+  <Step title="Configure carry-forward">
+    In the accrual settings, enable carry-forward and set the maximum amount that can roll over (or leave it unlimited for full carry-forward).
+  </Step>
+  <Step title="Save">
+    Click **Save**. The carry-forward rule applies at the end of each quota period.
+  </Step>
+</Steps>
+
+<Warning>
+  Changing carry-forward rules mid-period may affect balances that have already rolled over. Review individual balances after making changes to ensure they reflect your intent.
+</Warning>
+
+---
+
+## Frequency settings
+
+The accrual frequency determines the cadence at which Beebole adds time to each person's balance. Choose a frequency that aligns with your organization's leave policy:
+
+| Frequency | Accrual occurs | Best for |
+|-----------|---------------|----------|
+| **Monthly** | Once per month | Most common; gradual accumulation throughout the year |
+| **Quarterly** | Once every three months | Organizations that review leave quarterly |
+| **Semi-annually** | Twice per year | Simpler policies with mid-year and year-end grants |
+| **Annually** | Once per year | Organizations that grant the full allowance at once |
+
+<Note>
+  The total annual accrual should match the person's overall allowance for the year. For example, if someone gets 20 days per year with monthly accruals, set the accrual amount to approximately 1.67 days per month.
+</Note>
+
+---
+
+## Award timing explained
+
+The **Awarded on** setting controls the exact moment within each accrual period when the time is credited:
+
+- **First day of the period** — Time is available immediately when the period starts. For monthly accruals, this means the 1st of each month.
+- **Last day of the period** — Time is credited on the final day of the period. The person earns the time at the end of the accrual window.
+- **Day after the period** — Time is credited on the first day of the following period. This ensures the person has fully completed the period before receiving their accrual.
+
+<Info>
+  Award timing affects when a person can use accrued time off. If you choose "Day after the period," January's accrual becomes available on February 1st — not during January.
+</Info>
+
+---
+
+## Viewing accrued balances
+
+You can check any person's accrued balance from their profile:
+
+<Steps>
+  <Step title="Open the person's profile">
+    Go to **People** and click the person's name.
+  </Step>
+  <Step title="Review the balance">
+    The absence section shows the current balance for each absence type, including how much has been accrued, taken, and what remains available.
+  </Step>
+</Steps>
+
+Balances update automatically as accruals are awarded and as time-off entries are approved on timesheets.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I set different accrual rates for different people?">
+    Accrual policies are configured at the absence type level and apply to everyone with a quota for that type. To give someone a different accrual rate, create a separate absence type with its own accrual policy.
+  </Accordion>
+  <Accordion title="What happens if I change the accrual frequency mid-year?">
+    Changes take effect from the next accrual period. Previously awarded accruals are not recalculated. Review individual balances to ensure they are correct after the change.
+  </Accordion>
+  <Accordion title="Can I use accruals with carry-forward at the same time?">
+    Yes. Accruals and carry-forward work together. Accruals add time throughout the period, and carry-forward determines how much unused time rolls over when the period ends.
+  </Accordion>
+  <Accordion title="Do accruals apply to all absence types?">
+    No. Accrual policies are optional and configured per absence type. You can have some types with accruals (e.g., vacation) and others without (e.g., sick leave with an unlimited or fixed annual grant).
+  </Accordion>
+  <Accordion title="How do I stop accruals for someone who has left the company?">
+    Archive the person's profile. Archived people no longer receive accruals. See [People](/documentation/people) for details on archiving.
+  </Accordion>
+</AccordionGroup>

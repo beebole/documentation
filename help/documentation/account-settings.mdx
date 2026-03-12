@@ -1,4 +1,161 @@
 ---
 title: "Account Settings"
-description: "Manage your Beebole account settings, subscription, and security preferences."
+description: "Configure your Beebole organisation's general settings, including timezone, currency, date formats, feature toggles, and more."
+keywords: ["beebole", "account settings", "organisation settings", "timezone", "currency", "date format", "feature toggles", "localisation"]
+"og:title": "Account Settings in Beebole"
+"og:description": "Configure your Beebole organisation's general settings, including timezone, currency, date formats, feature toggles, and more."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's account settings let you configure how your organisation works within the platform. From enabling specific modules to setting regional preferences, these settings shape the experience for everyone in your account.
+
+<Info>
+  Only administrators can access and modify account settings.
+</Info>
+
+---
+
+## Accessing account settings
+
+<Steps>
+  <Step title="Open the settings page">
+    In the left sidebar, click **Settings**.
+  </Step>
+  <Step title="Select Account">
+    Click the **Account** tab to view your organisation's general settings.
+  </Step>
+</Steps>
+
+---
+
+## Feature toggles
+
+Beebole is modular by design. You can enable or disable entire features depending on what your organisation needs. This keeps the interface clean and focused for your team.
+
+The following modules can be toggled on or off:
+
+| Module | What it controls |
+|--------|-----------------|
+| **Projects** | Project-based time tracking and project management |
+| **Tasks** | Task-level tracking within projects |
+| **Schedules** | Work schedules and expected hours |
+| **Absence types** | Time-off categories and leave management |
+| **Expenses** | Expense tracking alongside time entries |
+| **Custom fields** | Additional data fields on entities |
+
+<Steps>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account**.
+  </Step>
+  <Step title="Toggle features on or off">
+    Use the switches next to each module name to enable or disable it.
+  </Step>
+  <Step title="Save your changes">
+    Click **Save**. The changes take effect immediately for all users.
+  </Step>
+</Steps>
+
+<Tip>
+  Disabling a module hides it from the interface but does not delete any existing data. You can re-enable it at any time to restore access.
+</Tip>
+
+---
+
+## Localisation
+
+These settings control the default regional preferences for your entire organisation. Individual users may override some of these in their personal profile.
+
+### Timezone and country
+
+Set your organisation's **Timezone** and **Country**. The timezone determines the default for all date and time calculations in Beebole.
+
+### Currency
+
+Choose the **Currency** used across your account for billing rates, costs, budgets, and expenses.
+
+### Language
+
+Select the default **Language** for your organisation. Beebole supports multiple languages, and individual users can change their own language preference.
+
+### Date and time format
+
+Configure how dates appear throughout the interface:
+
+- **Date format** -- Choose between formats like DD/MM/YYYY, MM/DD/YYYY, or YYYY-MM-DD.
+- **First day of week** -- Set whether the week starts on **Monday**, **Sunday**, or another day. This affects timesheets, calendars, and reports.
+
+---
+
+## Duration format
+
+Beebole offers three ways to display time durations across the platform:
+
+| Format | Example | Best for |
+|--------|---------|----------|
+| **hh:mm** | 7:30 | Teams that think in hours and minutes |
+| **Decimal** | 7.50 | Billing and invoicing workflows |
+| **Hour-string-minute** | 7h 30m | Quick visual readability |
+
+To change the duration format, select your preferred option under **Duration format** in the account settings.
+
+---
+
+## Number formatting
+
+Regional number formatting ensures that values display correctly for your team:
+
+- **Decimal separator** -- Choose between a period (.) or comma (,).
+- **Thousand separator** -- Choose between a comma (,), period (.), space, or none.
+
+These settings affect how numbers appear in timesheets, reports, costs, and budgets.
+
+---
+
+## Time format
+
+Choose between **12-hour** (AM/PM) and **24-hour** time display. This setting applies to all time pickers and time displays across your Beebole account.
+
+---
+
+## Deleting your organisation
+
+You can permanently delete your Beebole organisation and all its data. This is an irreversible action.
+
+<Warning>
+  Deleting your organisation removes everything -- all people, projects, time entries, reports, and configuration. This cannot be undone. Export any data you need before proceeding.
+</Warning>
+
+<Steps>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account**.
+  </Step>
+  <Step title="Scroll to the danger zone">
+    At the bottom of the page, find the **Delete organisation** section.
+  </Step>
+  <Step title="Confirm deletion">
+    Click **Delete organisation** and follow the confirmation prompts. You may be asked to type the organisation name to confirm.
+  </Step>
+</Steps>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Do feature toggles delete existing data when I disable a module?">
+    No. Disabling a module in Beebole hides it from the interface but preserves all existing data. If you re-enable the module later, your data will still be there.
+  </Accordion>
+  <Accordion title="Can individual users override the organisation's localisation settings?">
+    Users can override some settings, like language and timezone, in their personal profile. However, organisation-wide settings like currency and duration format apply to everyone.
+  </Accordion>
+  <Accordion title="What happens to active subscriptions if I delete my organisation?">
+    Deleting your organisation cancels your subscription. Any remaining billing period is forfeited. Make sure to export your data and review your [subscription](/documentation/subscription) before proceeding.
+  </Accordion>
+  <Accordion title="Can I change the currency after I have started tracking costs?">
+    Yes, you can change the currency at any time. Beebole does not convert existing values -- it simply changes the currency symbol displayed. Review your financial data after switching currencies.
+  </Accordion>
+  <Accordion title="How do I set the first day of the week?">
+    Go to **Settings** > **Account** and look for the **First day of week** option under date and time format settings. This affects how timesheets and calendars are displayed for everyone in your organisation.
+  </Accordion>
+</AccordionGroup>

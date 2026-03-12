@@ -1,9 +1,179 @@
 ---
-title: Time Off
-description: Learn how to configure and manage absences and time off requests for your team.
-keywords: ["Beebole time off", "time off management", "PTO", "absence management", "leave requests", "pto tracking", "vacation time"]
+title: "Time Off"
+description: "Configure absence types, set quotas, track balances, and manage time-off requests for your team in Beebole."
+keywords: ["beebole", "time off", "absence management", "leave management", "vacation tracking", "PTO", "sick leave", "absence quota"]
 "og:title": "Time Off and Absence Management in Beebole"
-"og:description": "Learn how to manage time off and absences using Beebole’s project management tool."
+"og:description": "Configure absence types, set quotas, and manage time-off requests for your team in Beebole."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's time-off management lets you define absence types, assign individual quotas, and track balances in real time. Your team records time off directly on their timesheets, and the approval workflow ensures every absence is reviewed before it counts against their allowance.
+
+<Info>
+  Time off in Beebole is tracked through **absence types** — categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
+</Info>
+
+---
+
+## Understanding absence types
+
+An absence type represents a category of leave your organization recognizes. Common examples include vacation, sick leave, parental leave, and personal days — but you can create as many types as you need.
+
+Each absence type can be configured with:
+
+- **A name** — The label your team sees when logging time off (e.g., "Vacation", "Sick Leave").
+- **A unit** — Whether absences are tracked in **hours** or **days**.
+- **A quota** — The amount of time off each person is allowed per period.
+- **An accrual policy** — Rules for automatically awarding time-off allowances over time. See [Accruals](/documentation/accruals).
+
+---
+
+## Creating absence types
+
+<Steps>
+  <Step title="Open the Time Off settings">
+    Go to **Settings** > **Time Off**.
+  </Step>
+  <Step title="Add a new absence type">
+    Click the **[+]** button. Enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave").
+  </Step>
+  <Step title="Choose the unit">
+    Select whether this absence type is tracked in **Hours** or **Days**.
+  </Step>
+  <Step title="Save the absence type">
+    Click **Save**. The new absence type is now available for quota assignment and timesheet entry.
+  </Step>
+</Steps>
+
+<Tip>
+  Create separate absence types for each leave category your company offers. This gives you granular reporting and lets you set different quota rules per type.
+</Tip>
+
+---
+
+## Setting up quotas
+
+A quota defines how much time off each person is allowed for a given absence type within a specific period. You can set quotas individually per person or use default values.
+
+<Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** > **Time Off** and click the absence type you want to configure.
+  </Step>
+  <Step title="Define the quota period">
+    Set the **Start date** and **End date** for the quota period (e.g., January 1 to December 31 for an annual allowance).
+  </Step>
+  <Step title="Set the default allowance">
+    Enter the default number of hours or days each person receives for this period.
+  </Step>
+  <Step title="Adjust individual quotas">
+    To give specific people a different allowance, go to their profile under **People** and adjust the quota for this absence type. Individual quotas override the default.
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply the quota.
+  </Step>
+</Steps>
+
+<Info>
+  You can also configure quotas from a person's profile. Go to **People**, click the person's name, and look for the absence quota section. See [People](/documentation/people).
+</Info>
+
+---
+
+## Tracking balances
+
+Beebole calculates time-off balances automatically based on quotas, accruals, and recorded absences. For each person and absence type, you can see:
+
+| Balance field | What it shows |
+|---------------|---------------|
+| **Allowed** | The total quota (including any accrued time) for the period |
+| **Taken** | The amount of time off already recorded on timesheets |
+| **Available** | The remaining balance (Allowed minus Taken) |
+
+Balances update in real time as team members log time off on their timesheets and as accruals are awarded.
+
+---
+
+## Negative balance controls
+
+By default, Beebole prevents people from booking more time off than their available balance. You can change this behavior per absence type.
+
+- **Allow negative balances** — Team members can book time off even when their balance reaches zero. This is useful for organizations that handle overdrawn leave manually or at year-end.
+- **Restrict negative balances** — Beebole blocks time-off entries that would push the balance below zero.
+
+To configure this, open the absence type in **Settings** > **Time Off** and adjust the negative balance setting.
+
+<Warning>
+  If you allow negative balances, monitor them regularly. Beebole can send notifications when a person's balance goes negative — see the notifications section below.
+</Warning>
+
+---
+
+## Absence approval
+
+Time-off entries follow the same approval workflow as regular time entries. When a person records an absence on their timesheet and submits it, the assigned manager reviews and approves or rejects it.
+
+- Approved absences count against the person's quota.
+- Rejected absences do not affect the balance.
+
+<Info>
+  The approval workflow for absences is part of Beebole's general timesheet approval process. See [Approvals](/documentation/approval) for details on configuring approval stages and managers.
+</Info>
+
+---
+
+## Absence notifications
+
+Beebole can send automatic notifications related to time off to keep managers and administrators informed:
+
+- **Negative balance alerts** — Triggered when a person's balance drops below zero.
+- **Advance booking alerts** — Triggered when someone books time off far in advance.
+
+Configure absence notifications in **Settings** > **Notifications**. See [Notifications](/documentation/notifications) for the full setup.
+
+---
+
+## Recording time off on the timesheet
+
+Team members record absences directly on their timesheets, just like regular time entries.
+
+<Steps>
+  <Step title="Open the timesheet">
+    Navigate to **Timesheets** and select the relevant week.
+  </Step>
+  <Step title="Add an absence row">
+    Click the **[+]** button to add a new row. Select the absence type (e.g., "Vacation") instead of a project.
+  </Step>
+  <Step title="Enter the time off">
+    Enter the number of hours or days for each day of the week.
+  </Step>
+  <Step title="Submit the timesheet">
+    Click **Submit** to send the timesheet for approval. The time off counts against the balance once approved.
+  </Step>
+</Steps>
+
+<Tip>
+  If your organization tracks absences in days, a full day off equals the number of hours defined in the person's [work schedule](/documentation/work-schedule).
+</Tip>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I set different time-off allowances for different people?">
+    Yes. You can override the default quota for any person from their profile under **People**. Individual quotas take priority over the default allowance set on the absence type.
+  </Accordion>
+  <Accordion title="What happens when someone exceeds their time-off balance?">
+    It depends on your configuration. If negative balances are allowed, the person can continue booking time off and their balance shows a negative number. If restricted, Beebole blocks the entry.
+  </Accordion>
+  <Accordion title="How does time off interact with approvals?">
+    Time-off entries follow the same approval workflow as regular timesheet entries. Absences only count against a person's quota once the timesheet is approved. See [Approvals](/documentation/approval).
+  </Accordion>
+  <Accordion title="Can I track time off in both hours and days?">
+    Each absence type uses a single unit — either hours or days. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
+  </Accordion>
+  <Accordion title="How do accruals work with time-off quotas?">
+    Accrual policies automatically add time to a person's quota on a recurring schedule. This is useful for organizations where leave accumulates over time rather than being granted all at once. See [Accruals](/documentation/accruals).
+  </Accordion>
+</AccordionGroup>

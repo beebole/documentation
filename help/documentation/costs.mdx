@@ -19,9 +19,10 @@ Cost rates follow the same structure as billing rates. They can be set at multip
 | Priority | Level | Example |
 |----------|-------|---------|
 | 1 (highest) | **Person** | A senior engineer with a higher cost rate |
-| 2 | **Project** | A project with outsourced work at a fixed cost |
-| 3 | **Tag** | A department-wide average cost |
-| 4 (lowest) | **Organisation** | A company-wide default cost |
+| 2 | **Task** | A task with outsourced work at a fixed cost |
+| 3 | **Project** | A project with a specific cost allocation |
+| 4 | **Tag** | A department-wide average cost |
+| 5 (lowest) | **Organisation** | A company-wide default cost |
 
 ### Rate methods
 
@@ -42,6 +43,32 @@ Open a project in [Projects](/documentation/projects) and set a project-level co
 ### On a tag
 
 Set a cost rate on a [tag](/documentation/tags) to apply a default cost to everyone in a department or team.
+
+---
+
+## Rate splits
+
+For projects where different team members have different internal costs, use rate splits:
+
+- **Split by person** — Set a specific cost rate for each person assigned to the project.
+- **Split by project** — When a tag-level cost rate needs per-project overrides.
+- **Flat** — One cost rate applies to everyone equally.
+
+---
+
+## Effective dates
+
+Cost rates can have start and end dates so they change automatically over time. This is useful for:
+
+- Annual salary adjustments
+- Changes in overhead or benefit costs
+- Temporary staffing at different cost levels
+
+---
+
+## Recurring rates
+
+Recurring cost rates let you define a repeating rate pattern that applies automatically. This is useful when costs follow a predictable cycle — for example, quarterly adjustments to contractor rates.
 
 ---
 
@@ -71,4 +98,16 @@ When both billing and cost rates are configured, Beebole calculates profitabilit
   <Accordion title="Can cost rates have effective dates?">
     Yes. Like billing rates, cost rates support start and end dates for automatic rate changes over time.
   </Accordion>
+  <Accordion title="Can I set different cost rates per person on the same project?">
+    Yes. Use project-level rate splits by person to assign a specific cost rate to each team member on that project.
+  </Accordion>
 </AccordionGroup>
+
+---
+
+## Related pages
+
+- [Billing rates](/documentation/billing) — Track revenue alongside costs for profitability analysis
+- [Budgets](/documentation/budgets) — Set cost budgets on your projects
+- [Expenses](/documentation/expenses) — Record project-related expenses beyond labor costs
+- [Reports](/documentation/reports) — Analyze cost data across projects, people, and time periods

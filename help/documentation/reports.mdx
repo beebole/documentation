@@ -1,9 +1,131 @@
 ---
 title: Reports
-description: Analyze data on time, costs, billing, budgets, and project performance using powerful built-in reporting.
+description: "Analyze time, costs, billing, budgets, and project performance with Beebole's built-in reporting tools."
 keywords: ["Beebole reports", "time tracking reports", "project reports", "timesheet reports", "built-in reports", "how to run reports", "reporting software"]
 "og:title": "Built-in Reports in Beebole"
 "og:description": "Explore ready-made reports in Beebole for time, cost, and performance insights."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's reporting tools give you a complete picture of how your team spends time, what it costs, and how much it generates. Reports pull data from timesheets, expenses, and project configurations to answer questions about productivity, profitability, and resource allocation.
+
+<Info>
+  Reports respect each user's permissions. Team members only see data for the projects and people they have access to, based on their [role and authorisations](/documentation/roles-authorisations).
+</Info>
+
+---
+
+## Accessing reports
+
+Click **Reports** in the left sidebar to open the reporting area. From here you can run a quick report using the built-in options or create a fully customized report.
+
+---
+
+## Built-in reports
+
+Beebole provides several ready-made reports that cover common needs:
+
+| Report | What it shows |
+|--------|---------------|
+| **Time by project** | Total hours logged per project over a date range |
+| **Time by person** | Total hours logged per person over a date range |
+| **Time by tag** | Hours grouped by tag for department or team-level views |
+| **Billing summary** | Billable amounts by project, person, or tag |
+| **Cost summary** | Internal costs by project, person, or tag |
+| **Budget progress** | Budget consumption versus target for each project |
+
+Built-in reports are a fast way to get answers without any configuration. For more advanced analysis, use [Custom reports](/documentation/custom-reports).
+
+---
+
+## Report dimensions
+
+Every report in Beebole is based on a dimension — the type of record you want to analyze:
+
+| Dimension | Description |
+|-----------|-------------|
+| **Time records** | Individual time entries logged in timesheets |
+| **Expense records** | Expense entries logged against projects |
+| **Task records** | Task-level data including assignments and progress |
+
+The dimension you choose determines which columns and filters are available.
+
+---
+
+## Grouping and period options
+
+You can group report data by different time periods to control the level of detail:
+
+- **Year** — Annual totals
+- **Quarter** — Quarterly breakdowns
+- **Month** — Monthly summaries
+- **Week** — Weekly details
+
+You can also group by entity — project, person, tag, or any combination — to create multi-dimensional views.
+
+<Tip>
+  Combine period grouping with entity grouping for powerful analysis. For example, group by **Month** and **Project** to see how time allocation shifts across projects over time.
+</Tip>
+
+---
+
+## Filtering reports
+
+Use filters to narrow your report to exactly the data you need:
+
+- **Date range** — Select a start and end date, or use presets like "This month" or "Last quarter"
+- **People** — Filter by specific team members
+- **Projects** — Include or exclude specific projects or categories
+- **Tags** — Filter by one or more tags
+- **Tasks** — Narrow to specific tasks or sub-projects
+- **Approval status** — Show only approved, pending, or rejected entries
+- **Custom fields** — Filter by any [custom field](/documentation/custom-fields) values you have configured
+
+<Info>
+  Filters can be combined. For example, filter by a specific tag and date range to see all billable time for a department last quarter.
+</Info>
+
+---
+
+## Columns and data fields
+
+Customize which columns appear in your report. Available columns depend on your chosen dimension and include:
+
+- **Time data** — Hours, days, overtime, work-from-home indicator
+- **Financial data** — Billing amount, cost amount, profit, margin percentage
+- **Budget data** — Budget target, consumed, remaining, percentage used
+- **Metadata** — Project code, person email, tag, custom field values, comments
+
+---
+
+## Next steps
+
+For more advanced reporting capabilities, see:
+
+- [Custom reports](/documentation/custom-reports) — Build tailored reports with saved templates and categories
+- [Data exports](/documentation/data-exports) — Export report data to CSV or Excel
+- [Excel add-in](/documentation/excel-addin) — Pull Beebole data directly into Excel
+- [Google Sheets add-on](/documentation/gsheets-addon) — Connect Beebole to Google Sheets
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I schedule reports to run automatically?">
+    Beebole supports exporting report data on demand. For automated workflows, use the [Excel add-in](/documentation/excel-addin) or [Google Sheets add-on](/documentation/gsheets-addon) to refresh data in your spreadsheets.
+  </Accordion>
+  <Accordion title="Why do I see different data than my colleague in the same report?">
+    Reports respect user permissions. Each person only sees data for the projects and people they are authorized to access. An admin sees all data, while a team leader sees only their team's entries.
+  </Accordion>
+  <Accordion title="Can I include custom fields in my reports?">
+    Yes. Any [custom field](/documentation/custom-fields) you create is available as both a column and a filter in reports. This lets you slice data by project type, region, priority, or any other custom attribute.
+  </Accordion>
+  <Accordion title="How far back can I run reports?">
+    Reports can cover any date range within your account's history. There is no time limit — all data since your account was created is available for reporting.
+  </Accordion>
+  <Accordion title="Do archived projects appear in reports?">
+    Yes. Archived projects and their time entries are fully available in reports. Archiving only removes a project from active timesheets, not from historical data.
+  </Accordion>
+</AccordionGroup>

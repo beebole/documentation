@@ -1,4 +1,160 @@
 ---
-title: "Planning Kanban View"
-description: "Visualize project planning and timelines using the Kanban view."
+title: "Kanban Board"
+description: "Organize and track tasks visually with Beebole's Kanban board. Drag and drop task cards between status columns and set WIP limits."
+keywords: ["beebole", "kanban board", "task management", "task status", "drag and drop", "WIP limits", "project tasks"]
+"og:title": "Kanban Board View in Beebole"
+"og:description": "Manage tasks visually with Beebole's Kanban board. Move tasks between status columns and track progress at a glance."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's Kanban board lets you manage tasks visually by organizing them into columns based on their status. You can drag and drop task cards from one column to another as work progresses — for example, from **To Do** to **In Progress** to **Done**. The board gives your team a clear, real-time picture of where every task stands.
+
+<Info>
+  The Kanban board is one of three task views available in Beebole, alongside the [Gantt chart](/documentation/gantt) and the calendar view. All views share the same underlying task data, so changes in one view appear instantly in the others.
+</Info>
+
+---
+
+## Accessing the Kanban board
+
+<Steps>
+  <Step title="Open a project">
+    Click **Projects** in the left sidebar, then select the project whose tasks you want to manage.
+  </Step>
+  <Step title="Switch to the Kanban view">
+    Click the **Kanban** tab at the top of the task area. The board displays your tasks organized by status columns.
+  </Step>
+</Steps>
+
+---
+
+## Understanding the board layout
+
+The Kanban board is organized into vertical columns, one for each task status configured in your project. Tasks appear as cards within these columns.
+
+- **Columns** — Each column represents a status in your workflow (for example, **To Do**, **In Progress**, **Review**, **Done**). The order of columns follows the status order you define in your project settings.
+- **Task cards** — Each card shows the task name, the assigned person, and key details like the due date or priority. Click a card to open the full task detail panel.
+- **Card count** — The number displayed at the top of each column indicates how many tasks are currently in that status.
+
+---
+
+## Configuring task statuses
+
+Statuses define the columns on your Kanban board. You can customize the status workflow to match how your team actually works.
+
+<Steps>
+  <Step title="Open status settings">
+    From the project's task area, click the **Settings** icon or go to the project settings. Navigate to the **Statuses** section.
+  </Step>
+  <Step title="Add or edit statuses">
+    Click **Add status** to create a new column. Enter a **Name** for the status. Drag statuses to reorder them — the order here determines the column order on the board.
+  </Step>
+  <Step title="Remove a status">
+    Click the delete icon next to a status you no longer need. You must first reassign any tasks in that status to another one.
+  </Step>
+</Steps>
+
+<Tip>
+  Keep your workflow simple. Three to five statuses (such as **To Do**, **In Progress**, **Review**, **Done**) work well for most teams. Adding too many columns can make the board harder to scan.
+</Tip>
+
+---
+
+## Working with task cards
+
+### Creating a task
+
+<Steps>
+  <Step title="Add a card to a column">
+    Click the **+** button at the top or bottom of any status column. A new task card appears in that column.
+  </Step>
+  <Step title="Enter task details">
+    Type a **Name** for the task. You can also set the **Assigned to** person, **Start date**, **End date**, and **Description** from the card detail panel.
+  </Step>
+  <Step title="Save the task">
+    Click outside the card or press **Enter** to save. The task is now visible on the board and in all other task views.
+  </Step>
+</Steps>
+
+### Moving a task between statuses
+
+Drag a task card from one column and drop it into another to update its status. For example, drag a card from **To Do** to **In Progress** when work begins.
+
+The status change takes effect immediately. Any filters, reports, or views that reference task status reflect the update in real time.
+
+### Editing a task
+
+Click any task card to open its detail panel. From here you can update:
+
+- **Name** and **Description** — Edit the task title or add a rich text description with formatting.
+- **Assigned to** — Change the person responsible for the task.
+- **Start date** and **End date** — Adjust the task's scheduled timeline.
+- **Status** — Change the status using a dropdown (an alternative to drag and drop).
+- **Custom fields** — Fill in any task-level custom fields configured for the project. See [Custom fields](/documentation/custom-fields).
+
+---
+
+## Setting WIP limits
+
+WIP (Work In Progress) limits let you cap the number of tasks allowed in a status column at any time. This prevents bottlenecks and encourages your team to finish tasks before starting new ones.
+
+<Steps>
+  <Step title="Open the column settings">
+    Click the column header or the settings icon on the status column where you want to set a limit.
+  </Step>
+  <Step title="Set the WIP limit">
+    Enter a maximum number of tasks for this column. For example, setting a WIP limit of 5 on the **In Progress** column means no more than 5 tasks should be in progress at once.
+  </Step>
+</Steps>
+
+When a column exceeds its WIP limit, Beebole highlights the column header as a visual warning. You can still add tasks beyond the limit, but the warning signals that the team may be overloaded.
+
+<Info>
+  WIP limits are guidelines, not hard blocks. Beebole highlights the column but does not prevent you from moving cards into an over-limit column. This keeps your workflow flexible while encouraging discipline.
+</Info>
+
+---
+
+## Task ownership and assignment
+
+Every task can be assigned to one person. The assigned person's name and avatar appear on the task card, making it easy to see who is responsible for what at a glance.
+
+To filter the board by person, use the **Filter by person** option above the board. This is helpful when reviewing workload for a specific team member.
+
+---
+
+## Bulk operations
+
+You can perform actions on multiple tasks at once to save time:
+
+- **Select multiple cards** — Use the checkbox on each card or use **Select all** within a column.
+- **Change status** — Move all selected tasks to a different status column.
+- **Reassign** — Change the assigned person for all selected tasks.
+- **Delete** — Remove all selected tasks.
+
+<Warning>
+  Deleting tasks is permanent. Deleted tasks are removed from all views, including the [Gantt chart](/documentation/gantt) and calendar.
+</Warning>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I use the Kanban board without setting up statuses first?">
+    Beebole provides a default set of statuses (such as **To Do**, **In Progress**, and **Done**) when you create a project. You can start using the board immediately and customize statuses later.
+  </Accordion>
+  <Accordion title="Do changes on the Kanban board affect the Gantt chart?">
+    Yes. The Kanban board and [Gantt chart](/documentation/gantt) share the same task data. Changing a task's status, dates, or assignment on the board updates it everywhere.
+  </Accordion>
+  <Accordion title="Can I limit who can move tasks on the board?">
+    Yes. Use [Roles & permissions](/documentation/roles-authorisations) to control who can edit tasks. People with read-only access can view the board but cannot move cards.
+  </Accordion>
+  <Accordion title="What happens when I archive a project that has tasks on the Kanban board?">
+    Archiving a project hides it and all its tasks from active views, including the Kanban board. The data is preserved and reappears if you unarchive the project.
+  </Accordion>
+  <Accordion title="Is there a limit to the number of tasks on the Kanban board?">
+    There is no hard limit. For large projects, use filters to narrow the view by person, status, or date range.
+  </Accordion>
+</AccordionGroup>

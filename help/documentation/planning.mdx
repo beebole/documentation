@@ -1,9 +1,166 @@
 ---
-title: Planning
-description: Learn how to plan projects, assign tasks, and balance workloads with Beebole's resource planning tools.
-keywords: ["Beebole planning", "resource planning", "workload planning", "project planning", "capacity planning", "how to plan projects"]
+title: "Planning"
+description: "Plan resources, balance workloads, and track capacity across projects with Beebole's visual planning tools."
+keywords: ["beebole", "resource planning", "capacity planning", "workload management", "task planning", "project scheduling", "team allocation"]
 "og:title": "Resource Planning in Beebole"
-"og:description": "Learn how to plan projects and allocate resources effectively using Beebole."
+"og:description": "Allocate resources, balance team workloads, and compare planned vs. actual hours with Beebole's planning tools."
 "og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
+
+Beebole's planning tools help you allocate your team's time across projects and tasks before the work happens. You can see who is available, how much capacity each person has, and where scheduling conflicts exist — all in one visual interface. Planning in Beebole connects directly to your time tracking data, so you can compare what was planned against what actually happened.
+
+<Info>
+  Planning works alongside the task views ([Gantt chart](/documentation/gantt), [Kanban board](/documentation/kanban), and calendar). While those views focus on individual task management within a project, the planning view gives you a cross-project, team-wide perspective.
+</Info>
+
+---
+
+## Accessing the planning view
+
+<Steps>
+  <Step title="Open Planning">
+    Click **Planning** in the left sidebar. The planning view opens, showing your team members along the left axis and time periods across the top.
+  </Step>
+  <Step title="Select the time range">
+    Use the date controls at the top to set the period you want to plan. You can view by week, month, or a custom date range.
+  </Step>
+</Steps>
+
+---
+
+## Understanding the planning interface
+
+The planning view is a grid-based interface designed for resource allocation:
+
+- **Rows** — Each row represents a person on your team. You can expand a row to see the individual tasks and projects assigned to that person.
+- **Columns** — Each column represents a time period (day, week, or month, depending on your zoom level).
+- **Allocation blocks** — Colored blocks in the grid show how each person's time is allocated. Each block corresponds to a task or project assignment with a scheduled effort.
+- **Capacity bar** — A summary bar at the top of each person's row shows their total allocated percentage versus their available capacity.
+
+<Tip>
+  Switch between daily, weekly, and monthly views to plan at different levels of detail. Use the weekly view for sprint-level planning and the monthly view for long-term resource allocation.
+</Tip>
+
+---
+
+## Allocating resources
+
+You assign people to tasks and projects with a specific effort percentage for a given time period. This is the core action in the planning view.
+
+<Steps>
+  <Step title="Select a cell">
+    Click on the intersection of a person's row and a time period column. An allocation form opens.
+  </Step>
+  <Step title="Choose the project and task">
+    Select the **Project** and, optionally, a specific **Task** within that project. This links the allocation to a task that also appears in the [Gantt chart](/documentation/gantt) and [Kanban board](/documentation/kanban).
+  </Step>
+  <Step title="Set the effort">
+    Enter the **Effort** as a percentage of the person's available time. For example, 50% means the person is planned to spend half of their working hours on this assignment during the selected period.
+  </Step>
+  <Step title="Save the allocation">
+    Click **Save**. The allocation block appears in the grid, and the person's capacity bar updates to reflect the new commitment.
+  </Step>
+</Steps>
+
+### Editing an allocation
+
+Click any existing allocation block to modify the project, task, effort percentage, or time period. You can also drag the edges of an allocation block to extend or shorten its duration.
+
+### Removing an allocation
+
+Click an allocation block and select **Remove** to delete it. The person's capacity is freed up immediately.
+
+---
+
+## Capacity planning
+
+Capacity planning in Beebole lets you compare how much time your team is scheduled to work versus how much time is actually available. This helps you avoid overbooking and identify underutilized team members.
+
+### How capacity is calculated
+
+Beebole calculates each person's available capacity based on their [work schedule](/documentation/work-schedule) and any approved [time off](/documentation/timeoff). The planning view then compares this available capacity against the total effort allocated.
+
+| Indicator | Meaning |
+|-----------|---------|
+| **Under capacity** | The person has unallocated time available during the period |
+| **At capacity** | The person's allocations match their available hours |
+| **Over capacity** | The person is allocated more time than they have available — a scheduling conflict |
+
+<Warning>
+  Over-capacity situations are highlighted in the planning view. While Beebole does not block you from over-allocating, these warnings help you rebalance workloads before they become a problem.
+</Warning>
+
+### Comparing planned vs. actual hours
+
+One of the key benefits of planning in Beebole is the ability to compare planned effort against actual time tracked. The planning view can display:
+
+- **Planned hours** — Based on the effort percentages you set in the planning grid.
+- **Actual hours** — Based on timesheet entries your team has logged. See [Timesheets](/documentation/timesheets).
+- **Variance** — The difference between planned and actual, helping you adjust future plans.
+
+<Info>
+  Planned vs. actual comparisons are most useful after a time period has passed. Use them in retrospective reviews to improve your future planning accuracy.
+</Info>
+
+---
+
+## Workload visualization
+
+The planning view includes visual indicators that help you quickly assess team workload distribution:
+
+- **Color coding** — Allocation blocks are color-coded by project, making it easy to see how a person's time is split across different work.
+- **Capacity bars** — Each person's row includes a progress bar showing their total allocation as a percentage of available capacity. Green indicates under capacity, yellow indicates near capacity, and red indicates over capacity.
+- **Team summary** — A summary row at the top aggregates the team's overall capacity utilization for the selected period.
+
+<Tip>
+  Use the workload visualization to spot imbalances. If one person is consistently over capacity while another is under capacity, you can drag allocations between rows to rebalance the workload.
+</Tip>
+
+---
+
+## Filtering and grouping
+
+You can customize the planning view to focus on specific subsets of your team or projects:
+
+- **Filter by person** — Show only specific team members.
+- **Filter by project** — Show only allocations for selected projects.
+- **Filter by tag** — Narrow the view to people or projects with specific tags. See [Tags](/documentation/tags).
+- **Group by team** — Organize rows by team or department for a structured overview.
+
+---
+
+## How planning connects to other features
+
+Beebole's planning tools integrate with several other parts of the application:
+
+| Feature | Connection |
+|---------|-----------|
+| [Gantt chart](/documentation/gantt) | Tasks with dates and effort set in planning appear on the Gantt timeline |
+| [Kanban board](/documentation/kanban) | Task status changes on the Kanban board are reflected in planning |
+| [Timesheets](/documentation/timesheets) | Actual hours logged in timesheets are compared against planned effort |
+| [Work schedules](/documentation/work-schedule) | Available capacity is derived from each person's work schedule |
+| [Time off](/documentation/timeoff) | Approved leave reduces a person's available capacity in the planning view |
+| [Budgets](/documentation/budgets) | Planned effort can be compared against project budgets |
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Do I need to plan every task for planning to be useful?">
+    No. You can use the planning view to allocate high-level effort to projects without breaking it down into individual tasks. Detailed task-level planning is optional and depends on your team's needs.
+  </Accordion>
+  <Accordion title="What happens if someone's work schedule changes after I plan their time?">
+    Beebole recalculates their available capacity based on the updated [work schedule](/documentation/work-schedule). If the new schedule reduces their hours, previously at-capacity allocations may show as over capacity.
+  </Accordion>
+  <Accordion title="Can I plan time for someone who has not been added to a project?">
+    No. The person must be assigned to the project first. You can manage project assignments from the project settings page. See [Projects](/documentation/projects).
+  </Accordion>
+  <Accordion title="How far ahead can I plan?">
+    There is no limit to the planning horizon. You can plan weeks, months, or even quarters ahead. However, longer-term plans may need more frequent adjustments as priorities change.
+  </Accordion>
+  <Accordion title="Can managers see only their team's planning?">
+    Yes. Visibility in the planning view respects [Roles & permissions](/documentation/roles-authorisations). Managers see only the people and projects they have access to.
+  </Accordion>
+</AccordionGroup>

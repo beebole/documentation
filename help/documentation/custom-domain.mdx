@@ -1,4 +1,90 @@
 ---
 title: "Custom Domain"
-description: "Set up a custom domain for your time tracking dashboard."
+description: "Set up a custom domain for your Beebole account so your team can access time tracking at your own URL, like time.yourcompany.com."
+keywords: ["beebole", "custom domain", "branded URL", "DNS", "CNAME", "white label", "custom URL"]
+"og:title": "Custom Domain for Beebole"
+"og:description": "Set up a custom domain for your Beebole account so your team accesses time tracking at your own URL."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's custom domain feature lets you replace the default Beebole URL with your own branded address -- for example, `time.yourcompany.com`. Your team signs in at a URL that matches your company identity, while everything else works exactly the same.
+
+<Info>
+  Custom domains are available on select plans. Check your [subscription](/documentation/subscription) to confirm availability.
+</Info>
+
+---
+
+## How it works
+
+When you configure a custom domain, your team accesses Beebole through your chosen URL instead of the standard `app.beebole.com` address. This involves:
+
+1. Choosing a subdomain (e.g., `time.yourcompany.com`)
+2. Adding a DNS record that points your subdomain to Beebole
+3. Activating the custom domain in your Beebole account settings
+
+Beebole handles the SSL certificate automatically, so your custom domain is always served over HTTPS.
+
+---
+
+## Setting up a custom domain
+
+<Steps>
+  <Step title="Choose your subdomain">
+    Decide on the subdomain you want to use. A common pattern is `time.yourcompany.com` or `beebole.yourcompany.com`.
+  </Step>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account** and find the **Custom domain** section.
+  </Step>
+  <Step title="Enter your domain">
+    Type your chosen subdomain in the **Custom domain** field.
+  </Step>
+  <Step title="Configure your DNS">
+    Log in to your domain registrar or DNS provider and create a **CNAME** record pointing your subdomain to the value shown in Beebole. The exact target is displayed on the settings page.
+  </Step>
+  <Step title="Verify and activate">
+    Return to Beebole and click **Verify**. Once the DNS record is detected, your custom domain becomes active. DNS propagation can take up to 48 hours, though it typically completes within minutes.
+  </Step>
+</Steps>
+
+<Note>
+  You need access to your company's DNS settings to complete this setup. If you are unsure, ask your IT team to create the CNAME record for you.
+</Note>
+
+---
+
+## Removing a custom domain
+
+To remove your custom domain and revert to the default Beebole URL:
+
+<Steps>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account** and find the **Custom domain** section.
+  </Step>
+  <Step title="Remove the domain">
+    Clear the custom domain field and click **Save**. Your team will need to use the standard Beebole URL going forward.
+  </Step>
+  <Step title="Clean up DNS">
+    Optionally, remove the CNAME record from your DNS provider to keep your DNS configuration tidy.
+  </Step>
+</Steps>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I use a root domain instead of a subdomain?">
+    Beebole requires a subdomain (e.g., `time.yourcompany.com`). Root domains (e.g., `yourcompany.com`) are not supported because CNAME records cannot be set on root domains with most DNS providers.
+  </Accordion>
+  <Accordion title="Is the custom domain served over HTTPS?">
+    Yes. Beebole automatically provisions and renews an SSL certificate for your custom domain. All traffic is encrypted.
+  </Accordion>
+  <Accordion title="How long does DNS propagation take?">
+    DNS changes typically propagate within a few minutes, but it can take up to 48 hours in some cases. If verification fails, wait and try again later.
+  </Accordion>
+  <Accordion title="Will existing bookmarks and links to app.beebole.com still work?">
+    Yes. The standard Beebole URL continues to work even after you set up a custom domain. Your team can use either address to sign in.
+  </Accordion>
+</AccordionGroup>

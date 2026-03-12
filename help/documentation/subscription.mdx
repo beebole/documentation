@@ -1,4 +1,134 @@
 ---
-title: "Subscription"
-description: "Manage your Beebole subscription plan and upgrade options."
+title: "Subscription & Billing"
+description: "Manage your Beebole subscription, choose a pricing plan, update payment details, and access invoices through the billing portal."
+keywords: ["beebole", "subscription", "billing", "pricing", "plan", "invoice", "payment", "Stripe"]
+"og:title": "Subscription & Billing in Beebole"
+"og:description": "Manage your Beebole subscription, choose a pricing plan, update payment details, and access invoices."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's subscription and billing system lets you choose the plan that fits your team, manage payments, and access invoices -- all from within your account. Billing is powered by Stripe, so your payment information is handled securely.
+
+<Info>
+  Only administrators can manage subscription and billing settings.
+</Info>
+
+---
+
+## Pricing plans
+
+Beebole offers multiple pricing tiers to accommodate teams of different sizes and needs. All plans use seat-based pricing -- you pay per active person in your account.
+
+You can choose between two billing intervals:
+
+| Interval | Description |
+|----------|-------------|
+| **Monthly** | Pay month-to-month with no long-term commitment |
+| **Annual** | Pay once per year at a discounted rate |
+
+<Tip>
+  Switching from monthly to annual billing saves you money over time. You can change your billing interval at any time from the billing portal.
+</Tip>
+
+---
+
+## Managing your subscription
+
+<Steps>
+  <Step title="Open subscription settings">
+    Go to **Settings** > **Subscription**.
+  </Step>
+  <Step title="Review your current plan">
+    Your current plan, billing interval, number of seats, and next billing date are displayed at the top of the page.
+  </Step>
+  <Step title="Change your plan">
+    Click **Change plan** to view available tiers. Select the plan that best fits your needs and confirm.
+  </Step>
+</Steps>
+
+### Adding or removing seats
+
+Your subscription automatically adjusts as you add or remove people from your Beebole account. When you add a new person, an additional seat is billed. When you archive a person, the seat is released at the next billing cycle.
+
+### Add-ons
+
+Depending on your plan, you may have access to optional add-ons that extend Beebole's capabilities. Available add-ons are shown on your subscription page alongside your current plan.
+
+---
+
+## Invoice preview
+
+Before your next billing cycle, you can preview what your upcoming invoice will look like. This is helpful when seats have changed during the current period.
+
+To preview your next invoice, go to **Settings** > **Subscription** and look for the **Invoice preview** section. It shows a breakdown of charges including any prorated amounts for added or removed seats.
+
+---
+
+## Billing portal
+
+Beebole provides a self-service billing portal where you can:
+
+- Update your payment method (credit card or other supported methods)
+- View and download past invoices
+- Change your billing interval (monthly or annual)
+- Update your billing address and tax information
+
+<Steps>
+  <Step title="Open subscription settings">
+    Go to **Settings** > **Subscription**.
+  </Step>
+  <Step title="Open the billing portal">
+    Click **Manage billing**. This opens the Stripe-powered billing portal in a new tab.
+  </Step>
+  <Step title="Make your changes">
+    Update your payment method, download invoices, or modify your billing details as needed.
+  </Step>
+</Steps>
+
+---
+
+## Promotion codes
+
+If you have a promotion code, you can apply it to your subscription for a discount.
+
+<Steps>
+  <Step title="Open subscription settings">
+    Go to **Settings** > **Subscription**.
+  </Step>
+  <Step title="Apply a promotion code">
+    Enter your code in the **Promotion code** field and click **Apply**. The discount appears on your next invoice.
+  </Step>
+</Steps>
+
+---
+
+## Free plan
+
+Beebole offers a free plan for small teams. If your needs change, you can upgrade to a paid plan at any time. Conversely, if you downgrade, your account converts to the free plan once the current billing period ends.
+
+<Note>
+  The free plan has limitations on the number of people and available features. Check the plan comparison on your subscription page for details.
+</Note>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How does seat-based pricing work in Beebole?">
+    Beebole charges per active person in your account. When you add someone, a new seat is billed (prorated for the current period). When you archive someone, the seat is released at the next billing cycle.
+  </Accordion>
+  <Accordion title="Can I switch between monthly and annual billing?">
+    Yes. Go to **Settings** > **Subscription** and open the billing portal. You can switch your billing interval at any time. If you switch from monthly to annual, the change takes effect at the start of your next billing cycle.
+  </Accordion>
+  <Accordion title="Where can I find my invoices?">
+    Open the billing portal from **Settings** > **Subscription** > **Manage billing**. All past invoices are available for download there.
+  </Accordion>
+  <Accordion title="What happens if my payment fails?">
+    Beebole retries failed payments automatically. If the issue persists, you receive an email notification asking you to update your payment method. Your account remains accessible during this grace period.
+  </Accordion>
+  <Accordion title="Can I cancel my subscription at any time?">
+    Yes. You can cancel from the billing portal. Your account remains active until the end of the current billing period, after which it converts to the free plan.
+  </Accordion>
+</AccordionGroup>

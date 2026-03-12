@@ -1,12 +1,14 @@
 ---
 title: "Linear"
-description: "Integrate Beebole with Linear to import your projects and issues for time tracking. Sync your Linear workspace automatically with Beebole."
+description: "Import Linear projects and issues into Beebole for time tracking. Sync your Linear workspace automatically with Beebole."
 keywords: ["beebole", "linear", "integration", "project management", "issue tracking", "time tracking", "task sync"]
+"og:title": "Beebole Linear Integration"
+"og:description": "Import Linear projects and issues into Beebole for time tracking with automatic sync."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
 
-## Integration overview
-
-Beebole's Linear integration imports your Linear projects, issues, and team members into Beebole so your employees can track time against their Linear work. The integration keeps your Linear workspace and Beebole account in sync automatically — when a project or issue is created or renamed in Linear, the change is reflected in Beebole.
+Beebole's Linear integration imports your Linear projects, issues, and team members into Beebole so your employees can track time against their Linear work. The integration keeps your Linear workspace and Beebole account in sync automatically -- when a project or issue is created or renamed in Linear, the change is reflected in Beebole.
 
 You can import your Linear structure into Beebole's **Projects and activities** for time tracking with costs, billing, and expenses, or into **Planning and tasks** for resource assignment.
 
@@ -22,15 +24,19 @@ erDiagram
     }
 ```
 
-### Subscription requirements
+---
 
-<Info>The Linear integration is available on Pro and Enterprise plans. You need administrative privileges in both Linear and Beebole before starting.</Info>
+## Subscription requirements
+
+<Info>The Linear integration is available on Pro and Enterprise plans. You need administrative privileges in both Linear and Beebole to set up the integration.</Info>
 
 | What syncs from Linear | What stays in Beebole |
 |---|---|
 | **Projects:** Imported as Beebole projects or tasks. | **Approval workflows:** Beebole handles the timesheet lifecycle. |
 | **Issues:** Imported as Beebole sub-projects or sub-tasks. | **Billing rates:** Managed exclusively in Beebole. |
 | **Members:** Linear active members are mapped as Beebole people. | **Budgets:** Set within Beebole's financial module. |
+
+---
 
 ## What's included
 
@@ -48,6 +54,8 @@ erDiagram
   </Accordion>
 </AccordionGroup>
 
+---
+
 ## Step-by-step configuration
 
 <Steps>
@@ -61,8 +69,8 @@ erDiagram
   <Step title="Configure integration parameters">
     Once connected, configure the following options:
 
-    - **Where to import your tasks** — Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
-    - **Default role for imported employees** — Select the role to assign to Linear members when they are imported into Beebole.
+    - **Where to import your tasks** -- Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
+    - **Default role for imported employees** -- Select the role to assign to Linear members when they are imported into Beebole.
 
     ![Beebole Linear integration parameters](/help/images/integrations/linear-params.webp)
 
@@ -76,7 +84,7 @@ erDiagram
     Once complete, the integration is active. All future changes in Linear are automatically reflected in Beebole.
   </Step>
   <Step title="Validate the integration">
-    Click the **Projects** icon in the left menu to open the Projects page. Expand the categories — you should see a new category called **Linear** containing all your imported projects and issues. You can rename this category if needed.
+    Click the **Projects** icon in the left menu to open the Projects page. Expand the categories -- you should see a new category called **Linear** containing all your imported projects and issues. You can rename this category if needed.
 
     ![Beebole projects page showing imported Linear category](/help/images/integrations/linear-validate.webp)
   </Step>
@@ -85,6 +93,8 @@ erDiagram
   </Step>
 </Steps>
 
+---
+
 ## Disabling the integration
 
 <Warning>If you disable the integration, any future changes made in Linear will no longer sync to Beebole. Previously imported data remains in Beebole as local records.</Warning>
@@ -92,6 +102,8 @@ erDiagram
 To disable the integration, go to **Settings** > **Integrations** > **Linear** and toggle the integration off. You can re-enable it at any time to resume syncing.
 
 To disconnect your Linear account entirely, click **Reset connection**.
+
+---
 
 ## Frequently asked questions
 

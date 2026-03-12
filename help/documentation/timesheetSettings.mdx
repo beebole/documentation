@@ -1,4 +1,160 @@
 ---
 title: "Timesheet Settings"
-description: "Configure timesheet settings to match exactly how your team works and avoid errors and discrepancies."
+description: "Configure how your team enters time in Beebole. Set duration formats, entry rules, reminders, feature toggles, and default periodicity."
+keywords: ["Beebole timesheet settings", "time entry settings", "duration format", "timesheet configuration", "time tracking settings", "beebole settings", "beebole"]
+"og:title": "Configuring Timesheet Settings in Beebole"
+"og:description": "Set up duration formats, entry rules, reminders, and feature toggles for your team's timesheets in Beebole."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole's timesheet settings let you control exactly how your team records time. From choosing a duration format to enabling features like timers and work-from-home flags, these settings shape the timesheet experience for everyone in your account.
+
+<Info>
+  Timesheet settings are account-wide and apply to all users. Only administrators can change them. Go to **Settings** > **Time entry** to access these options.
+</Info>
+
+---
+
+## Accessing timesheet settings
+
+<Steps>
+  <Step title="Open Settings">
+    Click **Settings** in the left sidebar.
+  </Step>
+  <Step title="Go to Time entry settings">
+    Select the **Time entry** section. All timesheet configuration options are listed here.
+  </Step>
+</Steps>
+
+---
+
+## Default periodicity
+
+Choose whether timesheets display as a **weekly** or **daily** view by default. This affects the layout your team sees when they open their timesheet.
+
+| Option | Description |
+|--------|-------------|
+| **Weekly** | A grid showing Monday through Sunday (or your configured week start day). Best for teams that enter time at the end of each day or week. |
+| **Daily** | A single-day view focused on one day at a time. Best for teams that track time throughout the day with start/end times. |
+
+---
+
+## Duration format
+
+Configure how time values are displayed and entered across the account.
+
+| Format | Example | Description |
+|--------|---------|-------------|
+| **Hours and minutes (hh:mm)** | `7:30` | Standard hours-and-minutes notation |
+| **Decimal hours** | `7.5` | Hours expressed as a decimal number |
+| **Days** | `1` or `0.5` | Time expressed as full or partial workdays |
+| **Percentage** | `100%` | Time expressed as a percentage of the scheduled workday |
+
+<Tip>
+  Choose the format that matches how your team thinks about time. Consulting firms often prefer decimal hours for invoicing, while manufacturing or shift-based teams may prefer hh:mm.
+</Tip>
+
+---
+
+## Time format: 12-hour or 24-hour
+
+When using start/end time entry, choose between a **12-hour** (AM/PM) or **24-hour** clock format. This setting affects how times are displayed and entered throughout the application.
+
+---
+
+## Duration vs. start/end times
+
+Choose whether your team enters time as:
+
+- **Duration** -- A single value representing how long they worked (e.g., `3:00` or `3.0`).
+- **Start and end times** -- The specific times they began and finished (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
+
+<Note>
+  Start/end mode provides more granular data and is useful for teams that need to track exactly when work happens, not just how long it takes.
+</Note>
+
+---
+
+## Feature toggles
+
+Beebole lets you enable or disable specific timesheet features to keep the interface clean and relevant for your team.
+
+| Feature | What it does |
+|---------|--------------|
+| **Timer** | Lets users start/stop a real-time timer on timesheet rows. See [Timesheets](/documentation/timesheets). |
+| **Work from home** | Adds a toggle on time entries to flag remote work days. |
+| **Non-billable flag** | Allows users to mark individual entries as non-billable. |
+| **Comments** | Enables a comment field on each time entry. |
+| **Row pinning** | Lets users pin frequently used project/task rows to their timesheet. |
+| **Copy previous week** | Adds a button to duplicate last week's timesheet structure. |
+
+<Tip>
+  Disable features your team doesn't use to reduce visual clutter. You can always enable them later without losing any data.
+</Tip>
+
+---
+
+## Auto-submit
+
+Auto-submit automatically submits timesheets for [approval](/documentation/approval) after a configurable number of days. This ensures timesheets enter the approval pipeline even if a team member forgets to submit manually.
+
+<Steps>
+  <Step title="Enable auto-submit">
+    In **Settings** > **Time entry**, toggle **Auto-submit** on.
+  </Step>
+  <Step title="Set the delay">
+    Choose the number of days after the end of a period before auto-submit triggers. For example, setting it to 3 means a weekly timesheet ending on Sunday is auto-submitted on Wednesday.
+  </Step>
+</Steps>
+
+<Warning>
+  Auto-submitted timesheets may contain incomplete data. Pair auto-submit with [timesheet reminders](#timesheet-reminders) so team members are notified before the deadline.
+</Warning>
+
+---
+
+## Timesheet reminders
+
+Configure email reminders to notify team members when their timesheets are incomplete or not yet submitted.
+
+| Setting | Description |
+|---------|-------------|
+| **Reminder day** | The day of the week when reminders are sent |
+| **Reminder target** | Who receives the reminder: people with unfilled timesheets, unsubmitted timesheets, or both |
+
+Reminders help reduce late submissions and ensure your approval pipeline stays on schedule.
+
+---
+
+## Entry rules and validation
+
+Beebole can enforce rules on time entries to prevent errors:
+
+- **Minimum/maximum hours per day** -- Set boundaries on how much time can be logged in a single day.
+- **Required fields** -- Make comments or specific custom fields mandatory before saving.
+- **Overtime warnings** -- Alert users when entries exceed their scheduled hours.
+
+These rules are optional and can be adjusted to match your organization's policies.
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I change the duration format after my team has started tracking time?">
+    Yes. Changing the format updates how values are displayed going forward. Existing time data is preserved and converted to the new format automatically.
+  </Accordion>
+  <Accordion title="Can different people use different duration formats?">
+    No. The duration format is an account-wide setting that applies to all users. This ensures consistency across reports and approvals.
+  </Accordion>
+  <Accordion title="What happens if I disable a feature like comments after people have used it?">
+    Existing comments are preserved in the database and remain visible in reports. Users simply can no longer add new comments until the feature is re-enabled.
+  </Accordion>
+  <Accordion title="Can I set different rules for different teams?">
+    Timesheet settings apply to the entire account. However, you can use [Assignments](/documentation/assignments) and [Tags](/documentation/tags) to control which projects and tasks are available to different teams.
+  </Accordion>
+  <Accordion title="How do I change the first day of the week?">
+    Go to **Settings** > **Time entry** and update the **Week starts on** option. This changes the column order in the weekly timesheet view for all users.
+  </Accordion>
+</AccordionGroup>
