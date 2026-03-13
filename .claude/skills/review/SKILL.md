@@ -26,7 +26,7 @@ For each target page, read the full `.mdx` file. Also read the corresponding FR 
 
 ### 2. Run all checks
 
-Perform every check below on the English page. For FR/ES versions, only run checks 2.6 and 2.7.
+Perform every check below on the English page.
 
 #### 2.1 Spelling and grammar
 - Scan for spelling errors, typos, and grammatical mistakes
