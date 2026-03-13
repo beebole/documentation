@@ -8,7 +8,7 @@
 
 ---
 
-<!-- Core Workflows -->
+{/* Core Workflows */}
 
 ## 1. Time Tracking
 
@@ -65,7 +65,7 @@
 - **Expense records** — Log expenses with amounts, dates, and descriptions
 - **Budget tracking for expenses** — Monitor spending against budgets
 
-<!-- Entity Management -->
+{/* Entity Management */}
 
 ## 5. People Management
 
@@ -125,7 +125,7 @@
 - **Tag inheritance** — Schedules, rates, and properties cascade through tag hierarchy
 - **Billing & cost rates per tag** — Set rates at the tag/department level
 
-<!-- Configuration -->
+{/* Configuration */}
 
 ## 9. Billing & Cost Tracking
 
@@ -173,7 +173,7 @@
 - **12/24 hour time format**
 - **Organisation deletion** — Permanently remove an organisation and all its data
 
-<!-- Platform & Tools -->
+{/* Platform & Tools */}
 
 ## 14. Reporting & Analytics
 
@@ -227,7 +227,7 @@
 
 - **GraphQL API** — Full programmatic API for querying and mutating Beebole data, aimed at developers and API consumers
 
-<!-- Account & Security -->
+{/* Account & Security */}
 
 ## 19. Authentication & Security
 
@@ -269,7 +269,7 @@
 - **Demo request option**
 - **Invitation system** — Invite team members via email with expiration
 
-<!-- User Interface -->
+{/* User Interface */}
 
 ## 23. UI & User Experience
 
@@ -290,7 +290,7 @@
 - **Breadcrumb navigation** — Hierarchical entity paths
 - **Installable web app (PWA)** — Install Beebole as an app on your device from the browser
 
-<!-- Planned -->
+{/* Planned */}
 
 ## 24. AI Assistant (planned)
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
-  "name": "Beebole Help Center",
+  "name": "Beebole Documentation",
   "seo": {
     "metatags": {
       "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
@@ -56,12 +56,11 @@
                 ]
               },
               {
-                "group": "Entities",
+                "group": "Manage",
                 "pages": [
                   "help/documentation/projects",
                   "help/documentation/people",
-                  "help/documentation/tags",
-                  "help/documentation/journal"
+                  "help/documentation/tags"
                 ]
               },
               {
@@ -73,7 +72,7 @@
                 ]
               },
               {
-                "group": "Planning",
+                "group": "Tasks & Planning",
                 "pages": [
                   "help/documentation/planning",
                   "help/documentation/gantt",
@@ -113,7 +112,13 @@
                   "help/documentation/work-schedule",
                   "help/documentation/custom-fields",
                   "help/documentation/roles-authorisations",
-                  "help/documentation/assignments",
+                  "help/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Communication",
+                "pages": [
+                  "help/documentation/journal",
                   "help/documentation/notifications"
                 ]
               },
@@ -233,12 +238,11 @@
                 ]
               },
               {
-                "group": "Entités",
+                "group": "Gérer",
                 "pages": [
                   "help/fr/documentation/projects",
                   "help/fr/documentation/people",
-                  "help/fr/documentation/tags",
-                  "help/fr/documentation/journal"
+                  "help/fr/documentation/tags"
                 ]
               },
               {
@@ -250,7 +254,7 @@
                 ]
               },
               {
-                "group": "Planification",
+                "group": "Tâches & Planification",
                 "pages": [
                   "help/fr/documentation/planning",
                   "help/fr/documentation/gantt",
@@ -290,7 +294,13 @@
                   "help/fr/documentation/work-schedule",
                   "help/fr/documentation/custom-fields",
                   "help/fr/documentation/roles-authorisations",
-                  "help/fr/documentation/assignments",
+                  "help/fr/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Communication",
+                "pages": [
+                  "help/fr/documentation/journal",
                   "help/fr/documentation/notifications"
                 ]
               },
@@ -410,12 +420,11 @@
                 ]
               },
               {
-                "group": "Entidades",
+                "group": "Gestionar",
                 "pages": [
                   "help/es/documentation/projects",
                   "help/es/documentation/people",
-                  "help/es/documentation/tags",
-                  "help/es/documentation/journal"
+                  "help/es/documentation/tags"
                 ]
               },
               {
@@ -427,7 +436,7 @@
                 ]
               },
               {
-                "group": "Planificación",
+                "group": "Tareas & Planificación",
                 "pages": [
                   "help/es/documentation/planning",
                   "help/es/documentation/gantt",
@@ -467,7 +476,13 @@
                   "help/es/documentation/work-schedule",
                   "help/es/documentation/custom-fields",
                   "help/es/documentation/roles-authorisations",
-                  "help/es/documentation/assignments",
+                  "help/es/documentation/assignments"
+                ]
+              },
+              {
+                "group": "Comunicación",
+                "pages": [
+                  "help/es/documentation/journal",
                   "help/es/documentation/notifications"
                 ]
               },

@@ -1,4 +1,4 @@
-# Beebole Help Center
+# Beebole Documentation
 
 Documentation website for [Beebole](https://beebole.com), powered by [Mintlify](https://mintlify.com).
 

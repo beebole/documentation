@@ -1,20 +1,309 @@
 ---
 title: "FAQ"
-description: "Frequently asked questions about subscriptions, features, and pricing"
+description: "Frequently asked questions about Beebole — timesheets, projects, time off, reports, billing, integrations, and more."
+keywords: ["beebole", "faq", "frequently asked questions", "help", "time tracking", "timesheet", "projects", "billing"]
 ---
 
-## Subscription
+## Getting started
+
+<AccordionGroup>
+  <Accordion title="Is there a limit to how many projects or team members I can add during the trial?">
+    Your trial gives you full access to Beebole with no feature restrictions. You can add as many projects and people as you need to properly evaluate the tool. Contact support@beebole.com if you have any questions about trial limits.
+  </Accordion>
+
+  <Accordion title="Do I need to set up everything before my team can start tracking time?">
+    You need at least one project and one person. Tags are optional but recommended — they unlock powerful reporting capabilities. See the [Quickstart](/help/documentation/quickstart) for the minimum setup.
+  </Accordion>
+
+  <Accordion title="Can I add multiple people at once instead of one by one?">
+    Yes. In the **People** module, use the **Import** option to paste a list of names and email addresses directly from a spreadsheet. Beebole processes the entire list at once.
+  </Accordion>
+
+  <Accordion title="What's the difference between a project and a category?">
+    A category is a top-level grouping — typically a client name or department. Projects sit inside categories and represent the specific work being tracked. You can also add activities inside projects for even more granular breakdowns. None of these levels are required; use whichever depth makes sense for your team.
+  </Accordion>
+
+  <Accordion title="Will my team members see each other's time entries?">
+    By default, employees can only see their own timesheet. Managers can see the timesheets of people assigned to them. Admins have visibility across the entire account. You can fine-tune these permissions in **Settings** > **Roles**. See [Roles & permissions](/help/documentation/roles-authorisations).
+  </Accordion>
+</AccordionGroup>
+
+## Subscription & pricing
 
 <AccordionGroup>
   <Accordion title="What is a seat?">
     A seat represents one active person in your Beebole account. Your subscription is based on the number of seats you use — you pay per active person. When you add someone, an additional seat is billed. When you archive someone, the seat is released at the next billing cycle.
   </Accordion>
 
-  <Accordion title="How much does Beebole cost?">
-    Beebole offers seat-based pricing with monthly and annual billing options. Annual billing provides a discount compared to monthly payments. Visit the [Subscription & Billing](/help/documentation/subscription) page for details on pricing plans and how to manage your subscription.
+  <Accordion title="Can I switch between monthly and annual billing?">
+    Yes. Go to **Settings** > **Subscription** and open the billing portal. You can switch your billing interval at any time. If you switch from monthly to annual, the change takes effect at the start of your next billing cycle.
   </Accordion>
 
-  <Accordion title="Can I try Beebole before subscribing?">
-    Yes. Beebole offers a free trial with full access to all features. You can add as many projects and people as you need to properly evaluate the tool during the trial period. Contact support@beebole.com if you have any questions about trial limits.
+  <Accordion title="What happens if my payment fails?">
+    Beebole retries failed payments automatically. If the issue persists, you receive an email notification asking you to update your payment method. Your account remains accessible during this grace period.
+  </Accordion>
+
+  <Accordion title="Can I cancel my subscription at any time?">
+    Yes. You can cancel from the billing portal. Your account remains active until the end of the current billing period, after which it converts to the free plan. See [Subscription & billing](/help/documentation/subscription).
+  </Accordion>
+</AccordionGroup>
+
+## Timesheets & time entry
+
+<AccordionGroup>
+  <Accordion title="Can I track time on my phone?">
+    Yes. Beebole is a Progressive Web App (PWA) that you install directly from your browser — no app store download required. You can enter time, start timers, and submit timesheets from your phone. See [Mobile](/help/documentation/mobile).
+  </Accordion>
+
+  <Accordion title="What happens if I forget to fill in my timesheet?">
+    If reminders are enabled, Beebole sends you an email notification. If auto-submit is configured, your timesheet is submitted automatically after the deadline — even if incomplete. See [Notifications](/help/documentation/notifications).
+  </Accordion>
+
+  <Accordion title="Can I enter time for a past week?">
+    Yes. Use the navigation arrows to go to a previous week and enter or edit your time. However, if that week's timesheet has already been approved, you may need your approver to reopen it first.
+  </Accordion>
+
+  <Accordion title="How do I change the timesheet from weekly to daily view?">
+    Your administrator sets the default view in **Timesheet settings**. If your account allows it, you can switch between views using the toggle at the top of the timesheet page. See [Timesheet settings](/help/documentation/timesheetSettings).
+  </Accordion>
+
+  <Accordion title="Can I change the duration format after my team has started tracking time?">
+    Yes. Changing the format updates how values are displayed going forward. Existing time data is preserved and converted to the new format automatically.
+  </Accordion>
+
+  <Accordion title="Can different people use different duration formats?">
+    No. The duration format is an account-wide setting that applies to all users. This ensures consistency across reports and approvals.
+  </Accordion>
+</AccordionGroup>
+
+## Projects & organization
+
+<AccordionGroup>
+  <Accordion title="Is there a limit to how many levels I can nest?">
+    No. Beebole supports unlimited nesting depth for projects. However, for the best user experience, we recommend keeping it under four levels. See [Projects](/help/documentation/projects).
+  </Accordion>
+
+  <Accordion title="What's the difference between a sub-project and a task?">
+    Sub-projects are part of the project hierarchy — they represent a subdivision of a larger project and are used for time tracking. Tasks are independent planning entities with their own properties like status, owner, dependencies, and effort tracking. Tasks can be linked to projects but exist separately, and are managed visually on the [Gantt chart](/help/documentation/gantt) and [Kanban board](/help/documentation/kanban).
+  </Accordion>
+
+  <Accordion title="What's the difference between tags and project categories?">
+    Project categories are part of the project hierarchy — they group projects together structurally. Tags are a separate, cross-cutting dimension that can be applied to both people and projects. Use categories for your project structure; use tags for organizational dimensions like departments or locations. See [Tags](/help/documentation/tags).
+  </Accordion>
+
+  <Accordion title="Can a person or project have multiple tags?">
+    Yes. A person can belong to multiple tag groups (e.g., tagged as both "Engineering" and "London Office"), and a project can be tagged similarly.
+  </Accordion>
+
+  <Accordion title="Can I restrict which employees see certain projects?">
+    Yes. You can control project visibility through [Assignments](/help/documentation/assignments) and [Roles & permissions](/help/documentation/roles-authorisations).
+  </Accordion>
+
+  <Accordion title="Can I change my structure after my team has started tracking time?">
+    Yes. You can reorganize projects, update tags, and change rates at any time. Historical time entries are preserved. However, structural changes may affect how existing data appears in filtered reports.
+  </Accordion>
+</AccordionGroup>
+
+## People & permissions
+
+<AccordionGroup>
+  <Accordion title="What happens when someone leaves the company?">
+    Archive their profile instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription. See [People](/help/documentation/people).
+  </Accordion>
+
+  <Accordion title="Can one person have multiple roles?">
+    No. Each person is assigned exactly one role. If someone needs a combination of permissions, create a custom role that includes everything they need. See [Roles & permissions](/help/documentation/roles-authorisations).
+  </Accordion>
+
+  <Accordion title="What is the difference between assignments and role permissions?">
+    Roles control what a person can do — view data, edit timesheets, approve requests. Assignments control what items are visible — which projects, tasks, absence types, and expense types appear on a person's timesheet. Both work together to shape each person's experience. See [Assignments](/help/documentation/assignments).
+  </Accordion>
+
+  <Accordion title="Do permission changes take effect immediately?">
+    Yes. When you save changes to a role, every person assigned to that role sees the updated access immediately — no logout or refresh required.
+  </Accordion>
+
+  <Accordion title="Can I sign in as another user for troubleshooting?">
+    Yes. Administrators can use the **Admin takeover** feature to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
+  </Accordion>
+</AccordionGroup>
+
+## Time off, holidays & schedules
+
+<AccordionGroup>
+  <Accordion title="Can I set different time-off allowances for different people?">
+    Yes. You can override the default quota for any person from their profile under **People**. Individual quotas take priority over the default allowance set on the absence type. See [Time off](/help/documentation/timeoff).
+  </Accordion>
+
+  <Accordion title="What happens when someone exceeds their time-off balance?">
+    It depends on your configuration. If negative balances are allowed, the person can continue booking time off and their balance shows a negative number. If restricted, Beebole blocks the entry.
+  </Accordion>
+
+  <Accordion title="How do accruals work with time-off quotas?">
+    Accrual policies automatically add time to a person's quota on a recurring schedule. This is useful for organizations where leave accumulates over time rather than being granted all at once. See [Accruals](/help/documentation/accruals).
+  </Accordion>
+
+  <Accordion title="Do public holidays count against a person's time-off balance?">
+    No. Public holidays are separate from absence types like vacation or sick leave. They reduce the expected working hours for a period but do not consume any time-off quota. See [Public holidays](/help/documentation/public-holidays).
+  </Accordion>
+
+  <Accordion title="Can I have different holiday calendars for different offices?">
+    Yes. Use tags to assign country-specific holiday calendars to groups of people. For example, assign the US calendar to everyone tagged "US Office" and the UK calendar to everyone tagged "UK Office".
+  </Accordion>
+
+  <Accordion title="Can I have different schedules for different teams?">
+    Yes. Beebole supports multiple work schedules. Create a schedule for each team or work pattern and assign them using tags or individual person profiles. See [Work schedules](/help/documentation/work-schedule).
+  </Accordion>
+
+  <Accordion title="Do schedules affect time-off calculations?">
+    Yes. When a person takes a day off, Beebole deducts the number of hours defined in their schedule for that day. A person scheduled for 6 hours on Fridays uses 6 hours of leave when taking a Friday off.
+  </Accordion>
+</AccordionGroup>
+
+## Approvals & notifications
+
+<AccordionGroup>
+  <Accordion title="Can I approve timesheets on my phone?">
+    Yes. The approval interface works on mobile devices, and you can also approve directly from email notifications. See [Approvals](/help/documentation/approval).
+  </Accordion>
+
+  <Accordion title="What happens if an approver leaves the company?">
+    If the approver is removed or archived, Beebole's dynamic approver discovery selects the next eligible approver based on the stage's approver type. For "Specific people" stages, an administrator should update the configuration.
+  </Accordion>
+
+  <Accordion title="Is there an audit trail for approvals?">
+    Yes. Beebole records every approval action — who approved or rejected, when, and with what comments. This history is available on the timesheet and in the account-wide [audit trail](/help/documentation/audit-trail).
+  </Accordion>
+
+  <Accordion title="Can I turn off all email notifications?">
+    Yes. In your notification preferences, disable email for each event type. You will still see notifications in the in-app [Journal](/help/documentation/journal).
+  </Accordion>
+
+  <Accordion title="Can I respond to approval notifications by email?">
+    Yes. Beebole's approval notification emails include action buttons to approve or reject timesheets directly. You can also reply to journal messages via email.
+  </Accordion>
+</AccordionGroup>
+
+## Planning & task management
+
+<AccordionGroup>
+  <Accordion title="Do I need to plan every task for planning to be useful?">
+    No. You can use the planning view to allocate high-level effort to projects without breaking it down into individual tasks. Detailed task-level planning is optional and depends on your team's needs. See [Planning](/help/documentation/planning).
+  </Accordion>
+
+  <Accordion title="Can I plan time for someone who has not been added to a project?">
+    No. The person must be assigned to the project first. You can manage project assignments from the project settings page.
+  </Accordion>
+
+  <Accordion title="How does the Gantt chart relate to the Kanban board?">
+    Both views display the same tasks. The [Kanban board](/help/documentation/kanban) organizes tasks by status, while the [Gantt chart](/help/documentation/gantt) organizes them by timeline. Changes made in one view are immediately reflected in the other.
+  </Accordion>
+
+  <Accordion title="Can I set dependencies across different projects?">
+    No. Task dependencies are scoped to a single project. If you need to coordinate work across projects, use the [Planning](/help/documentation/planning) view for a cross-project overview.
+  </Accordion>
+
+  <Accordion title="Can I limit who can move tasks on the Kanban board?">
+    Yes. Use [Roles & permissions](/help/documentation/roles-authorisations) to control who can edit tasks. People with read-only access can view the board but cannot move cards.
+  </Accordion>
+</AccordionGroup>
+
+## Reports & data exports
+
+<AccordionGroup>
+  <Accordion title="Why do I see different data than my colleague in the same report?">
+    Reports respect user permissions. Each person only sees data for the projects and people they are authorized to access. An admin sees all data, while a team leader sees only their team's entries. See [Reports](/help/documentation/reports).
+  </Accordion>
+
+  <Accordion title="Can I include custom fields in my reports?">
+    Yes. Any [custom field](/help/documentation/custom-fields) you create is available as both a column and a filter in reports. This lets you slice data by project type, region, priority, or any other custom attribute.
+  </Accordion>
+
+  <Accordion title="Can I share saved reports with other users?">
+    Saved reports are available to all users who have access to the reports area. Each user sees the same templates but only the data their permissions allow. See [Custom reports](/help/documentation/custom-reports).
+  </Accordion>
+
+  <Accordion title="Do archived projects appear in reports?">
+    Yes. Archived projects and their time entries are fully available in reports. Archiving only removes a project from active timesheets, not from historical data.
+  </Accordion>
+
+  <Accordion title="How is the Google Sheets add-on different from downloading a CSV export?">
+    The add-on maintains a live connection to your Beebole account. You configure the query once and refresh data on demand. With CSV [exports](/help/documentation/data-exports), you download a static file each time and import it manually. See [Google Sheets add-on](/help/documentation/gsheets-addon).
+  </Accordion>
+
+  <Accordion title="Can I schedule reports to run automatically?">
+    Beebole supports exporting report data on demand. For automated workflows, use the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon) to refresh data in your spreadsheets.
+  </Accordion>
+</AccordionGroup>
+
+## Billing rates, costs & budgets
+
+<AccordionGroup>
+  <Accordion title="What's the difference between billing rates and cost rates?">
+    In Beebole, billing rates represent what you charge (revenue). Cost rates represent what it costs you internally (expenses). The difference is your margin. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs).
+  </Accordion>
+
+  <Accordion title="Can I set different rates for the same person on different projects?">
+    Yes. Use project-level rate splits by person. The project rate takes priority over the person's default rate.
+  </Accordion>
+
+  <Accordion title="If I set a billing rate on a tag and a different rate on a project, which one applies?">
+    The project rate takes priority. Beebole resolves rates in this order: person > project > tag > organisation. The most specific rate always wins.
+  </Accordion>
+
+  <Accordion title="Does Beebole alert me when a budget is exceeded?">
+    Budget consumption is visible in reports and project settings. You can monitor progress proactively through saved reports. See [Budgets](/help/documentation/budgets).
+  </Accordion>
+
+  <Accordion title="Do expenses count toward project budgets?">
+    Yes. When cost budgets are configured on a project, expense amounts contribute to the budget consumption alongside labor costs. See [Expenses](/help/documentation/expenses).
+  </Accordion>
+</AccordionGroup>
+
+## Integrations
+
+<AccordionGroup>
+  <Accordion title="Where do I find integrations in Beebole?">
+    All integrations are managed from **Settings** > **Integrations** in your Beebole account. You need administrative privileges to access this page. See [Integrations](/help/integrations/introduction).
+  </Accordion>
+
+  <Accordion title="Can I use multiple integrations at the same time?">
+    Yes. You can enable multiple integrations simultaneously. For example, you can import projects from Asana, sync your Google Calendar, and export data to QuickBooks all at once.
+  </Accordion>
+
+  <Accordion title="What happens to my data if I disable an integration?">
+    Disabling an integration stops future data syncing, but all previously imported data (projects, tasks, people) remains in Beebole as local records. You can re-enable the integration at any time to resume syncing.
+  </Accordion>
+
+  <Accordion title="Does Beebole modify my Google or Outlook calendar?">
+    No. Beebole accesses your calendar in read-only mode. It cannot create, edit, or delete events in your calendar. See [Google Calendar](/help/integrations/google-calendar) and [Microsoft Calendar](/help/integrations/microsoft-calendar).
+  </Accordion>
+
+  <Accordion title="Can I build my own integration with Beebole?">
+    Yes. Beebole provides a [GraphQL API](/help/integrations/custom-integrations) that you can use to build custom integrations with any tool or internal system.
+  </Accordion>
+</AccordionGroup>
+
+## Account & security
+
+<AccordionGroup>
+  <Accordion title="Can I use multiple sign-in methods at the same time?">
+    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey — all active simultaneously. They can use whichever is most convenient. See [Authentication](/help/documentation/authentication).
+  </Accordion>
+
+  <Accordion title="Do feature toggles delete existing data when I disable a module?">
+    No. Disabling a module in Beebole hides it from the interface but preserves all existing data. If you re-enable the module later, your data will still be there. See [Account settings](/help/documentation/account-settings).
+  </Accordion>
+
+  <Accordion title="How far back does the audit trail go?">
+    The Beebole audit trail retains records for the lifetime of your account. You can view historical changes going back to when your organisation was created. See [Audit trail](/help/documentation/audit-trail).
+  </Accordion>
+
+  <Accordion title="Can I use a custom domain for my Beebole account?">
+    Yes. You can set up a subdomain like `time.yourcompany.com` that points to your Beebole account. The standard Beebole URL continues to work alongside it. See [Custom domain](/help/documentation/custom-domain).
+  </Accordion>
+
+  <Accordion title="Does Beebole store my Google or Microsoft password?">
+    No. Beebole never sees or stores your password. Authentication happens entirely through the provider's secure OAuth flow. Beebole only receives confirmation that you authenticated successfully.
   </Accordion>
 </AccordionGroup>

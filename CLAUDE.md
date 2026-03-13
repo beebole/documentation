@@ -1,8 +1,8 @@
-# Beebole Help Center - Documentation
+# Beebole Documentation
 
 ## What is this project?
 
-This is the **Beebole Help Center**, a Mintlify-powered documentation website for [Beebole](https://beebole.com), a project time tracking application available at [app.beebole.com](https://app.beebole.com).
+This is the **Beebole Documentation**, a Mintlify-powered documentation website for [Beebole](https://beebole.com), a project time tracking application available at [app.beebole.com](https://app.beebole.com).
 
 This is **functional documentation** (not technical), except for the API section, aimed at helping end users understand and use Beebole.
 
