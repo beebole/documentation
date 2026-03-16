@@ -1,16 +1,17 @@
 ---
 name: generate-faqs
-description: Detect documentation pages missing FAQ sections and generate them with 3-5 Q&A pairs per page
-disable-model-invocation: true
+description: "Detect documentation pages missing FAQ sections and generate them with 3-5 Q&A pairs per page. Use when asked to generate FAQs, add FAQ sections, check for missing FAQs, or improve pages for GEO and AI discoverability."
 ---
 
 # Generate FAQs
 
 Detect documentation pages missing FAQ sections and generate them.
 
-## When to use
+## Context
 
-When the user asks to "generate FAQs", "add FAQs", "check for missing FAQs", or similar.
+Before generating FAQs, read these context files:
+- `.claude/context/brand.md` — voice, tone, and entity attribution rules
+- `.claude/context/seo-geo.md` — GEO patterns (FAQs are highest GEO value)
 
 ## Workflow
 
@@ -18,6 +19,7 @@ When the user asks to "generate FAQs", "add FAQs", "check for missing FAQs", or 
    ```bash
    bash scripts/generate-faq.sh
    ```
+   If the script fails, verify it exists and is executable (`chmod +x scripts/generate-faq.sh`), then retry.
 
 2. Parse the JSON output. For each file in the `missing_faq` array:
    - Read the full English page
@@ -55,6 +57,7 @@ Use `<AccordionGroup>` with `<Accordion>` items. Follow the FAQ conventions in C
 - **Do not duplicate step-by-step instructions.** The FAQ answers questions *about* the feature; the page body explains *how to use* it.
 - **Use the same UI labels and bold formatting** as the rest of the page.
 - **Translate FAQs** into FR and ES with natural, idiomatic questions — not literal translations.
+- **API pages are exempt.** Pages under `help/api/` do not need FAQ sections.
 
 ## Report
 

@@ -1,16 +1,21 @@
 ---
 name: draft
-description: Turn raw input (dictation, notes, feature description) into a complete Beebole documentation page through an interactive, collaborative process with checkpoints
-disable-model-invocation: true
+description: "Turn raw input (dictation, notes, feature description) into a complete Beebole documentation page through an interactive, collaborative process with checkpoints. Use this skill whenever the user wants to write a page, create documentation, draft a page from notes or dictation, build a new doc page, or turn raw content into structured documentation."
 ---
 
 # Draft Page — Interactive Documentation Builder
 
 Collaboratively build a complete Beebole documentation page through an interactive conversation. The user provides raw input (dictation transcript, notes, or a feature description), and we refine the page together step by step.
 
-## When to use
+## Context
 
-When the user asks to "draft a page", "create a page", "write a page", "create a page from dictation", or provides raw content and wants it turned into a structured documentation page.
+Before starting, read these context files for editorial and structural guidelines:
+- `.claude/context/brand.md` — voice, tone, and writing rules
+- `.claude/context/audiences.md` — who the page is for (adjust language and depth)
+- `.claude/context/documentation-structure.md` — page structure template and section ordering
+- `.claude/context/mintlify-components.md` — which components to use and when
+- `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
+- `.claude/context/product.md` — Beebole product overview and key concepts
 
 ## Core principle
 
@@ -19,6 +24,8 @@ When the user asks to "draft a page", "create a page", "write a page", "create a
 **English only.** This skill drafts pages in English (`help/`) only. Never produce French or Spanish versions during the drafting process. Translations are handled separately via the `/translate` skill after the English page is finalized.
 
 ## Workflow
+
+**Prerequisites:** The `gh` CLI must be installed and authenticated (`gh auth status`). If `gh` is unavailable, skip the source code exploration in step 2 and note in the outline that code verification was not performed.
 
 ### 1. Collect inputs
 

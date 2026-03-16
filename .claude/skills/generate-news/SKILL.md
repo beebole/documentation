@@ -1,16 +1,16 @@
 ---
 name: generate-news
-description: Draft product-focused news entries for the releases page based on tracked app changes, with user validation before publishing
-disable-model-invocation: true
+description: "Draft product-focused news entries for the releases page based on tracked app changes, with user validation before publishing. Use when asked to write release notes, update the news page, create a changelog entry, add what's new, or draft an announcement about recent app changes."
 ---
 
 # Generate News Update
 
 Use the app changes tracker to draft product-focused news entries for the releases page, with user validation before publishing.
 
-## When to use
+## Context
 
-When the user runs `/generate-news` or asks to "update the news", "write release notes", or "add a news entry".
+Before drafting news entries, read this context file:
+- `.claude/context/brand.md` — voice, tone, and entity attribution rules
 
 ## Prerequisites
 

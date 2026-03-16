@@ -1,16 +1,11 @@
 ---
 name: track-app-changes
-description: Analyze commits from the Beebole app repository (beebole/reboot) and maintain a human-readable changelog of product changes in .todo/app-changes.md
-disable-model-invocation: true
+description: "Analyze commits from the Beebole app repository (beebole/reboot) and maintain a human-readable changelog of product changes in .todo/app-changes.md. Use when asked to track app changes, check what changed in the app, update the changelog, or see recent product changes."
 ---
 
 # Track App Changes
 
 Analyze commits from the Beebole application repository (beebole/reboot) and maintain a human-readable changelog of product changes in `.todo/app-changes.md`.
-
-## When to use
-
-When the user runs `/track-app-changes` or asks to "track app changes", "check what changed in the app", or "update the changelog".
 
 ## Prerequisites
 
@@ -23,7 +18,7 @@ When the user runs `/track-app-changes` or asks to "track app changes", "check w
 Check if `.todo/app-changes.md` already exists.
 
 - **If it exists:** Read the file and find the date of the most recent entry (the first date in the file). Use that date as the `--since` parameter for the git log query.
-- **If it does not exist:** Use `2026-03-01` as the start date (first run).
+- **If it does not exist:** Use 6 months ago from today as the start date (first run).
 
 ### 2. Fetch commits from the app repository
 
@@ -93,3 +88,9 @@ Print a summary after updating:
 ```
 
 If this is the first run, mention that the file was created. On subsequent runs, mention how many new entries were added since the last check.
+
+## Error handling
+
+- If `gh` is not installed or not authenticated, stop and tell the user to run `brew install gh && gh auth login`.
+- If the GitHub API returns rate limit errors, wait and retry once, or tell the user to try again later.
+- If pagination returns more than 300 commits, process in batches and warn the user that some older commits may need a follow-up run.

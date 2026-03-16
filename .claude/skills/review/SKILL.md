@@ -1,16 +1,21 @@
 ---
 name: review
-description: Run a comprehensive audit on a documentation page before publishing — checks spelling, grammar, style, SEO, GEO, images, FAQ, translations, and code accuracy
-disable-model-invocation: true
+description: "Run a comprehensive pre-publish audit on a documentation page — checks spelling, grammar, style, SEO, GEO, images, FAQ, translations, and code accuracy. Use before publishing any page, when asked to review, audit, or check a page, or when preparing documentation for release."
 ---
 
 # Review Page — Full Page Audit
 
 Run a comprehensive audit on a documentation page before publishing. Checks spelling, grammar, style, SEO, GEO, images, FAQ, and translation status — then presents a report for approval before making any changes.
 
-## When to use
+## Context
 
-When the user asks to "review a page", "audit a page", "check a page", "review before publishing", or similar.
+Before running checks, read these context files for the rules you'll audit against:
+- `.claude/context/brand.md` — voice, tone, and writing rules
+- `.claude/context/audiences.md` — audience expectations per tab
+- `.claude/context/documentation-structure.md` — page structure template and section ordering
+- `.claude/context/mintlify-components.md` — correct component usage
+- `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
+- `.claude/context/product.md` — Beebole product overview and key concepts
 
 ## Inputs
 
@@ -53,20 +58,13 @@ Perform every check below on the English page.
 - Logical heading hierarchy (no skipped levels)
 - Sections follow the recommended flow: intro → core tasks → configuration → advanced → troubleshooting → FAQ → related links
 
-#### 2.4 SEO compliance (same checks as `/audit-seo-geo`, scoped to the page)
-- `title`: 50-60 characters, includes feature name
-- `description`: 120-160 characters, reads as a search snippet, doesn't repeat title
-- `keywords`: 3-8 terms including "beebole"
+#### 2.4 SEO and GEO compliance
+Apply the same checks as the `/audit-seo-geo` skill, scoped to this page. Refer to `.claude/context/seo-geo.md` for the full checklist. Key checks:
+- Frontmatter `title` (50-60 chars), `description` (120-160 chars), `keywords` (3-8 terms including "beebole")
 - Images have descriptive alt text with relevant keywords
-- Internal links use descriptive anchor text (not "click here")
-- Internal links start with `/help/` — both markdown links (`](/help/documentation/projects)`) and component `href` attributes (`href="/help/documentation/projects"`). The site is served behind a reverse proxy at `/help/`, so bare paths like `/documentation/`, `/guides/`, `/integrations/`, `/api/`, `/news/` are broken.
-
-#### 2.5 GEO compliance (same checks as `/audit-seo-geo`, scoped to the page)
-- Sections lead with a direct answer (LLM-extractable first sentence)
-- Paragraphs are self-contained
-- "Beebole" mentioned by name in intro and FAQ answers (not just "the app")
-- Definition-style openings where appropriate
-- Explicit scope statements for roles/plans when relevant
+- Internal links use descriptive anchor text and start with `/help/` (the site is behind a reverse proxy)
+- Sections lead with direct answers (GEO/LLM-extractable)
+- "Beebole" mentioned by name in intro and FAQ answers
 
 #### 2.6 FAQ section
 - `## Frequently asked questions` section exists (API pages exempt)
@@ -160,3 +158,4 @@ Only proceed with changes after the user confirms. When applying fixes:
 - **Don't invent problems.** Only flag genuine issues based on CLAUDE.md conventions.
 - **Don't duplicate skill logic.** Reference existing skills for FAQ generation, image optimization, and translation — don't reimplement their checks in detail.
 - **Prioritize clearly.** Critical issues block publishing; warnings improve quality; suggestions are optional.
+- **Handle `gh` failures gracefully.** If the GitHub API is unavailable, skip the code accuracy check (2.9) and note it in the report as "Code accuracy: Skipped (GitHub API unavailable)".

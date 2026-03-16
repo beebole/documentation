@@ -1,16 +1,17 @@
 ---
 name: translate
-description: Detect and update stale French and Spanish translations to match the English source files
-disable-model-invocation: true
+description: "Detect and update stale French and Spanish translations to match the English source files. Use when asked to translate, sync translations, check if translations are up to date, update FR/ES pages, or after editing any English documentation page."
 ---
 
 # Translate — Sync Translations
 
 Detect and update stale French and Spanish translations to match the English source files.
 
-## When to use
+## Context
 
-When the user asks to "translate", "sync translations", "update translations", or similar.
+Before translating, read these context files:
+- `.claude/context/brand.md` — voice, tone, and writing rules (apply in target language)
+- `.claude/context/documentation-structure.md` — page structure to preserve during translation
 
 ## How it works
 
@@ -67,3 +68,8 @@ English (`help/`) is the master language. A translation is **stale** when:
 ```
 
 If no stale translations are found, state: "All translations are up to date. Nothing to sync."
+
+## Error handling
+
+- If `scripts/translate.sh` fails, check that `gh` CLI is installed and authenticated (`gh auth status`).
+- If a translation file doesn't exist yet (new EN page with no FR/ES equivalent), create it from scratch using the EN page as the source, applying all translation rules above.

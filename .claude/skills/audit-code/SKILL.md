@@ -1,16 +1,17 @@
 ---
 name: audit-code
-description: Cross-reference a documentation page against the Beebole application source code to find inaccuracies, missing features, outdated content, and undocumented behavior
-disable-model-invocation: true
+description: "Cross-reference a documentation page against the Beebole application source code to find inaccuracies, missing features, outdated content, and undocumented behavior. Use when asked to audit against code, check code accuracy, verify docs against source, or ensure documentation matches the actual app behavior."
 ---
 
 # Code Audit — Cross-reference Documentation Against Source Code
 
 Audit a documentation page by comparing it against the Beebole application source code (https://github.com/beebole/reboot). Identifies inaccuracies, missing features, outdated content, and undocumented behavior.
 
-## When to use
+## Context
 
-When the user asks to "audit against code", "check code accuracy", "cross-reference with code", "code audit", "verify against source", or similar.
+Before auditing, read these context files:
+- `.claude/context/product.md` — Beebole product overview and key concepts
+- `.claude/context/page-mappings.md` — keyword-to-page mapping (helps identify related pages)
 
 ## Inputs
 
@@ -160,3 +161,4 @@ Only proceed with changes after the user confirms.
 - **Respect scope.** Only audit what the page documents — don't expand into unrelated features just because the code touches them.
 - **Prioritize user-facing impact.** A wrong UI label or incorrect workflow is critical. An undocumented internal setting that users never see is minor.
 - **Don't expose internal code details.** The documentation is for end users. Recommendations should be written in user-facing language, not developer terms (except for API pages).
+- **Handle `gh` failures gracefully.** If the GitHub API is unavailable or rate-limited, report which checks could not be performed rather than failing silently. The code search API (`/search/code`) requires additional GitHub permissions — if it returns 403, fall back to browsing the file tree manually.

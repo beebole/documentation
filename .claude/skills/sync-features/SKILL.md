@@ -1,9 +1,19 @@
 ---
 name: sync-features
-description: Use when asked to sync, update, or check the features.md file against the reboot codebase, or when asked to find new features in the reboot repo
+description: "Sync features.md against the Beebole app codebase to find new or changed features. Use when asked to sync features, update the feature list, check for new features in the reboot repo, review the feature inventory, or compare docs against the codebase."
 ---
 
 # Sync Reboot Features
+
+## Prerequisites
+
+- `gh` CLI must be installed and authenticated (`gh auth status`)
+- `.features/features.md` must exist. If it doesn't, ask the user whether to create it from scratch or if the file is expected to be somewhere else.
+
+## Context
+
+Before syncing features, read this context file:
+- `.claude/context/product.md` — Beebole product overview and key concepts (helps classify features)
 
 ## Overview
 
@@ -136,3 +146,4 @@ Edit `.features/features.md` only after the user confirms (including resolution 
 - Making changes without asking first
 - Missing new features because only recent commits were checked (scan broadly, not just last 20 commits)
 - Adding planned/unshipped features without flagging them as such
+- Not handling `gh` API failures — if the GitHub API is rate-limited or unavailable, report what could not be checked rather than proceeding with incomplete data

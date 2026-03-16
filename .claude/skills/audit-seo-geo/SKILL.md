@@ -1,16 +1,17 @@
 ---
 name: audit-seo-geo
-description: Run a comprehensive SEO and GEO audit across all documentation pages with an actionable report
-disable-model-invocation: true
+description: "Run a comprehensive SEO and GEO audit across all documentation pages with an actionable report. Use when asked to audit SEO, check SEO/GEO compliance, review metadata quality, check for missing FAQs or alt text, or optimize pages for search engines and AI extraction."
 ---
 
 # SEO & GEO Audit
 
 Run a comprehensive audit of SEO and GEO best practices across all documentation pages, then present a clear report with actionable fixes.
 
-## When to use
+## Context
 
-When the user asks to "audit SEO", "check SEO", "audit GEO", "run SEO audit", or similar.
+Before running the audit, read these context files for the rules you'll check against:
+- `.claude/context/seo-geo.md` — SEO frontmatter checklist and GEO writing patterns
+- `.claude/context/brand.md` — entity attribution and voice rules
 
 ## Scope
 
@@ -93,4 +94,4 @@ Numbered list of specific, actionable fixes with affected pages and expected eff
 - **Be specific.** "Description is 45 characters (should be 120-160)" not "description is bad."
 - **Prioritize.** Critical issues (missing metadata, missing FAQs) over style preferences.
 - **API pages are exempt from FAQ checks.**
-- **Use parallel processing.** Read files in batches using agents to speed up the audit.
+- **Use parallel processing.** Split pages into batches of 5-10 and dispatch parallel agents to read and check them simultaneously.
