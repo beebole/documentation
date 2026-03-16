@@ -33,50 +33,46 @@ Open this repository in VS Code, then open Claude Code from the sidebar (or `Cmd
 
 ## Slash commands
 
-Type these directly in Claude Code. You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
+Commands follow the content lifecycle: **Write → Check → Publish → Maintain**.
 
-### Workflow
+| Stage | Command | What it does |
+|-------|---------|-------------|
+| **Write** | `/draft` | Turn raw dictation/notes into a complete documentation page (English only) |
+| **Check** | `/review` | Full pre-publish audit (spelling, style, SEO, GEO, images, FAQ, translations, code accuracy) |
+| | `/audit-code` | Cross-reference doc pages against the app source code to find inaccuracies and gaps |
+| | `/audit-seo-geo` | Run a full SEO & GEO audit across all pages with actionable report |
+| | `/generate-faqs` | Find pages missing FAQ sections and generate them |
+| **Publish** | `/translate` | Detect stale translations and sync FR/ES with English |
+| | `/optimize-images` | Compress and convert images to WebP |
+| **Maintain** | `/track-app-changes` | Analyze app repo commits and maintain a changelog in `.todo/app-changes.md` |
+| | `/sync-features` | Sync features.md against the app codebase to find new or changed features |
+| | `/propose-updates` | Map tracked app changes to doc pages and propose prioritized updates |
+| | `/generate-news` | Draft a news entry for the releases page based on recent changes |
 
-| Command | What it does |
-|---------|-------------|
-| `/draft` | Turn a raw transcript into a documentation page (English only) |
-| `/review` | Full audit of a page before publishing (spelling, style, SEO, GEO, images, FAQ, translations, code accuracy) |
-| `/translate` | Detect stale translations and sync FR/ES with English |
-
-### Tools
-
-| Command | What it does |
-|---------|-------------|
-| `/audit-code` | Cross-reference doc pages against the app source code to find inaccuracies and gaps |
-| `/audit-seo-geo` | Run a full SEO & GEO audit across all pages with actionable report |
-| `/generate-faqs` | Find pages missing FAQ sections and generate them |
-| `/optimize-images` | Compress and convert images to WebP |
-
-### Helpers
-
-| Command | What it does |
-|---------|-------------|
-| `/track-app-changes` | Analyze app repo commits and maintain a human-readable changelog in `.todo/app-changes.md` |
-| `/propose-updates` | Map tracked app changes to doc pages, audit them, and propose prioritized updates |
-| `/generate-news` | Analyze recent doc changes and draft a news update for the releases page |
+You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
 
 ## Project structure
 
 ```
 docs.json              # Mintlify config (navigation, theme, SEO, languages)
+pollen.js              # Analytics script (Pollen/GTM)
 help/
   index.mdx            # English landing page
   documentation/       # Core feature docs (EN)
-  guides/              # Role-based guides (EN)
+  guides/              # Role-based guides & FAQ (EN)
   integrations/        # Integration docs (EN)
   api/                 # GraphQL API docs (EN)
   news/                # Release notes (EN)
   images/              # Shared images (WebP, <200 KB)
-  fr/                  # French translations (same structure)
-  es/                  # Spanish translations (same structure)
+  fr/                  # French translations (mirrors help/ structure)
+  es/                  # Spanish translations (mirrors help/ structure)
+snippets/              # Reusable content fragments (currently empty)
 .claude/
-  skills/              # Slash command skill files
-  scripts/             # Shell helpers (image optimization, FAQ detection, translation detection)
+  skills/              # One subdirectory per slash command, each with SKILL.md
+  context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
+  scripts/             # Shell helpers for batch operations (translate, FAQ, images)
+  commands/            # Only for commands that reference vendor plugins
+  vendor/              # Third-party plugin files (claude-md-management)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
 
