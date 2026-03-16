@@ -17,9 +17,9 @@ Before generating FAQs, read these context files:
 
 1. Run the detection script:
    ```bash
-   bash scripts/generate-faq.sh
+   bash .claude/scripts/generate-faq.sh
    ```
-   If the script fails, verify it exists and is executable (`chmod +x scripts/generate-faq.sh`), then retry.
+   If the script fails, verify it exists and is executable (`chmod +x .claude/scripts/generate-faq.sh`), then retry.
 
 2. Parse the JSON output. For each file in the `missing_faq` array:
    - Read the full English page

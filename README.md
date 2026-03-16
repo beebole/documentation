@@ -74,13 +74,9 @@ help/
   images/              # Shared images (WebP, <200 KB)
   fr/                  # French translations (same structure)
   es/                  # Spanish translations (same structure)
-scripts/
-  optimize-images.sh   # Image optimization script
-  generate-faq.sh      # Detect pages missing FAQ sections
-  translate.sh         # Detect stale translations
 .claude/
-  skills/              # Slash command skill files (workflow & helper skills)
-    tools/             # Tool skill files (audit, FAQ generation, image optimization)
+  skills/              # Slash command skill files
+  scripts/             # Shell helpers (image optimization, FAQ detection, translation detection)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
 

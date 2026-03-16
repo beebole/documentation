@@ -6,7 +6,7 @@
 #   - Update .mdx references automatically
 #   - Remove originals
 #
-# Usage: bash scripts/optimize-images.sh
+# Usage: bash .claude/scripts/optimize-images.sh
 #
 # Requires: cwebp (brew install webp)
 #

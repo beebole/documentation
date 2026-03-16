@@ -12,7 +12,7 @@ Optimize all images in `help/images/` for the Beebole documentation site.
 Run the local optimization script:
 
 ```bash
-bash scripts/optimize-images.sh
+bash .claude/scripts/optimize-images.sh
 ```
 
 This converts all PNG/JPG files in `help/images/` to WebP format using `cwebp` at quality 80. Requires `cwebp` (`brew install webp`).

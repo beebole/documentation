@@ -51,10 +51,10 @@ help/
   fr/                  # French translations (mirrors help/ structure)
   es/                  # Spanish translations (mirrors help/ structure)
 snippets/              # Reusable content fragments (currently empty)
-scripts/               # Shell helpers for batch operations (translate, FAQ, images)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
+  scripts/             # Shell helpers for batch operations (translate, FAQ, images)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
 

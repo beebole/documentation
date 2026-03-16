@@ -23,7 +23,7 @@ English (`help/`) is the master language. A translation is **stale** when:
 
 1. Run the detection script:
    ```bash
-   bash scripts/translate.sh
+   bash .claude/scripts/translate.sh
    ```
 
 2. Parse the JSON output. For each file in the `stale` array, process each language:
@@ -71,5 +71,5 @@ If no stale translations are found, state: "All translations are up to date. Not
 
 ## Error handling
 
-- If `scripts/translate.sh` fails, check that `gh` CLI is installed and authenticated (`gh auth status`).
+- If `.claude/scripts/translate.sh` fails, check that `gh` CLI is installed and authenticated (`gh auth status`).
 - If a translation file doesn't exist yet (new EN page with no FR/ES equivalent), create it from scratch using the EN page as the source, applying all translation rules above.

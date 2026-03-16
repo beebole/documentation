@@ -6,7 +6,7 @@
 # Outputs a JSON manifest to stdout describing which files need translation
 # and what changed in the English version.
 #
-# Usage: bash scripts/translate.sh
+# Usage: bash .claude/scripts/translate.sh
 #
 # Designed to be run from Claude Code, which reads the JSON output and
 # performs the actual AI translation.

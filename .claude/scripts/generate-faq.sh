@@ -8,7 +8,7 @@
 #
 # Outputs a JSON manifest to stdout listing files that need FAQ generation.
 #
-# Usage: bash scripts/generate-faq.sh
+# Usage: bash .claude/scripts/generate-faq.sh
 #
 # Designed to be run from Claude Code, which reads the JSON output and
 # generates the actual FAQ content for each page.
