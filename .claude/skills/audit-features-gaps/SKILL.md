@@ -39,3 +39,17 @@ Read `.claude/context/page-mappings.md`. For each feature section from Step 1, i
 **When a mapped page doesn't exist on disk:** Flag the section as a **full gap** — all its bullets are automatically Missing. Note the missing page path for Step 6.
 
 Sections flagged as full gaps skip Step 3 (no reading required).
+
+## Step 3 — Read pages and classify sub-features
+
+For each section with at least one existing mapped page, read those pages. Evaluate each feature bullet:
+
+- **Covered** — at least one dedicated paragraph, a named heading, or a step-by-step explanation. Brief but deliberate coverage counts.
+- **Partial** — only a passing mention, a single sentence with no how-to, or a list item with no elaboration.
+- **Missing** — no mention found anywhere in the mapped pages.
+
+**Decision rule:** If a reader could understand *how* to use the feature from what's written → Covered. If they'd only know the feature *exists* → Partial.
+
+Only **Missing** and **Partial** bullets produce plan entries. Covered bullets are silently skipped.
+
+For full-gap sections (no page exists), all bullets are automatically **Missing** — skip reading.
