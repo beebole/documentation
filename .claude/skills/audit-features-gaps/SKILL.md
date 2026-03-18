@@ -122,3 +122,14 @@ Only write to `page-mappings.md` once the user confirms. When writing:
 - Follow the existing format: `| keywords, comma-separated | \`path(s)\` |`
 - Check for semantic overlap with existing rows — don't duplicate
 - Never remove or overwrite existing rows
+
+## Rules
+
+- **Read-only on doc pages.** Never modify any `help/**/*.mdx` file during this audit.
+- **page-mappings.md is the mapping source.** Derive all feature→page relationships from that file — no hardcoded paths.
+- **Sub-feature granularity.** Evaluate each bullet independently. Only collapse to one item when an entire section has no page.
+- **Be specific.** Each plan item must name the exact file and feature, not just the section.
+- **Don't invent gaps.** If a feature is reasonably covered even without matching exact wording, classify it as Covered.
+- **Ordered output.** Section order 1–24 is mandatory.
+- **Idempotent.** Each run overwrites `.todo/coverage-gaps.md` from scratch.
+- **Propose, don't assume.** Never write to `page-mappings.md` without user confirmation.
