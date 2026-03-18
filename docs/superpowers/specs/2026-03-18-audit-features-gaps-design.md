@@ -30,8 +30,8 @@ disable-model-invocation: true
 ## Inputs
 
 - `.features/features.md` — source of truth for all features
+- `.claude/context/page-mappings.md` — maps keywords to pages; used as the feature→page mapping source
 - `help/documentation/*.mdx`, `help/guides/*.mdx`, `help/integrations/*.mdx`, `help/api/*.mdx` — pages to check coverage against
-- `.claude/context/page-mappings.md` — updated as a side effect
 
 No user arguments required. The skill is self-contained.
 
@@ -61,53 +61,21 @@ For each bullet, record:
 
 > "Warning: features.md may have changed format. Found N sections and N bullets — expected 20–26 sections and 100+ bullets. Please check the file before re-running."
 
-**Section matching:** Match sections by their number (e.g., `## 3.`). Section names in the mapping table below are for human reference only — use the number as the authoritative key.
+**Section matching:** Match sections by their number (e.g., `## 3.`). Section names are for reference only — the number is the authoritative key.
 
-### Step 2 — Verify the mapping table is complete
+### Step 2 — Build the feature→page mapping from page-mappings.md
 
-Before applying the static mapping, list all files under:
+Read `.claude/context/page-mappings.md`. For each feature section extracted in Step 1, identify which doc pages to read by matching the section's name and bullet keywords against the keyword column of the table.
 
-- `help/documentation/`
-- `help/guides/`
-- `help/integrations/`
-- `help/api/`
+**Matching logic:** A page is relevant to a section if at least one of the table's keywords meaningfully relates to the section's name or its feature bullets. Use broad semantic matching — not exact string matching.
 
-Compare against the mapping table below. For any file found on disk that is not in the table, reason about which feature section it belongs to and include it in the read list for that section. Log a note in the output: "Note: unmapped page `X` was found and added to section Y during this run."
+**When no match is found for a section:** Do not guess. Instead, list all doc files under `help/documentation/`, `help/guides/`, `help/integrations/`, and `help/api/`, then reason about which (if any) could cover this section. If a plausible match exists, use it and flag it as unconfirmed. If no plausible match exists, flag the section as a **full gap** and propose adding a new row to `page-mappings.md` at the end (Step 6).
 
-### Step 3 — Map feature sections to pages
+**When a mapped page doesn't exist on disk:** Flag the section as a **full gap** — all its bullets are automatically Missing. Note the missing page path for Step 6.
 
-Use the mapping table below. Sections flagged "Page does not exist" are **full gaps** — all bullets in that section are automatically Missing; skip to Step 5 for those sections.
+### Step 3 — Read pages and classify sub-features
 
-| Section | Pages to read | Notes |
-| --- | --- | --- |
-| 1. Time Tracking | `help/documentation/timesheets.mdx`, `help/documentation/timesheetSettings.mdx`, `help/documentation/mobile.mdx` | |
-| 2. Absence & Time-Off Management | `help/documentation/timeoff.mdx`, `help/documentation/accruals.mdx`, `help/documentation/public-holidays.mdx` | |
-| 3. Time Entries & Absences Approval Workflows | `help/documentation/approval.mdx` | |
-| 4. Planning & Tasks | `help/documentation/planning.mdx`, `help/documentation/kanban.mdx`, `help/documentation/gantt.mdx`, `help/documentation/assignments.mdx` | |
-| 5. Expense Management | `help/documentation/expenses.mdx` | |
-| 6. People Management | `help/documentation/people.mdx` | |
-| 7. Project Management | `help/documentation/projects.mdx` | |
-| 8. Task Management | `help/documentation/tasks.mdx` | Page does not exist → full gap |
-| 9. Tags & Organisational Structure | `help/documentation/tags.mdx` | |
-| 10. Billing & Cost Tracking | `help/documentation/billing.mdx`, `help/documentation/costs.mdx`, `help/documentation/budgets.mdx` | |
-| 11. Work Schedules | `help/documentation/work-schedule.mdx` | |
-| 12. Roles & Permissions | `help/documentation/roles-authorisations.mdx` | |
-| 13. Custom Fields | `help/documentation/custom-fields.mdx` | |
-| 14. Organisation Settings | `help/documentation/account-settings.mdx`, `help/documentation/timesheetSettings.mdx` | |
-| 15. Reporting | `help/documentation/reports.mdx`, `help/documentation/custom-reports.mdx`, `help/documentation/data-exports.mdx`, `help/documentation/excel-addin.mdx`, `help/documentation/gsheets-addon.mdx` | |
-| 16. Journal & Communications | `help/documentation/journal.mdx` | |
-| 17. Notifications | `help/documentation/notifications.mdx` | |
-| 18. Integrations | `help/integrations/introduction.mdx`, `help/integrations/asana.mdx`, `help/integrations/jira.mdx`, `help/integrations/linear.mdx`, `help/integrations/quickbooks.mdx`, `help/integrations/custom-integrations.mdx`, `help/integrations/google.mdx`, `help/integrations/microsoft.mdx`, `help/integrations/google-calendar.mdx`, `help/integrations/microsoft-calendar.mdx` | BambooHR: check custom-integrations.mdx |
-| 19. API | `help/api/introduction.mdx`, `help/api/queries.mdx`, `help/api/mutations.mdx`, `help/api/schema-explorer.mdx` | |
-| 20. Authentication & Security | `help/documentation/authentication.mdx`, `help/documentation/sso.mdx`, `help/documentation/custom-domain.mdx` | |
-| 21. Subscription & Billing | `help/documentation/subscription.mdx` | |
-| 22. Audit Trail | `help/documentation/audit-trail.mdx` | |
-| 23. Legacy Migration | `help/guides/legacy-migration.mdx` | Page does not exist → full gap |
-| 24. UI & User Experience | `help/documentation/ui-experience.mdx` | Page does not exist → full gap |
-
-### Step 4 — Read pages and classify sub-features
-
-For each section that has at least one existing mapped page, read those pages. Then evaluate each feature bullet against the content.
+For each section with at least one existing mapped page, read those pages. Evaluate each feature bullet against the content.
 
 Classify each bullet as:
 
@@ -119,9 +87,9 @@ Decision rule for the Covered/Partial boundary: if a reader could understand *ho
 
 Only **Missing** and **Partial** bullets produce plan entries. Covered bullets are silently skipped.
 
-For sections whose mapped page does not exist, all bullets in that section are automatically **Missing**.
+For sections flagged as full gaps in Step 2, all bullets are automatically **Missing** — no reading required.
 
-### Step 5 — Write `.todo/coverage-gaps.md`
+### Step 4 — Write `.todo/coverage-gaps.md`
 
 If `.todo/` does not exist, create it first.
 
@@ -167,24 +135,30 @@ For sections with no existing page, produce a single plan item: "Create `<path>`
 
 Same numbers as Block 1. One line per item, no descriptions. Used for referencing items during execution (e.g. "work on item 7").
 
-### Step 6 — Update `.claude/context/page-mappings.md`
-
-After writing the output, update the keyword→page table in `page-mappings.md`:
-
-- Add any keyword→page relationships discovered during the audit that are not already in the table
-- Add rows for the three planned new pages so future skills know they're expected:
-  - `task, task management` → `help/documentation/tasks.mdx`
-  - `legacy, migration, legacy account` → `help/guides/legacy-migration.mdx`
-  - `ui, interface, theme, dark mode, undo, search` → `help/documentation/ui-experience.mdx`
-- New rows must follow the existing format: `| keywords, comma-separated | \`path(s)\` |`
-- Check for semantic overlap with existing rows before adding — don't duplicate a keyword that already maps to the same page
-- Never remove or overwrite existing rows
-
-### Step 7 — Print to chat
+### Step 5 — Print to chat
 
 Print both blocks to chat. Also print a one-line summary at the top:
 
 > "Found N gaps (N missing, N partial) across N feature sections. Full plan saved to `.todo/coverage-gaps.md`."
+
+### Step 6 — Propose page-mappings.md updates
+
+After printing results, if any gaps were found in the mapping (unmapped sections, missing pages on disk, or unconfirmed matches from Step 2), propose the additions and ask for confirmation before writing:
+
+> "I found N mapping gaps in `page-mappings.md`. Here are the proposed additions:
+>
+> | Keywords | Page |
+> | --- | --- |
+> | `task, task management` | `help/documentation/tasks.mdx` |
+> | ... | ... |
+>
+> Shall I add these rows to `page-mappings.md`?"
+
+Only write to `page-mappings.md` once the user confirms. When writing:
+
+- Follow the existing row format: `| keywords, comma-separated | \`path(s)\` |`
+- Check for semantic overlap with existing rows — don't duplicate a keyword that already maps to the same page
+- Never remove or overwrite existing rows
 
 ---
 
@@ -193,15 +167,17 @@ Print both blocks to chat. Also print a one-line summary at the top:
 | File | Purpose |
 | --- | --- |
 | `.todo/coverage-gaps.md` | Primary output — plan + quick reference (overwritten each run) |
-| `.claude/context/page-mappings.md` | Updated keyword→page routing table (additive only) |
+| `.claude/context/page-mappings.md` | Updated keyword→page routing table (additive, after user confirmation) |
 
 ---
 
 ## Rules
 
 - **Read-only on doc pages.** Never modify documentation files during this audit.
+- **page-mappings.md is the mapping source.** Do not maintain a separate hardcoded table — always derive the feature→page mapping from that file.
 - **Sub-feature granularity.** Each bullet in features.md is evaluated independently — don't collapse multiple bullets into one gap entry unless the entire section has no page.
 - **Be specific.** Each plan item must name the exact page and feature, not just the section.
 - **Don't invent gaps.** If a feature is reasonably covered even without matching exact wording, classify it as Covered.
 - **Ordered output.** Plan items follow section order (1–24) for predictability.
 - **Idempotent.** Re-running the skill overwrites `.todo/coverage-gaps.md` with a fresh audit. It does not append.
+- **Propose, don't assume.** When page-mappings.md needs updates, ask before writing.
