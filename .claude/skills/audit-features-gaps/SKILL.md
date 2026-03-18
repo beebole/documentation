@@ -53,3 +53,47 @@ For each section with at least one existing mapped page, read those pages. Evalu
 Only **Missing** and **Partial** bullets produce plan entries. Covered bullets are silently skipped.
 
 For full-gap sections (no page exists), all bullets are automatically **Missing** — skip reading.
+
+## Step 4 — Write `.todo/coverage-gaps.md`
+
+If `.todo/` does not exist, create it. Overwrite (never append) `.todo/coverage-gaps.md` with two blocks:
+
+### Block 1 — Plan of action
+
+```markdown
+# Feature Coverage Gaps
+
+Generated: YYYY-MM-DD
+Features audited: N user-facing feature bullets
+Gaps found: N (N missing, N partial)
+
+---
+
+## Plan of action
+
+1. **[Section name] Short action title** — One sentence describing what to write or add.
+2. ...
+```
+
+Order: by section number (1 → 24). Within each section: Missing before Partial.
+
+Each item must have:
+- Section name in brackets
+- An actionable title naming the exact page and feature
+- One sentence describing what's needed
+
+For full-gap sections (no page exists), produce one item:
+`Create \`<path>\` — Document all N features in this section: feature A, feature B, ...`
+
+### Block 2 — Quick-reference index
+
+```markdown
+## Quick reference
+
+1. Create tasks.mdx
+2. Timesheet score
+3. Admin force-edit
+...
+```
+
+Same numbers as Block 1. One line per item, no descriptions.
