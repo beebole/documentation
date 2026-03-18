@@ -97,3 +97,28 @@ For full-gap sections (no page exists), produce one item:
 ```
 
 Same numbers as Block 1. One line per item, no descriptions.
+
+## Step 5 — Print to chat
+
+Print a one-line summary, then both blocks:
+
+> "Found N gaps (N missing, N partial) across N feature sections. Full plan saved to `.todo/coverage-gaps.md`."
+
+Then print Block 1 (plan of action) and Block 2 (quick reference) in full.
+
+## Step 6 — Propose page-mappings.md updates
+
+If any mapping gaps were found during Step 2 (unmapped sections, missing pages on disk, or unconfirmed matches), propose additions and ask for confirmation before writing:
+
+> "I found N mapping gaps in `.claude/context/page-mappings.md`. Here are the proposed additions:
+>
+> | Keywords | Page |
+> | --- | --- |
+> | `keyword, keyword` | \`help/path/to/page.mdx\` |
+>
+> Shall I add these rows?"
+
+Only write to `page-mappings.md` once the user confirms. When writing:
+- Follow the existing format: `| keywords, comma-separated | \`path(s)\` |`
+- Check for semantic overlap with existing rows — don't duplicate
+- Never remove or overwrite existing rows
