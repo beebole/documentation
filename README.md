@@ -45,9 +45,9 @@ Commands follow the content lifecycle: **Write → Check → Publish → Maintai
 | **Publish** | `/translate` | Detect stale translations and sync FR/ES with English |
 | | `/optimize-images` | Compress and convert images to WebP |
 | **Maintain** | `/track-app-changes` | Analyze app repo commits and maintain a changelog in `.todo/app-changes.md` |
-| | `/sync-features` | Sync features.md against the app codebase to find new or changed features |
 | | `/propose-updates` | Map tracked app changes to doc pages and propose prioritized updates |
 | | `/generate-news` | Draft a news entry for the releases page based on recent changes |
+| | `/audit-features-gaps` | Audit `.features/features.md` against docs and produce a numbered plan for every undocumented or partial sub-feature |
 
 You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
 

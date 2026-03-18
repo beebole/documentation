@@ -8,6 +8,8 @@ This is **functional documentation** (not technical), except for the API section
 
 **The Beebole application source code** lives at [github.com/beebole/reboot](https://github.com/beebole/reboot.git). This documentation is entirely linked to that codebase — features, UI labels, workflows, and behavior described in these pages correspond directly to the code in that repository. When documenting a feature, always refer to the application code as the source of truth for how things work.
 
+A curated **features reference** is available at `.features/features.md` (symlink to the reboot repo). Use it as a quick overview of what Beebole supports — it's faster than browsing the full source.
+
 ## Quick start
 
 ```bash
@@ -29,9 +31,9 @@ Commands follow the content lifecycle: **Write → Check → Publish → Maintai
 | **Publish** | `/translate` | Detect stale translations and sync FR/ES with English |
 | | `/optimize-images` | Compress and convert images to WebP |
 | **Maintain** | `/track-app-changes` | Analyze app repo commits and maintain a changelog in `.todo/app-changes.md` |
-| | `/sync-features` | Sync features.md against the app codebase to find new or changed features |
 | | `/propose-updates` | Map tracked app changes to doc pages and propose prioritized updates |
 | | `/generate-news` | Draft a news entry for the releases page based on recent changes |
+| | `/audit-features-gaps` | Audit `.features/features.md` against docs and produce a numbered plan for every undocumented or partial sub-feature |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -58,6 +60,8 @@ snippets/              # Reusable content fragments (currently empty)
   commands/            # Only for commands that reference vendor plugins (not skill wrappers)
   vendor/              # Third-party plugin files (claude-md-management)
 .todo/                 # Working files for app change tracking and proposed updates
+.features/
+  features.md          # Symlink → beebole/reboot/.claude/skills/audit-features/references/features.md (gitignored)
 ```
 
 ## File placement
@@ -143,6 +147,7 @@ Full editorial guidelines are in `.claude/context/`:
 | `documentation-structure.md` | Page structure template, internal link rules |
 | `mintlify-components.md` | Components reference (Steps, callouts, Accordion, etc.) |
 | `seo-geo.md` | SEO frontmatter, GEO patterns for LLM extraction |
+| `page-mappings.md` | Keyword → doc page routing table (used by `/audit-features-gaps`, `/propose-updates`) |
 
 **Key rules:** Active voice, second person, present tense, bold UI labels from i18n, one idea per sentence, no jargon outside API docs. Lead sections with direct answers for GEO. Every page needs a FAQ section.
 
