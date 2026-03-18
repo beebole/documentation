@@ -31,7 +31,7 @@ Read `.claude/context/page-mappings.md`. For each feature section from Step 1, i
 **Matching is semantic, not literal.** A page is relevant if its keywords meaningfully relate to the section — not just exact string matches.
 
 **When no match is found for a section:**
-1. List all files under `help/documentation/`, `help/guides/`, `help/integrations/`, `help/api/`
+1. Use Glob to list all files under `help/documentation/`, `help/guides/`, `help/integrations/`, `help/api/`
 2. Reason about which (if any) could cover this section
 3. If a plausible match exists, use it and mark it as unconfirmed
 4. If no plausible match exists, flag the section as a **full gap** and note it for Step 6
@@ -96,7 +96,7 @@ For full-gap sections (no page exists), produce one item:
 ...
 ```
 
-Same numbers as Block 1. One line per item, no descriptions.
+Same numbers as Block 1. One line per item: action title only — no section name prefix, no descriptions.
 
 ## Step 5 — Print to chat
 
