@@ -22,6 +22,7 @@ Apply these rules when writing or reviewing any documentation page.
 4. Present tense: "The timesheet displays" not "will display."
 5. One idea per sentence.
 6. No jargon in user-facing docs (API section is the exception).
+   - Never use "module" to refer to sidebar items or features. Write "click **Projects** in the sidebar" — not "go to the Projects module." Users see sidebar labels, not modules.
 7. Don't assume prior knowledge — explain what a feature does before how to use it.
 8. Define key terms before first use.
 
