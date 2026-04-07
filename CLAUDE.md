@@ -86,6 +86,15 @@ All content, configuration, and components in this project **must follow Mintlif
 
 Use the Mintlify MCP server to look up official Mintlify documentation when working on this project.
 
+**Banned patterns — use Mintlify equivalents instead:**
+
+- `<img>` tags → use markdown `![alt](src)` inside `<Frame caption="...">`
+- `<br/>` tags → use blank lines for paragraph breaks
+- `className=`, `style=` attributes → no inline styles; use Mintlify components for layout
+- Raw `<iframe>` → wrap in `<Frame>`
+- Mermaid diagrams (` ```mermaid `) → use `<CardGroup>`/`<Card>` with tables, or Mintlify components
+- Any raw HTML (`<div>`, `<span>`, `<table>`, `<ul>`, etc.) → use markdown or Mintlify components
+
 ## Skills architecture
 
 Skills follow the [Claude Code skills standard](https://code.claude.com/docs/en/skills). Every skill **must** use the directory-based structure:

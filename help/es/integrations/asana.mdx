@@ -9,19 +9,22 @@ Actualmente estás usando Asana para organizar tu trabajo por proyectos y tareas
 La estructura de Asana se puede replicar en el panel de Planificación de recursos de Beebole o en su estructura de seguimiento de tiempo por Proyecto, que puedes aprovechar con costos, facturación y gastos, para un mayor control financiero.
 
 Todos tus proyectos y tareas se sincronizarán automáticamente, así que no necesitas preocuparte por el mantenimiento dual. La sincronización automática con Asana se puede detener y reanudar en cualquier momento.
-```mermaid actions={false}
-erDiagram
-    Project-tracking {
-        Project Project
-        Task Sub-project
-        Sub-task Sub-sub-project
-    }
-    Planning {
-        Project Task
-        Task Sub-task
-        Sub-task Sub-sub-task
-    }
-```
+<CardGroup cols={2}>
+  <Card title="Proyectos y actividades">
+    | Asana | Beebole |
+    |---|---|
+    | Project | Proyecto |
+    | Task | Sub-proyecto |
+    | Sub-task | Sub-sub-proyecto |
+  </Card>
+  <Card title="Planificación y tareas">
+    | Asana | Beebole |
+    |---|---|
+    | Project | Tarea |
+    | Task | Sub-tarea |
+    | Sub-task | Sub-sub-tarea |
+  </Card>
+</CardGroup>
 
 ### Requisitos de suscripción
 
@@ -51,25 +54,62 @@ erDiagram
 
 ## Configuración paso a paso
 <Steps>
-    <Step title="Conectarse a Asana">Ve a **Configuración >> Integraciones >> Asana**. Haz clic en el botón para conectarte a tu cuenta de Asana.<br/><img src="/help/images/integrations/asana-connect.webp" className="rounded-lg" style={{width: "600px", height: "auto"}}/><br/>
-      Sigue las instrucciones de la ventana emergente para conectarte a tu cuenta de Asana. La ventana se cerrará automáticamente cuando se complete la autenticación.</Step>
-    <Step title="Configurar los parámetros de integración">Si tu cuenta de Asana está vinculada a más de un espacio de trabajo,
-    selecciona el que deseas sincronizar con Beebole.<br/>Selecciona el _Rol_ predeterminado a usar para los empleados durante el proceso de importación. (*)_Puedes revisar los roles existentes en *Configuración >> Roles de personas* si es necesario._<br/>
-    Define si deseas importar tus tareas para Planificación y asignación o para seguimiento de tiempo por proyecto y tarifas.<br/><img src="/help/images/integrations/asana-params.webp" className="rounded-lg" style={{width: "500px", height: "auto"}}/></Step>
-    <Step title="Habilitar la integración">Haz clic en el interruptor para habilitar la integración. El sistema importará todos tus proyectos y tareas activos.
-    _Ten en cuenta que esto puede tardar unos momentos dependiendo de tu cuenta de Asana_.<img src="/help/images/integrations/asana-updating.webp" className="rounded-lg" style={{width: "300px", height: "auto"}}/>
-    Puedes navegar y usar la aplicación mientras el proceso de integración continúa. Una vez completado, la integración estará habilitada y todos los cambios de Asana se reflejarán en Beebole.</Step>
-    <Step title="Validar la integración">Haz clic en el icono de Proyectos en el menú izquierdo para ir a la página de Proyectos. Expande las categorías. Deberías ver una nueva categoría llamada Asana que incluye todos tus proyectos y tareas. Puedes cambiar el nombre de la categoría si lo necesitas.<br/><img src="/help/images/integrations/asana-validate.webp" className="rounded-lg" style={{width: "500px", height: "auto"}}/></Step>
-    <Step title="Configurar la hoja de horas">Si deseas que la nueva categoría se use en la Hoja de horas, ve a **Configuración >> Configuración de la cuenta >> Configuración de la hoja de horas** y selecciona la categoría Asana.</Step>
+  <Step title="Conectarse a Asana">
+    Ve a **Configuración** > **Integraciones** > **Asana**. Haz clic en el botón para conectarte a tu cuenta de Asana.
+
+    <Frame caption="Botón de conexión de la integración Asana">
+      ![Botón de conexión de la integración Asana](/help/images/integrations/asana-connect.webp)
+    </Frame>
+
+    Sigue las instrucciones de la ventana emergente para conectarte a tu cuenta de Asana. La ventana se cerrará automáticamente cuando se complete la autenticación.
+  </Step>
+  <Step title="Configurar los parámetros de integración">
+    Si tu cuenta de Asana está vinculada a más de un espacio de trabajo, selecciona el que deseas sincronizar con Beebole.
+
+    Selecciona el _Rol_ predeterminado a usar para los empleados durante el proceso de importación.
+
+    <Tip>Puedes revisar los roles existentes en **Configuración** > **Roles de personas**.</Tip>
+
+    Define si deseas importar tus tareas para Planificación y asignación o para seguimiento de tiempo por proyecto y tarifas.
+
+    <Frame caption="Parámetros de la integración Asana">
+      ![Parámetros de la integración Asana](/help/images/integrations/asana-params.webp)
+    </Frame>
+  </Step>
+  <Step title="Habilitar la integración">
+    Haz clic en el interruptor para habilitar la integración. El sistema importará todos tus proyectos y tareas activos.
+
+    <Frame caption="Integración Asana actualizándose">
+      ![Integración Asana actualizándose](/help/images/integrations/asana-updating.webp)
+    </Frame>
+
+    <Note>Esto puede tardar unos momentos dependiendo de tu cuenta de Asana. Puedes navegar y usar la aplicación mientras el proceso continúa.</Note>
+
+    Una vez completado, la integración estará habilitada y todos los cambios de Asana se reflejarán en Beebole.
+  </Step>
+  <Step title="Validar la integración">
+    Haz clic en el icono de Proyectos en el menú izquierdo para ir a la página de Proyectos. Expande las categorías. Deberías ver una nueva categoría llamada Asana que incluye todos tus proyectos y tareas. Puedes cambiar el nombre de la categoría si lo necesitas.
+
+    <Frame caption="Página de Proyectos con la categoría Asana importada">
+      ![Página de Proyectos con la categoría Asana importada](/help/images/integrations/asana-validate.webp)
+    </Frame>
+  </Step>
+  <Step title="Configurar la hoja de horas">
+    Si deseas que la nueva categoría se use en la Hoja de horas, ve a **Configuración** > **Configuración de la cuenta** > **Configuración de la hoja de horas** y selecciona la categoría Asana.
+  </Step>
 </Steps>
 
 ## Preguntas frecuentes (FAQ)
 <AccordionGroup>
   <Accordion title="¿Cuál es la diferencia entre Proyectos y actividades vs Planificación y tareas?">
-    La gestión del tiempo de Beebole se divide en dos secciones, Proyectos y Planificación. Los Proyectos se pueden configurar con tarifas de facturación, costos, presupuesto y gastos. La Planificación es una lista de tareas que puedes asignar en diferentes gráficos. Ambos se pueden usar en la hoja de horas para registrar el tiempo.<br/>Para más detalles, ve a **Enlace interno a la explicación principal entre Proyectos y Planificación**.
+    La gestión del tiempo de Beebole se divide en dos secciones, Proyectos y Planificación. Los Proyectos se pueden configurar con tarifas de facturación, costos, presupuesto y gastos. La Planificación es una lista de tareas que puedes asignar en diferentes gráficos. Ambos se pueden usar en la hoja de horas para registrar el tiempo.
+
+Para más detalles, ve a **Enlace interno a la explicación principal entre Proyectos y Planificación**.
   </Accordion>
 
   <Accordion title="¿Con qué frecuencia se sincroniza Beebole con Asana?">
-    Cada vez que actualizas o creas un proyecto o una tarea en Asana, se reflejará inmediatamente en Beebole. A veces, debido a la congestión de la red o las colas de datos, puede tardar desde unos minutos hasta unas pocas horas.<br/>Si tu cambio no se refleja en Beebole en 24 horas, por favor contáctanos.
+    Cada vez que actualizas o creas un proyecto o una tarea en Asana, se reflejará inmediatamente en Beebole. A veces, debido a la congestión de la red o las colas de datos, puede tardar desde unos minutos hasta unas pocas horas.
+
+Si tu cambio no se refleja en Beebole en 24 horas, por favor contáctanos.
   </Accordion>
 </AccordionGroup>
