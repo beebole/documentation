@@ -1,4 +1,211 @@
 ---
-title: 'Queries'
-description: 'Retrieve data from Beebole using API queries and read operations'
+title: "API Queries"
+description: "Retrieve people, projects, tasks, time records, expense records, and more from Beebole using GraphQL queries."
+keywords: ["beebole", "GraphQL queries", "API queries", "read data", "time records api", "beebole api"]
+"og:title": "Beebole API Queries Reference"
+"og:description": "Full reference for all available GraphQL read operations in the Beebole API."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Queries retrieve data from Beebole without modifying anything. All queries require a valid API key — see [Authentication](/help/api/introduction#authentication) for setup instructions.
+
+---
+
+## People
+
+| Query | Description |
+|-------|-------------|
+| `currentPerson` | Returns the person linked to the API key used for the request |
+| `getPerson(id)` | Fetches a single person by ID |
+| `getPersons(filter, archived)` | Lists people, optionally filtered and including archived records |
+| `countPersons(filter, archived)` | Returns the count of people matching the given criteria |
+| `filterPersonIds(filter, archived)` | Returns only the IDs of matching people |
+
+### Example: fetch all active people
+
+```graphql
+query {
+  getPersons {
+    _id
+    name
+    email
+  }
+}
+```
+
+### Example: fetch a single person
+
+```graphql
+query {
+  getPerson(id: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    _id
+    name
+    email
+  }
+}
+```
+
+---
+
+## Projects
+
+| Query | Description |
+|-------|-------------|
+| `getProject(id)` | Fetches a single project by ID |
+| `getProjects(filter, archived)` | Lists projects, optionally filtered and including archived records |
+| `countProjects(filter, archived)` | Returns the count of matching projects |
+| `filterProjectIds(filter, archived)` | Returns only the IDs of matching projects |
+| `getProjectCategories` | Lists all project categories (top-level groupings) |
+
+### Example: fetch all active projects
+
+```graphql
+query {
+  getProjects {
+    _id
+    name
+    level
+  }
+}
+```
+
+---
+
+## Tasks
+
+| Query | Description |
+|-------|-------------|
+| `getTask(id)` | Fetches a single task by ID |
+| `getTasks(filter, archived)` | Lists tasks, optionally filtered and including archived records |
+| `countTasks(filter, archived)` | Returns the count of matching tasks |
+| `filterTaskIds(filter, archived)` | Returns only the IDs of matching tasks |
+| `getTaskCategories` | Lists all task categories |
+
+### Example: fetch all active tasks
+
+```graphql
+query {
+  getTasks {
+    _id
+    name
+  }
+}
+```
+
+---
+
+## Time records
+
+| Query | Description |
+|-------|-------------|
+| `getTimeRecord(id)` | Fetches a single time record by ID |
+| `getTimeRecords(filter)` | Lists time records matching the given filter criteria |
+| `countTimeRecords(filter)` | Returns the count of matching time records |
+
+Filters let you narrow results by person, project, date range, and other dimensions. Use the [Schema explorer](/help/api/schema-explorer) to see the full `BeeboleTimeRecordFilter` type.
+
+### Example: fetch time records
+
+```graphql
+query {
+  getTimeRecords(filter: [{ field: "personId", value: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
+    _id
+    duration
+    startTime
+  }
+}
+```
+
+---
+
+## Expense records
+
+| Query | Description |
+|-------|-------------|
+| `getExpenseRecord(id)` | Fetches a single expense record by ID |
+| `getExpenseRecords(filter)` | Lists expense records matching the given filter criteria |
+
+### Example: fetch expense records
+
+```graphql
+query {
+  getExpenseRecords {
+    _id
+    amount
+    date
+  }
+}
+```
+
+---
+
+## Organisation
+
+| Query | Description |
+|-------|-------------|
+| `currentOrganisation` | Returns the organisation linked to the authenticated API key |
+| `getAuditTrails` | Returns the audit log for the organisation |
+
+### Example: fetch organisation info
+
+```graphql
+query {
+  currentOrganisation {
+    _id
+    name
+  }
+}
+```
+
+---
+
+## Absence types
+
+| Query | Description |
+|-------|-------------|
+| `getAbsenceType(id)` | Fetches a single absence type by ID |
+| `getAbsenceTypes(filter, archived)` | Lists absence types |
+| `countAbsenceTypes(filter, archived)` | Returns the count of matching absence types |
+
+---
+
+## Tips
+
+<Tip>
+  Use `filter` arguments to narrow results when querying large datasets. Fetching without filters returns all records, which may be slow for accounts with extensive history.
+</Tip>
+
+- Combine `getPersons` with `getTimeRecords` filters to pull time data scoped to specific team members.
+- Use `countTimeRecords` before fetching records to estimate response size.
+- For write operations, see [Mutations](/help/api/mutations).
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="API Introduction" icon="book" href="/help/api/introduction">
+    Learn how to authenticate and make your first API request.
+  </Card>
+  <Card title="Mutations" icon="pen" href="/help/api/mutations">
+    All available GraphQL write operations in the Beebole API.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I filter time records by date range?">
+    Pass a filter array to `getTimeRecords` with conditions on `startTime` or `endTime`. Use the [Schema explorer](/help/api/schema-explorer) to see the exact filter field names and operators available.
+  </Accordion>
+  <Accordion title="Can I fetch archived people and projects?">
+    Yes. Pass `archived: true` to `getPersons` or `getProjects` to include archived records in the results.
+  </Accordion>
+  <Accordion title="What does filterPersonIds return?">
+    It returns an array of IDs instead of full objects. Use it when you only need to check membership or build a filter for a subsequent query without fetching full records.
+  </Accordion>
+  <Accordion title="How do I see all available fields on a query result type?">
+    Use the [Schema explorer](/help/api/schema-explorer) to browse every field on every type — including nested objects like billing rates, schedule settings, and custom field values.
+  </Accordion>
+</AccordionGroup>

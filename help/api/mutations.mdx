@@ -1,4 +1,240 @@
 ---
-title: 'Mutations'
-description: 'Modify data in Beebole using API mutations and write operations'
+title: "API Mutations"
+description: "Create, update, archive, and delete people, projects, tasks, time records, and more using Beebole GraphQL mutations."
+keywords: ["beebole", "GraphQL mutations", "API mutations", "write data", "create time record", "beebole api"]
+"og:title": "Beebole API Mutations Reference"
+"og:description": "Full reference for all available GraphQL write operations in the Beebole API."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Mutations create, update, archive, or delete data in Beebole. All mutations require a valid API key — see [Authentication](/help/api/introduction#authentication) for setup. For read operations, see [Queries](/help/api/queries).
+
+---
+
+## People
+
+| Mutation | Description |
+|----------|-------------|
+| `addPerson(name, email, roleId, color?)` | Creates a new team member in the organisation |
+| `deletePerson(id, check?)` | Permanently deletes a person and their credentials. Pass `check: true` for a dry-run validation |
+| `duplicatePerson(id, name)` | Creates a copy of an existing person |
+| `archivePerson(id)` | Archives a person (they remain in historical data) |
+| `archivePersons(ids)` | Archives multiple people at once |
+| `unarchivePerson(id)` | Restores an archived person to active status |
+| `unarchivePersons(ids)` | Restores multiple archived people |
+| `editPersonName(id, name)` | Updates a person's display name |
+| `editPersonEmail(id, email)` | Updates a person's email address |
+| `editPersonRole(id, roleId)` | Changes the authorisation role assigned to a person |
+| `editPersonStartDate(id, startDate)` | Sets the date when the person joined the organisation |
+| `editPersonColor(id, color)` | Updates the display color for a person |
+| `editPersonLang(id, lang)` | Sets the preferred language for a person |
+
+### Example: create a person
+
+```graphql
+mutation {
+  addPerson(
+    name: "Alice Martin"
+    email: "alice@example.com"
+    roleId: "64a1b2c3d4e5f6a7b8c9d0e1"
+  ) {
+    _id
+    name
+    email
+  }
+}
+```
+
+---
+
+## Projects
+
+| Mutation | Description |
+|----------|-------------|
+| `addProject(name, categoryId?, parentId?, color?)` | Creates a new project or sub-project |
+| `deleteProject(id, check?)` | Permanently deletes a project. Pass `check: true` for a dry-run validation |
+| `deleteProjects(ids)` | Permanently deletes multiple projects |
+| `duplicateProject(id, name)` | Creates a copy of a project and its structure |
+| `archiveProject(id)` | Archives a project |
+| `archiveProjects(ids)` | Archives multiple projects |
+| `unarchiveProject(id)` | Restores an archived project |
+| `unarchiveProjects(ids)` | Restores multiple archived projects |
+| `editProjectName(id, name)` | Renames a project |
+| `editProjectParent(id, parentId)` | Moves a project under a different parent |
+| `editProjectColor(id, color)` | Updates the display color for a project |
+| `editProjectAvailability(id, ...)` | Controls which people can log time to this project |
+| `addProjectCategory(name)` | Creates a new project category |
+| `deleteProjectCategory(id)` | Deletes a project category |
+| `editProjectCategoryName(id, name)` | Renames a project category |
+| `changeProjectCategory(id, categoryId)` | Moves a project to a different category |
+
+### Example: create a project
+
+```graphql
+mutation {
+  addProject(
+    name: "Website Redesign"
+    categoryId: "64a1b2c3d4e5f6a7b8c9d0e2"
+  ) {
+    _id
+    name
+  }
+}
+```
+
+---
+
+## Tasks
+
+| Mutation | Description |
+|----------|-------------|
+| `addTask(name, categoryId?, parentId?, color?, statusId?)` | Creates a new task |
+| `deleteTask(id, check?)` | Permanently deletes a task and its descendants |
+| `duplicateTask(id, name)` | Creates a copy of a task |
+| `archiveTask(id)` | Archives a task |
+| `archiveTasks(ids)` | Archives multiple tasks |
+| `addTaskCategory(name)` | Creates a new task category |
+| `deleteTaskCategory(id)` | Deletes a task category |
+| `editTaskCategoryName(id, name)` | Renames a task category |
+| `changeTaskCategory(id, categoryId)` | Moves a task to a different category |
+| `addTaskCategoryStatus(...)` | Adds a status option to a task category |
+| `deleteTaskCategoryStatus(...)` | Removes a status from a task category |
+| `editTaskCategoryStatusName(...)` | Renames a task status |
+| `editTaskCategoryStatusColor(...)` | Updates the color of a task status |
+
+### Example: create a task
+
+```graphql
+mutation {
+  addTask(
+    name: "Write copy"
+    categoryId: "64a1b2c3d4e5f6a7b8c9d0e3"
+  ) {
+    _id
+    name
+  }
+}
+```
+
+---
+
+## Time records
+
+| Mutation | Description |
+|----------|-------------|
+| `addTimeRecord(startTime, duration, personId, taskId?, absenceId?, ...)` | Logs a new time entry for a person |
+| `editTimeRecordDuration(id, duration)` | Updates the duration (in minutes) of a time record |
+| `editTimeRecordStartTime(id, startTime)` | Updates the start timestamp of a time record |
+| `editTimeRecordEndTime(id, endTime)` | Updates the end timestamp of a time record |
+| `editTimeRecordProjects(id, projectIds)` | Changes which projects are associated with a time record |
+| `editTimeRecordTask(id, taskId)` | Changes the task linked to a time record |
+| `editTimeRecordAbsence(id, absenceId)` | Links a time record to an absence type |
+| `editTimeRecordComment(id, comment)` | Adds or updates the comment on a time record |
+| `editTimeRecordNonBillable(id, nonBillable)` | Marks or unmarks a time record as non-billable |
+| `editTimeRecordWfh(id, wfh)` | Sets the work-from-home flag on a time record |
+| `deleteTimeRecords(ids)` | Permanently deletes one or more time records |
+| `cloneTimeRecords(ids, ...)` | Duplicates time records to a new date |
+
+`startTime` is a Unix timestamp in milliseconds. `duration` is an integer in minutes.
+
+### Example: log a time entry
+
+```graphql
+mutation {
+  addTimeRecord(
+    startTime: 1717200000000
+    duration: 120
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    taskId: "64a1b2c3d4e5f6a7b8c9d0e3"
+  ) {
+    _id
+    duration
+    startTime
+  }
+}
+```
+
+---
+
+## Expense records
+
+| Mutation | Description |
+|----------|-------------|
+| `addExpenseRecord(date, personId, expenseTypeId, amount, ...)` | Creates a new expense entry |
+| `deleteExpenseRecord(id)` | Permanently deletes an expense record |
+| `editExpenseRecordDate(id, date)` | Changes the date of an expense record |
+| `editExpenseRecordPerson(id, personId)` | Reassigns an expense record to a different person |
+| `editExpenseRecordProject(id, projectId)` | Reassigns an expense record to a different project |
+| `editExpenseRecordAmount(id, amount)` | Updates the amount of an expense record |
+| `editExpenseRecordQuantity(id, quantity)` | Updates the quantity of an expense record |
+| `editExpenseRecordComment(id, comment)` | Adds or updates the comment on an expense record |
+| `editExpenseRecordExpense(id, expenseTypeId)` | Changes the expense type of a record |
+
+---
+
+## Organisation
+
+| Mutation | Description |
+|----------|-------------|
+| `editOrganisationName(name)` | Updates the organisation's display name |
+| `editOrganisationColor(color)` | Updates the organisation's brand color |
+| `editGoogleSSO(...)` | Configures Google SSO for the organisation |
+| `editMicrosoftSSO(...)` | Configures Microsoft SSO for the organisation |
+| `editCustomSSO(...)` | Configures a custom OIDC/OAuth SSO provider |
+
+---
+
+## Approval workflow
+
+| Mutation | Description |
+|----------|-------------|
+| `addApprovalEvent(...)` | Submits, approves, or rejects a timesheet approval request |
+
+---
+
+## Tips
+
+<Warning>
+  Mutations that delete or permanently modify data cannot be undone through the API. Use `check: true` where available to perform a dry-run validation before executing a destructive operation.
+</Warning>
+
+<Tip>
+  When creating records programmatically (people, projects, time entries), store the returned `_id` values so you can reference or update those records in follow-up mutations.
+</Tip>
+
+- **Batch operations** — Prefer `archivePersons`, `archiveProjects`, and `deleteTimeRecords` (which accept arrays) over looping single-item mutations when dealing with multiple records.
+- **Error handling** — The API returns an `errors` array when a mutation fails. Log and handle these in your integration.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="API Introduction" icon="book" href="/help/api/introduction">
+    Learn how to authenticate and make your first API request.
+  </Card>
+  <Card title="Queries" icon="magnifying-glass" href="/help/api/queries">
+    All available GraphQL read operations in the Beebole API.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I create a sub-project?">
+    Use `addProject` and pass the parent project's ID as `parentId`. The sub-project inherits the parent's category unless you specify a different `categoryId`.
+  </Accordion>
+  <Accordion title="What is the duration unit for addTimeRecord?">
+    Duration is in minutes. For example, pass `120` to log 2 hours.
+  </Accordion>
+  <Accordion title="Can I bulk-delete time records?">
+    Yes. `deleteTimeRecords` accepts an array of IDs, so you can delete multiple records in a single mutation.
+  </Accordion>
+  <Accordion title="How do I mark a time record as non-billable?">
+    Use `editTimeRecordNonBillable(id, nonBillable: true)` to mark it non-billable, or pass `false` to restore billable status.
+  </Accordion>
+  <Accordion title="What happens if I try to delete a person who has time records?">
+    Use `deletePerson(id, check: true)` first to validate whether there are any references. The check returns information about linked data without deleting anything.
+  </Accordion>
+</AccordionGroup>

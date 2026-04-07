@@ -29,7 +29,7 @@ Beebole's account settings let you configure how your organisation works within 
 
 ---
 
-## Feature toggles
+## Feature toggles <Badge>Admin only</Badge>
 
 Beebole is modular by design. You can enable or disable entire features depending on what your organisation needs. This keeps the interface clean and focused for your team.
 
@@ -62,7 +62,7 @@ The following modules can be toggled on or off:
 
 ---
 
-## Localisation
+## Localisation <Badge>Admin only</Badge>
 
 These settings control the default regional preferences for your entire organisation. Individual users may override some of these in their personal profile.
 
@@ -84,6 +84,106 @@ Configure how dates appear throughout the interface:
 
 - **Date format** -- Choose between formats like DD/MM/YYYY, MM/DD/YYYY, or YYYY-MM-DD.
 - **First day of week** -- Set whether the week starts on **Monday**, **Sunday**, or another day. This affects timesheets, calendars, and reports.
+
+---
+
+## Organisation logo <Badge>Admin only</Badge>
+
+You can upload a logo for your organisation. The logo appears in the sidebar and in emails sent by Beebole, giving your workspace a branded look for your team.
+
+<Steps>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account**.
+  </Step>
+  <Step title="Upload a logo">
+    In the organisation header at the top of the settings page, click the logo area. You can **paste, drop, or click to add the logo of your organisation**. The logo is cropped to a 16:9 rectangle.
+  </Step>
+  <Step title="Save">
+    The logo saves automatically after upload. To remove it, click the logo and choose the clear option.
+  </Step>
+</Steps>
+
+<Tip>
+  Use a square or wide logo for best results. Beebole crops logos to a 16:9 rectangle, so avoid placing important content at the very edges of the image.
+</Tip>
+
+---
+
+## Organisation accent colour <Badge>Admin only</Badge>
+
+Administrators can set a custom accent colour for the organisation. This colour becomes the interface accent for all members — it affects buttons, highlights, and other branded elements throughout Beebole.
+
+<Steps>
+  <Step title="Open account settings">
+    Go to **Settings** > **Account**.
+  </Step>
+  <Step title="Open the colour picker">
+    In the organisation header, click the colour swatch next to the logo. Select the colour you want from the palette.
+  </Step>
+  <Step title="Apply">
+    The colour updates immediately for all users in the organisation. To reset to the default, open the colour picker again and choose **Remove color**.
+  </Step>
+</Steps>
+
+<Note>
+  The accent colour is an organisation-wide setting and applies to all members. Individual users can also pick their own personal interface colour from their user profile, which overrides the organisation default for them alone.
+</Note>
+
+---
+
+## Personal appearance settings
+
+Each user can adjust their own interface independently from the organisation's defaults. These settings apply only to the individual account and do not affect other members.
+
+### Personal interface colour
+
+In addition to the organisation accent colour, each user can choose their own personal colour. Your personal colour overrides the organisation default for you alone.
+
+To set your personal colour, click your profile avatar in the top bar and select **Pick your color**. Choose a colour from the palette. To revert to the organisation colour, open the picker again and select **Remove color**.
+
+### Theme
+
+Beebole supports three visual themes:
+
+| Theme | Behaviour |
+|-------|-----------|
+| **Light** | Standard light background |
+| **Dark** | Dark background, easier on the eyes in low-light environments |
+| **Auto** | Automatically follows your device's system theme |
+
+To switch themes, click your profile avatar and select your preferred **Dark / Lite** option. The change takes effect immediately and is saved to your account.
+
+<Note>
+  Theme is a personal setting and is not visible to other users. See also [Mobile & Desktop App](/help/documentation/mobile) for more about theme options on mobile.
+</Note>
+
+### Language
+
+Beebole's interface is available in multiple languages. Each user can set their own preferred language independently of the organisation default.
+
+To change your language, go to **Settings** > **Account** and locate the **Your language** setting, or ask your administrator to update it on your person profile. The interface updates immediately after saving.
+
+The organisation administrator sets the default **Language** for all new users. Individual users can override it for their own session.
+
+### Profile picture
+
+Each user can upload a profile picture (avatar). Your picture appears next to your name across timesheets, reports, and approval workflows.
+
+<Steps>
+  <Step title="Open your profile">
+    Click your profile avatar in the top bar and select **Your profile**.
+  </Step>
+  <Step title="Upload a picture">
+    Click the avatar area and use the image picker. You can **paste, drop, or click to add an image**. The crop tool lets you adjust framing and zoom before saving. The final image is cropped to a circle.
+  </Step>
+  <Step title="Save">
+    Confirm the crop and save. Your picture updates immediately across the app.
+  </Step>
+</Steps>
+
+<Tip>
+  Use a square photo for best results. The crop tool lets you zoom and pan before committing, so you can frame your face precisely.
+</Tip>
 
 ---
 
@@ -118,7 +218,7 @@ Choose between **12-hour** (AM/PM) and **24-hour** time display. This setting ap
 
 ---
 
-## Deleting your organisation
+## Deleting your organisation <Badge>Admin only</Badge>
 
 You can permanently delete your Beebole organisation and all its data. This is an irreversible action.
 
@@ -140,6 +240,25 @@ You can permanently delete your Beebole organisation and all its data. This is a
 
 ---
 
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Roles & Authorisations" href="/help/documentation/roles-authorisations">
+    Control who can access and change account settings.
+  </Card>
+  <Card title="Subscription" href="/help/documentation/subscription">
+    Manage your Beebole plan and billing details.
+  </Card>
+  <Card title="Authentication" href="/help/documentation/authentication">
+    Configure SSO, SAML, and login security for your organisation.
+  </Card>
+  <Card title="Data Exports" href="/help/documentation/data-exports">
+    Export your organisation's data for backup or migration.
+  </Card>
+</CardGroup>
+
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -157,5 +276,11 @@ You can permanently delete your Beebole organisation and all its data. This is a
   </Accordion>
   <Accordion title="How do I set the first day of the week?">
     Go to **Settings** > **Account** and look for the **First day of week** option under date and time format settings. This affects how timesheets and calendars are displayed for everyone in your organisation.
+  </Accordion>
+  <Accordion title="Can individual users choose a different interface colour from the organisation colour?">
+    Yes. Each user can set their own personal accent colour by clicking their profile avatar and selecting **Pick your color**. The personal colour overrides the organisation colour for that user only. To revert, open the colour picker and choose **Remove color**.
+  </Accordion>
+  <Accordion title="Where do I change the interface language for my own account?">
+    Go to **Settings** > **Account** and change the **Your language** setting. This updates the interface language for your account only and does not affect other users.
   </Accordion>
 </AccordionGroup>

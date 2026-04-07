@@ -95,6 +95,57 @@ Click any task card to open its detail panel. From here you can update:
 
 ---
 
+## Task descriptions
+
+Every task has a **Description** field that supports full rich text editing. Click the **Description** area in the task detail panel to open the editor.
+
+The editor is powered by Lexical and supports:
+
+- Text formatting — bold, italic, underline, strikethrough
+- Headings (H1, H2, H3)
+- Ordered and unordered lists
+- Code blocks with syntax highlighting
+- Links
+- Inline images, videos, and PDF attachments (drag and drop or paste)
+- @mentions to reference team members
+
+The description is shared across all task views — edits you make on the Kanban board are immediately visible when the same task is opened from the Gantt chart or the planning view.
+
+<Tip>
+  Use descriptions to capture acceptance criteria, reference links, or background context. The description panel is separate from comments, so it works well for stable task-level information.
+</Tip>
+
+---
+
+## Task-level custom fields
+
+Custom fields let you extend tasks with additional structured data beyond the built-in fields. A custom field is defined once in your account settings and then made visible on specific task categories.
+
+### Supported field types
+
+| Type | What it stores |
+|------|---------------|
+| **Text** | Free-form text, with optional length constraints and allowed value lists |
+| **Number** | Numeric value with optional validation rules |
+| **Date** | A date picker value |
+| **Date & time** | A date and time picker value |
+| **URL** | A validated URL |
+| **Yes / No** | A boolean toggle |
+
+### Configuring custom fields for tasks
+
+Custom fields are configured in **Settings > Custom fields**. When creating or editing a field, set its visibility to include the task categories where it should appear. Once visible, the field appears in the task detail panel for every task in those categories.
+
+### Filling in custom field values
+
+Open a task detail panel. Scroll to the custom fields section. Click any field to enter or select a value. Values are saved immediately when you leave the field.
+
+<Info>
+  Custom fields on tasks are separate from custom fields on projects or people. Each entity type has its own visibility configuration.
+</Info>
+
+---
+
 ## Setting WIP limits
 
 WIP (Work In Progress) limits let you cap the number of tasks allowed in a status column at any time. This prevents bottlenecks and encourages your team to finish tasks before starting new ones.
@@ -157,4 +208,24 @@ You can perform actions on multiple tasks at once to save time:
   <Accordion title="Is there a limit to the number of tasks on the Kanban board?">
     There is no hard limit. For large projects, use filters to narrow the view by person, status, or date range.
   </Accordion>
+  <Accordion title="How do I add a custom field to tasks?">
+    Go to **Settings > Custom fields**, create or edit a field, and set its visibility to include the relevant task categories. The field then appears in the task detail panel for all tasks in those categories.
+  </Accordion>
+  <Accordion title="Can multiple team members edit a task description at the same time?">
+    The description editor is single-user at a time. If two people open the same task simultaneously, the last save wins. For collaborative notes, use the task's comment or journal feed instead.
+  </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Gantt chart" icon="chart-bar" href="/help/documentation/gantt">
+    Visualize task timelines and dependencies on an interactive timeline view.
+  </Card>
+  <Card title="Planning" icon="clock" href="/help/documentation/planning">
+    Allocate resources across projects and track team capacity alongside task progress.
+  </Card>
+  <Card title="Projects" icon="folder" href="/help/documentation/projects">
+    Set up and configure the projects that contain your Kanban tasks.
+  </Card>
+</CardGroup>

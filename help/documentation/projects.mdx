@@ -56,25 +56,97 @@ Beebole uses a flexible hierarchy with no depth limit. You can organize your wor
 
 Once a project is created, click its name to access detailed settings:
 
-- **Project managers** — Assign people to oversee the project and approve time entries.
+- **Manager** — Assign people to oversee the project and approve time entries.
 - **Members** — Control which team members can log time to this project.
 - **Tags** — Categorize the project for reporting and organizational grouping. See [Tags](/help/documentation/tags).
 - **Custom fields** — Add project-specific metadata (e.g., "Priority", "Region"). See [Custom fields](/help/documentation/custom-fields).
 
 ---
 
-## Billing, costs, and budgets on projects
+## Billing rates per project
 
-Projects are one of the main entities where you configure financial tracking. You can set:
+Each project can carry its own billing rates, independent of any rates defined at the organisation or tag level. Open the project, go to the **Billing** attribute panel, and click **Add** to create a new rate. You can choose between a fixed fee, an hourly rate, or a daily rate. Use **Split by persons** to define different rates for individual team members working on the project, or **Split by tags** to apply rates based on tag membership.
 
-- **Billing rates** — Define how much you charge for time spent on this project. Rates can be flat, hourly, or daily, and can be split by person. See [Billing rates](/help/documentation/billing).
-- **Cost rates** — Track your internal cost for work on this project. See [Cost rates](/help/documentation/costs).
-- **Budgets** — Set billing, cost, or hours budgets with optional splits by person or sub-project. See [Budgets](/help/documentation/budgets).
-- **Expense types** — Control which expense categories apply to this project. See [Expenses](/help/documentation/expenses).
+A rate set directly on a project takes priority over rates inherited from tags or the organisation. This means you can leave defaults at the organisation level and only override them for projects with special commercial arrangements. See [Billing rates](/help/documentation/billing) for the full priority order and repeat/date-range options.
+
+---
+
+## Cost rates per project
+
+Project-level cost rates let you track the internal cost of delivering work on a specific project, separately from your organisation-wide defaults. Open the project and go to the **Cost** attribute panel. The setup mirrors billing: choose between hourly, daily, or fixed-fee methods, and optionally split by person or tag to reflect varying internal costs across your team.
+
+Cost data feeds directly into budget tracking and profitability reports. If a project has no cost rate defined, Beebole falls back to any rate set on the person or at the organisation level. See [Cost rates](/help/documentation/costs) for details on the inheritance chain.
+
+---
+
+## Expense types per project
+
+By default, all expense categories defined in your organisation are available for recording expenses. You can restrict or expand this on a per-project basis using the **Show or hide** attribute on the project.
+
+<Steps>
+  <Step title="Open the project settings">
+    Click the project name to open its attribute panel.
+  </Step>
+  <Step title="Go to Show or hide">
+    Find the **Show or hide** section. It lists expense types alongside absence types, tasks, and custom fields.
+  </Step>
+  <Step title="Toggle expense types">
+    Enable or disable individual expense categories for this project. Disabling an expense type prevents team members from selecting it when recording expenses against this project.
+  </Step>
+</Steps>
+
+You can also assign a project to an expense type directly from the expense type's own settings — use the **Potential owners** attribute on the expense type. See [Expenses](/help/documentation/expenses) for full details.
+
+---
+
+## Custom fields on projects
+
+Custom fields let you attach structured metadata to a project — for example, a client contract number, a region, a priority level, or any other data point your organisation needs for reporting.
+
+To add custom fields to a project, open the project and go to the **Custom fields** attribute panel. Click **Add a custom field** to select from the fields defined in your organisation. Supported field types include text, number, date, date & time, URL, and boolean (yes/no). Each field can be configured with a default value, allowed values, min/max constraints, and a prefix or suffix for display.
+
+Custom field values on a project appear in reports and exports, making it easy to filter, group, or segment your data by any dimension you define. See [Custom fields](/help/documentation/custom-fields) to learn how to create and manage field definitions.
+
+---
+
+## Timesheet settings per project <Badge>Admin only</Badge>
+
+Every project has a **Timesheet settings** attribute that lets you override the organisation-wide time tracking defaults for that specific project. This is useful when different projects require different submission cadences, time entry rules, or reminder schedules.
+
+The settings are grouped into four tabs:
+
+- **Period & submission** — Override the timesheet period (weekly, bi-weekly, monthly, etc.), set an auto-submit delay with **Auto-submit timesheets after (days)**, and control submission rules such as **Allow partial timesheet submission** or **Limit future time entries to time off requests**.
+- **Time entry** — Change the **Unit for time entry** (hours or days), the **Duration format**, and the **Minimum time interval accepted**. Enable or require the timer (**Enable timer for time tracking** / **Require timer for time entries**), start/end time capture (**Record start and end times** / **Require start and end times**), and **Require comments on time entries for submission**.
+- **Record time on…** — Restrict which project categories or task categories team members can log time against when working on this project.
+- **Reminders** — Configure a **Timesheet reminder** (sent at the start of the next period or end of the current one) and an **Approval reminder** sent to approvers a set number of days after the initial notification.
+
+Each setting shows an inheritance indicator: if a value is inherited from the organisation, a tag, or a parent project, you can see the source and reset it to the inherited default at any time.
 
 <Info>
-  Billing and cost rates follow a priority system: a rate set directly on a project overrides rates inherited from tags or the organisation level. See [Billing rates](/help/documentation/billing) for the full priority order.
+  Settings defined at the project level override the organisation defaults only for team members working on that project. Other projects are unaffected.
 </Info>
+
+---
+
+## Moving a project to a different category
+
+You can reorganise your project tree at any time using drag and drop.
+
+<Steps>
+  <Step title="Open the Projects page">
+    Click **Projects** in the left sidebar to display the project tree.
+  </Step>
+  <Step title="Drag the project">
+    Click and hold the project you want to move, then drag it to the target category. You can also nest it inside another project to make it a sub-project.
+  </Step>
+  <Step title="Drop to confirm">
+    Release to drop the project in its new position. The change takes effect immediately.
+  </Step>
+</Steps>
+
+<Warning>
+  Moving a project to a different category may affect reports that are filtered by the original category. Review any saved reports or dashboards after reorganising your hierarchy.
+</Warning>
 
 ---
 
@@ -99,10 +171,30 @@ You can unarchive a project at any time to make it active again.
   <Accordion title="Can I restrict which employees see certain projects?">
     Yes. You can control project visibility through [Assignments](/help/documentation/assignments) and [Roles & permissions](/help/documentation/roles-authorisations).
   </Accordion>
-  <Accordion title="How do I move a project to a different category?">
-    Use the drag-and-drop interface in the project tree. Note that moving a project may affect existing reports filtered by the original category.
-  </Accordion>
   <Accordion title="Can I set different billing rates for different people on the same project?">
-    Yes. Use the **split by person** option in the project's billing settings. See [Billing rates](/help/documentation/billing) for details.
+    Yes. Use the **Split by persons** option in the project's billing settings. See [Billing rates](/help/documentation/billing) for details.
+  </Accordion>
+  <Accordion title="What happens to timesheet settings when I move a project?">
+    Timesheet settings you have set directly on the project travel with it. Settings that were inherited from the original category will now be inherited from the new parent instead.
+  </Accordion>
+  <Accordion title="Can I copy billing or cost rates from one project to another?">
+    Yes. In the billing or cost attribute panel, use the **Copy** action to duplicate rates from another project, person, or tag. This is useful when several projects share the same rate structure.
   </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Budgets" icon="chart-bar" href="/help/documentation/budgets">
+    Set billing, cost, and hours budgets on your projects and track progress in real time.
+  </Card>
+  <Card title="Cost rates" icon="settings" href="/help/documentation/costs">
+    Configure internal cost rates at the project level for profitability tracking.
+  </Card>
+  <Card title="Tags" icon="tag" href="/help/documentation/tags">
+    Use tags to categorize projects by client type, service line, or business unit.
+  </Card>
+  <Card title="Planning" icon="clock" href="/help/documentation/planning">
+    Allocate team resources across projects and compare planned versus actual hours.
+  </Card>
+</CardGroup>

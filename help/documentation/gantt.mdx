@@ -128,6 +128,95 @@ You can adjust the Gantt chart to focus on what matters most:
 
 ---
 
+## Saved task views
+
+Beebole lets you create multiple named views for the same task list. Each view stores its own column selection, grouping, and scale settings independently, so you can switch between configurations without losing your work.
+
+### Creating a view
+
+Click **Add a view** in the tab bar above the task list, then select **Add a Gantt** from the menu. The new Gantt view appears as a tab with a default name.
+
+### Renaming a view
+
+Double-click a view tab to enter rename mode, type a new name, then press **Enter** or click elsewhere to confirm. You can also click the **⋯** icon on the tab and select **Rename**.
+
+### Switching between views
+
+Click any tab to activate that view. The chart reloads with the column selection, grouping, and scale that you last saved for that view.
+
+### Duplicating and deleting views
+
+Click the **⋯** icon on a tab to access **Duplicate** (creates a copy of the current view settings) and **Delete** (removes the view permanently). You cannot delete the last remaining view.
+
+---
+
+## Column customization
+
+The Gantt chart left panel shows a configurable set of columns alongside the task name. You control which columns are visible for each saved view.
+
+### Available columns
+
+| Column | What it shows |
+|--------|--------------|
+| **Row #** | Sequential row number for quick reference |
+| **Task Name** | Task name (always visible, cannot be hidden) |
+| **Dependencies** | Predecessor row numbers for the task |
+| **Dates** | Start and end dates |
+| **Potential owners** | People who have access to the task |
+| **Planned** | Planned effort as a percentage or in hours/days |
+| **Occupation** | Occupation percentage derived from effort and schedule |
+| **Billing** | Billing rate indicator |
+| **Cost** | Cost indicator |
+| **Status** | Current task status |
+| **Tags** | Tags assigned to the task |
+
+### Showing and hiding columns
+
+Click the **Columns** button in the view toolbar, or open the **⋯** menu on the active tab and hover over **Columns**. Click any column name to toggle its visibility. The **Row #** and **Task Name** columns are always shown and cannot be hidden.
+
+---
+
+## Row grouping
+
+You can group the task list by different dimensions to restructure how tasks are organized on screen. Grouping does not change the underlying task data.
+
+### Setting up grouping
+
+Click the **⋯** icon on the active view tab, then hover over **Group by**. Select one of the available grouping options:
+
+- **Owner** — Groups tasks by the task owner assigned to each task
+- **Status** — Groups tasks by their current status
+- **Category level** — Groups tasks by a level within a project category (available when project categories have defined level names)
+- **Tag category** — Groups tasks by a tag category level
+
+To remove grouping, select **None** from the **Group by** submenu.
+
+<Tip>
+  Enable **Show all groups** from the **Group by** submenu to display empty groups. This is useful when you want to see all possible owner or status values, even if no tasks currently fall into them.
+</Tip>
+
+---
+
+## Keyboard navigation
+
+When the Gantt chart is focused, you can navigate the task list without using the mouse:
+
+| Key | Action |
+|-----|--------|
+| **Arrow Down** | Move selection to the next row |
+| **Arrow Up** | Move selection to the previous row |
+| **Arrow Right** | Expand the selected group and move into its first child |
+| **Arrow Left** | Collapse the selected group, or move up to its parent |
+| **Enter** | Open the task detail panel for the selected task |
+| **Tab** | Make the selected task a subtask of the task immediately above it |
+| **Shift+Tab** | Move the selected subtask up one level in the hierarchy |
+
+<Info>
+  Keyboard navigation works when the task list panel has focus. Click anywhere in the task list first if the keys are not responding.
+</Info>
+
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -146,4 +235,24 @@ You can adjust the Gantt chart to focus on what matters most:
   <Accordion title="Is there a limit to the number of tasks on the Gantt chart?">
     There is no hard limit. However, for readability, consider using filters or grouping when working with projects that have a large number of tasks.
   </Accordion>
+  <Accordion title="Can I have multiple Gantt views with different column configurations?">
+    Yes. Click **Add a view** and select **Add a Gantt** to create a new view. Each view stores its own column selection, grouping, and scale settings independently.
+  </Accordion>
+  <Accordion title="Can I group tasks by something other than the project hierarchy?">
+    Yes. Open the **⋯** menu on the active view tab and hover over **Group by**. You can group by **Owner**, **Status**, a project category level, or a tag category level.
+  </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Kanban board" icon="check" href="/help/documentation/kanban">
+    Manage tasks by status using a visual drag-and-drop board view.
+  </Card>
+  <Card title="Planning" icon="clock" href="/help/documentation/planning">
+    Allocate team resources across projects and balance workloads over time.
+  </Card>
+  <Card title="Projects" icon="folder" href="/help/documentation/projects">
+    Configure the project hierarchy that organizes tasks in the Gantt chart.
+  </Card>
+</CardGroup>

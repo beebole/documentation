@@ -1,4 +1,161 @@
 ---
-title: 'Introduction to the API'
-description: 'Learn the fundamentals of the Beebole API and how to authenticate requests'
+title: "Introduction to the Beebole API"
+description: "Learn how the Beebole GraphQL API works, how to authenticate requests, and how to make your first query."
+keywords: ["beebole", "GraphQL API", "API introduction", "API authentication", "API key", "beebole api"]
+"og:title": "Beebole GraphQL API — Introduction"
+"og:description": "Authenticate with the Beebole GraphQL API using an API key and start querying or mutating your account data."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
 ---
+
+Beebole exposes a [GraphQL](https://graphql.org/) API that gives you full programmatic access to your account data. You can read time records, people, projects, and tasks, and you can create or update records directly — all over a single HTTP endpoint.
+
+For a guided overview of what you can build with the API, see [Custom Integrations](/help/integrations/custom-integrations).
+
+---
+
+## Endpoint
+
+All API requests go to:
+
+```
+POST https://app.beebole.com/graphql
+```
+
+The API accepts `application/json` bodies containing a `query` string and an optional `variables` object.
+
+---
+
+## Authentication
+
+Beebole uses API key authentication. Include your API key as a request header named `apikey`:
+
+```http
+apikey: YOUR_API_KEY
+```
+
+<Steps>
+  <Step title="Open API settings">
+    Go to **Settings** > **API** in your Beebole account.
+  </Step>
+  <Step title="Copy your API key">
+    Your **API Key** is displayed on this page. Click **Copy** to copy it to the clipboard.
+  </Step>
+  <Step title="Include the key in every request">
+    Add the `apikey` header to all HTTP requests you send to the endpoint.
+  </Step>
+</Steps>
+
+<Warning>
+  Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, click **Reset** on the **Settings** > **API** page to revoke it and generate a new one.
+</Warning>
+
+---
+
+## Making a request
+
+A GraphQL request is a POST with a JSON body containing a `query` field (and optionally `variables`). Here is a minimal example using `curl`:
+
+```bash
+curl -X POST https://app.beebole.com/graphql \
+  -H "Content-Type: application/json" \
+  -H "apikey: YOUR_API_KEY" \
+  -d '{"query": "{ currentPerson { name email } }"}'
+```
+
+A successful response looks like this:
+
+```json
+{
+  "data": {
+    "currentPerson": {
+      "name": "Alice Martin",
+      "email": "alice@example.com"
+    }
+  }
+}
+```
+
+---
+
+## Queries and mutations
+
+The Beebole API uses standard GraphQL conventions:
+
+- **Queries** read data without side effects. Use them to fetch people, projects, tasks, time records, expense records, and more.
+- **Mutations** write data. Use them to create, update, archive, or delete entities.
+
+See the full reference pages for details:
+
+- [Queries](/help/api/queries) — all available read operations
+- [Mutations](/help/api/mutations) — all available write operations
+- [Schema explorer](/help/api/schema-explorer) — interactive schema browser
+
+---
+
+## Error handling
+
+When a request fails, the API returns an `errors` array alongside (or instead of) the `data` field:
+
+```json
+{
+  "errors": [
+    {
+      "message": "APIKeyError:InvalidKey"
+    }
+  ]
+}
+```
+
+Common error messages:
+
+| Message | Cause |
+|---------|-------|
+| `APIKeyError:InvalidKey` | The API key is missing or not recognized |
+| `APIKeyError:CantFindLinkedAccount` | The account linked to this key no longer exists |
+| `AdminOnly` | The operation requires an administrator role |
+
+---
+
+## Rate limits
+
+The API enforces rate limits to ensure fair usage across all accounts. If you exceed the limit, reduce your request frequency or batch operations where possible. For high-volume integration needs, contact [support@beebole.com](mailto:support@beebole.com).
+
+---
+
+## Plan requirements
+
+The GraphQL API is available on Pro and Enterprise plans. Contact [support@beebole.com](mailto:support@beebole.com) if you are unsure whether your plan includes API access.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Queries" icon="magnifying-glass" href="/help/api/queries">
+    All available GraphQL read operations in the Beebole API.
+  </Card>
+  <Card title="Mutations" icon="pen" href="/help/api/mutations">
+    All available GraphQL write operations in the Beebole API.
+  </Card>
+  <Card title="Custom Integrations" icon="plug" href="/help/integrations/custom-integrations">
+    Build custom workflows and integrations using the API.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I use any programming language with the API?">
+    Yes. The API is standard GraphQL over HTTPS. Any language with an HTTP client — Python, JavaScript, Ruby, Go, Java, and others — can make requests.
+  </Accordion>
+  <Accordion title="Where do I find my API key?">
+    Go to **Settings** > **API** in your Beebole account. Your **API Key** is displayed there. You can copy or reset it from that page.
+  </Accordion>
+  <Accordion title="Can I use the API to read and write time records?">
+    Yes. The API supports both queries (reading time records) and mutations (creating and editing time entries). See [Queries](/help/api/queries) and [Mutations](/help/api/mutations) for the full list of operations.
+  </Accordion>
+  <Accordion title="How do I explore the API schema interactively?">
+    Use the [Schema explorer](/help/api/schema-explorer) to browse all available types, queries, and mutations with their arguments and descriptions.
+  </Accordion>
+</AccordionGroup>

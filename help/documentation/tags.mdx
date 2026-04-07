@@ -24,7 +24,28 @@ Tags are organized in a hierarchical tree structure, similar to projects:
 - **Tags** — Individual labels within a group (e.g., "Engineering", "Marketing", "Sales").
 - **Sub-tags** — Nested tags for more granular classification (e.g., "Engineering" > "Backend" > "Platform Team").
 
-You can name each level of your hierarchy with custom labels (e.g., "Division" > "Department" > "Team") to match your organization's vocabulary.
+### Custom hierarchy labels
+
+Each level of a tag group can have a custom name so the interface reflects your organisation's vocabulary. For example, a group might label its levels "Division", "Department", and "Team" instead of the generic defaults.
+
+<Steps>
+  <Step title="Open tag settings">
+    Go to **Settings** > **Tags** and select the tag group you want to configure.
+  </Step>
+  <Step title="Click the level name header">
+    In the tag list, click directly on a level name column header. A tooltip reads **Click to edit the level name for the whole category**.
+  </Step>
+  <Step title="Enter the new label">
+    Type the name you want for that level (e.g., **Division**, **Team**, **Unit**) and confirm.
+  </Step>
+  <Step title="Repeat for each level">
+    Repeat for each level in the hierarchy. Each tag group stores its own set of level names independently.
+  </Step>
+</Steps>
+
+<Tip>
+  Naming your levels makes reports and filters easier to understand for all team members, especially when the hierarchy maps to real organisational units.
+</Tip>
 
 ---
 
@@ -44,6 +65,31 @@ You can name each level of your hierarchy with custom labels (e.g., "Division" >
     Drag tags into a parent tag to create a hierarchy, or use the **[+]** button on a tag to add children directly.
   </Step>
 </Steps>
+
+---
+
+## Moving a tag to a different category
+
+You can reassign a tag — and all of its child tags — to a different tag group using the context menu. Only top-level tags can be moved; you must promote a nested tag to the root level before moving it to another category.
+
+<Steps>
+  <Step title="Open tag settings">
+    Go to **Settings** > **Tags**.
+  </Step>
+  <Step title="Open the context menu">
+    Right-click the tag you want to move, or click the actions icon next to it, to open the context menu.
+  </Step>
+  <Step title="Choose Change category">
+    Select **Change category** from the menu. A submenu lists the other available tag groups.
+  </Step>
+  <Step title="Select the target category">
+    Click the tag group you want to move the tag into. The tag and all its child tags move immediately.
+  </Step>
+</Steps>
+
+<Note>
+  Only top-level tags can be moved to a different category. If you need to move a nested tag, first cut and paste it to the root of its current category, then use **Change category**.
+</Note>
 
 ---
 
@@ -99,3 +145,20 @@ Tags appear as grouping and filtering dimensions in [Reports](/help/documentatio
     Yes. Through [Assignments](/help/documentation/assignments), you can use tags to control project availability — so people only see the projects relevant to their team or department.
   </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="People" icon="users" href="/help/documentation/people">
+    Assign tags to team members to inherit schedules, rates, and availability settings.
+  </Card>
+  <Card title="Projects" icon="folder" href="/help/documentation/projects">
+    Tag projects by client type or service line for structured reporting and filtering.
+  </Card>
+  <Card title="Roles & permissions" icon="shield" href="/help/documentation/roles-authorisations">
+    Use roles alongside tags to control what each person can see and access.
+  </Card>
+  <Card title="Work schedules" icon="clock" href="/help/documentation/work-schedule">
+    Set work schedules on tags so all members of a group inherit the same pattern.
+  </Card>
+</CardGroup>

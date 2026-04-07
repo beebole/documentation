@@ -153,7 +153,7 @@ Approvers can take action directly from email notifications without logging into
 
 Each approval notification email includes:
 
-- A **summary of the timesheet** -- total hours, projects, and key details.
+- A **summary of the timesheet** -- a line-by-line breakdown of time logged per project, task, and absence type for the period, plus the total hours.
 - **Approve** and **Reject** buttons that work directly from the email.
 
 <Tip>
@@ -204,6 +204,71 @@ When a timesheet is rejected or changes are requested:
 
 ---
 
+## Admin force-edit <Badge>Admin only</Badge>
+
+Administrators and managers can edit a submitted or approved timesheet directly without first rejecting it. This is useful for correcting a minor error without pushing the timesheet back through the full approval cycle.
+
+To enable force-edit for a specific person's timesheet:
+
+<Steps>
+  <Step title="Open the person's timesheet">
+    In the team side panel, locate the person whose timesheet you want to edit and click the **Edit timesheet** icon on their row.
+  </Step>
+  <Step title="Edit the timesheet">
+    The timesheet unlocks for editing. You can add, modify, or delete entries as needed.
+  </Step>
+  <Step title="Finish editing">
+    Navigate away from the person's timesheet or click another team member. The force-edit override clears automatically.
+  </Step>
+</Steps>
+
+<Warning>
+  Force-edit bypasses the normal locking behavior. Changes made while in force-edit mode are saved immediately without triggering a new approval cycle. Use this only for genuine corrections.
+</Warning>
+
+<Note>
+  Force-edit is a per-session toggle. It resets each time you navigate to a different person's timesheet.
+</Note>
+
+---
+
+## Admin force-approve and force-reject <Badge>Admin only</Badge>
+
+Administrators can approve or reject any submitted timesheet, even if they are not a designated approver for that stage. This lets admins unblock the approval pipeline without reconfiguring the workflow.
+
+### Force-approve
+
+When an administrator views a submitted timesheet, the **Approve** button is available regardless of whether the admin is listed as a pending approver for that stage. Clicking **Approve** advances the timesheet through the current stage exactly as a designated approver would.
+
+### Force-reject
+
+Administrators can reject a submitted timesheet at any stage. An administrator can also reject an already-approved timesheet if they were involved in the last approval stage (either as an approver or as a pending approver). Rejection always requires a comment explaining the reason.
+
+<Tip>
+  On mobile, the same rules apply. Admins see **Approve** and **Reject** buttons in the timesheet header whenever the viewed period has a submitted status.
+</Tip>
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    Fill in and submit your weekly or daily timesheet for approval.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
+    Configure reminders for approvers and submitters in the approval pipeline.
+  </Card>
+  <Card title="Roles & Authorisations" icon="shield" href="/help/documentation/roles-authorisations">
+    Control which roles can approve, view, or edit timesheets.
+  </Card>
+  <Card title="Audit Trail" icon="folder" href="/help/documentation/audit-trail">
+    Review the complete history of approval actions for compliance.
+  </Card>
+</CardGroup>
+
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -221,5 +286,11 @@ When a timesheet is rejected or changes are requested:
   </Accordion>
   <Accordion title="Is there an audit trail for approvals?">
     Yes. Beebole records every approval action -- who approved or rejected, when, and with what comments. This history is available on the timesheet and in the account-wide [audit trail](/help/documentation/audit-trail).
+  </Accordion>
+  <Accordion title="Can an admin edit a submitted timesheet without rejecting it?">
+    Yes. Administrators and managers can use the **Edit timesheet** action in the team panel to directly edit a submitted or approved timesheet. This force-edit override bypasses the lock without triggering a new approval cycle.
+  </Accordion>
+  <Accordion title="Can an admin approve a timesheet they are not assigned to?">
+    Yes. Administrators can approve any submitted timesheet regardless of the stage configuration. The **Approve** button is always visible to admins when viewing a submitted period.
   </Accordion>
 </AccordionGroup>

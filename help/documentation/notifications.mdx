@@ -145,6 +145,26 @@ Administrators can customize the content of notification emails to match your or
 
 ---
 
+## Reliable delivery
+
+Beebole uses an outbox queue to ensure notifications are delivered even when a temporary network or service issue occurs. When a notification fails to send, Beebole retries it automatically up to three times before marking it as permanently failed.
+
+<Info>
+  Retry handling is fully automatic — you do not need to take any action if a notification is delayed. Beebole will attempt redelivery in the background and deliver the notification once the issue resolves.
+</Info>
+
+---
+
+## Notification history
+
+Beebole keeps a personal notification history for each user. All sent notifications are stored against your profile and surfaced in the **Journal** feed, giving you a record of past approvals, mentions, and reminders.
+
+- **Per-context read tracking** — each notification is individually tracked. Beebole records when you read it so unread counts stay accurate across sessions and devices.
+- **Filterable feed** — you can filter the Journal by notification type (e.g., show only mentions or only approval events).
+- **Paginated history** — older notifications load on demand as you scroll, so the full history remains accessible without slowing down the initial view.
+
+---
+
 ## Unread counts and management
 
 Beebole tracks unread notifications per person:
@@ -152,6 +172,22 @@ Beebole tracks unread notifications per person:
 - The **Journal** icon in the sidebar displays a badge with the number of unread items.
 - Opening the Journal and scrolling past a notification marks it as read.
 - A "new" separator line distinguishes items you have not yet seen from older ones.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Approval" href="/help/documentation/approval">
+    Notifications are triggered by timesheet submission and approval actions.
+  </Card>
+  <Card title="Journal" href="/help/documentation/journal">
+    In-app notifications appear in the Journal feed alongside messages.
+  </Card>
+  <Card title="Account Settings" href="/help/documentation/account-settings">
+    Administrators configure organisation-wide notification defaults.
+  </Card>
+</CardGroup>
 
 ---
 

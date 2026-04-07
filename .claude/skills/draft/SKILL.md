@@ -1,6 +1,6 @@
 ---
 name: draft
-description: "Turn raw input (dictation, notes, feature description) into a complete Beebole documentation page through an interactive, collaborative process with checkpoints. Use this skill whenever the user wants to write a page, create documentation, draft a page from notes or dictation, build a new doc page, or turn raw content into structured documentation."
+description: 'Turn raw input (dictation, notes, feature description) into a complete Beebole documentation page through an interactive, collaborative process with checkpoints. Use this skill whenever the user wants to write a page, create documentation, draft a page from notes or dictation, build a new doc page, or turn raw content into structured documentation.'
 ---
 
 # Draft Page — Interactive Documentation Builder
@@ -10,6 +10,7 @@ Collaboratively build a complete Beebole documentation page through an interacti
 ## Context
 
 Before starting, read these context files for editorial and structural guidelines:
+
 - `.claude/context/brand.md` — voice, tone, and writing rules
 - `.claude/context/audiences.md` — who the page is for (adjust language and depth)
 - `.claude/context/documentation-structure.md` — page structure template and section ordering
@@ -33,13 +34,13 @@ The user provides raw input — a dictation transcript, bullet points, notes, or
 
 **Ask these clarifying questions** (skip any already answered):
 
-| Question | Why |
-|----------|-----|
-| **Target file path** (e.g., `help/documentation/assignments.mdx`) | Determines section, slug, and nav placement |
-| **New page or rewrite of an existing page?** | If rewriting, read the existing page first |
-| **Target audience** (e.g., admins, all users, managers) | Affects tone and which roles to highlight |
-| **Specific screenshots or videos to include?** | So placeholders can be added in the right spots |
-| **Anything the input misses?** | The user may have forgotten a section or edge case |
+| Question                                                          | Why                                                |
+| ----------------------------------------------------------------- | -------------------------------------------------- |
+| **Target file path** (e.g., `help/documentation/assignments.mdx`) | Determines section, slug, and nav placement        |
+| **New page or rewrite of an existing page?**                      | If rewriting, read the existing page first         |
+| **Target audience** (e.g., admins, all users, managers)           | Affects tone and which roles to highlight          |
+| **Specific screenshots or videos to include?**                    | So placeholders can be added in the right spots    |
+| **Anything the input misses?**                                    | The user may have forgotten a section or edge case |
 
 Do NOT ask about page structure, formatting, or components — apply CLAUDE.md conventions automatically.
 
@@ -47,17 +48,24 @@ Do NOT ask about page structure, formatting, or components — apply CLAUDE.md c
 
 Fetch UI labels and explore the source code in parallel:
 
-**Fetch i18n labels:**
-```bash
-gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
+**Fetch i18n labels** from the sibling repo (see CLAUDE.md "App repository access"):
+
+```
+Read ../reboot/shared/i18n/en/labels.json
 ```
 
-**Explore the feature in source code** using the `/audit-code` methodology:
-- Identify the feature area and locate related source files via the GitHub API (`gh`)
+**Explore the feature in source code** using the sibling repo directly:
+
+- Read relevant components in `../reboot/frontend/src/components/`
+- Read backend entities in `../reboot/backend/src/application/entities/`
+- Read type definitions in `../reboot/frontend/src/models/types.ts`
+- Check design docs in `../reboot/docs/`
 - Check available settings, options, and configurable behavior
 - Verify permissions and role-based access control
 - Note default values, validation rules, and limits
 - Discover related sub-features or edge cases the input may have missed
+
+**Fallback:** If `../reboot` is not available, use `gh api repos/beebole/reboot/contents/{path} --jq '.content' | base64 -d`
 
 ### 3. Clean and analyze the input
 
@@ -74,7 +82,7 @@ Present the user with:
 2. **Code findings** — Key discoveries from the source code: undocumented settings, permissions, defaults, or edge cases not mentioned in the input
 3. **Open questions** — Ambiguities or gaps that need the user's input before writing
 
-Ask: *"Does this outline capture everything? Should I add, remove, or reorder any sections? Any of the code findings you want included or excluded?"*
+Ask: _"Does this outline capture everything? Should I add, remove, or reorder any sections? Any of the code findings you want included or excluded?"_
 
 **Wait for the user's response before continuing.**
 
@@ -83,6 +91,7 @@ Ask: *"Does this outline capture everything? Should I add, remove, or reorder an
 After the user approves the outline, write the full `.mdx` page following **all conventions from CLAUDE.md**: page structure, frontmatter, writing rules, SEO/GEO best practices, callouts, and FAQ section.
 
 Rules for the draft:
+
 - **Do not invent features.** Only document what the input describes plus code findings the user approved.
 - **Preserve the user's intent.** Restructure and rewrite, but don't change the meaning.
 - **Use exact UI labels** from the i18n file, not the user's approximate wording.
@@ -103,13 +112,14 @@ After writing the page, present a summary:
 **[VERIFY] markers:** [count, with brief descriptions]
 ```
 
-Ask: *"Please review the draft. What would you like me to change? I can rework specific sections, adjust the tone, add or remove content, or refine the FAQs."*
+Ask: _"Please review the draft. What would you like me to change? I can rework specific sections, adjust the tone, add or remove content, or refine the FAQs."_
 
 **Wait for the user's response before continuing.**
 
 ### 5. Iterate
 
 Apply the user's feedback. This may go through multiple rounds — keep refining until the user is satisfied. For each round:
+
 - Make the requested changes
 - Briefly summarize what changed
 - Ask if there's anything else to adjust

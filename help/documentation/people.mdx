@@ -37,6 +37,10 @@ In Beebole, **People** represents every user or team member in your account — 
   Adding a person and inviting them are two separate actions. A person's profile exists as soon as you save it, but they cannot log in until you send an invitation.
 </Note>
 
+<Warning>
+  If your subscription has no available seats, Beebole creates the new person as archived automatically. You see a warning message confirming this. Unarchive them once you have a free seat, or upgrade your plan first.
+</Warning>
+
 ---
 
 ## Sending invitations
@@ -46,16 +50,20 @@ In Beebole, **People** represents every user or team member in your account — 
     Click the person's name in the People list.
   </Step>
   <Step title="Send the invitation">
-    Click **Send Invitation**. Beebole emails a secure link for them to set their password and log in.
+    Click **Invite by email**. Beebole emails a secure link for them to set their password and log in.
   </Step>
   <Step title="Track status">
-    The profile shows a **Pending** status until the person completes their sign-up.
+    The profile shows an **Invitation pending** status until the person completes their sign-up.
   </Step>
 </Steps>
 
 <Tip>
   You can resend invitations at any time from the person's profile if they missed the initial email.
 </Tip>
+
+### Bulk invitation
+
+To invite several people at once, select multiple people from the list using the checkboxes, then choose **Invite** from the bulk actions menu. Beebole sends invitation emails to all selected people in a single operation. This is useful when onboarding a new team or following an import.
 
 ---
 
@@ -67,6 +75,18 @@ Click a person's name to access their profile settings:
 - **Tags** — Organize people into departments, teams, or locations. See [Tags](/help/documentation/tags).
 - **Custom fields** — Add metadata like "Employee ID", "Office Location", or "Department". See [Custom fields](/help/documentation/custom-fields).
 - **Localisation** — Set individual timezone, language, and date format preferences.
+
+### Role assignment
+
+Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile, locate the **Role** field, and select a new role from the dropdown. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+
+### Schedule assignment
+
+Work schedules define a person's standard working hours and days. To assign a schedule, open the person's profile and go to the **Attributes** section. Select the schedule from the **Schedule** field and optionally set a start date so historic data is not affected. Schedules on a person override any schedule inherited from their tags or the organisation default. See [Work schedules](/help/documentation/work-schedule).
+
+### Localisation per person
+
+You can override the organisation's locale settings for any individual. Open the person's profile, then edit the **Localisation** attribute to set their **Time zone**, **Date format**, **Time format**, **Decimal format**, and **First day of the week**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
 
 ---
 
@@ -83,6 +103,18 @@ People are one of the main entities where you configure work patterns and financ
   Rates and schedules follow a priority system: settings on a person override those inherited from tags or the organisation. See [Billing rates](/help/documentation/billing) for the full priority order.
 </Info>
 
+### Billing and cost rates per person
+
+To set a person's rates, open their profile and go to the **Billing** or **Costs** attribute section. Click **Add** to create a new rate entry. Choose the rate type (hourly, daily, or fixed), enter the amount and currency, and set the effective date. You can add multiple rate entries over time to reflect salary changes or contract updates — Beebole uses the rate that was active on the date of each time record. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs).
+
+### Absence quotas per person
+
+Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence quotas** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. Quotas set on a person take priority over any default defined on a tag. See [Time off](/help/documentation/timeoff).
+
+### Custom fields on persons
+
+Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** > **Custom fields** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
+
 ---
 
 ## Archiving and offboarding
@@ -93,7 +125,18 @@ People are one of the main entities where you configure work patterns and financ
 
 To archive a person, open their profile and click **Archive**. You can unarchive them at any time.
 
-For bulk operations, select multiple people from the list and use the bulk **Archive** or **Unarchive** actions.
+<Note>
+  Unarchiving requires a free seat on your subscription. If no seats are available, the **Unarchive** option is disabled. Upgrade your plan or archive another person first.
+</Note>
+
+### Bulk operations <Badge>Admin only</Badge>
+
+Select multiple people from the list using the checkboxes to perform actions in bulk. The following bulk actions are available from the actions menu:
+
+- **Invite** — Send invitation emails to all selected people at once.
+- **Archive** — Archive multiple active people in a single step.
+- **Unarchive** — Restore multiple archived people (requires available seats).
+- **Delete** — Permanently delete multiple people. Use with caution — deletion cannot be undone and removes login credentials.
 
 ---
 
@@ -109,7 +152,30 @@ For bulk operations, select multiple people from the list and use the bulk **Arc
   <Accordion title="Can I add multiple people at once?">
     Yes. Use the **Import** option in the People module to paste names and emails from a spreadsheet.
   </Accordion>
+  <Accordion title="What happens if I add a person when all seats are taken?">
+    Beebole creates the person as archived automatically and displays a warning. The person cannot log in until you unarchive them. Unarchiving requires a free seat — either archive another person first or upgrade your subscription.
+  </Accordion>
+  <Accordion title="How do I invite multiple people at once?">
+    Select the people you want to invite using the checkboxes in the People list, then choose **Invite** from the bulk actions menu. Beebole sends invitation emails to all selected people in one operation.
+  </Accordion>
   <Accordion title="Can I sign in as another user for troubleshooting?">
-    Yes. Administrators can use the **Admin takeover** feature to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
+    Yes. Administrators can use the **Admin takeover** <Badge>Admin only</Badge> feature to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
   </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Roles & permissions" icon="shield" href="/help/documentation/roles-authorisations">
+    Configure what each person can see and do in Beebole with granular role-based permissions.
+  </Card>
+  <Card title="Tags" icon="tag" href="/help/documentation/tags">
+    Organize people into departments, teams, and locations for better reporting and inherited configuration.
+  </Card>
+  <Card title="Work schedules" icon="clock" href="/help/documentation/work-schedule">
+    Define standard working hours and days for individuals or groups.
+  </Card>
+  <Card title="Cost rates" icon="chart-bar" href="/help/documentation/costs">
+    Track the internal cost of each team member's time for profitability reporting.
+  </Card>
+</CardGroup>

@@ -94,6 +94,102 @@ To change your theme, click your profile avatar and select your preferred **Them
 
 ---
 
+## Logging time on mobile
+
+The mobile timesheet is optimized for touch interaction. It presents your time entries as a scrollable list of days rather than a weekly grid, making it easier to navigate on a small screen.
+
+### How to log hours
+
+<Steps>
+  <Step title="Open your timesheet">
+    Tap the hamburger menu icon in the top-left corner to open the sidebar, then tap **Timesheet**.
+  </Step>
+  <Step title="Add a time entry">
+    Tap the **+** button at the bottom of the screen (floating action button) or the **+** icon next to a specific day. The activity selector opens as a bottom sheet.
+  </Step>
+  <Step title="Select a project, task, or absence">
+    Choose what you worked on from the list. Tap a project, task, or absence type to open the time entry editor.
+  </Step>
+  <Step title="Enter your time">
+    In the editor bottom sheet, type the duration or set start and end times (depending on your account configuration), then tap **Save**.
+  </Step>
+</Steps>
+
+### Editing and deleting entries
+
+- **Tap** a time entry card to open the editor bottom sheet and update the duration, project, or comment.
+- **Swipe left** on a time entry to reveal the delete action. Confirm deletion in the dialog that appears.
+
+<Note>
+  Editing and deleting are disabled when the timesheet period is locked (submitted or approved). The swipe-to-delete gesture and tap-to-edit are both blocked until the period is unlocked.
+</Note>
+
+### Using the timer on mobile
+
+<Steps>
+  <Step title="Start the timer">
+    On a time entry card, tap the play button on the right side of the card. The timer starts and the entry shows a running red counter.
+  </Step>
+  <Step title="Monitor the timer">
+    While the timer is running, a timer bar appears at the top of the header showing the active project and elapsed time.
+  </Step>
+  <Step title="Stop the timer">
+    Tap the red stop button in the timer bar or on the entry card. Beebole saves the elapsed time as the entry's duration.
+  </Step>
+</Steps>
+
+<Tip>
+  The timer only appears on today's entries and is disabled when the timesheet is locked.
+</Tip>
+
+### Submitting timesheets on mobile
+
+When your timesheet is ready for approval, tap the **Submit** button in the header. The button is visible when the period is in draft or rejected state and you are viewing your own timesheet.
+
+After submission, the period is locked and the header shows the **Submitted** status badge. If your approver rejects the timesheet, the period unlocks and a **Resubmit** button appears in its place.
+
+### Navigating periods with infinite scroll
+
+The mobile timesheet uses infinite scroll rather than week-by-week navigation:
+
+- **Scroll down** to load future periods automatically.
+- **Pull down** from the top of the list to load previous periods. A pull-to-refresh indicator shows when you have pulled far enough to trigger the load.
+- Month banners appear in the scroll list whenever the date crosses into a new month.
+- A **Today** button appears in the footer when today is out of view. Tap it to scroll back to the current day.
+
+### Approving team timesheets on mobile
+
+Managers and administrators see a team button in the header (person group icon) with a badge showing the number of pending approvals.
+
+<Steps>
+  <Step title="Open the approval sheet">
+    Tap the team icon in the header. The approval bottom sheet slides up with two tabs: **Pending** and **Team**.
+  </Step>
+  <Step title="Select a timesheet">
+    Tap a person's entry in the **Pending** tab to view their submitted timesheet.
+  </Step>
+  <Step title="Approve or reject">
+    With the submitter's timesheet open, tap **Approve** or **Reject** in the header. Rejection requires a comment.
+  </Step>
+</Steps>
+
+You can also select multiple timesheets using checkboxes and bulk-approve or bulk-reject them from the action bar that appears at the bottom of the sheet.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    Learn all the ways to log and manage time entries on desktop and mobile.
+  </Card>
+  <Card title="Approvals" icon="check" href="/help/documentation/approval">
+    Submit and approve timesheets from any device, including directly from email.
+  </Card>
+</CardGroup>
+
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>

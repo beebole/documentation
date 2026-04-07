@@ -129,7 +129,8 @@
                   "help/documentation/authentication",
                   "help/documentation/subscription",
                   "help/documentation/custom-domain",
-                  "help/documentation/audit-trail"
+                  "help/documentation/audit-trail",
+                  "help/documentation/legacy-migration"
                 ]
               },
               {
@@ -174,7 +175,8 @@
                 "pages": [
                   "help/integrations/asana",
                   "help/integrations/jira",
-                  "help/integrations/linear"
+                  "help/integrations/linear",
+                  "help/integrations/monday"
                 ]
               },
               {
@@ -189,7 +191,14 @@
               {
                 "group": "Finance & HR",
                 "pages": [
-                  "help/integrations/quickbooks"
+                  "help/integrations/quickbooks",
+                  "help/integrations/bamboohr"
+                ]
+              },
+              {
+                "group": "Developer",
+                "pages": [
+                  "help/integrations/webhooks"
                 ]
               }
             ]
@@ -356,7 +365,8 @@
                 "pages": [
                   "help/fr/integrations/asana",
                   "help/fr/integrations/jira",
-                  "help/fr/integrations/linear"
+                  "help/fr/integrations/linear",
+                  "help/fr/integrations/monday"
                 ]
               },
               {
@@ -371,7 +381,14 @@
               {
                 "group": "Finance & RH",
                 "pages": [
-                  "help/fr/integrations/quickbooks"
+                  "help/fr/integrations/quickbooks",
+                  "help/fr/integrations/bamboohr"
+                ]
+              },
+              {
+                "group": "Développeur",
+                "pages": [
+                  "help/fr/integrations/webhooks"
                 ]
               }
             ]
@@ -538,7 +555,8 @@
                 "pages": [
                   "help/es/integrations/asana",
                   "help/es/integrations/jira",
-                  "help/es/integrations/linear"
+                  "help/es/integrations/linear",
+                  "help/es/integrations/monday"
                 ]
               },
               {
@@ -553,7 +571,14 @@
               {
                 "group": "Finanzas y RRHH",
                 "pages": [
-                  "help/es/integrations/quickbooks"
+                  "help/es/integrations/quickbooks",
+                  "help/es/integrations/bamboohr"
+                ]
+              },
+              {
+                "group": "Desarrollador",
+                "pages": [
+                  "help/es/integrations/webhooks"
                 ]
               }
             ]

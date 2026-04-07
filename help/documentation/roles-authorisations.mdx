@@ -16,7 +16,7 @@ Beebole's role-based access control lets you define exactly what each person can
 
 ---
 
-## How roles work
+## How roles work <Badge>Admin only</Badge>
 
 A role is a named set of permissions. Each person has exactly one role, and that role determines:
 
@@ -28,7 +28,7 @@ When you change a role's permissions, the change applies immediately to everyone
 
 ---
 
-## Creating and managing roles
+## Creating and managing roles <Badge>Admin only</Badge>
 
 <Steps>
   <Step title="Open the Roles page">
@@ -51,7 +51,7 @@ When you change a role's permissions, the change applies immediately to everyone
 
 ---
 
-## Authorisation scopes
+## Authorisation scopes <Badge>Admin only</Badge>
 
 Beebole organises permissions into more than 24 scopes, each covering a specific area of the application. Here are the main scope categories:
 
@@ -74,7 +74,7 @@ Beebole organises permissions into more than 24 scopes, each covering a specific
 
 ---
 
-## Permission targets
+## Permission targets <Badge>Admin only</Badge>
 
 For most scopes, you choose not only the action (view or manage) but also the target — the range of data the permission covers:
 
@@ -91,7 +91,7 @@ For most scopes, you choose not only the action (view or manage) but also the ta
 
 ---
 
-## View vs. manage permissions
+## View vs. manage permissions <Badge>Admin only</Badge>
 
 Each scope offers two levels of access:
 
@@ -108,7 +108,7 @@ Setting a scope to **None** hides it entirely — the person does not see that a
 
 ---
 
-## Field-level permissions
+## Field-level permissions <Badge>Admin only</Badge>
 
 Some permissions go beyond page-level access and control visibility of specific fields. For example:
 
@@ -124,7 +124,7 @@ When a field is hidden by permissions, it does not appear on the interface at al
 
 ---
 
-## Default roles
+## Default roles <Badge>Admin only</Badge>
 
 Beebole ships with three built-in roles:
 
@@ -138,7 +138,7 @@ You can modify the permissions of default roles or create additional roles as ne
 
 ---
 
-## Assigning roles to people
+## Assigning roles to people <Badge>Admin only</Badge>
 
 <Steps>
   <Step title="Open the person's profile">
@@ -158,12 +158,60 @@ You can modify the permissions of default roles or create additional roles as ne
 
 ---
 
-## Best practices
+## Availability controls <Badge>Admin only</Badge>
+
+Availability controls determine which projects, absence types, expense types, tasks, and custom fields are enabled by default for everyone in your organisation. Admins set the global defaults in account settings, and those defaults can then be overridden for individual tags, people, or projects.
+
+### How it works
+
+- **Global default** — Go to **Settings** > **Account** and look for the **Show or hide by default** section. Toggle each element type on or off for the entire organisation.
+- **Override per tag** — Open a tag's settings and adjust its **Show or hide** attribute to make specific element types available or hidden for everyone in that tag, regardless of the global default.
+- **Override per person** — Open a person's profile and adjust their **Show or hide** attribute to give that individual a different set of defaults.
+- **Override per project** — Open a project's settings to control whether it appears in the project selector for people who have not been explicitly assigned to it.
+
+The following element types have availability controls:
+
+| Element | What it controls |
+|---------|-----------------|
+| **Show all projects** | Whether all projects appear by default in the project selector |
+| **Show all secondary projects** | Whether sub-projects are shown alongside primary projects |
+| **Show all time off** | Whether all absence types appear by default in the timesheet |
+| **Show all expenses** | Whether all expense types appear by default |
+| **Show all tasks** | Whether tasks appear in the timesheet by default |
+| **Show all custom fields** | Whether custom fields are visible by default |
+
+<Info>
+  The availability system uses a cascade: the organisation default applies first, then the tag setting, then the individual person or project override. A more specific setting always wins over a more general one.
+</Info>
+
+<Tip>
+  Hold **⌘** (Mac) or **Ctrl** (Windows) while toggling any availability checkbox to apply the change to all element types at once.
+</Tip>
+
+---
+
+## Best practices <Badge>Admin only</Badge>
 
 - **Principle of least privilege** — Give each role only the permissions it needs. Start restrictive and add permissions as needed.
 - **Use descriptive role names** — Names like "Finance Viewer" or "Project Lead" make it clear what the role is for.
 - **Audit regularly** — Review roles periodically to ensure permissions still match your team structure, especially after organisational changes.
 - **Test before deploying** — After creating a new role, assign it to a test person and verify they see the correct pages and data.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="People" href="/help/documentation/people">
+    Assign roles to team members from their person profile.
+  </Card>
+  <Card title="Tags" href="/help/documentation/tags">
+    Use tags to group people and combine them with permission targets.
+  </Card>
+  <Card title="Account Settings" href="/help/documentation/account-settings">
+    Configure organisation-wide defaults that roles can access or restrict.
+  </Card>
+</CardGroup>
 
 ---
 

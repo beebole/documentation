@@ -110,6 +110,21 @@ Pinned rows appear at the top of your timesheet each week, even if you haven't e
 
 ---
 
+## Undoing and redoing changes
+
+Beebole tracks your recent changes and lets you reverse them using standard keyboard shortcuts:
+
+| Action | Mac | Windows / Linux |
+|--------|-----|-----------------|
+| **Undo** | Cmd+Z | Ctrl+Z |
+| **Redo** | Cmd+Shift+Z | Ctrl+Shift+Z |
+
+Undo and redo work across the app — not just on timesheets. Multiple related changes (such as adding a row and logging time) are grouped into a single undo step so one keypress reverses the whole operation.
+
+When you undo a deletion, the item is restored immediately and Beebole scrolls back to it. The **Undo** and **Redo** buttons also appear in the top bar whenever there is history available.
+
+---
+
 ## Copying and duplicating entries
 
 Beebole offers several shortcuts to avoid repetitive data entry:
@@ -183,6 +198,62 @@ Beebole sends email reminders to team members who have not filled in or submitte
 You can import events from **Google Calendar** or **Microsoft Outlook** directly into your timesheet. Imported events appear as pre-filled rows, saving you from manually re-entering meetings and scheduled work.
 
 Learn more: [Google Calendar integration](/help/integrations/google-calendar) | [Microsoft Calendar integration](/help/integrations/microsoft-calendar)
+
+---
+
+## Timesheet score
+
+Beebole calculates a **Timesheet score** for each person — a number from 0 to 100 that reflects how consistently they submit timesheets on time. Administrators and managers can see each person's score on the team view in the timesheet panel.
+
+### How the score is calculated
+
+The score is based on the person's submission history across all evaluated periods:
+
+| Factor | Description |
+|--------|-------------|
+| **On time** | Timesheets submitted before the deadline |
+| **Late submissions** | Timesheets submitted after the deadline |
+| **Not submitted** | Periods where no timesheet was submitted |
+| **Rejections** | Timesheets that were returned by an approver |
+
+A high ratio of on-time submissions produces a score near 100. Late submissions, missed periods, and rejections lower the score.
+
+### Score color coding
+
+The score ring gauge uses three colors to indicate compliance level at a glance:
+
+| Score range | Color | Meaning |
+|-------------|-------|---------|
+| **80–100** | Green | Good compliance |
+| **50–79** | Amber | Moderate compliance |
+| **0–49** | Red | Poor compliance |
+
+### Where the score appears
+
+The score appears as a ring gauge on person records in the team side panel of the timesheet. Hover over the ring to see a breakdown of on-time, late, not-submitted, and rejected periods.
+
+<Note>
+  The score is visible to administrators and managers, not to the individual themselves.
+</Note>
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Approvals" icon="check" href="/help/documentation/approval">
+    Submit timesheets for review and manage multi-stage approval workflows.
+  </Card>
+  <Card title="Timesheet Settings" icon="settings" href="/help/documentation/timesheetSettings">
+    Configure duration formats, entry rules, reminders, and feature toggles.
+  </Card>
+  <Card title="Mobile & Desktop App" icon="mobile" href="/help/documentation/mobile">
+    Log time and submit timesheets from your phone or tablet.
+  </Card>
+  <Card title="Billing Rates" icon="chart-bar" href="/help/documentation/billing">
+    Understand how time entries flow into billing calculations.
+  </Card>
+</CardGroup>
 
 ---
 

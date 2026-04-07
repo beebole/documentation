@@ -10,6 +10,21 @@ This is **functional documentation** (not technical), except for the API section
 
 A curated **features reference** is available at `.features/features.md` (symlink to the reboot repo). Use it as a quick overview of what Beebole supports — it's faster than browsing the full source.
 
+## App repository access
+
+The Beebole application source code is available at `../reboot` (sibling directory). Skills read from this path directly instead of using the GitHub API.
+
+**Key paths:**
+
+- `../reboot/.claude/skills/audit-features/references/features.md` — Features catalog (220+ features)
+- `../reboot/shared/i18n/en/labels.json` — English UI labels
+- `../reboot/frontend/src/models/types.ts` — Entity type definitions
+- `../reboot/frontend/src/components/` — UI components by entity
+- `../reboot/backend/src/application/entities/` — Backend entity definitions
+- `../reboot/docs/` — Design documents (feature specs, architecture)
+
+**Fallback:** If `../reboot` is not available locally, fall back to the GitHub API (`gh api repos/beebole/reboot/...`). If neither is available, report which checks were skipped — never silently degrade.
+
 ## Quick start
 
 ```bash
@@ -21,19 +36,14 @@ mintlify dev              # Start local preview at localhost:3000
 
 Commands follow the content lifecycle: **Write → Check → Publish → Maintain**.
 
-| Stage | Command | What it does |
-|-------|---------|-------------|
-| **Write** | `/draft` | Turn raw dictation/notes into a complete documentation page (English only) |
-| **Check** | `/review` | Full pre-publish audit (spelling, style, SEO, GEO, images, FAQ, translations, code accuracy) |
-| | `/audit-code` | Cross-reference doc pages against the app source code to find inaccuracies and gaps |
-| | `/audit-seo-geo` | Run a full SEO & GEO audit across all pages with actionable report |
-| | `/generate-faqs` | Find pages missing FAQ sections and generate them |
-| **Publish** | `/translate` | Detect stale translations and sync FR/ES with English |
-| | `/optimize-images` | Compress and convert images to WebP |
-| **Maintain** | `/track-app-changes` | Analyze app repo commits and maintain a changelog in `.todo/app-changes.md` |
-| | `/propose-updates` | Map tracked app changes to doc pages and propose prioritized updates |
-| | `/generate-news` | Draft a news entry for the releases page based on recent changes |
-| | `/audit-features-gaps` | Audit `.features/features.md` against docs and produce a numbered plan for every undocumented or partial sub-feature |
+| Stage        | Command       | What it does                                                                                                         |
+| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Write**    | `/draft`      | Turn raw dictation/notes into a complete documentation page (English only), pulling context from the app source code |
+| **Check**    | `/review`     | Full pre-publish audit (spelling, style, SEO, GEO, images, FAQ generation, translations, code accuracy)              |
+|              | `/audit`      | Unified audit: `/audit page <path>` (code accuracy), `/audit coverage` (feature gaps), `/audit seo` (SEO & GEO)      |
+| **Publish**  | `/translate`  | Detect stale translations and sync FR/ES with English                                                                |
+|              | `/screenshot` | Capture screenshots via Playwright, optimize images, embed Arcade demos                                              |
+| **Maintain** | `/sync`       | Detect app repo changes, map to affected doc pages, propose updates. `--news` to draft release notes                 |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -85,6 +95,7 @@ Skills follow the [Claude Code skills standard](https://code.claude.com/docs/en/
 ```
 
 **Rules:**
+
 - Each skill is a **directory** (not a flat `.md` file) containing a `SKILL.md` entrypoint.
 - `SKILL.md` must start with YAML frontmatter between `---` markers, with at least `name` and `description` fields.
 - Add `disable-model-invocation: true` for skills that should only be triggered manually via `/skill-name` (not auto-invoked by Claude).
@@ -93,6 +104,7 @@ Skills follow the [Claude Code skills standard](https://code.claude.com/docs/en/
 - Do not nest skills inside subdirectories like `tools/` — all skills live as direct children of `.claude/skills/`.
 
 **Frontmatter example:**
+
 ```yaml
 ---
 name: my-skill
@@ -105,23 +117,30 @@ disable-model-invocation: true
 
 The exact UI labels used in the Beebole app are defined in the app's i18n file. When writing documentation, **always use the exact label text from the app** to ensure consistency between the product and the docs.
 
-Fetch the English labels with:
-```bash
-gh api repos/beebole/reboot/contents/shared/i18n/languages/en.json --jq '.content' | base64 -d
+Read the English labels directly from the sibling repo:
+
+```
+../reboot/shared/i18n/en/labels.json
 ```
 
 The JSON is organized by feature area (e.g., `absenceTypeQuota`, `timesheet`, `project`, etc.). Look up the relevant section when documenting a feature to use the correct wording.
+
+**Fallback** (if `../reboot` is not available):
+
+```bash
+gh api repos/beebole/reboot/contents/shared/i18n/en/labels.json --jq '.content' | base64 -d
+```
 
 ## Prerequisites — auto-check before running skills
 
 Before running any skill or script, check that the required tools are installed. If a tool is missing, install it automatically (macOS with Homebrew) or tell the user what to install.
 
-| Tool | Required by | Check command | Install command |
-|------|------------|---------------|-----------------|
-| `cwebp` | `/optimize-images` | `command -v cwebp` | `brew install webp` |
-| `gh` (GitHub CLI) | `/translate`, `/generate-faqs`, app terminology lookups | `command -v gh` | `brew install gh && gh auth login` |
-| `python3` | `/translate`, `/generate-faqs` (JSON escaping in scripts) | `command -v python3` | Pre-installed on macOS; otherwise `brew install python` |
-| `mintlify` | Local preview (`mintlify dev`) | `command -v mintlify` | `npm install -g mintlify` |
+| Tool              | Required by                                               | Check command         | Install command                                         |
+| ----------------- | --------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
+| `cwebp`           | `/screenshot` (image optimization)                        | `command -v cwebp`    | `brew install webp`                                     |
+| `gh` (GitHub CLI) | `/translate`, `/sync` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
+| `python3`         | `/translate` (JSON escaping in scripts)                   | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
+| `mintlify`        | Local preview (`mintlify dev`)                            | `command -v mintlify` | `npm install -g mintlify`                               |
 
 When a skill fails because a tool is missing, install it with the corresponding install command and retry — don't just report the error.
 
@@ -140,14 +159,14 @@ When a skill fails because a tool is missing, install it with the corresponding 
 
 Full editorial guidelines are in `.claude/context/`:
 
-| File | Covers |
-|------|--------|
-| `brand.md` | Voice, tone, writing rules |
-| `audiences.md` | Target audiences by tab |
-| `documentation-structure.md` | Page structure template, internal link rules |
-| `mintlify-components.md` | Components reference (Steps, callouts, Accordion, etc.) |
-| `seo-geo.md` | SEO frontmatter, GEO patterns for LLM extraction |
-| `page-mappings.md` | Keyword → doc page routing table (used by `/audit-features-gaps`, `/propose-updates`) |
+| File                         | Covers                                                                |
+| ---------------------------- | --------------------------------------------------------------------- |
+| `brand.md`                   | Voice, tone, writing rules                                            |
+| `audiences.md`               | Target audiences by tab                                               |
+| `documentation-structure.md` | Page structure template, internal link rules                          |
+| `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)               |
+| `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                      |
+| `page-mappings.md`           | Keyword → doc page routing table (used by `/audit coverage`, `/sync`) |
 
 **Key rules:** Active voice, second person, present tense, bold UI labels from i18n, one idea per sentence, no jargon outside API docs. Lead sections with direct answers for GEO. Every page needs a FAQ section.
 
@@ -155,6 +174,6 @@ Full editorial guidelines are in `.claude/context/`:
 
 ## Quick reference
 
-- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/optimize-images` manually before committing.
+- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/screenshot optimize` before committing.
 - **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
 - **Translations:** English is the master language. FR/ES must stay in sync. Use correct localized UI labels from the i18n files.

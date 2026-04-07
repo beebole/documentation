@@ -125,8 +125,114 @@ You can customize the planning view to focus on specific subsets of your team or
 
 - **Filter by person** — Show only specific team members.
 - **Filter by project** — Show only allocations for selected projects.
-- **Filter by tag** — Narrow the view to people or projects with specific tags. See [Tags](/help/documentation/tags).
+- **Filter by tag** — Narrow the view to people or projects with specific tags. See below and [Tags](/help/documentation/tags).
 - **Group by team** — Organize rows by team or department for a structured overview.
+
+### Filtering tasks by tag
+
+Tags give you a flexible way to label tasks with cross-cutting metadata such as priority, client, or team. You can filter the task list by tag to see only the tasks that match a given tag value.
+
+<Steps>
+  <Step title="Open the filter bar">
+    Click **Filters** or **Show filters** above the task list. The filter bar expands.
+  </Step>
+  <Step title="Add a tag filter">
+    Click **Add filter** and select **Task tag** from the filter type list.
+  </Step>
+  <Step title="Choose the tag value">
+    Select the tag you want to filter by from the tag picker. The task list updates immediately to show only tasks that have that tag.
+  </Step>
+  <Step title="Combine filters">
+    Add more filters to narrow the list further. Filters are combined with AND logic by default — a task must match all active filters to appear.
+  </Step>
+</Steps>
+
+<Tip>
+  You can also filter by **Person tag** or **Project tag** to narrow the view by tags applied to people or projects rather than tasks themselves.
+</Tip>
+
+---
+
+## Recurring tasks
+
+You can set a task to repeat automatically on a fixed schedule. Beebole generates future occurrences based on the recurrence rule you define, so you do not need to create repetitive tasks manually.
+
+### Setting a recurrence rule
+
+Open a task's detail panel and scroll to the **Repeat** toggle. Click it to enable recurrence, then configure the rule:
+
+1. **Mode** — Choose **Calendar** to repeat on fixed calendar dates, or **After completion** to start the next occurrence only after the current one is marked done.
+2. **Frequency** — Set how often the task repeats using the **Every** field combined with a period: **day**, **workday**, **week**, **month**, or **year**.
+3. **Weekly pattern** — When repeating by week, select the specific days of the week (Mon–Sun) on which the task should occur.
+4. **Monthly pattern** — When repeating by month, choose whether to repeat on the same day of the month, the same weekday of the month, the first day, or the last day.
+5. **Holiday behavior** — When repeating by workday, choose what happens when an occurrence falls on a holiday: **Skip**, **Shift forward**, or **Shift backward**.
+6. **End condition** — Toggle **End** on to set a stop date or a maximum number of occurrences (**or after N times**). Leave it off for an open-ended series.
+
+Click **Show next occurrences** to preview the upcoming schedule before saving.
+
+### Editing a recurring task
+
+When you edit, move, or resize a recurring task occurrence, Beebole asks which occurrences to update:
+
+| Option | Effect |
+|--------|--------|
+| **This occurrence only** | Changes only the selected occurrence |
+| **This and all future** | Splits the series from this point onward |
+| **All occurrences** | Updates the entire series |
+| **Skip this occurrence** | Hides this occurrence without affecting others |
+
+### Deleting a recurring task
+
+When you delete a recurring task, Beebole asks whether to delete **This task only** (removes the task and its virtual occurrences, any already-materialized exceptions become standalone tasks) or the **Entire series** (deletes the task and all related tasks in the series).
+
+<Warning>
+  Deleting the entire series is permanent and removes all tasks in the series. Beebole shows a count of the tasks that will be deleted before you confirm.
+</Warning>
+
+---
+
+## Moving a task between categories
+
+Tasks are organized under categories (the top-level groupings in your task plan). You can reassign a root-level task — along with all its subtasks — to a different category using the context menu.
+
+<Steps>
+  <Step title="Open the task context menu">
+    Right-click the task name in the task list, or click the **⋯** action menu button that appears on hover. The task must be a root-level task (not a subtask) — only top-level items can be moved to a different category.
+  </Step>
+  <Step title="Select Change category">
+    Click **Change category** from the menu. A submenu lists all other available categories.
+  </Step>
+  <Step title="Choose the destination category">
+    Click the target category name. The task and all its subtasks move to that category immediately.
+  </Step>
+</Steps>
+
+<Info>
+  Subtasks cannot be moved to a different category directly — only root-level tasks support the **Change category** action. To move a subtask, first promote it to a root-level task by removing its parent relationship, then move it.
+</Info>
+
+---
+
+## Hierarchical tasks
+
+Tasks support a multi-level hierarchy of subtasks. You can nest tasks as deeply as your workflow requires, directly within any task view (Gantt, Kanban, or planning).
+
+### Creating a subtask
+
+There are two ways to add a subtask:
+
+- **Hover method** — Hover over a task name in the task list. Click the **Add a sub task** icon (a small plus with an indent indicator) that appears on the right. A new subtask is created directly under that task.
+- **Keyboard method** — Select a task using keyboard navigation (Arrow keys), then press **Tab** to make it a subtask of the task immediately above it in the list. Press **Shift+Tab** to move it back up one level.
+
+### Expanding and collapsing
+
+Click the chevron icon to the left of a task name to expand or collapse its subtasks. When a task is collapsed, its subtasks are hidden from the list but remain visible on the timeline.
+
+Press **⌘+Arrow Right** to expand the selected task and move into its first child. Press **⌘+Arrow Left** to collapse the selected group.
+
+### Working with subtasks across views
+
+Subtasks created in one view are immediately visible in all other task views. The Gantt chart shows the hierarchy visually with indentation and an expand/collapse control. The Kanban board shows subtasks as individual cards in their respective status columns.
 
 ---
 
@@ -163,4 +269,33 @@ Beebole's planning tools integrate with several other parts of the application:
   <Accordion title="Can managers see only their team's planning?">
     Yes. Visibility in the planning view respects [Roles & permissions](/help/documentation/roles-authorisations). Managers see only the people and projects they have access to.
   </Accordion>
+  <Accordion title="Can I set a task to repeat every two weeks?">
+    Yes. Enable **Repeat** on the task, set **Every** to 2 and select **week** as the period. You can also choose which days of the week the task should occur.
+  </Accordion>
+  <Accordion title="Can I move a subtask to a different category?">
+    Only root-level tasks support the **Change category** action. To move a subtask, first remove its parent relationship to make it a root-level task, then use **Change category** from its context menu.
+  </Accordion>
+  <Accordion title="How deep can I nest subtasks?">
+    There is no hard limit on subtask nesting depth. For readability, most teams keep hierarchies to two or three levels.
+  </Accordion>
+  <Accordion title="Can I filter tasks by multiple tags at once?">
+    Yes. Add multiple **Task tag** filters in the filter bar. By default, tasks must match all active filters (AND logic). You can change the logic to OR by adjusting the filter operator in the filter row.
+  </Accordion>
 </AccordionGroup>
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Gantt chart" icon="chart-bar" href="/help/documentation/gantt">
+    Visualize task timelines and dependencies on an interactive Gantt chart.
+  </Card>
+  <Card title="Kanban board" icon="check" href="/help/documentation/kanban">
+    Manage task status visually by dragging cards between workflow columns.
+  </Card>
+  <Card title="Projects" icon="folder" href="/help/documentation/projects">
+    Set up the project structure that planning allocations are linked to.
+  </Card>
+  <Card title="Tags" icon="tag" href="/help/documentation/tags">
+    Filter and group planning views by tags applied to people, projects, or tasks.
+  </Card>
+</CardGroup>

@@ -153,8 +153,8 @@ Once you have configured a report you want to reuse, save it as a template.
   <Step title="Save the report">
     Click **Save** and give your report a descriptive name (e.g., "Monthly billing by project" or "Q1 team utilization").
   </Step>
-  <Step title="Assign a category (optional)">
-    Select or create a category to organize your saved reports. Categories help you group related templates together.
+  <Step title="Assign a folder (optional)">
+    Select or create a folder to organize your saved reports. Folders help you group related templates together.
   </Step>
 </Steps>
 
@@ -166,15 +166,56 @@ Saved reports preserve all your settings — dimension, grouping, columns, and f
 
 ---
 
-## Organizing reports with categories
+## Organizing reports with folders
 
-As your collection of saved reports grows, use categories to keep them organized.
+As your collection of saved reports grows, use folders to keep them organized.
 
-- **Create categories** based on purpose (e.g., "Client billing", "Team utilization", "Budget monitoring") or audience (e.g., "Management reports", "Project manager reports").
-- **Move reports** between categories as your needs evolve.
-- **Rename or delete** categories at any time without affecting the reports inside them.
+- **Add a folder** based on purpose (e.g., "Client billing", "Team utilization", "Budget monitoring") or audience (e.g., "Management reports", "Project manager reports").
+- **Move reports** between folders as your needs evolve.
+- **Rename or delete** folders at any time without affecting the reports inside them.
 
-Categories are visible to all users who have access to the reports area, making it easy for your team to find the reports they need.
+Folders are visible to all users who have access to the reports area, making it easy for your team to find the reports they need.
+
+---
+
+## Chart visualizations
+
+After running a report, toggle between table and chart views using the **Show table** and **Show chart** buttons. Both views can be open at the same time — the chart appears above the table.
+
+### Switching chart type
+
+Click the chart type picker to choose from 11 chart types:
+
+| Chart type | Best for |
+|-----------|---------|
+| **Bar** | Comparing values across categories |
+| **Line** | Trends over time |
+| **Pie** | Showing proportions of a whole |
+| **Area** | Volume trends over time |
+| **Stacked bar** | Comparing totals and part-to-whole across categories |
+| **Stacked area** | Cumulative volume trends with multiple series |
+| **Horizontal** | Bar chart with horizontal orientation — useful for long labels |
+| **Scatter** | Correlations between two numeric columns |
+| **Radar** | Multi-axis comparisons across categories |
+| **Treemap** | Hierarchical proportions using nested rectangles |
+| **Waterfall** | Incremental increases and decreases in a running total |
+
+### Configuring chart axes
+
+Once you select a chart type, use the axis controls to map your data:
+
+- **Label axis** — Choose the column that supplies the category labels (e.g., project name, person, time period).
+- **Value axis** — Select one or more numeric columns to plot (e.g., hours, billing amount).
+- **Group by** — Add a second label column to split each bar or line into separate series.
+- **Swap axes** — Click the swap icon to exchange the label axis and group-by column.
+
+<Tip>
+  Beebole automatically selects the best axes when you run a report. Adjust the axis controls to override the defaults and focus on the dimensions you care about.
+</Tip>
+
+### Adjusting chart height
+
+Drag the resize handle at the bottom of the chart area to make the chart taller or shorter. The height is saved with the report so it is restored the next time you open it.
 
 ---
 
@@ -194,6 +235,25 @@ For financial columns to show data, you need to have [billing rates](/help/docum
 
 ---
 
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Reports" href="/help/documentation/reports">
+    Start with built-in reports before building custom ones.
+  </Card>
+  <Card title="Cost Rates" href="/help/documentation/costs">
+    Configure cost rates so financial columns show data in reports.
+  </Card>
+  <Card title="Budgets" href="/help/documentation/budgets">
+    Add budget columns to track spending against targets in reports.
+  </Card>
+  <Card title="Custom Fields" href="/help/documentation/custom-fields">
+    Custom fields are automatically available as columns and filters.
+  </Card>
+</CardGroup>
+
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -201,7 +261,7 @@ For financial columns to show data, you need to have [billing rates](/help/docum
     Saved reports are available to all users who have access to the reports area. Each user sees the same templates but only the data their permissions allow.
   </Accordion>
   <Accordion title="Can I edit a saved report?">
-    Yes. Open the saved report, modify any settings (grouping, columns, filters), and click **Save** to update it. You can also use **Save as** to create a copy with different settings.
+    Yes. Open the saved report, modify any settings (grouping, columns, filters), and click **Save** to update it. You can also use **Duplicate** to create a copy with different settings.
   </Accordion>
   <Accordion title="How many grouping levels can I use?">
     You can combine multiple grouping levels — for example, group by tag, then by project, then by month. There is no hard limit, but reports with many grouping levels can become complex to read.
@@ -211,5 +271,8 @@ For financial columns to show data, you need to have [billing rates](/help/docum
   </Accordion>
   <Accordion title="Can I include both billing and cost data in the same report?">
     Yes. You can add billing, cost, profit, and margin columns to the same report. This gives you a complete financial view alongside time data. Make sure you have [billing rates](/help/documentation/billing) and [cost rates](/help/documentation/costs) configured.
+  </Accordion>
+  <Accordion title="Can I view report results as a chart?">
+    Yes. After running a report, click **Show chart** to display a chart alongside or instead of the table. You can choose from 11 chart types and configure which columns map to each axis. The selected chart type and axis settings are saved with the report.
   </Accordion>
 </AccordionGroup>

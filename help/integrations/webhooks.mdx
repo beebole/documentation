@@ -1,0 +1,189 @@
+---
+title: "Webhooks"
+description: "Configure outgoing webhooks in Beebole to receive real-time notifications when data changes. Signed POST requests with HMAC-SHA256 and automatic retry."
+keywords: ["beebole", "webhooks", "outgoing webhooks", "integrations", "automation", "HMAC", "real-time notifications", "API"]
+"og:title": "Beebole Outgoing Webhooks"
+"og:description": "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Beebole's outgoing webhooks let you subscribe to real-time notifications whenever data changes in your organization. Each webhook delivers a signed POST request to a URL you control, allowing external systems, automations, and integrations to react instantly to changes in Beebole.
+
+You can configure multiple webhooks, each with its own URL, name, secret, and event filter. Beebole signs every payload with HMAC-SHA256 so your endpoint can verify that requests are authentic.
+
+---
+
+## Setting up a webhook
+
+<Steps>
+  <Step title="Open the webhook settings">
+    Go to **Settings** > **Integrations** > **Webhooks**. Click **Add webhook** to create a new webhook subscription.
+  </Step>
+  <Step title="Configure the webhook">
+    Fill in the following fields for your new webhook:
+
+    - **Name** -- A label to identify this webhook (for example, "Slack notifications" or "ERP sync").
+    - **URL** -- The HTTPS endpoint that will receive POST requests from Beebole.
+    - **Secret** -- A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
+    - **Enabled** -- Toggle whether this webhook is active.
+    - **Events** -- Choose **All events** to receive every event type, or select individual events from the list.
+  </Step>
+  <Step title="Save and test">
+    Changes are saved automatically as you edit each field. Once the webhook is enabled and your endpoint is ready, trigger an event in Beebole (for example, update a project) and verify that your endpoint receives the request.
+
+    <Tip>Use a service like [webhook.site](https://webhook.site) to inspect incoming payloads during development.</Tip>
+  </Step>
+</Steps>
+
+---
+
+## Payload format
+
+Beebole sends a JSON POST request to your endpoint for each matching event. The payload structure is:
+
+```json
+{
+  "event": "projectUpdate",
+  "entityIds": ["64a1b2c3d4e5f6a7b8c9d0e1"],
+  "deleteIds": [],
+  "additionalInfo": null,
+  "timestamp": 1712345678,
+  "organisationId": "63f9a1b2c3d4e5f6a7b8c9d0"
+}
+```
+
+| Field | Description |
+|---|---|
+| `event` | The name of the event that triggered the webhook (see [Available events](#available-events)). |
+| `entityIds` | Array of entity IDs that were created or updated. |
+| `deleteIds` | Array of entity IDs that were deleted. |
+| `additionalInfo` | Optional extra context provided by some events. `null` when not applicable. |
+| `timestamp` | Unix timestamp (seconds) of when the event was emitted. |
+| `organisationId` | The Beebole organization ID that the event belongs to. |
+
+---
+
+## Available events
+
+The following event names can be subscribed to individually or via **All events**:
+
+| Event | Triggered when |
+|---|---|
+| `absenceQuotaUpdate` | An absence quota is created, updated, or deleted. |
+| `absenceTypeUpdate` | An absence type is created, updated, or deleted. |
+| `approvalEventUpdate` | A timesheet approval action occurs. |
+| `billingUpdate` | A billing rate is created, updated, or deleted. |
+| `budgetUpdate` | A budget is created, updated, or deleted. |
+| `categoryUpdate` | A category is created, updated, or deleted. |
+| `customFieldUpdate` | A custom field definition is created, updated, or deleted. |
+| `customFieldValueUpdate` | A custom field value is created, updated, or deleted. |
+| `expenseRecordUpdate` | An expense record is created, updated, or deleted. |
+| `expenseTypeUpdate` | An expense type is created, updated, or deleted. |
+| `organisationUpdate` | Organization settings are changed. |
+| `personUpdate` | A person is created, updated, or deleted. |
+| `planningUpdate` | A planning record is created, updated, or deleted. |
+| `projectCategoryUpdate` | A project category is created, updated, or deleted. |
+| `projectUpdate` | A project or sub-project is created, updated, or deleted. |
+| `roleUpdate` | A role is created, updated, or deleted. |
+| `scheduleTypeUpdate` | A schedule type is created, updated, or deleted. |
+| `tagCategoryUpdate` | A tag category is created, updated, or deleted. |
+| `tagUpdate` | A tag is created, updated, or deleted. |
+| `taskCategoryUpdate` | A task category is created, updated, or deleted. |
+| `taskSettingsUpdate` | Task settings are changed. |
+| `taskUpdate` | A task is created, updated, or deleted. |
+| `timeRecordUpdate` | A time record is created, updated, or deleted. |
+
+---
+
+## Verifying the signature
+
+Every request from Beebole includes an `X-Beebole-Signature` header containing a hex-encoded HMAC-SHA256 signature of the raw request body, prefixed with `sha256=`. Use your webhook's **Secret** to verify this signature before processing the payload.
+
+**Example verification in Node.js:**
+
+```javascript
+const crypto = require('crypto')
+
+function verifySignature(secret, rawBody, signatureHeader) {
+  const expected = 'sha256=' + crypto
+    .createHmac('sha256', secret)
+    .update(rawBody)
+    .digest('hex')
+  return crypto.timingSafeEqual(
+    Buffer.from(expected),
+    Buffer.from(signatureHeader)
+  )
+}
+```
+
+<Warning>Always verify the signature before acting on a webhook payload. Reject any request where the signature does not match.</Warning>
+
+The request also includes an `X-Beebole-Event` header containing the event name, which is identical to the `event` field in the JSON body.
+
+---
+
+## Retry behavior
+
+If your endpoint returns a non-2xx HTTP status code, or if the connection times out (requests time out after 10 seconds), Beebole automatically retries delivery with the following delays:
+
+| Attempt | Delay |
+|---|---|
+| 1st retry | 5 seconds |
+| 2nd retry | 10 seconds |
+| 3rd retry | 15 seconds |
+| 4th retry | 25 seconds |
+| 5th retry | 40 seconds |
+
+After 5 failed attempts, Beebole stops retrying and logs the failure permanently. Make sure your endpoint responds within 10 seconds -- offload any slow processing to a background queue and return a `200 OK` immediately.
+
+---
+
+## Managing webhooks
+
+- To **edit** a webhook, click to expand its card in the list and update the fields. Changes save automatically.
+- To **disable** a webhook temporarily without deleting it, toggle the **Enabled** switch off.
+- To **regenerate** the secret (for example, if it has been compromised), click **Regenerate** in the **Secret** field. Update your endpoint with the new secret before re-enabling the webhook.
+- To **delete** a webhook, click **Remove** from the webhook card.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
+    Build custom integrations using the Beebole GraphQL API.
+  </Card>
+  <Card title="API introduction" icon="book" href="/help/api/introduction">
+    Explore the full Beebole GraphQL API reference and schema.
+  </Card>
+  <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
+    Explore all available Beebole integrations.
+  </Card>
+</CardGroup>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I configure multiple webhooks for the same URL?">
+    Yes. You can create multiple webhook subscriptions pointing to the same URL, for example to separate event subscriptions with different secrets or names. Each webhook is independent.
+  </Accordion>
+
+  <Accordion title="What HTTP method does Beebole use to deliver webhooks?">
+    Beebole sends all webhook payloads as HTTP POST requests with a `Content-Type: application/json` header.
+  </Accordion>
+
+  <Accordion title="How do I know which entities changed when I receive an event?">
+    The `entityIds` array in the payload contains the IDs of entities that were created or updated. The `deleteIds` array contains the IDs of entities that were deleted. Use these IDs to query the Beebole API for the current state of the affected records.
+  </Accordion>
+
+  <Accordion title="What happens if my endpoint is down for an extended period?">
+    Beebole retries failed deliveries up to 5 times over approximately 95 seconds. If all retries fail, the delivery is abandoned. Events are not queued indefinitely. To avoid missing events during downtime, ensure your endpoint is highly available or implement a polling strategy with the Beebole API as a fallback.
+  </Accordion>
+
+  <Accordion title="Can I use webhooks to react to changes made by integrations like Jira or Monday.com?">
+    Yes. Events triggered by any source -- including integrations, the Beebole web app, and the API -- will fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a Monday.com sync.
+  </Accordion>
+</AccordionGroup>

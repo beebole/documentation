@@ -1,0 +1,134 @@
+---
+title: "BambooHR"
+description: "Sync BambooHR time-off requests to Beebole absences. Connect your BambooHR account to automatically import approved leave into Beebole."
+keywords: ["beebole", "BambooHR", "integration", "HR", "time off", "absences", "leave management", "employee sync"]
+"og:title": "Beebole BambooHR Integration"
+"og:description": "Sync approved BambooHR time-off requests to Beebole absences automatically."
+"og:image": "https://beebole.com/help/placeholder-og-image.png"
+"og:type": "article"
+---
+
+Beebole's BambooHR integration connects your BambooHR account to Beebole so that approved time-off requests are automatically reflected as absence records. When you enable the integration, Beebole imports your BambooHR employees and maps your BambooHR time-off types to Beebole absence types, then syncs approved requests every 24 hours.
+
+---
+
+## Subscription requirements
+
+<Info>The BambooHR integration is available on Pro and Enterprise plans. You need administrative privileges in both BambooHR and Beebole to set up the integration.</Info>
+
+| What syncs from BambooHR | What stays in Beebole |
+|---|---|
+| **Employees:** Imported as Beebole people. | **Timesheet entries:** Managed exclusively in Beebole. |
+| **Time-off types:** Mapped to Beebole absence types. | **Approval workflows:** Beebole handles its own timesheet lifecycle. |
+| **Approved time-off requests:** Created as Beebole absence records. | **Billing rates and budgets:** Set within Beebole's financial module. |
+
+---
+
+## What's included
+
+<AccordionGroup>
+  <Accordion title="Employee import">
+    BambooHR employees with a work email address are created as people in Beebole during the initial setup. If an employee's email already exists in Beebole, the integration links to the existing person instead of creating a duplicate.
+  </Accordion>
+
+  <Accordion title="Absence type mapping">
+    BambooHR time-off types are matched to Beebole absence types by name (case-insensitive). If a matching absence type exists in Beebole, the integration links to it. If no match is found, a new absence type is created automatically. Time-off types measured in hours are configured with an hourly unit in Beebole.
+  </Accordion>
+
+  <Accordion title="Time-off request sync">
+    Approved time-off requests from the start of the current year through one year from today are imported as Beebole absence records. Each request is processed per calendar day. If a request changes after import (dates, amount, or notes), Beebole updates the corresponding absence record on the next sync.
+
+    Records removed from BambooHR within the sync window are also removed from Beebole.
+  </Accordion>
+
+  <Accordion title="Schedule-aware duration calculation">
+    When a time-off request is measured in days, Beebole calculates the absence duration using the employee's assigned work schedule. If the employee has no schedule assigned, Beebole defaults to an 8-hour workday.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Step-by-step configuration
+
+<Steps>
+  <Step title="Enter your BambooHR company subdomain">
+    Go to **Settings** > **Integrations** > **BambooHR**. In the **Company subdomain** field, enter your BambooHR subdomain (for example, enter `acme` if your BambooHR URL is `acme.bamboohr.com`).
+  </Step>
+  <Step title="Connect to BambooHR">
+    Click **Connect to BambooHR**. A popup opens to authorize Beebole to access your BambooHR account. Complete the authorization flow. The popup closes automatically when the connection is established and your **BambooHR domain** is displayed as confirmed.
+  </Step>
+  <Step title="Set the default role for imported employees">
+    Select the **Default role for imported employees**. This role is assigned to any BambooHR employee who is created as a new person in Beebole during import.
+
+    <Tip>You can review and manage existing roles in **Settings** > **Person roles**.</Tip>
+  </Step>
+  <Step title="Enable the integration">
+    Click the toggle to **Enable integration**. Beebole immediately:
+
+    1. Imports all BambooHR employees (creating new Beebole people where needed).
+    2. Maps BambooHR time-off types to Beebole absence types.
+    3. Imports approved time-off requests for the current year through one year from today.
+
+    <Note>The initial import may take a few moments. A summary shows how many entries were successfully imported and lists any entries that could not be processed.</Note>
+  </Step>
+  <Step title="Validate and manually sync">
+    Once enabled, go to the **Absences** section to verify that imported records appear correctly. The integration syncs automatically every 24 hours.
+
+    To trigger an immediate sync at any time, go to **Settings** > **Integrations** > **BambooHR** and click **Manual sync** under **Manually sync last changes from BambooHR**.
+  </Step>
+</Steps>
+
+---
+
+## Disabling the integration
+
+<Warning>If you disable the integration, automatic syncing stops. Previously imported absence records remain in Beebole as local records and are not deleted.</Warning>
+
+To disable the integration, go to **Settings** > **Integrations** > **BambooHR** and toggle the integration off. You can re-enable it at any time to resume automatic syncing.
+
+To disconnect your BambooHR account entirely, click **Reset connection**. This removes the OAuth connection and clears all integration mappings.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Time off and absences" icon="calendar-xmark" href="/help/documentation/timeoff">
+    Manage absence types, quotas, and time-off requests in Beebole.
+  </Card>
+  <Card title="People management" icon="users" href="/help/documentation/people">
+    Add and manage employees, roles, and schedules in your Beebole account.
+  </Card>
+  <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
+    Build your own integrations using the Beebole GraphQL API.
+  </Card>
+  <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
+    Explore all available Beebole integrations.
+  </Card>
+</CardGroup>
+
+---
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What date range does Beebole sync from BambooHR?">
+    The integration syncs approved time-off requests from January 1st of the current year through one year from today. Requests outside this window are not imported. You can trigger a manual sync at any time from the integration settings page.
+  </Accordion>
+
+  <Accordion title="What happens if a BambooHR time-off type has no matching absence type in Beebole?">
+    If no Beebole absence type matches the BambooHR time-off type name exactly (case-insensitive), the integration creates a new absence type automatically. You can rename or reconfigure the created absence type in **Settings** > **Absence types**.
+  </Accordion>
+
+  <Accordion title="Can I map BambooHR employees to existing Beebole people?">
+    Yes. The integration automatically links a BambooHR employee to an existing Beebole person if their work email addresses match. If no match is found, a new person is created with the default role you selected during setup.
+  </Accordion>
+
+  <Accordion title="How is the duration calculated for day-based time-off requests?">
+    For requests measured in days, Beebole multiplies the day amount by the employee's scheduled working hours for that day (based on their assigned work schedule). If the employee has no schedule, Beebole uses 8 hours per day as the default. Requests measured in hours use the exact hourly amount from BambooHR.
+  </Accordion>
+
+  <Accordion title="What happens if a time-off request is cancelled or modified in BambooHR?">
+    On the next sync, Beebole updates or removes the corresponding absence record to match the current state of approved requests in BambooHR. Records that no longer appear in the BambooHR response within the sync window are deleted from Beebole. You can also trigger a manual sync immediately from the integration settings page.
+  </Accordion>
+</AccordionGroup>

@@ -36,8 +36,16 @@ Use this table to map app change keywords to the documentation pages they likely
 | onboarding, quickstart, setup, wizard | `help/documentation/quickstart.mdx` |
 | integration, jira, asana, linear, webhook | `help/integrations/jira.mdx`, `help/integrations/asana.mdx`, `help/integrations/linear.mdx`, `help/integrations/custom-integrations.mdx` |
 | quickbooks, qbo | `help/integrations/quickbooks.mdx` |
-| bamboohr, bamboo | _(no page yet — gap)_ |
+| bamboohr, bamboo | `help/integrations/bamboohr.mdx` |
 | google login, google SSO | `help/integrations/google.mdx` |
 | microsoft login, microsoft SSO | `help/integrations/microsoft.mdx` |
 | google calendar | `help/integrations/google-calendar.mdx` |
 | microsoft calendar, outlook calendar | `help/integrations/microsoft-calendar.mdx` |
+| monday, monday.com, boards | `help/integrations/monday.mdx` |
+| bamboohr, bamboo, HR sync | `help/integrations/bamboohr.mdx` |
+| webhook, outgoing, hmac, payload signing | `help/integrations/webhooks.mdx` |
+| migration, legacy, import account, migrate | `help/documentation/legacy-migration.mdx` |
+| chart, visualization, graph, pie, bar, treemap | `help/documentation/custom-reports.mdx` |
+| availability, available projects, available absence types, available expense types | `help/documentation/roles-authorisations.mdx` |
+| logo, organisation logo, company logo | `help/documentation/account-settings.mdx` |
+| accent, colour, color, theme, dark mode, light mode | `help/documentation/account-settings.mdx` |

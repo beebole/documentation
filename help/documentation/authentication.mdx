@@ -46,6 +46,14 @@ Beebole supports passwordless sign-in with passkeys -- using fingerprint, face r
   You can register multiple passkeys -- for example, one on your laptop and another on your phone -- so you always have a way to sign in.
 </Tip>
 
+### Email code (passwordless)
+
+Instead of entering a password, you can sign in with a one-time verification code sent to your inbox. On the sign-in page, click **Send code instead** and Beebole sends a 6-digit code to your email address. Enter the code to complete sign-in.
+
+<Info>
+  The code is single-use and expires after a short time. If you do not receive it, click **Didn't receive the code? Resend** to request a new one.
+</Info>
+
 ### PIN-based sign-in
 
 For quick access, Beebole offers PIN-based authentication. Each person can set a personal PIN code for faster sign-in on trusted devices. This is useful in shared environments like workshops or kiosks where speed matters.
@@ -56,25 +64,63 @@ To set up a PIN, go to your profile and look for the **PIN** option in the **Sec
 
 ## Single sign-on (SSO)
 
-For organisations that need centralised authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider (e.g., Okta, Azure AD, Google Workspace).
+For organisations that need centralised authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider. Beebole supports three SSO providers: **Google**, **Microsoft**, and a **Custom OpenID** provider (e.g., Okta, Auth0, Entra ID).
+
+SSO is available as part of the **Custom Domain & SSO** add-on. Go to **Settings** > **Single Sign On** to access the configuration.
+
+### Google SSO
 
 <Steps>
-  <Step title="Open account settings">
-    Go to **Settings** > **Account**.
+  <Step title="Open SSO settings">
+    Go to **Settings** > **Single Sign On** and select the **Google** tab.
   </Step>
-  <Step title="Configure SSO">
-    In the **Single sign-on** section, enter your OpenID Connect configuration details: issuer URL, client ID, and client secret.
+  <Step title="Link your domain">
+    Enter your organisation's email domain (e.g., `example.com`) and click **Add**. Once a domain is linked, users are redirected to Google sign-in when they enter a matching email address.
   </Step>
-  <Step title="Test the connection">
-    Use the test option to verify that sign-in works correctly before enabling SSO for your entire team.
+  <Step title="Enable auto-provisioning (optional)">
+    Turn on **Automatically create new users on first SSO login** to provision accounts automatically when a user with a matching domain signs in for the first time.
   </Step>
-  <Step title="Enable SSO">
-    Once tested, enable SSO. Team members are redirected to your identity provider when signing in.
+  <Step title="Enforce Google sign-in (optional)">
+    Enable **Disable interactive sign-in. Only Google sign-in allowed** to block password and email-code sign-in for your organisation.
   </Step>
 </Steps>
 
+### Microsoft SSO
+
+<Steps>
+  <Step title="Open SSO settings">
+    Go to **Settings** > **Single Sign On** and select the **Microsoft** tab.
+  </Step>
+  <Step title="Enforce Microsoft sign-in (optional)">
+    Enable **Disable interactive sign-in. Only Microsoft sign-in allowed** to require all users to authenticate via Microsoft.
+  </Step>
+</Steps>
+
+### Custom OpenID Connect
+
+Use this option for any OpenID Connect-compatible provider (Okta, Auth0, Microsoft Entra ID, etc.).
+
+<Steps>
+  <Step title="Open SSO settings">
+    Go to **Settings** > **Single Sign On** and select the **Custom OpenID** tab.
+  </Step>
+  <Step title="Enter your provider details">
+    Fill in the **Issuer URL**, **Client ID**, and **Client Secret** from your identity provider. If your provider does not support OpenID Connect discovery, enable the **Other provider** toggle and enter the **Authorization URL** and **Token URL** manually.
+  </Step>
+  <Step title="Configure your provider">
+    Copy the **Initiate URI** and **Callback URI** shown in Beebole and enter them in your identity provider's application settings.
+  </Step>
+  <Step title="Enforce custom SSO (optional)">
+    Enable **Disable interactive sign-in. Only this SSO provider allowed** to block all other sign-in methods.
+  </Step>
+</Steps>
+
+### Enforcing SSO organisation-wide
+
+Each SSO provider has a dedicated enforcement toggle that disables interactive sign-in (email/password and email codes) for your entire organisation. Once enabled, users must sign in through the configured SSO provider.
+
 <Warning>
-  When SSO is enabled, make sure at least one administrator retains email/password access as a backup in case the identity provider is unavailable.
+  Before enabling enforcement, verify that SSO is working correctly by signing in as a test user. If your identity provider becomes unavailable, users will be locked out. Keep an administrator's direct access available as a fallback, or disable enforcement temporarily from the SSO settings.
 </Warning>
 
 ---
@@ -153,6 +199,23 @@ To delete your account, go to your profile, scroll to the bottom, and click **De
 
 ---
 
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Single Sign-On (SSO)" icon="key" href="/help/documentation/sso">
+    Configure Google, Microsoft, or custom OIDC SSO for your organisation.
+  </Card>
+  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
+    Manage your organisation's account settings and feature toggles.
+  </Card>
+  <Card title="Roles & Authorisations" icon="shield" href="/help/documentation/roles-authorisations">
+    Define what each person can see and do in Beebole.
+  </Card>
+  <Card title="Audit Trail" icon="list" href="/help/documentation/audit-trail">
+    Review a log of all actions taken in your account.
+  </Card>
+</CardGroup>
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -163,7 +226,10 @@ To delete your account, go to your profile, scroll to the bottom, and click **De
     When SSO is enabled, it becomes the primary sign-in method. However, administrators can retain email/password access as a backup.
   </Accordion>
   <Accordion title="Can I require all team members to use SSO?">
-    Yes. Once SSO is configured, you can enforce it as the only sign-in method for your organisation.
+    Yes. Each SSO provider (Google, Microsoft, Custom OpenID) has an enforcement option that disables all other sign-in methods. Enable the **Disable interactive sign-in** toggle in the relevant tab under **Settings** > **Single Sign On**.
+  </Accordion>
+  <Accordion title="What is the email code sign-in option?">
+    Email code sign-in lets you authenticate without a password. On the sign-in page, click **Send code instead** and Beebole sends a 6-digit code to your email address. This is useful if you have forgotten your password or prefer not to manage one.
   </Accordion>
   <Accordion title="How do I reset a team member's password?">
     As an administrator, you can resend an invitation from the person's profile, which lets them set a new password. Alternatively, the person can use the **Forgot password** flow on the sign-in page.

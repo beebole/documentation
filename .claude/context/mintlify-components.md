@@ -6,9 +6,7 @@ Use the correct components when writing or reviewing pages. For full details bey
 
 ```mdx
 <Steps>
-  <Step title="Step name">
-    Instructions here.
-  </Step>
+	<Step title="Step name">Instructions here.</Step>
 </Steps>
 ```
 
@@ -16,14 +14,14 @@ Use for any procedure with 3+ steps. One action per step. Start each step with a
 
 ## Callouts
 
-| Component | Use for |
-|-----------|---------|
-| `<Info>` | Helpful background context |
-| `<Tip>` | Best practices, shortcuts, pro tips |
-| `<Warning>` | Irreversible actions, data loss risks, common mistakes |
-| `<Note>` | Secondary info, good to know but not critical |
-| `<Check>` | Successful outcome or prerequisite met |
-| `<Badge>` | Role or plan limitations (e.g., `<Badge>Admin only</Badge>`) |
+| Component   | Use for                                                      |
+| ----------- | ------------------------------------------------------------ |
+| `<Info>`    | Helpful background context                                   |
+| `<Tip>`     | Best practices, shortcuts, pro tips                          |
+| `<Warning>` | Irreversible actions, data loss risks, common mistakes       |
+| `<Note>`    | Secondary info, good to know but not critical                |
+| `<Check>`   | Successful outcome or prerequisite met                       |
+| `<Badge>`   | Role or plan limitations (e.g., `<Badge>Admin only</Badge>`) |
 
 Place near the content they relate to. Max 2 callouts per section.
 
@@ -31,9 +29,7 @@ Place near the content they relate to. Max 2 callouts per section.
 
 ```mdx
 <AccordionGroup>
-  <Accordion title="Question or heading">
-    Content here.
-  </Accordion>
+	<Accordion title="Question or heading">Content here.</Accordion>
 </AccordionGroup>
 ```
 
@@ -43,8 +39,8 @@ Use for FAQs, secondary details, and advanced configurations.
 
 ```mdx
 <Tabs>
-  <Tab title="Option A">Content A</Tab>
-  <Tab title="Option B">Content B</Tab>
+	<Tab title="Option A">Content A</Tab>
+	<Tab title="Option B">Content B</Tab>
 </Tabs>
 ```
 
@@ -54,9 +50,9 @@ Use when reader chooses between parallel paths (plans, roles, platforms).
 
 ```mdx
 <CardGroup cols={2}>
-  <Card title="Page name" icon="icon-name" href="/help/path">
-    Short description.
-  </Card>
+	<Card title="Page name" icon="icon-name" href="/help/path">
+		Short description.
+	</Card>
 </CardGroup>
 ```
 
@@ -65,17 +61,37 @@ Use for overview pages linking to sub-topics.
 ## Frame (images and videos)
 
 ```mdx
-<Frame>
-  ![Alt text](/images/screenshot.webp)
-</Frame>
+<Frame>![Alt text](/images/screenshot.webp)</Frame>
 ```
 
 For video embeds:
+
 ```mdx
 <Frame>
-  <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Descriptive title" />
+	<iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Descriptive title" />
 </Frame>
 ```
+
+## Arcade embeds (interactive demos)
+
+```mdx
+<Frame caption="Description of what the demo shows">
+	<iframe
+		src="https://app.arcade.software/share/ARCADE_ID"
+		title="Descriptive title for accessibility"
+		loading="lazy"
+		allowFullScreen
+		style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+	/>
+</Frame>
+```
+
+Replace `ARCADE_ID` with the ID from the Arcade share URL. Always include:
+
+- A `caption` on `<Frame>` describing the demo
+- A descriptive `title` on the `<iframe>` for accessibility
+- `loading="lazy"` to avoid blocking page load
+- The responsive `style` with `aspectRatio: '16/9'`
 
 ## Snippets (reusable fragments)
 
@@ -88,6 +104,6 @@ Stored in `/snippets/`. Use for content that appears on multiple pages.
 ## Formatting rules
 
 - **Bold** for UI elements (buttons, menus, field names)
-- *Italic* sparingly for emphasis or introducing terms
+- _Italic_ sparingly for emphasis or introducing terms
 - `code` only in API section or technical field references
 - Standard Markdown tables for comparisons (never `<div>` grids)

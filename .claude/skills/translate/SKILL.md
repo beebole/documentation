@@ -1,6 +1,6 @@
 ---
 name: translate
-description: "Detect and update stale French and Spanish translations to match the English source files. Use when asked to translate, sync translations, check if translations are up to date, update FR/ES pages, or after editing any English documentation page."
+description: 'Detect and update stale French and Spanish translations to match the English source files. Use when asked to translate, sync translations, check if translations are up to date, update FR/ES pages, or after editing any English documentation page.'
 ---
 
 # Translate — Sync Translations
@@ -10,27 +10,30 @@ Detect and update stale French and Spanish translations to match the English sou
 ## Context
 
 Before translating, read these context files:
+
 - `.claude/context/brand.md` — voice, tone, and writing rules (apply in target language)
 - `.claude/context/documentation-structure.md` — page structure to preserve during translation
 
 ## How it works
 
 English (`help/`) is the master language. A translation is **stale** when:
+
 - The EN file was committed more recently than the translation (`committed_after`), OR
 - The EN file has uncommitted working-tree changes (`working_tree_changes`)
 
 ## Workflow
 
 1. Run the detection script:
-   ```bash
-   bash .claude/scripts/translate.sh
-   ```
+
+    ```bash
+    bash .claude/scripts/translate.sh
+    ```
 
 2. Parse the JSON output. For each file in the `stale` array, process each language:
-   - Read the full current EN file
-   - Read the existing translation file (for tone/terminology reference)
-   - Review the `diff` field to understand what specifically changed
-   - Write a complete updated translation of the full EN page
+    - Read the full current EN file
+    - Read the existing translation file (for tone/terminology reference)
+    - Review the `diff` field to understand what specifically changed
+    - Write a complete updated translation of the full EN page
 
 3. After all translations are written, update `docs.json` if any new pages were added. Ensure every translated page appears in the correct language navigation section (`navigation.languages.fr` / `navigation.languages.es`) mirroring its position in the English navigation.
 
@@ -42,8 +45,8 @@ English (`help/`) is the master language. A translation is **stale** when:
 - **Keywords must reflect natural search terms** in the target language — not literal translations
 - **Preserve all Mintlify components, image paths, links, and code blocks unchanged**
 - **Use the correct localized UI labels** from the app's i18n files:
-  - French: `gh api repos/beebole/reboot/contents/shared/i18n/languages/fr.json --jq '.content' | base64 -d`
-  - Spanish: `gh api repos/beebole/reboot/contents/shared/i18n/languages/es.json --jq '.content' | base64 -d`
+    - English (reference): read from `../reboot/shared/i18n/en/labels.json`
+    - French and Spanish labels are not in the local repo — use the running app or translate UI labels contextually based on the English source
 - **Write natural, idiomatic prose** — not literal word-for-word translations
 - **Maintain the same page structure** (headings, step order, callout placement)
 
