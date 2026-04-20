@@ -1,1 +1,1 @@
-/Users/yves/Documents/GitHub/reboot/.claude/skills/audit-features/references/features.md
+/opt/reboot/.claude/skills/audit-features/references/features.md
