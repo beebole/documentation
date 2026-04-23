@@ -16,7 +16,7 @@ Before running, read these context files:
 - `.claude/context/product.md` — Beebole product overview and key concepts
 - `.claude/context/brand.md` — voice, tone, and entity attribution rules (for news mode)
 
-**Feedback-aware loading.** Read all files in `.claude/context/modules/`. When an app change touches a module with accumulated rules, flag it in the sync report as "rule-level review recommended" — the change may invalidate or require updating existing module rules, not just the pages themselves.
+**Feedback-aware loading.** Read all files in `.claude/context/modules/`. When an app change touches a module with accumulated rules, add a **Rule-level review** entry to the sync report that names the specific module file (e.g. `modules/billing.md`) and calls out the rules the change may invalidate or require updating. Yves uses this to decide whether to re-run `/audit page` on pages in that module, update the stale rule, or remove it.
 
 ## Inputs
 
