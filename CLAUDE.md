@@ -70,6 +70,11 @@ snippets/              # Reusable content fragments (currently empty)
   scripts/             # Shell helpers for batch operations (translate, FAQ, images)
   commands/            # Only for commands that reference vendor plugins (not skill wrappers)
   vendor/              # Third-party plugin files (claude-md-management)
+docs/                  # Internal working docs (NOT published by Mintlify)
+  superpowers/
+    specs/             # Design specs from /brainstorm sessions
+    plans/             # Implementation plans from /write-plan
+  feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
 .features/
   features.md          # Symlink → beebole/reboot/.claude/skills/audit-features/references/features.md (gitignored)
@@ -180,7 +185,7 @@ Full editorial guidelines are in `.claude/context/`:
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
 | `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/audit coverage`, `/sync`, `/triage`)   |
 | `terminology.md`             | Cross-cutting vocabulary rules not covered by brand/structure/seo/components                         |
-| `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, created by `/triage`    |
+| `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, lazy-created by `/triage` (empty until first rule filed) |
 | `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
 | `translation-notes.md`       | FR/ES-specific translation feedback — read ONLY by `/translate`, never by content skills             |
 
