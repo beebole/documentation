@@ -172,6 +172,7 @@ Full editorial guidelines are in `.claude/context/`:
 | ---------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `brand.md`                   | Voice, tone, writing rules                                                                           |
 | `audiences.md`               | Target audiences by tab                                                                              |
+| `product.md`                 | Beebole product overview and key concepts                                                            |
 | `documentation-structure.md` | Page structure template, internal link rules                                                         |
 | `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)                                              |
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
