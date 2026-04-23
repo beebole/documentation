@@ -17,6 +17,14 @@ Before starting, read these context files for editorial and structural guideline
 - `.claude/context/mintlify-components.md` — which components to use and when
 - `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview and key concepts
+- `.claude/context/terminology.md` — cross-cutting vocabulary rules
+
+**Feedback-aware loading.** After the target page path is known, also read:
+
+- `.claude/context/modules/<entity>.md` for every module listed for this page in `page-mappings.md`'s "Page → Module routing" table. Skip silently if no row exists or the file is absent.
+- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2 exists.
+
+Treat these as authoritative — if a module or page-note rule contradicts a general guideline, the more specific rule wins.
 
 ## Core principle
 
