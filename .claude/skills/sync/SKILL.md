@@ -12,9 +12,11 @@ Analyze commits from the Beebole application repository (`../reboot`), map them 
 
 Before running, read these context files:
 
-- `.claude/context/page-mappings.md` — keyword-to-page mapping table
+- `.claude/context/page-mappings.md` — keyword-to-page mapping table + page-to-module routing
 - `.claude/context/product.md` — Beebole product overview and key concepts
 - `.claude/context/brand.md` — voice, tone, and entity attribution rules (for news mode)
+
+**Feedback-aware loading.** Read all files in `.claude/context/modules/`. When an app change touches a module with accumulated rules, flag it in the sync report as "rule-level review recommended" — the change may invalidate or require updating existing module rules, not just the pages themselves.
 
 ## Inputs
 
