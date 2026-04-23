@@ -3,7 +3,7 @@
 #
 # Usage:
 #   ./detect-reboot-changes.sh                # uses .sync/state.json cursor, or 3 months if absent
-#   ./detect-reboot-changes.sh --since <sha>  # explicit SHA cursor
+#   ./detect-reboot-changes.sh --since <sha>  # explicit SHA cursor — uses <sha>..HEAD range
 #   ./detect-reboot-changes.sh --since <date> # explicit date cursor (git-compatible, e.g. 2026-01-01)
 #
 # Output (stdout): one JSON object per commit, one per line:
@@ -11,7 +11,7 @@
 #
 # Exit codes:
 #   0 — success (may be empty output if no commits)
-#   1 — ../reboot not accessible
+#   1 — ../reboot not accessible, or jq missing
 #   2 — bad arguments
 
 set -euo pipefail
@@ -24,6 +24,10 @@ CURSOR=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --since)
+      if [[ $# -lt 2 ]]; then
+        echo "error: --since requires an argument" >&2
+        exit 2
+      fi
       CURSOR="$2"
       shift 2
       ;;
@@ -34,44 +38,45 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Verify access to ../reboot
+# Dependencies
 if [[ ! -d "$REBOOT_DIR/.git" ]]; then
   echo "error: $REBOOT_DIR is not a git repository" >&2
   exit 1
 fi
+command -v jq >/dev/null || { echo "error: jq required" >&2; exit 1; }
 
 # Determine cursor if not explicitly provided
 if [[ -z "$CURSOR" ]]; then
   if [[ -f "$STATE_FILE" ]]; then
-    CURSOR="$(python3 -c "import json,sys; print(json.load(open('$STATE_FILE'))['last_synced_sha'])" 2>/dev/null || true)"
+    CURSOR="$(python3 -c "import json; print(json.load(open('$STATE_FILE'))['last_synced_sha'])" 2>/dev/null || true)"
   fi
   if [[ -z "$CURSOR" ]]; then
     CURSOR="3 months ago"
   fi
 fi
 
-# Emit one JSON object per commit
-cd "$REBOOT_DIR"
+# Classify cursor as SHA (valid object in the repo) or date expression.
+# SHAs use revision-range syntax (exclusive of cursor); dates use --since.
+if [[ "$CURSOR" =~ ^[0-9a-f]{7,40}$ ]] && git -C "$REBOOT_DIR" cat-file -e "$CURSOR" 2>/dev/null; then
+  RANGE_ARGS=("${CURSOR}..HEAD")
+else
+  RANGE_ARGS=("HEAD" "--since=$CURSOR")
+fi
 
-# git log produces tab-separated records; jq builds JSON
-git log --since="$CURSOR" --no-merges \
-  --pretty=format:'%H%x09%ai%x09%s' \
-  --name-only -z \
-  | awk -v RS='\0' -v FS='\t' '
-      {
-        # Each record: SHA\tDATE\tSUBJECT\nFILE1\nFILE2\n...
-        n = split($0, lines, "\n")
-        header_parts = split(lines[1], h, "\t")
-        sha = h[1]; date = substr(h[2], 1, 10); subject = h[3]
-        gsub(/"/, "\\\"", subject)
-        files_json = "["
-        for (i = 2; i <= n; i++) {
-          if (lines[i] == "") continue
-          if (files_json != "[") files_json = files_json ","
-          f = lines[i]; gsub(/"/, "\\\"", f)
-          files_json = files_json "\"" f "\""
-        }
-        files_json = files_json "]"
-        printf "{\"sha\":\"%s\",\"date\":\"%s\",\"subject\":\"%s\",\"files\":%s}\n", sha, date, subject, files_json
-      }
-    '
+# For each commit SHA, emit a JSON record built by jq (handles escaping).
+git -C "$REBOOT_DIR" log "${RANGE_ARGS[@]}" --no-merges --pretty=format:'%H' \
+  | while IFS= read -r sha; do
+      [[ -z "$sha" ]] && continue
+      date="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%ai' "$sha" | cut -c1-10)"
+      subject="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%s' "$sha")"
+      files_json="$(git -C "$REBOOT_DIR" show --pretty=format: --name-only "$sha" \
+                     | grep -v '^$' \
+                     | jq -Rsc 'split("\n") | map(select(. != ""))')"
+      # Handle the "no files" case (empty string → jq returns [""] which split filters to [])
+      [[ -z "$files_json" ]] && files_json='[]'
+      jq -cn --arg sha "$sha" \
+             --arg date "$date" \
+             --arg subject "$subject" \
+             --argjson files "$files_json" \
+             '{sha: $sha, date: $date, subject: $subject, files: $files}'
+    done
