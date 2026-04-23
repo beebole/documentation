@@ -68,13 +68,15 @@ Choose among these five options. Reasoning is required; state which option and w
    - `## Facts` — factual/behavioral rules (e.g., "Beebole doesn't prorate")
    - `## Structural` — cross-page structural requirements (e.g., "always link to X")
 
-   To pick the `<entity>`: first look at `page-mappings.md`'s "Page → Module routing" table for the referenced page. If a module is listed, use it. If multiple, pick the most specific. If no row exists, propose a new entity name (kebab-case, mirroring `../reboot/shared/i18n/en/labels.json` top-level keys) and flag it for Yves's confirmation. **Also add a row to `page-mappings.md` when a new module is introduced.**
+   To pick the `<entity>`: first look at `page-mappings.md`'s "Page → Module routing" table for the referenced page. If a module is listed, use it. If multiple modules are listed, pick the one whose `## Terminology`/`## Facts`/`## Structural` section the note most naturally fits — if still ambiguous, flag for Yves.
+
+   If no row exists, propose a new entity name (kebab-case) using the domain name as it appears in the documentation tab and left navigation — typical examples: `absences`, `billing`, `projects`, `timesheets`, `work-schedule`, `roles`, `custom-fields`. Consult `../reboot/shared/i18n/en/labels.json` and `../reboot/frontend/src/models/types.ts` as a vocabulary *reference*, but do not copy i18n key names verbatim — those are often camelCase implementation labels, not domain buckets. Always flag new module names for Yves's confirmation. **Also add a row to `page-mappings.md` when a new module is introduced.**
 
 3. **Add to `page-notes.md`** — the rule applies only to this one page. Add a bullet under the H2 matching the page's URL path. Create the H2 if it doesn't exist.
 
-4. **Add to `translation-notes.md`** — the note is explicitly about an FR or ES translation (language named, translated text quoted, or the marked-up file is from `help/fr/` or `help/es/`). Route to the right language H2 and the right H3 section (Terminology or Page notes). Page notes use an H4 keyed by the EN URL path.
+4. **Add to `translation-notes.md`** — the note is a **rule** about an FR or ES translation (recurring terminology choice, translation pattern). If the marked-up file is an `.mdx` under `help/fr/` or `help/es/`, default to this option unless the note is clearly about the underlying EN source. Route to the right language H2 and H3 section (Terminology or Page notes). Page notes use an H4 keyed by the EN URL path.
 
-5. **Inline fix** — the note is simply wrong content on the page; no rule generalizes. Edit the page directly.
+5. **Inline fix** — the note is simply wrong content on the page; no rule generalizes. Edit the page directly. This applies equally to EN pages under `help/` and translated pages under `help/fr/` or `help/es/` — a one-off typo or grammar fix on a translated page is an inline fix, not a translation rule.
 
 #### 2c. Present the proposal as a diff
 
@@ -127,9 +129,11 @@ When every note in the file has been resolved (filed or skipped):
 
 ```bash
 rm docs/feedback/<filename>
-git add .claude/context/ .claude/skills/ docs/feedback/ CLAUDE.md
+git add .claude/context/ docs/feedback/ help/
 git commit -m "feedback(<topic>): N filed rules, M inline fixes"
 ```
+
+Stage only the paths `/triage` touches: context files (generic/module/page-notes/translation-notes), the deleted source under `docs/feedback/`, and `help/` for inline fixes. Do not stage `.claude/skills/` or `CLAUDE.md` — this skill never edits them.
 
 `<topic>` is a short slug describing what the feedback was about (e.g., `billing`, `absences`, `multi`). One commit per source feedback file.
 
@@ -173,7 +177,7 @@ Omit any section that has no entries initially — the triage proposal will crea
 - **Never delete a source feedback file** until every note in it has been resolved (approved or explicitly skipped).
 - **One commit per source feedback file** — don't batch multiple files into one commit.
 - **Never auto-approve.** Every filing requires Yves's explicit response.
-- **Translation-only routing.** If a note is clearly about an FR/ES translation, route to `translation-notes.md` and nowhere else. Do not also file it as a content rule.
+- **Translation-only routing.** If a note is a *rule* about FR/ES translation (recurring terminology, translation pattern), route to `translation-notes.md` and nowhere else — do not also file it as an EN content rule. A one-off typo or grammar fix on a translated page is still an inline fix (Option 5), not a translation rule.
 - **Module name consistency.** Reuse existing module names when the entity already has a file. Propose a new name only if no existing module fits.
 - **Page-mappings updates.** When a new module is introduced, also add a row to `page-mappings.md`'s "Page → Module routing" table so content skills can find it.
 - **README.md is not feedback.** Skip `docs/feedback/README.md` in the queue listing.
