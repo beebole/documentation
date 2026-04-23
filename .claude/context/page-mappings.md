@@ -49,3 +49,17 @@ Use this table to map app change keywords to the documentation pages they likely
 | availability, available projects, available absence types, available expense types | `help/documentation/roles-authorisations.mdx` |
 | logo, organisation logo, company logo | `help/documentation/account-settings.mdx` |
 | accent, colour, color, theme, dark mode, light mode | `help/documentation/account-settings.mdx` |
+
+---
+
+# Page → Module routing
+
+Map each page to the module file(s) whose rules apply when drafting, reviewing, or auditing it. `/triage` uses this to propose which `modules/<entity>.md` file a feedback note should land in. Skills that touch a page use it to pick which modules to load.
+
+Entries appear here only after a module file is first created by `/triage`. Multiple modules per page are allowed. If a page has no row, it has no module rules — fall back to generic context files and `page-notes.md`.
+
+Module names mirror the app's entity taxonomy from `../reboot/shared/i18n/en/labels.json` and `../reboot/frontend/src/models/types.ts`. Keep names kebab-case and singular where natural (e.g., `billing`, `absences`, `projects`, `work-schedule`).
+
+| Page | Module(s) |
+|---|---|
+| _No mappings yet. Entries added as `/triage` creates module files._ | |
