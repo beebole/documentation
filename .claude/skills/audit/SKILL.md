@@ -21,9 +21,16 @@ If no mode is specified, ask the user which audit to run.
 Before any audit, read the relevant context files:
 
 - `.claude/context/product.md` — Beebole product overview and key concepts
-- `.claude/context/page-mappings.md` — keyword-to-page mapping table
+- `.claude/context/page-mappings.md` — keyword-to-page mapping table + page-to-module routing
 - `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns (for `seo` mode)
 - `.claude/context/brand.md` — entity attribution rules (for `seo` mode)
+- `.claude/context/terminology.md` — cross-cutting vocabulary rules
+
+**Feedback-aware loading.**
+
+- **`page` mode:** For each target page, also read its `.claude/context/modules/<entity>.md` files (from "Page → Module routing") and the matching `.claude/context/page-notes.md` H2. Audit the page against those rules in addition to the standard checks.
+- **`coverage` mode:** Read ALL files in `.claude/context/modules/` to know which entity areas have accumulated rules. Flag coverage gaps against both the feature catalog and the module rule set.
+- **`seo` mode:** No feedback loading. SEO/GEO rules live in `seo-geo.md`.
 
 ---
 
