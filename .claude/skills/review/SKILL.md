@@ -17,6 +17,14 @@ Before running checks, read these context files for the rules you'll audit again
 - `.claude/context/mintlify-components.md` — correct component usage
 - `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview and key concepts
+- `.claude/context/terminology.md` — cross-cutting vocabulary rules
+
+**Feedback-aware loading.** For each target page, also read:
+
+- `.claude/context/modules/<entity>.md` for every module listed for this page in `page-mappings.md`'s "Page → Module routing" table. Skip silently if no row exists or the file is absent.
+- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2 exists.
+
+Feedback rules ARE the review checklist — every module/page-note rule becomes an additional check. A violation of a filed rule is a critical issue, not a warning.
 
 ## Inputs
 
