@@ -135,7 +135,8 @@ Captured from brainstorming:
 
 **Interface:**
 
-- **`/news --since <date|sha>`:** draft notes for commits in the window. If no window given, use the last-published news entry as the cursor.
+- **Default (no args):** `/news` reads the most recent file in `help/news/`, uses its publication date as the cursor, and drafts a new release-notes entry for all app-repo commits since then. Matches the automation-engine framing — "catch the changelog up" with no input required.
+- **`/news --since <date|sha>`:** explicit cursor for cases where the last-published entry isn't the right starting point (re-drafting a window, covering a specific feature release, backfilling).
 - Uses the same change-detection logic as `/discover --changes` (see "Shared logic" below).
 
 **Output:** a new `.mdx` under `help/news/` with frontmatter, summary intro, categorized changes. Yves reviews and publishes separately — `/news` does not push.
