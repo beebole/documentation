@@ -44,6 +44,7 @@ Commands follow the content lifecycle: **Write → Check → Publish → Maintai
 | **Publish**  | `/translate`  | Detect stale translations and sync FR/ES with English                                                                |
 |              | `/screenshot` | Capture screenshots via Playwright, optimize images, embed Arcade demos                                              |
 | **Maintain** | `/sync`       | Detect app repo changes, map to affected doc pages, propose updates. `--news` to draft release notes                 |
+|              | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location              |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -160,6 +161,7 @@ When a skill fails because a tool is missing, install it with the corresponding 
 - 5 tabs per language: Documentation, Guides, Integrations, API, News (see `.claude/context/documentation-structure.md` for details)
 - Navigation is defined in `docs.json` under `navigation.languages`
 - **All internal links must start with `/help/`** (site is behind a reverse proxy)
+- **Internal repo vocabulary** (e.g. `modules/`, `entity`, "rule bucket") never appears in `help/**` user-facing content — use UI labels from `labels.json` and plain language there
 - Brand color: `#4338CA` | Support: support@beebole.com
 
 ---
