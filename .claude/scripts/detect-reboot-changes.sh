@@ -70,10 +70,7 @@ git -C "$REBOOT_DIR" log "${RANGE_ARGS[@]}" --no-merges --pretty=format:'%H' \
       date="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%ai' "$sha" | cut -c1-10)"
       subject="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%s' "$sha")"
       files_json="$(git -C "$REBOOT_DIR" show --pretty=format: --name-only "$sha" \
-                     | grep -v '^$' \
                      | jq -Rsc 'split("\n") | map(select(. != ""))')"
-      # Handle the "no files" case (empty string → jq returns [""] which split filters to [])
-      [[ -z "$files_json" ]] && files_json='[]'
       jq -cn --arg sha "$sha" \
              --arg date "$date" \
              --arg subject "$subject" \
