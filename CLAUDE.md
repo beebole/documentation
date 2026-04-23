@@ -168,14 +168,18 @@ When a skill fails because a tool is missing, install it with the corresponding 
 
 Full editorial guidelines are in `.claude/context/`:
 
-| File                         | Covers                                                                |
-| ---------------------------- | --------------------------------------------------------------------- |
-| `brand.md`                   | Voice, tone, writing rules                                            |
-| `audiences.md`               | Target audiences by tab                                               |
-| `documentation-structure.md` | Page structure template, internal link rules                          |
-| `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)               |
-| `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                      |
-| `page-mappings.md`           | Keyword → doc page routing table (used by `/audit coverage`, `/sync`) |
+| File                         | Covers                                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `brand.md`                   | Voice, tone, writing rules                                                                           |
+| `audiences.md`               | Target audiences by tab                                                                              |
+| `documentation-structure.md` | Page structure template, internal link rules                                                         |
+| `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)                                              |
+| `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
+| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/audit coverage`, `/sync`, `/triage`)   |
+| `terminology.md`             | Cross-cutting vocabulary rules not covered by brand/structure/seo/components                         |
+| `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, created by `/triage`    |
+| `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
+| `translation-notes.md`       | FR/ES-specific translation feedback — read ONLY by `/translate`, never by content skills             |
 
 **Key rules:** Active voice, second person, present tense, bold UI labels from i18n, one idea per sentence, no jargon outside API docs. Lead sections with direct answers for GEO. Every page needs a FAQ section.
 
