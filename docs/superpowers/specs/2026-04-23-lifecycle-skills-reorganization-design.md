@@ -66,7 +66,7 @@ Captured from brainstorming:
 - **`/discover --changes`:** only recent app-repo changes since the last sync cursor.
 - **`/discover --coverage`:** only feature-catalog vs. documentation comparison.
 
-**Output:** single file `.todo/discovery.md` with two sections — "Recent changes → affected pages" and "Coverage gaps → undocumented / partially-documented features." This file is the handoff to `/write --fill-gaps`.
+**Output:** single file `.todo/discovery.md` with two sections — "Recent changes → affected pages" and "Coverage gaps → undocumented / partially-documented features." This file is the handoff consumed by `/write` (no-args default).
 
 **State:** preserves today's `.sync/state.json` cursor semantics — tracks the last synced commit SHA in `../reboot`.
 
@@ -76,9 +76,9 @@ Captured from brainstorming:
 
 **Modes:**
 
-- **Default (autonomous):** `/write <path>` drafts the page end-to-end. Reads input (user-provided notes, OR the discovery entry if a gap exists for that path). Researches in `../reboot`. Produces full `.mdx` with frontmatter, intro, sections, FAQ, callouts. Updates `docs.json` navigation if the page is new. Reports a summary — no mid-flow checkpoints.
-- **Batch:** `/write --fill-gaps` reads `.todo/discovery.md`, writes every gap autonomously in sequence, produces a consolidated summary at the end.
-- **Interactive:** `/write --interactive <path>` is today's `/draft` flow — outline checkpoint, draft checkpoint, iteration loop. Used when Yves wants to co-author a page rather than ship whatever Claude produces.
+- **Default (autonomous batch):** `/write` with no arguments reads `.todo/discovery.md`, writes every gap autonomously in sequence, produces a consolidated summary at the end. This is the automation-engine's primary mode: "catch the docs up to what `/discover` found."
+- **Single page (autonomous):** `/write <path>` drafts just that page end-to-end. Reads input (user-provided notes OR the discovery entry if a gap exists for that path). Researches in `../reboot`. Produces full `.mdx` with frontmatter, intro, sections, FAQ, callouts. Updates `docs.json` navigation if the page is new. No mid-flow checkpoints.
+- **Interactive:** `/write --interactive <path>` is today's `/draft` flow — outline checkpoint, draft checkpoint, iteration loop. Used when Yves wants to co-author a page rather than ship whatever Claude produces. Opt-in only.
 
 **Output rules (unchanged from `/draft`):** active voice, second person, present tense, bold UI labels from `labels.json`, FAQ with 3-5 Q&A pairs, SEO frontmatter per `seo-geo.md`, loads feedback files per the feedback-architecture spec.
 
@@ -90,7 +90,7 @@ Captured from brainstorming:
 
 **Scopes:**
 
-- **Default (session):** no arguments — audit every `.mdx` with modifications in git working tree + staged changes. This catches what `/write --fill-gaps` just produced.
+- **Default (session):** no arguments — audit every `.mdx` with modifications in git working tree + staged changes. This catches what `/write` just produced.
 - **Explicit paths:** `/review <path> [paths…]` — audit specific pages.
 - **Full site:** `/review --all` — every `.mdx` under `help/`. Expensive; runs via parallel subagents in batches of 5-10.
 
@@ -174,7 +174,7 @@ No change needed for any of these; they already serve multiple consumers.
 /discover  →  .todo/discovery.md
                       │
                       ▼
-            /write --fill-gaps   (autonomous — produces N new/updated pages)
+                   /write         (autonomous batch — produces N new/updated pages)
                       │
                       ▼
                   /review         (session scope auto-catches the new pages)
@@ -196,7 +196,7 @@ Each skill is independently runnable. The pipeline is one common flow, not a har
 Order of operations (each step is a task in the implementation plan):
 
 1. **Create `/discover` skill** at `.claude/skills/discover/SKILL.md`. Fold in `/sync` workflow + `/audit coverage` workflow. Default runs both.
-2. **Create `/write` skill** at `.claude/skills/write/SKILL.md`. Autonomous default, `--interactive` for opt-in checkpoint flow, `--fill-gaps` for batch from `.todo/discovery.md`.
+2. **Create `/write` skill** at `.claude/skills/write/SKILL.md`. Default (no args) is autonomous batch from `.todo/discovery.md`; single-path is `/write <path>`; `--interactive <path>` is the opt-in checkpoint flow.
 3. **Update `/review` skill** (rename of the existing file is not needed since `/review` is already the name) to add `/audit page` checks (undocumented + deprecated), `/audit seo` checks (frontmatter/GEO/FAQ structure — already present, no change), and the three scopes (session default, explicit paths, `--all`).
 4. **Create `/illustrate` skill** at `.claude/skills/illustrate/SKILL.md` from today's `/screenshot` content. Add the `--identify` / `--capture` split.
 5. **Create `/news` skill** at `.claude/skills/news/SKILL.md`. Port the `/sync --news` release-notes logic.
@@ -227,9 +227,9 @@ Add near the top of CLAUDE.md (after "What is this project?"):
 ## Success criteria
 
 - `/discover` run on a fresh checkout produces a single `.todo/discovery.md` covering both recent changes and feature-catalog gaps without requiring separate commands.
-- `/write` run with no arguments on a single path produces a complete `.mdx` without asking for approval mid-flow.
-- `/write --fill-gaps` processes the discovery report end-to-end and reports how many pages were created.
-- `/review` run with no arguments audits exactly the pages `/write --fill-gaps` just produced (session scope).
+- `/write` with no arguments processes the discovery report end-to-end in a single autonomous run and reports how many pages were created.
+- `/write <path>` drafts that page autonomously without asking for approval mid-flow.
+- `/review` run with no arguments audits exactly the pages `/write` just produced (session scope).
 - `/review --all` completes against the full `help/**` tree (expensive but feasible).
 - Typing `/sync`, `/audit`, `/draft`, or `/screenshot` no longer resolves to anything.
 - CLAUDE.md's opening framing tells a new reader within 3 sentences that this is an automation engine, not just a Mintlify site.
