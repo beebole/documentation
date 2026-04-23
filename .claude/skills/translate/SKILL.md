@@ -13,6 +13,13 @@ Before translating, read these context files:
 
 - `.claude/context/brand.md` — voice, tone, and writing rules (apply in target language)
 - `.claude/context/documentation-structure.md` — page structure to preserve during translation
+- `.claude/context/translation-notes.md` — FR/ES-specific terminology and page notes
+
+**Do NOT read** `modules/*.md`, `page-notes.md`, or `terminology.md`. Those are English content-authoring rules; applying them during translation would bleed content feedback into the translation pipeline. Translation feedback lives exclusively in `translation-notes.md`.
+
+When translating a page, consult the target language's section of `translation-notes.md` for:
+- Terminology overrides specific to that language
+- Page-specific notes under the matching EN URL path H4
 
 ## How it works
 
