@@ -61,7 +61,7 @@ Expected: `ABSENT`
 
 - [ ] **Step 3: Create the script**
 
-Write `.claude/scripts/detect-reboot-changes.sh`:
+Write `.claude/scripts/detect-reboot-changes.sh` (this is the version that shipped — the original draft used hand-rolled awk JSON-encoding which broke on commit messages containing quotes/backslashes; the version below uses `jq` for robust escaping and adds SHA-vs-date cursor classification):
 
 ```bash
 #!/usr/bin/env bash
@@ -69,7 +69,7 @@ Write `.claude/scripts/detect-reboot-changes.sh`:
 #
 # Usage:
 #   ./detect-reboot-changes.sh                # uses .sync/state.json cursor, or 3 months if absent
-#   ./detect-reboot-changes.sh --since <sha>  # explicit SHA cursor
+#   ./detect-reboot-changes.sh --since <sha>  # explicit SHA cursor — uses <sha>..HEAD range
 #   ./detect-reboot-changes.sh --since <date> # explicit date cursor (git-compatible, e.g. 2026-01-01)
 #
 # Output (stdout): one JSON object per commit, one per line:
@@ -77,7 +77,7 @@ Write `.claude/scripts/detect-reboot-changes.sh`:
 #
 # Exit codes:
 #   0 — success (may be empty output if no commits)
-#   1 — ../reboot not accessible
+#   1 — ../reboot not accessible, or jq missing
 #   2 — bad arguments
 
 set -euo pipefail
@@ -90,6 +90,10 @@ CURSOR=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --since)
+      if [[ $# -lt 2 ]]; then
+        echo "error: --since requires an argument" >&2
+        exit 2
+      fi
       CURSOR="$2"
       shift 2
       ;;
@@ -100,47 +104,45 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Verify access to ../reboot
+# Dependencies
 if [[ ! -d "$REBOOT_DIR/.git" ]]; then
   echo "error: $REBOOT_DIR is not a git repository" >&2
   exit 1
 fi
+command -v jq >/dev/null || { echo "error: jq required" >&2; exit 1; }
 
 # Determine cursor if not explicitly provided
 if [[ -z "$CURSOR" ]]; then
   if [[ -f "$STATE_FILE" ]]; then
-    CURSOR="$(python3 -c "import json,sys; print(json.load(open('$STATE_FILE'))['last_synced_sha'])" 2>/dev/null || true)"
+    CURSOR="$(python3 -c "import json; print(json.load(open('$STATE_FILE'))['last_synced_sha'])" 2>/dev/null || true)"
   fi
   if [[ -z "$CURSOR" ]]; then
     CURSOR="3 months ago"
   fi
 fi
 
-# Emit one JSON object per commit
-cd "$REBOOT_DIR"
+# Classify cursor as SHA (valid object in the repo) or date expression.
+# SHAs use revision-range syntax (exclusive of cursor); dates use --since.
+if [[ "$CURSOR" =~ ^[0-9a-f]{7,40}$ ]] && git -C "$REBOOT_DIR" cat-file -e "$CURSOR" 2>/dev/null; then
+  RANGE_ARGS=("${CURSOR}..HEAD")
+else
+  RANGE_ARGS=("HEAD" "--since=$CURSOR")
+fi
 
-# git log produces tab-separated records; jq builds JSON
-git log --since="$CURSOR" --no-merges \
-  --pretty=format:'%H%x09%ai%x09%s' \
-  --name-only -z \
-  | awk -v RS='\0' -v FS='\t' '
-      {
-        # Each record: SHA\tDATE\tSUBJECT\nFILE1\nFILE2\n...
-        n = split($0, lines, "\n")
-        header_parts = split(lines[1], h, "\t")
-        sha = h[1]; date = substr(h[2], 1, 10); subject = h[3]
-        gsub(/"/, "\\\"", subject)
-        files_json = "["
-        for (i = 2; i <= n; i++) {
-          if (lines[i] == "") continue
-          if (files_json != "[") files_json = files_json ","
-          f = lines[i]; gsub(/"/, "\\\"", f)
-          files_json = files_json "\"" f "\""
-        }
-        files_json = files_json "]"
-        printf "{\"sha\":\"%s\",\"date\":\"%s\",\"subject\":\"%s\",\"files\":%s}\n", sha, date, subject, files_json
-      }
-    '
+# For each commit SHA, emit a JSON record built by jq (handles escaping).
+git -C "$REBOOT_DIR" log "${RANGE_ARGS[@]}" --no-merges --pretty=format:'%H' \
+  | while IFS= read -r sha; do
+      [[ -z "$sha" ]] && continue
+      date="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%ai' "$sha" | cut -c1-10)"
+      subject="$(git -C "$REBOOT_DIR" show --no-patch --pretty=format:'%s' "$sha")"
+      files_json="$(git -C "$REBOOT_DIR" show --pretty=format: --name-only "$sha" \
+                     | jq -Rsc 'split("\n") | map(select(. != ""))')"
+      jq -cn --arg sha "$sha" \
+             --arg date "$date" \
+             --arg subject "$subject" \
+             --argjson files "$files_json" \
+             '{sha: $sha, date: $date, subject: $subject, files: $files}'
+    done
 ```
 
 - [ ] **Step 4: Make it executable**
@@ -281,8 +283,8 @@ _No commits since cursor._
 
 ### Section N: <section name>
 
-- **Missing:** <feature> — proposed page: `<path>`
-- **Partial:** <feature> on `<path>` — add: <what's missing>
+- [ ] Missing | `<path>` | <feature> [| from commit <sha-short> if covered by Recent changes]
+- [ ] Partial | `<path>` | <feature> — needs: <what to add>
 
 [If no gaps:]
 _All features covered._
@@ -298,8 +300,10 @@ _All features covered._
 
 ## Handoff to /write
 
-Next step: run `/write` (no args) to draft all Missing gaps. Partial gaps require `/write <path>` with explicit notes.
+Next step: run `/write` (no args) to draft all **Missing** entries (one per line). Partial entries need curator judgment and are skipped in batch mode — use `/write <path>` with explicit notes for each.
 ```
+
+> **Handoff format note (retro):** the entries under "Coverage gaps" use the exact line shape `- [ ] Missing | \`<path>\` | <feature> [| from commit <sha-short>]` (and the same for `Partial`). `/write`'s batch mode parses this format explicitly — if the format changes, update both `/discover` (writer) and `/write` (parser) together.
 
 ### 5. Update the sync cursor
 
@@ -935,7 +939,9 @@ git commit -m "feat(illustrate): add skill with explicit identify + capture spli
 
 ## Task 6: Create `/news` skill
 
-Release-notes author. Auto-cursor from last `help/news/` entry.
+Release-notes author. Auto-cursor from last `help/news/releases.mdx` `<Update>` block.
+
+> **Format note (retro):** the template below assumed per-entry dated files (e.g., `2026-04-15-release-foo.mdx`). The actual `help/news/` is a single `releases.mdx` using Mintlify's `<Update label="Month YYYY" tags={…}>` component — multiple blocks stacked in one file. The skill that shipped (`.claude/skills/news/SKILL.md`) prepends a new `<Update>` block to that file rather than creating a new file. Read the shipped SKILL.md as the source of truth; the structure inside Step 4 below is preserved for plan fidelity but does not match what was built.
 
 **Files:**
 - Create: `.claude/skills/news/SKILL.md`
@@ -948,7 +954,7 @@ Expected: `ABSENT`
 - [ ] **Step 2: Understand the cursor heuristic — check existing news structure**
 
 Run: `ls help/news/ 2>/dev/null | head -5`
-Expected: sees existing news files (may be dated in filename like `2026-01-15-foo.mdx`, or use frontmatter date field).
+Expected: a single `releases.mdx` (the actual format is one file with stacked `<Update>` blocks, not per-entry dated files). Inspect with `head -20 help/news/releases.mdx` to see the `<Update label="Month YYYY">` pattern used as the cursor source.
 
 - [ ] **Step 3: Create the skill**
 
