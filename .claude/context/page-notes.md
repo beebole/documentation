@@ -2,7 +2,7 @@
 
 One-off feedback rules that apply to a single page only. Not site-wide, not module-wide — just corrections or reminders about a specific page.
 
-Skills that touch a page (`/draft`, `/review`, `/audit page`) must look for a matching H2 here before acting. The H2 key is the page's URL path, starting with `/help/`.
+Skills that touch a page (`/write`, `/review`) must look for a matching H2 here before acting. The H2 key is the page's URL path, starting with `/help/`.
 
 If a rule applies across multiple pages touching the same product domain, file it in `.claude/context/modules/<entity>.md` instead. If it applies site-wide, file it in the relevant topical file (`brand.md`, `documentation-structure.md`, etc.).
 

@@ -1,6 +1,6 @@
 # Translation notes
 
-FR/ES-specific feedback about the translated pages. Read ONLY by the `/translate` skill. Content skills (`/draft`, `/review`, `/audit`, `/sync`) never read this file.
+FR/ES-specific feedback about the translated pages. Read ONLY by the `/translate` skill. Content skills (`/discover`, `/write`, `/review`) never read this file.
 
 Two kinds of rules live here:
 
