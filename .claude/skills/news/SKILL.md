@@ -30,7 +30,7 @@ Inspect existing `<Update>` blocks in `help/news/releases.mdx` to match tone, le
 - Read `help/news/releases.mdx`.
 - Find the first `<Update label="..."` line — that's the most recent block.
 - Parse the label as `<Month> <YYYY>` (e.g., `March 2026`).
-- Convert to the first day of the month after that label (e.g., `March 2026` → `2026-04-01`) so the new block covers everything published *since* the previous one.
+- Convert to the first day of the month after that label so the new block covers everything published *since* the previous one. Examples: `March 2026` → `2026-04-01`, `December 2026` → `2027-01-01` (year rolls over). Always verify the rollover for December cursors before passing to the script.
 
 **`--since <date|sha>`:** use the explicit value verbatim (script accepts both formats).
 

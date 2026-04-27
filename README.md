@@ -45,16 +45,17 @@ Open this repository in VS Code, then open Claude Code from the sidebar (or `Cmd
 
 ## Slash commands
 
-Commands follow the content lifecycle: **Write → Check → Publish → Maintain**.
+The lifecycle runs **Discover → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
 
-| Stage        | Command       | What it does                                                                                                         |
-| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Write**    | `/draft`      | Turn raw dictation/notes into a complete documentation page (English only), pulling context from the app source code |
-| **Check**    | `/review`     | Full pre-publish audit (spelling, style, SEO, GEO, images, FAQ generation, translations, code accuracy)              |
-|              | `/audit`      | Unified audit: `/audit page <path>` (code accuracy), `/audit coverage` (feature gaps), `/audit seo` (SEO & GEO)      |
-| **Publish**  | `/translate`  | Detect stale translations and sync FR/ES with English                                                                |
-|              | `/screenshot` | Capture screenshots via Playwright, optimize images, embed Arcade demos                                              |
-| **Maintain** | `/sync`       | Detect app repo changes, map to affected doc pages, propose updates. `--news` to draft release notes                 |
+| Step          | Command       | What it does                                                                                                                            |
+| ------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Discover   | `/discover`   | Find what the docs need — recent app changes AND feature-catalog coverage gaps. Writes `.todo/discovery.md`.                            |
+| 2. Write      | `/write`      | Autonomous default: drafts every gap from `discovery.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.          |
+| 3. Review     | `/review`     | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
+| 4. Illustrate | `/illustrate` | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
+| 5. Translate  | `/translate`  | Sync FR/ES with EN master.                                                                                                              |
+| —             | `/news`       | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
+| Orthogonal    | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
 
 You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
 
@@ -93,7 +94,7 @@ All writing style, page structure, SEO, and GEO guidelines are defined in `CLAUD
 
 ## Quick tips
 
-- **Images:** Always use WebP format, under 200 KB. Run `/screenshot optimize` before committing new screenshots.
+- **Images:** Always use WebP format, under 200 KB. Run `/illustrate --optimize` before committing new screenshots.
 - **UI labels:** Always bold UI labels and match the exact wording from the app. Read labels from `../reboot/shared/i18n/en/labels.json` (see setup above).
 - **FAQs:** Every content page needs a FAQ section at the bottom (3-5 Q&A pairs). `/review` generates missing FAQs automatically.
 - **Translations:** After editing English pages, run `/translate` to detect and sync stale French/Spanish translations.

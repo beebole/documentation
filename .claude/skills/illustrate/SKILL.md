@@ -1,6 +1,6 @@
 ---
 name: illustrate
-description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify + capture for the given page(s). Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet. Replaces the /screenshot skill with the needs/capture split made explicit.'
+description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet. Replaces the /screenshot skill with the needs/capture split made explicit.'
 disable-model-invocation: true
 ---
 
@@ -15,7 +15,7 @@ Make sure every page has the screenshots it needs. Identify placeholders or expl
 
 ## Modes
 
-- **Default:** `/illustrate <path>` — identify needs on the page, then capture and place.
+- **Default:** `/illustrate <path>` — identify needs on the page, present a plan, capture once the user confirms the app is running, then place and optimize.
 - **`--identify`:** `/illustrate --identify [<path>]` — list needs only; no capture. Outputs to chat. If no path, scan all `.mdx` under `help/`.
 - **`--capture`:** `/illustrate --capture <needs-file>` — run Playwright against a list produced by `--identify` or by `/write`.
 - **`--optimize`:** `/illustrate --optimize` — run `bash .claude/scripts/optimize-images.sh` against all images in `help/images/**`. Use when images were added manually or a batch needs recompressing.
@@ -165,6 +165,8 @@ Generate a properly formatted Arcade embed for a Mintlify page.
      />
    </Frame>
    ```
+
+   The inline `style=` on this `<iframe>` is the deliberate exception to CLAUDE.md's "no inline styles" rule — Arcade embeds need aspect-ratio enforcement that no Mintlify component provides. Do not strip it; do not generalize the exception to other iframes.
 
 4. If a page was specified, insert at the appropriate location. Otherwise print the snippet for manual placement.
 
