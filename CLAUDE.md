@@ -10,6 +10,8 @@ This is **functional documentation** (not technical), except for the API section
 
 A curated **features reference** is available at `.features/features.md` (symlink to the reboot repo). Use it as a quick overview of what Beebole supports — it's faster than browsing the full source.
 
+**This is an automation engine.** Claude is the default author of English pages. The lifecycle — `/discover` → `/write` → `/review` → `/illustrate` → `/translate` — runs with minimal human intervention. Humans are in the loop at two moments: `/review` (quality gate after writing) and `/triage` (filing accumulated editorial feedback). Every other step is autonomous by default. Interactive/co-author modes exist as opt-ins for cases where a human wants to drive a specific page.
+
 ## App repository access
 
 The Beebole application source code is available at `../reboot` (sibling directory). Skills read from this path directly instead of using the GitHub API.
@@ -34,17 +36,17 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-Commands follow the content lifecycle: **Write → Check → Publish → Maintain**.
+The lifecycle runs **Discover → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
 
-| Stage        | Command       | What it does                                                                                                         |
-| ------------ | ------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Write**    | `/draft`      | Turn raw dictation/notes into a complete documentation page (English only), pulling context from the app source code |
-| **Check**    | `/review`     | Full pre-publish audit (spelling, style, SEO, GEO, images, FAQ generation, translations, code accuracy)              |
-|              | `/audit`      | Unified audit: `/audit page <path>` (code accuracy), `/audit coverage` (feature gaps), `/audit seo` (SEO & GEO)      |
-| **Publish**  | `/translate`  | Detect stale translations and sync FR/ES with English                                                                |
-|              | `/screenshot` | Capture screenshots via Playwright, optimize images, embed Arcade demos                                              |
-| **Maintain** | `/sync`       | Detect app repo changes, map to affected doc pages, propose updates. `--news` to draft release notes                 |
-|              | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location              |
+| Step          | Command       | What it does                                                                                                                            |
+| ------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Discover   | `/discover`   | Find what the docs need — recent app changes AND feature-catalog coverage gaps. Writes `.todo/discovery.md`.                            |
+| 2. Write      | `/write`      | Autonomous default: drafts every gap from `discovery.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.          |
+| 3. Review     | `/review`     | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
+| 4. Illustrate | `/illustrate` | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
+| 5. Translate  | `/translate`  | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
+| —             | `/news`       | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
+| Orthogonal    | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -150,12 +152,12 @@ gh api repos/beebole/reboot/contents/shared/i18n/en/labels.json --jq '.content' 
 
 Before running any skill or script, check that the required tools are installed. If a tool is missing, install it automatically (macOS with Homebrew) or tell the user what to install.
 
-| Tool              | Required by                                               | Check command         | Install command                                         |
-| ----------------- | --------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
-| `cwebp`           | `/screenshot` (image optimization)                        | `command -v cwebp`    | `brew install webp`                                     |
-| `gh` (GitHub CLI) | `/translate`, `/sync` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
-| `python3`         | `/translate` (JSON escaping in scripts)                   | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
-| `mintlify`        | Local preview (`mintlify dev`)                            | `command -v mintlify` | `npm install -g mintlify`                               |
+| Tool              | Required by                                                                       | Check command         | Install command                                         |
+| ----------------- | --------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
+| `cwebp`           | `/illustrate` (image optimization)                                                | `command -v cwebp`    | `brew install webp`                                     |
+| `gh` (GitHub CLI) | `/translate`, `/discover` (fallback), `/news` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
+| `python3`         | `/translate` (JSON escaping in scripts), `/discover` (cursor parsing)             | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
+| `mintlify`        | Local preview (`mintlify dev`)                                                    | `command -v mintlify` | `npm install -g mintlify`                               |
 
 When a skill fails because a tool is missing, install it with the corresponding install command and retry — don't just report the error.
 
@@ -183,7 +185,7 @@ Full editorial guidelines are in `.claude/context/`:
 | `documentation-structure.md` | Page structure template, internal link rules                                                         |
 | `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)                                              |
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
-| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/audit coverage`, `/sync`, `/triage`)   |
+| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/discover`, `/triage`)                  |
 | `terminology.md`             | Cross-cutting vocabulary rules not covered by brand/structure/seo/components                         |
 | `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, lazy-created by `/triage` (empty until first rule filed) |
 | `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
@@ -195,6 +197,6 @@ Full editorial guidelines are in `.claude/context/`:
 
 ## Quick reference
 
-- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/screenshot optimize` before committing.
+- **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/illustrate --optimize` before committing.
 - **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
 - **Translations:** English is the master language. FR/ES must stay in sync. Use correct localized UI labels from the i18n files.
