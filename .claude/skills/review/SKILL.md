@@ -1,199 +1,219 @@
 ---
 name: review
-description: 'Run a comprehensive pre-publish audit on a documentation page — checks spelling, grammar, style, SEO, GEO, images, FAQ (generates if missing), translations, and code accuracy. Use before publishing any page, when asked to review, audit, or check a page, or when preparing documentation for release.'
+description: 'Comprehensive pre-publish audit — spelling, style, structure, SEO, GEO, images, FAQ, translations, code accuracy, undocumented features, deprecated content. Default scope is the git session (working tree + staged). Use `/review <path>` for specific pages or `/review --all` for the full site. Absorbs what used to be /audit page and /audit seo.'
 ---
 
-# Review Page — Full Page Audit
+# Review — Comprehensive Documentation Audit
 
-Run a comprehensive audit on a documentation page before publishing. Checks spelling, grammar, style, SEO, GEO, images, FAQ, and translation status — then presents a report for approval before making any changes. If a FAQ section is missing, generates one inline.
+Run every pre-publish check against a documentation page or set of pages. One audit engine, three scopes. Read-only by default — changes applied only after user approval.
 
 ## Context
 
-Before running checks, read these context files for the rules you'll audit against:
+Before running checks, read:
 
-- `.claude/context/brand.md` — voice, tone, and writing rules
+- `.claude/context/brand.md` — voice, tone, writing rules
 - `.claude/context/audiences.md` — audience expectations per tab
-- `.claude/context/documentation-structure.md` — page structure template and section ordering
+- `.claude/context/documentation-structure.md` — page structure template
 - `.claude/context/mintlify-components.md` — correct component usage
-- `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
-- `.claude/context/product.md` — Beebole product overview and key concepts
+- `.claude/context/seo-geo.md` — SEO frontmatter + GEO writing patterns
+- `.claude/context/product.md` — Beebole product overview
 - `.claude/context/terminology.md` — cross-cutting vocabulary rules
+- `.claude/context/page-mappings.md` — for Page → Module routing resolution
 
 **Feedback-aware loading.** For each target page, also read:
 
-- `.claude/context/modules/<entity>.md` for every module listed for this page in `page-mappings.md`'s "Page → Module routing" table. Skip silently if no row exists or the file is absent.
-- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2 exists.
+- `.claude/context/modules/<entity>.md` for every module listed for this page in `page-mappings.md`. Skip silently if no row or file.
+- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2.
 
 Feedback rules ARE the review checklist — every module/page-note rule becomes an additional check. A violation of a filed rule is a critical issue, not a warning.
 
-## Inputs
+## Scopes
 
-The user provides:
-
-- **One or more page paths** (e.g., `help/integrations/jira.mdx`)
-- If no path is given, ask which page(s) to review
+- **Default (no args) — session scope:** audit every `.mdx` under `help/` with uncommitted modifications OR new files in git working tree + staged changes. Typical use: run after `/write` to audit what was just produced.
+- **Explicit paths:** `/review <path> [paths…]` — audit specific pages.
+- **Full site:** `/review --all` — every `.mdx` under `help/`. Expensive; runs via parallel subagents in batches of 5-10.
 
 ## Workflow
 
-### 1. Read the page(s)
+### 1. Resolve target pages
 
-For each target page, read the full `.mdx` file. Also read the corresponding FR (`help/fr/...`) and ES (`help/es/...`) versions if they exist.
+For each scope:
 
-### 2. Run all checks
+- **Session:** `git diff --name-only HEAD && git diff --cached --name-only && git ls-files --others --exclude-standard -- help/` and filter to `.mdx` files under `help/`.
+- **Explicit:** use the provided path(s).
+- **`--all`:** `find help -name '*.mdx'`.
 
-Perform every check below on the English page.
+For each target page, also resolve:
+- FR translation at `help/fr/<same-path>`
+- ES translation at `help/es/<same-path>`
+
+### 2. Run all checks per page
+
+Read the full `.mdx` file and run every check.
 
 #### 2.1 Spelling and grammar
 
-- Scan for spelling errors, typos, and grammatical mistakes
+- Scan for typos, spelling errors, grammatical mistakes
 - Flag awkward phrasing or overly complex sentences
-- Check for broken Mintlify component syntax (unclosed tags, wrong component names)
+- Check Mintlify component syntax (unclosed tags, wrong component names)
 
-#### 2.2 Style and writing rules (from CLAUDE.md)
+#### 2.2 Style and writing rules
 
-- Active voice used throughout
-- Second person ("you") — not "the user" or passive constructions
-- UI labels are **bolded** and match the app's exact wording (read from `../reboot/shared/i18n/en/labels.json`)
-- Present tense (not future: "displays" not "will display")
+- Active voice throughout
+- Second person ("you") — not "the user"
+- UI labels bolded, matching exact text in `../reboot/shared/i18n/en/labels.json`
+- Present tense (not future)
 - One idea per sentence
 - No jargon in user-facing docs (API section exempt)
 - No placeholder text, TODOs, or draft notes
 - Callouts (`<Tip>`, `<Warning>`, `<Info>`, `<Note>`) placed near relevant content, not grouped
-- Steps use `<Steps>` / `<Step>` components with one action per step, starting with a verb
+- Steps use `<Steps>`/`<Step>` with one action per step, starting with a verb
+- Internal repo vocabulary (`modules/`, `entity`) never appears in user-facing content
 
-#### 2.3 Page structure (from CLAUDE.md)
+#### 2.3 Page structure
 
 - Frontmatter has `title`, `description`, `keywords`
-- Introduction paragraph exists (2-4 sentences, definition-style opening mentioning "Beebole")
+- Introduction paragraph exists (2-4 sentences, definition-style, mentions "Beebole")
 - Logical heading hierarchy (no skipped levels)
-- Sections follow the recommended flow: intro → core tasks → configuration → advanced → troubleshooting → FAQ → related links
+- Section flow: intro → core tasks → configuration → advanced → troubleshooting → FAQ → related links
 
-#### 2.4 SEO and GEO compliance
+#### 2.4 SEO metadata (from former `/audit seo`)
 
-Scoped SEO/GEO checks for this page. Refer to `.claude/context/seo-geo.md` for the full checklist. Key checks:
+- `title` exists, 50-60 chars, includes feature name
+- `description` exists, 120-160 chars, reads as search snippet
+- `keywords` array with 3-8 terms including "beebole"
+- FR/ES have translated metadata (not English copies)
 
-- Frontmatter `title` (50-60 chars), `description` (120-160 chars), `keywords` (3-8 terms including "beebole")
-- Images have descriptive alt text with relevant keywords
-- Internal links use descriptive anchor text and start with `/help/`
-- Sections lead with direct answers (GEO/LLM-extractable)
-- "Beebole" mentioned by name in intro and FAQ answers
+#### 2.5 GEO compliance
 
-#### 2.5 FAQ section
+- Intro is definition-style and mentions "Beebole"
+- Sections lead with direct answers (LLM-extractable)
+- Paragraphs are self-contained
+- Headings are clear and descriptive with search terms
 
-- `## Frequently asked questions` section exists (API pages exempt)
-- Uses `<AccordionGroup>` with `<Accordion>` components
-- 3-5 Q&A pairs
-- Questions in natural language, answers self-contained and mention "Beebole"
-- FAQ present in FR/ES versions too
+#### 2.6 FAQ section
 
-**If FAQ is missing:** Generate it inline as part of the review. Write 3-5 Q&A pairs based on the page content following these rules:
+- Exists (API pages exempt)
+- Uses `<AccordionGroup>` with `<Accordion>`, 3-5 Q&A pairs
+- Questions natural language, answers self-contained mentioning "Beebole"
+- Exists in FR/ES too
 
-- Questions as real users would ask: "Can I...", "How do I...", "What happens when..."
-- Each answer self-contained — understandable without reading the page
-- 1-3 sentences per answer, link to other pages for details
-- Cover: permissions, limits, edge cases, common confusion points
-- Do not invent features — only document actual Beebole behavior
-- Use the same UI labels and bold formatting as the page
+**If FAQ is missing:** generate it inline as part of the review. 3-5 Q&A pairs based on the page content:
+- Questions as real users would ask ("Can I…", "How do I…", "What happens when…")
+- Each answer self-contained, 1-3 sentences, links to other pages for details
+- Cover permissions, limits, edge cases, common confusion
+- Do not invent features
+- Use the same UI labels and bold formatting
 - Include the generated FAQ in the report as a proposed addition
 
-#### 2.6 Translation status
-
-- FR and ES versions exist
-- Frontmatter is translated (not English copies)
-- Content appears translated (not stale English text)
-
-#### 2.7 Images
+#### 2.7 Images and alt text
 
 - All referenced images exist in `help/images/`
-- Images are WebP format
-- Images are under 200 KB (check file size)
-- Naming follows kebab-case with feature context
-- No PNG/JPG files that should have been converted
+- WebP format, under 200 KB
+- Kebab-case naming with feature context
+- Descriptive alt text with keywords (not empty, not "screenshot")
 
-If unoptimized images are found, run the optimization script automatically:
+If unoptimized images found, run: `bash .claude/scripts/optimize-images.sh`
 
-```bash
-bash .claude/scripts/optimize-images.sh
+#### 2.8 Internal linking
+
+- Links use descriptive anchor text (not "click here")
+- All links start with `/help/`
+
+#### 2.9 Translation status
+
+- FR and ES versions exist
+- Frontmatter translated (not English copies)
+- Content translated (not stale English text)
+- Check staleness via `bash .claude/scripts/translate.sh` if in session or explicit-path scope
+
+#### 2.10 Code accuracy
+
+Use the sibling repo at `../reboot`:
+
+- **UI labels** — every bolded label matches `../reboot/shared/i18n/en/labels.json`
+- **Feature behavior** — documented workflows match actual code logic
+- **Settings & options** — configurable options in code match docs
+- **Permissions & roles** — checked against access control logic
+- **Defaults & limits** — match model/form defaults and validation rules
+
+**Fallback:** if `../reboot` unavailable, `gh api repos/beebole/reboot/contents/{path} --jq '.content' | base64 -d`. If unavailable, skip this section and note "Code accuracy: Skipped (../reboot not found)".
+
+#### 2.11 Undocumented features (from former `/audit page`)
+
+Features discoverable in code (components, entities, permissions) but not mentioned in the page. Flag as: "Missing from doc — consider adding."
+
+#### 2.12 Deprecated content (from former `/audit page`)
+
+Things documented but no longer in code (removed features, renamed labels). Flag as: "Stale — in docs, not in code. Consider removing or updating."
+
+### 3. Compile the report
+
+**Do NOT make any changes.** Present findings:
+
 ```
+## Review Report
 
-#### 2.8 Code accuracy (cross-reference with source code)
+**Scope:** [session|paths|--all]
+**Pages audited:** N
+**Date:** YYYY-MM-DD
 
-Use the sibling repo at `../reboot` (see CLAUDE.md "App repository access"):
+### Summary
+| Check | Issues |
+|---|---|
+| Spelling & grammar | X |
+| Style & writing rules | X |
+| Page structure | X |
+| SEO metadata | X |
+| GEO compliance | X |
+| FAQ | Present / Generated / Missing-API-exempt |
+| Images | X |
+| Internal linking | X |
+| Translations (FR) | Up-to-date / Stale / Missing |
+| Translations (ES) | Up-to-date / Stale / Missing |
+| Code accuracy | X / Skipped |
+| Undocumented features | X |
+| Deprecated content | X |
+| Feedback-file rules | X violations (critical) |
 
-- Verify **UI labels** match `../reboot/shared/i18n/en/labels.json`
-- Verify **documented behavior** matches actual code logic (workflows, conditions, settings)
-- Flag **undocumented settings or options** that exist in the code but are missing from the page
-- Flag **stale content** referencing features or labels that no longer exist in the code
-- Check **permissions and roles** against access control logic in the code
-- Check **default values and limits** against model/form defaults and validation rules
+### Critical (must fix before publishing)
+[Numbered list with specific details]
 
-**Fallback:** If `../reboot` is not available, skip code accuracy and note: "Code accuracy: Skipped (app repository not found at ../reboot)"
+### Warnings (should fix)
+[Numbered list]
 
-## 3. Compile the report
-
-**Do NOT make any changes.** Present findings as a structured report:
-
-```
-## Page Review Report
-
-**Page:** [path]
-**Date:** [today]
-
-### Overview
-| Check | Status |
-|-------|--------|
-| Spelling & grammar | Pass / X issues |
-| Style & writing rules | Pass / X issues |
-| Page structure | Pass / X issues |
-| SEO metadata | Pass / X issues |
-| GEO compliance | Pass / X issues |
-| FAQ section | Present / Missing (generated) / Missing (API exempt) |
-| Translations (FR) | Up to date / Stale / Missing |
-| Translations (ES) | Up to date / Stale / Missing |
-| Images | Pass / X issues |
-| Code accuracy | Pass / X issues / Skipped |
-
-### Issues found
-
-#### Critical (must fix before publishing)
-- [numbered list of critical issues with specific details]
-
-#### Warnings (should fix)
-- [numbered list of warnings with specific details]
-
-#### Suggestions (nice to have)
-- [numbered list of minor improvements]
+### Suggestions (nice to have)
+[Numbered list]
 
 ### Generated FAQ (if missing)
-[The full FAQ section markup, ready to insert]
+[Full markup]
 
 ### Recommended actions
-For each issue, state what action to take:
-- Specific text corrections for spelling/grammar/style issues
-- "Run `/screenshot` to capture missing screenshots"
-- "Run `/translate` to sync stale FR/ES translations"
-- FAQ section to insert (if generated above)
+[Specific text corrections, tool invocations like `/illustrate`, `/translate`, etc.]
 ```
 
-## 4. Ask before acting
+### 4. Ask before acting
 
-After presenting the report, ask the user:
+After the report, ask:
 
 > "Would you like me to fix these issues? I can apply all fixes, or you can pick specific ones."
 
-Only proceed with changes after the user confirms. When applying fixes:
+Only proceed after confirmation. When applying fixes:
 
-- For FAQ → insert the generated FAQ section at the bottom (before "Related links" if present)
-- For image optimization → run `bash .claude/scripts/optimize-images.sh`
-- For translation issues → delegate to `/translate`
-- For screenshots → delegate to `/screenshot`
-- For spelling, grammar, style, SEO, GEO, and structure → apply edits directly
+- FAQ → insert at bottom (before "Related links" if present)
+- Image optimization → run `bash .claude/scripts/optimize-images.sh`
+- Translation issues → delegate to `/translate`
+- Screenshots → delegate to `/illustrate`
+- Spelling/grammar/style/SEO/GEO/structure/label mismatches → apply edits directly
+- Undocumented/deprecated → propose content edits
 
 ## Rules
 
-- **Read-only by default.** Never modify files until the user approves.
-- **Be specific.** "Line 42: 'will display' → 'displays' (use present tense)" not "fix tenses."
-- **Don't invent problems.** Only flag genuine issues based on CLAUDE.md conventions.
-- **Prioritize clearly.** Critical issues block publishing; warnings improve quality; suggestions are optional.
-- **Generate FAQs inline.** Don't tell the user to run a separate skill — generate the FAQ and include it in the report.
-- **Graceful degradation.** If `../reboot` is missing, skip code accuracy. Report what was skipped.
+- **Read-only by default.** No file modifications until user approves.
+- **Be specific.** "Line 42: 'will display' → 'displays' (present tense)" not "fix tenses."
+- **Don't invent problems.** Only flag genuine issues.
+- **Prioritize clearly.** Critical blocks publishing; warnings improve quality; suggestions are optional.
+- **Feedback-file rule violations are CRITICAL.** If a module or page-note rule is broken, it's not a warning.
+- **Generate FAQs inline.** Include in the report as a proposed addition.
+- **Graceful degradation.** If `../reboot` is missing, skip code accuracy + undocumented + deprecated. Note in report what was skipped.
+- **`--all` batching.** Process pages in batches of 5-10 using parallel subagents. Each subagent gets the full check list.
