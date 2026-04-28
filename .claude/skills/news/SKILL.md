@@ -1,6 +1,6 @@
 ---
 name: news
-description: 'Draft a release-notes entry in help/news/releases.mdx from recent app-repo commits. Default: use the most recent <Update label="Month YYYY"> block as the cursor, draft a new entry for commits since then. `--since <date|sha>` overrides the cursor explicitly. Uses the same change-detection script as /discover. Replaces the former /sync --news mode.'
+description: 'Draft a release-notes entry in help/news/releases.mdx from recent app-repo commits. Default: use the most recent <Update label="Month YYYY"> block as the cursor, draft a new entry for commits since then. `--since <date|sha>` overrides the cursor explicitly. Uses .claude/scripts/detect-reboot-changes.sh to enumerate commits.'
 disable-model-invocation: true
 ---
 
