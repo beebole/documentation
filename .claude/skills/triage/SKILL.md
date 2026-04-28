@@ -16,7 +16,6 @@ Before running, read these files so proposals land in the right place:
 - `.claude/context/documentation-structure.md` — generic structure rules
 - `.claude/context/seo-geo.md` — generic SEO/GEO rules
 - `.claude/context/mintlify-components.md` — generic component-usage rules
-- `.claude/context/terminology.md` — cross-cutting vocabulary rules
 - `.claude/context/page-notes.md` — existing page-specific notes
 - `.claude/context/page-mappings.md` — keyword routing + Page → Module routing
 - `.claude/context/translation-notes.md` — existing FR/ES-specific notes
@@ -57,11 +56,10 @@ For each file in the queue (any order — no date convention):
 Choose among these five options. Reasoning is required; state which option and why.
 
 1. **Extend a generic file** — the rule applies site-wide and fits an existing topical file:
-   - Voice/tone → `brand.md`
+   - Voice/tone, writing rules, cross-cutting vocabulary → `brand.md`
    - Page structure → `documentation-structure.md`
    - SEO/GEO → `seo-geo.md`
    - Mintlify components → `mintlify-components.md`
-   - Cross-cutting vocabulary with no better home → `terminology.md`
 
 2. **Add to a module file** — the rule applies whenever any page touches a product domain. File under `.claude/context/modules/<entity>.md` in one of three H2 sections:
    - `## Terminology` — vocabulary rules specific to this domain
@@ -146,7 +144,7 @@ After all files are processed:
 
 **Files processed:** N
 **Rules filed:**
-- Generic: X (brand: a, documentation-structure: b, seo-geo: c, mintlify-components: d, terminology: e)
+- Generic: X (brand: a, documentation-structure: b, seo-geo: c, mintlify-components: d)
 - Module: Y (across Z module files)
 - Page notes: V
 - Translation notes: W

@@ -17,7 +17,6 @@ Before running checks, read:
 - `.claude/context/mintlify-components.md` — correct component usage
 - `.claude/context/seo-geo.md` — SEO frontmatter + GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview
-- `.claude/context/terminology.md` — cross-cutting vocabulary rules
 - `.claude/context/page-mappings.md` — for Page → Module routing resolution
 
 **Feedback-aware loading.** For each target page, also read:

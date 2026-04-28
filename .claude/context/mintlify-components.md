@@ -61,8 +61,12 @@ Use for overview pages linking to sub-topics.
 ## Frame (images and videos)
 
 ```mdx
-<Frame>![Alt text](/images/screenshot.webp)</Frame>
+<Frame>
+	![Alt text](/images/screenshot.webp)
+</Frame>
 ```
+
+Add `caption="..."` when context isn't clear from surrounding prose; it appears below the image and helps SEO/accessibility. Alt text describes the image; caption explains its purpose.
 
 For video embeds:
 
@@ -92,6 +96,8 @@ Replace `ARCADE_ID` with the ID from the Arcade share URL. Always include:
 - A descriptive `title` on the `<iframe>` for accessibility
 - `loading="lazy"` to avoid blocking page load
 - The responsive `style` with `aspectRatio: '16/9'`
+
+The inline `style` on the iframe is a documented exception to CLAUDE.md's no-inline-styles rule — Arcade requires it for responsive sizing.
 
 ## Snippets (reusable fragments)
 

@@ -17,7 +17,6 @@ Before starting, read these context files:
 - `.claude/context/mintlify-components.md` — component usage
 - `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview
-- `.claude/context/terminology.md` — cross-cutting vocabulary rules
 
 **Feedback-aware loading.** After each target page path is known, also read:
 
