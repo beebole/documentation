@@ -74,9 +74,6 @@ snippets/              # Reusable content fragments (currently empty)
   commands/            # Only for commands that reference vendor plugins (not skill wrappers)
   vendor/              # Third-party plugin files (claude-md-management)
 docs/                  # Internal working docs (NOT published by Mintlify)
-  superpowers/
-    specs/             # Design specs from /brainstorm sessions
-    plans/             # Implementation plans from /write-plan
   feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
@@ -95,9 +92,9 @@ Use the Mintlify MCP server to look up official Mintlify documentation when work
 
 **Banned patterns — use Mintlify equivalents instead:**
 
-- `<img>` tags → use markdown `![alt](src)` inside `<Frame caption="...">`
+- `<img>` tags → use markdown `![alt](src)` inside `<Frame>` (add `caption="..."` when helpful)
 - `<br/>` tags → use blank lines for paragraph breaks
-- `className=`, `style=` attributes → no inline styles; use Mintlify components for layout
+- `className=`, `style=` attributes → no inline styles for layout; use Mintlify components instead. Exception: third-party iframes (e.g., Arcade) may use inline `style` for responsive sizing — see `.claude/context/mintlify-components.md`.
 - Raw `<iframe>` → wrap in `<Frame>`
 - Mermaid diagrams (` ```mermaid `) → use `<CardGroup>`/`<Card>` with tables, or Mintlify components
 - Any raw HTML (`<div>`, `<span>`, `<table>`, `<ul>`, etc.) → use markdown or Mintlify components
@@ -178,7 +175,7 @@ Full editorial guidelines are in `.claude/context/`:
 
 | File                         | Covers                                                                                               |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `brand.md`                   | Voice, tone, writing rules                                                                           |
+| `brand.md`                   | Brand identity, voice, tone, writing rules, cross-cutting vocabulary                                 |
 | `audiences.md`               | Target audiences by tab                                                                              |
 | `product.md`                 | Beebole product overview and key concepts                                                            |
 | `documentation-structure.md` | Page structure template, internal link rules                                                         |
@@ -186,7 +183,6 @@ Full editorial guidelines are in `.claude/context/`:
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
 | `features.md`                | Canonical Beebole feature catalog — produced by `/sync-features`, consumed by `/find-gaps`           |
 | `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/find-gaps`, `/triage`)                 |
-| `terminology.md`             | Cross-cutting vocabulary rules not covered by brand/structure/seo/components                         |
 | `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, lazy-created by `/triage` (empty until first rule filed) |
 | `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
 | `translation-notes.md`       | FR/ES-specific translation feedback — read ONLY by `/translate`, never by content skills             |
