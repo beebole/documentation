@@ -8,9 +8,9 @@ This is **functional documentation** (not technical), except for the API section
 
 **The Beebole application source code** lives at [github.com/beebole/reboot](https://github.com/beebole/reboot.git). This documentation is entirely linked to that codebase — features, UI labels, workflows, and behavior described in these pages correspond directly to the code in that repository. When documenting a feature, always refer to the application code as the source of truth for how things work.
 
-A curated **features reference** is available at `.features/features.md` (symlink to the reboot repo). Use it as a quick overview of what Beebole supports — it's faster than browsing the full source.
+A curated **features reference** is maintained at `.claude/context/features.md`. Use it as a quick overview of what Beebole supports — it's faster than browsing the full source. Refresh it with `/sync-features` (or `/sync-features --incremental` for a faster scoped scan).
 
-**This is an automation engine.** Claude is the default author of English pages. The lifecycle — `/discover` → `/write` → `/review` → `/illustrate` → `/translate` — runs with minimal human intervention. Humans are in the loop at two moments: `/review` (quality gate after writing) and `/triage` (filing accumulated editorial feedback). Every other step is autonomous by default. Interactive/co-author modes exist as opt-ins for cases where a human wants to drive a specific page.
+**This is an automation engine.** Claude is the default author of English pages. The lifecycle — `/sync-features` → `/find-gaps` → `/write` → `/review` → `/illustrate` → `/translate` — runs with minimal human intervention. Humans are in the loop at two moments: `/review` (quality gate after writing) and `/triage` (filing accumulated editorial feedback). Every other step is autonomous by default. Interactive/co-author modes exist as opt-ins for cases where a human wants to drive a specific page.
 
 ## App repository access
 
@@ -18,7 +18,7 @@ The Beebole application source code is available at `../reboot` (sibling directo
 
 **Key paths:**
 
-- `../reboot/.claude/skills/audit-features/references/features.md` — Features catalog (220+ features)
+- `.claude/context/features.md` — Features catalog (canonical home; refreshed by `/sync-features`)
 - `../reboot/shared/i18n/en/labels.json` — English UI labels
 - `../reboot/frontend/src/models/types.ts` — Entity type definitions
 - `../reboot/frontend/src/components/` — UI components by entity
@@ -36,17 +36,18 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Discover → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
 
-| Step          | Command       | What it does                                                                                                                            |
-| ------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Discover   | `/discover`   | Find what the docs need — recent app changes AND feature-catalog coverage gaps. Writes `.todo/discovery.md`.                            |
-| 2. Write      | `/write`      | Autonomous default: drafts every gap from `discovery.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.          |
-| 3. Review     | `/review`     | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
-| 4. Illustrate | `/illustrate` | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
-| 5. Translate  | `/translate`  | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
-| —             | `/news`       | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
-| Orthogonal    | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
+| Step             | Command           | What it does                                                                                                                            |
+| ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Sync features | `/sync-features`  | Refresh `features.md` by scanning `../reboot`. Default = full scan. `--incremental` only inspects commits since `Last updated:`.        |
+| 2. Find gaps     | `/find-gaps`      | Compare the catalog against `help/**` and write `.todo/gaps.md` with Missing/Partial entries.                                           |
+| 3. Write         | `/write`          | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.               |
+| 4. Review        | `/review`         | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
+| 5. Illustrate    | `/illustrate`     | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
+| 6. Translate     | `/translate`      | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
+| —                | `/news`           | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
+| Orthogonal       | `/triage`         | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -78,8 +79,6 @@ docs/                  # Internal working docs (NOT published by Mintlify)
     plans/             # Implementation plans from /write-plan
   feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
-.features/
-  features.md          # Symlink → beebole/reboot/.claude/skills/audit-features/references/features.md (gitignored)
 ```
 
 ## File placement
@@ -155,8 +154,8 @@ Before running any skill or script, check that the required tools are installed.
 | Tool              | Required by                                                                       | Check command         | Install command                                         |
 | ----------------- | --------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
 | `cwebp`           | `/illustrate` (image optimization)                                                | `command -v cwebp`    | `brew install webp`                                     |
-| `gh` (GitHub CLI) | `/translate`, `/discover` (fallback), `/news` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
-| `python3`         | `/translate` (JSON escaping in scripts), `/discover` (cursor parsing)             | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
+| `gh` (GitHub CLI) | `/sync-features`, `/translate`, `/news` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
+| `python3`         | `/translate` (JSON escaping in scripts), `/find-gaps` (cursor parsing)             | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
 | `mintlify`        | Local preview (`mintlify dev`)                                                    | `command -v mintlify` | `npm install -g mintlify`                               |
 
 When a skill fails because a tool is missing, install it with the corresponding install command and retry — don't just report the error.
@@ -185,7 +184,8 @@ Full editorial guidelines are in `.claude/context/`:
 | `documentation-structure.md` | Page structure template, internal link rules                                                         |
 | `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)                                              |
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
-| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/discover`, `/triage`)                  |
+| `features.md`                | Canonical Beebole feature catalog — produced by `/sync-features`, consumed by `/find-gaps`           |
+| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/find-gaps`, `/triage`)                 |
 | `terminology.md`             | Cross-cutting vocabulary rules not covered by brand/structure/seo/components                         |
 | `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, lazy-created by `/triage` (empty until first rule filed) |
 | `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
