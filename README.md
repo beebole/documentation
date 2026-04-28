@@ -45,17 +45,18 @@ Open this repository in VS Code, then open Claude Code from the sidebar (or `Cmd
 
 ## Slash commands
 
-The lifecycle runs **Discover → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
 
-| Step          | Command       | What it does                                                                                                                            |
-| ------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Discover   | `/discover`   | Find what the docs need — recent app changes AND feature-catalog coverage gaps. Writes `.todo/discovery.md`.                            |
-| 2. Write      | `/write`      | Autonomous default: drafts every gap from `discovery.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.          |
-| 3. Review     | `/review`     | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
-| 4. Illustrate | `/illustrate` | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
-| 5. Translate  | `/translate`  | Sync FR/ES with EN master.                                                                                                              |
-| —             | `/news`       | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
-| Orthogonal    | `/triage`     | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
+| Step             | Command          | What it does                                                                                                                            |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Sync features | `/sync-features` | Refresh `features.md` by scanning `../reboot`. Default = full scan. `--incremental` only inspects commits since `Last updated:`.        |
+| 2. Find gaps     | `/find-gaps`     | Compare the catalog against `help/**` and write `.todo/gaps.md` with Missing/Partial entries.                                           |
+| 3. Write         | `/write`         | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.               |
+| 4. Review        | `/review`        | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
+| 5. Illustrate    | `/illustrate`    | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
+| 6. Translate     | `/translate`     | Sync FR/ES with EN master.                                                                                                              |
+| —                | `/news`          | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
+| Orthogonal       | `/triage`        | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
 
 You can also just ask Claude in natural language — e.g., "add a FAQ section to the billing page" or "translate the timesheets page to French".
 
@@ -78,10 +79,10 @@ snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
-  scripts/             # Shell helpers for batch operations (translate, FAQ, images)
-  commands/            # Only for commands that reference vendor plugins
-  vendor/              # Third-party plugin files (claude-md-management)
-.todo/                 # Working files for app change tracking and proposed updates
+  scripts/             # Shell helpers (translate, optimize-images, detect-reboot-changes)
+docs/                  # Internal working docs (NOT published by Mintlify)
+  feedback/            # Inbox for marked-up review files (processed by /triage)
+.todo/                 # Working files for gaps, screenshot needs, and other handoffs
 ```
 
 ## Languages

@@ -114,6 +114,34 @@ Each task can include an **Effort** value that represents the percentage of a pe
 
 ---
 
+## Workload heatmap
+
+Beebole's Gantt chart includes a workload heatmap that overlays each group row with color-coded bars showing how the group's planned effort compares to its available capacity for each day or week on the timeline. Use it to spot overloaded teams, under-used capacity, and scheduling clashes at a glance — without having to expand individual rows.
+
+The heatmap is most useful when the chart is grouped by a dimension that maps to people or capacity, such as **Owner** or a project category that represents a team. See [Row grouping](#row-grouping) to set up grouping for the chart.
+
+### Reading the heatmap colors
+
+Each bar covers one period (a day or a week, depending on the current zoom level) and its color reflects the ratio of planned effort to available capacity for that period:
+
+| Color | Meaning |
+|-------|---------|
+| **Green** | The group is under capacity for the period — there is room for more work. |
+| **Amber** | The group is close to or at capacity — workload is balanced but tight. |
+| **Red** | The group is over capacity for the period — the planned effort exceeds the time available, meaning a scheduling conflict. |
+
+Capacity is derived from each person's [work schedule](/help/documentation/work-schedule) and any approved [time off](/help/documentation/timeoff) for the period. Effort is taken from each task's planned **Effort** value distributed across the task's start and end dates.
+
+### Per-person breakdown on hover
+
+Hover any heatmap cell on a group row to see a tooltip listing each person in the group, their effort allocated for that period, and their capacity for the same period. Use the breakdown to identify which individuals are pushing the group into overload, then drag tasks between rows or adjust effort to rebalance.
+
+<Tip>
+  Switch the timeline zoom between day and week views when reading the heatmap. Daily view highlights short-term clashes around specific dates, while weekly view smooths over single-day spikes and shows longer-term capacity trends.
+</Tip>
+
+---
+
 ## Customizing the Gantt view
 
 You can adjust the Gantt chart to focus on what matters most:

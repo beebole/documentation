@@ -104,6 +104,86 @@ Here's a typical setup to illustrate how these concepts connect:
 
 A few features in Beebole apply globally, regardless of which section you're working in.
 
+### Search
+
+Each entity list in Beebole — people, projects, tasks, tags, roles, custom fields, absence types, schedules — has a **Search** field at the top of its panel. Beebole uses fuzzy matching, so typing characters that appear in order anywhere in an entity's name returns a hit even when they're not consecutive. Matched characters are highlighted in the results so you can confirm you've found the right entity.
+
+Use the search bar to:
+
+- **Find an entity by partial name.** Typing `alibr` matches "Alice Brooks" and "Aliso Bridges".
+- **Filter long lists.** Searching narrows hierarchies like the project tree, expanding only the branches that contain matching entries.
+- **Jump directly to a record.** Pressing **Enter** on a single match opens that entity's detail panel.
+
+Clear the search field to restore the full list. Search is local to the panel you're in — there is no single search across every entity type, so use the [sidebar navigation](#how-it-all-comes-together) to switch entity types when you need to look elsewhere.
+
+### Real-time sync
+
+Beebole keeps everyone in your account in sync without requiring a refresh. When a teammate creates, edits, archives, or deletes anything — a project, a task, a time entry, an approval action, a journal message — the change appears for all other connected users within seconds.
+
+Real-time sync covers:
+
+- **Entity changes** — Adds, edits, archives, deletes, renames.
+- **Approval actions** — Submitted, approved, rejected, and reopened timesheets update for the approver and the submitter at the same time.
+- **Planning and Gantt updates** — Allocation changes propagate to the planning view and the Gantt chart in real time.
+- **Journal messages and notifications** — New mentions, replies, and notifications appear without polling.
+
+<Info>
+  Real-time sync uses a persistent connection between your browser and Beebole. If your network drops temporarily, Beebole reconnects automatically and catches up on any changes you missed while offline.
+</Info>
+
+### Entity duplication
+
+Most entities in Beebole support a **Duplicate** action that creates a copy with the same configuration as the original. Use it to bootstrap a new project from a template, set up a person record similar to an existing one, or clone a role with a small permission tweak instead of building it from scratch.
+
+To duplicate an entity, right-click the entity name in its list — or open the **⋯** action menu that appears on hover — and select **Duplicate**. The new copy keeps:
+
+- The source entity's settings, attributes, and configuration (rates, schedules, budgets, custom field values).
+- Its position in the hierarchy (sub-project of the same parent, subtask of the same task, child tag of the same parent tag).
+
+It does not copy historical data such as time entries, journal messages, or approvals — those are tied to the original entity.
+
+<Note>
+  Duplicating a person opens a small dialog where you enter the new person's **Name**, **Email**, and **Role** before the copy is created. This is because each person needs unique identity fields.
+</Note>
+
+### Attribute copy/paste
+
+In addition to duplicating an entire entity, Beebole lets you copy a specific configuration block — such as billing rates, cost rates, work schedules, absence quotas, or budgets — from one entity and paste it onto another. Use it to keep configurations consistent across similar projects, transfer a person's quota structure to a new hire, or roll out a rate update to a group of related projects.
+
+The basic flow:
+
+<Steps>
+  <Step title="Open the source entity">
+    Open the entity whose configuration you want to copy (for example, a project with the right billing rate setup).
+  </Step>
+  <Step title="Copy the attribute">
+    Open the source's action menu and select **Copy**. Beebole stores the attribute configuration on the clipboard until you paste it.
+  </Step>
+  <Step title="Open the target entity">
+    Open the destination entity (a different project, person, or tag — whichever supports the same attribute).
+  </Step>
+  <Step title="Paste the attribute">
+    Open the target's action menu and select **Paste**. The attribute configuration is applied to the target without affecting any other settings.
+  </Step>
+</Steps>
+
+<Tip>
+  Attribute copy/paste is especially useful when onboarding new people or projects that should match an existing template. Set up one "model" entity correctly, then paste its rates, quotas, or budgets onto every new entity instead of recreating them by hand.
+</Tip>
+
+### Color coding
+
+Beebole assigns each entity a color used as a visual identifier across the interface. Person avatars, project labels, allocation blocks, journal threads, and other entity references all share the same color, making it easy to scan a list, a calendar, or a Gantt chart and recognize who or what you're looking at.
+
+The default color is generated automatically when an entity is created. Administrators and managers with the right permission can change the color manually:
+
+- **For a person** — Open the person's profile in **People** and click the avatar to open the color picker. Pick a color from the palette, or remove the override to fall back to the auto-assigned color.
+- **For other entities** — Color pickers appear next to the entity name in the detail pane wherever color coding applies.
+
+<Info>
+  Color is purely a visual aid — it does not affect access, permissions, billing, or reporting. Use it to make at-a-glance scanning easier, especially in shared views like planning, Gantt, or the journal.
+</Info>
+
 ### Version update notifications
 
 When a new version of Beebole is deployed, a banner appears in the interface with an **Update available** message. Click **Reload to update** to reload the app and apply the latest version. This ensures you always have access to new features and fixes without needing to clear your cache manually.

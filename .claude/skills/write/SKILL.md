@@ -25,6 +25,26 @@ Before starting, read these context files:
 
 Treat these as authoritative — if a feedback rule contradicts a general guideline, the more specific rule wins.
 
+## Grounding contract
+
+Documentation is a description of what the Beebole app actually does, not a brainstorm of plausible behavior. **Every factual claim in a draft must be backed by code or labels in `../reboot`.** If a claim has no backing, do not paraphrase a SaaS-default version into the page — leave a gap, mark it `[VERIFY:]`, or skip it.
+
+These rules are non-negotiable. Apply them before drafting any sentence:
+
+1. **Don't invent features from SaaS clichés.** If a feature, label, menu path, plan tier, or workflow isn't in `../reboot`, it doesn't exist. Common cliché traps caught in past audits: "Pro and Enterprise plans", `Settings > Audit trail`, "Request changes" approval action, PIN-based sign-in, calendar views in Gantt/Kanban, diamond milestone markers, self-service custom-domain flows, Google/Microsoft Calendar integrations. None of these exist in code. Don't add new ones.
+
+2. **UI labels are copied verbatim from `../reboot/shared/i18n/en/labels.json`** — never paraphrased, retitled, or guessed. Past slips: `Add a Gantt` (paraphrase) vs **Add a Gantt chart** (real); `Send Invitation` vs **Invite by email**; `Connect` vs **Connect to QB Online**; `Load Public Holidays` vs **Load holidays**; `Workspace` vs **Asana workspace**; `System` (theme) vs **Auto**. Grep before bolding.
+
+3. **Top-level sidebar items are never under `Settings > X`.** Items like People, Projects, Tags, Time Off, Custom Fields, Audit Trail, SSO, Reports, Planning live directly in the left sidebar. Write *"click **People** in the sidebar"*, not *"go to **Settings > People**"*. Verify the sidebar list against `../reboot/frontend/src/app/side-bar.ts` (or its current equivalent) before writing any navigation step.
+
+4. **Plan claims must match `../reboot/shared/subscription.ts`.** Read the file before naming a tier or asserting that a feature requires a specific plan. Never paste in generic SaaS names ("Enterprise", "Team", "Business") that aren't in code. If you can't find the gating, omit the claim — don't invent one.
+
+5. **"Coming soon" labels mean don't ship a doc.** If `../reboot` returns `comingSoon`, `to be developed`, or similar placeholder strings for a feature (`grep -ri "coming soon\|to be developed" ../reboot/shared/i18n/en/labels.json` is the quick check), refuse to draft a page for it. Surface it as a gap instead.
+
+6. **`<Info>`, never `<Note>`. `—`, never `--`.** Both are existing project rules (`documentation-structure.md:66` for the callout; typography norm for the em-dash). Enforcing them at draft time eliminates the recurring `/review` cleanup loop.
+
+If a draft would violate any of the above, stop and report the gap rather than paraphrase your way around it.
+
 ## Modes
 
 - **Default (no args) — autonomous batch:** read `.todo/gaps.md`, parse every `- [ ] Missing | …` line, draft each page end-to-end without checkpoints, produce a consolidated summary.
@@ -76,7 +96,7 @@ Per page:
    - Bold UI labels from `labels.json`
    - Screenshot placeholders with descriptive alt text: `![Descriptive alt](/help/images/feature/context.webp)`
    - FAQ section with 3-5 Q&A pairs in `<AccordionGroup><Accordion>`
-   - Callouts (`<Tip>`, `<Warning>`, `<Info>`, `<Note>`) placed near relevant content
+   - Callouts (`<Tip>`, `<Warning>`, `<Info>`) placed near relevant content — never `<Note>` (banned for site-wide consistency)
    - `[VERIFY: description]` markers for uncertain claims
 
 3. **Self-verify before moving to the next page.** Mechanical sweep over the file as a whole — these are not judgment calls and must not be papered over with `[VERIFY:` markers:
@@ -184,7 +204,7 @@ Write the file. Update `docs.json`. Print summary.
 ## Rules
 
 - **English only.** Never produce French or Spanish versions. `/translate` handles FR/ES after.
-- **Do not invent features.** Only document what input describes + code findings the user approved (interactive) or the research surfaced (autonomous).
+- **Do not invent features (hard).** See *Grounding contract* above. If a feature, label, settings path, plan tier, or workflow isn't in `../reboot`, drop it or mark `[VERIFY:]` — never paraphrase a SaaS-default version into the page.
 - **Preserve intent.** Restructure and rewrite, but don't change meaning.
 - **Use exact UI labels** from `labels.json`, not approximate wording.
 - **Mark uncertain content** with `[VERIFY: description]` inline.

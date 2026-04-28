@@ -236,6 +236,59 @@ Subtasks created in one view are immediately visible in all other task views. Th
 
 ---
 
+## Locking a task's end date
+
+Beebole lets you pin a task's **end date** so it stays fixed even when the task's predecessors or other inputs shift. Use it for tasks with hard deadlines — a client delivery, a regulatory date, a release window — where the end of the task cannot move regardless of upstream changes.
+
+Locking is independent for the start and end dates: you can lock either edge of the task, both, or neither.
+
+### Locking or unlocking the end date
+
+<Steps>
+  <Step title="Open the task's date controls">
+    Open the task in the [Gantt chart](/help/documentation/gantt) or the task detail panel. The **Start date** and **End date** pickers appear with a small lock icon next to each date.
+  </Step>
+  <Step title="Toggle the lock">
+    Click the lock icon next to the **End date** to pin it. The icon switches to the locked state and the tooltip reads **Lock end date**. Click it again to unlock the date.
+  </Step>
+</Steps>
+
+### How a locked end date affects scheduling
+
+| Action | Result with end date locked |
+|--------|-----------------------------|
+| **Predecessor task shifts later** | The successor's start date moves but its end date stays put — Beebole shortens the duration to keep the deadline. |
+| **Effort is increased on the task** | The start date moves earlier instead of pushing the end date out. |
+| **The lock is removed** | The end date moves freely again with predecessors and effort changes. |
+
+<Warning>
+  If a locked end date forces a task into a duration that is too short for its planned effort, Beebole flags a scheduling conflict. Resolve it by unlocking the end date, increasing the duration manually, or reducing the effort.
+</Warning>
+
+---
+
+## Task-level custom fields
+
+Beebole supports custom fields on tasks, just like on projects, people, and time entries. Use them to capture task-specific context that the standard task fields don't cover — for example, a sprint number, a story-point estimate, an issue tracker URL, or a priority label.
+
+Once a custom field is added, it appears on every task across the [Gantt chart](/help/documentation/gantt), [Kanban board](/help/documentation/kanban), and the planning view. Field values are also available as filters and columns in [custom reports](/help/documentation/custom-reports), so task metadata flows into your analytics without extra work.
+
+### Common task custom fields
+
+| Field | Type | Example use |
+|-------|------|-------------|
+| **Sprint** | Text or number | Group tasks by iteration for agile planning |
+| **Story points** | Number | Track estimation alongside effort |
+| **Priority** | Text | Tag tasks as **High**, **Medium**, or **Low** |
+| **External ID** | URL or text | Link tasks to issues in Jira, Linear, GitHub, etc. |
+| **Acceptance criteria met** | Boolean | Confirm a task meets its definition of done |
+
+<Info>
+  Custom fields are defined once in **Settings** > **Custom fields**, then applied to the **Tasks** entity. You can also restrict a field to specific project or task categories so it only appears where it's relevant. See [Custom fields](/help/documentation/custom-fields) for the full list of supported field types and configuration options.
+</Info>
+
+---
+
 ## How planning connects to other features
 
 Beebole's planning tools integrate with several other parts of the application:

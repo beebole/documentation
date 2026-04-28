@@ -40,3 +40,4 @@ Temporary Items
 nohup.out
 .features/features.md
 CLAUDE.local.md
+.claude/settings.local.json

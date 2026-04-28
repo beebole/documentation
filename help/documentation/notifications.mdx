@@ -120,6 +120,30 @@ Approval reminders are configured alongside timesheet reminders. You can set:
 
 ---
 
+## Absence frequency alerts
+
+Beebole can send administrators an alert when a team member takes a specific absence type more often than expected within a set period. Use it to surface attendance patterns early — for example, a person taking sick leave on more than three separate occasions in a month, or unpaid leave more than five times in a year.
+
+Frequency alerts are configured per absence type, alongside the other absence notifications. Each absence type can have its own threshold.
+
+<Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** > **Time Off** and click the absence type you want to monitor (e.g., **Sick leave**).
+  </Step>
+  <Step title="Enable the frequency alert">
+    Tick the alert checkbox in the notifications section, then set the threshold using the **more than [N] occurrences in a [Month / Year]** controls.
+  </Step>
+  <Step title="Save">
+    The alert is active immediately. Beebole counts each separate absence period as one occurrence — a continuous five-day vacation counts as one occurrence, while five one-day sick days in the same month count as five.
+  </Step>
+</Steps>
+
+<Info>
+  The alert counts **occurrences** (separate booking periods), not total hours or days taken. This makes the rule useful for spotting frequent short absences rather than long single absences. Pair it with [absence balance](/help/documentation/timeoff#tracking-balances) tracking to monitor both frequency and total amount.
+</Info>
+
+---
+
 ## Email templates
 
 Administrators can customize the content of notification emails to match your organisation's tone and branding:
