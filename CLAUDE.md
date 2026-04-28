@@ -71,8 +71,6 @@ snippets/              # Reusable content fragments (currently empty)
   skills/              # One subdirectory per slash command, each with SKILL.md
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
   scripts/             # Shell helpers for batch operations (translate, FAQ, images)
-  commands/            # Only for commands that reference vendor plugins (not skill wrappers)
-  vendor/              # Third-party plugin files (claude-md-management)
 docs/                  # Internal working docs (NOT published by Mintlify)
   feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
@@ -82,7 +80,7 @@ docs/                  # Internal working docs (NOT published by Mintlify)
 
 - **`.mcp.json`** must stay at the project root — Claude Code won't discover MCP servers if it's inside `.claude/`
 - **`.claude/settings.local.json`** is gitignored — don't attempt to `git add` it
-- **`.claude/commands/`** — only create command files here when they add logic beyond what a skill provides (e.g., referencing a vendor plugin). Skills auto-register as `/skill-name` slash commands.
+- **Skills auto-register** as `/skill-name` slash commands — no need for files in `.claude/commands/`.
 
 ## Mintlify compliance
 
