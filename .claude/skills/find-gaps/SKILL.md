@@ -14,12 +14,9 @@ This skill is read-only — it never modifies pages in `help/**`. It assumes `fe
 
 Before running, read:
 
-- `.claude/context/product.md` — Beebole product overview
-- `.claude/context/page-mappings.md` — Keyword → Page routing + Page → Module routing
-- `.claude/context/brand.md` — voice/tone rules
-- `.claude/context/terminology.md` — cross-cutting vocabulary rules
+- `.claude/context/page-mappings.md` — the Keyword → Page lookup table used to route each feature to a page
 
-**Feedback-aware loading.** Read ALL files in `.claude/context/modules/`. Skip silently if the directory is absent or empty — it's lazy-created by `/triage` and may not exist yet. When a coverage gap touches a module with accumulated rules, flag it in the report as **Rule-level review** — the module rules may also need updating, not just the pages.
+This skill emits a structured list, not prose — it doesn't need voice/tone or terminology context. Feedback handling lives in `/write`, not here.
 
 ## Workflow
 
@@ -66,16 +63,6 @@ Each line starts with `- [ ] <Kind> | <path> | ` — pipe-delimited, stable anch
 
 [If no gaps:]
 _All features covered._
-
----
-
-## Rule-level review recommended
-
-[For each module whose rules may need revisiting because a gap touches it:]
-- `modules/<entity>.md` — <why: which gap affected it>
-
-[If none:]
-_No module rules flagged._
 
 ---
 
