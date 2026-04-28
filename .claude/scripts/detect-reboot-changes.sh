@@ -2,7 +2,7 @@
 # detect-reboot-changes.sh — list commits in ../reboot since a cursor
 #
 # Usage:
-#   ./detect-reboot-changes.sh                # uses .sync/state.json cursor, or 3 months if absent
+#   ./detect-reboot-changes.sh                # defaults to 3 months ago
 #   ./detect-reboot-changes.sh --since <sha>  # explicit SHA cursor — uses <sha>..HEAD range
 #   ./detect-reboot-changes.sh --since <date> # explicit date cursor (git-compatible, e.g. 2026-01-01)
 #
@@ -17,7 +17,6 @@
 set -euo pipefail
 
 REBOOT_DIR="../reboot"
-STATE_FILE=".sync/state.json"
 CURSOR=""
 
 # Parse --since
@@ -45,14 +44,9 @@ if [[ ! -d "$REBOOT_DIR/.git" ]]; then
 fi
 command -v jq >/dev/null || { echo "error: jq required" >&2; exit 1; }
 
-# Determine cursor if not explicitly provided
+# Default cursor when --since is not provided
 if [[ -z "$CURSOR" ]]; then
-  if [[ -f "$STATE_FILE" ]]; then
-    CURSOR="$(python3 -c "import json; print(json.load(open('$STATE_FILE'))['last_synced_sha'])" 2>/dev/null || true)"
-  fi
-  if [[ -z "$CURSOR" ]]; then
-    CURSOR="3 months ago"
-  fi
+  CURSOR="3 months ago"
 fi
 
 # Classify cursor as SHA (valid object in the repo) or date expression.
