@@ -1,11 +1,11 @@
 ---
 name: write
-description: 'Produce publishable documentation pages. Autonomous by default — with no arguments, reads `.todo/discovery.md` and drafts every Missing entry in sequence. With a path, drafts one page autonomously. Use `--interactive` for opt-in checkpoint flow. Includes SEO/GEO/FAQ inline. Use when asked to write pages, draft documentation, fill coverage gaps, or create content.'
+description: 'Produce publishable documentation pages. Autonomous by default — with no arguments, reads `.todo/gaps.md` and drafts every Missing entry in sequence. With a path, drafts one page autonomously. Use `--interactive` for opt-in checkpoint flow. Includes SEO/GEO/FAQ inline. Use when asked to write pages, draft documentation, fill coverage gaps, or create content.'
 ---
 
 # Write — Autonomous Documentation Author
 
-Produce full `.mdx` pages — frontmatter, intro, sections, FAQ, callouts — with SEO/GEO baked in. Default mode is autonomous batch from `.todo/discovery.md`. Interactive checkpoint mode is opt-in.
+Produce full `.mdx` pages — frontmatter, intro, sections, FAQ, callouts — with SEO/GEO baked in. Default mode is autonomous batch from `.todo/gaps.md`. Interactive checkpoint mode is opt-in.
 
 ## Context
 
@@ -28,7 +28,7 @@ Treat these as authoritative — if a module or page-note rule contradicts a gen
 
 ## Modes
 
-- **Default (no args) — autonomous batch:** read `.todo/discovery.md`, parse every `- [ ] Missing | …` line, draft each page end-to-end without checkpoints, produce a consolidated summary.
+- **Default (no args) — autonomous batch:** read `.todo/gaps.md`, parse every `- [ ] Missing | …` line, draft each page end-to-end without checkpoints, produce a consolidated summary.
 - **Single page (autonomous):** `/write <path>` — draft that page end-to-end without checkpoints.
 - **Interactive:** `/write --interactive <path>` — outline checkpoint → draft checkpoint → iterate. Opt-in only.
 
@@ -38,9 +38,9 @@ Treat these as authoritative — if a module or page-note rule contradicts a gen
 
 ## Workflow — default (batch)
 
-### 1. Read `.todo/discovery.md`
+### 1. Read `.todo/gaps.md`
 
-If the file does not exist, stop and tell the user to run `/discover` first.
+If the file does not exist, stop and tell the user to run `/find-gaps` first.
 
 Parse every line matching this exact format:
 
@@ -55,7 +55,7 @@ For each match, extract:
 
 **Do NOT process Partial entries in batch mode.** Partial entries (`- [ ] Partial | …`) require curator judgment about what specifically to add. Skip them and surface the count in the final summary so the user knows to run `/write <path>` for each with explicit notes.
 
-If parsing finds zero Missing entries, report "No Missing entries in `.todo/discovery.md`" and stop.
+If parsing finds zero Missing entries, report "No Missing entries in `.todo/gaps.md`" and stop.
 
 ### 2. For each Missing entry, draft autonomously
 
@@ -108,10 +108,10 @@ After all pages are drafted:
 
 ## Workflow — single page (autonomous)
 
-Same as batch, but operating on one path passed as argument. No discovery.md read. Input for the page comes from:
+Same as batch, but operating on one path passed as argument. No gaps.md read. Input for the page comes from:
 
 1. User-provided notes in the conversation (if any), OR
-2. The matching entry in `.todo/discovery.md` (if it exists — search both Missing and Partial), OR
+2. The matching entry in `.todo/gaps.md` (if it exists — search both Missing and Partial), OR
 3. Pure code exploration + proposed content based on the feature catalog
 
 Skip `docs.json` update if the page already exists.
@@ -174,4 +174,4 @@ Write the file. Update `docs.json`. Print summary.
 - **Mark uncertain content** with `[VERIFY: description]` inline.
 - **Autonomous modes never ask mid-flow.** They produce the full output and report.
 - **Interactive mode requires user response at both checkpoints.** Never skip CHECKPOINT 1 or 2.
-- **Batch mode parses the exact `/discover` handoff format.** Never substitute fuzzy prose extraction — if a line doesn't match `- [ ] Missing | \`<path>\` | <feature>`, it isn't a batch target.
+- **Batch mode parses the exact `/find-gaps` handoff format.** Never substitute fuzzy prose extraction — if a line doesn't match `- [ ] Missing | \`<path>\` | <feature>`, it isn't a batch target.
