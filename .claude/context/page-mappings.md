@@ -49,6 +49,17 @@ Use this table to map app change keywords to the documentation pages they likely
 | availability, available projects, available absence types, available expense types | `help/documentation/roles-authorisations.mdx` |
 | logo, organisation logo, company logo | `help/documentation/account-settings.mdx` |
 | accent, colour, color, theme, dark mode, light mode | `help/documentation/account-settings.mdx` |
+| absence cost, paid absence, unpaid absence, cost inclusion, paid leave | `help/documentation/timeoff.mdx` |
+| excess occurrence, absence frequency, attendance alert, frequency alert | `help/documentation/notifications.mdx` |
+| global search, search bar, universal search, find entities | `help/documentation/concepts.mdx` |
+| undo, redo, keyboard shortcut, Cmd+Z, Ctrl+Z, operation grouping | `help/documentation/concepts.mdx` |
+| entity duplication, duplicate project, duplicate task, duplicate person | `help/documentation/concepts.mdx` |
+| attribute copy paste, copy rates, copy billing, copy budget, copy quota | `help/documentation/concepts.mdx` |
+| real-time sync, live updates, teammate changes, instant update | `help/documentation/concepts.mdx` |
+| support chat, in-app support, chat widget, contact support | `help/documentation/account-settings.mdx` |
+| workload heatmap, Gantt heatmap, capacity heatmap, group row color | `help/documentation/gantt.mdx` |
+| lock end date, pin end date, fixed end date, hard deadline task | `help/documentation/gantt.mdx` |
+| color coding, entity color, color identifier, color code | `help/documentation/concepts.mdx` |
 
 ---
 
