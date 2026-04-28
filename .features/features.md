@@ -1,1 +1,0 @@
-/opt/reboot/.claude/skills/audit-features/references/features.md
