@@ -154,8 +154,8 @@ Before running any skill or script, check that the required tools are installed.
 | Tool              | Required by                                                                       | Check command         | Install command                                         |
 | ----------------- | --------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
 | `cwebp`           | `/illustrate` (image optimization)                                                | `command -v cwebp`    | `brew install webp`                                     |
-| `gh` (GitHub CLI) | `/sync-features`, `/translate`, `/news` (fallback), app terminology lookups | `command -v gh`       | `brew install gh && gh auth login`                      |
-| `python3`         | `/translate` (JSON escaping in scripts), `/find-gaps` (cursor parsing)             | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
+| `gh` (GitHub CLI) | `/translate`, `/news` (fallback), app terminology lookups (fallback)              | `command -v gh`       | `brew install gh && gh auth login`                      |
+| `python3`         | `/translate` (JSON escaping in scripts)                                           | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |
 | `mintlify`        | Local preview (`mintlify dev`)                                                    | `command -v mintlify` | `npm install -g mintlify`                               |
 
 When a skill fails because a tool is missing, install it with the corresponding install command and retry — don't just report the error.
