@@ -1,6 +1,6 @@
 # Beebole Features
 
-**Last updated:** 2026-04-01
+**Last updated:** 2026-04-28
 
 ---
 
@@ -27,14 +27,16 @@
 ## 2. Absence & Time-Off Management
 
 - `absence/types` **Configurable absence types** — Vacation, sick leave, parental leave, etc.
-- `absence/accrual` **Accrual policies** — Automatic time-off accrual with configurable periodicity
-- `absence/carry-forward` **Carry-forward rules** — Define how unused time-off rolls over between periods
+- `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid or unpaid; paid absences are automatically included in people cost totals shown in reports and budgets
+- `absence/accrual` **Accrual policies** — Automatically credit employees with time off on a recurring schedule (weekly, bi-weekly, twice-monthly, or monthly) or based on hours tracked in approved timesheets; configure the accrual quantity and when within each period the credit is awarded
+- `absence/carry-forward` **Carry-forward rules** — Set a maximum balance that rolls over when a time-off allowance period ends; any excess above the limit expires
 - `absence/negative-balance` **Negative balance controls** — Allow or restrict going below zero
 - `absence/quotas` **Absence quotas** — Per-person allowances with period definitions
 - `absence/balance-tracking` **Absence balance tracking** — Real-time view of taken, available, and accrued balances
 - `absence/unit-config` **Unit configuration** — Track absences in hours or days
 - `absence/approval` **Absence approval** — Integrated with the multi-stage approval workflow
 - `absence/notifications` **Absence notifications** — Alerts for negative balances, advance bookings
+- `absence/excess-occurrence-notifications` **Absence frequency alerts** — Send administrators an alert when a team member takes absence more than a configured number of times within a month or year, helping flag attendance patterns early
 - `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organisation, tag, or person level
 - `absence/custom-holidays` **Custom holidays** — Add or edit individual holiday entries manually
 
@@ -62,9 +64,11 @@
 - `tasks/gantt-columns` **Gantt column customisation** — Show, hide, and reorder Gantt chart columns including billing, cost, effort, dependencies, assignees, and status
 - `tasks/gantt-grouping` **Gantt row grouping** — Group Gantt rows by category level, task owner, or status for a structured overview
 - `tasks/gantt-keyboard` **Gantt keyboard navigation** — Navigate Gantt rows with arrow keys and expand or collapse groups without a mouse
+- `tasks/gantt-workload-heatmap` **Gantt workload heatmap** — Color-coded bars on Gantt group rows show each group's effort against available capacity per day or week, with a per-person breakdown on hover to spot overloaded team members
 - `tasks/views` **Saved task views** — Create, rename, and switch between multiple named views of tasks, each with its own layout (Gantt or Kanban), column selection, and grouping preferences
 - `tasks/tag-filter` **Filter by tags** — Filter tasks, people, and projects by their assigned tags
 - `tasks/dependencies` **Task dependencies** — Link tasks as predecessors and successors to define execution order
+- `tasks/end-date-lock` **Lock task end date** — Pin a task's end date so it stays fixed even when predecessor tasks shift, keeping hard deadlines in place regardless of dependency changes
 - `tasks/effort-occupancy` **Effort & occupancy tracking** — Allocate percentage of a person's time to specific tasks
 - `tasks/hierarchy` **Hierarchical tasks** — Tasks organized under categories with nesting
 - `tasks/statuses` **Task statuses** — Configurable status workflow (e.g., To Do → In Progress → Done)
@@ -223,7 +227,7 @@
 - `integrations/linear` **Linear** — Import and sync projects and issues from Linear into Beebole, with real-time updates via webhooks
 - `integrations/quickbooks` **QuickBooks** — Import QuickBooks customers and items as Beebole project structure, and export time records back to QuickBooks with configurable date ranges
 - `integrations/bamboohr` **BambooHR** — Sync time-off requests from BambooHR to Beebole absences, with employee mapping, absence type mapping, and schedule-aware duration calculation
-- `integrations/webhooks` **Webhooks** — Configure outgoing webhooks with HMAC-SHA256 payload signing and automatic retry to push event data to external systems
+- `integrations/webhooks` **Webhooks** — Configure outgoing webhooks with signed payloads and automatic retry to push Beebole event data to external systems in real time
 - `integrations/import-modes` **Configurable import modes** — For Asana, Jira, and Linear: choose whether to import external entities as Beebole projects or tasks
 - `integrations/default-role` **Default role assignment** — Auto-assign a configured role to people imported from any integration
 
@@ -299,7 +303,10 @@
 > Confirmed in `docs/feature-requests/` but not yet found in the codebase.
 
 - `org/custom-domain` **Custom domain** — Access the platform via a custom subdomain (e.g. `timesheet.yourcompany.com`).
-- `reports/export` **Report export via Google Sheets add-on and Excel add-in** — Connect a saved report to Google Sheets or Excel and refresh the data independently from within the spreadsheet.
+- `reports/export` **Report export to Google Sheets** — Connect a saved report to a Google Sheet and refresh the data independently from within the spreadsheet, without re-exporting from Beebole.
+- `reports/excel-addin` **Excel add-in report loader** — An Excel add-in that links any worksheet to a saved Beebole report and refreshes the data automatically each time the file is opened, eliminating manual copy-paste exports.
+- `org/onboarding-sample-data` **Onboarding sample data** — New accounts arrive pre-loaded with starter configuration (absence types, schedules, roles, tags) and removable demo data (projects, tasks, time entries, saved reports) so trial users see a realistic app immediately.
+- `absence/accrual-engine` **Advanced absence accrual engine** — Full accrual engine with per-policy allowances at account, tag, and employee level; calendar-based or hours-tracked accrual methods; separate manual and accrued balances; carry-forward limits; and a mandatory-reason audit trail for all balance adjustments.
 - `time-tracking/calendar-integration` **Calendar integration in timesheet** — Import events from Google Calendar and Microsoft Outlook, drag-and-drop assignment to timesheet rows, and automatic detection of already-tracked events.
 - `reports/budget-status` **Budget status report** — Progress-bar visualisation of budget consumption across projects, with forecast bars and threshold-based notifications.
 - `org/configuration-export` **Configuration data export** — Bulk-export people, projects, tags, rates, budgets, and other account configuration as structured data.
