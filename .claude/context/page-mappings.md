@@ -60,17 +60,3 @@ Use this table to map app change keywords to the documentation pages they likely
 | workload heatmap, Gantt heatmap, capacity heatmap, group row color | `help/documentation/gantt.mdx` |
 | lock end date, pin end date, fixed end date, hard deadline task | `help/documentation/gantt.mdx` |
 | color coding, entity color, color identifier, color code | `help/documentation/concepts.mdx` |
-
----
-
-# Page → Module routing
-
-Map each page to the module file(s) whose rules apply when drafting, reviewing, or auditing it. `/triage` uses this to propose which `modules/<entity>.md` file a feedback note should land in. Skills that touch a page use it to pick which modules to load.
-
-Entries appear here only after a module file is first created by `/triage`. Multiple modules per page are allowed. If a page has no row, it has no module rules — fall back to generic context files and `page-notes.md`.
-
-Module names mirror the app's entity taxonomy from `../reboot/shared/i18n/en/labels.json` and `../reboot/frontend/src/models/types.ts`. Keep names kebab-case and singular where natural (e.g., `billing`, `absences`, `projects`, `work-schedule`).
-
-| Page | Module(s) |
-|---|---|
-| _No mappings yet. Entries added as `/triage` creates module files._ | |

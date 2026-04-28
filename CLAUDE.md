@@ -70,7 +70,7 @@ snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
-  scripts/             # Shell helpers for batch operations (translate, FAQ, images)
+  scripts/             # Shell helpers (translate, optimize-images, detect-reboot-changes)
 docs/                  # Internal working docs (NOT published by Mintlify)
   feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
@@ -180,9 +180,8 @@ Full editorial guidelines are in `.claude/context/`:
 | `mintlify-components.md`     | Components reference (Steps, callouts, Accordion, etc.)                                              |
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
 | `features.md`                | Canonical Beebole feature catalog — produced by `/sync-features`, consumed by `/find-gaps`           |
-| `page-mappings.md`           | Keyword → doc page routing + page → module routing (used by `/find-gaps`, `/triage`)                 |
-| `modules/<entity>.md`        | Product-domain rules (terminology, facts, structural) — one file per entity, lazy-created by `/triage` (empty until first rule filed) |
-| `page-notes.md`              | One-off corrections scoped to a single page (keyed by URL path)                                      |
+| `page-mappings.md`           | Keyword → doc page routing (used by `/find-gaps`)                                                    |
+| `feedback.md`                | All rules filed by `/triage` — site-wide bullets and per-page bullets keyed by URL path              |
 | `translation-notes.md`       | FR/ES-specific translation feedback — read ONLY by `/translate`, never by content skills             |
 
 **Key rules:** Active voice, second person, present tense, bold UI labels from i18n, one idea per sentence, no jargon outside API docs. Lead sections with direct answers for GEO. Every page needs a FAQ section.

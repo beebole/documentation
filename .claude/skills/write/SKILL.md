@@ -18,12 +18,12 @@ Before starting, read these context files:
 - `.claude/context/seo-geo.md` — SEO frontmatter and GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview
 
-**Feedback-aware loading.** After each target page path is known, also read:
+**Feedback-aware loading.** After each target page path is known, also read `.claude/context/feedback.md`:
 
-- `.claude/context/modules/<entity>.md` for every module listed for the page in `page-mappings.md`'s "Page → Module routing" table. Skip silently if no row exists or the file is absent.
-- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2 exists.
+- The `## Site-wide` section — applies to every page.
+- The `### <URL path>` block under `## Per-page` matching the target. Skip silently if no matching H3 exists.
 
-Treat these as authoritative — if a module or page-note rule contradicts a general guideline, the more specific rule wins.
+Treat these as authoritative — if a feedback rule contradicts a general guideline, the more specific rule wins.
 
 ## Modes
 
@@ -79,9 +79,23 @@ Per page:
    - Callouts (`<Tip>`, `<Warning>`, `<Info>`, `<Note>`) placed near relevant content
    - `[VERIFY: description]` markers for uncertain claims
 
-3. **Update `docs.json` navigation** if the page is new — mirror placement of similar pages in the correct language section.
+3. **Self-verify before moving to the next page.** Mechanical sweep over the file as a whole — these are not judgment calls and must not be papered over with `[VERIFY:` markers:
 
-### 3. Consolidated summary
+   - **Section order.** The H2 sequence must end with `## Related content` then `## Frequently asked questions`. API pages omit FAQ. When appending to an existing page, FAQ must remain last.
+   - **UI labels are verbatim.** Every bolded term that names a button, tab, menu, setting, or checkbox must match a value in `../reboot/shared/i18n/en/labels.json` exactly — not the JSON key, the displayed value. Past slips caught in `/review`: `Lite` (key) vs **Light** (displayed), `Email Templates` vs **Email templates**, `Add a Gantt` vs **Add a Gantt chart**, `[+]` (not a label — use **Add**).
+   - **Match the existing file's conventions when expanding.** If the page existed before this edit, scan it once and align: spelling variant (UK *organisation/colour/recognise* vs US), dash style (`—` em-dash vs `--`), whether `<Card>` entries use `icon=`, bolding patterns. Don't introduce a second style.
+   - **Re-read the existing FAQ when expanding.** If new sections changed any fact the FAQ relies on — entity counts, supported options, default behaviors, terminology — update the FAQ in the same edit. A new section that says "four entities" beside an FAQ that asks about "three entities" is a /review-blocker.
+   - **Cross-page consistency for shared concepts.** If the new content covers something a sibling page also covers (heatmap colours on `gantt` ↔ `planning`, kanban behavior on `kanban` ↔ `planning`, timesheet rules on `timesheets` ↔ `timesheetSettings`), open the sibling first and align terminology before saving.
+
+4. **Update `docs.json` navigation** if the page is new — mirror placement of similar pages in the correct language section.
+
+### 3. Delete `.todo/gaps.md`
+
+After all Missing entries are drafted, delete `.todo/gaps.md`. The file is single-use: `/find-gaps` rebuilds it from scratch on the next run, comparing the (now-updated) pages against the catalog. Keeping it around invites confusion — partially stale entries, accidental re-drafts, mixed signals about what's still missing.
+
+Skip this step only if any Missing entry failed to draft (research blocked, file write error, etc.). In that case, leave `gaps.md` intact and surface the failures in the summary so the user can retry.
+
+### 4. Consolidated summary
 
 After all pages are drafted:
 
@@ -96,13 +110,16 @@ After all pages are drafted:
 
 **Partial entries skipped:** P (run `/write <path>` per entry with explicit notes)
 
+**`.todo/gaps.md`:** deleted — re-run `/find-gaps` to regenerate against the updated pages.
+
 **Next steps:**
 - Run `/review` to audit the N session-scope pages.
 - Run `/illustrate` to capture screenshots for placeholders.
 - Run `/translate` to sync FR/ES once EN is reviewed.
+- Run `/find-gaps` to confirm the drafted pages closed their gaps and surface remaining Partial work.
 
 **[VERIFY] markers in drafts:** M (list at end of report)
-**Existing module rules applied:** K
+**Existing feedback rules applied:** K
 ```
 
 ## Workflow — single page (autonomous)

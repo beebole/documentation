@@ -26,7 +26,7 @@ Apply these rules when writing or reviewing any documentation page.
 
 ## Vocabulary
 
-Site-wide word-choice rules. Domain-specific terminology lives in `modules/<entity>.md` under `## Terminology`.
+Site-wide word-choice rules. Page-specific terminology overrides go into `.claude/context/feedback.md` (per-page H3).
 
 - **Product name.** Always "Beebole" — never "BeeBole" or "BEEBOLE".
 - **Use "Beebole" by name** in introductions, FAQ answers, and key definitions — not just in the page title.

@@ -17,14 +17,13 @@ Before running checks, read:
 - `.claude/context/mintlify-components.md` — correct component usage
 - `.claude/context/seo-geo.md` — SEO frontmatter + GEO writing patterns
 - `.claude/context/product.md` — Beebole product overview
-- `.claude/context/page-mappings.md` — for Page → Module routing resolution
 
-**Feedback-aware loading.** For each target page, also read:
+**Feedback-aware loading.** For each target page, also read `.claude/context/feedback.md`:
 
-- `.claude/context/modules/<entity>.md` for every module listed for this page in `page-mappings.md`. Skip silently if no row or file.
-- The H2 section of `.claude/context/page-notes.md` matching the target URL path. Skip silently if no matching H2.
+- The `## Site-wide` section — applies to every page.
+- The `### <URL path>` block under `## Per-page` matching the target. Skip silently if no matching H3.
 
-Feedback rules ARE the review checklist — every module/page-note rule becomes an additional check. A violation of a filed rule is a critical issue, not a warning.
+Feedback rules ARE the review checklist — every filed rule becomes an additional check. A violation of a filed rule is a critical issue, not a warning.
 
 ## Scopes
 
