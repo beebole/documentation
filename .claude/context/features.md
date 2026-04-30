@@ -39,6 +39,7 @@
 - `absence/excess-occurrence-notifications` **Absence frequency alerts** — Send administrators an alert when a team member takes absence more than a configured number of times within a month or year, helping flag attendance patterns early
 - `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organisation, tag, or person level
 - `absence/custom-holidays` **Custom holidays** — Add or edit individual holiday entries manually
+- `absence/archive` **Archive/unarchive absence types** — Soft-delete absence types without losing historical data
 
 ## 3. Time Entries & Absences Approval Workflows
 
@@ -55,9 +56,11 @@
 - `approval/email-actions` **Email actions** — Approve or reject directly from email notifications
 - `approval/reminders` **Approval reminders** — Automatic reminders for pending approvals, configurable per person or organization
 - `approval/email-summary` **Timesheet summary in emails** — Approval notifications include a summary of the submitted timesheet
+- `approval/mobile` **Mobile approval** — Mobile-optimised approval flow for reviewing and acting on pending timesheets from a phone or small tablet
 
 ## 4. Planning & Tasks Management
 
+- `tasks/add` **Add task** — Create a task manually within a project category, or import multiple tasks at once from a CSV file
 - `tasks/kanban` **Kanban board view** — Drag-and-drop task cards by status
 - `tasks/kanban-wip-limits` **Kanban WIP limits** — Set a maximum number of concurrent tasks per status column on the Kanban board
 - `tasks/gantt` **Gantt chart view** — Timeline visualisation of tasks with start/end dates, canvas-rendered dependency links, and configurable time precision
@@ -77,6 +80,7 @@
 - `tasks/custom-fields` **Task-level custom fields** — Custom attributes per task
 - `tasks/descriptions` **Task descriptions** — Rich text descriptions via Lexical editor
 - `tasks/move-category` **Move task between categories** — Reassign a root-level task and its subtasks to a different category via the context menu
+- `tasks/archive` **Archive/unarchive tasks** — Soft-delete tasks without losing historical data
 
 ## 5. Expense Management
 
@@ -91,6 +95,7 @@
 ## 6. People Management
 
 - `people/directory` **Staff directory** — Searchable list of all team members with profiles
+- `people/add` **Add person** — Create a team member manually via a profile form, or import multiple people at once from a CSV file
 - `people/profiles` **Person profiles** — Name, picture, color coding, contact info
 - `people/role-assignment` **Role assignment** — Assign roles with specific permissions to each person
 - `people/manager-assignment` **Manager assignment** — Define reporting relationships (who manages whom)
@@ -107,6 +112,7 @@
 
 ## 7. Project Management
 
+- `projects/add` **Add project** — Create a project manually via a form, or import multiple projects at once from a CSV file
 - `projects/hierarchy` **Hierarchical projects** — Parent/child project structure (sub-projects)
 - `projects/categories` **Project categories** — Organize projects into custom categories
 - `projects/members` **Project members** — Assign people to projects with availability control
@@ -123,6 +129,7 @@
 
 ## 9. Tags & Organisational Structure
 
+- `tags/add` **Add tag** — Create a tag manually and place it within the hierarchy, or import multiple tags at once from a CSV file
 - `tags/hierarchy` **Hierarchical tags** — Parent/child tag trees (e.g., departments, teams, locations)
 - `tags/custom-labels` **Custom hierarchy labels** — Name each level (e.g., "Department" → "Team" → "Unit")
 - `tags/grouping` **Tag-based grouping** — Tag people, projects, and tasks to enable report filtering, availability scoping, and approver targeting
@@ -148,6 +155,7 @@
 - `schedules/inheritance` **Work schedule inheritance** — Cascading assignment (org → tag → person)
 - `schedules/flexible-length` **Flexible schedule length** — Configure schedules of any length (weekly, bi-weekly, etc.)
 - `schedules/effective-dates` **Effective date ranges** — Schedules active for specific time periods
+- `schedules/archive` **Archive/unarchive work schedules** — Soft-delete schedules without losing historical data
 
 ## 12. Roles & Permissions
 
