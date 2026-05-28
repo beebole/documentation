@@ -153,6 +153,12 @@
                 ]
               },
               {
+                "group": "Migration",
+                "pages": [
+                  "help/guides/migration"
+                ]
+              },
+              {
                 "group": "FAQ & Troubleshooting",
                 "pages": [
                   "help/guides/faq"
