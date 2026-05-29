@@ -1,404 +1,222 @@
 ---
-title: "Migration Guide — Beebole"
-description: "Guide for existing Beebole customers who want to explore the new platform, trial the new system, and plan a manual migration."
+title: "Making the Switch from Beebole Legacy"
+description: "After nearly two decades helping teams worldwide with their project time tracking, Beebole is excited to share a completely redesigned system. This guide is here to help you make the switch to the new platform."
 keywords: ["beebole", "migration guide", "legacy migration", "custom fields", "tags", "API"]
-"og:title": "Migration Guide — Beebole"
-"og:description": "Learn how existing Beebole customers can try the new platform, keep the legacy system, and prepare for migration with support."
-"og:image": "https://beebole.com/help/placeholder-og-image.png"
-"og:type": "article"
+og:title: "Migration Guide — Beebole"
+og:description: "Learn how existing Beebole customers can try the new platform, keep the legacy system, and prepare for migration with support."
+og:image: "https://beebole.com/help/placeholder-og-image.png"
+og:type: "article"
 ---
 
 ## Introduction
 
-Beebole's migration guide helps existing customers understand the new platform, run a free trial, and decide when to move their account. It explains how the legacy system and the new system coexist, what features are available, and how the new API and architecture changes affect your planning.
+This migration guide covers everything you need to know to move your account to the new Beebole platform. You'll learn how the new and legacy systems coexist during the transition, what's new and different, and how the updated API and architecture might affect your planning.
 
 <Info>
-The legacy Beebole system remains active with no disruption to your current usage or data. You can create a free trial in the new platform while your legacy account continues to work.
+  Your legacy Beebole account remains fully active throughout this process — no disruption to your current usage or data.
 </Info>
 
-## What the new platform means for existing customers
+## What the new platform means for you
 
-When you try the new Beebole platform, you are evaluating the next-generation experience without switching your live account immediately. The new platform is a separate system that can run alongside your legacy account.
+There is no rush to switch to the new system, though you can start a free trial at any time while your legacy account continues to run. Here are the main things you should know:
 
-- You can create a free trial account in the new system and explore it independently.
-- Your legacy data stays available until we manually migrate your account.
-- We add companies to the migration list one by one, so contact us when you are ready.
-- This is a chance to prepare your team, projects, tasks, and integrations before the manual transition.
+- Your legacy data stays safe and untouched until you're ready to migrate.
+- Migration will be done manually by our team, one account at a time. Contact us when you're ready to switch, and we'll get back to you as soon as possible.
+- Users can log in to both systems using the same page, even with multiple accounts.
+- We recommend taking advantage of this opportunity to reconsider the architecture of your projects, tasks, and teams. Migration is a chance to make a change.
+- If you are using Beebole's API, your integrations and custom workflows will need to be updated. We're here to help, but please bear with us. In the meantime, everything will continue working in your current account.
 
 <Info>
-The migration itself is handled by Beebole support. Historical projects, people, and time records are migrated manually on a case-by-case basis.
+  The migration itself is handled by Beebole support. Historical projects, people, and time records are migrated manually on a case-by-case basis.
 </Info>
-
-## What changed in the new Beebole platform
-
-The new platform delivers a modern dashboard, stronger organisation tools, and a new GraphQL API. The following list covers the full feature set in the new system, organized by topic.
-
-### Time tracking
-- Timesheet
-- Timer
-- Time entry modes
-- Duration or start/end
-- Work from home (WFH) flag
-- Non-billable flag
-- Row pinning
-- Comments on time entries
-- Copy/paste time entries
-- Auto-submit
-- Duplicate and start
-- Timesheet reminders
-- Mobile timesheet
-- Timesheet score
-- Custom fields on time entries
-
-### Absence & time-off management
-- Configurable absence types
-- Absence cost inclusion
-- Accrual policies
-- Carry-forward rules
-- Negative balance controls
-- Absence quotas
-- Absence balance tracking
-- Unit configuration
-- Absence approval
-- Absence notifications
-- Absence frequency alerts
-- Public holidays
-- Custom holidays
-- Archive/unarchive absence types
-
-### Time entries & absences approval workflows
-- Multi-stage approval
-- Approval types per stage
-- Quorum settings
-- Submit for approval
-- Approve / Reject / Request changes
-- Approval history & audit trail
-- Change tracking
-- Admin force-edit
-- Admin force-approve and force-reject
-- Team approval overview
-- Email actions
-- Approval reminders
-- Timesheet summary in emails
-- Mobile approval
-
-### Planning & tasks management
-- Add task
-- Kanban board view
-- Kanban WIP limits
-- Gantt chart view
-- Gantt column customisation
-- Gantt row grouping
-- Gantt keyboard navigation
-- Gantt workload heatmap
-- Saved task views
-- Filter by tags
-- Task dependencies
-- Lock task end date
-- Effort & occupancy tracking
-- Hierarchical tasks
-- Task statuses
-- Task ownership
-- Recurring tasks
-- Task-level custom fields
-- Task descriptions
-- Move task between categories
-- Archive/unarchive tasks
-
-### Expense management
-- Expense types
-- Currency & unit-based expenses
-- Markup settings
-- Expense records
-- Budget tracking for expenses
-
-### People management
-- Staff directory
-- Add person
-- Person profiles
-- Role assignment
-- Manager assignment
-- Schedule assignment
-- Localisation per person
-- Billing & cost rates per person
-- Absence quotas per person
-- Custom fields on persons
-- Archive/unarchive people
-- Bulk operations
-- Bulk invitation
-- Admin takeover
-- Overflow to archived on seat limit
-
-### Project management
-- Add project
-- Hierarchical projects
-- Project categories
-- Project members
-- Project managers
-- Billing rates per project
-- Cost rates per project
-- Budgets
-- Budget splits
-- Expense types per project
-- Custom fields on projects
-- Move project between categories
-- Archive/unarchive projects
-- Project-level time settings
-
-### Tags & organisational structure
-- Add tag
-- Hierarchical tags
-- Custom hierarchy labels
-- Tag-based grouping
-- Move tag between categories
-- Tag inheritance & configuration
-
-### Billing & cost tracking
-- Billing rates
-- Cost rates
-- Rate methods
-- Rate splits
-- Recurring rates
-- Rate effective dates
-
-### Work schedules
-- Work schedule types
-- Multiple work schedules
-- Work schedule assignment
-- Work schedule inheritance
-- Flexible schedule length
-- Effective date ranges
-- Archive/unarchive work schedules
-
-### Roles & permissions
-- Role-based access control (RBAC)
-- 24+ authorization scopes
-- Permission targets
-- View vs. manage split
-- Field-level permissions
-- Availability controls
-
-### Custom fields
-- Multiple field types
-- Entity visibility
-- Validation rules
-- Default values & placeholders
-- Category-level visibility
-- Custom fields in reports
-
-### Organisation settings
-- Feature toggles
-- Time entry settings
-- Duration format
-- Localisation
-- Number format
-- Time format
-- Organisation deletion
-- GDPR data export & deletion request
-- Organisation logo
-- Organisation accent colour
-
-### Reporting
-- Custom reports
-- Report dimensions
-- Period grouping
-- Custom field integration
-- Saved report templates
-- Report filters
-- Billing & cost attributes
-- Chart visualizations
-- Report folders
-
-### Journal & communications
-- Activity feed
-- Message threads
-- Rich text editing
-- File attachments
-- @Mentions
-- Pinned messages
-- Message search & filtering
-- Inbound email replies
-- New message watermark
-
-### Notifications
-- Web push notifications
-- Email notifications
-- Digest batching
-- Notification triggers
-- Customizable notification preferences
-- Email templates
-- Unread counts
-- Reliable delivery
-- One-click unsubscribe
-- Notification history
-
-### Integrations
-- Asana
-- Monday.com
-- Jira
-- Linear
-- QuickBooks
-- BambooHR
-- Webhooks
-- Configurable import modes
-- Default role assignment
-
-### API
-- GraphQL API
-
-### Authentication & security
-- Email/password authentication
-- OAuth sign-in
-- Custom enterprise SSO
-- SSO-only enforcement
-- Passkey support
-- Passwordless email login
-- API keys
-- Account deletion
-
-### Subscription & billing
-- Multiple pricing tiers
-- Monthly/annual billing intervals
-- Seat-based pricing
-- Add-ons support
-- Invoice preview
-- Billing portal
-- Free plan conversion
-- Promotion codes
-
-### Audit trail
-- Operation logging
-- Per-user audit filtering
-- Argument-level change tracking
-- Timestamp tracking
-- Last-edited indicators
-
-### Legacy migration
-- Legacy account migration
-
-### UI & user experience
-- Personal interface colour
-- Dark/light/system theme
-- Multi-language UI
-- Responsive layout
-- Keyboard navigation
-- Undo/redo
-- Global search
-- Real-time sync
-- Fast loading
-- Attribute copy/paste
-- Entity duplication
-- Tooltips
-- Toast notifications
-- Color coding
-- Profile pictures
-- Breadcrumb navigation
-- Installable web app (PWA)
-- Version update notifications
-- In-app support chat
-- Onboarding flow
-
-### Planned features
-- Custom domain
-- Google Sheets export
-- Excel add-in report loader
-- Onboarding sample data
-- Advanced absence accrual engine
-- Calendar integration in timesheet
-- Budget status report
-- Configuration data export
-- GDPR compliance tools
-- Matrix report
-- Planning vs. real report
-
-## Rethink your architecture for the new platform
-
-The new platform is a good moment to revisit how your organisation uses projects, tasks, teams, tags, and custom fields.
-
-- Use tags to model departments, locations, cost centers, or cross-functional teams.
-- Use custom fields to capture information that does not fit in built-in project, person, or task fields.
-- Keep project categories for structural project hierarchy, and use tags for reporting and availability.
-- Assign schedules and rates through tags where possible, then override at the person or project level only when needed.
-
-<Info>
-A simpler structure is usually easier to maintain. Start with the minimum tag tree and add complexity only where it improves reporting or availability.
-</Info>
-
-### What to review before you migrate
-- Your current project hierarchy and whether it still reflects how work is delivered.
-- The task workflow and whether task statuses or dependencies should be simplified.
-- How people are grouped for reporting and approvals.
-- Any custom fields you need on projects, people, tasks, or time entries.
 
 ## Create a trial account and explore the new platform
 
 Customers who want to try the new system can create a free trial account without affecting the legacy system.
 
-- Sign up for a free trial in the new platform.
-- Use the trial account to explore the dashboard, reports, tasks, and the GraphQL API.
-- Keep the legacy system open while you trial the new system.
-
-<Info>
-The new trial account can exist at the same time as your existing legacy account. There is no need to close or migrate the legacy account until your company is ready.
-</Info>
+- Sign up for a free trial at [https://app.beebole.com/signup](https://app.beebole.com/signup). It's fine to use the same email address as your existing account.
+- Use the trial account to explore new features, create time entries, discover resource planning, and play around with reports. Don't worry; when you're ready to permanently switch, you can start fresh with another clean account.
+- As with any new system, we anticipate some initial technical kinks. Please share them with us, along with any other feedback you have!
 
 ## Logging in when both systems exist
 
-The new and legacy systems share the same login page. Beebole will detect which system an account belongs to and send you to the right experience.
+The new and legacy systems share the same [login page](https://app.beebole.com/signin). Beebole will detect which system an account belongs to.
 
 - If your email is only registered in the legacy system, you go to the legacy account.
 - If your email is only registered in the new platform, you go to the new account.
 - If you have both accounts, you get to choose which system to access.
 
-<Info>
-This makes it easy to switch between the two systems during evaluation and migration planning.
-</Info>
+## Rethink your architecture for the new platform
+
+The new platform is a good moment to revisit how your organization uses, or could use, projects, tasks, teams, tags, and custom fields. Ask yourself:
+
+- Does your current project hierarchy still reflect how work is delivered?
+- Are people efficiently grouped for reporting and approvals?
+- Have your timesheet settings, localization, costs, and billing rates become convoluted and confusing?
+- Are there custom fields you need on projects, people, tasks, or time entries to improve data accuracy or invoicing?
+
+Our [Key Concepts](/help/documentation/concepts) page is a great resource for understanding Beebole's core entities (projects, people, tasks, and tags) and how they relate to each other. Try mapping out your structures and settings ahead of time and, when in doubt, reach out to us.
 
 ## New API and developer readiness
 
-The new platform includes a GraphQL API for querying and mutating Beebole data. This is the primary developer-facing change for customers with integrations or automation.
+The new platform includes a [GraphQL API](/help/api/introduction) for querying and mutating Beebole data. This is the primary developer-facing change for customers with integrations or automation.
 
-- Review `/help/api/introduction` for the API basics and authentication model.
-- Use the API to build or update integrations for projects, people, tasks, time records, absence records, and custom fields.
-- Plan the migration of any legacy integrations as part of the manual account migration.
+Review `/help/api/introduction` for the API basics and authentication model. Then, start planning the migration of any legacy integrations as part of the manual account migration. 
 
 <Info>
-The API is a major reason to evaluate the new platform early. It is also the right time to document your current integration points and decide which data should move first.
+  The API is a major reason to evaluate the new platform early. It is also the right time to document your current integration points and decide which data should move first.
 </Info>
+
+## What's Changed in the New System
+
+Below is an overview of key features and differences between the legacy and new Beebole systems.
+
+### Time Tracking
+
+| Topic | What's new |
+| :-- | :-- |
+| **Timesheet submission** | Users now submit a full timesheet period (e.g., a whole week), not individual time entries. Submitting an empty or incomplete timesheet locks that entire period — no entries can be added afterwards. |
+| **Timesheet periods** | Fixed daily/weekly/monthly views are gone. Admin configure a flexible period (weekly, bi-weekly, 1st–15th, etc.) that matches your company's actual policy. |
+| **Time entry format** | Hours and decimals still work, but you can now also log time in days or as a percentage of a day (e.g., "I spent 20% of today on this"). |
+| **Work from home flag** | A dedicated WFH flag is now available directly on each time entry. |
+| **Non-billable flag** | Employees can now mark individual entries as non-billable. |
+| **Auto-submit** | Admins can configure a timesheet to be submitted automatically after a set number of days, useful for locking periods when employees forget. |
+| **Admin direct edits** | Admins can now edit submitted or approved time entries directly without rejecting them first. All changes are logged. |
+| **Custom fields on time entries** | Add custom fields to time entries to capture additional data (e.g., units produced, items completed) for use in reports. |
+| **Timesheet health score** | Replaces the old "on-time submit" metric. Calculates a score per employee based on late submissions, missed sheets, and rejections — displayed as a gauge visible only to managers. |
+
+### Absences & Time Off
+
+| Topic | What's new |
+| :-- | :-- |
+| **Accrual policies** | **Coming soon!** The system can automatically add holiday quota based on time worked (e.g., earn X days per month worked). |
+| **Carry forward rules** | Configure whether unused holiday days can roll over to the next year, and for how long. |
+| **Absence unit** | You can now configure each absence type to be requested in either days/half-days or hours, not one or the other across the board. |
+| **Public holidays** | No more manual entry each year. The system automatically manages public holidays by country and region. You can still modify or add custom holidays on top. |
+
+### Approvals
+
+| Topic | What's new |
+| :-- | :-- |
+| **Multi-stage approval workflow** | Fully configurable now. Define as many stages as needed (e.g., project manager → team leader → admin), separately for working time and absences. |
+| **Quorum rules** | At each stage, you can set whether _all_ approvers or only _one_ must approve before advancing. |
+| **Approval story** | Every timesheet now has a full log of all actions taken — approvals, rejections, comments, change requests — so you can always see exactly where things stand. |
+| **Blocked stage visibility** | You can see precisely which stage an approval is stuck at and who hasn't acted yet. |
+| **Email action buttons** | Approval emails now include direct action buttons — click to approve without opening the app. |
+| **Approval reminders for managers** | Managers now receive periodic reminders for approvals that have been pending. |
+| **Notification digests** | Instead of individual notifications for every event, you can opt for a periodic digest (daily, weekly) delivered via email, Slack, or in-app. |
+| **Mobile approvals** | The mobile app now includes timesheet approval. |
+
+### Planning & Tasks
+
+| Topic | What's new |
+| :-- | :-- |
+| **Kanban board** | Tasks can be managed in a Kanban view with configurable statuses. |
+| **Gantt chart/resource planning** | Assign tasks to people with a % allocation (e.g., 50% FTE), see utilization per person, and identify over/under-allocation. |
+| **Task dependencies** | Tasks can be linked so one can't start before another finishes. |
+| **Recurring tasks** | Set up tasks that repeat on a schedule (e.g., every Friday). |
+| **Timesheet integration** | Tasks assigned to you automatically appear in your timesheet. If planning is kept up to date, employees may just need to confirm and submit. |
+| **Custom fields on tasks** | Add extra structured information to tasks beyond the description. |
+| **Task ownership** | Each task has one owner. Unassigned tasks are visible to defined potential owners, and the first person to log time against one becomes the owner. |
+
+### Expenses
+
+| Topic | What's new |
+| :-- | :-- |
+| **Project-level expenses** | Expenses can be trakced on a project and factored into budget tracking. |
+| **Expense types** | Define expense types with currency or non-currency units (e.g., miles for travel). |
+| **Markup settings** | Set a billing markup on expenses (e.g., charge customers 120% of cost). |
+| **Budget impact toggle** | Choose whether an expense type counts toward the project budget or not. |
+
+### People & Roles
+
+| Topic | What's new |
+| :-- | :-- |
+| **Unlimited custom roles** | The five fixed roles are gone. You can use default roles, or create as many custom ones as you need. |
+| **Bulk operations** | Bulk-invite, bulk-archive, and bulk-unarchive employees. |
+| **Admin takeover** | Admins can now impersonate any employee to troubleshoot issues and see exactly what they see. |
+| **Pre-onboarding setup** | You can create and configure an employee before they start. They'll stay in "archived" status until they're activated. |
+
+### Projects & Structure
+
+| Topic | What's new |
+| :-- | :-- |
+| **Unlimited project levels** | The fixed 3-level structure (customer → project → subproject) is gone. You can have as many levels as needed. |
+| **Multiple parallel columns** | In addition to unlimited depth, you can now add multiple independent project columns to the timesheet (e.g., Customer \+ Task \+ Location). |
+| **Project availability modes** | Choose either: _visible to all by default_ (with the option to exclude specific groups), or _hidden by default_ (must be explicitly assigned). Works for projects, absences, and expenses independently. |
+
+### Tags & Configuration
+
+| Topic | What's new |
+| :-- | :-- |
+| **Tags as configuration groups** | Tags can carry configuration (e.g., which activities a team sees, which holidays apply), and a person, project, or entity tagged with multiple tags receives a _combination_ of all their configurations. |
+| **Multiple group membership** | In the legacy system, entities could only belong to one configuration group. Now, a person in both "UK" and "Marketing" gets UK bank holidays _and_ Marketing-specific activities simultaneously. |
+| **Unlimited tags and levels** | Tag hierarchies are unlimited in depth and number (e.g., Organization → Region → Team). |
+| **Org structure via tags** | You can model your entire org chart using a tag hierarchy, making it easier to manage than assigning managers person by person. |
+
+### Billing & Cost
+
+| Topic | What's new |
+| :-- | :-- |
+| **Daily rates** | Billing and cost rates can now be defined per day (not just per hour). |
+| **Fixed recurring fees** | Define a fixed cost or billing rate (e.g., a salary), which is applied for the defined period, regardless of hours worked. |
+| **Non-billable / zero-cost activities** | You can now flag specific activities as non-billable or as having no cost. |
+| **Budgets** | Budgets can now be set for costs, billing, or hours and split by person or project. |
+
+### Reporting
+
+| Topic | What's new |
+| :-- | :-- |
+| **Saved reports with categories** | Reports can now be created, saved, and organized into categories. A category can share a default date range and data filter that applies to all reports within it. |
+| **Table \+ chart toggle** | Each report can display results as a data table, a chart (bar, pie, etc.), or both simultaneously. |
+| **Spreadsheet add-on (new approach)** | Report configuration is done in the interface and exported as a URL/config to the Excel/Sheets add-on. The add-on always fetches fresh data based on that config — no more maintaining column mappings inside the spreadsheet. |
+| **Budget status reports** | Easy check the budget status and planned budget on any project for costs, billing, or time in the reports. |
+
+### Communication & Notifications
+
+| Topic | What's new |
+| :-- | :-- |
+| **Journal (activity feed)** | Every entity (person, project, task, etc.) has a journal — a threaded activity feed where you can comment, attach files, mention people, and track changes. |
+| **Email reply-to-comment** | Reply directly to a journal notification email to add a comment — no need to open the app. |
+| **Customizable email templates** | All system emails (invitations, reminders, approval requests) can now have customized content, including dynamic placeholders (e.g., employee name). |
+| **Web push notifications** | Browser push notifications in addition to email. |
+
+### Other / Platform
+
+| Topic | What's new |
+| :-- | :-- |
+| **Integrations** | Native integrations now include Asana, Jira, Monday.com, Linear, QuickBooks, BambooHR, plus webhooks, with more to come! |
+| **Passkeys & passwordless login** | Login via passkey or a PIN-code email link — no passwords required. |
+| **Organization branding** | Upload a logo and choose an accent colour. Your sign-in page will reflect your brand. |
+| **Undo/redo (global)** | A global undo/redo that works across the entire app — including navigation back to where the change was made. |
+| **Attribute copy/paste** | Duplicate a project (or other entity) with all its configuration intact, as a starting template. |
+| **Bullk import with copy/paste** | Add multiple people, projects, etc. at once by copy and pasting spreadsheet rows. |
+
+### Coming Soon
+
+- Absence accruals
+- Custom domain
+- Google Sheets and Excel add-ins
+- Google Calendar integration in timesheet
+- Browser extension
+- Advanced overtime settings
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Legacy account migration" icon="arrow-right" href="/help/documentation/legacy-migration">
-    Learn how Beebole handles manual legacy migrations and what to expect.
+  <Card title="Getting Started" icon="arrow-right" href="/help/documentation/quickstart">
+    Take a look at the quickstart guide to set up Beebole in a few steps.
   </Card>
+
   <Card title="Custom fields" icon="tag" href="/help/documentation/custom-fields">
     See how to set up custom fields on projects, people, tasks, and time records.
   </Card>
+
   <Card title="Tags" icon="tags" href="/help/documentation/tags">
     Organize people and projects with tags for reporting and availability.
   </Card>
+
   <Card title="API introduction" icon="code" href="/help/api/introduction">
     Get started with Beebole's GraphQL API for custom integrations.
   </Card>
 </CardGroup>
-
-## Frequently asked questions
-
-<AccordionGroup>
-  <Accordion title="Can I keep using the legacy Beebole system while I try the new platform?">
-    Yes. The legacy system continues to run without disruption, and your current data remains available while you create a free trial account in the new platform.
-  </Accordion>
-  <Accordion title="How do I get on the list for manual migration?">
-    Contact Beebole support when your company is ready to migrate. We add interested customers to the migration queue and move accounts one by one with a manual transition process.
-  </Accordion>
-  <Accordion title="Will my login email work for both systems?">
-    Yes. The shared login page detects whether an email belongs to the legacy system, the new platform, or both. If you have both accounts, you choose which one to sign into.
-  </Accordion>
-  <Accordion title="Do I need to migrate immediately to use tags and custom fields?">
-    No. You can create a free trial in the new platform to experiment with tags and custom fields before deciding whether to migrate your live account.
-  </Accordion>
-  <Accordion title="Where should I start with the new API?">
-    Start with `/help/api/introduction` to understand authentication, query structure, and the GraphQL workflow. Then inventory your existing integrations and map them to the new API endpoints.
-  </Accordion>
-</AccordionGroup>
