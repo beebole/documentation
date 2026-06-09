@@ -6,9 +6,13 @@
     "metatags": {
       "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
       "keywords": "Beebole help, Beebole documentation, time tracking software, project time tracking, how to use Beebole",
-      "og:image": "https://beebole.com/help/assets/placeholder-og-image.png",
-      "og:description": "Everything you need to know to track and manage time with Beebole."
+      "og:description": "Everything you need to know to track and manage time with Beebole.",
+      "og:site_name": "Beebole Documentation",
+      "twitter:card": "summary_large_image"
     }
+  },
+  "metadata": {
+    "timestamps": true
   },
   "colors": {
     "primary": "#4338CA",
