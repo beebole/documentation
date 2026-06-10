@@ -62,7 +62,7 @@ You can also just ask Claude in natural language — e.g., "add a FAQ section to
 
 ## Project structure
 
-```
+```text
 docs.json              # Mintlify config (navigation, theme, SEO, languages)
 pollen.js              # Analytics script (Pollen/GTM)
 help/
@@ -99,3 +99,4 @@ All writing style, page structure, SEO, and GEO guidelines are defined in `CLAUD
 - **UI labels:** Always bold UI labels and match the exact wording from the app. Read labels from `../reboot/shared/i18n/en/labels.json` (see setup above).
 - **FAQs:** Every content page needs a FAQ section at the bottom (3-5 Q&A pairs). `/review` generates missing FAQs automatically.
 - **Translations:** After editing English pages, run `/translate` to detect and sync stale French/Spanish translations.
+- **AI endpoints:** Mintlify auto-generates `/llms.txt`, `/llms-full.txt`, and `/skill.md` from the published docs (no maintenance needed). The reverse proxy lives in the sibling `website-next/next.config.ts`. `/help/llms.txt` and `/help/llms-full.txt` are already forwarded there; `/help/skill.md` and the `/.well-known/skills/*` discovery endpoints are not yet wired up — add rewrites if we adopt `skill.md`.
