@@ -1,244 +1,168 @@
 ---
-title: "Gantt Chart"
-description: "Visualize task timelines, track dependencies, and manage project schedules with Beebole's interactive Gantt chart — drag, resize, and link tasks."
-keywords: ["beebole", "gantt chart", "task timeline", "project scheduling", "task dependencies", "project planning", "timeline view"]
-"og:title": "Gantt Chart View in Beebole"
-"og:description": "Plan and visualize project timelines with Beebole's interactive Gantt chart. Track task dependencies and deadlines at a glance."
+title: "Gantt chart: scheduling tasks on a timeline — Beebole"
+description: "Schedule tasks on Beebole's Gantt chart — drag bars to set dates, link dependencies, customize columns, and spot overload with the workload heatmap."
+keywords: ["beebole", "gantt chart", "task timeline", "task scheduling", "task dependencies", "workload heatmap", "timeline view"]
+"og:title": "Visual Task Scheduling with the Gantt Chart in Beebole"
+"og:description": "Plan task timelines in Beebole's Gantt chart: set dates by dragging, link dependencies by clicking, and balance workload with the heatmap."
 "og:type": "article"
 ---
 
-Beebole's Gantt chart gives you a visual timeline of all tasks within a project. You can see start and end dates, track task dependencies, and identify scheduling conflicts — all from a single view. The Gantt chart is ideal for projects where the order and timing of tasks matter.
+Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bars on a timeline, so you can see start and end dates, sequence work with dependencies, and spot scheduling overload at a glance. It is one of the two views of the **Tasks** page, alongside the [Kanban board](/help/documentation/kanban) — both show the same tasks, so a change in one view appears instantly in the other.
+
+---
+
+## Opening a Gantt view
+
+<Steps>
+  <Step title="Open the Tasks page">
+    Click **Tasks** in the sidebar. Pick the task category you want at the top of the page.
+  </Step>
+  <Step title="Select a Gantt view">
+    Click a Gantt view tab above the task list. To create another one, click **Add a view** and select **Add a Gantt chart** — each view keeps its own columns, grouping, and scale.
+  </Step>
+</Steps>
+
+---
+
+## Reading the timeline
+
+Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. A vertical line marks today, and scrolling right extends the timeline into the future.
+
+The timeline has two scales. Open the **⋯** menu on the active view tab, hover over **Scale**, and choose **By day** or **By week**.
 
 <Info>
-  The Gantt chart is one of two task views available in Beebole, alongside the [Kanban board](/help/documentation/kanban). You can switch between views at any time without losing data.
+  Tasks without dates still appear as rows in the task list — they just have no bar yet. See below for how to schedule them directly on the timeline.
 </Info>
 
 ---
 
-## Accessing the Gantt chart
+## Scheduling tasks on the timeline
 
-<Steps>
-  <Step title="Open a project">
-    Click **Projects** in the left sidebar, then select the project you want to visualize.
-  </Step>
-  <Step title="Switch to the Gantt view">
-    Click the **Gantt** tab at the top of the task area. The timeline displays all tasks with their scheduled dates.
-  </Step>
-</Steps>
+- **Give a task dates** — In the row of a task that has no dates yet, click the timeline to create a short bar at that spot, or click and drag to draw the exact period you want.
+- **Move a task** — Drag its bar left or right. The duration is preserved.
+- **Resize a task** — Drag the left or right edge of the bar to change the start or end date.
 
----
+While you drag, Beebole shows the new dates live. Changes are saved automatically when you release the bar.
 
-## Reading the Gantt chart
-
-The Gantt chart displays tasks as horizontal bars on a timeline. Each bar represents a task's duration from its **Start date** to its **End date**.
-
-- **Task bars** — The length of each bar reflects the task's scheduled duration. Tasks are grouped by their category in the project hierarchy.
-- **Today marker** — A vertical line indicates the current date, helping you see which tasks are on schedule, overdue, or upcoming.
-- **Dependencies** — Arrows between task bars show predecessor-successor relationships. A task linked as a successor cannot start before its predecessor ends.
-
-<Tip>
-  Use the zoom controls to switch between day, week, and month views. Zoom out for a high-level overview of the full project, or zoom in to focus on a specific week.
-</Tip>
-
----
-
-## Managing tasks from the Gantt chart
-
-You can create and edit tasks directly in the Gantt view without switching to another screen.
-
-### Creating a task
-
-<Steps>
-  <Step title="Add a new task">
-    Click the **+** button in the task list on the left side of the Gantt chart. Enter a **Name** for the task.
-  </Step>
-  <Step title="Set the schedule">
-    Enter a **Start date** and **End date** for the task. Alternatively, click and drag on the timeline to create a task bar spanning your desired dates.
-  </Step>
-  <Step title="Assign the task">
-    Select a team member from the **Assigned to** field. This person is responsible for completing the task.
-  </Step>
-  <Step title="Set the status">
-    Choose an initial **Status** for the task (for example, **To Do**). Statuses are configurable per project.
-  </Step>
-</Steps>
-
-### Editing task dates
-
-You can adjust task timing directly on the chart:
-
-- **Move a task** — Drag the entire task bar left or right to shift its start and end dates while preserving the duration.
-- **Resize a task** — Drag the left or right edge of a task bar to change the start or end date independently.
-
-<Warning>
-  Moving or resizing a task that has dependents may create scheduling conflicts. Beebole highlights conflicts so you can resolve them.
-</Warning>
+If the task's planned time no longer fits the new period, the task detail panel flags the overflow and offers one-click fixes — see [scheduling dates and planned time](/help/documentation/planning#scheduling-dates-and-planned-time).
 
 ---
 
 ## Task dependencies
 
-Dependencies define the order in which tasks must be completed. In Beebole, you can link tasks as predecessors and successors to enforce scheduling logic.
+Dependencies sequence tasks: a dependent task is expected to follow the tasks it depends on. They are managed in the **Dependencies** column, which is shown by default.
 
-### Adding a dependency
+### Adding dependencies
 
 <Steps>
-  <Step title="Select the predecessor task">
-    Hover over the task bar of the task that must finish first. A connector handle appears at the end of the bar.
+  <Step title="Click the task's Dependencies field">
+    Click the **Dependencies** cell of the task that should come after. This activates dependency mode.
   </Step>
-  <Step title="Draw the connection">
-    Click the connector handle and drag the arrow to the successor task. Release to create the dependency link.
+  <Step title="Pick its dependencies">
+    Click the task it depends on directly in the list — hold **⌘** to select several — or type the row numbers (from the **Row #** column) into the field, separated by commas.
+  </Step>
+  <Step title="Finish">
+    Click elsewhere or press **Esc** to leave dependency mode. Arrows now link the bars on the timeline.
   </Step>
 </Steps>
 
-Once a dependency is set, the Gantt chart draws an arrow from the predecessor to the successor. If you move the predecessor, Beebole flags any conflicts with the successor's scheduled dates.
+To remove a dependency, edit the row numbers in the **Dependencies** field. A task cannot depend on itself.
 
-### Removing a dependency
+### How dependent tasks move
 
-Click the dependency arrow between two tasks, then click **Remove** to delete the link. The successor task retains its current dates but is no longer constrained by the predecessor.
+The button in the **Dependencies** column header opens the **Dependent tasks movement options** menu, which controls what happens to dependent tasks when you move a task they depend on:
+
+| Option | Behavior when the predecessor moves |
+|--------|--------------------------------------|
+| **Free** | Dependent tasks stay where they are |
+| **Pushing** | Dependent tasks are pushed later when the predecessor would overlap them |
+| **Together** | Dependent tasks move along with the predecessor, keeping their distance |
+
+The setting applies to the whole task category.
 
 ---
 
-## Effort and occupancy tracking
+## Planned time
 
-Each task can include an **Effort** value that represents the percentage of a person's time allocated to that task. This helps you plan workloads without overbooking team members.
+The **Planned** column shows each task's planned work. The small button in the column header toggles the unit (**Planned in hours or days**). A parent task shows the total planned time of its subtasks.
 
-- Set the effort as a percentage (e.g., 50% means the person spends half their working time on this task).
-- When combined with [Planning](/help/documentation/planning), effort values feed into capacity and workload calculations.
-
-<Info>
-  Effort tracking is optional. If you do not set an effort value, the task still appears on the Gantt chart based on its dates alone.
-</Info>
+Planned time is what the [workload heatmap](#workload-heatmap) compares against each person's capacity, derived from their [work schedule](/help/documentation/work-schedule) minus their absences.
 
 ---
 
 ## Workload heatmap
 
-Beebole's Gantt chart includes a workload heatmap that overlays each group row with color-coded bars showing how the group's planned effort compares to its available capacity for each day or week on the timeline. Use it to spot overloaded teams, under-used capacity, and scheduling clashes at a glance — without having to expand individual rows.
+When the chart is grouped — for example by **Owner** — each group header row displays workload bars: one bar per period (day or week, following the current **Scale**). Without grouping, a single summary row shows the same information for everyone.
 
-The heatmap is most useful when the chart is grouped by a dimension that maps to people or capacity, such as **Owner** or a project category that represents a team. See [Row grouping](#row-grouping) to set up grouping for the chart.
+- **Bar height and shade** — The fuller and darker the bar (in the app's accent color), the closer that group's planned time is to its available capacity for the period.
+- **Over capacity** — A full bar with a number on it signals overload: on a group row the number is the overflow (in hours or days, following the **Planned** unit); on the summary row it is the count of overloaded people.
+- **Hover for details** — A tooltip shows the period's planned effort against capacity (for example `Effort: 32h / Capacity: 40h (80%)`) and lists each overloaded person with their own numbers.
 
-### Reading the heatmap colors
-
-Each bar covers one period (a day or a week, depending on the current zoom level) and its color reflects the ratio of planned effort to available capacity for that period:
-
-| Color | Meaning |
-|-------|---------|
-| **Green** | The group is under capacity for the period — there is room for more work. |
-| **Amber** | The group is close to or at capacity — workload is balanced but tight. |
-| **Red** | The group is over capacity for the period — the planned effort exceeds the time available, meaning a scheduling conflict. |
-
-Capacity is derived from each person's [work schedule](/help/documentation/work-schedule) and any approved [time off](/help/documentation/timeoff) for the period. Effort is taken from each task's planned **Effort** value distributed across the task's start and end dates.
-
-### Per-person breakdown on hover
-
-Hover any heatmap cell on a group row to see a tooltip listing each person in the group, their effort allocated for that period, and their capacity for the same period. Use the breakdown to identify which individuals are pushing the group into overload, then drag tasks between rows or adjust effort to rebalance.
-
-<Tip>
-  Switch the timeline zoom between day and week views when reading the heatmap. Daily view highlights short-term clashes around specific dates, while weekly view smooths over single-day spikes and shows longer-term capacity trends.
-</Tip>
+Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.
 
 ---
 
-## Customizing the Gantt view
+## Columns
 
-You can adjust the Gantt chart to focus on what matters most:
-
-| Option | What it does |
-|--------|-------------|
-| **Zoom level** | Switch between day, week, and month scales on the timeline |
-| **Filter by status** | Show only tasks in specific statuses (e.g., **In Progress**) |
-| **Filter by person** | Show only tasks assigned to a specific team member |
-| **Group by category** | Organize tasks by their parent category in the project hierarchy |
-| **Show dependencies** | Toggle dependency arrows on or off for a cleaner view |
-
----
-
-## Saved task views
-
-Beebole lets you create multiple named views for the same task list. Each view stores its own column selection, grouping, and scale settings independently, so you can switch between configurations without losing your work.
-
-### Creating a view
-
-Click **Add a view** in the tab bar above the task list, then select **Add a Gantt chart** from the menu. The new Gantt view appears as a tab with a default name.
-
-### Renaming a view
-
-Double-click a view tab to enter rename mode, type a new name, then press **Enter** or click elsewhere to confirm. You can also click the **⋯** icon on the tab and select **Rename**.
-
-### Switching between views
-
-Click any tab to activate that view. The chart reloads with the column selection, grouping, and scale that you last saved for that view.
-
-### Duplicating and deleting views
-
-Click the **⋯** icon on a tab to access **Duplicate** (creates a copy of the current view settings) and **Delete** (removes the view permanently). You cannot delete the last remaining view.
-
----
-
-## Column customization
-
-The Gantt chart left panel shows a configurable set of columns alongside the task name. You control which columns are visible for each saved view.
-
-### Available columns
+The left panel of the Gantt chart is a configurable table. Open the **⋯** menu on the active view tab and hover over **Columns** to show or hide columns. **Row #** and **Task Name** are always visible; by default, **Dependencies** is also shown.
 
 | Column | What it shows |
 |--------|--------------|
-| **Row #** | Sequential row number for quick reference |
-| **Task Name** | Task name (always visible, cannot be hidden) |
-| **Dependencies** | Predecessor row numbers for the task |
-| **Dates** | Start and end dates |
-| **Potential owners** | People who have access to the task |
-| **Planned** | Planned effort as a percentage or in hours/days |
-| **Occupation** | Occupation percentage derived from effort and schedule |
-| **Billing** | Billing rate indicator |
-| **Cost** | Cost indicator |
-| **Status** | Current task status |
-| **Tags** | Tags assigned to the task |
+| **Row #** | Sequential row number, used to type dependencies |
+| **Task Name** | The task name and hierarchy controls |
+| **Dependencies** | Row numbers of the tasks this task depends on |
+| **Dates** | The task's start and end dates |
+| **Owner** | The task's owner |
+| **Potential owners** | The people or tags the task is assigned to |
+| **Planned** | Planned time, in hours or days |
+| **Billing** | Billing amount indicator for the task |
+| **Cost** | Cost amount indicator for the task |
+| **Status** | The task's current status |
+| **Tags** | Tags applied to the task |
 
-### Showing and hiding columns
-
-Click the **Columns** button in the view toolbar, or open the **⋯** menu on the active tab and hover over **Columns**. Click any column name to toggle its visibility. The **Row #** and **Task Name** columns are always shown and cannot be hidden.
+In addition, one column per [project category](/help/documentation/projects) is available, showing the projects from that category linked to each task.
 
 ---
 
 ## Row grouping
 
-You can group the task list by different dimensions to restructure how tasks are organized on screen. Grouping does not change the underlying task data.
+Open the **⋯** menu on the active view tab and hover over **Group by** to restructure the list without changing any task data:
 
-### Setting up grouping
+- **Owner** — One group per task owner
+- **Status** — One group per status
+- **Project categories** — Group by a level of any project category
+- **Tag categories** — Group by a level of any [tag](/help/documentation/tags) category
 
-Click the **⋯** icon on the active view tab, then hover over **Group by**. Select one of the available grouping options:
+Select **None** to remove grouping. With a grouping active, **Show all groups** also displays empty groups — useful to see owners or statuses that currently have no tasks.
 
-- **Owner** — Groups tasks by the task owner assigned to each task
-- **Status** — Groups tasks by their current status
-- **Category level** — Groups tasks by a level within a project category (available when project categories have defined level names)
-- **Tag category** — Groups tasks by a tag category level
+---
 
-To remove grouping, select **None** from the **Group by** submenu.
+## Saved views
 
-<Tip>
-  Enable **Show all groups** from the **Group by** submenu to display empty groups. This is useful when you want to see all possible owner or status values, even if no tasks currently fall into them.
-</Tip>
+The tabs above the task list are saved views. Each Gantt view stores its own **Scale**, **Columns**, and **Group by** settings, plus its filters.
+
+- **Create** — Click **Add a view**, then **Add a Gantt chart**.
+- **Rename** — Double-click the tab and type the new name, or use **Rename** in the tab's **⋯** menu.
+- **Duplicate or delete** — Use **Duplicate** and **Delete** in the **⋯** menu. The last remaining view cannot be deleted.
 
 ---
 
 ## Keyboard navigation
 
-When the Gantt chart is focused, you can navigate the task list without using the mouse:
+With the Gantt chart focused, you can work without the mouse:
 
 | Key | Action |
 |-----|--------|
-| **Arrow Down** | Move selection to the next row |
-| **Arrow Up** | Move selection to the previous row |
-| **Arrow Right** | Expand the selected group and move into its first child |
-| **Arrow Left** | Collapse the selected group, or move up to its parent |
-| **Enter** | Open the task detail panel for the selected task |
-| **Tab** | Make the selected task a subtask of the task immediately above it |
-| **Shift+Tab** | Move the selected subtask up one level in the hierarchy |
+| **Arrow Down** / **Arrow Up** | Move the selection to the next or previous row |
+| **Arrow Right** | Expand the selected task and move into its first child |
+| **Arrow Left** | Collapse the selected task, or move up to its parent |
+| **Enter** | Open or close the detail panel of the selected task |
+| **Tab** | Make the selected task a subtask of the task above it |
+| **Shift+Tab** | Move the selected subtask up one level |
+| **⌘+A** | Add a new task — a subtask if a task is open |
 
 <Info>
-  Keyboard navigation works when the task list panel has focus. Click anywhere in the task list first if the keys are not responding.
+  Keyboard navigation works when the chart has focus. Click anywhere in the task list first if the keys are not responding.
 </Info>
 
 ---
@@ -246,39 +170,33 @@ When the Gantt chart is focused, you can navigate the task list without using th
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Kanban board" icon="check" href="/help/documentation/kanban">
-    Manage tasks by status using a visual drag-and-drop board view.
+  <Card title="Tasks" icon="list-check" href="/help/documentation/planning">
+    What tasks are in Beebole — creating, importing, assigning, and tracking time on them.
   </Card>
-  <Card title="Planning" icon="clock" href="/help/documentation/planning">
-    Allocate team resources across projects and balance workloads over time.
+  <Card title="Kanban board" icon="square-kanban" href="/help/documentation/kanban">
+    Move the same tasks through status columns with drag and drop.
   </Card>
-  <Card title="Projects" icon="folder" href="/help/documentation/projects">
-    Configure the project hierarchy that organizes tasks in the Gantt chart.
+  <Card title="Work schedules" icon="calendar" href="/help/documentation/work-schedule">
+    Define the working hours that determine each person's capacity in the heatmap.
   </Card>
 </CardGroup>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I print or export the Gantt chart?">
-    You can export task data through Beebole's [data export](/help/documentation/data-exports) features. The visual Gantt chart itself is designed for on-screen use.
+  <Accordion title="Does Beebole's Gantt chart have a month view?">
+    No. The Gantt timeline offers two scales — **By day** and **By week** — selected from the **Scale** option in the view tab's menu. The **By week** scale is the one to use for a long-range overview.
   </Accordion>
-  <Accordion title="What happens if two dependent tasks overlap?">
-    Beebole highlights scheduling conflicts when a successor task is scheduled to start before its predecessor ends. You can resolve the conflict by adjusting either task's dates.
+  <Accordion title="How do I create a dependency between two tasks?">
+    Click the **Dependencies** cell of the task that should come second, then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.
   </Accordion>
-  <Accordion title="Can I set dependencies across different projects?">
-    No. Task dependencies are scoped to a single project. If you need to coordinate work across projects, use the [Planning](/help/documentation/planning) view for a cross-project overview.
+  <Accordion title="What happens to dependent tasks when I move their predecessor?">
+    It depends on the category's **Dependent tasks movement options**, set from the **Dependencies** column header: **Free** leaves dependents in place, **Pushing** pushes them later when the predecessor would overlap them, and **Together** moves them along with it.
   </Accordion>
-  <Accordion title="How does the Gantt chart relate to the Kanban board?">
-    Both views display the same tasks. The [Kanban board](/help/documentation/kanban) organizes tasks by status, while the Gantt chart organizes them by timeline. Changes made in one view are immediately reflected in the other.
+  <Accordion title="Can I have several Gantt views with different columns?">
+    Yes. Click **Add a view** and select **Add a Gantt chart**. Each saved view in Beebole keeps its own column selection, grouping, scale, and filters, so you can switch between setups without reconfiguring anything.
   </Accordion>
-  <Accordion title="Is there a limit to the number of tasks on the Gantt chart?">
-    There is no hard limit. However, for readability, consider using filters or grouping when working with projects that have a large number of tasks.
-  </Accordion>
-  <Accordion title="Can I have multiple Gantt views with different column configurations?">
-    Yes. Click **Add a view** and select **Add a Gantt chart** to create a new view. Each view stores its own column selection, grouping, and scale settings independently.
-  </Accordion>
-  <Accordion title="Can I group tasks by something other than the project hierarchy?">
-    Yes. Open the **⋯** menu on the active view tab and hover over **Group by**. You can group by **Owner**, **Status**, a project category level, or a tag category level.
+  <Accordion title="Do changes in the Gantt chart affect the Kanban board?">
+    Yes. Both views display the same tasks from the same category. Dates set on the Gantt timeline, status changes, and renames are immediately visible on the Kanban board, and vice versa.
   </Accordion>
 </AccordionGroup>

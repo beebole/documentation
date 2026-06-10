@@ -1,130 +1,137 @@
 ---
-title: "Tags"
-description: "Use tags in Beebole to organize people, projects, and tasks into departments, teams, locations, or any custom grouping for reporting and configuration."
-keywords: ["Beebole tags", "organize projects", "organize people", "departments", "teams", "tag hierarchy", "how to organize data"]
-"og:title": "Organizing with Tags in Beebole"
-"og:description": "Use tags in Beebole to categorize people, projects, and data for better reporting and management."
+title: "Tags: organize people, projects, and tasks — Beebole"
+description: "Group people, projects, and tasks in Beebole with hierarchical tags — departments, teams, locations — and cascade schedules, rates, and approvals through them."
+keywords: ["beebole", "tags", "tag categories", "departments", "teams", "organize people", "tag hierarchy"]
+"og:title": "Organizing People, Projects, and Tasks with Beebole Tags"
+"og:description": "Use Beebole tags to group people, projects, and tasks into departments, teams, or locations, and cascade configuration through them."
 "og:type": "article"
 ---
 
-Tags are Beebole's organizational layer. While [projects](/help/documentation/projects) define *what* your team works on and [people](/help/documentation/people) define *who* does the work, tags let you classify both into meaningful groups — departments, teams, locations, cost centers, or any structure that matters to your organization.
-
-<Info>
-  Tags add a cross-cutting dimension to your data. A tag like "Engineering" can include both the engineering team members and the engineering projects, so you can report on everything related to that department in one view.
-</Info>
+Tags in Beebole are hierarchical labels you apply to people, projects, and tasks. While [projects](/help/documentation/projects) describe *what* your team works on, tags describe how that work is organized — by department, team, location, cost center, or any dimension that matters to you. Tags also carry configuration: schedules, rates, approval workflows, and more cascade from a tag to everyone and everything in it.
 
 ---
 
-## Tag hierarchy
+## How tags are organized
 
-Tags are organized in a hierarchical tree structure, similar to projects:
+Tags use the same structure as projects:
 
-- **Tag groups** — Top-level categories that define what kind of information the tags capture (e.g., "Department", "Location", "Cost Center").
-- **Tags** — Individual labels within a group (e.g., "Engineering", "Marketing", "Sales").
-- **Sub-tags** — Nested tags for more granular classification (e.g., "Engineering" > "Backend" > "Platform Team").
+- **Categories** — Each category captures one dimension of your organization. A new account starts with **Department** and **Location**.
+- **Tags** — The labels inside a category, such as a department name or a country.
+- **Sub-tags** — Nested tags for finer grouping. Each category names its own levels — the **Department** category starts with the levels **Division** and **Team**, and **Location** with **State** and **City**.
 
-### Custom hierarchy labels
-
-Each level of a tag group can have a custom name so the interface reflects your organization's vocabulary. For example, a group might label its levels "Division", "Department", and "Team" instead of the generic defaults.
-
-<Steps>
-  <Step title="Open Tags">
-    Click **Tags** in the sidebar and select the tag group you want to configure.
-  </Step>
-  <Step title="Click the level name header">
-    In the tag list, click directly on a level name column header. A tooltip reads **Click to edit the level name for the whole category**.
-  </Step>
-  <Step title="Enter the new label">
-    Type the name you want for that level (e.g., **Division**, **Team**, **Unit**) and confirm.
-  </Step>
-  <Step title="Repeat for each level">
-    Repeat for each level in the hierarchy. Each tag group stores its own set of level names independently.
-  </Step>
-</Steps>
-
-<Tip>
-  Naming your levels makes reports and filters easier to understand for all team members, especially when the hierarchy maps to real organizational units.
-</Tip>
+A person, project, or task can hold tags from several categories at once — someone can be in a **Department** tag and a **Location** tag at the same time, and each tag cascades its configuration independently.
 
 ---
 
 ## Creating tags
 
 <Steps>
-  <Step title="Open Tags">
+  <Step title="Open the Tags page">
     Click **Tags** in the sidebar.
   </Step>
-  <Step title="Create a tag group">
-    Add a new group and give it a name that reflects the dimension it captures — for example, **Department**, **Location**, or **Work Type**.
+  <Step title="Pick a category">
+    Click the category name next to the **Tags:** heading and select a category. To create a new one, type its name in the field at the bottom of that menu and click **Add**.
   </Step>
-  <Step title="Add tags to the group">
-    Within the group, click the **+** button (**Add tag**) to add the individual tags your organization uses (e.g., **Engineering**, **Marketing**, **Operations**).
+  <Step title="Add the tag">
+    Click the **Add [category]** button at the top right — its label shows the active category, for example **Add Department**. Enter the tag name and click the **Save new…** button (its label ends with the level you are creating).
   </Step>
-  <Step title="Nest sub-tags (optional)">
-    Use the **+** button on a tag to add child tags directly, or **Cut** and **Paste** a tag from its context menu to move it under a parent.
+  <Step title="Add sub-tags (optional)">
+    In the tag list, expand the parent tag, then click the **+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Team**).
   </Step>
 </Steps>
 
+### Importing multiple tags at once
+
+To create a whole tag tree in one go, use the **Or add multiple entries** area in the add panel:
+
+1. Open your list of tags in a spreadsheet and copy the rows — one tag per line, using **Tab** or spaces to indent sub-levels.
+2. Click **Paste**.
+3. Review the entries to be imported, then click **Add them all**. If something looks wrong, click **Undo**.
+
+### Renaming hierarchy levels
+
+Each category stores its own level names, so the interface can speak your organization's vocabulary. Expand a tag in the list and click the level name shown above its children — the tooltip reads **Click to edit the level name for the whole category**. The new name applies to that level across the whole category.
+
 ---
 
-## Moving a tag to a different category
+## Moving a tag
 
-You can reassign a tag — and all of its child tags — to a different tag group using the context menu. Only top-level tags can be moved; you must promote a nested tag to the root level before moving it to another category.
+You move a tag by changing its parent from the tag's detail panel:
 
 <Steps>
-  <Step title="Open Tags">
-    Click **Tags** in the sidebar.
+  <Step title="Open the tag">
+    Click **Tags** in the sidebar, then click the tag to open its details.
   </Step>
-  <Step title="Open the context menu">
-    Right-click the tag you want to move, or click the actions icon next to it, to open the context menu.
+  <Step title="Open the parent selector">
+    Hover over the breadcrumb above the tag name and click the **Change parent** button that appears.
   </Step>
-  <Step title="Choose Change category">
-    Select **Change category** from the menu. A submenu lists the other available tag groups.
-  </Step>
-  <Step title="Select the target category">
-    Click the tag group you want to move the tag into. The tag and all its child tags move immediately.
+  <Step title="Pick the new parent">
+    Select the new parent tag or the category root. The change is saved immediately, and the tag's sub-tags move with it.
   </Step>
 </Steps>
 
 <Info>
-  Only top-level tags can be moved to a different category. If you need to move a nested tag, first cut and paste it to the root of its current category, then use **Change category**.
+  A tag can only be moved within its own category — the parent selector lists destinations from the same category and excludes the tag's own sub-tags. To use a tag in another category, create it there and re-assign the tagged people or projects.
 </Info>
 
 ---
 
-## Tagging people and projects
+## Tagging people, projects, and tasks
 
-Once tags exist, you can apply them to people and projects:
+You can assign tags from either side of the relationship.
 
-- **On a person** — Open their profile in [People](/help/documentation/people) and assign tags. A person tagged "Engineering" inherits any configuration set on that tag (schedules, rates, availability).
-- **On a project** — Open the project in [Projects](/help/documentation/projects) and assign tags. This is useful for grouping projects by client type, service line, or business unit.
+<Tabs>
+  <Tab title="From the person, project, or task">
+    Open the person's, project's, or task's details — for example, click **People** in the sidebar, then click the person. Click the **Tags** panel to open it, then pick a tag in the **Add a tag here** field. To remove a tag, hover over its badge and click **Remove tag**. Hovering over a tag badge also reveals a calendar button (**Pick a start date**) to set the date the assignment takes effect.
+  </Tab>
+  <Tab title="From the tag">
+    Open the tag's details and click the **Who or what has been tagged?** panel. It has **People**, **Projects**, and **Tasks** sections — use the **Select person**, **Select project**, and **Select task** fields to add entries, and remove them from the same lists.
+  </Tab>
+</Tabs>
+
+<Info>
+  Tags applied to a parent project are inherited by its subprojects. An inherited tag shows where it was defined and can only be removed on the parent.
+</Info>
 
 ---
 
-## Inheritance through tags
+## What cascades through tags
 
-Tags are powerful because configuration cascades through them. When you set something on a tag, it applies to all people and projects within that tag:
+Configuration set on a tag applies to all people and projects in it, unless overridden at a more specific level. A tag's detail panel includes these settings panels:
 
-| Feature | What inherits |
-|---------|---------------|
-| **Work schedules** | People in the tag inherit the tag's schedule (unless overridden individually). See [Work schedules](/help/documentation/work-schedule). |
-| **Billing rates** | A tag-level billing rate applies to all tagged entities. See [Billing rates](/help/documentation/billing). |
-| **Cost rates** | Same inheritance pattern as billing. See [Cost rates](/help/documentation/costs). |
-| **Assignments** | Control which projects, absence types, and expense types are available to people in the tag. See [Assignments](/help/documentation/assignments). |
+| Panel | What inherits |
+| --- | --- |
+| **Work schedule** | People in the tag follow the tag's schedule. See [Work schedules](/help/documentation/work-schedule). |
+| **Billing** and **Cost** | Tag-level rates apply to tagged people and projects. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs). |
+| **Approval workflow** | Approval stages defined on the tag apply to its members. See [Approval](/help/documentation/approval). |
+| **Absence allowances** | Time-off allowances set on the tag apply to its people. See [Time off](/help/documentation/timeoff). |
+| **Public holidays** | A holiday calendar assigned to the tag covers its people. See [Public holidays](/help/documentation/public-holidays). |
+| **Timesheet settings** | Timesheet rules — periods, timers, reminders — set on the tag override the organization defaults for its people. |
+| **Show or Hide** | Which time off types, expense types, projects, tasks, and custom fields are available to people in the tag. See [Assignments](/help/documentation/assignments). |
 
-<Tip>
-  Use tag inheritance to configure settings once for a group rather than repeating the same setup on each person individually. For example, set a work schedule on a "Full-time" tag and assign all full-time employees to it.
-</Tip>
+Because a person can belong to tags in several categories, you can compose configuration: a work schedule from a **Location** tag and an approval workflow from a **Department** tag, for example.
+
+<Info>
+  Configuring these settings on tags is available on higher-tier Beebole plans. Creating tags and tagging people, projects, and tasks works on every plan.
+</Info>
 
 ---
 
 ## Tags in reports
 
-Tags appear as grouping and filtering dimensions in [Reports](/help/documentation/reports). You can:
+Tags appear as grouping and filtering dimensions in [Reports](/help/documentation/reports). Group a report by tag to break down time, costs, and billing by department, team, or location — or filter by a tag to narrow the report to one organizational unit.
 
-- **Group by tag** to see time, costs, and billing broken down by department, team, or location.
-- **Filter by tag** to narrow a report to a specific organizational unit.
-- **Compare tags** to see how different teams or departments perform side by side.
+---
+
+## Managing tags
+
+Each tag has a **⋯** action menu — it appears when you hover over the tag's row in the list, and next to the tag name in its detail panel. It offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+
+Archived tags are hidden from the list — click **Show Archived** at the top of the page to display them, and **Hide Archived** to hide them again.
+
+<Warning>
+  **Delete** permanently removes the tag and its assignments. To retire a tag while keeping it available for historical reporting, use **Archive** instead. If you delete by mistake, click **Undo** in the notification that appears right after.
+</Warning>
 
 ---
 
@@ -132,16 +139,16 @@ Tags appear as grouping and filtering dimensions in [Reports](/help/documentatio
 
 <CardGroup cols={2}>
   <Card title="People" icon="users" href="/help/documentation/people">
-    Assign tags to team members to inherit schedules, rates, and availability settings.
+    Add and manage team members, then tag them to inherit schedules, rates, and availability.
   </Card>
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
-    Tag projects by client type or service line for structured reporting and filtering.
-  </Card>
-  <Card title="Roles & permissions" icon="shield" href="/help/documentation/roles-authorisations">
-    Use roles alongside tags to control what each person can see and access.
+    Build your project hierarchy and tag projects by client type, service line, or business unit.
   </Card>
   <Card title="Work schedules" icon="clock" href="/help/documentation/work-schedule">
-    Set work schedules on tags so all members of a group inherit the same pattern.
+    Set a work schedule on a tag so everyone in the group inherits the same pattern.
+  </Card>
+  <Card title="Assignments" icon="user-check" href="/help/documentation/assignments">
+    Control which projects, time off types, and expense types are available to each person or group.
   </Card>
 </CardGroup>
 
@@ -149,15 +156,18 @@ Tags appear as grouping and filtering dimensions in [Reports](/help/documentatio
 
 <AccordionGroup>
   <Accordion title="What's the difference between tags and project categories?">
-    Project categories are part of the project hierarchy — they group projects together structurally. Tags are a separate, cross-cutting dimension that can be applied to both people and projects. Use categories for your project structure; use tags for organizational dimensions like departments or locations.
+    Project categories are part of Beebole's project hierarchy — every project belongs to exactly one. Tags are a separate, cross-cutting dimension applied to people, projects, and tasks. Use categories to structure the work itself, and tags for organizational dimensions like departments or locations.
   </Accordion>
   <Accordion title="Can a person or project have multiple tags?">
-    Yes. A person can belong to multiple tag groups (e.g., tagged as both "Engineering" and "London Office"), and a project can be tagged similarly.
+    Yes. In Beebole, a person can hold tags from several categories at once — for example, an **Engineering** tag from a Department category and a **London** tag from a Location category. Each tag cascades its configuration independently.
   </Accordion>
   <Accordion title="Are tags required for time tracking?">
-    No. Tags are optional. Your team can track time without any tags. However, tags significantly enhance your reporting and organizational capabilities.
+    No. Your team can track time in Beebole without any tags. Tags become valuable when you want group-level configuration — schedules, rates, approvals — or reporting by department, team, or location.
   </Accordion>
-  <Accordion title="Can I use tags to control which projects a person sees?">
-    Yes. Through [Assignments](/help/documentation/assignments), you can use tags to control project availability — so people only see the projects relevant to their team or department.
+  <Accordion title="Can I move a tag to a different category?">
+    The **Change parent** control in Beebole moves a tag anywhere within its own category, together with its sub-tags. To use a tag in another category, create it there and re-assign the tagged people or projects.
+  </Accordion>
+  <Accordion title="How do I create many tags at once?">
+    Use the **Or add multiple entries** area in Beebole's add panel: copy your tag list from a spreadsheet — one tag per line, indenting sub-levels with **Tab** or spaces — click **Paste**, review the preview, and click **Add them all**.
   </Accordion>
 </AccordionGroup>

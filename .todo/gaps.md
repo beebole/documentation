@@ -9,23 +9,23 @@ Catalog last updated: 2026-06-10
 
 ### Section 2: Absence & Time-Off Management
 
-- [ ] Missing | `help/documentation/timeoff.mdx` | Archive/unarchive absence types — soft-delete absence types without losing historical data
-- [ ] Partial | `help/documentation/public-holidays.mdx` | Public holidays — needs: once a calendar is configured, its country is locked to protect holidays in past years (page instead instructs picking a country each year with no mention of the lock)
+- [x] Missing | `help/documentation/timeoff.mdx` | Archive/unarchive absence types — soft-delete absence types without losing historical data
+- [x] Partial | `help/documentation/public-holidays.mdx` | Public holidays — needs: once a calendar is configured, its country is locked to protect holidays in past years (page instead instructs picking a country each year with no mention of the lock)
 
 ### Section 3: Time Entries & Absences Approval Workflows
 
-- [ ] Partial | `help/documentation/approval.mdx` | Approve / Reject / Request changes — needs: document the "Request changes" action (page only documents Approve and Reject; "changes are requested" is mentioned in passing but never explained as an approver action)
-- [ ] Partial | `help/documentation/approval.mdx` | Approval reminders — needs: per-person reminder configuration (catalog: "configurable per person or organization"; page only covers org-level settings in Settings > Approval)
+- [x] Partial | `help/documentation/approval.mdx` | Approve / Reject / Request changes — needs: document the "Request changes" action (page only documents Approve and Reject; "changes are requested" is mentioned in passing but never explained as an approver action)
+- [x] Partial | `help/documentation/approval.mdx` | Approval reminders — needs: per-person reminder configuration (catalog: "configurable per person or organization"; page only covers org-level settings in Settings > Approval)
 
 ### Section 4: Planning & Tasks Management
 
-- [ ] Partial | `help/documentation/planning.mdx` | Add task — needs: importing multiple tasks at once from a CSV file (manual creation is covered in Gantt/Kanban pages; bulk import is not documented)
-- [ ] Missing | `help/documentation/planning.mdx` | Archive/unarchive tasks — soft-delete tasks without losing historical data (Kanban page only documents permanent delete)
+- [x] Partial | `help/documentation/planning.mdx` | Add task — needs: importing multiple tasks at once from a CSV file (manual creation is covered in Gantt/Kanban pages; bulk import is not documented)
+- [x] Missing | `help/documentation/planning.mdx` | Archive/unarchive tasks — soft-delete tasks without losing historical data (Kanban page only documents permanent delete)
 
 ### Section 9: Tags & Organisational Structure
 
-- [ ] Partial | `help/documentation/tags.mdx` | Add tag — needs: importing multiple tags at once from a CSV file
-- [ ] Partial | `help/documentation/tags.mdx` | Tag inheritance & configuration — needs: approval stages, public holidays, and absence quotas in the inheritance table (page lists only schedules, billing, cost rates, assignments), plus multi-tree composition (a person in multiple independent tag trees whose configurations compose)
+- [x] Partial | `help/documentation/tags.mdx` | Add tag — needs: importing multiple tags at once from a CSV file
+- [x] Partial | `help/documentation/tags.mdx` | Tag inheritance & configuration — needs: approval stages, public holidays, and absence quotas in the inheritance table (page lists only schedules, billing, cost rates, assignments), plus multi-tree composition (a person in multiple independent tag trees whose configurations compose)
 
 ### Section 11: Work Schedules
 
@@ -42,7 +42,7 @@ Catalog last updated: 2026-06-10
 
 ### Section 24: UI & User Experience
 
-- [ ] Missing | `help/documentation/concepts.mdx` | Fast loading — data is cached locally for near-instant page loads
+- [x] Missing | `help/documentation/concepts.mdx` | Fast loading — data is cached locally for near-instant page loads
 
 _(Tooltips, toast notifications, and breadcrumb gaps dropped at Checkpoint 1 — generic UI affordances, curator decision 2026-06-10.)_
 

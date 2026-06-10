@@ -1,353 +1,225 @@
 ---
-title: "Planning"
-description: "Plan resources, balance team workloads, and track capacity across projects with Beebole's visual planning tools and planned-vs-actual comparisons."
-keywords: ["beebole", "resource planning", "capacity planning", "workload management", "task planning", "project scheduling", "team allocation"]
-"og:title": "Resource Planning in Beebole"
-"og:description": "Allocate resources, balance team workloads, and compare planned vs. actual hours with Beebole's planning tools."
+title: "Task planning: create, organize, and track tasks — Beebole"
+description: "Tasks in Beebole are independent planning entities. Create them one by one or from a spreadsheet, organize statuses and subtasks, assign owners, and track time."
+keywords: ["beebole", "tasks", "task management", "task planning", "task statuses", "subtasks", "task categories"]
+"og:title": "Creating, Organizing, and Tracking Tasks in Beebole"
+"og:description": "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
 "og:type": "article"
 ---
 
-Beebole's planning tools help you allocate your team's time across projects and tasks before the work happens. You can see who is available, how much capacity each person has, and where scheduling conflicts exist — all in one visual interface. Planning in Beebole connects directly to your time tracking data, so you can compare what was planned against what actually happened.
+Tasks in Beebole are independent planning entities — units of work that you schedule, assign, and track time on. A task is not a sub-element of a project: tasks live on their own **Tasks** page, and linking a task to a project is optional. Use tasks to plan the work to be done, and let your team track time directly on them.
 
 <Info>
-  Planning works alongside the task views ([Gantt chart](/help/documentation/gantt), [Kanban board](/help/documentation/kanban), and calendar). While those views focus on individual task management within a project, the planning view gives you a cross-project, team-wide perspective.
+  To work with tasks, click **Tasks** in the sidebar. The same tasks can be displayed in two views: the [Gantt chart](/help/documentation/gantt) for timelines and the [Kanban board](/help/documentation/kanban) for status columns.
 </Info>
 
 ---
 
-## Accessing the planning view
+## How tasks relate to projects
+
+[Projects](/help/documentation/projects) describe what hours are logged *into*; tasks describe the work *to be done*. The two are connected but independent:
+
+- A task can exist without any project. You can plan, assign, and complete it entirely on the **Tasks** page.
+- A task can be linked to projects through its **Projects** attribute in the task detail panel.
+- Time can be tracked on tasks directly, in the **Tasks** section of the [timesheet](/help/documentation/timesheets).
+
+For general work that isn't planned as a task, track time on projects and subprojects instead.
+
+---
+
+## Task categories
+
+Every task belongs to a task category — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one category named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
+
+- **Switch categories** — Click the category name at the top of the **Tasks** page and pick another category from the menu.
+- **Create a category** — In the same menu, type a name in the **Name of a new plan** field and click **Add**.
+
+Statuses always belong to a task category, not to a project: each category defines its own workflow. See [Statuses](#task-statuses) below.
+
+---
+
+## Creating a task
 
 <Steps>
-  <Step title="Open Planning">
-    Click **Planning** in the left sidebar. The planning view opens, showing your team members along the left axis and time periods across the top.
+  <Step title="Open the Tasks page">
+    Click **Tasks** in the sidebar, and check that the right category is selected at the top of the page.
   </Step>
-  <Step title="Select the time range">
-    Use the date controls at the top to set the period you want to plan. You can view by week, month, or a custom date range.
+  <Step title="Click Add Task">
+    Click the **+ Add Task** button. A form opens in the side panel.
   </Step>
-</Steps>
-
----
-
-## Understanding the planning interface
-
-The planning view is a grid-based interface designed for resource allocation:
-
-- **Rows** — Each row represents a person on your team. You can expand a row to see the individual tasks and projects assigned to that person.
-- **Columns** — Each column represents a time period (day, week, or month, depending on your zoom level).
-- **Allocation blocks** — Colored blocks in the grid show how each person's time is allocated. Each block corresponds to a task or project assignment with a scheduled effort.
-- **Capacity bar** — A summary bar at the top of each person's row shows their total allocated percentage versus their available capacity.
-
-<Tip>
-  Switch between daily, weekly, and monthly views to plan at different levels of detail. Use the weekly view for sprint-level planning and the monthly view for long-term resource allocation.
-</Tip>
-
----
-
-## Allocating resources
-
-You assign people to tasks and projects with a specific effort percentage for a given time period. This is the core action in the planning view.
-
-<Steps>
-  <Step title="Select a cell">
-    Click on the intersection of a person's row and a time period column. An allocation form opens.
+  <Step title="Name the task and pick a status">
+    Type the task name, and pick a status with the status selector below the name.
   </Step>
-  <Step title="Choose the project and task">
-    Select the **Project** and, optionally, a specific **Task** within that project. This links the allocation to a task that also appears in the [Gantt chart](/help/documentation/gantt) and [Kanban board](/help/documentation/kanban).
-  </Step>
-  <Step title="Set the effort">
-    Enter the **Effort** as a percentage of the person's available time. For example, 50% means the person is planned to spend half of their working hours on this assignment during the selected period.
-  </Step>
-  <Step title="Save the allocation">
-    Click **Save**. The allocation block appears in the grid, and the person's capacity bar updates to reflect the new commitment.
-  </Step>
-</Steps>
-
-### Editing an allocation
-
-Click any existing allocation block to modify the project, task, effort percentage, or time period. You can also drag the edges of an allocation block to extend or shorten its duration.
-
-### Removing an allocation
-
-Click an allocation block and select **Remove** to delete it. The person's capacity is freed up immediately.
-
----
-
-## Capacity planning
-
-Capacity planning in Beebole lets you compare how much time your team is scheduled to work versus how much time is actually available. This helps you avoid overbooking and identify underutilized team members.
-
-### How capacity is calculated
-
-Beebole calculates each person's available capacity based on their [work schedule](/help/documentation/work-schedule) and any approved [time off](/help/documentation/timeoff). The planning view then compares this available capacity against the total effort allocated.
-
-| Indicator | Meaning |
-|-----------|---------|
-| **Under capacity** | The person has unallocated time available during the period |
-| **At capacity** | The person's allocations match their available hours |
-| **Over capacity** | The person is allocated more time than they have available — a scheduling conflict |
-
-<Warning>
-  Over-capacity situations are highlighted in the planning view. While Beebole does not block you from over-allocating, these warnings help you rebalance workloads before they become a problem.
-</Warning>
-
-### Comparing planned vs. actual hours
-
-One of the key benefits of planning in Beebole is the ability to compare planned effort against actual time tracked. The planning view can display:
-
-- **Planned hours** — Based on the effort percentages you set in the planning grid.
-- **Actual hours** — Based on timesheet entries your team has logged. See [Timesheets](/help/documentation/timesheets).
-- **Variance** — The difference between planned and actual, helping you adjust future plans.
-
-<Info>
-  Planned vs. actual comparisons are most useful after a time period has passed. Use them in retrospective reviews to improve your future planning accuracy.
-</Info>
-
----
-
-## Workload visualization
-
-The planning view includes visual indicators that help you quickly assess team workload distribution:
-
-- **Color coding** — Allocation blocks are color-coded by project, making it easy to see how a person's time is split across different work.
-- **Capacity bars** — Each person's row includes a progress bar showing their total allocation as a percentage of available capacity. Green indicates under capacity, yellow indicates near capacity, and red indicates over capacity.
-- **Team summary** — A summary row at the top aggregates the team's overall capacity utilization for the selected period.
-
-<Tip>
-  Use the workload visualization to spot imbalances. If one person is consistently over capacity while another is under capacity, you can drag allocations between rows to rebalance the workload.
-</Tip>
-
----
-
-## Filtering and grouping
-
-You can customize the planning view to focus on specific subsets of your team or projects:
-
-- **Filter by person** — Show only specific team members.
-- **Filter by project** — Show only allocations for selected projects.
-- **Filter by tag** — Narrow the view to people or projects with specific tags. See below and [Tags](/help/documentation/tags).
-- **Group by team** — Organize rows by team or department for a structured overview.
-
-### Filtering tasks by tag
-
-Tags give you a flexible way to label tasks with cross-cutting metadata such as priority, client, or team. You can filter the task list by tag to see only the tasks that match a given tag value.
-
-<Steps>
-  <Step title="Open the filter bar">
-    Click **Filters** or **Show filters** above the task list. The filter bar expands.
-  </Step>
-  <Step title="Add a tag filter">
-    Click **Add filter** and select **Task tag** from the filter type list.
-  </Step>
-  <Step title="Choose the tag value">
-    Select the tag you want to filter by from the tag picker. The task list updates immediately to show only tasks that have that tag.
-  </Step>
-  <Step title="Combine filters">
-    Add more filters to narrow the list further. Filters are combined with AND logic by default — a task must match all active filters to appear.
+  <Step title="Submit">
+    Click **Add new task** (or press **Enter**). The task appears in the active view, and you can fill in dates, owner, and other details from its panel.
   </Step>
 </Steps>
 
 <Tip>
-  You can also filter by **Person tag** or **Project tag** to narrow the view by tags applied to people or projects rather than tasks themselves.
+  Press **⌘+A** (Ctrl+A on Windows) anywhere on the **Tasks** page to open the add form. If a task is currently open, the new task is created as its subtask.
 </Tip>
 
----
+### Adding many tasks at once
 
-## Recurring tasks
-
-You can set a task to repeat automatically on a fixed schedule. Beebole generates future occurrences based on the recurrence rule you define, so you do not need to create repetitive tasks manually.
-
-### Setting a recurrence rule
-
-Open a task's detail panel and scroll to the **Repeat** toggle. Click it to enable recurrence, then configure the rule:
-
-1. **Mode** — Choose **Calendar** to repeat on fixed calendar dates, or **After completion** to start the next occurrence only after the current one is marked done.
-2. **Frequency** — Set how often the task repeats using the **Every** field combined with a period: **day**, **workday**, **week**, **month**, or **year**.
-3. **Weekly pattern** — When repeating by week, select the specific days of the week (Mon–Sun) on which the task should occur.
-4. **Monthly pattern** — When repeating by month, choose whether to repeat on the same day of the month, the same weekday of the month, the first day, or the last day.
-5. **Holiday behavior** — When repeating by workday, choose what happens when an occurrence falls on a holiday: **Skip**, **Shift forward**, or **Shift backward**.
-6. **End condition** — Toggle **End** on to set a stop date or a maximum number of occurrences (**or after N times**). Leave it off for an open-ended series.
-
-Click **Show next occurrences** to preview the upcoming schedule before saving.
-
-### Editing a recurring task
-
-When you edit, move, or resize a recurring task occurrence, Beebole asks which occurrences to update:
-
-| Option | Effect |
-|--------|--------|
-| **This occurrence only** | Changes only the selected occurrence |
-| **This and all future** | Splits the series from this point onward |
-| **All occurrences** | Updates the entire series |
-| **Skip this occurrence** | Hides this occurrence without affecting others |
-
-### Deleting a recurring task
-
-When you delete a recurring task, Beebole asks whether to delete **This task only** (removes the task and its virtual occurrences, any already-materialized exceptions become standalone tasks) or the **Entire series** (deletes the task and all related tasks in the series).
-
-<Warning>
-  Deleting the entire series is permanent and removes all tasks in the series. Beebole shows a count of the tasks that will be deleted before you confirm.
-</Warning>
-
----
-
-## Moving a task between categories
-
-Tasks are organized under categories (the top-level groupings in your task plan). You can reassign a root-level task — along with all its subtasks — to a different category using the context menu.
+You can import a whole task list by pasting it from a spreadsheet — there is no file upload involved.
 
 <Steps>
-  <Step title="Open the task context menu">
-    Right-click the task name in the task list, or click the **⋯** action menu button that appears on hover. The task must be a root-level task (not a subtask) — only top-level items can be moved to a different category.
+  <Step title="Open the add panel">
+    Click **+ Add Task**. Below the form, find the **Or add multiple entries** section.
   </Step>
-  <Step title="Select Change category">
-    Click **Change category** from the menu. A submenu lists all other available categories.
+  <Step title="Copy and paste your list">
+    Copy rows from a spreadsheet — one entry per line, using **Tab** or spaces to indent sub-levels — then click **Paste**. Indented lines become subtasks of the line above.
   </Step>
-  <Step title="Choose the destination category">
-    Click the target category name. The task and all its subtasks move to that category immediately.
+  <Step title="Review and confirm">
+    Beebole shows the entries **Ready to import** as a tree. Remove any line you don't want, then click **Add them all**.
   </Step>
 </Steps>
 
+Imported tasks get the status selected in the add form. After the import you can click **Undo** to remove everything you just added, or **New import** to paste another batch.
+
+---
+
+## Task statuses
+
+Statuses are the steps of a category's workflow — the same statuses that form the columns of the [Kanban board](/help/documentation/kanban). To edit them, open the **Task statuses** modal:
+
+- On the Kanban board, click a column's name.
+- In the task detail panel, click the gear button next to the status (tooltip: **Edit statuses**).
+
+In the modal you can:
+
+- **Add a status** — Type its name in the **Add new status** field and confirm.
+- **Rename or recolor a status** — Click a status to edit its name or pick a new color.
+- **Reorder statuses** — Drag a status up or down. The order defines the column order on the Kanban board.
+- **Limit a status** — Set **Max tasks** to cap how many tasks the status can hold. See [WIP limits](/help/documentation/kanban#wip-limits-are-hard-limits).
+- **Delete a status** — Only possible when the status holds no tasks (including archived ones). Every category must keep at least one status.
+
+---
+
+## Assigning tasks
+
+Beebole distinguishes the person responsible for a task from the people it is available to:
+
+- **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates.
+- **Potential owners** — People or [tags](/help/documentation/tags) the task is assigned to. In filters and on Kanban cards, these assigned people appear under the **Assignee** label.
+
+---
+
+## Subtasks and hierarchy
+
+Tasks nest into subtasks, as deep as your plan requires. The hierarchy is shared by all views.
+
+- **Create a subtask** — Hover over a task name in the Gantt task list and click the **+** button that appears, or select the task and press **⌘+A**.
+- **Indent or outdent with the keyboard** — In the Gantt view, select a task and press **Tab** to make it a subtask of the task above it, or **Shift+Tab** to move it up one level.
+- **Move a task under a different parent** — Hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same category.
+- **Expand and collapse** — Click the chevron next to a parent task. **⌘+Click** the chevron to expand or collapse all.
+
+A parent task rolls up its children: it shows the period spanned by its subtasks and their total **Planned in hours**, read-only.
+
+---
+
+## Scheduling dates and planned time
+
+Open a task's detail panel to set its schedule:
+
+- **Dates** — Pick the start and end dates with the date-range picker.
+- **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, Beebole shows the maximum the owner's schedule allows between the task's dates (**Max value per schedule**).
+- **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the *unlocked* edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, a warning pill offers two one-click fixes: **Click to extend the unlocked date to fit planned time** or **Click to reduce planned time to capacity**.
+
+If the owner already has another task with planned time in the same period, the panel shows an **Overlapping tasks causing overload** warning so you can rebalance.
+
+To sequence tasks — making one start after another ends — use [dependencies in the Gantt chart](/help/documentation/gantt#task-dependencies).
+
+---
+
+## Tracking time on tasks
+
+Time entries can be recorded directly against tasks:
+
+- **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project.
+- **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
+
+Which task categories accept time entries is controlled by the **Record time on these task categories** setting, in the **Categories** tab of [Timesheet settings](/help/documentation/timesheetSettings). Tasks in other categories don't show the time button.
+
+You can also let task statuses drive time records automatically with **Auto Timesheet** — choose a **Start** and an **End** status per category, and moving a task into those statuses triggers a time record to start and end. Set it up in the [Auto Timesheet tab of Timesheet settings](/help/documentation/timesheetSettings#auto-timesheet).
+
 <Info>
-  Subtasks cannot be moved to a different category directly — only root-level tasks support the **Change category** action. To move a subtask, first promote it to a root-level task by removing its parent relationship, then move it.
+  From a person's or a project's action menu, **Go to tasks** jumps to the **Tasks** page filtered on that person or project.
 </Info>
 
 ---
 
-## Hierarchical tasks
+## Descriptions, custom fields, and tags
 
-Tasks support a multi-level hierarchy of subtasks. You can nest tasks as deeply as your workflow requires, directly within any task view (Gantt, Kanban, or planning).
+Beyond scheduling, each task carries:
 
-### Creating a subtask
-
-There are two ways to add a subtask:
-
-- **Hover method** — Hover over a task name in the task list. Click the **Add a sub task** icon (a small plus with an indent indicator) that appears on the right. A new subtask is created directly under that task.
-- **Keyboard method** — Select a task using keyboard navigation (Arrow keys), then press **Tab** to make it a subtask of the task immediately above it in the list. Press **Shift+Tab** to move it back up one level.
-
-### Expanding and collapsing
-
-Click the chevron icon to the left of a task name to expand or collapse its subtasks. When a task is collapsed, its subtasks are hidden from the list but remain visible on the timeline.
-
-Press **⌘+Arrow Right** to expand the selected task and move into its first child. Press **⌘+Arrow Left** to collapse the selected group.
-
-### Working with subtasks across views
-
-Subtasks created in one view are immediately visible in all other task views. The Gantt chart shows the hierarchy visually with indentation and an expand/collapse control. The Kanban board shows subtasks as individual cards in their respective status columns.
+- **Description** — A rich-text panel for context, acceptance criteria, links, and file attachments, with @mentions to reference teammates. See [task descriptions](/help/documentation/kanban#task-descriptions) for the editor's features.
+- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** > **Custom Fields** and make them visible for tasks — visibility can even be limited to specific task categories. See [Custom fields](/help/documentation/custom-fields).
+- **Tags** — Label tasks with [tags](/help/documentation/tags) to group and filter them across categories, and to report on them by team, client, or any dimension you define.
 
 ---
 
-## Locking a task's end date
+## Archiving and deleting tasks
 
-Beebole lets you pin a task's **end date** so it stays fixed even when the task's predecessors or other inputs shift. Use it for tasks with hard deadlines — a client delivery, a regulatory date, a release window — where the end of the task cannot move regardless of upstream changes.
+Each task has a **⋯** action menu — hover over its row in the Gantt view or its Kanban card — with **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
-Locking is independent for the start and end dates: you can lock either edge of the task, both, or neither.
-
-### Locking or unlocking the end date
-
-<Steps>
-  <Step title="Open the task's date controls">
-    Open the task in the [Gantt chart](/help/documentation/gantt) or the task detail panel. The **Start date** and **End date** pickers appear with a small lock icon next to each date.
-  </Step>
-  <Step title="Toggle the lock">
-    Click the lock icon next to the **End date** to pin it. The icon switches to the locked state and the tooltip reads **Lock end date**. Click it again to unlock the date.
-  </Step>
-</Steps>
-
-### How a locked end date affects scheduling
-
-| Action | Result with end date locked |
-|--------|-----------------------------|
-| **Predecessor task shifts later** | The successor's start date moves but its end date stays put — Beebole shortens the duration to keep the deadline. |
-| **Effort is increased on the task** | The start date moves earlier instead of pushing the end date out. |
-| **The lock is removed** | The end date moves freely again with predecessors and effort changes. |
+- **Archive** hides the task from active views without losing its data or its time records. Use **Show Archived** in the page header to display archived tasks again, then **Unarchive** to restore one. On the Kanban board, a column's own menu can archive or unarchive every task in that status at once.
+- **Delete** removes the task permanently. A toast appears with an **Undo** button right after deletion.
 
 <Warning>
-  If a locked end date forces a task into a duration that is too short for its planned effort, Beebole flags a scheduling conflict. Resolve it by unlocking the end date, increasing the duration manually, or reducing the effort.
+  A task that has time records logged against it cannot be deleted — Beebole blocks the deletion and tells you whose time records are affected. Archive the task instead to keep historical data intact.
 </Warning>
 
 ---
 
-## Task-level custom fields
+## Viewing tasks your way
 
-Beebole supports custom fields on tasks, just like on projects, people, and time entries. Use them to capture task-specific context that the standard task fields don't cover — for example, a sprint number, a story-point estimate, an issue tracker URL, or a priority label.
+The **Tasks** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Add a Gantt chart** or **Add a Kanban board**; each view remembers its own settings (columns, grouping, scale, or card fields). Use **Filters** in the header to narrow any view by task, status, owner, assigned person, project, or tags.
 
-Once a custom field is added, it appears on every task across the [Gantt chart](/help/documentation/gantt), [Kanban board](/help/documentation/kanban), and the planning view. Field values are also available as filters and columns in [custom reports](/help/documentation/custom-reports), so task metadata flows into your analytics without extra work.
-
-### Common task custom fields
-
-| Field | Type | Example use |
-|-------|------|-------------|
-| **Sprint** | Text or number | Group tasks by iteration for agile planning |
-| **Story points** | Number | Track estimation alongside effort |
-| **Priority** | Text | Tag tasks as **High**, **Medium**, or **Low** |
-| **External ID** | URL or text | Link tasks to issues in Jira, Linear, GitHub, etc. |
-| **Acceptance criteria met** | Boolean | Confirm a task meets its definition of done |
-
-<Info>
-  Custom fields are defined once in **Settings** > **Custom fields**, then applied to the **Tasks** entity. You can also restrict a field to specific project or task categories so it only appears where it's relevant. See [Custom fields](/help/documentation/custom-fields) for the full list of supported field types and configuration options.
-</Info>
-
----
-
-## How planning connects to other features
-
-Beebole's planning tools integrate with several other parts of the application:
-
-| Feature | Connection |
-|---------|-----------|
-| [Gantt chart](/help/documentation/gantt) | Tasks with dates and effort set in planning appear on the Gantt timeline |
-| [Kanban board](/help/documentation/kanban) | Task status changes on the Kanban board are reflected in planning |
-| [Timesheets](/help/documentation/timesheets) | Actual hours logged in timesheets are compared against planned effort |
-| [Work schedules](/help/documentation/work-schedule) | Available capacity is derived from each person's work schedule |
-| [Time off](/help/documentation/timeoff) | Approved leave reduces a person's available capacity in the planning view |
-| [Budgets](/help/documentation/budgets) | Planned effort can be compared against project budgets |
+<CardGroup cols={2}>
+  <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
+    Schedule tasks on a timeline, link dependencies, and spot overloaded owners with the workload heatmap.
+  </Card>
+  <Card title="Kanban board" icon="square-kanban" href="/help/documentation/kanban">
+    Move task cards through status columns, set WIP limits, and start time records from a card.
+  </Card>
+</CardGroup>
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Gantt chart" icon="chart-bar" href="/help/documentation/gantt">
-    Visualize task timelines and dependencies on an interactive Gantt chart.
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    How people log hours — including time tracked on tasks.
   </Card>
-  <Card title="Kanban board" icon="check" href="/help/documentation/kanban">
-    Manage task status visually by dragging cards between workflow columns.
+  <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
+    Control which task categories accept time entries and configure Auto Timesheet.
+  </Card>
+  <Card title="Custom fields" icon="list-check" href="/help/documentation/custom-fields">
+    Add structured data to tasks and use it in reports.
   </Card>
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
-    Set up the project structure that planning allocations are linked to.
-  </Card>
-  <Card title="Tags" icon="tag" href="/help/documentation/tags">
-    Filter and group planning views by tags applied to people, projects, or tasks.
+    Set up the project structure your time entries are logged against.
   </Card>
 </CardGroup>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Do I need to plan every task for planning to be useful?">
-    No. You can use the planning view to allocate high-level effort to projects without breaking it down into individual tasks. Detailed task-level planning is optional and depends on your team's needs.
+  <Accordion title="Are tasks part of projects in Beebole?">
+    No. Tasks in Beebole are independent planning entities with their own page, statuses, and hierarchy. You can link a task to projects through its **Projects** attribute, but a task doesn't need a project to exist, be assigned, or have time tracked on it.
   </Accordion>
-  <Accordion title="What happens if someone's work schedule changes after I plan their time?">
-    Beebole recalculates their available capacity based on the updated [work schedule](/help/documentation/work-schedule). If the new schedule reduces their hours, previously at-capacity allocations may show as over capacity.
+  <Accordion title="How do I import many tasks at once?">
+    Copy rows from a spreadsheet and paste them into Beebole. Click **+ Add Task**, find **Or add multiple entries**, click **Paste**, review the list, and click **Add them all**. Indent lines with Tab to create subtasks. There is no CSV file upload — the import works by pasting.
   </Accordion>
-  <Accordion title="Can I plan time for someone who has not been added to a project?">
-    No. The person must be assigned to the project first. You can manage project assignments from the project settings page. See [Projects](/help/documentation/projects).
+  <Accordion title="Can people track time on any task?">
+    Only on tasks in the categories selected under **Record time on these task categories** in Beebole's Timesheet settings. Tasks in those categories appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards.
   </Accordion>
-  <Accordion title="How far ahead can I plan?">
-    There is no limit to the planning horizon. You can plan weeks, months, or even quarters ahead. However, longer-term plans may need more frequent adjustments as priorities change.
+  <Accordion title="What is the difference between the Owner and the Potential owners of a task?">
+    The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; they appear as **Assignee** in filters and on Kanban cards.
   </Accordion>
-  <Accordion title="Can managers see only their team's planning?">
-    Yes. Visibility in the planning view respects [Roles & permissions](/help/documentation/roles-authorisations). Managers see only the people and projects they have access to.
-  </Accordion>
-  <Accordion title="Can I set a task to repeat every two weeks?">
-    Yes. Enable **Repeat** on the task, set **Every** to 2 and select **week** as the period. You can also choose which days of the week the task should occur.
-  </Accordion>
-  <Accordion title="Can I move a subtask to a different category?">
-    Only root-level tasks support the **Change category** action. To move a subtask, first remove its parent relationship to make it a root-level task, then use **Change category** from its context menu.
-  </Accordion>
-  <Accordion title="How deep can I nest subtasks?">
-    There is no hard limit on subtask nesting depth. For readability, most teams keep hierarchies to two or three levels.
-  </Accordion>
-  <Accordion title="Can I filter tasks by multiple tags at once?">
-    Yes. Add multiple **Task tag** filters in the filter bar. By default, tasks must match all active filters (AND logic). You can change the logic to OR by adjusting the filter operator in the filter row.
+  <Accordion title="Should I archive or delete a finished task?">
+    Archive it. Archiving hides the task from active views while keeping its time records for reporting, and you can unarchive it anytime. Deleting is permanent, and Beebole blocks the deletion entirely if time records exist against the task.
   </Accordion>
 </AccordionGroup>

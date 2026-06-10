@@ -1,29 +1,31 @@
 ---
-title: "Timesheets"
-description: "Track time in Beebole using the weekly or daily timesheet. Log hours, use timers, copy entries, pin rows, and add comments to keep your records accurate."
-keywords: ["Beebole timesheets", "time tracking", "timesheet entry", "timer", "log hours", "project time tracking", "how to fill timesheets", "beebole"]
-"og:title": "Tracking Time with Beebole Timesheets"
-"og:description": "Learn how to efficiently track time using Beebole timesheets — enter hours, use timers, pin rows, and more."
+title: "Timesheets: tracking and submitting your time — Beebole"
+description: "Track time in Beebole's timesheet: add rows for projects, tasks, or time off, enter hours or run a timer, copy periods, and submit for approval."
+keywords: ["beebole", "timesheet", "time tracking", "time entry", "timer", "submit timesheet", "copy timesheet"]
+"og:title": "Tracking and Submitting Time with the Beebole Timesheet"
+"og:description": "Learn how to track time in the Beebole timesheet — add rows, enter hours, use the timer, import calendar events, and submit your period for approval."
 "og:type": "article"
 ---
 
-Beebole's timesheet is where your team logs the time they spend on projects, tasks, and absence types. Each person fills in their own timesheet, choosing from the projects and tasks assigned to them. Every entry flows into reports, budgets, billing calculations, and approval workflows across your account.
+The timesheet is where each person in Beebole records the time they spend on projects, tasks, and time off. Every entry feeds reports, budgets, billing calculations, and the approval workflow. Open it by clicking **Timesheet** in the left sidebar.
 
 <Info>
-  Timesheets in Beebole can display as a weekly grid or a daily view. Administrators choose the default periodicity in [Timesheet settings](/help/documentation/timesheetSettings), and individual users can switch between views if allowed.
+  Your administrator chooses the **Timesheet period** — daily, weekly, bi-weekly, semi-monthly, or monthly — along with the time entry unit and any entry restrictions. See [Timesheet settings](/help/documentation/timesheetSettings).
 </Info>
 
 ---
 
-## Understanding the timesheet layout
+## The timesheet layout
 
-The timesheet is organized as a grid:
+The timesheet is a grid:
 
-- **Rows** represent combinations of project, subproject, and task. Each row is one line of work you track time against.
-- **Columns** represent days (in the weekly view) or time slots (in the daily view).
-- **Cells** are where you enter your time for a specific project on a specific day.
+- **Sections** group rows by the project or task categories your administrator selected in [Timesheet settings](/help/documentation/timesheetSettings). A **Time Off** section appears when recording time off is allowed.
+- **Rows** are what you track time against — a project (or chain of projects), a task, or an absence type.
+- **Columns** are the days of the current period. Today's date is highlighted, and each day's header shows the time reported so far against your scheduled hours.
 
-At the bottom of the timesheet, Beebole displays your **daily totals** and **weekly totals** so you can see at a glance whether your hours are complete.
+Use the date picker at the top of the page to move between periods or jump back to **Today**.
+
+With a **Daily** timesheet period, the grid shows a single day and each row displays its full entry form — duration, times, and note — inline.
 
 ---
 
@@ -31,256 +33,168 @@ At the bottom of the timesheet, Beebole displays your **daily totals** and **wee
 
 <Steps>
   <Step title="Open your timesheet">
-    Click **Timesheet** in the left sidebar. Your timesheet opens on the current week or day.
+    Click **Timesheet** in the left sidebar. The timesheet opens on the current period.
   </Step>
   <Step title="Add a row">
-    Click the **[+]** button to add a new row. Select a **Project** and, if applicable, a **Subproject** and **Task** from the dropdown menus.
+    Click the **+** button (**Add a row**) next to a section name. Pick a project from the **Select a project** list — or a task or absence type, depending on the section. If your account chains several project categories, pick one entry for each level.
   </Step>
-  <Step title="Enter your hours">
-    Click a cell and type the time you spent. Depending on your account settings, you enter time as a duration (e.g., `7:30` or `7.5`) or with **Start** and **End** times.
-  </Step>
-  <Step title="Save your timesheet">
-    Click **Save**. Your entries are stored and reflected in reports and dashboards.
+  <Step title="Type your time in a day cell">
+    Click the cell for the right day and type the time you spent. You enter time in the unit your administrator configured — hours, days, or a percentage of your schedule.
   </Step>
 </Steps>
 
+Every change is saved automatically — there is no save button on the timesheet.
+
 <Tip>
-  You can navigate between weeks using the arrow buttons next to the date range at the top of the timesheet.
+  Rows you use every period are worth pinning. Open the row's **⋯** action menu and click **Pin to top** so the row keeps its place at the top of its section. Click **Unpin** in the same menu to remove it.
 </Tip>
 
----
+### Entry details
 
-## Duration modes
+Hover over a cell and click the info icon that appears in its corner to open the entry details. Depending on your account's settings, an entry can hold:
 
-Beebole supports several ways to express how long you worked. Your administrator configures the default unit and format in [Timesheet settings](/help/documentation/timesheetSettings).
+| Field | What it does |
+|-------|--------------|
+| **Time spent** | The entry's duration. |
+| **Start time** and **End time** | When you started and stopped, if your administrator enabled start and end times. The duration is calculated for you. |
+| **Add a note to your time entry** | A free-text note, visible to approvers and in reports. A small text icon marks cells that carry a note. |
+| **Non-billable** | Marks this entry as non-billable, regardless of the project's [billing rates](/help/documentation/billing). |
+| **Work from home** | Flags the entry as remote work. |
+| Custom fields | Any [custom fields](/help/documentation/custom-fields) your administrator defined for time entries. |
 
-The **unit** decides what you type — hours, days, or percentage of your scheduled workday. When the unit is hours, the **format** decides how the value is displayed.
-
-| Unit | Format | Example |
-|------|--------|---------|
-| **Hours** | hh:mm | `3:15` |
-| **Hours** | Decimal | `3.25` |
-| **Hours** | hsm | `3h15` |
-| **Days** | — | `1` or `0.5` |
-| **% of schedule** | — | `100%` or `50%` |
-
-### Duration vs. start/end times
-
-Your administrator can configure the timesheet to accept either:
-
-- **Duration only** — You enter how long you worked (e.g., `3:00`).
-- **Start and end times** — You enter when you started and stopped (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
+The **Non-billable** and **Work from home** checkboxes apply to work entries only — they don't appear on time off entries.
 
 ---
 
 ## Using the timer
 
-Instead of entering time manually, you can use Beebole's built-in timer to track time as you work.
+When your administrator has enabled the timer, each row shows a timer button for the current day.
 
 <Steps>
   <Step title="Start the timer">
-    Click the **Timer** button on any timesheet row. The timer begins counting.
+    Click the timer button (**Start timer**) on the row you are working on. The elapsed time starts counting.
   </Step>
-  <Step title="Work on your task">
-    The timer runs in the background. You can navigate away from the timesheet page — the timer keeps running.
+  <Step title="Keep working">
+    The timer keeps running while you use other parts of Beebole. A floating timer stays on screen so you can check or pause it from any page.
   </Step>
-  <Step title="Stop the timer">
-    Return to your timesheet and click the **Timer** button again to stop. Beebole fills in the duration automatically based on the elapsed time.
+  <Step title="Pause it when you stop">
+    Click the timer button again (**Pause timer**). Beebole saves the elapsed time to the entry — one minute at minimum.
   </Step>
 </Steps>
 
+Only one timer runs at a time. Starting a timer on another row pauses the current one and saves its time first.
+
 <Info>
-  Only one timer can run at a time. Starting a timer on a different row stops the currently running timer and saves its duration.
+  When start and end times are enabled and a record for today is already finished, the row's timer button shows **Duplicate and start** — it creates a new entry on the same row and starts timing it. Administrators can also make the timer mandatory, in which case durations can only be recorded by timer.
 </Info>
 
 ---
 
-## Pinning rows
+## Managing rows
 
-If you regularly track time to the same projects and tasks, pin those rows so they appear automatically every week.
+Each row has a **⋯** action menu with:
+
+- **Pin to top** / **Unpin** — keep the row at the top of its section.
+- **Edit** — change the row's project, task, or absence type selection.
+- **Remove row** — take the row off your timesheet.
+- **Clear timesheet** — delete all time entries in the current period. This option is disabled once the period is submitted or approved.
+
+There is no confirmation dialog for these actions — press **⌘+Z** (Ctrl+Z on Windows/Linux) to undo.
+
+---
+
+## Copying a period
+
+To reuse a period's rows and entries:
 
 <Steps>
-  <Step title="Find the row you want to pin">
-    Locate the project/task row on your timesheet.
+  <Step title="Copy the current period">
+    Click the copy button in the cluster at the top-left corner of the grid. A **Copied!** confirmation appears.
   </Step>
-  <Step title="Pin the row">
-    Click the **Pin** icon on the row. A pinned indicator appears.
+  <Step title="Go to another period">
+    Use the date picker to open the period you want to fill.
+  </Step>
+  <Step title="Paste">
+    Click the **Paste period** button that now appears next to the copy button. If the period already contains time entries, Beebole asks whether to **Add** the copied entries on top or **Replace** the existing ones.
   </Step>
 </Steps>
-
-Pinned rows appear at the top of your timesheet each week, even if you haven't entered any time on them yet. To unpin a row, click the **Pin** icon again.
 
 ---
 
 ## Undoing and redoing changes
 
-Beebole tracks your recent changes and lets you reverse them using standard keyboard shortcuts:
+Beebole tracks your recent changes across the app:
 
 | Action | Mac | Windows / Linux |
 |--------|-----|-----------------|
-| **Undo** | Cmd+Z | Ctrl+Z |
-| **Redo** | Cmd+Shift+Z | Ctrl+Shift+Z |
+| Undo | **⌘+Z** | Ctrl+Z |
+| Redo | **⌘+Shift+Z** | Ctrl+Shift+Z |
 
-Undo and redo work across the app — not just on timesheets. Multiple related changes (such as adding a row and logging time) are grouped into a single undo step so one keypress reverses the whole operation.
-
-When you undo a deletion, the item is restored immediately and Beebole scrolls back to it. The **Undo** and **Redo** buttons also appear in the top bar whenever there is history available.
+Undo and redo buttons also appear in the top bar whenever there is history to step through. Deleted entries and rows come back exactly as they were.
 
 ---
 
-## Copying and duplicating entries
+## Recording time off
 
-Beebole offers several shortcuts to avoid repetitive data entry:
-
-- **Copy/paste within the timesheet** — Select a cell or range, copy it, and paste it into another day or week.
-- **Copy previous week** — Use the **Copy previous week** option to bring in last week's rows and, optionally, their time values.
-- **Duplicate and start** — Right-click a time entry to duplicate it and immediately start a new timer based on it. This is useful when you switch between recurring tasks throughout the day.
+When your administrator allows recording time off, the timesheet shows a **Time Off** section. Click its **+** button (**Add a row**), pick an absence type, and enter the time — absence types tracked in days are entered as full or partial days. See [Time off](/help/documentation/timeoff) for absence types, allowances, and approval.
 
 ---
 
-## Work from home flag
+## Importing calendar events
 
-Beebole lets you mark individual time entries as remote work using the **Work from home** flag. Use it to keep a record of which hours were worked from home, on-site, or hybrid — so you can report on remote-work patterns and meet hybrid-work tracking requirements.
-
-<Info>
-  The **Work from home** flag must be enabled at the account level by an administrator in [Timesheet settings](/help/documentation/timesheetSettings) before it appears on time entries.
-</Info>
-
-### Toggling the flag on a time entry
+You can bring your Google or Microsoft calendar events into the timesheet instead of re-typing meetings.
 
 <Steps>
-  <Step title="Open the entry details">
-    Click a time entry cell on your timesheet to expand its details panel.
+  <Step title="Open the calendar pane">
+    Click the calendar button (**Import your calendar events**) in the cluster at the top-left corner of the grid.
   </Step>
-  <Step title="Tick the Work from home checkbox">
-    Tick the **Work from home** checkbox to mark the entry as remote work. Untick it to mark the same entry as on-site again.
+  <Step title="Connect your calendar">
+    Click **Sign in with Google** or **Sign in with Microsoft** and authorize access. The connection is personal to you, and Beebole only reads your events.
   </Step>
-  <Step title="Save the timesheet">
-    Click **Save**. The flag is stored with the entry and is visible to approvers and in reports.
+  <Step title="Assign events to a row">
+    Your events for the current period appear in the pane. Click one or more events to select them, then click a timesheet row to assign them — or drag an event straight onto a row. Imported events show a **Tracked** badge.
   </Step>
 </Steps>
 
-### Using the flag in reports
+---
 
-The **Work from home** flag is available throughout reporting:
+## Submitting your timesheet
 
-- **Report filter** — Filter any report to show only on-site time, only work-from-home time, or both. See [Reports](/help/documentation/reports).
-- **Report column** — Add a **Work from home** column to a [custom report](/help/documentation/custom-reports) to break down time by remote vs. on-site for any period or person.
+When your period is complete, click **Submit** at the top of the timesheet. The timesheet enters the [approval workflow](/help/documentation/approval) and is locked while it waits for review. If an approver rejects it, fix your entries and click **Resubmit**.
 
-<Tip>
-  When a person works from home full-time, you can configure their [work schedule](/help/documentation/work-schedule) to default new entries to work-from-home — saving them from ticking the flag for every entry.
-</Tip>
+Your administrator can also configure automatic submission a set number of days after the period ends, and email reminders to submit — see [Timesheet settings](/help/documentation/timesheetSettings).
 
 ---
 
-## Non-billable flag
+## Reviewing your team
 
-By default, time entries inherit their billable status from the project. To override this on a specific entry, toggle the **Non-billable** flag. This marks the entry as non-billable regardless of the project's billing configuration.
+Managers and administrators see two extra buttons in the cluster at the top-left corner of the grid:
 
-<Info>
-  The non-billable flag only affects individual entries. To make an entire project non-billable, update the project's billing settings instead. See [Billing rates](/help/documentation/billing).
-</Info>
+- The approval button (**Approval**) opens the **Pending** pane with timesheets waiting for review. A red badge shows how many are pending. From here you can open a person's timesheet, **Approve** or **Reject** submissions, and **Remind** people who haven't submitted.
+- The team button (**Team**) opens the **Team** pane listing your team members with their reported time for the period.
 
----
+For the full review workflow, see [Approvals](/help/documentation/approval).
 
-## Comments on time entries
+### Timesheet score
 
-You can add a comment to any time entry to provide context about the work performed.
-
-<Steps>
-  <Step title="Open the entry details">
-    Click on a time entry cell to expand it.
-  </Step>
-  <Step title="Add a comment">
-    Type your note in the **Comment** field.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The comment is stored with the entry and visible to approvers and in reports.
-  </Step>
-</Steps>
-
-<Tip>
-  Comments are especially useful during the approval process. Approvers can review comments to understand what work was done before approving or rejecting entries.
-</Tip>
-
----
-
-## Auto-submit
-
-Beebole can automatically submit timesheets for approval after a configurable number of days. When auto-submit is enabled, timesheets that haven't been manually submitted are submitted automatically once the deadline passes.
-
-Your administrator configures auto-submit in [Timesheet settings](/help/documentation/timesheetSettings).
-
-<Warning>
-  Once a timesheet is auto-submitted, it enters the approval workflow just like a manually submitted timesheet. Make sure entries are complete before the auto-submit deadline.
-</Warning>
-
----
-
-## Timesheet reminders
-
-Beebole sends email reminders to team members who have not filled in or submitted their timesheets. Reminders are configured by your administrator in [Timesheet settings](/help/documentation/timesheetSettings) and can be set to trigger on specific days of the week.
-
----
-
-## Calendar integration
-
-You can import events from **Google Calendar** or **Microsoft Outlook** directly into your timesheet. Imported events appear as pre-filled rows, saving you from manually re-entering meetings and scheduled work.
-
-Learn more: [Google Calendar integration](/help/integrations/google-calendar) | [Microsoft Calendar integration](/help/integrations/microsoft-calendar)
-
----
-
-## Timesheet score
-
-Beebole calculates a **Timesheet score** for each person — a number from 0 to 100 that reflects how consistently they submit timesheets on time. Administrators and managers can see each person's score on the team view in the timesheet panel.
-
-### How the score is calculated
-
-The score is based on the person's submission history across all evaluated periods:
-
-| Factor | Description |
-|--------|-------------|
-| **On time** | Timesheets submitted before the deadline |
-| **Late submissions** | Timesheets submitted after the deadline |
-| **Not submitted** | Periods where no timesheet was submitted |
-| **Rejections** | Timesheets that were returned by an approver |
-
-A high ratio of on-time submissions produces a score near 100. Late submissions, missed periods, and rejections lower the score.
-
-### Score color coding
-
-The score ring gauge uses three colors to indicate compliance level at a glance:
-
-| Score range | Color | Meaning |
-|-------------|-------|---------|
-| **80–100** | Green | Good compliance |
-| **50–79** | Amber | Moderate compliance |
-| **0–49** | Red | Poor compliance |
-
-### Where the score appears
-
-The score appears as a ring gauge on person records in the team side panel of the timesheet. Hover over the ring to see a breakdown of on-time, late, not-submitted, and rejected periods.
-
-<Info>
-  The score is visible to administrators and managers, not to the individual themselves.
-</Info>
+In the team panes, a colored ring around each person's avatar shows their **Timesheet score** — a 0 to 100 measure of how reliably they submit on time. The ring is green from 80 up, amber from 50 to 79, and red below 50. Hover over it for the breakdown: **On time**, **Late submissions**, **Not submitted**, and **Rejections**.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
+  <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
+    Configure the timesheet period, entry unit, restrictions, categories, and reminders.
+  </Card>
   <Card title="Approvals" icon="check" href="/help/documentation/approval">
-    Submit timesheets for review and manage multi-stage approval workflows.
+    Submit timesheets and manage multi-stage approval workflows.
   </Card>
-  <Card title="Timesheet Settings" icon="settings" href="/help/documentation/timesheetSettings">
-    Configure duration formats, entry rules, reminders, and feature toggles.
+  <Card title="Time off" icon="umbrella-beach" href="/help/documentation/timeoff">
+    Set up absence types and allowances, and record time off.
   </Card>
-  <Card title="Mobile & Desktop App" icon="mobile" href="/help/documentation/mobile">
+  <Card title="Mobile and tablet" icon="mobile" href="/help/documentation/mobile">
     Log time and submit timesheets from your phone or tablet.
-  </Card>
-  <Card title="Billing Rates" icon="chart-bar" href="/help/documentation/billing">
-    Understand how time entries flow into billing calculations.
   </Card>
 </CardGroup>
 
@@ -289,19 +203,19 @@ The score appears as a ring gauge on person records in the team side panel of th
 ## Frequently asked questions
 
 <AccordionGroup>
+  <Accordion title="How do I submit my timesheet in Beebole?">
+    Click **Submit** at the top of the **Timesheet** page when your period is complete. The timesheet then enters Beebole's approval workflow and is locked while it waits for review. If it comes back rejected, correct your entries and click **Resubmit**.
+  </Accordion>
+  <Accordion title="How do I copy my timesheet from the previous period?">
+    Open the period you want to copy, click the copy button at the top-left corner of the grid, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
+  </Accordion>
+  <Accordion title="Why can't I add time to a certain day?">
+    Your administrator may have added restrictions in Beebole's Timesheet settings — for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
+  </Accordion>
   <Accordion title="Can I track time on my phone?">
-    Yes. Beebole offers a mobile-optimized interface where you can enter time, start timers, and submit timesheets from your phone. See [Mobile](/help/documentation/mobile).
+    Yes. Beebole's timesheet adapts to small screens with a mobile layout, and you can install Beebole as an app on your phone. See [Mobile and tablet](/help/documentation/mobile).
   </Accordion>
-  <Accordion title="What happens if I forget to fill in my timesheet?">
-    If reminders are enabled, Beebole sends you an email notification. If auto-submit is configured, your timesheet is submitted automatically after the deadline — even if incomplete. Check with your administrator for your account's specific settings.
-  </Accordion>
-  <Accordion title="Can I enter time for a past week?">
-    Yes. Use the navigation arrows to go to a previous week and enter or edit your time. However, if that week's timesheet has already been approved, you may need your approver to reopen it first.
-  </Accordion>
-  <Accordion title="How do I change the timesheet from weekly to daily view?">
-    Your administrator sets the default view in [Timesheet settings](/help/documentation/timesheetSettings). If your account allows it, you can switch between views using the toggle at the top of the timesheet page.
-  </Accordion>
-  <Accordion title="Can my manager see my timesheet before I submit it?">
-    This depends on your account's [role permissions](/help/documentation/roles-authorisations). Some configurations allow managers to view team timesheets at any time, while others restrict visibility until submission.
+  <Accordion title="Who decides whether I enter time in hours or days?">
+    Your administrator. The unit for time entry — hours, days, or a percentage of your schedule — is set in Beebole's Timesheet settings, along with the duration format and the timesheet period. See [Timesheet settings](/help/documentation/timesheetSettings).
   </Accordion>
 </AccordionGroup>

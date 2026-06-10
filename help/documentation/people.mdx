@@ -1,8 +1,8 @@
 ---
-title: "People"
+title: "People: add, invite, and manage your team — Beebole"
 description: "Add, invite, and manage your team members in Beebole. Configure profiles, assign roles, and set up schedules and rates for each person."
 keywords: ["Beebole people", "add team members", "invite users", "user management", "employee profiles", "how to add people"]
-"og:title": "Managing People in Beebole"
+"og:title": "Adding, Inviting, and Managing Your Team in Beebole"
 "og:description": "Learn how to add, invite, and manage your team members in Beebole."
 "og:type": "article"
 ---
@@ -10,7 +10,7 @@ keywords: ["Beebole people", "add team members", "invite users", "user managemen
 In Beebole, **People** represents every user or team member in your account — anyone who tracks time, manages projects, or views reports. Each person has a profile that combines their user account with configuration data like rates, schedules, and permissions.
 
 <Info>
-  Every person is assigned a role that determines what they can see and do. Beebole includes default roles (Administrator, Manager, Employee), and you can create custom roles to match your organization's structure. See [Roles & permissions](/help/documentation/roles-authorisations).
+  Every person is assigned a role that determines what they can see and do. Beebole includes default roles (Admin, Employee, Manager), and you can create custom roles to match your organization's structure. See [Roles & permissions](/help/documentation/roles-authorisations).
 </Info>
 
 ---
@@ -24,11 +24,11 @@ In Beebole, **People** represents every user or team member in your account — 
   <Step title="Add a person">
     Click the **+** button (**Add person**). Enter the person's **Name**, **Email**, and **Role**.
   </Step>
-  <Step title="Bulk import (optional)">
-    To add a large team at once, use the **Import** option. You can paste names and emails directly from a spreadsheet.
+  <Step title="Add multiple people (optional)">
+    To add a large team at once, use the **Or add multiple entries** area of the same panel. Copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and click **Add them all**.
   </Step>
   <Step title="Add">
-    Click **Add**. The person's profile is now created in your account.
+    Click **Add person**. The person's profile is now created in your account.
   </Step>
 </Steps>
 
@@ -70,10 +70,10 @@ To invite several people at once, select multiple people from the list using the
 
 Click a person's name to access their profile settings:
 
-- **Manager** — Assign who approves this person's timesheets.
+- **Manages** — See who this person is **Managed by**, plus the team members, projects, tasks, and tags they manage.
 - **Tags** — Organize people into departments, teams, or locations. See [Tags](/help/documentation/tags).
 - **Custom fields** — Add metadata like "Employee ID", "Office Location", or "Department". See [Custom fields](/help/documentation/custom-fields).
-- **Localization** — Set individual timezone, language, and date format preferences.
+- **Localization** — Set individual timezone and date format preferences.
 
 ### Role assignment
 
@@ -97,15 +97,15 @@ You can override the organization's locale settings for any individual. Open the
 
 ### Billing and cost rates per person
 
-To set a person's rates, open their profile and go to the **Billing** or **Costs** attribute section. Click **Add** to create a new rate entry. Choose the rate type (hourly, daily, or fixed), enter the amount and currency, and set the effective date. You can add multiple rate entries over time to reflect salary changes or contract updates — Beebole uses the rate that was active on the date of each time record. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs).
+To set a person's rates, open their profile and go to the **Billing** or **Cost** attribute section. Click **Add** to create a new rate entry. Choose the rate type (hourly, daily, or fixed), enter the amount and currency, and set the effective date. You can add multiple rate entries over time to reflect salary changes or contract updates — Beebole uses the rate that was active on the date of each time record. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs).
 
 ### Absence quotas per person
 
-Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence quotas** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. Quotas set on a person take priority over any default defined on a tag. See [Time off](/help/documentation/timeoff).
+Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence allowances** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. Quotas set on a person take priority over any default defined on a tag. See [Time off](/help/documentation/timeoff).
 
 ### Custom fields on persons
 
-Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** > **Custom fields** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
+Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** > **Custom Fields** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
 
 ---
 
@@ -128,7 +128,7 @@ Select multiple people from the list using the checkboxes to perform actions in 
 - **Invite** — Send invitation emails to all selected people at once.
 - **Archive** — Archive multiple active people in a single step.
 - **Unarchive** — Restore multiple archived people (requires available seats).
-- **Delete** — Permanently delete multiple people. Use with caution — deletion cannot be undone and removes login credentials.
+- **Delete** — Permanently delete multiple people. Use with caution — deletion cannot be undone, and deleted people can no longer sign in to Beebole.
 
 ---
 
@@ -156,16 +156,13 @@ Select multiple people from the list using the checkboxes to perform actions in 
     Archive their profile instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription.
   </Accordion>
   <Accordion title="Can I create custom roles beyond Admin, Manager, and Employee?">
-    Yes. Go to **Settings** > **Roles** to create custom roles with granular permissions. See [Roles & permissions](/help/documentation/roles-authorisations).
+    Yes. Go to **Settings** > **Person Roles** to create custom roles with granular permissions. See [Roles & permissions](/help/documentation/roles-authorisations).
   </Accordion>
   <Accordion title="Can I add multiple people at once?">
-    Yes. Click **People** in the sidebar and use the **Import** option to paste names and emails from a spreadsheet.
+    Yes. Click **People** in the sidebar, then **Add person**. In the **Or add multiple entries** area, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, and confirm with **Add them all**.
   </Accordion>
   <Accordion title="What happens if I add a person when all seats are taken?">
     Beebole creates the person as archived automatically and displays a warning. The person cannot log in until you unarchive them. Unarchiving requires a free seat — either archive another person first or upgrade your subscription.
-  </Accordion>
-  <Accordion title="How do I invite multiple people at once?">
-    Select the people you want to invite using the checkboxes in the People list, then choose **Invite** from the bulk actions menu. Beebole sends invitation emails to all selected people in one operation.
   </Accordion>
   <Accordion title="Can I sign in as another user for troubleshooting?">
     Yes. Administrators can use the **Sign in as…** <Badge>Admin only</Badge> action to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.

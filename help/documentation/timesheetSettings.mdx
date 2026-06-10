@@ -1,151 +1,167 @@
 ---
-title: "Timesheet Settings"
-description: "Configure how your team enters time in Beebole. Set duration formats, entry rules, reminders, feature toggles, and default periodicity."
-keywords: ["Beebole timesheet settings", "time entry settings", "duration format", "timesheet configuration", "time tracking settings", "beebole settings", "beebole"]
-"og:title": "Configuring Timesheet Settings in Beebole"
-"og:description": "Set up duration formats, entry rules, reminders, and feature toggles for your team's timesheets in Beebole."
+title: "Timesheet settings: configuring time entry — Beebole"
+description: "Configure the Beebole timesheet for your team: period and auto-submit, entry restrictions, time entry unit and timer, categories, and reminders."
+keywords: ["beebole", "timesheet settings", "timesheet period", "time entry restrictions", "timesheet reminders", "auto-submit timesheet", "duration format"]
+"og:title": "Configuring Timesheet Settings in Your Beebole Account"
+"og:description": "Set the timesheet period, time entry unit, timer, restrictions, categories, and reminder emails for your team in Beebole."
 "og:type": "article"
 ---
 
-Beebole's timesheet settings let you control exactly how your team records time. From choosing a duration format to enabling features like timers and work-from-home flags, these settings shape the timesheet experience for everyone in your account.
+Timesheet settings control how everyone in your Beebole account records time: the period they fill and submit, the unit and format for entries, what they can track time on, which restrictions apply, and when Beebole sends reminders. While people use the timesheet itself from the sidebar (see [Timesheets](/help/documentation/timesheets)), you configure it from the **Timesheet settings** panel.
 
 <Info>
-  Timesheet settings are account-wide and apply to all users. Only administrators can change them. Go to **Settings** > **Time entry** to access these options.
+  Every change in the **Timesheet settings** panel is saved automatically — there is no save button.
 </Info>
 
 ---
 
-## Accessing timesheet settings
+## Opening Timesheet settings
 
 <Steps>
-  <Step title="Open Settings">
-    Click **Settings** in the left sidebar.
+  <Step title="Open the Settings menu">
+    Click the button with your initials at the bottom of the left sidebar.
   </Step>
-  <Step title="Go to Time entry settings">
-    Select the **Time entry** section. All timesheet configuration options are listed here.
+  <Step title="Go to Account Settings">
+    Click **Account Settings** to open your organization's settings.
+  </Step>
+  <Step title="Open the Timesheet settings panel">
+    Open the **Timesheet settings** panel. Its options are grouped into five tabs: **Period & submission**, **Categories**, **Time entry**, **Reminders**, and **Auto Timesheet**.
   </Step>
 </Steps>
 
----
-
-## Default periodicity
-
-Choose whether timesheets display as a **weekly** or **daily** view by default. This affects the layout your team sees when they open their timesheet.
-
-| Option | Description |
-|--------|-------------|
-| **Weekly** | A grid showing Monday through Sunday (or your configured week start day). Best for teams that enter time at the end of each day or week. |
-| **Daily** | A single-day view focused on one day at a time. Best for teams that track time throughout the day with start/end times. |
+Settings made here apply account-wide. The same panel also exists on each person's profile and on tags, so you can override any setting for one team or one person — see [Different settings for different teams](#different-settings-for-different-teams).
 
 ---
 
-## Time entry unit
+## Period & submission
 
-Choose the unit your team uses to enter time. The unit determines what users type into a timesheet cell.
+### Timesheet period
 
-| Unit | Example | Description |
-|------|---------|-------------|
-| **Hours** | `7.5` or `7:30` | Time entered as a number of hours |
-| **Days** | `1` or `0.5` | Time entered as full or partial workdays |
-| **% of schedule** | `100%` or `50%` | Time entered as a percentage of the scheduled workday |
+The **Timesheet period** defines the stretch of time a timesheet covers — the period people fill in, submit, and have approved as one unit. It is not just a display preference: each period is one timesheet.
 
----
-
-## Duration format
-
-When the unit is **Hours**, choose how the hours value is displayed and entered.
-
-| Format | Example | Description |
-|--------|---------|-------------|
-| **hh:mm** | `3:15` | Standard hours-and-minutes notation |
-| **Decimal** | `3.25` | Hours expressed as a decimal number |
-| **hsm** | `3h15` | Compact hours-and-minutes notation using the `h` separator |
-
-<Tip>
-  Choose the format that matches how your team thinks about time. Consulting firms often prefer decimal hours for invoicing, while manufacturing or shift-based teams may prefer hh:mm.
-</Tip>
-
----
-
-## Time format: 12-hour or 24-hour
-
-When using start/end time entry, choose between a **12-hour** (AM/PM) or **24-hour** clock format. This setting affects how times are displayed and entered throughout the application.
-
----
-
-## Duration vs. start/end times
-
-Choose whether your team enters time as:
-
-- **Duration** — A single value representing how long they worked (e.g., `3:00` or `3.0`).
-- **Start and end times** — The specific times they began and finished (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
+| Period | The timesheet covers |
+|--------|----------------------|
+| **Daily** | A single day. The grid shows one day with each row's full entry form inline. |
+| **Weekly** | One week, starting on your account's first day of the week. This is the default. |
+| **Bi-weekly** | Two consecutive weeks. |
+| **Semi-monthly** | Half a month: the 1st through the 15th, then the 16th through the end of the month. |
+| **Monthly** | A calendar month. |
 
 <Info>
-  Start/end mode provides more granular data and is useful for teams that need to track exactly when work happens, not just how long it takes.
+  Weekly and bi-weekly periods start on the day set as **First day of the week** in the **Localization** panel of **Account Settings**.
+</Info>
+
+### Auto-submit
+
+**Auto-submit timesheets after X days** submits unsubmitted timesheets automatically once the configured number of days has passed since the period ended. The auto-submitted timesheet enters the [approval workflow](/help/documentation/approval) like a manual submission. Leave the value at 0 to disable auto-submit. It does not apply when the timesheet period is **Daily**.
+
+### Restrictions
+
+The **Restrictions** list controls what time entries the timesheet accepts. By default there are none — the panel shows **No restrictions configured**. Pick a rule from the **Add restriction** menu to activate it; click the × on a restriction's chip to remove it.
+
+| Restriction | What it does |
+|-------------|--------------|
+| **No overtime beyond the schedule** | Blocks time beyond the hours in the person's [work schedule](/help/documentation/work-schedule). Available in a **daily** variant (per day) and a **period** variant (per timesheet period). |
+| **Require filling the whole schedule to submit** | The timesheet can only be submitted once all scheduled time is filled — per day (**daily**) or across the period (**period**). |
+| **Don't allow time entries in the future** | Blocks time entries on future dates. Future entries are limited to time off requests, so people can still plan vacation ahead. |
+| **Only allow time entries on working days** | Blocks entries on days with no scheduled working time. |
+| **An absence can't be longer than a day** | Caps a single time off entry at one day. |
+| **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. |
+
+Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both.
+
+---
+
+## Time entry
+
+The **Time entry** tab defines what people type into a timesheet cell.
+
+### Unit for time entry
+
+**Unit for time entry** sets the unit for every timesheet cell:
+
+| Unit | People enter |
+|------|--------------|
+| **Hours** | A duration in hours, in the format set below. |
+| **Day or fraction of day** | Full or partial workdays, such as `1` or `0.5`. |
+| **% of schedule** | A percentage of their scheduled time for that day. |
+
+### Duration format
+
+When the unit is **Hours**, two more options appear:
+
+- **Duration format** — how hour values are displayed and typed: **3:15** (hours and minutes), **3.25** (decimal hours), or **3h15** (compact hours-and-minutes notation).
+- **Minimum time interval accepted** — the smallest increment the timesheet accepts. Durations are rounded up to the nearest multiple of this interval; new accounts start at 15 minutes.
+
+### Timer, start and end times, and comments
+
+- **Enable timer** adds a timer button to each timesheet row so people can time their work as it happens — see [Using the timer](/help/documentation/timesheets#using-the-timer). Check **Mandatory** next to it to require the timer: durations can then only be recorded by running it.
+- **Record start and end times** adds **Start time** and **End time** fields to each entry's details, and Beebole calculates the duration. Check **Mandatory** next to it to require start and end times on every entry.
+- **Require comments for submission** requires a note on time entries before the timesheet can be submitted.
+
+Checking **Mandatory** switches its parent option on automatically, and disabling a parent option clears its **Mandatory** checkbox.
+
+---
+
+## Categories
+
+The **Categories** tab decides what people can track time on. Each choice becomes a section of rows in everyone's timesheet.
+
+### Project categories
+
+**Record time on these project categories** lists the [project](/help/documentation/projects) categories available in the timesheet. Each row of the list is one timesheet section:
+
+- A row with a single category — for example **Clients** — lets people pick one project from that category per timesheet row.
+- A row with chained categories — **First** **Clients**, **then** **Activities** — makes people pick one entry for each level: first a client project, then an activity.
+- Click **Add a row** to offer an alternative section, and pick its categories with **Pick a category**.
+
+### Task categories
+
+**Record time on these task categories** does the same for [tasks](/help/documentation/planning): people can add timesheet rows for tasks in the selected categories.
+
+### Time off
+
+**Allow recording time off** controls whether a **Time Off** section appears in the timesheet, where people add rows for absence types. See [Time off](/help/documentation/timeoff).
+
+<Info>
+  Removing a category here does not delete any time entries. Existing entries remain visible in timesheets and reports — people just can't add new rows for that category.
 </Info>
 
 ---
 
-## Feature toggles
+## Reminders
 
-Beebole lets you enable or disable specific timesheet features to keep the interface clean and relevant for your team.
+The **Reminders** tab configures two kinds of follow-up.
 
-| Feature | What it does |
-|---------|--------------|
-| **Timer** | Lets users start/stop a real-time timer on timesheet rows. See [Timesheets](/help/documentation/timesheets). |
-| **Work from home** | Adds a toggle on time entries to flag remote work days. |
-| **Non-billable flag** | Allows users to mark individual entries as non-billable. |
-| **Comments** | Enables a comment field on each time entry. |
-| **Row pinning** | Lets users pin frequently used project/task rows to their timesheet. |
-| **Copy previous week** | Adds a button to duplicate last week's timesheet structure. |
+### Reminding people to submit
 
-<Tip>
-  Disable features your team doesn't use to reduce visual clutter. You can always enable them later without losing any data.
-</Tip>
+**Remind to submit** sends a reminder — by email or push notification, following each person's [notification settings](/help/documentation/notifications) — to anyone who hasn't submitted their timesheet. Choose when it goes out:
 
----
+- **Start of next period** — on the first day of the new period, about the period that just ended.
+- **End of current period** — on the last day of the period being filled.
 
-## Auto-submit
+Then pick the hour. The reminder is sent at that hour in each person's time zone, includes a summary of their timesheet, and lets them submit directly from the email. People who already submitted are skipped, and reminders don't apply when the timesheet period is **Daily**.
 
-Auto-submit automatically submits timesheets for [approval](/help/documentation/approval) after a configurable number of days. This ensures timesheets enter the approval pipeline even if a team member forgets to submit manually.
+### Reminding approvers
 
-<Steps>
-  <Step title="Enable auto-submit">
-    In **Settings** > **Time entry**, toggle **Auto-submit** on.
-  </Step>
-  <Step title="Set the delay">
-    Choose the number of days after the end of a period before auto-submit triggers. For example, setting it to 3 means a weekly timesheet ending on Sunday is auto-submitted on Wednesday.
-  </Step>
-</Steps>
-
-<Warning>
-  Auto-submitted timesheets may contain incomplete data. Pair auto-submit with [timesheet reminders](#timesheet-reminders) so team members are notified before the deadline.
-</Warning>
+**Remind approvers after** a number of **days if not yet approved** follows up on submitted timesheets that are still waiting for review. The first reminder goes out the configured number of days after the approver's initial notification; while the timesheet stays pending, Beebole keeps following up at increasing intervals. Leave the value at 0 to disable approver reminders.
 
 ---
 
-## Timesheet reminders
+## Auto Timesheet
 
-Configure email reminders to notify team members when their timesheets are incomplete or not yet submitted.
-
-| Setting | Description |
-|---------|-------------|
-| **Reminder day** | The day of the week when reminders are sent |
-| **Reminder target** | Who receives the reminder: people with unfilled timesheets, unsubmitted timesheets, or both |
-
-Reminders help reduce late submissions and ensure your approval pipeline stays on schedule.
+The **Auto Timesheet** tab links time records to task statuses. Check **Enable Auto Timesheet**, pick a task category with **Pick a category**, then choose the **Start** and **End** statuses from that category's [Kanban workflow](/help/documentation/kanban) — the statuses that trigger a time record to start and end. Remove a category with the × on its row.
 
 ---
 
-## Entry rules and validation
+## Different settings for different teams
 
-Beebole can enforce rules on time entries to prevent errors:
+Timesheet settings cascade. Values set on **Account Settings** apply to everyone, but the same **Timesheet settings** panel appears on every [tag](/help/documentation/tags) and on every person's profile:
 
-- **Minimum/maximum hours per day** — Set boundaries on how much time can be logged in a single day.
-- **Required fields** — Make comments or specific custom fields mandatory before saving.
-- **Overtime warnings** — Alert users when entries exceed their scheduled hours.
+- Set a value on a **tag** to override the account default for everyone under that tag — for example, a monthly **Timesheet period** for one department.
+- Set a value on a **person** to override both the tag and the account default for that one person.
 
-These rules are optional and can be adjusted to match your organization's policies.
+Next to each setting, an icon shows where its current value is inherited from. After overriding a value, you can reset it to fall back to the inherited one.
 
 ---
 
@@ -153,16 +169,16 @@ These rules are optional and can be adjusted to match your organization's polici
 
 <CardGroup cols={2}>
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
-    Learn how your team enters time using the configured settings.
+    How your team uses the timesheet: adding rows, entering time, the timer, and submitting.
   </Card>
   <Card title="Approvals" icon="check" href="/help/documentation/approval">
-    Set up auto-submit and approval workflows for timesheet periods.
+    Submission, multi-stage approval workflows, and reviewing your team's timesheets.
   </Card>
-  <Card title="Work Schedule" icon="users" href="/help/documentation/work-schedule">
-    Define working hours used for overtime warnings and daily capacity.
+  <Card title="Work schedules" icon="calendar" href="/help/documentation/work-schedule">
+    Define the expected hours that schedule-based restrictions check against.
   </Card>
-  <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
-    Configure reminder emails for unfilled or unsubmitted timesheets.
+  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
+    Organization-wide settings, including localization and the first day of the week.
   </Card>
 </CardGroup>
 
@@ -171,19 +187,19 @@ These rules are optional and can be adjusted to match your organization's polici
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I change the duration format after my team has started tracking time?">
-    Yes. Changing the format updates how values are displayed going forward. Existing time data is preserved and converted to the new format automatically.
+  <Accordion title="How do I change the timesheet from weekly to monthly in Beebole?">
+    Open **Account Settings** from the button with your initials at the bottom of the sidebar, open the **Timesheet settings** panel, and on the **Period & submission** tab set **Timesheet period** to **Monthly**. The change applies account-wide unless a tag or person overrides it.
   </Accordion>
-  <Accordion title="Can different people use different duration formats?">
-    No. The duration format is an account-wide setting that applies to all users. This ensures consistency across reports and approvals.
+  <Accordion title="How do I stop people from logging time in the future?">
+    In Beebole's **Timesheet settings**, on the **Period & submission** tab, open **Add restriction** and pick **Don't allow time entries in the future**. Work entries on future dates are then blocked, while time off can still be requested ahead of time.
   </Accordion>
-  <Accordion title="What happens if I disable a feature like comments after people have used it?">
-    Existing comments are preserved in the database and remain visible in reports. Users simply can no longer add new comments until the feature is re-enabled.
+  <Accordion title="Can different teams have different timesheet settings?">
+    Yes. The **Timesheet settings** panel also appears on tags and on each person's profile in Beebole. A value set on a tag overrides the account default for everyone under that tag, and a value set on a person overrides both. Everything else stays inherited.
   </Accordion>
-  <Accordion title="Can I set different rules for different teams?">
-    Timesheet settings apply to the entire account. However, you can use [Assignments](/help/documentation/assignments) and [Tags](/help/documentation/tags) to control which projects and tasks are available to different teams.
+  <Accordion title="What happens if someone forgets to submit their timesheet?">
+    Two Beebole settings cover this. **Remind to submit** emails anyone who hasn't submitted, at the hour you choose, with a link to submit directly from the email. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended.
   </Accordion>
   <Accordion title="How do I change the first day of the week?">
-    Go to **Settings** > **Time entry** and update the **Week starts on** option. This changes the column order in the weekly timesheet view for all users.
+    The first day of the week is a regional setting, not a timesheet setting. In **Account Settings**, open the **Localization** panel and set **First day of the week**. Weekly and bi-weekly timesheet periods in Beebole start on that day.
   </Accordion>
 </AccordionGroup>

@@ -1,205 +1,121 @@
 ---
-title: "Kanban Board"
-description: "Organize and track tasks visually with Beebole's Kanban board. Drag and drop task cards between status columns and set WIP limits."
-keywords: ["beebole", "kanban board", "task management", "task status", "drag and drop", "WIP limits", "project tasks"]
-"og:title": "Kanban Board View in Beebole"
-"og:description": "Manage tasks visually with Beebole's Kanban board. Move tasks between status columns and track progress at a glance."
+title: "Kanban board: moving tasks through statuses — Beebole"
+description: "Move task cards between status columns on Beebole's Kanban board, set hard WIP limits per status, select multiple cards, and start time records from a card."
+keywords: ["beebole", "kanban board", "task statuses", "WIP limits", "drag and drop", "task cards", "auto timesheet"]
+"og:title": "Managing Task Statuses on the Kanban Board in Beebole"
+"og:description": "Organize Beebole tasks visually: drag cards between status columns, enforce WIP limits, archive whole columns, and log time from a card."
 "og:type": "article"
 ---
 
-Beebole's Kanban board lets you manage tasks visually by organizing them into columns based on their status. You can drag and drop task cards from one column to another as work progresses — for example, from **To Do** to **In Progress** to **Done**. The board gives your team a clear, real-time picture of where every task stands.
-
-<Info>
-  The Kanban board is one of two task views available in Beebole, alongside the [Gantt chart](/help/documentation/gantt). Both views share the same underlying task data, so changes in one view appear instantly in the other.
-</Info>
+Beebole's Kanban board displays your [tasks](/help/documentation/planning) as cards in columns — one column per status of the task category. Drag a card to another column to change its status as work progresses, for example from **Backlog** to **In progress** to **Done**. The Kanban board is one of the two views of the **Tasks** page, alongside the [Gantt chart](/help/documentation/gantt) — both show the same tasks, so a change in one view appears instantly in the other.
 
 ---
 
-## Accessing the Kanban board
+## Opening a Kanban view
 
 <Steps>
-  <Step title="Open a project">
-    Click **Projects** in the left sidebar, then select the project whose tasks you want to manage.
+  <Step title="Open the Tasks page">
+    Click **Tasks** in the sidebar. Pick the task category you want at the top of the page.
   </Step>
-  <Step title="Switch to the Kanban view">
-    Click the **Kanban** tab at the top of the task area. The board displays your tasks organized by status columns.
+  <Step title="Select a Kanban view">
+    Click a Kanban view tab above the task list. To create another one, click **Add a view** and select **Add a Kanban board**.
   </Step>
 </Steps>
 
 ---
 
-## Understanding the board layout
+## Board layout
 
-The Kanban board is organized into vertical columns, one for each task status configured in your project. Tasks appear as cards within these columns.
+Each column is one status of the active task category, in the order defined in the **Task statuses** modal. A column header shows:
 
-- **Columns** — Each column represents a status in your workflow (for example, **To Do**, **In Progress**, **Review**, **Done**). The order of columns follows the status order you define in your project settings.
-- **Task cards** — Each card shows the task name, the assigned person, and key details like the due date or priority. Click a card to open the full task detail panel.
-- **Card count** — The number displayed at the top of each column indicates how many tasks are currently in that status.
+- A **+** button (**Add a task**) that opens the add form with this status preselected.
+- The number of tasks in the column — displayed as `current/max` when the status has a **Max tasks** limit.
+- The status name. Click it to open the **Task statuses** modal.
+- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move left** / **Move right** (reorder the column), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the category's only status).
 
 ---
 
-## Configuring task statuses
+## Setting up status columns
 
-Statuses define the columns on your Kanban board. You can customize the status workflow to match how your team actually works.
-
-<Steps>
-  <Step title="Open status settings">
-    From the project's task area, click the **Settings** icon or go to the project settings. Navigate to the **Statuses** section.
-  </Step>
-  <Step title="Add or edit statuses">
-    Click **Add status** to create a new column. Enter a **Name** for the status. Drag statuses to reorder them — the order here determines the column order on the board.
-  </Step>
-  <Step title="Remove a status">
-    Click the delete icon next to a status you no longer need. You must first reassign any tasks in that status to another one.
-  </Step>
-</Steps>
+Statuses belong to the task category — not to a project — so every category defines its own columns. Click any column's name (or the **Edit statuses** gear in a task's detail panel) to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
 
 <Tip>
-  Keep your workflow simple. Three to five statuses (such as **To Do**, **In Progress**, **Review**, **Done**) work well for most teams. Adding too many columns can make the board harder to scan.
+  Keep the workflow short. New Beebole accounts start with the **Main plan** category and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
 </Tip>
 
 ---
 
-## Working with task cards
+## Working with cards
 
-### Creating a task
+- **Create a task** — Click the **+** button at the top of a column, or the **+ Add Task** button in the page header. See [creating a task](/help/documentation/planning#creating-a-task).
+- **Open a task** — Click its card. The detail panel opens with the task's dates, status, owner, description, and custom fields.
+- **Move a card** — Drag it to another column to change its status, or drop it at a different position in the same column to reorder.
+- **Act on a card** — Hover over it and click the **⋯** menu for **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
-<Steps>
-  <Step title="Add a card to a column">
-    Click the **+** button at the top or bottom of any status column. A new task card appears in that column.
-  </Step>
-  <Step title="Enter task details">
-    Type a **Name** for the task. You can also set the **Assigned to** person, **Start date**, **End date**, and **Description** from the card detail panel.
-  </Step>
-  <Step title="Save the task">
-    Click outside the card or press **Enter** to save. The task is now visible on the board and in all other task views.
-  </Step>
-</Steps>
+### Choosing what cards display
 
-### Moving a task between statuses
+Open the **⋯** menu on the active view tab and hover over **Show** to toggle the card fields: **Parent**, **Owner**, **Assignee**, **Dates**, **Projects**, and **Tags**. Each Kanban view remembers its own selection.
 
-Drag a task card from one column and drop it into another to update its status. For example, drag a card from **To Do** to **In Progress** when work begins.
+### Selecting multiple cards
 
-The status change takes effect immediately. Any filters, reports, or views that reference task status reflect the update in real time.
+- **⌘+Click** (Ctrl+Click on Windows) a card to add it to or remove it from the selection.
+- **Shift+Click** selects the whole range between two cards in a column.
+- Drag any selected card to move all selected cards together to the target column.
+- Press **Esc** to clear the selection.
 
-### Editing a task
+For bulk archiving, use the column's **⋯** menu instead — **Archive** and **Unarchive** act on the entire column at once.
 
-Click any task card to open its detail panel. From here you can update:
+---
 
-- **Name** and **Description** — Edit the task title or add a rich text description with formatting.
-- **Assigned to** — Change the person responsible for the task.
-- **Start date** and **End date** — Adjust the task's scheduled timeline.
-- **Status** — Change the status using a dropdown (an alternative to drag and drop).
-- **Custom fields** — Fill in any task-level custom fields configured for the project. See [Custom fields](/help/documentation/custom-fields).
+## WIP limits are hard limits
+
+Set **Max tasks** on a status in the **Task statuses** modal to cap how many tasks it can hold. On the board, the column header then shows `current/max`.
+
+The limit is enforced, not just suggested:
+
+- Dragging cards that would push the column over its limit is rejected — the column border turns red while you hover, and dropping shows the error *"[Status] is at its task limit (N)"*.
+- The same rule applies when changing the status from the task's detail panel, and Beebole's server enforces it too.
+- You cannot set **Max tasks** below the number of tasks currently in the column.
+
+To allow more work in the status, raise or clear its **Max tasks** value (0 means unlimited), or move tasks out first.
 
 ---
 
 ## Task descriptions
 
-Every task has a **Description** field that supports full rich text editing. Click the **Description** area in the task detail panel to open the editor.
+Every task has a **Description** panel with a rich-text editor. The toolbar offers **Bold**, **Italic**, **Code**, **Link**, **Bulleted list**, **Numbered list**, text alignment (**Align left**, **Align center**, **Align right**), **Text color**, text size, **Mention** (type **@** to reference a teammate), **Undo**, **Print / Save as PDF**, and **Attach a file** — images, videos, and PDFs, which you can also paste or drop directly into the text.
 
-The editor supports:
-
-- Text formatting — bold, italic, underline, strikethrough
-- Headings (H1, H2, H3)
-- Ordered and unordered lists
-- Code blocks with syntax highlighting
-- Links
-- Inline images, videos, and PDF attachments (drag and drop or paste)
-- @mentions to reference team members
-
-The description is shared across all task views — edits you make on the Kanban board are immediately visible when the same task is opened from the Gantt chart or the planning view.
+Edits are saved automatically. The description is part of the task, so the same content appears whether you open the task from the Kanban board or the Gantt chart.
 
 <Tip>
-  Use descriptions to capture acceptance criteria, reference links, or background context. The description panel is separate from comments, so it works well for stable task-level information.
+  Use the description for stable task-level information — acceptance criteria, reference links, background. Custom fields are better for structured data you want to filter and report on; see [Custom fields](/help/documentation/custom-fields).
 </Tip>
 
 ---
 
-## Task-level custom fields
+## Tracking time from a card
 
-Custom fields let you extend tasks with additional structured data beyond the built-in fields. A custom field is defined once in your account settings and then made visible on specific task categories.
+Hover over a card and click the clock button (**Add time**) to log time on that task for today, without leaving the board. Once time has been logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`) — click it to add more.
 
-### Supported field types
+The button only appears on tasks whose category is selected under **Record time on these task categories** in [Timesheet settings](/help/documentation/timesheetSettings).
 
-| Type | What it stores |
-|------|---------------|
-| **Text** | Free-form text, with optional length constraints and allowed value lists |
-| **Number** | Numeric value with optional validation rules |
-| **Date** | A date picker value |
-| **Date & time** | A date and time picker value |
-| **URL** | A validated URL |
-| **Yes / No** | A boolean toggle |
+### Auto Timesheet: statuses that drive time records
 
-### Configuring custom fields for tasks
-
-Custom fields are configured in **Settings > Custom fields**. When creating or editing a field, set its visibility to include the task categories where it should appear. Once visible, the field appears in the task detail panel for every task in those categories.
-
-### Filling in custom field values
-
-Open a task detail panel. Scroll to the custom fields section. Click any field to enter or select a value. Values are saved immediately when you leave the field.
-
-<Info>
-  Custom fields on tasks are separate from custom fields on projects or people. Each entity type has its own visibility configuration.
-</Info>
-
----
-
-## Setting WIP limits
-
-WIP (Work In Progress) limits let you cap the number of tasks allowed in a status column at any time. This prevents bottlenecks and encourages your team to finish tasks before starting new ones.
-
-<Steps>
-  <Step title="Open the column settings">
-    Click the column header or the settings icon on the status column where you want to set a limit.
-  </Step>
-  <Step title="Set the WIP limit">
-    Enter a maximum number of tasks for this column. For example, setting a WIP limit of 5 on the **In Progress** column means no more than 5 tasks should be in progress at once.
-  </Step>
-</Steps>
-
-When a column exceeds its WIP limit, Beebole highlights the column header as a visual warning. You can still add tasks beyond the limit, but the warning signals that the team may be overloaded.
-
-<Info>
-  WIP limits are guidelines, not hard blocks. Beebole highlights the column but does not prevent you from moving cards into an over-limit column. This keeps your workflow flexible while encouraging discipline.
-</Info>
-
----
-
-## Task ownership and assignment
-
-Every task can be assigned to one person. The assigned person's name and avatar appear on the task card, making it easy to see who is responsible for what at a glance.
-
-To filter the board by person, use the **Filter by person** option above the board. This is helpful when reviewing workload for a specific team member.
-
----
-
-## Bulk operations
-
-You can perform actions on multiple tasks at once to save time:
-
-- **Select multiple cards** — Use the checkbox on each card or use **Select all** within a column.
-- **Change status** — Move all selected tasks to a different status column.
-- **Reassign** — Change the assigned person for all selected tasks.
-- **Delete** — Remove all selected tasks.
-
-<Warning>
-  Deleting tasks is permanent. Deleted tasks are removed from all views, including the [Gantt chart](/help/documentation/gantt) and calendar.
-</Warning>
+With **Auto Timesheet**, the board itself can start and end time records. In the **Auto Timesheet** tab of [Timesheet settings](/help/documentation/timesheetSettings#auto-timesheet), check **Enable Auto Timesheet**, pick a task category, then choose the **Start** and **End** statuses — the statuses that trigger a time record to start and to end. Moving a card into those columns then drives the time record for the task.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Gantt chart" icon="chart-bar" href="/help/documentation/gantt">
-    Visualize task timelines and dependencies on an interactive timeline view.
+  <Card title="Tasks" icon="list-check" href="/help/documentation/planning">
+    What tasks are in Beebole — creating, importing, assigning, and archiving them.
   </Card>
-  <Card title="Planning" icon="clock" href="/help/documentation/planning">
-    Allocate resources across projects and track team capacity alongside task progress.
+  <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
+    Schedule the same tasks on a timeline with dependencies and a workload heatmap.
   </Card>
-  <Card title="Projects" icon="folder" href="/help/documentation/projects">
-    Set up and configure the projects that contain your Kanban tasks.
+  <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
+    Choose which task categories accept time entries and configure Auto Timesheet.
   </Card>
 </CardGroup>
 
@@ -207,24 +123,18 @@ You can perform actions on multiple tasks at once to save time:
 
 <AccordionGroup>
   <Accordion title="Can I use the Kanban board without setting up statuses first?">
-    Beebole provides a default set of statuses (such as **To Do**, **In Progress**, and **Done**) when you create a project. You can start using the board immediately and customize statuses later.
+    Yes. New Beebole accounts come with the **Main plan** task category and the statuses **Backlog**, **Queue**, **In progress**, and **Done**, so the board works immediately. You can rename, recolor, reorder, add, or remove statuses later in the **Task statuses** modal.
+  </Accordion>
+  <Accordion title="What happens when a column reaches its WIP limit?">
+    Beebole blocks the move. The column border turns red while you drag over it, and dropping shows an error saying the status is at its task limit. Raise the status's **Max tasks** value, set it to 0 for unlimited, or move other tasks out first.
+  </Accordion>
+  <Accordion title="How do I move several cards at once?">
+    **⌘+Click** cards to build a selection (or **Shift+Click** for a range within a column), then drag any selected card — all selected cards move to the target column together, as long as the move stays within the column's WIP limit.
   </Accordion>
   <Accordion title="Do changes on the Kanban board affect the Gantt chart?">
-    Yes. The Kanban board and [Gantt chart](/help/documentation/gantt) share the same task data. Changing a task's status, dates, or assignment on the board updates it everywhere.
+    Yes. The Kanban board and the Gantt chart display the same tasks from the same category. A status change, rename, or archive done on the board is immediately reflected in the Gantt view, and vice versa.
   </Accordion>
-  <Accordion title="Can I limit who can move tasks on the board?">
-    Yes. Use [Roles & permissions](/help/documentation/roles-authorisations) to control who can edit tasks. People with read-only access can view the board but cannot move cards.
-  </Accordion>
-  <Accordion title="What happens when I archive a project that has tasks on the Kanban board?">
-    Archiving a project hides it and all its tasks from active views, including the Kanban board. The data is preserved and reappears if you unarchive the project.
-  </Accordion>
-  <Accordion title="Is there a limit to the number of tasks on the Kanban board?">
-    There is no hard limit. For large projects, use filters to narrow the view by person, status, or date range.
-  </Accordion>
-  <Accordion title="How do I add a custom field to tasks?">
-    Go to **Settings > Custom fields**, create or edit a field, and set its visibility to include the relevant task categories. The field then appears in the task detail panel for all tasks in those categories.
-  </Accordion>
-  <Accordion title="Can multiple team members edit a task description at the same time?">
-    The description editor is single-user at a time. If two people open the same task simultaneously, the last save wins. For collaborative notes, use the task's comment or journal feed instead.
+  <Accordion title="How do I archive every task in a column?">
+    Open the column header's **⋯** menu and click **Archive**. The same menu offers **Unarchive** to restore the column's archived tasks — use **Show Archived** in the page header to see them.
   </Accordion>
 </AccordionGroup>

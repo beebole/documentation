@@ -29,7 +29,7 @@
 
 - `absence/types` **Configurable absence types** — Vacation, sick leave, parental leave, etc.
 - `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid or unpaid; paid absences are automatically included in people cost totals shown in reports and budgets
-- `absence/accrual` **Accrual policies** — Automatically credit employees with time off on a recurring schedule (weekly, bi-weekly, twice-monthly, or monthly) or based on hours tracked in approved timesheets; configure the accrual quantity and when within each period the credit is awarded
+- `absence/accrual` **Accrual policies** — Configurable on allowances: frequency (weekly, bi-weekly, twice-monthly, or monthly), quantity, and when within each period the credit is awarded. NOTE: the automatic awarding engine is NOT yet implemented (draft feature request: `../reboot/docs/feature-requests/7. absence-accrual-engine.md`) — accrued balances are adjusted manually via the allowance's **Accrued** field
 - `absence/carry-forward` **Carry-forward rules** — Set a maximum balance that rolls over when a time-off allowance period ends; any excess above the limit expires
 - `absence/negative-balance` **Negative balance controls** — Allow or restrict going below zero
 - `absence/quotas` **Absence quotas** — Per-person allowances with period definitions
@@ -77,7 +77,7 @@
 - `tasks/hierarchy` **Hierarchical tasks** — Tasks organized under categories with nesting
 - `tasks/statuses` **Task statuses** — Configurable status workflow (e.g., To Do → In Progress → Done)
 - `tasks/ownership` **Task ownership** — Assign people to tasks
-- `tasks/recurring` **Recurring tasks** — Set tasks to repeat on a configurable schedule (daily, weekly, monthly, yearly, or by working days)
+- `tasks/recurring` **Recurring tasks** — HIDDEN: UI exists but is disabled behind `SHOW_TASK_RECURRENCE = false` (issue #1557); not user-visible, do NOT document until the flag ships
 - `tasks/custom-fields` **Task-level custom fields** — Custom attributes per task
 - `tasks/descriptions` **Task descriptions** — Add free-text descriptions to tasks
 - `tasks/move-category` **Move task between categories** — Reassign a root-level task and its subtasks to a different category via the context menu
@@ -293,7 +293,7 @@
 - `ui/multi-language` **Multi-language UI** — English, Spanish, French, German, Italian, ...
 - `ui/responsive` **Responsive layout** — Resizable panels and sidebar
 - `ui/keyboard` **Keyboard navigation** — Escape to close menus, keyboard shortcuts
-- `ui/undo-redo` **Undo/redo** — Cmd+Z / Cmd+Shift+Z with operation grouping for bulk changes
+- `ui/undo-redo` **Undo/redo** — ⌘+Z / ⌘+Shift+Z (Ctrl on Windows/Linux) with operation grouping for bulk changes
 - `ui/global-search` **Panel search** — Fuzzy search within each panel/list; there is no single cross-application search
 - `ui/realtime-sync` **Real-time sync** — Changes by teammates appear instantly without refreshing
 - `ui/fast-loading` **Fast loading** — Data is cached locally for near-instant page loads
