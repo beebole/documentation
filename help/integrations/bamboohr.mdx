@@ -32,6 +32,8 @@ Beebole's BambooHR integration connects your BambooHR account to Beebole so that
 
   <Accordion title="Absence type mapping">
     BambooHR time-off types are matched to Beebole absence types by name (case-insensitive). If a matching absence type exists in Beebole, the integration links to it. If no match is found, a new absence type is created automatically. Time-off types measured in hours are configured with an hourly unit in Beebole.
+
+    <Warning>BambooHR's paid/unpaid setting is not carried over — all imported absences are created as paid in Beebole, even if the time-off type is unpaid in BambooHR. After the import, edit the created absence type in Beebole and adjust **Is paid (included in people costs)** to replicate the unpaid setting manually.</Warning>
   </Accordion>
 
   <Accordion title="Time-off request sync">
@@ -125,6 +127,10 @@ To disconnect your BambooHR account entirely, click **Reset connection**. This r
 
   <Accordion title="How is the duration calculated for day-based time-off requests?">
     For requests measured in days, Beebole multiplies the day amount by the employee's scheduled working hours for that day (based on their assigned work schedule). If the employee has no schedule, Beebole uses 8 hours per day as the default. Requests measured in hours use the exact hourly amount from BambooHR.
+  </Accordion>
+
+  <Accordion title="Are unpaid BambooHR time-off types imported as unpaid in Beebole?">
+    No. All absences imported from BambooHR are created as paid in Beebole, regardless of how they are defined in BambooHR. To treat a type as unpaid, edit the corresponding absence type in Beebole after it has been created by the import and turn off **Is paid (included in people costs)**.
   </Accordion>
 
   <Accordion title="What happens if a time-off request is cancelled or modified in BambooHR?">

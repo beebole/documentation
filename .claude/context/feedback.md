@@ -13,7 +13,7 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 
 ## Site-wide
 
-- **Don't invent features from SaaS clichés.** If a feature, label, settings path, plan tier, or workflow isn't in `../reboot`, it doesn't exist. Don't borrow what "most SaaS apps have." Past leaks: "Pro and Enterprise plans", `Settings > Audit trail`, "Request changes" approval action, PIN-based sign-in, calendar views in Gantt/Kanban, diamond milestone markers, Google/Microsoft Calendar integrations — none of these are in code.
+- **Don't invent features from SaaS clichés.** If a feature, label, settings path, plan tier, or workflow isn't in `../reboot`, it doesn't exist. Don't borrow what "most SaaS apps have." This includes planned-but-unshipped features: document only what's in the code today. Past leaks: "Pro and Enterprise plans", `Settings > Audit trail`, "Request changes" approval action, password-based sign-in (Beebole has **no passwords** — sign-in is a one-time 6-digit code emailed to the user, plus passkeys, Google/Microsoft, SSO), calendar views in Gantt/Kanban, diamond milestone markers, Google/Microsoft Calendar integrations — none of these are in code.
   - **Why:** The audit found ~30 fabricated claims following this exact pattern. Documentation describes what the app does, not what it could plausibly do.
   - **How to apply:** Before writing any factual claim, find a backing reference in `../reboot` (`labels.json` entry, component file, backend entity, or `features.md`). If none exists, omit the claim or mark it `[VERIFY:]`.
 
@@ -23,7 +23,7 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 
 - **Route navigation through the right place: sidebar vs Account Settings.** Beebole has two top-level navigation surfaces and they hold different things. Don't mix them up.
   - **Sidebar** (left nav, per `../reboot/frontend/src/app/side-bar.ts`): **People**, **Projects**, **Tags** (auth-gated), plus **Tasks**, **Timesheet**, **Reports**, **Journal** (always). Write *"click **X** in the sidebar"*.
-  - **Account Settings menu** (per `../reboot/frontend/src/components/settings/settings-menu.ts`): **Subscription**, **Person roles**, **Schedule types**, **Integrations**, **Export data**, **GDPR**, **Time Off** (label: `absenceTypes`), **Expense types**, **Custom Fields**, **Account delete**. Write *"go to **Settings** > **X**"*.
+  - **Settings menu** (per `../reboot/frontend/src/components/settings/settings-menu.ts` and `connected-person-sheet.ts`): opened from the button with the user's initials at the bottom of the sidebar. Items: **Account Settings**, **Subscription**, **Person roles**, **Schedule types**, **Integrations**, **Export data**, **GDPR**, **Time Off** (label: `absenceTypes`), **Expense types**, **Custom Fields**, **Account delete**. Write *"go to **Settings** > **X**"* — and never "Settings > Account": the org-settings page is the **Account Settings** menu item.
   - **Inside an entity's settings panel** (not a top-level menu): some configuration lives as attributes on the Organisation entity itself — for example **SSO**, opened from the org-settings panel rather than a discrete menu entry. Verify the entry-point in code before describing the path.
   - **Why:** Past audits found "Settings > People" / "Settings > Tags" (sidebar items routed through Settings), and the inverse — "click Custom Fields in the sidebar" (a Settings-menu item described as a sidebar item). Both break the user's ability to follow the instruction.
   - **How to apply:** Before writing any navigation step, check both files above. If the route isn't in either, it's likely an entity-attribute or a sub-page — verify in code, don't guess.
@@ -67,6 +67,10 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 - **Beebole saves most changes automatically — only write "Click Save" when that form really has a Save button.** Attribute edits commit via auto-saved mutations; add-forms have explicit submit buttons (labeled **Add**, not **Save**).
   - **Why:** Three pages instructed users to click a **Save** button that doesn't exist (work schedules, custom fields, assignments).
   - **How to apply:** Check the component before writing a save step. For auto-saved settings write *"the change is saved automatically"*; for add-forms name the real submit label.
+
+- **Use "task" only for the Planning entity.** Tasks in Beebole are independent planning entities (planned, scheduled, assigned, time-trackable) — never use "task" as a generic word for work items or as a sub-element of projects.
+  - **Why:** Reviewer feedback (Miguel): loose "tasks" phrasing ("internal administrative tasks", "Sub-projects — Tasks or activities…") blurs the distinction between subprojects and the Task entity.
+  - **How to apply:** For generic work, write "work", "activities", or "work items". Reserve "task" for the entity managed in Planning/Gantt/Kanban; note that time can be tracked on tasks as well as projects.
 
 - **Use `<Info>`, never `<Note>`. Use the em-dash `—`, never `--`.**
   - **Why:** `<Info>`-only is a project rule (`documentation-structure.md:66`) for cross-site consistency. `--` renders inconsistently across browsers and is a typewriter stand-in, not real punctuation.

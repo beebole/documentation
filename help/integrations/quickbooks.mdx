@@ -1,21 +1,23 @@
 ---
 title: "QuickBooks Online"
-description: "Export time and expense data from Beebole to QuickBooks Online to streamline invoicing, billing, and payroll with automatic, scheduled data transfer."
-keywords: ["beebole", "QuickBooks", "QuickBooks Online", "export", "invoicing", "payroll", "time tracking", "expenses"]
+description: "Connect Beebole to QuickBooks Online: import customers, items, and employees into Beebole, then export time entries as QuickBooks time activities in one click."
+keywords: ["beebole", "QuickBooks", "QuickBooks Online", "export", "invoicing", "payroll", "time tracking", "time activities"]
 "og:title": "Beebole QuickBooks Integration"
-"og:description": "Export time and expense data from Beebole to QuickBooks Online for invoicing and payroll."
+"og:description": "Import QuickBooks customers, items, and employees into Beebole, and export time entries as time activities."
 "og:type": "article"
 ---
 
-Beebole's QuickBooks Online integration lets you export time and expense data directly from Beebole into QuickBooks. Instead of manually re-entering tracked hours and expenses, you can transfer approved data with a few clicks. This simplifies invoicing, payroll, and financial reporting for your organization.
+Beebole's QuickBooks Online integration works in two directions. When you connect it, Beebole imports your QuickBooks structure — customers, items, and employees — so both systems share the same entities. From then on, you can export time entries to QuickBooks as time activities in one click. This simplifies invoicing, payroll, and financial reporting for your organization.
 
 ---
 
 ## How it works
 
-The QuickBooks integration exports time entries and expense records from Beebole into your QuickBooks Online account. You select a date range in Beebole, review the data to export, and send it to QuickBooks. The exported data appears in QuickBooks as time activities and expense entries that you can use for invoicing and payroll.
+When you enable the integration, Beebole imports your existing QuickBooks Online data: **Customers** and **Items** are created as projects in Beebole, and QuickBooks **employees** are created as Beebole people — assigned the default role you select during setup, as with the other integrations.
 
-<Info>The QuickBooks integration is a one-way export from Beebole to QuickBooks. Changes made in QuickBooks are not synced back to Beebole.</Info>
+To export, you simply select a period: Beebole takes all time entries for that period and automatically creates the corresponding **time activities** in QuickBooks. Only errors are displayed on screen — you can verify the created time activities in QuickBooks.
+
+<Info>Only time entries are exported to QuickBooks. Expenses are not synced — they are handled in Beebole only.</Info>
 
 ---
 
@@ -31,8 +33,11 @@ The QuickBooks integration exports time entries and expense records from Beebole
   <Step title="Authorize access">
     Follow the Intuit OAuth prompts to grant Beebole access to your QuickBooks account. The popup closes automatically when the connection is complete.
   </Step>
+  <Step title="Choose the default role">
+    Select the default role to assign to the people imported from QuickBooks, as with the other integrations. Beebole then imports your QuickBooks customers, items, and employees.
+  </Step>
   <Step title="Verify the connection">
-    Once connected, the QuickBooks integration shows as active in your integration settings. You can now export data from Beebole to QuickBooks.
+    Once connected, the QuickBooks integration shows as active in your integration settings, and the imported customers, items, and employees appear in Beebole. You can now export time entries to QuickBooks.
   </Step>
 </Steps>
 
@@ -41,34 +46,30 @@ The QuickBooks integration exports time entries and expense records from Beebole
 ## Exporting data to QuickBooks
 
 <Steps>
-  <Step title="Navigate to the export page">
-    Go to **Settings** > **Integrations** > **QuickBooks** and click **Export data**.
+  <Step title="Open the QuickBooks integration">
+    Go to **Settings** > **Integrations** and open the **QuickBooks** integration.
   </Step>
-  <Step title="Select a date range">
-    Choose the start and end dates for the data you want to export. Only approved time entries and expenses within this range are included.
+  <Step title="Select a period and export">
+    Choose the period you want to export and click the export button — that's the only input needed. Beebole fetches the time entries for that period and automatically creates the corresponding time activities in QuickBooks.
   </Step>
-  <Step title="Review the export">
-    Beebole displays a summary of the data that will be sent to QuickBooks. Review the entries to ensure they are correct.
-  </Step>
-  <Step title="Send to QuickBooks">
-    Click **Export** to transfer the data. Beebole sends the entries to your QuickBooks account.
+  <Step title="Check the result">
+    Only errors are displayed on screen. To confirm the export, open QuickBooks and verify the time activities were created.
   </Step>
 </Steps>
 
-<Tip>Export data after the approval cycle is complete for a given period. This ensures only reviewed and approved entries are sent to QuickBooks.</Tip>
+<Tip>Export after the approval cycle is complete for a given period, so the hours sent to QuickBooks are final.</Tip>
 
 ---
 
-## What data is exported
+## What data is synced
 
-| Beebole data | QuickBooks result |
-|--------------|-------------------|
-| **Time entries** | Created as time activities in QuickBooks. |
-| **Expenses** | Created as expense entries in QuickBooks. |
-| **Employee names** | Matched to existing employees or vendors in QuickBooks by name. |
-| **Project names** | Mapped to customers or projects in QuickBooks. |
+| Direction | Data | Result |
+|-----------|------|--------|
+| QuickBooks → Beebole (at setup) | **Customers** and **Items** | Created as projects in Beebole |
+| QuickBooks → Beebole (at setup) | **Employees** | Created as Beebole people with the default role you select |
+| Beebole → QuickBooks (on export) | **Time entries** | Created as time activities in QuickBooks |
 
-<Warning>Ensure that employee and project names in Beebole match the corresponding records in QuickBooks. Mismatched names may cause export errors or create duplicate entries.</Warning>
+<Info>Because Beebole imports the QuickBooks entities at setup, exported time activities stay linked to the right customers, items, and employees automatically. Expenses are not synced in either direction — they are handled in Beebole only.</Info>
 
 ---
 
@@ -112,8 +113,12 @@ To disconnect the QuickBooks integration, go to **Settings** > **Integrations**,
     No. Beebole integrates with QuickBooks Online only. QuickBooks Desktop is not supported.
   </Accordion>
 
-  <Accordion title="What happens if an employee name does not match?">
-    If Beebole cannot find a matching employee or vendor in QuickBooks, the export for that entry may fail. Ensure names are consistent across both systems before exporting.
+  <Accordion title="How do I know if an export succeeded?">
+    Beebole displays only the errors on screen after an export. If nothing is flagged, the time activities were created — open QuickBooks to verify them. Entries that fail are listed so you can correct and re-export them.
+  </Accordion>
+
+  <Accordion title="Are expenses exported to QuickBooks?">
+    No. Only time entries are exported, as time activities. Expenses are handled in Beebole only and are not synced to QuickBooks.
   </Accordion>
 
   <Accordion title="Do I need admin access in both Beebole and QuickBooks?">

@@ -1,21 +1,21 @@
 ---
 title: "Authentication & Security"
-description: "Manage how your team signs in to Beebole: email and password, single sign-on (SSO), passkeys, Google or Microsoft OAuth, PIN codes, and API keys."
+description: "Manage how your team signs in to Beebole: email PIN codes, passkeys, Google or Microsoft sign-in, single sign-on (SSO), and API keys."
 keywords: ["beebole", "authentication", "login", "SSO", "single sign-on", "passkeys", "Google sign-in", "Microsoft sign-in", "API keys", "security", "OpenID Connect"]
 "og:title": "Authentication & Security in Beebole"
 "og:description": "Learn about Beebole's sign-in options including SSO, passkeys, OAuth, PIN codes, and API key management."
 "og:type": "article"
 ---
 
-Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organization's security requirements — from simple email and password to enterprise SSO with OpenID Connect.
+Beebole supports multiple authentication methods so your team can sign in securely and conveniently. There are no passwords to create or remember — security is managed through one-time email codes, passkeys, Google or Microsoft sign-in, and enterprise SSO with OpenID Connect.
 
 ---
 
 ## Sign-in methods
 
-### Email and password
+### Email code
 
-The default sign-in method. Each person creates a password when they accept their invitation to Beebole. Passwords must meet minimum security requirements and can be changed at any time from the person's profile.
+The default sign-in method. Enter your email address on the sign-in page and Beebole sends a one-time 6-digit code to your inbox. Enter the code to complete sign-in — there is no password. The code is single-use and expires after a short time; request a new one if it doesn't arrive.
 
 ### Google and Microsoft sign-in
 
@@ -27,7 +27,7 @@ Team members can sign in using their existing Google or Microsoft account. This 
 
 ### Passkeys
 
-Beebole supports passwordless sign-in with passkeys — using fingerprint, face recognition, or a hardware security key. Passkeys work across all your devices and provide a fast, phishing-resistant sign-in experience.
+For an even faster sign-in, Beebole supports passkeys — using fingerprint, face recognition, or a hardware security key. Once a passkey is registered for your account, the sign-in page triggers it automatically, so you skip the email code entirely. Passkeys provide a fast, phishing-resistant sign-in experience.
 
 <Steps>
   <Step title="Open your profile">
@@ -44,14 +44,6 @@ Beebole supports passwordless sign-in with passkeys — using fingerprint, face 
 <Tip>
   You can register multiple passkeys — for example, one on your laptop and another on your phone — so you always have a way to sign in.
 </Tip>
-
-### Email code (passwordless)
-
-Instead of entering a password, you can sign in with a one-time verification code sent to your inbox. On the sign-in page, click **Send code instead** and Beebole sends a 6-digit code to your email address. Enter the code to complete sign-in.
-
-<Info>
-  The code is single-use and expires after a short time. If you do not receive it, click **Didn't receive the code? Resend** to request a new one.
-</Info>
 
 ## Single sign-on (SSO)
 
@@ -72,7 +64,7 @@ SSO is available as part of the **Custom Domain & SSO** add-on. Go to **Settings
     Turn on **Automatically create new users on first SSO login** to provision accounts automatically when a user with a matching domain signs in for the first time.
   </Step>
   <Step title="Enforce Google sign-in (optional)">
-    Enable **Disable interactive sign-in. Only Google sign-in allowed** to block password and email-code sign-in for your organization.
+    Enable **Disable interactive sign-in. Only Google sign-in allowed** to block email-code sign-in for your organization.
   </Step>
 </Steps>
 
@@ -108,7 +100,7 @@ Use this option for any OpenID Connect-compatible provider (Okta, Auth0, Microso
 
 ### Enforcing SSO organization-wide
 
-Each SSO provider has a dedicated enforcement toggle that disables interactive sign-in (email/password and email codes) for your entire organization. Once enabled, users must sign in through the configured SSO provider.
+Each SSO provider has a dedicated enforcement toggle that disables interactive sign-in (email codes) for your entire organization. Once enabled, users must sign in through the configured SSO provider.
 
 <Warning>
   Before enabling enforcement, verify that SSO is working correctly by signing in as a test user. If your identity provider becomes unavailable, users will be locked out. Keep an administrator's direct access available as a fallback, or disable enforcement temporarily from the SSO settings.
@@ -211,19 +203,19 @@ To delete your account, go to your profile, scroll to the bottom, and click **De
 
 <AccordionGroup>
   <Accordion title="Can I use multiple sign-in methods at the same time?">
-    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey — all active simultaneously. They can use whichever is most convenient.
+    Yes. A person can sign in with an email code, a linked Google or Microsoft account, or a passkey — all active simultaneously. They can use whichever is most convenient.
   </Accordion>
   <Accordion title="Does SSO replace other sign-in methods?">
-    When SSO is enabled, it becomes the primary sign-in method. However, administrators can retain email/password access as a backup.
+    When SSO is enabled, it becomes the primary sign-in method. Email-code sign-in remains available unless you turn on the enforcement toggle for your provider.
   </Accordion>
   <Accordion title="Can I require all team members to use SSO?">
     Yes. Each SSO provider (Google, Microsoft, Custom OpenID) has an enforcement option that disables all other sign-in methods. Enable the **Disable interactive sign-in** toggle in the relevant tab under **Settings** > **Single Sign On**.
   </Accordion>
-  <Accordion title="What is the email code sign-in option?">
-    Email code sign-in lets you authenticate without a password. On the sign-in page, click **Send code instead** and Beebole sends a 6-digit code to your email address. This is useful if you have forgotten your password or prefer not to manage one.
+  <Accordion title="Why doesn't Beebole ask me for a password?">
+    Beebole doesn't use passwords. Signing in works with a one-time 6-digit code sent to your email — or, faster, with a passkey, your Google or Microsoft account, or your organization's SSO provider. With no password to steal or reuse, there's nothing to forget or reset.
   </Accordion>
-  <Accordion title="How do I reset a team member's password?">
-    As an administrator, you can resend an invitation from the person's profile, which lets them set a new password. Alternatively, the person can use the **Forgot password** flow on the sign-in page.
+  <Accordion title="A team member can't sign in — what should I check?">
+    Confirm they're using the email address on their Beebole profile, and ask them to check their spam folder for the 6-digit code email. As an administrator, you can also resend their invitation from their profile.
   </Accordion>
   <Accordion title="What happens to API keys when a person is archived?">
     API keys belonging to archived users are deactivated. If you reactivate the person, you need to generate new keys.

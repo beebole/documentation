@@ -1,6 +1,6 @@
 ---
 title: "Work Schedules"
-description: "Define weekly work patterns in Beebole, create multiple schedules for different teams, and assign them to people, tags, or your entire organization."
+description: "Define work patterns in Beebole — weekly or any cycle length — create multiple schedules for different teams, and assign them to people, tags, or your organization."
 keywords: ["Beebole work schedules", "weekly work pattern", "working hours", "schedule assignment", "work schedule setup", "time tracking schedule", "beebole"]
 "og:title": "Work Schedules in Beebole"
 "og:description": "Learn how to define, assign, and manage work schedules for your team in Beebole."
@@ -17,7 +17,7 @@ Beebole's work schedules define the standard working hours for your team. A sche
 
 ## Understanding work schedules
 
-A work schedule is a repeating weekly pattern that defines working hours for each day. For example, a standard full-time schedule might specify 8 hours from Monday to Friday and 0 hours on weekends.
+A work schedule is a repeating pattern that defines working hours for each day of its cycle. For example, a standard full-time schedule might specify 8 hours from Monday to Friday and 0 hours on weekends — but the cycle can span any number of days (see [Schedule length](#schedule-length)).
 
 Beebole supports multiple schedules in a single account, so you can define different patterns for different teams, roles, or employment types — such as full-time, part-time, or shift-based arrangements.
 
@@ -48,7 +48,7 @@ Beebole supports multiple schedules in a single account, so you can define diffe
 
 ## Schedule length
 
-By default, a work schedule covers a 7-day cycle that repeats every week. Beebole also supports longer cycles for teams with rotating patterns. For example, you can configure a 14-day cycle where the first 7 days have different hours from the next 7.
+A work schedule doesn't have to follow a weekly pattern — it can repeat over any number of days. The most common setup is a 7-day cycle that repeats every week, but you can just as easily configure a 14-day cycle where the first 7 days have different hours from the next 7, or a 10-day rotation for shift-based teams.
 
 To configure a longer cycle, increase the **Length in days** when editing the schedule. Each day in the cycle gets its own set of working hours, and Beebole repeats the full cycle indefinitely.
 
@@ -96,9 +96,9 @@ To set a schedule for a specific period:
   </Step>
 </Steps>
 
-<Warning>
-  When a person has overlapping schedule periods, the most recently created period takes priority. Review existing periods before adding new ones to avoid conflicts.
-</Warning>
+<Info>
+  It is not possible to assign schedules for overlapping periods at the same level (person, tag, or organisation). If a new assignment overlaps an existing one at that level, Beebole rejects it — adjust the dates of the existing period first.
+</Info>
 
 ---
 
