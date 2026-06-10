@@ -32,6 +32,42 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **Why:** "Pro and Enterprise plans" appeared on 6+ integration pages despite no Enterprise tier ever existing. Plan names also change over time.
   - **How to apply:** Read `subscription.ts` before naming any tier. If you can't find a feature's plan gating in code, omit the claim — don't invent one.
 
+- **Use American English in prose.** No British spellings: organisation → organization, authorise → authorize, localisation → localization, colour → color, behaviour → behavior, sub-project → subproject.
+  - **Why:** Reviewer feedback (Helen, 2026-04): the docs mixed British and American conventions. The app's own displayed UI strings are predominantly American ("Subprojects available", "this organization").
+  - **How to apply:** Write American forms in all prose. Exception: a UI label quoted verbatim from `labels.json` keeps its exact spelling even if British. URL slugs never change (`/help/documentation/roles-authorisations` keeps its spelling).
+
+- **Step-by-step instructions include every click, including overflow menus.** If a control sits behind a kebab/three-dot menu, say so before naming it.
+  - **Why:** Reviewer feedback: "open their profile and click Archive" fails because **Archive** only appears after opening the action menu (`entity-name.ts` renders it inside `bb-action-menu-button`). Same for assigning tags on a profile.
+  - **How to apply:** Walk the real click path in code before writing steps. Pattern: *"click the **⋯** action menu, then **Archive**"*.
+
+- **Name add-controls by their label, not "the [+] icon".** Every add control has a text label or tooltip in `labels.json` (e.g. **Add person**, **Add Task**, **Add tag**) — use it.
+  - **Why:** Both reviewers flagged bare "[+]" as confusing. Some add buttons are icon-only in the UI, but each still has a labeled tooltip the user can see.
+  - **How to apply:** Write *"click **+ Add person**"* (or *"click the **+** button (**Add person**)"* for icon-only controls). Never describe a control by its shape alone.
+
+- **Card and link descriptions must match the target page's actual content.** Don't describe what a page could plausibly cover — describe what it covers.
+  - **Why:** Landing-page cards described tasks on a page that doesn't cover tasks, and "scheduling tools" on a page that's mostly about task planning.
+  - **How to apply:** Before writing a `<Card>` description or link blurb, skim the target page's H2s and describe those.
+
+- **No intro text that merely restates the heading.** If the first paragraph under a heading adds nothing the heading didn't say, delete it.
+  - **Why:** Reviewer feedback found several pages opening with filler that repeats the page title or subheading.
+  - **How to apply:** After drafting, reread each section opener and cut it if it carries no new information.
+
+- **Examples should match the sample data a new account contains.** Prefer the seeded names over invented ones.
+  - **Why:** A new account is seeded (see `../reboot/scripts/seed-demo.mjs` / `seed-mini.mjs`) with categories like **Customer**, **Internal**, **Activity** and projects like **Acme Corp**, **Website Redesign**, **Development** — examples that match what the reader actually sees on screen.
+  - **How to apply:** When inventing an example category/project/person, check the seed scripts first and reuse those names where natural.
+
+- **Entity-attribute options vary by entity type — verify per entity.** The same attribute panel (Show or hide, billing rates, availability toggles…) offers different options on a person, project, tag, or task.
+  - **Why:** The projects page listed absence types and tasks under **Show or hide** — options that exist for people, not projects (`frontend/src/components/attributes/options.ts` switches on `EntityType`).
+  - **How to apply:** Before listing an attribute's options, read the component's `case EntityType.<x>` branch for the specific entity being documented.
+
+- **Place callouts in the section about their topic.** A `<Tip>`/`<Info>` about roles belongs in the roles section, not at the top of the page.
+  - **Why:** Reviewer feedback: a roles callout at the top of the People page felt out of place with a roles section further down.
+  - **How to apply:** When adding a callout, attach it to the heading that covers the same topic; if no section exists, reconsider whether the callout belongs on the page.
+
+- **Beebole saves most changes automatically — only write "Click Save" when that form really has a Save button.** Attribute edits commit via auto-saved mutations; add-forms have explicit submit buttons (labeled **Add**, not **Save**).
+  - **Why:** Three pages instructed users to click a **Save** button that doesn't exist (work schedules, custom fields, assignments).
+  - **How to apply:** Check the component before writing a save step. For auto-saved settings write *"the change is saved automatically"*; for add-forms name the real submit label.
+
 - **Use `<Info>`, never `<Note>`. Use the em-dash `—`, never `--`.**
   - **Why:** `<Info>`-only is a project rule (`documentation-structure.md:66`) for cross-site consistency. `--` renders inconsistently across browsers and is a typewriter stand-in, not real punctuation.
   - **How to apply:** No `<Note>` in any new draft. Type `—` or use Option-Shift-Hyphen on macOS.
@@ -42,4 +78,6 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 
 ## Per-page
 
-*No rules filed yet. Entries appear as `### /help/...` H3 sections, each with a bullet list.*
+### /help/documentation/roles-authorisations
+
+- **Organize this page by permission type.** Readers look up what a specific permission means; structure the body as one section per permission group (Approval events / Approval workflow, Billing rates / Costs, Custom Fields, Expenses, People details, Project details / Tasks / Budgets, Timesheet entries / Time off / Schedules, Journal feed, Reports, admin settings), each explaining that permission's meaning and its view/manage controls. Keep sections for creating and managing roles, assigning roles to people, and best practices. Permission names come from the `authorization` labels in `labels.json` (e.g. **Approval events**, **Billing rates**, **Define Custom Fields**, **Timesheet entries**, **Time off records**).

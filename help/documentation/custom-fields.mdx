@@ -10,7 +10,7 @@ keywords: ["Beebole custom fields", "custom data fields", "field types", "custom
 Beebole's custom fields let you capture additional information beyond the standard fields. You can add custom fields to people, projects, tasks, and time entries — then use that data for filtering, reporting, and analysis. Whether you need an employee ID on every person, a client reference on each project, or a billing code on every time entry, custom fields make it possible.
 
 <Info>
-  Custom fields appear in reports and data exports, so they are a powerful way to segment and analyze your data by dimensions that matter to your organisation.
+  Custom fields appear in reports and data exports, so they are a powerful way to segment and analyze your data by dimensions that matter to your organization.
 </Info>
 
 ---
@@ -37,19 +37,16 @@ Beebole supports several field types, each suited to a different kind of data:
     Go to **Settings** > **Custom Fields**.
   </Step>
   <Step title="Add a new field">
-    Click the **[+]** button. Enter a **Name** for the field (e.g., "Employee ID", "Cost Center").
+    Click the **+** button and enter a **Name** for the field (e.g., "Employee ID", "Cost Center").
   </Step>
   <Step title="Choose the field type">
-    Select the appropriate type from the **Type** dropdown: **Text**, **Number**, **Date**, **Datetime**, **URL**, or **Boolean**.
+    Select the appropriate type from the **Field type** dropdown: **Boolean**, **Date**, **Datetime**, **Number**, **Text**, or **URL**.
+  </Step>
+  <Step title="Configure the type's optional settings">
+    The options for the selected type appear directly below it. Set a **Default value**, **Placeholder text**, or validation rules as needed (see sections below).
   </Step>
   <Step title="Set the entity visibility">
-    Choose where this field appears: **Person**, **Project**, **Task**, or **Time entry**. A single field can apply to one or more entity types.
-  </Step>
-  <Step title="Configure optional settings">
-    Set a **Default value**, **Placeholder text**, or validation rules as needed (see sections below).
-  </Step>
-  <Step title="Save the field">
-    Click **Save**. The field now appears on the relevant entity forms.
+    Choose where this field appears: **Person**, **Project**, **Task**, or **Time entry**. A single field can apply to one or more entity types. Changes save automatically — the field now appears on the relevant entities.
   </Step>
 </Steps>
 
@@ -67,6 +64,12 @@ Each custom field is attached to one or more entity types. This controls where t
 <Tip>
   Time entry custom fields are especially useful for capturing context at the moment of tracking. They show up as additional columns or fields on the timesheet and are included in reports.
 </Tip>
+
+---
+
+## Filling in field values on entities
+
+Once a field is defined, you don't add it to individual entities — it appears automatically on every entity covered by its visibility settings. To enter a value, open the entity (a person's profile, a project, or a task), go to its **Custom fields** attribute panel, and fill in the value for each field listed there. For time-entry fields, the value is entered directly on the timesheet row. Values save automatically as you enter them.
 
 ---
 
@@ -102,10 +105,7 @@ To configure category-level visibility:
     Go to **Settings** > **Custom Fields** and click the field you want to configure.
   </Step>
   <Step title="Set category visibility">
-    In the **Visibility** section, select the specific project or task categories where this field should appear. Leave it blank to show the field on all categories.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The field now only appears on entities within the selected categories.
+    In the **Visibility** section, select the specific project or task categories where this field should appear. Leave it blank to show the field on all categories. The change is saved automatically.
   </Step>
 </Steps>
 

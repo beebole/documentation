@@ -10,7 +10,7 @@ keywords: ["Beebole assignments", "project availability", "task assignments", "a
 Beebole's assignments control what each person sees and can use in their timesheet. Instead of showing every project, absence type, and expense type to everyone, you configure which items are available by default — and then override those defaults for specific people, tags, or projects. This keeps timesheets clean and relevant.
 
 <Info>
-  Assignments complement [Roles & authorisations](/help/documentation/roles-authorisations). Roles determine what a person **can do** (permissions), while assignments determine what a person **can see** (available items).
+  Assignments complement [Roles & authorizations](/help/documentation/roles-authorisations). Roles determine what a person **can do** (permissions), while assignments determine what a person **can see** (available items).
 </Info>
 
 ---
@@ -31,24 +31,15 @@ Assignments apply to five types of items:
 
 ## Default availability
 
-Every item has a default availability setting that determines whether it is available to everyone or no one by default:
+Each item type has a default that determines whether it is available to everyone or no one:
 
 - **Available by default** — The item appears for all people unless explicitly removed for specific people or groups.
 - **Not available by default** — The item is hidden from everyone unless explicitly added for specific people or groups.
 
-To set the default availability:
+Where you set that default depends on the item type — not every item carries its own toggle:
 
-<Steps>
-  <Step title="Open the item's settings">
-    Navigate to the item (e.g., a project, an absence type) and open its settings.
-  </Step>
-  <Step title="Set the default">
-    Look for the **Availability** or **Assignment** section. Toggle whether the item is available by default.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The default availability applies to everyone unless overridden.
-  </Step>
-</Steps>
+- **Projects** have an availability toggle directly on the project: open the project and set whether it is available to everyone by default. The change is saved automatically.
+- **Absence types, expense types, tasks, and custom fields** don't have a per-item toggle. Their organization-wide defaults are controlled by the **Show or hide** settings at the organization level, and you then add or remove availability for specific people or tags with overrides.
 
 <Tip>
   For items that most people need (like a general "Vacation" absence type), set them as available by default. For items that only some people use (like a project for a specific client team), set them as not available by default and add specific people or tags.
@@ -73,10 +64,7 @@ You can override the default at three levels:
     You can configure overrides from either direction — from the item's settings (e.g., a project's member list) or from the person/tag profile.
   </Step>
   <Step title="Add or remove availability">
-    In the **Availability** section, add people or tags to include them, or remove them to exclude them from accessing the item.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The override takes effect immediately.
+    In the **Availability** section, add people or tags to include them, or remove them to exclude them from accessing the item. The override is saved automatically and takes effect immediately.
   </Step>
 </Steps>
 
@@ -112,7 +100,7 @@ Absence type assignments control which leave types appear when a person requests
 
 - Go to **Settings** > **Absence Types**, select a type, and configure its availability.
 - Common types like **Vacation** are typically available by default.
-- Specialised types like **Parental leave** or **Sabbatical** can be restricted to eligible people or tags.
+- Specialized types like **Parental leave** or **Sabbatical** can be restricted to eligible people or tags.
 
 See [Time off](/help/documentation/timeoff) for more on configuring absence types.
 
@@ -189,7 +177,7 @@ Only the sales team can submit "Client entertainment" expenses:
   <Card title="Tags" icon="tag" href="/help/documentation/tags">
     Use tags to group people and projects for bulk assignments.
   </Card>
-  <Card title="Roles & Authorisations" icon="shield" href="/help/documentation/roles-authorisations">
+  <Card title="Roles & Authorizations" icon="shield" href="/help/documentation/roles-authorisations">
     Define what each person can see and do in Beebole.
   </Card>
 </CardGroup>

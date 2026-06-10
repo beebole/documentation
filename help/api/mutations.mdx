@@ -15,7 +15,7 @@ Mutations create, update, archive, or delete data in Beebole. All mutations requ
 
 | Mutation | Description |
 |----------|-------------|
-| `addPerson(name, email, roleId, color?)` | Creates a new team member in the organisation |
+| `addPerson(name, email, roleId, color?)` | Creates a new team member in the organization |
 | `deletePerson(id, check?)` | Permanently deletes a person and their credentials. Pass `check: true` for a dry-run validation |
 | `duplicatePerson(id, name)` | Creates a copy of an existing person |
 | `archivePerson(id)` | Archives a person (they remain in historical data) |
@@ -24,8 +24,8 @@ Mutations create, update, archive, or delete data in Beebole. All mutations requ
 | `unarchivePersons(ids)` | Restores multiple archived people |
 | `editPersonName(id, name)` | Updates a person's display name |
 | `editPersonEmail(id, email)` | Updates a person's email address |
-| `editPersonRole(id, roleId)` | Changes the authorisation role assigned to a person |
-| `editPersonStartDate(id, startDate)` | Sets the date when the person joined the organisation |
+| `editPersonRole(id, roleId)` | Changes the authorization role assigned to a person |
+| `editPersonStartDate(id, startDate)` | Sets the date when the person joined the organization |
 | `editPersonColor(id, color)` | Updates the display color for a person |
 | `editPersonLang(id, lang)` | Sets the preferred language for a person |
 
@@ -51,7 +51,7 @@ mutation {
 
 | Mutation | Description |
 |----------|-------------|
-| `addProject(name, categoryId?, parentId?, color?)` | Creates a new project or sub-project |
+| `addProject(name, categoryId?, parentId?, color?)` | Creates a new project or subproject |
 | `deleteProject(id, check?)` | Permanently deletes a project. Pass `check: true` for a dry-run validation |
 | `deleteProjects(ids)` | Permanently deletes multiple projects |
 | `duplicateProject(id, name)` | Creates a copy of a project and its structure |
@@ -172,14 +172,14 @@ mutation {
 
 ---
 
-## Organisation
+## Organization
 
 | Mutation | Description |
 |----------|-------------|
-| `editOrganisationName(name)` | Updates the organisation's display name |
-| `editOrganisationColor(color)` | Updates the organisation's brand color |
-| `editGoogleSSO(...)` | Configures Google SSO for the organisation |
-| `editMicrosoftSSO(...)` | Configures Microsoft SSO for the organisation |
+| `editOrganizationName(name)` | Updates the organization's display name |
+| `editOrganizationColor(color)` | Updates the organization's brand color |
+| `editGoogleSSO(...)` | Configures Google SSO for the organization |
+| `editMicrosoftSSO(...)` | Configures Microsoft SSO for the organization |
 | `editCustomSSO(...)` | Configures a custom OIDC/OAuth SSO provider |
 
 ---
@@ -221,8 +221,8 @@ mutation {
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="How do I create a sub-project?">
-    Use `addProject` and pass the parent project's ID as `parentId`. The sub-project inherits the parent's category unless you specify a different `categoryId`.
+  <Accordion title="How do I create a subproject?">
+    Use `addProject` and pass the parent project's ID as `parentId`. The subproject inherits the parent's category unless you specify a different `categoryId`.
   </Accordion>
   <Accordion title="What is the duration unit for addTimeRecord?">
     Duration is in minutes. For example, pass `120` to log 2 hours.

@@ -7,7 +7,7 @@ keywords: ["beebole", "authentication", "login", "SSO", "single sign-on", "passk
 "og:type": "article"
 ---
 
-Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organisation's security requirements — from simple email and password to enterprise SSO with OpenID Connect.
+Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organization's security requirements — from simple email and password to enterprise SSO with OpenID Connect.
 
 ---
 
@@ -19,7 +19,7 @@ The default sign-in method. Each person creates a password when they accept thei
 
 ### Google and Microsoft sign-in
 
-Team members can sign in using their existing Google or Microsoft account. This is especially convenient for organisations already using Google Workspace or Microsoft 365.
+Team members can sign in using their existing Google or Microsoft account. This is especially convenient for organizations already using Google Workspace or Microsoft 365.
 
 <Info>
   OAuth sign-in uses the email address associated with the Google or Microsoft account. The person's Beebole profile must use the same email address.
@@ -55,7 +55,7 @@ Instead of entering a password, you can sign in with a one-time verification cod
 
 ## Single sign-on (SSO)
 
-For organisations that need centralised authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider. Beebole supports three SSO providers: **Google**, **Microsoft**, and a **Custom OpenID** provider (e.g., Okta, Auth0, Entra ID).
+For organizations that need centralised authentication, Beebole supports SSO via OpenID Connect. This lets your team sign in with your existing identity provider. Beebole supports three SSO providers: **Google**, **Microsoft**, and a **Custom OpenID** provider (e.g., Okta, Auth0, Entra ID).
 
 SSO is available as part of the **Custom Domain & SSO** add-on. Go to **Settings** > **Single Sign On** to access the configuration.
 
@@ -66,13 +66,13 @@ SSO is available as part of the **Custom Domain & SSO** add-on. Go to **Settings
     Go to **Settings** > **Single Sign On** and select the **Google** tab.
   </Step>
   <Step title="Link your domain">
-    Enter your organisation's email domain (e.g., `example.com`) and click **Add**. Once a domain is linked, users are redirected to Google sign-in when they enter a matching email address.
+    Enter your organization's email domain (e.g., `example.com`) and click **Add**. Once a domain is linked, users are redirected to Google sign-in when they enter a matching email address.
   </Step>
   <Step title="Enable auto-provisioning (optional)">
     Turn on **Automatically create new users on first SSO login** to provision accounts automatically when a user with a matching domain signs in for the first time.
   </Step>
   <Step title="Enforce Google sign-in (optional)">
-    Enable **Disable interactive sign-in. Only Google sign-in allowed** to block password and email-code sign-in for your organisation.
+    Enable **Disable interactive sign-in. Only Google sign-in allowed** to block password and email-code sign-in for your organization.
   </Step>
 </Steps>
 
@@ -106,9 +106,9 @@ Use this option for any OpenID Connect-compatible provider (Okta, Auth0, Microso
   </Step>
 </Steps>
 
-### Enforcing SSO organisation-wide
+### Enforcing SSO organization-wide
 
-Each SSO provider has a dedicated enforcement toggle that disables interactive sign-in (email/password and email codes) for your entire organisation. Once enabled, users must sign in through the configured SSO provider.
+Each SSO provider has a dedicated enforcement toggle that disables interactive sign-in (email/password and email codes) for your entire organization. Once enabled, users must sign in through the configured SSO provider.
 
 <Warning>
   Before enabling enforcement, verify that SSO is working correctly by signing in as a test user. If your identity provider becomes unavailable, users will be locked out. Keep an administrator's direct access available as a fallback, or disable enforcement temporarily from the SSO settings.
@@ -144,7 +144,7 @@ Developers who integrate with Beebole's [GraphQL API](/help/api/introduction) au
 
 ## Admin takeover
 
-Administrators can sign in as another person in the organisation to troubleshoot issues, verify settings, or assist with configuration. This is called admin takeover.
+Administrators can sign in as another person in the organization to troubleshoot issues, verify settings, or assist with configuration. This is called admin takeover.
 
 <Steps>
   <Step title="Open the person's profile">
@@ -170,7 +170,7 @@ Beebole manages active sessions to keep your account secure. Each time you sign 
 
 - Sessions expire after a period of inactivity.
 - You can view your active sessions from your profile under the **Security** tab.
-- Sign out of individual sessions or all sessions at once if you suspect unauthorised access.
+- Sign out of individual sessions or all sessions at once if you suspect unauthorized access.
 
 ---
 
@@ -185,7 +185,7 @@ You can permanently delete your Beebole account and all associated data from you
 To delete your account, go to your profile, scroll to the bottom, and click **Delete my account**. Follow the confirmation prompts.
 
 <Info>
-  If you are the only administrator in your organisation, you must either transfer admin rights to another person or [delete the organisation](/help/documentation/account-settings) first.
+  If you are the only administrator in your organization, you must either transfer admin rights to another person or [delete the organization](/help/documentation/account-settings) first.
 </Info>
 
 ---
@@ -194,12 +194,12 @@ To delete your account, go to your profile, scroll to the bottom, and click **De
 
 <CardGroup cols={2}>
   <Card title="Single Sign-On (SSO)" icon="key" href="/help/documentation/sso">
-    Configure Google, Microsoft, or custom OIDC SSO for your organisation.
+    Configure Google, Microsoft, or custom OIDC SSO for your organization.
   </Card>
   <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
-    Manage your organisation's account settings and feature toggles.
+    Manage your organization's account settings and feature toggles.
   </Card>
-  <Card title="Roles & Authorisations" icon="shield" href="/help/documentation/roles-authorisations">
+  <Card title="Roles & Authorizations" icon="shield" href="/help/documentation/roles-authorisations">
     Define what each person can see and do in Beebole.
   </Card>
   <Card title="Audit Trail" icon="list" href="/help/documentation/audit-trail">

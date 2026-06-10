@@ -48,7 +48,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
   "deleteIds": [],
   "additionalInfo": null,
   "timestamp": 1712345678,
-  "organisationId": "63f9a1b2c3d4e5f6a7b8c9d0"
+  "organizationId": "63f9a1b2c3d4e5f6a7b8c9d0"
 }
 ```
 
@@ -59,7 +59,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
 | `deleteIds` | Array of entity IDs that were deleted. |
 | `additionalInfo` | Optional extra context provided by some events. `null` when not applicable. |
 | `timestamp` | Unix timestamp (seconds) of when the event was emitted. |
-| `organisationId` | The Beebole organization ID that the event belongs to. |
+| `organizationId` | The Beebole organization ID that the event belongs to. |
 
 ---
 
@@ -79,11 +79,11 @@ The following event names can be subscribed to individually or via **All events*
 | `customFieldValueUpdate` | A custom field value is created, updated, or deleted. |
 | `expenseRecordUpdate` | An expense record is created, updated, or deleted. |
 | `expenseTypeUpdate` | An expense type is created, updated, or deleted. |
-| `organisationUpdate` | Organization settings are changed. |
+| `organizationUpdate` | Organization settings are changed. |
 | `personUpdate` | A person is created, updated, or deleted. |
 | `planningUpdate` | A planning record is created, updated, or deleted. |
 | `projectCategoryUpdate` | A project category is created, updated, or deleted. |
-| `projectUpdate` | A project or sub-project is created, updated, or deleted. |
+| `projectUpdate` | A project or subproject is created, updated, or deleted. |
 | `roleUpdate` | A role is created, updated, or deleted. |
 | `scheduleTypeUpdate` | A schedule type is created, updated, or deleted. |
 | `tagCategoryUpdate` | A tag category is created, updated, or deleted. |

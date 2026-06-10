@@ -24,15 +24,17 @@ Everything in Beebole revolves around four types of entities:
 
 These four entities form the foundation of your Beebole account. Time entries, reports, budgets, planning, and approval workflows all build on top of them.
 
+Each person also has a **role** that controls what they can see and do. By default, employees have access to their own data, managers have access to their team's or projects' data, and administrators have access to everything. See [Roles & permissions](/help/documentation/roles-authorisations).
+
 ---
 
 ## How entities relate to each other
 
 Beebole's entities don't exist in isolation — they connect to create a complete picture of your organization's work:
 
-- **People work on projects.** When someone logs time, they select a project (and optionally a sub-project or task). This is the core relationship in Beebole.
+- **People work on projects.** When someone logs time, they select a project (and optionally a subproject or task). This is the core relationship in Beebole.
 - **Tags group both people and projects.** A tag like "Engineering" can contain both the engineering team members and the engineering projects, making it easy to filter and report by department.
-- **Projects have hierarchies.** Categories contain projects, which can contain sub-projects, nested as deep as you need.
+- **Projects have hierarchies.** Categories contain projects, which can contain subprojects, nested as deep as you need.
 - **Tasks can be linked to projects.** Tasks are independent planning entities that can be associated with projects, connecting your planning and time tracking.
 - **Tags have hierarchies too.** Tags can be organized into parent/child structures (e.g., "Europe" > "France" > "Paris office").
 
@@ -52,18 +54,18 @@ Billing and cost rates can be set at multiple levels:
 
 | Level | What it controls |
 |-------|-----------------|
-| **Organisation** | Default rates for the entire account |
+| **Organization** | Default rates for the entire account |
 | **Tag** | Rates for everyone and everything in a department or team |
 | **Project** | Rates specific to a client or engagement |
 | **Person** | Rates for an individual team member |
 
-When multiple rates exist, Beebole uses a priority system: **person > project > tag > organisation**. The most specific rate always wins.
+When multiple rates exist, Beebole uses a priority system: **person > project > tag > organization**. The most specific rate always wins.
 
 Learn more: [Billing rates](/help/documentation/billing) · [Cost rates](/help/documentation/costs)
 
 ### Work schedules
 
-Work schedules define standard working hours per day of the week. Like rates, they can be assigned at the organisation, tag, or person level — and follow the same priority system.
+Work schedules define standard working hours per day of the week. Like rates, they can be assigned at the organization, tag, or person level — and follow the same priority system.
 
 Learn more: [Work schedules](/help/documentation/work-schedule)
 
@@ -79,7 +81,7 @@ Learn more: [Custom fields](/help/documentation/custom-fields)
 
 ### Assignments and availability
 
-You control which projects, tasks, absence types, and expense types each person can access. These assignments can be managed at the organisation, tag, or individual level.
+You control which projects, tasks, absence types, and expense types each person can access. These assignments can be managed at the organization, tag, or individual level.
 
 Learn more: [Assignments](/help/documentation/assignments)
 
@@ -137,7 +139,7 @@ Most entities in Beebole support a **Duplicate** action that creates a copy with
 To duplicate an entity, right-click the entity name in its list — or open the **⋯** action menu that appears on hover — and select **Duplicate**. The new copy keeps:
 
 - The source entity's settings, attributes, and configuration (rates, schedules, budgets, custom field values).
-- Its position in the hierarchy (sub-project of the same parent, subtask of the same task, child tag of the same parent tag).
+- Its position in the hierarchy (subproject of the same parent, subtask of the same task, child tag of the same parent tag).
 
 It does not copy historical data such as time entries, journal messages, or approvals — those are tied to the original entity.
 
@@ -218,12 +220,12 @@ When a new version of Beebole is deployed, a banner appears in the interface wit
     A project category is part of the project hierarchy — it groups projects together. A tag is a cross-cutting label that can be applied to both people and projects. Use categories for your project structure and tags for organizational dimensions like departments, locations, or cost centers.
   </Accordion>
   <Accordion title="If I set a billing rate on a tag and a different rate on a project, which one applies?">
-    The project rate takes priority. Beebole resolves rates in this order: person > project > tag > organisation. The most specific rate always wins.
+    The project rate takes priority. Beebole resolves rates in this order: person > project > tag > organization. The most specific rate always wins.
   </Accordion>
   <Accordion title="Can I change my structure after my team has started tracking time?">
     Yes. You can reorganize projects, update tags, and change rates at any time. Historical time entries are preserved. However, structural changes may affect how existing data appears in filtered reports.
   </Accordion>
-  <Accordion title="What's the difference between a sub-project and a task?">
-    Sub-projects are part of the project hierarchy — they represent a subdivision of a larger project and are used for time tracking. Tasks are independent planning entities with their own properties like status, owner, dependencies, and effort tracking. Tasks can be linked to projects but exist separately, and are managed visually on the Gantt chart and Kanban board.
+  <Accordion title="What's the difference between a subproject and a task?">
+    Subprojects are part of the project hierarchy — they represent a subdivision of a larger project and are used for time tracking. Tasks are independent planning entities with their own properties like status, owner, dependencies, and effort tracking. Tasks can be linked to projects but exist separately, and are managed visually on the Gantt chart and Kanban board.
   </Accordion>
 </AccordionGroup>

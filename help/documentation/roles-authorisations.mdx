@@ -1,8 +1,8 @@
 ---
-title: "Roles & Authorisations"
+title: "Roles & Authorizations"
 description: "Set up role-based access control in Beebole. Define roles with granular permissions across 24+ scopes to control what each team member can see and do."
-keywords: ["Beebole roles", "permissions", "authorisations", "access control", "RBAC", "role-based permissions", "user roles", "beebole"]
-"og:title": "Roles & Authorisations in Beebole"
+keywords: ["Beebole roles", "permissions", "authorizations", "access control", "RBAC", "role-based permissions", "user roles", "beebole"]
+"og:title": "Roles & Authorizations in Beebole"
 "og:description": "Learn how to configure roles and permissions to control access across your Beebole account."
 "og:type": "article"
 ---
@@ -10,7 +10,7 @@ keywords: ["Beebole roles", "permissions", "authorisations", "access control", "
 Beebole's role-based access control lets you define exactly what each person can see and do. Every person in your account is assigned a role, and each role is a collection of permissions across more than 24 scopes — from time tracking and project management to billing, expenses, and custom fields. This gives you fine-grained control over who accesses what.
 
 <Info>
-  Beebole includes default roles (Administrator, Manager, Employee) that cover common setups. You can use them as-is or create custom roles tailored to your organisation's structure.
+  Beebole includes default roles (Administrator, Manager, Employee) that cover common setups. You can use them as-is or create custom roles tailored to your organization's structure.
 </Info>
 
 ---
@@ -21,7 +21,7 @@ A role is a named set of permissions. Each person has exactly one role, and that
 
 - Which pages and features they can access
 - Whether they can view or manage data
-- What scope of data they can reach (their own, their team's, or the entire organisation's)
+- What scope of data they can reach (their own, their team's, or the entire organization's)
 
 When you change a role's permissions, the change applies immediately to everyone assigned that role.
 
@@ -37,7 +37,7 @@ When you change a role's permissions, the change applies immediately to everyone
     Click the **[+]** button. Enter a **Name** for the role (e.g., "Project Manager", "Finance Viewer", "Team Lead").
   </Step>
   <Step title="Configure permissions">
-    For each authorisation scope, choose the permission level. See the sections below for details on scopes and targets.
+    For each authorization scope, choose the permission level. See the sections below for details on scopes and targets.
   </Step>
   <Step title="Save the role">
     Click **Save**. The role is now available for assignment to people.
@@ -50,16 +50,16 @@ When you change a role's permissions, the change applies immediately to everyone
 
 ---
 
-## Authorisation scopes <Badge>Admin only</Badge>
+## Authorization scopes <Badge>Admin only</Badge>
 
-Beebole organises permissions into more than 24 scopes, each covering a specific area of the application. Here are the main scope categories:
+Beebole organizes permissions into more than 24 scopes, each covering a specific area of the application. Here are the main scope categories:
 
 | Scope category | What it controls |
 |---------------|-----------------|
 | **Admin** | Account-wide settings, subscription, and configuration |
-| **Organisation** | Organisation structure, companies, and global preferences |
+| **Organization** | Organization structure, companies, and global preferences |
 | **Staff / People** | Viewing and managing people profiles, invitations, and personal data |
-| **Projects** | Creating, editing, and archiving projects and sub-projects |
+| **Projects** | Creating, editing, and archiving projects and subprojects |
 | **Tasks** | Managing tasks within projects |
 | **Time tracking** | Viewing and editing time entries on timesheets |
 | **Absences** | Managing time-off requests, leave types, and quotas |
@@ -82,7 +82,7 @@ For most scopes, you choose not only the action (view or manage) but also the ta
 | **Me only** | The person can access only their own data |
 | **My people** | The person can access data for people they manage (directly or via tags) |
 | **My projects** | The person can access data for projects they are assigned to as manager |
-| **Organisation** | The person can access all data across the entire organisation |
+| **Organization** | The person can access all data across the entire organization |
 
 <Info>
   Combining scope and target gives you precise control. For example, a team leader might have **Time tracking — Manage — My people** (can edit their team's timesheets) but only **Billing — View — My projects** (can see billing rates on their projects, but not change them).
@@ -159,11 +159,11 @@ You can modify the permissions of default roles or create additional roles as ne
 
 ## Availability controls <Badge>Admin only</Badge>
 
-Availability controls determine which projects, absence types, expense types, tasks, and custom fields are enabled by default for everyone in your organisation. Admins set the global defaults in account settings, and those defaults can then be overridden for individual tags, people, or projects.
+Availability controls determine which projects, absence types, expense types, tasks, and custom fields are enabled by default for everyone in your organization. Admins set the global defaults in account settings, and those defaults can then be overridden for individual tags, people, or projects.
 
 ### How it works
 
-- **Global default** — Go to **Settings** > **Account** and look for the **Show or hide by default** section. Toggle each element type on or off for the entire organisation.
+- **Global default** — Go to **Settings** > **Account** and look for the **Show or hide by default** section. Toggle each element type on or off for the entire organization.
 - **Override per tag** — Open a tag's settings and adjust its **Show or hide** attribute to make specific element types available or hidden for everyone in that tag, regardless of the global default.
 - **Override per person** — Open a person's profile and adjust their **Show or hide** attribute to give that individual a different set of defaults.
 - **Override per project** — Open a project's settings to control whether it appears in the project selector for people who have not been explicitly assigned to it.
@@ -173,14 +173,14 @@ The following element types have availability controls:
 | Element | What it controls |
 |---------|-----------------|
 | **Show all projects** | Whether all projects appear by default in the project selector |
-| **Show all secondary projects** | Whether sub-projects are shown alongside primary projects |
+| **Show all secondary projects** | Whether subprojects are shown alongside primary projects |
 | **Show all time off** | Whether all absence types appear by default in the timesheet |
 | **Show all expenses** | Whether all expense types appear by default |
 | **Show all tasks** | Whether tasks appear in the timesheet by default |
 | **Show all custom fields** | Whether custom fields are visible by default |
 
 <Info>
-  The availability system uses a cascade: the organisation default applies first, then the tag setting, then the individual person or project override. A more specific setting always wins over a more general one.
+  The availability system uses a cascade: the organization default applies first, then the tag setting, then the individual person or project override. A more specific setting always wins over a more general one.
 </Info>
 
 <Tip>
@@ -193,7 +193,7 @@ The following element types have availability controls:
 
 - **Principle of least privilege** — Give each role only the permissions it needs. Start restrictive and add permissions as needed.
 - **Use descriptive role names** — Names like "Finance Viewer" or "Project Lead" make it clear what the role is for.
-- **Audit regularly** — Review roles periodically to ensure permissions still match your team structure, especially after organisational changes.
+- **Audit regularly** — Review roles periodically to ensure permissions still match your team structure, especially after organizational changes.
 - **Test before deploying** — After creating a new role, assign it to a test person and verify they see the correct pages and data.
 
 ---
@@ -208,7 +208,7 @@ The following element types have availability controls:
     Use tags to group people and combine them with permission targets.
   </Card>
   <Card title="Account Settings" href="/help/documentation/account-settings">
-    Configure organisation-wide defaults that roles can access or restrict.
+    Configure organization-wide defaults that roles can access or restrict.
   </Card>
 </CardGroup>
 
@@ -224,7 +224,7 @@ The following element types have availability controls:
     You cannot delete a role that is currently assigned to people. Reassign those people to a different role first, then delete the unused role.
   </Accordion>
   <Accordion title="Can I restrict access to specific projects?">
-    Role permissions control the scope of access (me, my people, my projects, or organisation). For project-specific access, combine role permissions with [assignments](/help/documentation/assignments) to control which projects appear for each person.
+    Role permissions control the scope of access (me, my people, my projects, or organization). For project-specific access, combine role permissions with [assignments](/help/documentation/assignments) to control which projects appear for each person.
   </Accordion>
   <Accordion title="Do permission changes take effect immediately?">
     Yes. When you save changes to a role, every person assigned to that role sees the updated access immediately — no logout or refresh required.

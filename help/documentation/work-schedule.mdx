@@ -1,6 +1,6 @@
 ---
 title: "Work Schedules"
-description: "Define weekly work patterns in Beebole, create multiple schedules for different teams, and assign them to people, tags, or your entire organisation."
+description: "Define weekly work patterns in Beebole, create multiple schedules for different teams, and assign them to people, tags, or your entire organization."
 keywords: ["Beebole work schedules", "weekly work pattern", "working hours", "schedule assignment", "work schedule setup", "time tracking schedule", "beebole"]
 "og:title": "Work Schedules in Beebole"
 "og:description": "Learn how to define, assign, and manage work schedules for your team in Beebole."
@@ -26,17 +26,17 @@ Beebole supports multiple schedules in a single account, so you can define diffe
 ## Creating a work schedule
 
 <Steps>
-  <Step title="Open the Work Schedules page">
-    Go to **Settings** > **Work Schedules**.
+  <Step title="Open Schedule types">
+    Go to **Settings** > **Schedule types**.
   </Step>
   <Step title="Add a new schedule">
-    Click the **[+]** button. Enter a **Name** for the schedule (e.g., "Full-time", "Part-time 80%").
+    Click the **+** button, enter a **Name** for the schedule (e.g., "Full-time", "Part-time 80%"), and click **Add**. The schedule is created right away — you define its pattern next.
   </Step>
-  <Step title="Define the weekly pattern">
-    For each day of the week, enter the number of expected working hours. Set non-working days to 0.
+  <Step title="Define the pattern">
+    In the schedule's **Details**, enter the expected working hours for each day, leaving non-working days at 0. You can also set the **Length in days** for cycles longer than a week, define **Intervals** (start and end times for each day), and toggle **Work From Home** on the days it applies. Changes save automatically.
   </Step>
-  <Step title="Save the schedule">
-    Click **Save**. The schedule is now available for assignment.
+  <Step title="Assign it">
+    Use the schedule's **Assigned to** section — or a person's **Work schedule** attribute — to apply it to the organization, a tag, or individual people.
   </Step>
 </Steps>
 
@@ -60,7 +60,7 @@ You can assign work schedules at three levels. Beebole uses a cascading inherita
 
 | Level | How to assign | Use case |
 |-------|--------------|----------|
-| **Organisation** | **Settings** > **Work Schedules** > set a default | One schedule applies to everyone unless overridden |
+| **Organization** | **Settings** > **Schedule types** > assign to the organization | One schedule applies to everyone unless overridden |
 | **Tag** | Open a tag > **Work Schedule** section | A department or team shares a schedule |
 | **Person** | Open a person's profile > **Work Schedule** section | An individual has a unique arrangement |
 
@@ -70,10 +70,10 @@ Beebole resolves the effective schedule for each person by checking from most sp
 
 1. **Person-level schedule** — If a schedule is assigned directly to the person, Beebole uses it.
 2. **Tag-level schedule** — If no person-level schedule exists, Beebole checks the person's tags. If a tag has a schedule, it applies.
-3. **Organisation-level schedule** — If neither the person nor their tags have a schedule, the organisation default applies.
+3. **Organization-level schedule** — If neither the person nor their tags have a schedule, the organization default applies.
 
 <Info>
-  This inheritance model means you only need to configure exceptions. Set your most common schedule at the organisation level, override at the tag level for specific teams, and override at the person level for individual arrangements.
+  This inheritance model means you only need to configure exceptions. Set your most common schedule at the organization level, override at the tag level for specific teams, and override at the person level for individual arrangements.
 </Info>
 
 ---
@@ -92,10 +92,7 @@ To set a schedule for a specific period:
     Scroll to the **Work Schedule** area of the profile.
   </Step>
   <Step title="Add a time period">
-    Click **Add** to define a new schedule period. Select the **Schedule**, then set the **Start date** and **End date**.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The schedule applies only within the specified date range.
+    Click **Add** to define a new schedule period. Select the **Schedule**, then set the **Start date** and **End date**. The assignment is saved automatically and applies only within that date range.
   </Step>
 </Steps>
 
@@ -151,6 +148,6 @@ Work schedules connect to several other areas in Beebole:
     Yes. Use the schedule length setting to define multi-week rotations. Each week in the cycle can have its own daily hour pattern.
   </Accordion>
   <Accordion title="What if a person has no schedule assigned?">
-    If no schedule is assigned at the person, tag, or organisation level, Beebole treats every day as a non-working day with 0 expected hours. Always ensure at least an organisation-level default schedule is set.
+    If no schedule is assigned at the person, tag, or organization level, Beebole treats every day as a non-working day with 0 expected hours. Always ensure at least an organization-level default schedule is set.
   </Accordion>
 </AccordionGroup>
