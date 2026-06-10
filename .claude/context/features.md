@@ -1,6 +1,6 @@
 # Beebole Features
 
-**Last updated:** 2026-04-28
+**Last updated:** 2026-06-10
 
 ---
 
@@ -23,6 +23,7 @@
 - `time-tracking/mobile` **Mobile timesheet** — Mobile-optimised layout for phones and small tablets, with infinite scroll, swipe-to-delete, and bottom-sheet editors for adding and editing entries
 - `time-tracking/score` **Timesheet score** — Per-person compliance score (0–100) tracking on-time submissions, late submissions, missed timesheets, and rejections, shown as a color-coded ring gauge on person records
 - `time-tracking/custom-fields` **Custom fields on time entries** — Extend time records with organisation-defined fields (text, number, date, boolean, etc.) for capturing additional context per entry
+- `time-tracking/calendar-integration` **Calendar integration in timesheet** — Connect Google Calendar or Microsoft Outlook and drag calendar events onto timesheet rows to log time, with events shown alongside the timesheet for the displayed period
 
 ## 2. Absence & Time-Off Management
 
@@ -37,7 +38,7 @@
 - `absence/approval` **Absence approval** — Integrated with the multi-stage approval workflow
 - `absence/notifications` **Absence notifications** — Alerts for negative balances, advance bookings
 - `absence/excess-occurrence-notifications` **Absence frequency alerts** — Send administrators an alert when a team member takes absence more than a configured number of times within a month or year, helping flag attendance patterns early
-- `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organisation, tag, or person level
+- `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organisation, tag, or person level; once a calendar is configured, its country is locked to protect holidays in past years
 - `absence/custom-holidays` **Custom holidays** — Add or edit individual holiday entries manually
 - `absence/archive` **Archive/unarchive absence types** — Soft-delete absence types without losing historical data
 
@@ -78,7 +79,7 @@
 - `tasks/ownership` **Task ownership** — Assign people to tasks
 - `tasks/recurring` **Recurring tasks** — Set tasks to repeat on a configurable schedule (daily, weekly, monthly, yearly, or by working days)
 - `tasks/custom-fields` **Task-level custom fields** — Custom attributes per task
-- `tasks/descriptions` **Task descriptions** — Rich text descriptions via Lexical editor
+- `tasks/descriptions` **Task descriptions** — Add free-text descriptions to tasks
 - `tasks/move-category` **Move task between categories** — Reassign a root-level task and its subtasks to a different category via the context menu
 - `tasks/archive` **Archive/unarchive tasks** — Soft-delete tasks without losing historical data
 
@@ -201,6 +202,10 @@
 - `reports/billing-cost` **Billing & cost attributes** — Include billing amounts, cost rates, and profitability in reports
 - `reports/charts` **Chart visualizations** — Visualize report data with 11 chart types: bar, line, pie, area, stacked bar, stacked area, horizontal bar, scatter, radar, treemap, and waterfall; toggle between table and chart view, configure chart height
 - `reports/folders` **Report folders** — Organize saved reports into folders for easy navigation and access
+- `reports/matrix` **Matrix report** — Grid visualisation with entities or calendar periods on each axis, showing hours, billing, costs, or other metrics per cell, with an optional heat-map overlay and one-click row/column swap
+- `reports/budget-status` **Budget status report** — Progress-bar view of budget consumption across projects with actuals, forecast bars, hierarchy roll-up, and automatic alerts when a budget passes its threshold or goes over
+- `reports/excel-addin` **Excel add-in report loader** — Excel add-in that links any worksheet to a saved Beebole report and refreshes the data on demand or each time the file is opened
+- `reports/export` **Google Sheets add-in report loader** — Google Sheets add-on that links a sheet to a saved Beebole report and refreshes the data from within the spreadsheet, without re-exporting from Beebole
 
 ## 16. Journal & Communications
 
@@ -234,6 +239,7 @@
 - `integrations/jira` **Jira** — Import and sync projects and issues from Jira into Beebole, with real-time updates via webhooks
 - `integrations/linear` **Linear** — Import and sync projects and issues from Linear into Beebole, with real-time updates via webhooks
 - `integrations/quickbooks` **QuickBooks** — Import QuickBooks customers and items as Beebole project structure, and export time records back to QuickBooks with configurable date ranges
+- `integrations/xero` **Xero** — Import Xero contacts and items as Beebole project structure, keep them in sync, and export time records to Xero as invoices
 - `integrations/bamboohr` **BambooHR** — Sync time-off requests from BambooHR to Beebole absences, with employee mapping, absence type mapping, and schedule-aware duration calculation
 - `integrations/webhooks` **Webhooks** — Configure outgoing webhooks with signed payloads and automatic retry to push Beebole event data to external systems in real time
 - `integrations/import-modes` **Configurable import modes** — For Asana, Jira, and Linear: choose whether to import external entities as Beebole projects or tasks
@@ -311,15 +317,10 @@
 > Confirmed in `docs/feature-requests/` but not yet found in the codebase.
 
 - `org/custom-domain` **Custom domain** — Access the platform via a custom subdomain (e.g. `timesheet.yourcompany.com`).
-- `reports/export` **Report export to Google Sheets** — Connect a saved report to a Google Sheet and refresh the data independently from within the spreadsheet, without re-exporting from Beebole.
-- `reports/excel-addin` **Excel add-in report loader** — An Excel add-in that links any worksheet to a saved Beebole report and refreshes the data automatically each time the file is opened, eliminating manual copy-paste exports.
 - `org/onboarding-sample-data` **Onboarding sample data** — New accounts arrive pre-loaded with starter configuration (absence types, schedules, roles, tags) and removable demo data (projects, tasks, time entries, saved reports) so trial users see a realistic app immediately.
 - `absence/accrual-engine` **Advanced absence accrual engine** — Full accrual engine with per-policy allowances at account, tag, and employee level; calendar-based or hours-tracked accrual methods; separate manual and accrued balances; carry-forward limits; and a mandatory-reason audit trail for all balance adjustments.
-- `time-tracking/calendar-integration` **Calendar integration in timesheet** — Import events from Google Calendar and Microsoft Outlook, drag-and-drop assignment to timesheet rows, and automatic detection of already-tracked events.
-- `reports/budget-status` **Budget status report** — Progress-bar visualisation of budget consumption across projects, with forecast bars and threshold-based notifications.
 - `org/configuration-export` **Configuration data export** — Bulk-export people, projects, tags, rates, budgets, and other account configuration as structured data.
 - `org/gdpr-compliance` **GDPR compliance tools** — Dedicated settings area for data protection officer contact, employee data export, and person anonymisation.
-- `reports/matrix` **Matrix report** — Grid visualisation with entities on one axis and dates on the other, showing hours, overtime, billing, or costs per cell with colour coding.
 - `reports/planning-vs-real` **Planning vs. real report** — Side-by-side comparison of planned task effort against actual timesheet data, with forecasting and budget tracking.
 
 ---
@@ -337,4 +338,5 @@
 - `internal/websocket` **WebSocket event system** — Real-time communication layer between server and client (enables the live updates users see)
 - `internal/jwt-cookies` **JWT & cookie management** — Authentication token handling and session management internals
 - `internal/file-soft-delete` **File attachment soft-delete** — Deleted file and image attachments enter a grace-period queue (`scheduleFileDeletion` / `cancelFileDeletion`) before permanent removal; recovery is handled internally
-- `internal/support-panel` **Support admin panel** — Internal tool for Beebole support staff to search customer accounts, sign in as a customer for troubleshooting, and manage trial periods
+- `internal/support-panel` **Support admin panel** — Internal tool for Beebole support staff to search customer accounts, sign in as a customer for troubleshooting, manage trial periods, and export a full copy of an organisation's data for support and debugging
+- `internal/sample-report-seeding` **Sample report seeding** — Accounts with no saved reports automatically receive a set of pre-configured example reports to start from
