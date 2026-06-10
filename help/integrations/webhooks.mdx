@@ -22,11 +22,11 @@ You can configure multiple webhooks, each with its own URL, name, secret, and ev
   <Step title="Configure the webhook">
     Fill in the following fields for your new webhook:
 
-    - **Name** -- A label to identify this webhook (for example, "Slack notifications" or "ERP sync").
-    - **URL** -- The HTTPS endpoint that will receive POST requests from Beebole.
-    - **Secret** -- A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
-    - **Enabled** -- Toggle whether this webhook is active.
-    - **Events** -- Choose **All events** to receive every event type, or select individual events from the list.
+    - **Name** — A label to identify this webhook (for example, "Slack notifications" or "ERP sync").
+    - **URL** — The HTTPS endpoint that will receive POST requests from Beebole.
+    - **Secret** — A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
+    - **Enabled** — Toggle whether this webhook is active.
+    - **Events** — Choose **All events** to receive every event type, or select individual events from the list.
   </Step>
   <Step title="Save and test">
     Changes are saved automatically as you edit each field. Once the webhook is enabled and your endpoint is ready, trigger an event in Beebole (for example, update a project) and verify that your endpoint receives the request.
@@ -134,7 +134,7 @@ If your endpoint returns a non-2xx HTTP status code, or if the connection times 
 | 4th retry | 25 seconds |
 | 5th retry | 40 seconds |
 
-After 5 failed attempts, Beebole stops retrying and logs the failure permanently. Make sure your endpoint responds within 10 seconds -- offload any slow processing to a background queue and return a `200 OK` immediately.
+After 5 failed attempts, Beebole stops retrying and logs the failure permanently. Make sure your endpoint responds within 10 seconds — offload any slow processing to a background queue and return a `200 OK` immediately.
 
 ---
 
@@ -183,6 +183,6 @@ After 5 failed attempts, Beebole stops retrying and logs the failure permanently
   </Accordion>
 
   <Accordion title="Can I use webhooks to react to changes made by integrations like Jira or Monday.com?">
-    Yes. Events triggered by any source -- including integrations, the Beebole web app, and the API -- will fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a Monday.com sync.
+    Yes. Events triggered by any source — including integrations, the Beebole web app, and the API — will fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a Monday.com sync.
   </Accordion>
 </AccordionGroup>

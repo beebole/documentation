@@ -52,21 +52,24 @@ At the bottom of the timesheet, Beebole displays your **daily totals** and **wee
 
 ## Duration modes
 
-Beebole supports several ways to express how long you worked. Your administrator configures the default format in [Timesheet settings](/help/documentation/timesheetSettings).
+Beebole supports several ways to express how long you worked. Your administrator configures the default unit and format in [Timesheet settings](/help/documentation/timesheetSettings).
 
-| Mode | Example | Description |
-|------|---------|-------------|
-| **Hours and minutes (hh:mm)** | `7:30` | Enter time as hours and minutes |
-| **Decimal hours** | `7.5` | Enter time as a decimal number of hours |
-| **Days** | `1` or `0.5` | Enter time as full or partial days |
-| **Percentage** | `100%` or `50%` | Enter time as a percentage of the scheduled workday |
+The **unit** decides what you type — hours, days, or percentage of your scheduled workday. When the unit is hours, the **format** decides how the value is displayed.
+
+| Unit | Format | Example |
+|------|--------|---------|
+| **Hours** | hh:mm | `3:15` |
+| **Hours** | Decimal | `3.25` |
+| **Hours** | hsm | `3h15` |
+| **Days** | — | `1` or `0.5` |
+| **% of schedule** | — | `100%` or `50%` |
 
 ### Duration vs. start/end times
 
 Your administrator can configure the timesheet to accept either:
 
-- **Duration only** -- You enter how long you worked (e.g., `3:00`).
-- **Start and end times** -- You enter when you started and stopped (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
+- **Duration only** — You enter how long you worked (e.g., `3:00`).
+- **Start and end times** — You enter when you started and stopped (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
 
 ---
 
@@ -79,7 +82,7 @@ Instead of entering time manually, you can use Beebole's built-in timer to track
     Click the **Timer** button on any timesheet row. The timer begins counting.
   </Step>
   <Step title="Work on your task">
-    The timer runs in the background. You can navigate away from the timesheet page -- the timer keeps running.
+    The timer runs in the background. You can navigate away from the timesheet page — the timer keeps running.
   </Step>
   <Step title="Stop the timer">
     Return to your timesheet and click the **Timer** button again to stop. Beebole fills in the duration automatically based on the elapsed time.
@@ -128,9 +131,9 @@ When you undo a deletion, the item is restored immediately and Beebole scrolls b
 
 Beebole offers several shortcuts to avoid repetitive data entry:
 
-- **Copy/paste within the timesheet** -- Select a cell or range, copy it, and paste it into another day or week.
-- **Copy previous week** -- Use the **Copy previous week** option to bring in last week's rows and, optionally, their time values.
-- **Duplicate and start** -- Right-click a time entry to duplicate it and immediately start a new timer based on it. This is useful when you switch between recurring tasks throughout the day.
+- **Copy/paste within the timesheet** — Select a cell or range, copy it, and paste it into another day or week.
+- **Copy previous week** — Use the **Copy previous week** option to bring in last week's rows and, optionally, their time values.
+- **Duplicate and start** — Right-click a time entry to duplicate it and immediately start a new timer based on it. This is useful when you switch between recurring tasks throughout the day.
 
 ---
 
@@ -173,9 +176,9 @@ The **Work from home** flag is available throughout reporting:
 
 By default, time entries inherit their billable status from the project. To override this on a specific entry, toggle the **Non-billable** flag. This marks the entry as non-billable regardless of the project's billing configuration.
 
-<Note>
+<Info>
   The non-billable flag only affects individual entries. To make an entire project non-billable, update the project's billing settings instead. See [Billing rates](/help/documentation/billing).
-</Note>
+</Info>
 
 ---
 
@@ -258,9 +261,9 @@ The score ring gauge uses three colors to indicate compliance level at a glance:
 
 The score appears as a ring gauge on person records in the team side panel of the timesheet. Hover over the ring to see a breakdown of on-time, late, not-submitted, and rejected periods.
 
-<Note>
+<Info>
   The score is visible to administrators and managers, not to the individual themselves.
-</Note>
+</Info>
 
 ---
 
@@ -290,7 +293,7 @@ The score appears as a ring gauge on person records in the team side panel of th
     Yes. Beebole offers a mobile-optimized interface where you can enter time, start timers, and submit timesheets from your phone. See [Mobile](/help/documentation/mobile).
   </Accordion>
   <Accordion title="What happens if I forget to fill in my timesheet?">
-    If reminders are enabled, Beebole sends you an email notification. If auto-submit is configured, your timesheet is submitted automatically after the deadline -- even if incomplete. Check with your administrator for your account's specific settings.
+    If reminders are enabled, Beebole sends you an email notification. If auto-submit is configured, your timesheet is submitted automatically after the deadline — even if incomplete. Check with your administrator for your account's specific settings.
   </Accordion>
   <Accordion title="Can I enter time for a past week?">
     Yes. Use the navigation arrows to go to a previous week and enter or edit your time. However, if that week's timesheet has already been approved, you may need your approver to reopen it first.

@@ -7,7 +7,7 @@ keywords: ["Beebole approvals", "timesheet approval", "approval workflow", "appr
 "og:type": "article"
 ---
 
-Beebole's approval system lets you review and validate your team's timesheets before they are finalized. Approvals ensure that time data is accurate, complete, and authorized -- giving you confidence in your reports, billing, and payroll calculations.
+Beebole's approval system lets you review and validate your team's timesheets before they are finalized. Approvals ensure that time data is accurate, complete, and authorized — giving you confidence in your reports, billing, and payroll calculations.
 
 <Info>
   Approval workflows in Beebole support multiple stages, flexible approver types, and configurable quorum rules. You can build a simple one-step approval or a multi-stage pipeline that matches your organization's sign-off process.
@@ -21,13 +21,13 @@ The approval process follows a clear lifecycle:
 
 1. A team member fills in their [timesheet](/help/documentation/timesheets) and clicks **Submit**.
 2. The timesheet enters the first approval stage. Designated approvers are notified.
-3. Each approver reviews the entries and chooses to **Approve**, **Reject**, or **Request changes**.
+3. Each approver reviews the entries and chooses to **Approve** or **Reject**.
 4. If there are additional stages, the timesheet advances to the next stage upon approval.
 5. Once all stages are complete, the timesheet is fully approved and locked.
 
-<Note>
+<Info>
   Submitted timesheets are locked for editing until an approver takes action. If a timesheet is rejected or changes are requested, it returns to the team member for corrections.
-</Note>
+</Info>
 
 ---
 
@@ -69,7 +69,7 @@ Administrators set up approval workflows in the account settings. You can create
     Choose whether **all** approvers must approve or **any single** approver is sufficient to advance the timesheet.
   </Step>
   <Step title="Add more stages (optional)">
-    Repeat to add additional stages. Stages run in sequence -- a timesheet must pass each stage before moving to the next.
+    Repeat to add additional stages. Stages run in sequence — a timesheet must pass each stage before moving to the next.
   </Step>
   <Step title="Save">
     Click **Save** to activate the workflow.
@@ -110,9 +110,8 @@ When a timesheet reaches your approval stage, you receive a notification. Open t
   </Step>
   <Step title="Take action">
     Choose one of the following:
-    - **Approve** -- Accept the timesheet and advance it to the next stage (or finalize it).
-    - **Reject** -- Return the timesheet to the submitter. Add a comment explaining why.
-    - **Request changes** -- Ask the submitter to correct specific entries before resubmitting.
+    - **Approve** — Accept the timesheet and advance it to the next stage (or finalise it).
+    - **Reject** — Return the timesheet to the submitter. Add a comment explaining why.
   </Step>
 </Steps>
 
@@ -126,9 +125,9 @@ When a timesheet reaches your approval stage, you receive a notification. Open t
 
 Beebole tracks every modification to a timesheet and highlights changes in the approval view:
 
-- **Added entries** -- New rows or time values that were not in the previous version.
-- **Modified entries** -- Existing entries where the duration, project, or other details changed.
-- **Deleted entries** -- Rows or values that were removed.
+- **Added entries** — New rows or time values that were not in the previous version.
+- **Modified entries** — Existing entries where the duration, project, or other details changed.
+- **Deleted entries** — Rows or values that were removed.
 
 This change tracking gives approvers full visibility into what was updated between submissions, making it easier to review resubmitted timesheets.
 
@@ -152,7 +151,7 @@ Approvers can take action directly from email notifications without logging into
 
 Each approval notification email includes:
 
-- A **summary of the timesheet** -- a line-by-line breakdown of time logged per project, task, and absence type for the period, plus the total hours.
+- A **summary of the timesheet** — a line-by-line breakdown of time logged per project, task, and absence type for the period, plus the total hours.
 - **Approve** and **Reject** buttons that work directly from the email.
 
 <Tip>
@@ -197,9 +196,9 @@ When a timesheet is rejected or changes are requested:
   </Step>
 </Steps>
 
-<Note>
+<Info>
   Resubmitted timesheets go through all approval stages again from the beginning. Approvers can use the [change tracking](#change-tracking) highlights to quickly see what was updated.
-</Note>
+</Info>
 
 ---
 
@@ -225,9 +224,9 @@ To enable force-edit for a specific person's timesheet:
   Force-edit bypasses the normal locking behavior. Changes made while in force-edit mode are saved immediately without triggering a new approval cycle. Use this only for genuine corrections.
 </Warning>
 
-<Note>
+<Info>
   Force-edit is a per-session toggle. It resets each time you navigate to a different person's timesheet.
-</Note>
+</Info>
 
 ---
 
@@ -284,7 +283,7 @@ Administrators can reject a submitted timesheet at any stage. An administrator c
     Approval stages apply to all submitted timesheets. If you need a simpler process for some teams, consider using a single-stage workflow with a broad approver type like "People managers."
   </Accordion>
   <Accordion title="Is there an audit trail for approvals?">
-    Yes. Beebole records every approval action -- who approved or rejected, when, and with what comments. This history is available on the timesheet and in the account-wide [audit trail](/help/documentation/audit-trail).
+    Yes. Beebole records every approval action — who approved or rejected, when, and with what comments. This history is available on the timesheet and in the account-wide [audit trail](/help/documentation/audit-trail).
   </Accordion>
   <Accordion title="Can an admin edit a submitted timesheet without rejecting it?">
     Yes. Administrators and managers can use the **Edit timesheet** action in the team panel to directly edit a submitted or approved timesheet. This force-edit override bypasses the lock without triggering a new approval cycle.

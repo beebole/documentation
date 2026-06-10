@@ -39,16 +39,27 @@ Choose whether timesheets display as a **weekly** or **daily** view by default. 
 
 ---
 
+## Time entry unit
+
+Choose the unit your team uses to enter time. The unit determines what users type into a timesheet cell.
+
+| Unit | Example | Description |
+|------|---------|-------------|
+| **Hours** | `7.5` or `7:30` | Time entered as a number of hours |
+| **Days** | `1` or `0.5` | Time entered as full or partial workdays |
+| **% of schedule** | `100%` or `50%` | Time entered as a percentage of the scheduled workday |
+
+---
+
 ## Duration format
 
-Configure how time values are displayed and entered across the account.
+When the unit is **Hours**, choose how the hours value is displayed and entered.
 
 | Format | Example | Description |
 |--------|---------|-------------|
-| **Hours and minutes (hh:mm)** | `7:30` | Standard hours-and-minutes notation |
-| **Decimal hours** | `7.5` | Hours expressed as a decimal number |
-| **Days** | `1` or `0.5` | Time expressed as full or partial workdays |
-| **Percentage** | `100%` | Time expressed as a percentage of the scheduled workday |
+| **hh:mm** | `3:15` | Standard hours-and-minutes notation |
+| **Decimal** | `3.25` | Hours expressed as a decimal number |
+| **hsm** | `3h15` | Compact hours-and-minutes notation using the `h` separator |
 
 <Tip>
   Choose the format that matches how your team thinks about time. Consulting firms often prefer decimal hours for invoicing, while manufacturing or shift-based teams may prefer hh:mm.
@@ -66,12 +77,12 @@ When using start/end time entry, choose between a **12-hour** (AM/PM) or **24-ho
 
 Choose whether your team enters time as:
 
-- **Duration** -- A single value representing how long they worked (e.g., `3:00` or `3.0`).
-- **Start and end times** -- The specific times they began and finished (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
+- **Duration** — A single value representing how long they worked (e.g., `3:00` or `3.0`).
+- **Start and end times** — The specific times they began and finished (e.g., `9:00` to `12:00`). Beebole calculates the duration automatically.
 
-<Note>
+<Info>
   Start/end mode provides more granular data and is useful for teams that need to track exactly when work happens, not just how long it takes.
-</Note>
+</Info>
 
 ---
 
@@ -130,9 +141,9 @@ Reminders help reduce late submissions and ensure your approval pipeline stays o
 
 Beebole can enforce rules on time entries to prevent errors:
 
-- **Minimum/maximum hours per day** -- Set boundaries on how much time can be logged in a single day.
-- **Required fields** -- Make comments or specific custom fields mandatory before saving.
-- **Overtime warnings** -- Alert users when entries exceed their scheduled hours.
+- **Minimum/maximum hours per day** — Set boundaries on how much time can be logged in a single day.
+- **Required fields** — Make comments or specific custom fields mandatory before saving.
+- **Overtime warnings** — Alert users when entries exceed their scheduled hours.
 
 These rules are optional and can be adjusted to match your organization's policies.
 

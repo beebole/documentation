@@ -21,9 +21,12 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **Why:** Paraphrased labels (e.g. "Add a Gantt" vs the real **Add a Gantt chart**, "Send Invitation" vs **Invite by email**, "Connect" vs **Connect to QB Online**, "Workspace" vs **Asana workspace**, "Load Public Holidays" vs **Load holidays**, theme **System** vs **Auto**) all break the user's ability to find the control in the UI.
   - **How to apply:** Grep `labels.json` before bolding any UI string. The displayed value is the right-hand side of the JSON entry, not the key.
 
-- **No `Settings > X` framing for top-level sidebar items.** Items like People, Projects, Tags, Time Off, Custom Fields, Audit Trail, SSO, Reports, Planning live directly in the left sidebar — users click them, not a Settings menu first.
-  - **Why:** "Settings > X" is the SaaS-default IA, but Beebole's IA is sidebar-first. Repeated misrouting on tags, people, custom-fields, kanban, time-off pages.
-  - **How to apply:** Verify against `../reboot/frontend/src/app/side-bar.ts` (or current equivalent). If the item is in the sidebar, write *"click **X** in the sidebar"*.
+- **Route navigation through the right place: sidebar vs Account Settings.** Beebole has two top-level navigation surfaces and they hold different things. Don't mix them up.
+  - **Sidebar** (left nav, per `../reboot/frontend/src/app/side-bar.ts`): **People**, **Projects**, **Tags** (auth-gated), plus **Tasks**, **Timesheet**, **Reports**, **Journal** (always). Write *"click **X** in the sidebar"*.
+  - **Account Settings menu** (per `../reboot/frontend/src/components/settings/settings-menu.ts`): **Subscription**, **Person roles**, **Schedule types**, **Integrations**, **Export data**, **GDPR**, **Time Off** (label: `absenceTypes`), **Expense types**, **Custom Fields**, **Account delete**. Write *"go to **Settings** > **X**"*.
+  - **Inside an entity's settings panel** (not a top-level menu): some configuration lives as attributes on the Organisation entity itself — for example **SSO**, opened from the org-settings panel rather than a discrete menu entry. Verify the entry-point in code before describing the path.
+  - **Why:** Past audits found "Settings > People" / "Settings > Tags" (sidebar items routed through Settings), and the inverse — "click Custom Fields in the sidebar" (a Settings-menu item described as a sidebar item). Both break the user's ability to follow the instruction.
+  - **How to apply:** Before writing any navigation step, check both files above. If the route isn't in either, it's likely an entity-attribute or a sub-page — verify in code, don't guess.
 
 - **Plan claims must match `../reboot/shared/subscription.ts`.** Don't paste in generic SaaS tier names (e.g. "Enterprise", "Team", "Business") that aren't in the code. Don't claim a feature requires plan X unless the gating exists.
   - **Why:** "Pro and Enterprise plans" appeared on 6+ integration pages despite no Enterprise tier ever existing. Plan names also change over time.

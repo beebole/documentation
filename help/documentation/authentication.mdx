@@ -7,7 +7,7 @@ keywords: ["beebole", "authentication", "login", "SSO", "single sign-on", "passk
 "og:type": "article"
 ---
 
-Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organisation's security requirements -- from simple email and password to enterprise SSO with OpenID Connect.
+Beebole supports multiple authentication methods so your team can sign in securely and conveniently. You can use a combination of methods depending on your organisation's security requirements — from simple email and password to enterprise SSO with OpenID Connect.
 
 ---
 
@@ -27,7 +27,7 @@ Team members can sign in using their existing Google or Microsoft account. This 
 
 ### Passkeys
 
-Beebole supports passwordless sign-in with passkeys -- using fingerprint, face recognition, or a hardware security key. Passkeys work across all your devices and provide a fast, phishing-resistant sign-in experience.
+Beebole supports passwordless sign-in with passkeys — using fingerprint, face recognition, or a hardware security key. Passkeys work across all your devices and provide a fast, phishing-resistant sign-in experience.
 
 <Steps>
   <Step title="Open your profile">
@@ -37,12 +37,12 @@ Beebole supports passwordless sign-in with passkeys -- using fingerprint, face r
     Select the **Security** tab.
   </Step>
   <Step title="Add a passkey">
-    Click **Add passkey** and follow your browser's prompts to register a fingerprint, face, or hardware key.
+    Click **Enable passkey** and follow your browser's prompts to register a fingerprint, face, or hardware key.
   </Step>
 </Steps>
 
 <Tip>
-  You can register multiple passkeys -- for example, one on your laptop and another on your phone -- so you always have a way to sign in.
+  You can register multiple passkeys — for example, one on your laptop and another on your phone — so you always have a way to sign in.
 </Tip>
 
 ### Email code (passwordless)
@@ -52,14 +52,6 @@ Instead of entering a password, you can sign in with a one-time verification cod
 <Info>
   The code is single-use and expires after a short time. If you do not receive it, click **Didn't receive the code? Resend** to request a new one.
 </Info>
-
-### PIN-based sign-in
-
-For quick access, Beebole offers PIN-based authentication. Each person can set a personal PIN code for faster sign-in on trusted devices. This is useful in shared environments like workshops or kiosks where speed matters.
-
-To set up a PIN, go to your profile and look for the **PIN** option in the **Security** section.
-
----
 
 ## Single sign-on (SSO)
 
@@ -136,13 +128,13 @@ Developers who integrate with Beebole's [GraphQL API](/help/api/introduction) au
     Select the **Security** tab.
   </Step>
   <Step title="Generate an API key">
-    Click **Add API key**. Set an expiration date and click **Create**. Copy the key immediately -- it is only shown once.
+    Click **Add API key**. Set an expiration date and click **Create**. Copy the key immediately — it is only shown once.
   </Step>
 </Steps>
 
 - Each key has a configurable expiration date.
 - You can have multiple active API keys.
-- Treat API keys like passwords -- do not share them or commit them to version control.
+- Treat API keys like passwords — do not share them or commit them to version control.
 
 <Warning>
   If an API key is compromised, delete it immediately from your profile and generate a new one.
@@ -159,10 +151,10 @@ Administrators can sign in as another person in the organisation to troubleshoot
     Go to **People** and select the person you want to sign in as.
   </Step>
   <Step title="Use the takeover option">
-    Click **Sign in as this person**. You are now viewing Beebole exactly as that person sees it.
+    Click **Sign in as…**. You are now viewing Beebole exactly as that person sees it.
   </Step>
   <Step title="Return to your account">
-    Click **Back to my account** in the notification bar at the top of the screen to return to your own session.
+    Click **Stop** in the notification bar at the top of the screen to return to your own session.
   </Step>
 </Steps>
 
@@ -187,14 +179,14 @@ Beebole manages active sessions to keep your account secure. Each time you sign 
 You can permanently delete your Beebole account and all associated data from your profile settings. This action is irreversible and removes your personal data from the platform.
 
 <Warning>
-  Account deletion removes all your data -- time entries, profile information, and configuration. This cannot be undone. Export any data you need before proceeding.
+  Account deletion removes all your data — time entries, profile information, and configuration. This cannot be undone. Export any data you need before proceeding.
 </Warning>
 
 To delete your account, go to your profile, scroll to the bottom, and click **Delete my account**. Follow the confirmation prompts.
 
-<Note>
+<Info>
   If you are the only administrator in your organisation, you must either transfer admin rights to another person or [delete the organisation](/help/documentation/account-settings) first.
-</Note>
+</Info>
 
 ---
 
@@ -219,7 +211,7 @@ To delete your account, go to your profile, scroll to the bottom, and click **De
 
 <AccordionGroup>
   <Accordion title="Can I use multiple sign-in methods at the same time?">
-    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey -- all active simultaneously. They can use whichever is most convenient.
+    Yes. A person can have an email/password, a linked Google or Microsoft account, and a passkey — all active simultaneously. They can use whichever is most convenient.
   </Accordion>
   <Accordion title="Does SSO replace other sign-in methods?">
     When SSO is enabled, it becomes the primary sign-in method. However, administrators can retain email/password access as a backup.
