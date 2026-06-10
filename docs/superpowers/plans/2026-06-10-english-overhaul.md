@@ -1,5 +1,7 @@
 # English-Only Documentation Overhaul Implementation Plan
 
+> **STATUS (2026-06-10, end of session 1):** Tasks 1–7 DONE (Phase 0+1, Checkpoint 1, batch 2a committed as c4a0bb5). Live progress tracker: `.todo/overhaul-worklist.md` — read its "▶ RESUME STATE" block first; it supersedes this header. **Process change:** Yves waived per-batch checkpoints — run batches 2b–2g autonomously (keep gate reviews + commits), single human review at the very end.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Bring all 63 English pages up to the full current rulebook (guardrails in `.claude/context/feedback.md`, `features.md` of 2026-06-10, SEO/GEO rules), fill coverage gaps, and finish with a refreshed illustration plan — with FR/ES unpublished until English stabilizes.

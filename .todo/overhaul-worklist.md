@@ -1,5 +1,16 @@
 # Overhaul worklist
 
+## ▶ RESUME STATE (updated 2026-06-10, end of session 1)
+
+- **Done:** Phase 0 (EN-only docs.json, commit 5b74efb) · Phase 1 (gaps + classification, commits ba96bb5/c110476) · Checkpoint 1 decisions (commit 1be70be) · **Batch 2a complete and gate-reviewed** (15 pages, commit c4a0bb5). All `[x]` lines below are done.
+- **Next: batch 2b** — Financial + Reporting + Configuration (the 11 unticked Documentation lines under those groups below, ~lines 54–75): billing, costs, budgets, expenses, reports, custom-reports, data-exports, excel-addin, gsheets-addon, work-schedule, custom-fields, roles-authorisations, assignments. Then 2c (Communication/Account/Devices incl. the 2 deprecations), 2d Guides, 2e Integrations (+ new xero.mdx), 2f API, 2g News.
+- **PROCESS CHANGE (Yves, 2026-06-10): no per-batch human checkpoints — run all remaining batches autonomously; Yves reviews everything at the end.** Keep the gate review + broken-links + commit per batch; just don't pause between batches.
+- **Method per batch** (same as 2a): dispatch parallel author agents (rewrites follow `/write` SKILL.md procedure + grounding contract; fixes are targeted edits), group sibling pages per agent, then 2–3 gate-review agents (full checklist minus translation checks), fix all criticals, `mintlify broken-links`, tick lines here + in `.todo/gaps.md`, commit `overhaul(2x): …`.
+- **Deprecations in 2c:** delete custom-domain.mdx + sso.mdx, add `redirects` array to docs.json (both → /help/documentation/authentication), remove custom-domain nav entry, repoint inbound link in authentication.mdx (sso link at authentication.mdx:188 if still present after its rewrite).
+- **After 2g:** Phase 3 coherence pass (nav↔disk, redirects, landing cards, page-mappings sync, broken-links, worklist all ticked) then Phase 4 (/illustrate --identify → regenerate .todo/screenshot-needs.md, diff vs `git show $(git rev-list -1 HEAD -- .todo/screenshot-needs.md)` baseline) then FINAL Yves review of everything.
+- **Open flag for Yves:** accruals.mdx + timeoff.mdx are hedged because the accrual awarding engine is unshipped — un-hedge if it ships.
+- Plan: docs/superpowers/plans/2026-06-10-english-overhaul.md (Tasks 1–7 done; Task 8 next, but checkpoints waived per above).
+
 Generated: 2026-06-10
 Sources: classification /review --all (10 parallel audit agents, code-verified against ../reboot) + .todo/gaps.md
 Verdicts: keep | fix | rewrite | deprecate | write
