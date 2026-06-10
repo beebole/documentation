@@ -19,17 +19,21 @@ Field-level rules (length, keyword choice, GEO patterns) live in `seo-geo.md`. T
 
 ```yaml
 ---
-title: "Feature Name — Beebole"
+title: "Feature Name"
 description: "Plain-language summary that reads as a search snippet."
 keywords: ["beebole", "keyword-2", "keyword-3"]
-"og:title": "Feature Name — Beebole"
+"og:title": "Branded phrasing mentioning Beebole"
 "og:description": "Same as description or slightly varied."
-"og:image": "https://beebole.com/help/placeholder-og-image.png"
 "og:type": "article"
 ---
 ```
 
-Every page must have all fields. No exceptions for guides, integrations, or short pages. Use the shared `placeholder-og-image.png` URL until per-page OG images are produced.
+Every page must have all fields. No exceptions for guides, integrations, or short pages.
+
+- **`title`** is short and feature-first ("Timesheets", "QuickBooks Online") — no "— Beebole" suffix. The branded phrasing goes in `og:title` instead (e.g. "Tracking Time with Beebole Timesheets").
+- **Never add `og:image`.** Mintlify auto-generates a branded OG image per page from the og:title, description, logo, and brand colors. A hardcoded URL overrides that (and the old placeholder was a 404).
+- **`og:type`** is `"article"` on content pages, `"website"` on landing/index pages.
+- Site-wide metatags (`og:site_name`, `twitter:card`) live in `docs.json` under `seo.metatags` — don't repeat them per page.
 
 ### 2. Introduction paragraph
 
@@ -132,7 +136,8 @@ Store in `/snippets/`. Use when the same content block appears on 3+ pages. Name
 ### Integration pages
 
 Same template, with these specifics:
-- Title format: "Integration Name — Beebole"
+
+- Title is the integration name ("QuickBooks Online", "Monday.com")
 - Intro must state what gets synced and the sync direction
 - Include a `<Steps>` block for the connection setup
 - Include a "What gets synced" section with a table
@@ -140,7 +145,7 @@ Same template, with these specifics:
 
 ### Guide pages
 
-- Title format: "Guide for [Role] — Beebole"
+- Title format: "[Role] Guide" ("Team Leader Guide", "Project Manager Guide")
 - Task-oriented, not feature-oriented
 - Cross-reference feature pages rather than duplicating content
 - Can use `<Tabs>` to separate different scenarios
@@ -149,7 +154,7 @@ Same template, with these specifics:
 
 API pages are technical reference, not functional documentation, and follow a different template:
 
-- Title format: feature-first, e.g. "Introduction to the Beebole API", "API Queries — Beebole"
+- Title format: feature-first, e.g. "Introduction to the Beebole API", "API Queries"
 - Frontmatter is still mandatory (same fields as content pages)
 - Definition-style intro paragraph still applies
 - Use horizontal-rule (`---`) separators between major top-level sections (`Endpoint`, `Authentication`, `Making a request`, etc.)

@@ -5,9 +5,13 @@ Apply these rules when writing, reviewing, or auditing any documentation page fo
 ## SEO — Frontmatter checklist
 
 Every page must have:
-- **`title`** — 50-60 characters, includes feature name
-- **`description`** — 120-160 characters, plain-language summary (not repeating title)
+
+- **`title`** — short and feature-first ("Timesheets", not "Timesheets — Beebole"); Mintlify appends the site name in the browser tab
+- **`description`** — 130-160 characters, plain-language summary (not repeating title)
 - **`keywords`** — YAML array of 3-8 terms (feature name, synonyms, related actions)
+- **`og:title`** — branded variant mentioning Beebole, 50-60 characters (e.g. "Tracking Time with Beebole Timesheets")
+
+Do **not** add `og:image` — Mintlify auto-generates a branded OG image per page. Site-wide metatags (`og:site_name`, `twitter:card`) and `metadata.timestamps` are configured globally in `docs.json`; never duplicate them in page frontmatter.
 
 ## SEO — Content rules
 

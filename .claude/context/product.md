@@ -4,7 +4,7 @@ Use this context to understand the Beebole entity model and how concepts relate 
 
 ## Key concepts
 
-The concepts below are listed in roughly the order a new reader builds up the mental model: account → who → work → logging → time off → approval → money → cross-cutting structure → extensibility → permissions.
+The concepts below are listed in roughly the order a new reader builds up the mental model: account → who → work → logging → time off → approval → money → reporting → cross-cutting structure → extensibility → permissions.
 
 ### Account and people
 
@@ -26,6 +26,7 @@ The concepts below are listed in roughly the order a new reader builds up the me
 
 - **Absence type** — A user-defined kind of leave (Vacation, Sick leave, Parental leave, ...). Each absence type controls how that leave behaves: paid or unpaid, tracked in hours or days, accrued automatically or assigned by hand, requiring approval or not.
 - **Allowance** — A person's budget for one absence type, scoped to a period. The user-facing label in the app is **allowance** (the term **quota** is internal). An allowance tracks how much has been **Taken**, **Accrued**, and **Available** — the same structure regardless of the absence type.
+- **Public holiday calendar** — A country-specific calendar of public holidays, populated automatically and editable by hand. Calendars are assigned at the organisation, tag, or person level and cascade down like work schedules, so people in different countries can each get the right holidays without per-person setup.
 
 ### Approval
 
@@ -36,6 +37,10 @@ The concepts below are listed in roughly the order a new reader builds up the me
 - **Rate** — A billing rate or a cost rate. A rate can be set at the **person**, **project**, **task**, or **tag** level. Beebole resolves the rate for a given time entry by walking from the most specific level to the most general (the **rate cascade**) — a more specific rate overrides a more general one. Rates have effective date ranges and can recur. This is how Beebole turns hours into money on both the revenue and the cost side.
 - **Expense type** — A user-defined kind of expense (Travel, Meals, Equipment, ...). Each expense type controls whether entries of that type are amounts or quantities, and whether a billing markup applies on top of cost.
 - **Budget** — A spending or effort ceiling defined on a project: in billing currency, in cost currency, or in hours. A budget can be split across people or sub-projects, and can repeat across periods.
+
+### Reporting
+
+- **Saved report** — A reusable report configuration over time records, expense records, or task records: which dimensions to group by (people, projects, tasks, tags, periods, custom fields), which filters to apply, and which attributes to include (hours, billing amounts, costs, profitability). Saved reports are organized into folders, can be visualized as tables or charts, and feed the spreadsheet add-ins (Excel, Google Sheets) that refresh report data from outside Beebole. Specialized views — the matrix report and the budget status report — are built on the same underlying records.
 
 ### Cross-cutting structure
 
