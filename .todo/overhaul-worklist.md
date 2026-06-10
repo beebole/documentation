@@ -9,14 +9,14 @@ Plan: docs/superpowers/plans/2026-06-10-english-overhaul.md
 
 | Tab | keep | fix | rewrite | deprecate | write (new) |
 |---|---|---|---|---|---|
-| Documentation (incl. landing) | 0 | 10 | 27 | 1 | 0 |
+| Documentation (incl. landing) | 0 | 10 | 26 | 2 | 0 |
 | Guides | 0 | 0 | 5 | 0 | 0 |
 | Integrations | 0 | 7 | 6 | 0 | 1 |
 | API | 0 | 1 | 5 | 0 | 0 |
 | News | 0 | 1 | 0 | 0 | 0 |
-| **Total (63 pages + 1 new)** | **0** | **19** | **43** | **1** | **1** |
+| **Total (63 pages + 1 new)** | **0** | **19** | **42** | **2** | **1** |
 
-⚠️ **SAFETY VALVE TRIGGERED:** 43/63 = 68% rewrite (> 50% threshold). Phase 2 paused pending posture decision (see plan, "Error handling").
+✅ **CHECKPOINT 1 (2026-06-10): Yves approved.** Safety valve (68% rewrite) discussed — proceed as classified. Decisions: delete custom-domain.mdx AND sso.mdx (redirect both to /help/documentation/authentication, repoint inbound links); planning.mdx rewrites as a Tasks overview page; write xero.mdx; 9 page-mapping rows added; tooltips/toasts/breadcrumbs gaps dropped; no /news backfill (just fix releases.mdx). Catalog + feedback.md corrections applied pre-Phase-2.
 
 ## Catalog & rulebook corrections (feed back to /sync-features and /triage)
 
@@ -42,7 +42,7 @@ Plan: docs/superpowers/plans/2026-06-10-english-overhaul.md
 - [ ] rewrite | help/documentation/timesheets.mdx | 9/3 | fabricated WFH account-level toggle; fabricated **Copy previous week** (real: copy/paste period); 3 fake "Click Save" steps (auto-save); **Add a row** not "[+]"; weekly/daily-view toggle misrepresents **Timesheet period** (6 options); timer labels wrong
 - [ ] rewrite | help/documentation/timesheetSettings.mdx | 13/3 | fabricated "Settings > Time entry" nav (real: **Time Settings** attribute panel); 5 of 6 feature toggles fabricated; fabricated entry rules (min/max hours, overtime warnings); **First day of the week**; reminder options wrong
 - [ ] rewrite | help/documentation/approval.mdx | 10/4 | fabricated **Approvals** sidebar item + "Settings > Approval" (real: approval-stages attribute on org/tag/person); "Request changes" remnants (code: Approve/Reject only); fabricated stage names; **Add** + auto-save not "Add stage"/"Save" | +gaps: per-person reminders
-- [ ] rewrite | help/documentation/planning.mdx | 13/3 | CORE FABRICATION: no planning view exists in app (Routes.planning never rendered; views are gantt|kanban only); entire resource-allocation grid/capacity UI invented; documents planned-but-unshipped planned-vs-actual; banned "calendar view" leak; salvage: recurring tasks, categories, hierarchy sections | +gaps: task CSV import, task archive/unarchive — DECISION NEEDED: probably becomes a "Tasks" overview page
+- [ ] rewrite | help/documentation/planning.mdx | 13/3 | CORE FABRICATION: no planning view exists in app (Routes.planning never rendered; views are gantt|kanban only); entire resource-allocation grid/capacity UI invented; documents planned-but-unshipped planned-vs-actual; banned "calendar view" leak; salvage: recurring tasks, categories, hierarchy sections | +gaps: task CSV import, task archive/unarchive — DECIDED (Checkpoint 1): rewrite as a Tasks overview page (same URL)
 - [ ] rewrite | help/documentation/gantt.mdx | 7/5 | fabricated access path Projects→Gantt tab (real: saved view on **Tasks** sidebar page; tasks-are-planning-entities rule); statuses belong to task categories not projects; zoom day/week only; dependency interaction wrong; **Assignee**/**Owner** not "Assigned to"
 - [ ] rewrite | help/documentation/kanban.mdx | 10/3 | WIP-limit behavior inverted (code hard-blocks drops); fabricated Projects→Kanban access path; fabricated status-config-in-project-settings; fabricated bulk checkbox/Select-all/Reassign; editor feature list overstated; banned calendar-view leak; **Add Task** not "+"
 
@@ -79,7 +79,7 @@ Plan: docs/superpowers/plans/2026-06-10-english-overhaul.md
 - [ ] rewrite | help/documentation/audit-trail.mdx | 4/3 | fabricated **Previous value** field (AuditTrail stores new values only); fabricated expandable diff view (real: journal feed + **Hide similar entries**, **Logs** view); omits paid gating (`SubscriptionFeature.auditTrail`); British "centralised" ×2. NOTE: feature EXISTS (past "Settings > Audit trail" leak was the path, not the feature)
 - [ ] fix | help/documentation/legacy-migration.mdx | 0/4 | strongest page audited; og:title 37 chars; FAQ 6 items; 2 unverifiable claims to soften
 - [ ] fix | help/documentation/mobile.mdx | 2/4 | British "optimised" ×2; theme step wrong (**Dark / Lite** switch in user menu); offline claim contradicts own FAQ; "same features as desktop" overclaim
-- [ ] rewrite | help/documentation/sso.mdx | 4/1 | 10-line stub, out of nav; claims SAML (real: OpenID Connect only); "PIN sign-in" (real: 6-digit code); missing mandatory frontmatter — DECISION NEEDED: delete + repoint 2 inbound links to authentication.mdx, or keep as hidden URL shim with fixed content
+- [ ] deprecate | help/documentation/sso.mdx | 4/1 | DECIDED (Checkpoint 1): delete + redirect to /help/documentation/authentication + repoint 2 inbound links (authentication.mdx:188, custom-domain.mdx:80 — latter is deleted anyway)
 
 ## Guides (batch 2d)
 

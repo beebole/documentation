@@ -60,3 +60,12 @@ Use this table to map app change keywords to the documentation pages they likely
 | workload heatmap, Gantt heatmap, capacity heatmap, group row color | `help/documentation/gantt.mdx` |
 | lock end date, pin end date, fixed end date, hard deadline task | `help/documentation/gantt.mdx` |
 | color coding, entity color, color identifier, color code | `help/documentation/concepts.mdx` |
+| xero, xero contacts, xero items, invoice export | `help/integrations/xero.mdx` |
+| matrix report, matrix, grid report, heat map report, row column swap | `help/documentation/custom-reports.mdx` |
+| budget status report, budget progress, budget alert, forecast bar, budget threshold | `help/documentation/reports.mdx` |
+| api, graphql, developer API, API consumer | `help/api/introduction.mdx` |
+| fast loading, local cache, caching, performance | `help/documentation/concepts.mdx` |
+| tooltip, toast, breadcrumb, in-app feedback | `help/documentation/concepts.mdx` |
+| profile picture, avatar, crop tool | `help/documentation/account-settings.mdx` |
+| archive absence type, archive schedule, archive task, unarchive | `help/documentation/timeoff.mdx`, `help/documentation/work-schedule.mdx`, `help/documentation/planning.mdx` |
+| CSV import, bulk import, import tasks, import tags | `help/documentation/planning.mdx`, `help/documentation/tags.mdx` |

@@ -48,7 +48,7 @@
 - `approval/types-per-stage` **Approval types per stage** — Approvers can be: admins, project managers, people managers, task managers, tagged people, or specific named people
 - `approval/quorum` **Quorum settings** — Require all approvers or any single approver per stage
 - `approval/submit` **Submit for approval** — Employees submit completed timesheets for review
-- `approval/actions` **Approve / Reject / Request changes** — Approvers can take action with comments
+- `approval/actions` **Approve / Reject** — Approvers approve or reject; rejection requires a comment (no other actions exist)
 - `approval/history` **Approval history & audit trail** — Full log of approval actions with timestamps
 - `approval/change-tracking` **Change tracking** — Highlights added, modified, and deleted records during approval
 - `approval/force-edit` **Admin force-edit** — Admins and managers can directly edit submitted or approved time records without rejecting, via a per-person override toggle in the approval pane
@@ -253,13 +253,12 @@
 
 ## 20. Authentication & Security
 
-- `auth/email-password` **Email/password authentication**
 - `auth/oauth` **OAuth sign-in** — Google and Microsoft SSO
 - `auth/custom-sso` **Custom enterprise SSO** — Sign in using an enterprise identity provider (e.g. Okta, Microsoft Entra, OneLogin) via OpenID Connect, configured by administrators in account settings
-- `auth/sso-only-enforcement` **SSO-only enforcement** — Require all users in the organisation to sign in through a specific SSO provider, blocking password-based login
+- `auth/sso-only-enforcement` **SSO-only enforcement** — Require all users in the organisation to sign in through a specific SSO provider, disabling interactive sign-in
 - `auth/passkeys` **Passkey support** — Passwordless sign-in with fingerprint or face recognition, works across all your devices
 - `auth/passwordless-email` **Passwordless email login** — Sign in via a one-time verification code sent to your inbox
-- `auth/api-keys` **API keys** — Generate keys with expiration for API access
+- `auth/api-keys` **API keys** — Each user has one auto-created API key (**API Key** in the user menu) with copy and reset actions; no expiration setting
 - `auth/account-deletion` **Account deletion** — Permanently delete your account and all associated data
 
 ## 21. Subscription & Billing
@@ -295,7 +294,7 @@
 - `ui/responsive` **Responsive layout** — Resizable panels and sidebar
 - `ui/keyboard` **Keyboard navigation** — Escape to close menus, keyboard shortcuts
 - `ui/undo-redo` **Undo/redo** — Cmd+Z / Cmd+Shift+Z with operation grouping for bulk changes
-- `ui/global-search` **Global search** — Find entities across the application
+- `ui/global-search` **Panel search** — Fuzzy search within each panel/list; there is no single cross-application search
 - `ui/realtime-sync` **Real-time sync** — Changes by teammates appear instantly without refreshing
 - `ui/fast-loading` **Fast loading** — Data is cached locally for near-instant page loads
 - `ui/attribute-copy-paste` **Attribute copy/paste** — Copy billing, cost, budget, or quota configurations between entities

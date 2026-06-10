@@ -13,7 +13,7 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 
 ## Site-wide
 
-- **Don't invent features from SaaS clichés.** If a feature, label, settings path, plan tier, or workflow isn't in `../reboot`, it doesn't exist. Don't borrow what "most SaaS apps have." This includes planned-but-unshipped features: document only what's in the code today. Past leaks: "Pro and Enterprise plans", `Settings > Audit trail`, "Request changes" approval action, password-based sign-in (Beebole has **no passwords** — sign-in is a one-time 6-digit code emailed to the user, plus passkeys, Google/Microsoft, SSO), calendar views in Gantt/Kanban, diamond milestone markers, Google/Microsoft Calendar integrations — none of these are in code.
+- **Don't invent features from SaaS clichés.** If a feature, label, settings path, plan tier, or workflow isn't in `../reboot`, it doesn't exist. Don't borrow what "most SaaS apps have." This includes planned-but-unshipped features: document only what's in the code today. Past leaks: "Pro and Enterprise plans", `Settings > Audit trail`, "Request changes" approval action, password-based sign-in (Beebole has **no passwords** — sign-in is a one-time 6-digit code emailed to the user, plus passkeys, Google/Microsoft, SSO), calendar views in Gantt/Kanban, diamond milestone markers — none of these are in code. (Google/Microsoft Calendar integration was on this list but **shipped in 2026**: it lives in the timesheet's external-calendar pane — `frontend/src/components/integrations/calendar/` — NOT under Settings > Integrations; it is per-user, read-only, click/drag events onto timesheet rows.)
   - **Why:** The audit found ~30 fabricated claims following this exact pattern. Documentation describes what the app does, not what it could plausibly do.
   - **How to apply:** Before writing any factual claim, find a backing reference in `../reboot` (`labels.json` entry, component file, backend entity, or `features.md`). If none exists, omit the claim or mark it `[VERIFY:]`.
 
@@ -53,7 +53,7 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **How to apply:** After drafting, reread each section opener and cut it if it carries no new information.
 
 - **Examples should match the sample data a new account contains.** Prefer the seeded names over invented ones.
-  - **Why:** A new account is seeded (see `../reboot/scripts/seed-demo.mjs` / `seed-mini.mjs`) with categories like **Customer**, **Internal**, **Activity** and projects like **Acme Corp**, **Website Redesign**, **Development** — examples that match what the reader actually sees on screen.
+  - **Why:** A new account is seeded (see `../reboot/scripts/seed-demo.mjs` / `seed-mini.mjs`) with categories **Clients**, **Internal**, **Activities** (per `../reboot/shared/i18n/en/config.json`) and projects like **Acme Corp**, **Website Redesign**, **Development** — examples that match what the reader actually sees on screen.
   - **How to apply:** When inventing an example category/project/person, check the seed scripts first and reuse those names where natural.
 
 - **Entity-attribute options vary by entity type — verify per entity.** The same attribute panel (Show or hide, billing rates, availability toggles…) offers different options on a person, project, tag, or task.

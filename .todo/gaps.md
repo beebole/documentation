@@ -43,9 +43,8 @@ Catalog last updated: 2026-06-10
 ### Section 24: UI & User Experience
 
 - [ ] Missing | `help/documentation/concepts.mdx` | Fast loading — data is cached locally for near-instant page loads
-- [ ] Missing | `help/documentation/concepts.mdx` | Tooltips — contextual help throughout the interface
-- [ ] Missing | `help/documentation/concepts.mdx` | Toast notifications — in-app success/error feedback
-- [ ] Missing | `help/documentation/concepts.mdx` | Breadcrumb navigation — hierarchical entity paths
+
+_(Tooltips, toast notifications, and breadcrumb gaps dropped at Checkpoint 1 — generic UI affordances, curator decision 2026-06-10.)_
 
 ---
 
