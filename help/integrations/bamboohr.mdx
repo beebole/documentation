@@ -1,8 +1,9 @@
 ---
-title: "BambooHR"
+title: "BambooHR Approved Time-Off Sync Integration — Beebole"
+sidebarTitle: "BambooHR"
 description: "Sync BambooHR time-off requests to Beebole absences. Connect your BambooHR account to automatically import approved leave into Beebole."
 keywords: ["beebole", "BambooHR", "integration", "HR", "time off", "absences", "leave management", "employee sync"]
-"og:title": "Beebole BambooHR Integration"
+"og:title": "Sync BambooHR Time-Off Requests to Beebole Absences"
 "og:description": "Sync approved BambooHR time-off requests to Beebole absences automatically."
 "og:type": "article"
 ---
@@ -11,7 +12,7 @@ Beebole's BambooHR integration connects your BambooHR account to Beebole so that
 
 ---
 
-## Subscription requirements
+## What syncs and what stays in Beebole
 
 <Info>You need administrative privileges in both BambooHR and Beebole to set up the integration.</Info>
 
@@ -61,7 +62,7 @@ Beebole's BambooHR integration connects your BambooHR account to Beebole so that
   <Step title="Set the default role for imported employees">
     Select the **Default role for imported employees**. This role is assigned to any BambooHR employee who is created as a new person in Beebole during import.
 
-    <Tip>You can review and manage existing roles in **Settings** > **Person roles**.</Tip>
+    <Tip>You can review and manage existing roles in **Settings** > **Person Roles**.</Tip>
   </Step>
   <Step title="Enable the integration">
     Click the toggle to **Enable integration**. Beebole immediately:
@@ -73,7 +74,7 @@ Beebole's BambooHR integration connects your BambooHR account to Beebole so that
     <Info>The initial import may take a few moments. A summary shows how many entries were successfully imported and lists any entries that could not be processed.</Info>
   </Step>
   <Step title="Validate and manually sync">
-    Once enabled, go to the **Absences** section to verify that imported records appear correctly. The integration syncs automatically every 24 hours.
+    Once enabled, verify that imported records appear correctly: the absences show as **Time off** on the affected people's timesheets, and you can run a report in **Reports** to review them across your team. The integration syncs automatically every 24 hours.
 
     To trigger an immediate sync at any time, go to **Settings** > **Integrations** > **BambooHR** and click **Manual sync** under **Manually sync last changes from BambooHR**.
   </Step>
@@ -118,7 +119,7 @@ To disconnect your BambooHR account entirely, click **Reset connection**. This r
   </Accordion>
 
   <Accordion title="What happens if a BambooHR time-off type has no matching absence type in Beebole?">
-    If no Beebole absence type matches the BambooHR time-off type name exactly (case-insensitive), the integration creates a new absence type automatically. You can rename or reconfigure the created absence type in **Settings** > **Absence types**.
+    If no Beebole absence type matches the BambooHR time-off type name exactly (case-insensitive), the integration creates a new absence type automatically. You can rename or reconfigure the created absence type in **Settings** > **Time Off**.
   </Accordion>
 
   <Accordion title="Can I map BambooHR employees to existing Beebole people?">
@@ -133,7 +134,7 @@ To disconnect your BambooHR account entirely, click **Reset connection**. This r
     No. All absences imported from BambooHR are created as paid in Beebole, regardless of how they are defined in BambooHR. To treat a type as unpaid, edit the corresponding absence type in Beebole after it has been created by the import and turn off **Is paid (included in people costs)**.
   </Accordion>
 
-  <Accordion title="What happens if a time-off request is cancelled or modified in BambooHR?">
+  <Accordion title="What happens if a time-off request is canceled or modified in BambooHR?">
     On the next sync, Beebole updates or removes the corresponding absence record to match the current state of approved requests in BambooHR. Records that no longer appear in the BambooHR response within the sync window are deleted from Beebole. You can also trigger a manual sync immediately from the integration settings page.
   </Accordion>
 </AccordionGroup>

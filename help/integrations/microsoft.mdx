@@ -1,95 +1,64 @@
 ---
-title: "Microsoft SSO"
-description: "Sign in to Beebole with Microsoft single sign-on (SSO). Use Microsoft 365, Azure AD, or Entra ID for faster, more secure team authentication via OAuth."
-keywords: ["beebole", "Microsoft SSO", "single sign-on", "Microsoft login", "OAuth", "Microsoft 365", "Azure AD", "authentication"]
-"og:title": "Beebole Microsoft SSO Integration"
-"og:description": "Sign in to Beebole with your Microsoft account using single sign-on for faster, more secure access."
+title: "Sign in to Beebole with Microsoft — SSO and Sign-In"
+sidebarTitle: "Microsoft"
+description: "Sign in to Beebole with a Microsoft account and require Microsoft sign-in across your organization from the Single Sign-On panel of Account Settings."
+keywords: ["beebole", "Microsoft sign-in", "Microsoft SSO", "Microsoft 365", "single sign-on", "authentication", "Microsoft Entra"]
+"og:title": "Sign in to Beebole with a Microsoft Account and SSO"
+"og:description": "Use Microsoft to sign in to Beebole and require Microsoft-only sign-in for your whole organization."
 "og:type": "article"
 ---
 
-Beebole's Microsoft SSO integration lets your team sign in to Beebole using their existing Microsoft accounts. Instead of requesting a one-time email code, users authenticate through Microsoft's secure OAuth flow. This simplifies access for organizations that use Microsoft 365 or Azure Active Directory.
+Microsoft sign-in lets anyone in your organization sign in to Beebole with their existing Microsoft account, which is convenient for teams already on Microsoft 365. It is a built-in sign-in option — no administrator setup is required to use it. An administrator can also require Microsoft sign-in for the whole organization from the **Single Sign-On** panel.
 
----
+<Info>
+  This page covers the Microsoft-specific controls. For the full picture of how sign-in and single sign-on work in Beebole — email codes, passkeys, and the **Single Sign-On** panel — see [Sign-in, passkeys, SSO, and API keys](/help/documentation/authentication).
+</Info>
 
-## How it works
+## Sign in with Microsoft
 
-When Microsoft SSO is enabled, users see a **Sign in with Microsoft** button on the Beebole login page. Clicking it redirects them to Microsoft's authentication screen, where they sign in with their Microsoft account. After successful authentication, they are redirected back to Beebole and logged in automatically.
+Microsoft sign-in is always available on the Beebole sign-in screen. Under **Or Sign in with**, click the **Microsoft** button, then authenticate with your Microsoft account. Beebole matches the Microsoft account's email address to your Beebole profile, so both must use the same email address.
 
-Beebole matches the Microsoft account to an existing Beebole user by email address. The email address on the Microsoft account must match the email address registered in Beebole.
+Because Microsoft sign-in is built in, you do not need to turn anything on for your team to use it. A person with a matching email address must already exist in your Beebole account before they can sign in with Microsoft.
 
-<Info>Microsoft SSO does not create new Beebole accounts automatically. Users must already exist in your Beebole account with a matching email address before they can sign in with Microsoft.</Info>
+## Require Microsoft sign-in
 
----
+To make Microsoft the only way your team can sign in, go to **Settings** > **Account Settings**, open the **Single Sign-On** panel, and select the **Microsoft** tab. Turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.** to block the email-code method for your organization, so everyone authenticates through Microsoft. The setting saves automatically.
 
-## Setting up Microsoft SSO
-
-<Steps>
-  <Step title="Open integration settings">
-    Open **Settings** > **Single Sign-On** in your Beebole account, then switch to the **Microsoft** tab.
-  </Step>
-  <Step title="Enable Microsoft SSO">
-    Locate the **Microsoft** card and click **Connect**. Follow the OAuth prompts to authorize Beebole to verify your identity through Microsoft.
-  </Step>
-  <Step title="Verify the connection">
-    Once connected, the Microsoft integration shows as active in your integration settings. Users in your account can now sign in using the **Sign in with Microsoft** button on the login page.
-  </Step>
-</Steps>
-
-<Tip>If your organization uses Microsoft 365, enabling Microsoft SSO gives your team one-click access and aligns with your existing identity management.</Tip>
-
----
-
-## Linking an existing Beebole account to Microsoft
-
-If a user already has a Beebole account and wants to start using Microsoft SSO:
-
-1. The user's Beebole email address must match their Microsoft email address.
-2. On the next login, they click **Sign in with Microsoft** instead of requesting an email code.
-3. Beebole links the Microsoft account to their existing profile automatically.
-
-No data is lost during this process. All existing timesheet entries, settings, and permissions remain unchanged.
-
----
-
-## Disabling Microsoft SSO
-
-To disable Microsoft SSO, open **Settings** > **Single Sign-On**, switch to the **Microsoft** tab, and disable the connection. Users sign in with their Beebole email and a one-time code after disconnection.
-
----
+<Warning>
+  Before turning on **Disable interactive sign-in. Only Microsoft sign-in allowed.**, confirm Microsoft sign-in works for a test user. If Microsoft sign-in becomes unavailable while enforcement is on, your team is locked out until you turn the toggle back off.
+</Warning>
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Google SSO" icon="google" href="/help/integrations/google">
-    Sign in to Beebole with your Google account using single sign-on.
+  <Card title="Sign-in, passkeys, and SSO" icon="key" href="/help/documentation/authentication">
+    How every sign-in method works in Beebole, including the Single Sign-On panel and Custom OpenID.
   </Card>
-  <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
-    Explore all available Beebole integrations.
+  <Card title="Google sign-in" icon="google" href="/help/integrations/google">
+    Sign in to Beebole with a Google account, link your domains, and auto-provision people.
   </Card>
 </CardGroup>
-
----
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Does Microsoft SSO create new Beebole users automatically?">
-    No. Users must already exist in your Beebole account with a matching email address. Microsoft SSO is an authentication method, not a user provisioning tool.
+  <Accordion title="Do I need to set anything up to sign in with Microsoft?">
+    No. Microsoft sign-in is a built-in option on the Beebole sign-in screen — click the **Microsoft** button under **Or Sign in with**. No administrator configuration is needed for your team to use it.
   </Accordion>
 
-  <Accordion title="Can I use Microsoft SSO and email-code sign-in at the same time?">
-    Yes. Users can sign in using either method. Microsoft SSO is an alternative login option alongside email codes and passkeys.
+  <Accordion title="Does Microsoft sign-in create Beebole people automatically?">
+    No. A person with a matching email address must already exist in your Beebole account before they can sign in with Microsoft. Microsoft sign-in authenticates existing people; it does not provision new ones.
   </Accordion>
 
   <Accordion title="What if my Microsoft email is different from my Beebole email?">
-    Beebole matches users by email address. If your Microsoft email does not match your Beebole email, you will not be able to use Microsoft SSO. Update your email in one of the two systems so they match.
+    Beebole matches accounts by email address. If your Microsoft email does not match the email on your Beebole profile, Microsoft sign-in will not find your account. Make the two email addresses match, or contact support@beebole.com.
   </Accordion>
 
-  <Accordion title="Is Microsoft SSO available on all Beebole plans?">
-    Yes. Microsoft SSO is available on all Beebole plans, including the free trial.
+  <Accordion title="Can I make Microsoft the only way my team signs in?">
+    Yes. On the **Microsoft** tab of the **Single Sign-On** panel, turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.** This blocks the email-code method so everyone authenticates through Microsoft. Confirm Microsoft sign-in works for a test user first.
   </Accordion>
 
-  <Accordion title="Does Beebole store my Microsoft password?">
-    No. Beebole never sees or stores your Microsoft password. Authentication happens entirely through Microsoft's secure OAuth flow. Beebole only receives confirmation that you authenticated successfully.
+  <Accordion title="Where do I find the Microsoft settings in Beebole?">
+    Go to **Settings** > **Account Settings**, open the **Single Sign-On** panel, and select the **Microsoft** tab. SSO is configured on the organization itself, not as a separate menu item, and the setting saves automatically.
   </Accordion>
 </AccordionGroup>

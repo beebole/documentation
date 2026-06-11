@@ -1,0 +1,120 @@
+---
+title: "Xero Accounting and Invoicing Integration — Beebole"
+sidebarTitle: "Xero"
+description: "Connect Beebole to Xero to import your Xero contacts and items as projects, keep them in sync, and export tracked time and expenses as Xero invoices."
+keywords: ["beebole", "Xero", "accounting", "invoicing", "time tracking", "expenses", "export"]
+"og:title": "Xero Accounting and Invoicing Integration for Beebole"
+"og:description": "Import Xero contacts and items into Beebole, keep them in sync, and export time entries and expenses as Xero invoices."
+"og:type": "article"
+---
+
+Beebole's Xero integration brings your Xero accounting structure into Beebole and sends tracked work back as invoices. When you connect it, Beebole imports your Xero contacts and items as projects so both systems share the same structure. From then on, you can resync that structure and export time entries and expenses for a period as a Xero invoice. This streamlines billing for your organization.
+
+<Info>The Xero integration lives under **Settings** > **Integrations**. You connect one Xero account and organization for your Beebole account.</Info>
+
+## How it works
+
+Enabling the Xero integration imports your existing **Xero contacts** and **items** into Beebole as projects. While the integration is active, contacts and items you create or rename in Xero are updated in Beebole automatically.
+
+To bill, you choose a client and a period, and Beebole exports the time entries and expenses for that period as a Xero invoice — time and expenses appear as separate line items. Beebole reports how many lines were created and lists any entries it could not export.
+
+<Info>For people to track time on the imported projects, add the Xero categories in your timesheet settings — Beebole shows this as the next step once the integration is active.</Info>
+
+## Set up the Xero integration
+
+<Steps>
+  <Step title="Open integration settings">
+    Go to **Settings** > **Integrations** and open the **Xero** integration.
+  </Step>
+  <Step title="Connect to Xero">
+    Click **Connect to Xero**. A popup opens for you to sign in to Xero and authorize Beebole. You need an active Xero account.
+  </Step>
+  <Step title="Select your organization">
+    If your Xero login has more than one organization, Beebole asks you to **Select your Xero organization**. The connected account and organization then appear in the integration panel.
+  </Step>
+  <Step title="Enable the integration">
+    Turn on the **Enable integration** toggle. Beebole imports your Xero contacts and items as projects and keeps them updated from Xero while the integration stays active.
+  </Step>
+</Steps>
+
+## Sync your Xero structure
+
+Beebole keeps contacts and items in sync automatically once the integration is active. To pull changes on demand, open the **Xero** integration and click **Manual sync** under **Manually sync Xero contacts and items**.
+
+After a sync, Beebole reports the counts for **Created**, **Archived**, **Unarchived**, **Deleted**, and **Renamed**, and lists any entries it could not sync.
+
+## Export an invoice to Xero
+
+<Steps>
+  <Step title="Open the Xero integration">
+    Go to **Settings** > **Integrations** and open the **Xero** integration. The export options appear once the integration is enabled.
+  </Step>
+  <Step title="Select the client">
+    Under **Export time entries and expenses as a Xero Invoice**, use **Select client** to choose a Xero client.
+  </Step>
+  <Step title="Select the period and export">
+    Choose the period under **Select period to export**, then click **Create invoice**. Beebole sends the time entries and expenses for that period to Xero as a single invoice.
+  </Step>
+  <Step title="Check the result">
+    Beebole reports the number of **Time line items** and **Expense line items** created. If any entries could not be exported, it lists them under **Entries not exported** so you can correct and re-export them.
+  </Step>
+</Steps>
+
+<Tip>Export after the approval cycle for the period is complete, so the hours and expenses sent to Xero are final.</Tip>
+
+## What data is synced
+
+| Direction | Data | Result |
+|-----------|------|--------|
+| Xero → Beebole (at setup and on sync) | **Contacts** and **items** | Imported as projects in Beebole |
+| Beebole → Xero (on export) | **Time entries** | Created as time line items on a Xero invoice |
+| Beebole → Xero (on export) | **Expenses** | Created as expense line items on a Xero invoice |
+
+## Disconnect Xero
+
+To disconnect, open the **Xero** integration under **Settings** > **Integrations** and click **Reset connection**. This removes the Xero account connection from Beebole. Invoices already created in Xero are not affected.
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Costs and billing rates" icon="dollar-sign" href="/help/documentation/costs">
+    Configure billing rates and track costs across your projects.
+  </Card>
+  <Card title="Projects and activities" icon="folder" href="/help/documentation/projects">
+    Manage your projects, subprojects, and billing rates in Beebole.
+  </Card>
+  <Card title="QuickBooks Online" icon="book" href="/help/integrations/quickbooks">
+    Compare Beebole's other accounting integration.
+  </Card>
+  <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
+    Explore all available Beebole integrations.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What does Beebole import from Xero?">
+    When you enable the Beebole Xero integration, Beebole imports your Xero contacts and items as projects. While the integration is active, contacts and items created or renamed in Xero are updated in Beebole automatically.
+  </Accordion>
+
+  <Accordion title="Is the Xero export real-time?">
+    No. Exporting to Xero is a manual step. You choose a client and a period, then click **Create invoice** to send the time entries and expenses for that period to Xero as an invoice.
+  </Accordion>
+
+  <Accordion title="Are expenses included in the Xero invoice?">
+    Yes. Beebole's Xero export sends both time entries and expenses for the selected period. They appear as separate **Time line items** and **Expense line items** on the Xero invoice.
+  </Accordion>
+
+  <Accordion title="How do I resync my Xero contacts and items?">
+    Beebole keeps your contacts and items in sync automatically while the integration is active. To refresh on demand, open the **Xero** integration and click **Manual sync**. Beebole then reports what was created, archived, unarchived, deleted, and renamed.
+  </Accordion>
+
+  <Accordion title="How do I know if the export succeeded?">
+    After an export, Beebole shows the number of time and expense line items it created on the Xero invoice. Any entries it could not export are listed under **Entries not exported** so you can fix and re-export them.
+  </Accordion>
+
+  <Accordion title="Why can't my team track time on the imported projects yet?">
+    The imported Xero projects belong to Xero categories. For people to track time on them, add those categories in your timesheet settings — Beebole shows this as the next step once the Xero integration is active.
+  </Accordion>
+</AccordionGroup>

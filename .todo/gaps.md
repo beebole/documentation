@@ -38,7 +38,7 @@ Catalog last updated: 2026-06-10
 
 ### Section 18: Integrations
 
-- [ ] Missing | `help/integrations/xero.mdx` | Xero — import Xero contacts and items as Beebole project structure, keep them in sync, and export time records to Xero as invoices (page does not exist)
+- [x] Missing | `help/integrations/xero.mdx` | Xero — import Xero contacts and items as Beebole project structure, keep them in sync, and export time records to Xero as invoices (page does not exist)
 
 ### Section 24: UI & User Experience
 

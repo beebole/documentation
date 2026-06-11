@@ -1,107 +1,126 @@
 ---
-title: "Integrations"
-description: "Connect Beebole with your favorite tools to streamline time tracking, project management, and financial workflows across your organization."
-keywords: ["beebole", "integrations", "time tracking", "project management", "calendar sync", "SSO", "QuickBooks", "API"]
-"og:title": "Beebole Integrations"
-"og:description": "Connect Beebole with your favorite tools to streamline time tracking, project management, and financial workflows."
+title: "Integrations: Connect Your Tools — Beebole"
+sidebarTitle: "Integrations"
+description: "Connect Beebole with Asana, Jira, Linear, Monday.com, BambooHR, QuickBooks, Xero, and webhooks to keep projects, people, and time data in sync."
+keywords: ["beebole", "integrations", "time tracking", "project management", "QuickBooks", "Xero", "webhooks", "API"]
+"og:title": "Beebole Integrations: Connect Your Favorite Tools"
+"og:description": "Connect Beebole with Asana, Jira, Linear, Monday.com, BambooHR, QuickBooks, Xero, and webhooks to keep your data in sync."
 "og:type": "article"
 ---
 
-Beebole integrates with the tools your team already uses, so you can track time without switching between applications. Import projects and tasks from your project management tools, sign in with your existing accounts, and export time data to your accounting software.
+Beebole integrations connect your time tracking account to the project, accounting, and HR tools your team already uses. Import projects and work items from your project management tools, export time and expense data to your accounting software, sync people from your HR system, and push real-time events to your own services with webhooks.
 
-All integrations are configured from **Settings** > **Integrations** in your Beebole account. Each integration can be enabled, disabled, and reconfigured independently.
+Integrations are managed from **Settings** > **Integrations** in your Beebole account, opened from the button with your initials at the bottom of the sidebar. Each integration is configured independently.
 
-<Info>You need administrative privileges in Beebole to set up integrations.</Info>
+<Info>You need a role with administrative permissions to set up the integrations under **Settings** > **Integrations**.</Info>
 
----
+## Project management
 
-## Productivity integrations
+Import your projects and work items from project management tools into Beebole, then track time against them without duplicating data.
 
-Import your project and task structures from project management tools directly into Beebole. Your team can then track time against those projects without duplicating data.
-
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Asana" icon="list-check" href="/help/integrations/asana">
-    Import Asana projects, tasks, and sub-tasks into Beebole. Automatic webhook-based sync keeps everything up to date.
+    Import Asana projects and work items into Beebole and keep them in sync.
   </Card>
   <Card title="Jira" icon="diagram-project" href="/help/integrations/jira">
-    Import Jira projects and issues into Beebole for time tracking and resource planning.
+    Import Jira projects and issues into Beebole for time tracking and planning.
   </Card>
   <Card title="Linear" icon="bolt" href="/help/integrations/linear">
-    Import Linear projects and issues into Beebole. Automatic sync reflects changes in real time.
+    Import Linear projects and issues into Beebole and reflect changes automatically.
+  </Card>
+  <Card title="Monday.com" icon="table-columns" href="/help/integrations/monday">
+    Import boards and items from Monday.com into Beebole to track time against them.
   </Card>
 </CardGroup>
 
----
+## Accounting
 
-## Communication and calendars
-
-Sign in with your existing Google or Microsoft account. Calendar import — bringing your meetings straight into your timesheet — is coming soon.
+Export your Beebole time and expense data to accounting tools to streamline invoicing and reporting.
 
 <CardGroup cols={2}>
-  <Card title="Google SSO" icon="google" href="/help/integrations/google">
-    Sign in to Beebole with your Google account using single sign-on.
+  <Card title="QuickBooks Online" icon="file-invoice-dollar" href="/help/integrations/quickbooks">
+    Export time and expense data from Beebole to QuickBooks Online.
   </Card>
-  <Card title="Microsoft SSO" icon="microsoft" href="/help/integrations/microsoft">
-    Sign in to Beebole with your Microsoft account using single sign-on.
+  <Card title="Xero" icon="file-invoice" href="/help/integrations/xero">
+    Export time and expense data from Beebole to Xero.
   </Card>
 </CardGroup>
 
----
+## HR
 
-## Finance and HR
-
-Export your Beebole time and expense data to accounting tools to streamline invoicing and payroll.
+Sync people between Beebole and your HR system so your team list stays current.
 
 <CardGroup cols={2}>
-  <Card title="QuickBooks" icon="file-invoice-dollar" href="/help/integrations/quickbooks">
-    Export time and expense data from Beebole to QuickBooks for invoicing and payroll.
+  <Card title="BambooHR" icon="users" href="/help/integrations/bamboohr">
+    Sync people from BambooHR into Beebole to keep your team list up to date.
+  </Card>
+</CardGroup>
+
+## Developer
+
+Build your own connections to Beebole and receive event notifications in real time.
+
+<CardGroup cols={2}>
+  <Card title="Webhooks" icon="webhook" href="/help/integrations/webhooks">
+    Send real-time Beebole event notifications to your own services.
   </Card>
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
-    Build your own integrations using the Beebole GraphQL API.
+    Build your own integrations with the Beebole GraphQL API.
   </Card>
 </CardGroup>
 
----
+## Sign-in and calendar
+
+Two connections live outside **Settings** > **Integrations**. You can sign in to Beebole with your Google or Microsoft account, and each person can connect their own calendar to bring meetings into their timesheet.
+
+<Info>The calendar connection is per-person and lives in the timesheet's external-calendar pane, not under **Settings** > **Integrations**. It is read-only: you click or drag calendar events onto your timesheet rows.</Info>
+
+<CardGroup cols={2}>
+  <Card title="Google sign-in" icon="google" href="/help/integrations/google">
+    Sign in to Beebole with your Google account.
+  </Card>
+  <Card title="Microsoft sign-in" icon="microsoft" href="/help/integrations/microsoft">
+    Sign in to Beebole with your Microsoft account.
+  </Card>
+  <Card title="Google Calendar" icon="calendar" href="/help/integrations/google-calendar">
+    Bring Google Calendar events into your timesheet.
+  </Card>
+  <Card title="Microsoft Calendar" icon="calendar-days" href="/help/integrations/microsoft-calendar">
+    Bring Microsoft Calendar events into your timesheet.
+  </Card>
+</CardGroup>
 
 ## Related content
 
 <CardGroup cols={2}>
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
-    Build your own integrations using the Beebole GraphQL API.
+    Build your own integrations with the Beebole GraphQL API.
   </Card>
-  <Card title="Asana" icon="list-check" href="/help/integrations/asana">
-    Import Asana projects, tasks, and sub-tasks into Beebole.
-  </Card>
-  <Card title="Jira" icon="diagram-project" href="/help/integrations/jira">
-    Import Jira projects and issues into Beebole for time tracking.
-  </Card>
-  <Card title="Linear" icon="bolt" href="/help/integrations/linear">
-    Import Linear projects and issues into Beebole with automatic sync.
+  <Card title="API introduction" icon="book" href="/help/api/introduction">
+    Authenticate with the Beebole GraphQL API and send your first request.
   </Card>
 </CardGroup>
-
----
 
 ## Frequently asked questions
 
 <AccordionGroup>
   <Accordion title="Where do I find integrations in Beebole?">
-    All integrations are managed from **Settings** > **Integrations** in your Beebole account. You need administrative privileges to access this page.
+    Most Beebole integrations are managed from **Settings** > **Integrations**, opened from the button with your initials at the bottom of the sidebar. You need a role with administrative permissions to configure them. The calendar connection is the exception — it lives in each person's timesheet rather than under Settings.
   </Accordion>
 
-  <Accordion title="Can I use multiple integrations at the same time?">
-    Yes. You can enable multiple integrations simultaneously. For example, you can import projects from Asana, import issues from Jira, and export data to QuickBooks all at once.
+  <Accordion title="Can I use several integrations at the same time?">
+    Yes. You can configure multiple Beebole integrations at once. For example, you can import projects from Asana, sync people from BambooHR, and export time data to QuickBooks Online together.
   </Accordion>
 
-  <Accordion title="What happens to my data if I disable an integration?">
-    Disabling an integration stops future data syncing, but all previously imported data (projects, tasks, people) remains in Beebole as local records. You can re-enable the integration at any time to resume syncing.
+  <Accordion title="What happens to my data if I disconnect an integration?">
+    Disconnecting an integration stops future syncing, but the records already brought into Beebole stay in your account. You can reconnect the integration later to resume syncing.
   </Accordion>
 
-  <Accordion title="Do integrations require a specific Beebole plan?">
-    Calendar integrations and SSO are available to all users. Check each integration page for specific plan requirements.
+  <Accordion title="How is calendar different from the other integrations?">
+    The calendar connection is per-person and read-only. Each person connects their own calendar from the timesheet's external-calendar pane and clicks or drags events onto their timesheet rows. It is not set up under **Settings** > **Integrations** like the project, accounting, and HR integrations.
   </Accordion>
 
   <Accordion title="Can I build my own integration with Beebole?">
-    Yes. Beebole provides a [GraphQL API](/help/integrations/custom-integrations) that you can use to build custom integrations with any tool or internal system.
+    Yes. Beebole provides a [GraphQL API](/help/integrations/custom-integrations) you can use to build custom integrations with any tool or internal system, and [webhooks](/help/integrations/webhooks) to receive real-time event notifications.
   </Accordion>
 </AccordionGroup>

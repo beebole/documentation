@@ -110,20 +110,20 @@ NOTE for batches 2b/2d/2e: pages linking to `/help/documentation/planning` (work
 
 ## Integrations (batch 2e)
 
-- [ ] rewrite | help/integrations/introduction.mdx | 3/4 | documents "Calendar import — coming soon" (it SHIPPED — and FAQ claims calendar integrations exist with wrong framing); hub omits Monday/BambooHR/Webhooks cards; title format
-- [ ] rewrite | help/integrations/custom-integrations.mdx | 3/2 | fabricated "Settings > API" (real: **API Key** on user profile sheet, **Reset**/Copy); "Generate an API token" label; title format
-- [ ] fix | help/integrations/asana.mdx | 3/4 | title format; *Timesheet settings >> Categories* casing/path; **Person Roles**; "Subscription requirements" H2 mismatched to content
-- [ ] fix | help/integrations/jira.mdx | 3/5 | title format; same Categories-path + **Person Roles** issues; description claims epics (not mapped in jira.ts); H2 mismatch
-- [ ] fix | help/integrations/linear.mdx | 3/4 | title format; same label issues; 3 TODO-screenshot placeholders shipped; H2 mismatch
-- [ ] fix | help/integrations/monday.mdx | 3/4 | title format; same label issues; H2 mismatch; no screenshots
-- [ ] fix | help/integrations/quickbooks.mdx | 5/5 | **Connect to QB Online**; "Disconnect" → real **Reset connection** (gated by toggle-off); success feedback display wrong; missing **Enable integration** toggle step; re-export FAQ wrong (code blocks overlapping ranges)
-- [ ] fix | help/integrations/bamboohr.mdx | 2/3 | **Time Off** menu label; fabricated "Absences section" nav; H2 mismatch
-- [ ] fix | help/integrations/webhooks.mdx | 2/2 | event name is `organisationUpdate` and field `organisationId` (over-Americanized identifiers); failure-logging claim overstates
-- [ ] rewrite | help/integrations/google.mdx | 5/3 | fabricated SSO card/Connect workflow (real Google tab: **Linked domains**, Marketplace, SSO-only toggle, **Automatically create new users on first SSO login**); auto-provisioning claim inverted by code
-- [ ] rewrite | help/integrations/microsoft.mdx | 5/3 | same pattern; real Microsoft tab has only SSO-only toggle; auto-provisioning claim inverted
-- [ ] rewrite | help/integrations/google-calendar.mdx | 4/2 | "coming soon" page but feature SHIPPED (timesheet calendar pane, read-only scope, click/drag events, **Tracked** badge); needs full real-content page; not in Settings > Integrations
-- [ ] rewrite | help/integrations/microsoft-calendar.mdx | 4/2 | same: shipped via same component (Graph calendarView, Calendars.Read); needs full real-content page
-- [ ] write | help/integrations/xero.mdx | — | gaps.md: Missing — Xero: import contacts/items as project structure, sync, export time records as invoices (integrationsMenu includes xero)
+- [x] rewrite | help/integrations/introduction.mdx | 3/4 | documents "Calendar import — coming soon" (it SHIPPED — and FAQ claims calendar integrations exist with wrong framing); hub omits Monday/BambooHR/Webhooks cards; title format
+- [x] rewrite | help/integrations/custom-integrations.mdx | 3/2 | fabricated "Settings > API" (real: **API Key** on user profile sheet, **Reset**/Copy); "Generate an API token" label; title format
+- [x] fix | help/integrations/asana.mdx | 3/4 | title format; *Timesheet settings >> Categories* casing/path; **Person Roles**; "Subscription requirements" H2 mismatched to content
+- [x] fix | help/integrations/jira.mdx | 3/5 | title format; same Categories-path + **Person Roles** issues; description claims epics (not mapped in jira.ts); H2 mismatch
+- [x] fix | help/integrations/linear.mdx | 3/4 | title format; same label issues; 3 TODO-screenshot placeholders shipped; H2 mismatch
+- [x] fix | help/integrations/monday.mdx | 3/4 | title format; same label issues; H2 mismatch; no screenshots
+- [x] fix | help/integrations/quickbooks.mdx | 5/5 | **Connect to QB Online**; "Disconnect" → real **Reset connection** (gated by toggle-off); success feedback display wrong; missing **Enable integration** toggle step; re-export FAQ wrong (code blocks overlapping ranges)
+- [x] fix | help/integrations/bamboohr.mdx | 2/3 | **Time Off** menu label; fabricated "Absences section" nav; H2 mismatch
+- [x] fix | help/integrations/webhooks.mdx | 2/2 | event name is `organisationUpdate` and field `organisationId` (over-Americanized identifiers); failure-logging claim overstates
+- [x] rewrite | help/integrations/google.mdx | 5/3 | fabricated SSO card/Connect workflow (real Google tab: **Linked domains**, Marketplace, SSO-only toggle, **Automatically create new users on first SSO login**); auto-provisioning claim inverted by code
+- [x] rewrite | help/integrations/microsoft.mdx | 5/3 | same pattern; real Microsoft tab has only SSO-only toggle; auto-provisioning claim inverted
+- [x] rewrite | help/integrations/google-calendar.mdx | 4/2 | "coming soon" page but feature SHIPPED (timesheet calendar pane, read-only scope, click/drag events, **Tracked** badge); needs full real-content page; not in Settings > Integrations
+- [x] rewrite | help/integrations/microsoft-calendar.mdx | 4/2 | same: shipped via same component (Graph calendarView, Calendars.Read); needs full real-content page
+- [x] write | help/integrations/xero.mdx | — | gaps.md: Missing — Xero: import contacts/items as project structure, sync, export time records as invoices (integrationsMenu includes xero)
 
 ## API (batch 2f)
 

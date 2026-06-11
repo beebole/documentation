@@ -1,8 +1,9 @@
 ---
-title: "Webhooks"
+title: "Outgoing Webhooks for Real-Time Notifications — Beebole"
+sidebarTitle: "Webhooks"
 description: "Configure outgoing webhooks in Beebole to receive real-time notifications when data changes. Signed POST requests with HMAC-SHA256 and automatic retry."
 keywords: ["beebole", "webhooks", "outgoing webhooks", "integrations", "automation", "HMAC", "real-time notifications", "API"]
-"og:title": "Beebole Outgoing Webhooks"
+"og:title": "Beebole Outgoing Webhooks with HMAC-SHA256 Signing"
 "og:description": "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
 "og:type": "article"
 ---
@@ -48,7 +49,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
   "deleteIds": [],
   "additionalInfo": null,
   "timestamp": 1712345678,
-  "organizationId": "63f9a1b2c3d4e5f6a7b8c9d0"
+  "organisationId": "63f9a1b2c3d4e5f6a7b8c9d0"
 }
 ```
 
@@ -59,7 +60,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
 | `deleteIds` | Array of entity IDs that were deleted. |
 | `additionalInfo` | Optional extra context provided by some events. `null` when not applicable. |
 | `timestamp` | Unix timestamp (seconds) of when the event was emitted. |
-| `organizationId` | The Beebole organization ID that the event belongs to. |
+| `organisationId` | The Beebole organization ID that the event belongs to. |
 
 ---
 
@@ -79,7 +80,7 @@ The following event names can be subscribed to individually or via **All events*
 | `customFieldValueUpdate` | A custom field value is created, updated, or deleted. |
 | `expenseRecordUpdate` | An expense record is created, updated, or deleted. |
 | `expenseTypeUpdate` | An expense type is created, updated, or deleted. |
-| `organizationUpdate` | Organization settings are changed. |
+| `organisationUpdate` | Organization settings are changed. |
 | `personUpdate` | A person is created, updated, or deleted. |
 | `planningUpdate` | A planning record is created, updated, or deleted. |
 | `projectCategoryUpdate` | A project category is created, updated, or deleted. |
@@ -134,7 +135,7 @@ If your endpoint returns a non-2xx HTTP status code, or if the connection times 
 | 4th retry | 25 seconds |
 | 5th retry | 40 seconds |
 
-After 5 failed attempts, Beebole stops retrying and logs the failure permanently. Make sure your endpoint responds within 10 seconds — offload any slow processing to a background queue and return a `200 OK` immediately.
+After 5 failed attempts, Beebole stops retrying and abandons the delivery. There is no user-visible delivery log in Beebole — failures are recorded only in Beebole's internal server logs. Make sure your endpoint responds within 10 seconds — offload any slow processing to a background queue and return a `200 OK` immediately.
 
 ---
 

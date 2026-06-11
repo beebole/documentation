@@ -201,6 +201,7 @@
                 "group": "Finance & HR",
                 "pages": [
                   "help/integrations/quickbooks",
+                  "help/integrations/xero",
                   "help/integrations/bamboohr"
                 ]
               },

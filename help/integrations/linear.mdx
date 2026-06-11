@@ -1,8 +1,9 @@
 ---
-title: "Linear"
+title: "Linear integration: import projects and issues — Beebole"
+sidebarTitle: "Linear"
 description: "Connect Linear to Beebole to import projects and issues for time tracking. Automatic sync keeps your Linear workspace aligned with Beebole in real time."
 keywords: ["beebole", "linear", "integration", "project management", "issue tracking", "time tracking", "task sync"]
-"og:title": "Beebole Linear Integration"
+"og:title": "Linear Integration for Project Time Tracking with Beebole"
 "og:description": "Import Linear projects and issues into Beebole for time tracking with automatic sync."
 "og:type": "article"
 ---
@@ -18,7 +19,7 @@ You can import your Linear structure into Beebole's **Projects and activities** 
 
 ---
 
-## Subscription requirements
+## Before you start
 
 <Info>You need administrative privileges in both Linear and Beebole to set up the integration.</Info>
 
@@ -54,8 +55,6 @@ You can import your Linear structure into Beebole's **Projects and activities** 
   <Step title="Connect to Linear">
     Go to **Settings** > **Integrations** > **Linear**. Click **Connect to Linear**.
 
-    {/* TODO: Add screenshot at /help/images/integrations/linear-connect.webp */}
-
     Follow the instructions in the popup to authorize Beebole to access your Linear workspace. The popup closes automatically when the connection is complete.
   </Step>
   <Step title="Configure integration parameters">
@@ -64,9 +63,7 @@ You can import your Linear structure into Beebole's **Projects and activities** 
     - **Where to import your tasks** — Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
     - **Default role for imported employees** — Select the role to assign to Linear members when they are imported into Beebole.
 
-    {/* TODO: Add screenshot at /help/images/integrations/linear-params.webp */}
-
-    <Tip>You can review and manage existing roles in **Settings** > **Person roles**.</Tip>
+    <Tip>You can review and manage existing roles in **Settings** > **Person Roles**.</Tip>
   </Step>
   <Step title="Enable the integration">
     Click the toggle to **Enable integration**. Beebole imports all your active Linear projects and issues.
@@ -76,12 +73,10 @@ You can import your Linear structure into Beebole's **Projects and activities** 
     Once complete, the integration is active. All future changes in Linear are automatically reflected in Beebole.
   </Step>
   <Step title="Validate the integration">
-    Click the **Projects** icon in the left menu to open the Projects page. Expand the categories — you should see a new category called **Linear** containing all your imported projects and issues. You can rename this category if needed.
-
-    {/* TODO: Add screenshot at /help/images/integrations/linear-validate.webp */}
+    Click **Projects** in the sidebar to open the Projects page. Expand the categories — you should see a new category called **Linear** containing all your imported projects and issues. You can rename this category if needed.
   </Step>
   <Step title="Configure the timesheet">
-    If you want the new Linear category to appear in the timesheet, go to **Settings** > **Account Settings** > **Timesheet Settings** and select the Linear category.
+    If you want the new Linear category to appear in the timesheet, go to **Settings** > **Account Settings** > **Timesheet settings** > **Categories** and select the Linear category.
   </Step>
 </Steps>
 
@@ -104,7 +99,7 @@ To disconnect your Linear account entirely, click **Reset connection**.
     Manage your projects, subprojects, and billing rates in Beebole.
   </Card>
   <Card title="Planning and tasks" icon="calendar-check" href="/help/documentation/planning">
-    Assign tasks and manage resource planning across your team.
+    Create, organize, and assign tasks, and track time against them.
   </Card>
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
     Build your own integrations using the Beebole GraphQL API.
