@@ -136,7 +136,7 @@ NOTE for batches 2b/2d/2e: pages linking to `/help/documentation/planning` (work
 
 ## News (batch 2g)
 
-- [ ] fix | help/news/releases.mdx | 4/2 | three Mintlify-starter placeholder updates still published ("Wintergreen/Spearmint/Peppermint flavor"); missing keywords/og frontmatter; March 2026 entries verified accurate; suggest /news backfill
+- [x] fix | help/news/releases.mdx | 4/2 | three Mintlify-starter placeholder updates still published ("Wintergreen/Spearmint/Peppermint flavor"); missing keywords/og frontmatter; March 2026 entries verified accurate; suggest /news backfill
 
 ## Cross-cutting notes
 
