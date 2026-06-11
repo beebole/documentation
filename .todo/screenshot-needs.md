@@ -1,513 +1,453 @@
 # Screenshot Needs Inventory
 
-Generated: 2026-04-07
+Generated: 2026-06-11 (regenerated against the fully overhauled English content)
+Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
 
-**Summary:** 210 screenshots needed across 42 pages (85 high, 90 medium, 35 low priority).
-15 pages need no screenshots (landing pages, API reference, guide stubs, FAQ, news, pages that already have them).
+**Summary:** ~132 screenshots needed across 50 pages (55 high, 52 medium, 23 low; +4 Asana shots already on disk).
+Capture is a deferred follow-on effort — run `/illustrate --capture` against this list once the app is available. All needs below were derived from the current, code-accurate page content.
+
+**Already on disk (do not re-capture):**
+- `help/images/index-beebole-documentation.webp` (landing hero)
+- `help/images/integrations/asana-connect.webp`, `asana-params.webp`, `asana-updating.webp`, `asana-validate.webp`
 
 ---
+
+## Changes since 2026-04-07
+
+The April inventory (210 entries) was built against the pre-overhaul pages, many of which described features that don't exist. This version is regenerated from scratch against the rewritten content, so it is not a line-by-line carryover. Key structural deltas:
+
+- **Dropped entirely** — `custom-domain.mdx` and `sso.mdx` were deleted (features don't exist / consolidated into authentication); their April screenshot entries are gone.
+- **Reframed** — `planning.mdx` April entries assumed a resource-allocation grid that never existed; replaced with real Tasks-page / Gantt / Kanban screenshots. `timesheetSettings.mdx`, `approval.mdx`, `billing.mdx`, `costs.mdx`, `reports.mdx`, `custom-reports.mdx`, `account-settings.mdx`, `authentication.mdx`, `notifications.mdx`, `roles-authorisations.mdx` entries were rebuilt around the real panels/labels.
+- **Now real (were "coming soon")** — `google-calendar.mdx` / `microsoft-calendar.mdx` now need the timesheet external-calendar-pane screenshots (not Settings pages).
+- **New page** — `xero.mdx` added (connect, invoice export, sync result).
+- **Now need none** — the API reference pages (`queries`, `mutations`, `examples`, `introduction`) are code-only; only `schema-explorer.mdx` needs the GraphiQL shots. The role guides (`employee`, `project-manager`, `team-leader`) and `migration`/`faq` link out to feature pages and need no screenshots of their own. `news/releases.mdx` is text-only.
+- **Net count** dropped from 210 → ~132 — fewer fabricated/redundant shots, tighter to real UI.
+
+---
+
+# Documentation
+
+## help/index.mdx
+
+_Landing hero already on disk (`index-beebole-documentation.webp`) — no new screenshot needed._
 
 ## help/documentation/quickstart.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| quickstart/onboarding-wizard.webp | The onboarding wizard showing the first question ("What do you plan to use Beebole for?") with goal checkboxes | high |
-| quickstart/welcome-splash.webp | The "Welcome to Beebole!" splash screen with the "Start Tracking" button after onboarding completes | high |
-| quickstart/projects-sidebar-add.webp | The Projects module in the left sidebar with the [+] icon highlighted, showing the new project form | high |
-| quickstart/people-add-form.webp | The People module showing the [+] icon and the add person form with Name, Email, and Role fields | high |
-| quickstart/people-send-invitation.webp | A person's profile showing the "Send Invitation" button and "Invitation pending" status | high |
-| quickstart/people-import.webp | The bulk Import dialog where you paste names and emails from a spreadsheet | medium |
-| quickstart/timesheet-first-entry.webp | The weekly timesheet grid with the "Add" button, a project selected, and hours entered in a cell | high |
-| quickstart/timesheet-start-timer.webp | The timesheet row with the "Start Timer" button visible and a timer running | high |
-| quickstart/reports-time-report.webp | The Reports page showing a Time report with date picker, "Group by" control set to Project, and sample data | high |
-| quickstart/reports-export-button.webp | The report toolbar with the "Export" and "Save report" buttons highlighted | medium |
-| quickstart/tags-settings.webp | Settings > Tags showing a tag group being created with individual tags inside it | high |
+| quickstart/signup-form.webp | The Beebole sign-up form with Full name, Work email, Company name fields and Google/Microsoft buttons | medium |
+| quickstart/add-project-panel.webp | Projects page with category selector and the Add [category] panel open, name field and Save new button | medium |
+| quickstart/add-person-panel.webp | People add panel showing Name/Email/Role plus the "Or add multiple entries" paste area | medium |
+| quickstart/first-timesheet-row.webp | Timesheet with one row added against the new project, a day cell filled and the row timer button | high |
+| quickstart/sample-report-result.webp | Reports section with Monthly Timesheets folder open and "Hours by person & project" results displayed | medium |
 
 ## help/documentation/concepts.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| concepts/entity-relationships-diagram.webp | A visual diagram showing how Projects, People, Tasks, and Tags relate to each other | medium |
-| concepts/rate-priority-example.webp | A person or project profile showing billing rates at multiple levels | medium |
-| concepts/update-available-banner.webp | The "Update available" banner with the "Reload to update" button | low |
-
-## help/documentation/timesheets.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| timesheets/weekly-view-layout.webp | The full weekly timesheet: rows (project/task), day columns, cells with hours, daily/weekly totals | high |
-| timesheets/daily-view-layout.webp | The daily timesheet view showing a single-day layout with start/end time entries | medium |
-| timesheets/add-row-dropdown.webp | The [+] button clicked, showing the project/sub-project/task dropdown menus | high |
-| timesheets/duration-modes.webp | A cell showing different duration formats (hh:mm, decimal, days, percentage) | medium |
-| timesheets/start-end-time-entry.webp | A cell in start/end time mode showing the Start and End time inputs | medium |
-| timesheets/timer-running.webp | A timesheet row with the timer actively running, showing elapsed time and stop button | high |
-| timesheets/pinned-row.webp | A pinned row at the top of the timesheet with the pin indicator icon | medium |
-| timesheets/undo-redo-buttons.webp | The top bar showing the Undo and Redo buttons | low |
-| timesheets/copy-previous-week.webp | The "Copy previous week" option in the timesheet menu | medium |
-| timesheets/work-from-home-flag.webp | A time entry cell showing the "Work from home" toggle enabled | low |
-| timesheets/non-billable-flag.webp | A time entry cell showing the "Non-billable" flag toggle | low |
-| timesheets/comment-field.webp | A time entry cell expanded showing the Comment field with sample text | medium |
-| timesheets/timesheet-score-ring.webp | Team panel showing a person's timesheet score ring (green/amber/red) with hover breakdown | medium |
-| timesheets/week-navigation-arrows.webp | The date range with left/right navigation arrows | low |
-
-## help/documentation/timesheetSettings.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| timesheet-settings/settings-page-overview.webp | Settings > Time entry page showing all configuration sections | high |
-| timesheet-settings/periodicity-toggle.webp | The default periodicity setting: Weekly vs. Daily | medium |
-| timesheet-settings/duration-format-options.webp | Duration format selector: hh:mm, decimal, days, percentage | medium |
-| timesheet-settings/time-format-12-24.webp | The 12-hour vs 24-hour time format toggle | low |
-| timesheet-settings/feature-toggles.webp | Toggle switches for Timer, Work from home, Non-billable, Comments, Row pinning, Copy previous week | high |
-| timesheet-settings/auto-submit-config.webp | Auto-submit toggle with delay days field | medium |
-| timesheet-settings/reminders-config.webp | Timesheet reminders: reminder day and target options | medium |
-| timesheet-settings/entry-rules.webp | Entry rules: min/max hours, required fields, overtime warnings | medium |
-
-## help/documentation/people.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| people/people-list.webp | People list view showing names, emails, roles, status indicators | high |
-| people/add-person-form.webp | Add person form: Name, Email, Role, Save button | high |
-| people/person-profile-overview.webp | A person's full profile: Manager, Tags, Custom fields, Localisation | high |
-| people/invitation-pending-status.webp | "Invitation pending" status and "Invite by email" button | medium |
-| people/bulk-import-dialog.webp | Import dialog for pasting names and emails | medium |
-| people/bulk-actions-menu.webp | Multiple people selected with bulk actions: Invite, Archive, Unarchive, Delete | medium |
-| people/role-assignment-dropdown.webp | Role dropdown on a person's profile | medium |
-| people/schedule-assignment.webp | Schedule field with work schedule selected and start date | medium |
-| people/localisation-settings.webp | Localisation: Time zone, Date/Time/Decimal format, First day of week | low |
-| people/billing-rate-attribute.webp | Billing section with rate entries: type, amount, currency, effective date | medium |
-| people/absence-quota-attribute.webp | Absence quotas showing types with allowance and validity | medium |
-| people/archive-button.webp | Archive button and no-seats warning | low |
+| concepts/duplicate-action-menu.webp | A record's ⋯ action menu open showing the Duplicate option | low |
+| concepts/version-update-banner.webp | The "Update available / Click to reload" banner in the interface | low |
 
 ## help/documentation/projects.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| projects/project-tree.webp | Hierarchical tree: categories, projects, sub-projects with indentation | high |
-| projects/add-project-form.webp | New project form: name and optional category assignment | high |
-| projects/project-settings-panel.webp | Project settings: Manager, Members, Tags, Custom fields | high |
-| projects/drag-drop-reorder.webp | A project being dragged into a different category | medium |
-| projects/billing-rate-split.webp | Billing "Split by persons" with per-person rate entries | medium |
-| projects/cost-rate-panel.webp | Project Cost attribute with rate configuration | medium |
-| projects/show-hide-expenses.webp | "Show or hide" section with expense type toggles | low |
-| projects/timesheet-settings-per-project.webp | Timesheet settings on a project: Period, Time entry, Record time on, Reminders tabs | medium |
-| projects/custom-fields-panel.webp | Custom fields attribute with sample field values | low |
-| projects/archive-project.webp | Archive button with permanent deletion warning | low |
+| projects/project-tree-categories.webp | Projects page showing the category selector next to "Projects:" and the nested project/subproject tree | high |
+| projects/add-multiple-entries.webp | The "Or add multiple entries" paste preview before clicking Add them all | medium |
+| projects/project-settings-panels.webp | A project detail panel showing the list of settings panels (Manager, Tags, Billing, Budgets, Who has access?, etc.) | medium |
+| projects/who-has-access-panel.webp | The "Who has access?" panel with the Available/Unavailable toggle and Individually / By tags fields | medium |
 
-## help/documentation/assignments.mdx
+## help/documentation/people.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| assignments/default-availability-toggle.webp | Availability toggle: "Available by default" vs "Not available by default" | high |
-| assignments/override-people-tags.webp | Override configuration with people and tags as includes/excludes | high |
-| assignments/project-members-list.webp | Project Members/Availability section with specific people and tags | medium |
-| assignments/absence-type-availability.webp | Absence type availability configuration | medium |
-
-## help/documentation/roles-authorisations.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| roles/roles-settings-page.webp | Settings > Roles with role list and [+] button | high |
-| roles/role-permissions-grid.webp | Role authorisation scopes grid: categories, permission levels, target dropdowns | high |
-| roles/default-roles-list.webp | Three default roles: Administrator, Manager, Employee | medium |
-| roles/field-level-permissions.webp | Field-level toggles for billing rates, cost rates, personal information | medium |
-| roles/availability-controls.webp | Account "Show or hide by default" toggles | medium |
-
-## help/documentation/approval.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| approval/submit-button-timesheet.webp | Timesheet with Submit button and confirmation dialog | high |
-| approval/approval-settings-stages.webp | Settings > Approval: stages, approver types, quorum rules | high |
-| approval/approval-queue.webp | Approvals page with pending timesheets and status indicators | high |
-| approval/review-timesheet-changes.webp | Approval view with change tracking (added/modified/deleted in colors) | high |
-| approval/approve-reject-buttons.webp | Approve, Reject, Request changes buttons with comment field | high |
-| approval/team-approval-overview.webp | Team overview: pending, awaiting, approved, rejected with filters | medium |
-| approval/email-approval-notification.webp | Approval email with timesheet summary and Approve/Reject buttons | medium |
-| approval/approval-history.webp | Approval history: who approved/rejected, when, comments | medium |
-| approval/rejection-comment.webp | Rejection comment at top of returned timesheet | medium |
-| approval/force-edit-icon.webp | Team panel "Edit timesheet" icon for admin force-edit | low |
-
-## help/documentation/timeoff.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| timeoff/absence-types-settings.webp | Settings > Time Off: absence type list with [+], name, unit, quota fields | high |
-| timeoff/quota-configuration.webp | Quota settings: start date, end date, default allowance | high |
-| timeoff/balance-summary.webp | Person's balance: Allowed, Taken, Available for an absence type | high |
-| timeoff/negative-balance-setting.webp | Negative balance toggle on absence type config | medium |
-| timeoff/timesheet-absence-row.webp | Timesheet with absence row selected instead of project | high |
-
-## help/documentation/accruals.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| accruals/accrual-settings.webp | Accrual config: amount, frequency, award timing | high |
-| accruals/carry-forward-config.webp | Carry-forward: none, full, capped with max amount field | medium |
-| accruals/person-accrued-balance.webp | Person's absence balance breakdown: accrued, taken, available | medium |
-
-## help/documentation/public-holidays.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| public-holidays/settings-page.webp | Settings > Public Holidays with "Load Public Holidays" button and country selector | high |
-| public-holidays/country-calendar-loaded.webp | Holiday list after loading a country calendar | high |
-| public-holidays/add-custom-holiday.webp | Custom holiday form: Name and Date fields | medium |
-| public-holidays/timesheet-holiday-highlight.webp | Timesheet column with public holiday highlighted | medium |
-
-## help/documentation/work-schedule.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| work-schedule/schedule-list.webp | Settings > Work Schedules: list with [+] button | high |
-| work-schedule/weekly-pattern-editor.webp | 7-day weekly pattern with hours per day fields | high |
-| work-schedule/multi-week-schedule.webp | 2-week schedule showing two weekly patterns | medium |
-| work-schedule/person-schedule-assignment.webp | Person's schedule selection, start date, end date | medium |
-| work-schedule/tag-schedule-assignment.webp | Tag settings with schedule for entire group | medium |
-
-## help/documentation/planning.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| planning/planning-view-overview.webp | Full planning view: person rows, time columns, allocation blocks, capacity bars | high |
-| planning/allocation-form.webp | Allocation form: Project, Task, Effort (%) fields | high |
-| planning/capacity-bar-colors.webp | Green/yellow/red capacity bars for different people | high |
-| planning/planned-vs-actual.webp | Planned hours and actual hours columns with variance | medium |
-| planning/workload-color-coding.webp | Allocation blocks color-coded by project | medium |
-| planning/filter-by-tag.webp | Filter bar with tag picker | medium |
-| planning/recurring-task-config.webp | Repeat toggle: mode, frequency, weekly pattern, holiday behavior, end condition | medium |
-| planning/recurring-task-edit-options.webp | "This occurrence only / All future / All / Skip" dialog | low |
-| planning/subtask-hierarchy.webp | Multi-level task hierarchy with expand/collapse | medium |
-| planning/change-category-menu.webp | Context menu "Change category" with submenu | low |
-
-## help/documentation/gantt.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| gantt/gantt-chart-overview.webp | Full Gantt chart: task bars, timeline, today marker, dependency arrows, task list | high |
-| gantt/dependency-arrow.webp | Two task bars connected by a dependency arrow | high |
-| gantt/task-bar-drag.webp | Task bar being dragged to a new position | medium |
-| gantt/milestone-marker.webp | Diamond milestone marker on timeline | medium |
-| gantt/saved-views-tabs.webp | View tab bar with "Add a view" button and menu | medium |
-| gantt/column-customization.webp | Columns menu with checkboxes for available columns | medium |
-| gantt/zoom-controls.webp | Zoom controls: day, week, month scale | low |
-| gantt/group-by-menu.webp | "..." menu showing Group by options | low |
-
-## help/documentation/kanban.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| kanban/board-overview.webp | Full board: status columns, task cards, card counts | high |
-| kanban/drag-drop-between-columns.webp | Card dragged from "In Progress" to "Done" | high |
-| kanban/task-detail-panel.webp | Task detail: Name, Description, Assigned to, Dates, Status, Custom fields | high |
-| kanban/task-card-detail.webp | Single card: name, avatar, due date, key details | medium |
-| kanban/status-settings.webp | Status config: add, reorder, delete | medium |
-| kanban/description-editor.webp | Rich text editor with formatting toolbar | medium |
-| kanban/wip-limit-warning.webp | Column header red/orange when exceeding WIP limit | medium |
-| kanban/bulk-select-actions.webp | Multiple cards selected with bulk action bar | low |
-
-## help/documentation/expenses.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| expenses/expense-types-settings.webp | Settings > Expense types: list, [+] button, type config (monetary/quantity, markup) | high |
-| expenses/log-expense-form.webp | Expense entry: project, type, amount/quantity, date, description | high |
-| expenses/expense-in-report.webp | Report showing expenses grouped by project with base cost and markup | medium |
-
-## help/documentation/billing.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| billing/rate-levels-table.webp | Rate priority hierarchy visual: person > task > project > tag > organisation | high |
-| billing/project-billing-panel.webp | Project Billing: rate method, amount, Split by persons with individual rates | high |
-| billing/person-billing-settings.webp | Person Billing: rate entries with type, amount, currency, effective dates | medium |
-| billing/tag-billing-rate.webp | Tag settings with billing rate | medium |
-| billing/effective-dates-rates.webp | Rate with start/end dates for changes over time | low |
-| billing/organisation-default-rate.webp | Settings > Account default billing rate | low |
-
-## help/documentation/budgets.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| budgets/budget-settings-panel.webp | Project Budget: billing budget, cost budget, hours budget targets | high |
-| budgets/budget-report-view.webp | Report with Budget, Actual, Remaining, Percentage columns with progress bars | high |
-| budgets/budget-splits.webp | Budget split by Person or Sub-project | medium |
-
-## help/documentation/costs.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| costs/cost-rate-panel.webp | Cost attribute: rate method, amount, split configuration | high |
-| costs/profitability-report.webp | Report: Billing, Cost, Margin columns side by side | medium |
-| costs/recurring-rate-config.webp | Cost rate recurrence: By day/week/month/year | low |
-
-## help/documentation/reports.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| reports/reports-sidebar.webp | Reports left sidebar: built-in report types list | high |
-| reports/report-results-table.webp | Report results: grouped data with hours, billing, cost, profit columns | high |
-| reports/date-range-picker.webp | Date range picker with presets | medium |
-| reports/filter-panel.webp | Filter panel: date, people, projects, tags, approval status | medium |
-| reports/group-by-controls.webp | Group by: entity and period grouping options | medium |
-
-## help/documentation/custom-reports.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| custom-reports/report-builder.webp | Report builder: dimensions, grouping, columns, filters | high |
-| custom-reports/chart-visualization.webp | Report with table + chart (bar or line above data) | high |
-| custom-reports/saved-reports-folders.webp | Saved reports organized in folders | medium |
-| custom-reports/chart-type-picker.webp | All 11 chart types in the picker | medium |
-| custom-reports/chart-axis-controls.webp | Axis config: Label, Value, Group by, Swap axes | medium |
-| custom-reports/column-selector.webp | Column picker grouped by Time/Financial/Budget/Metadata | medium |
-
-## help/documentation/custom-fields.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| custom-fields/settings-page.webp | Settings > Custom Fields: field list with [+] button | high |
-| custom-fields/create-field-form.webp | New field form: Name, Type, entity visibility, default, validation | high |
-| custom-fields/field-on-timesheet.webp | Custom field as additional input column on timesheet | medium |
-| custom-fields/field-on-project.webp | Project settings with custom field values | medium |
-| custom-fields/allowed-values-dropdown.webp | Field with allowed values shown as dropdown | low |
-| custom-fields/category-visibility.webp | Category checkboxes for field visibility | low |
+| people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high |
+| people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium |
+| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium |
+| people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low |
 
 ## help/documentation/tags.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| tags/tag-hierarchy-tree.webp | Settings > Tags: hierarchical tree with groups, tags, sub-tags | high |
-| tags/create-tag-group.webp | New tag group with tags being added | high |
-| tags/custom-level-names.webp | Tag group with custom hierarchy level names in headers | medium |
-| tags/tag-on-person.webp | Person's Tags section with assigned tags | medium |
-| tags/tag-on-project.webp | Project settings with assigned tags | medium |
-| tags/change-category-menu.webp | Context menu "Change category" with tag group submenu | low |
+| tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high |
+| tags/who-or-what-tagged-panel.webp | A tag's "Who or what has been tagged?" panel with People/Projects/Tasks sections | medium |
+| tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium |
 
-## help/documentation/journal.mdx
+## help/documentation/timesheets.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| journal/activity-feed.webp | Journal feed: timeline with actions, updates, messages, "new" separator | high |
-| journal/threaded-message.webp | Threaded conversation: parent, replies, @mentions, rich text | high |
-| journal/unread-badge.webp | Journal sidebar icon with unread count badge | medium |
-| journal/file-attachment.webp | Journal message with uploaded file attachment | low |
-| journal/pinned-message.webp | Pinned message at top of feed | low |
+| timesheets/weekly-grid.webp | The weekly timesheet grid with sections, rows, day columns, and the day-header scheduled-hours indicators | high |
+| timesheets/entry-details.webp | An entry's detail popover showing Time spent, Start/End time, note, Non-billable and Work from home | medium |
+| timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium |
+| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium |
+| timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium |
+| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low |
 
-## help/documentation/notifications.mdx
+## help/documentation/timesheetSettings.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| notifications/notification-preferences.webp | Notification preferences: per-event toggles for email, digest, in-app | high |
-| notifications/timesheet-reminder-config.webp | Timesheet reminder: frequency, trigger conditions, scope | high |
-| notifications/approval-reminder-config.webp | Approval reminder: frequency and delay | medium |
-| notifications/email-template-editor.webp | Email template editor: subject, body, dynamic fields | medium |
-| notifications/push-notification-prompt.webp | Browser push notification permission prompt | low |
+| timesheets/settings-period-tab.webp | Timesheet settings panel, Period & submission tab, showing period options, auto-submit and Restrictions chips | high |
+| timesheets/settings-time-entry-tab.webp | The Time entry tab showing Unit, Duration format, timer and start/end time options | medium |
+| timesheets/settings-categories-tab.webp | The Categories tab showing chained project categories as timesheet sections | medium |
+| timesheets/settings-inheritance-icon.webp | A setting showing the inherited-value icon (account vs tag vs person override) | low |
+
+## help/documentation/approval.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| approval/pending-pane.webp | The Pending approval pane listing submitted timesheets with Approve/Reject and the Late group | high |
+| approval/workflow-stages.webp | The Approval workflow panel with sequential stages, approver type and Any/All quorum | high |
+| approval/status-badge-breakdown.webp | A timesheet status badge expanded into the stage breakdown (who approved, who's pending) | medium |
+| approval/journal-approval-banner.webp | The Journal "N timesheets to approve" banner expanded with Hours/Billing totals | medium |
+| approval/reject-comment-dialog.webp | The reject dialog with the required reason comment box | low |
+
+## help/documentation/planning.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| planning/tasks-page-views.webp | The Tasks page with the saved-view tabs (Gantt / Kanban) and the task category selector | high |
+| planning/add-task-panel.webp | The Add Task form with name, status selector, and the "Or add multiple entries" paste area | medium |
+| planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium |
+| planning/task-statuses-modal.webp | The Task statuses modal with statuses, colors, reorder, and Max tasks | medium |
+
+## help/documentation/gantt.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| gantt/timeline-bars.webp | The Gantt chart with task bars on the timeline, today line, and the configurable column table on the left | high |
+| gantt/dependencies-arrows.webp | Tasks linked with dependency arrows between bars | medium |
+| gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high |
+| gantt/scale-columns-menu.webp | The view tab ⋯ menu showing Scale / Columns / Group by options | low |
+
+## help/documentation/kanban.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high |
+| kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium |
+| kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium |
+| kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low |
+
+## help/documentation/timeoff.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timeoff/absence-types-list.webp | The Settings > Time Off list of absence types with the Add Time Off Type button | high |
+| timeoff/absence-allowances-panel.webp | The Absence allowances panel showing Available / Consumed / Accrued balance fields on a person | high |
+| timeoff/units-paid-panel.webp | An absence type's Units panel with Hour/Day and the "Is paid (included in people costs)" checkbox | medium |
+| timeoff/timeoff-notifications-panel.webp | The Time off notifications panel with Going negative and frequency alerts | low |
+
+## help/documentation/accruals.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| accruals/accruals-panel.webp | An absence type's Accruals panel with the enable toggle, Frequency, Awarded on, and Quantity | high |
+| accruals/carry-forward-limit.webp | An allowance card showing the Carry forward limit field | medium |
+
+## help/documentation/public-holidays.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| public-holidays/holidays-panel.webp | The Public holidays panel with Country/Region/Language selectors, Load holidays, and the imported holiday list | high |
+| public-holidays/year-selector.webp | The Year selector with the locked Country ("Reset to change country") | low |
+
+## help/documentation/billing.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| billing/billing-rate-card.webp | A Billing panel rate card showing From date, Billing method, Amount and currency | high |
+| billing/rate-priority.webp | Panel view illustrating which rate applies across the org → tag → project → person cascade | medium |
+| billing/rate-split.webp | A rate with Split by persons showing per-person amounts and Non-billable checkboxes | medium |
+
+## help/documentation/costs.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| costs/cost-rate-card.webp | A Cost panel rate card with Cost method, Amount and From date | high |
+| costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium |
+
+## help/documentation/budgets.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| budgets/budget-panel.webp | A project's Budgets panel with Billing amount / Cost amount / Hours target fields | high |
+| budgets/budget-status-report.webp | The Budget Status report with per-project progress bars, at-risk and Over budget flags | high |
+| budgets/budget-alert-badge.webp | A budget card showing the threshold alert / Over budget badge | low |
+
+## help/documentation/expenses.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| expenses/expense-type-details.webp | An expense type's Details panel with Currency, Billing markup %, and Impacts budget | medium |
+| expenses/expenses-panel.webp | The Expenses panel on a project/person with a record (date, category, amount, note) | high |
+| expenses/expense-report.webp | A report with Expenses as the source showing Amount/Quantity/Expense billing columns | low |
+
+## help/documentation/reports.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high |
+| reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium |
+| reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium |
+| reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low |
+
+## help/documentation/custom-reports.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| custom-reports/column-badges-menu.webp | A report's column badge row with the "Add a column…" menu open (Time/Expense/Period/Entities groups) | high |
+| custom-reports/chart-view.webp | The Chart view with the chart-type picker and Label/Value axis controls | medium |
+| custom-reports/matrix-view.webp | The Matrix view grid with Rows/Columns/Metric controls and heat map shading | high |
 
 ## help/documentation/data-exports.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| data-exports/export-button-toolbar.webp | Report toolbar Export button with CSV/Excel options | high |
-| data-exports/gdpr-settings.webp | Settings > GDPR: "Export your data" and account deletion | medium |
-
-## help/documentation/audit-trail.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| audit-trail/audit-trail-list.webp | Settings > Audit trail: chronological list with operation, person, timestamp, entity | high |
-| audit-trail/change-detail-expanded.webp | Expanded entry: field name, previous value, new value | high |
-| audit-trail/last-edited-indicator.webp | Entity with "last edited by" indicator | medium |
-
-## help/documentation/account-settings.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| account-settings/settings-overview.webp | Settings > Account: feature toggles, localisation, org info | high |
-| account-settings/feature-toggles.webp | Feature toggles: Projects, Tasks, Schedules, Absence types, Expenses, Custom fields | high |
-| account-settings/localisation-settings.webp | Localisation: Timezone, Country, Currency, Language, Date format, First day of week | medium |
-| account-settings/organisation-logo.webp | Logo upload area with "paste, drop, or click" and 16:9 crop | medium |
-| account-settings/accent-colour-picker.webp | Colour palette for organisation accent colour | medium |
-| account-settings/theme-selector.webp | Profile menu: Light / Dark / Auto theme | low |
-| account-settings/profile-picture-crop.webp | Profile picture crop tool with zoom, pan, circular frame | low |
-| account-settings/duration-format-options.webp | Duration format: hh:mm, Decimal, Hour-string-minute | low |
-| account-settings/delete-organisation.webp | "Delete organisation" danger zone section | low |
-
-## help/documentation/subscription.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| subscription/subscription-page.webp | Settings > Subscription: plan, billing interval, seats, next billing date | high |
-| subscription/plan-comparison.webp | Plan tiers with feature comparison | medium |
-| subscription/invoice-preview.webp | Invoice preview with prorated charge breakdown | medium |
-| subscription/promotion-code.webp | Promotion code field with Apply button | low |
-
-## help/documentation/custom-domain.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| custom-domain/settings-section.webp | Custom domain settings: subdomain field and CNAME target | high |
-| custom-domain/dns-verification.webp | Domain verification: Verify button and DNS status | medium |
-
-## help/documentation/authentication.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| authentication/sign-in-page.webp | Login page: Google, Microsoft, email/password, "Send code instead" | high |
-| authentication/sso-google-settings.webp | SSO > Google: domain linking, auto-provisioning, enforcement | high |
-| authentication/sso-custom-oidc.webp | SSO > Custom OpenID: Issuer, Client ID/Secret, URLs | high |
-| authentication/passkey-setup.webp | Security tab: "Add passkey" button, browser registration prompt | medium |
-| authentication/email-code-entry.webp | 6-digit email code entry screen | medium |
-| authentication/sso-microsoft-settings.webp | SSO > Microsoft: enforcement toggle | medium |
-| authentication/api-key-generation.webp | Security tab: "Add API key", expiration, generated key display | medium |
-| authentication/admin-takeover.webp | "Sign in as this person" button and "Back to my account" bar | medium |
-| authentication/session-management.webp | Active sessions: device/browser info, sign-out buttons | low |
-
-## help/documentation/mobile.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| mobile/pwa-install-ios.webp | Safari "Add to Home Screen" on iPhone | high |
-| mobile/mobile-timesheet-view.webp | Mobile timesheet: scrollable days, time entry cards, floating [+] | high |
-| mobile/mobile-add-entry.webp | Bottom sheet activity selector: project/task/absence list | high |
-| mobile/mobile-timer-running.webp | Card with play button, timer bar in header with elapsed time | high |
-| mobile/pwa-install-android.webp | Chrome "Install app" prompt on Android | medium |
-| mobile/mobile-time-editor.webp | Time entry editor bottom sheet: duration or start/end with Save | medium |
-| mobile/mobile-swipe-delete.webp | Swipe-left delete action on time entry card | medium |
-| mobile/mobile-submit-button.webp | Mobile header Submit button and Submitted badge | medium |
-| mobile/mobile-approval-sheet.webp | Team approval bottom sheet: Pending/Team tabs, person entries | medium |
-| mobile/responsive-desktop-vs-mobile.webp | Side-by-side: desktop full layout vs mobile compact | medium |
-| mobile/mobile-infinite-scroll.webp | Month banners during scroll, "Today" button in footer | low |
-| mobile/dark-mode.webp | Beebole in dark theme on mobile | low |
+| data-exports/export-submenu.webp | A report's ⋯ menu with the Export submenu listing all formats (Excel, CSV, PDF, Matrix variants) | high |
+| data-exports/delete-account-banner.webp | The Delete Account grace-period banner with Cancel deletion | low |
 
 ## help/documentation/excel-addin.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| excel-addin/addin-install.webp | Excel Insert > Get Add-ins with Beebole add-in found | high |
-| excel-addin/addin-panel.webp | Beebole add-in panel: dimensions, filters, columns | high |
-| excel-addin/data-in-excel.webp | Beebole data in Excel worksheet | medium |
-| excel-addin/refresh-button.webp | Refresh button in add-in panel | low |
+| excel-addin/task-pane-links.webp | The Beebole Excel task pane showing the "Beebole reports linked" table and Refresh buttons | high |
+| excel-addin/add-report-link.webp | The Add Report Link form with Report and Worksheet fields | medium |
+| excel-addin/api-key-connect.webp | The task pane API Key field with Connect, plus the API Key page in Beebole showing Copy/Reset | medium |
 
 ## help/documentation/gsheets-addon.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| gsheets-addon/addon-install.webp | Google Workspace Marketplace with Beebole add-on | high |
-| gsheets-addon/addon-sidebar.webp | Beebole sidebar in Google Sheets: dimensions, filters, columns | high |
-| gsheets-addon/data-in-sheets.webp | Beebole data in Google Sheets | medium |
+| gsheets-addon/sidebar-links.webp | The Beebole Reports sidebar in Google Sheets with the linked-reports table and Refresh buttons | high |
+| gsheets-addon/add-report-link.webp | The Add Report Link form with Report and Sheet fields | medium |
+
+## help/documentation/work-schedule.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| work-schedule/schedule-details.webp | A work schedule's Details panel showing per-day Hours, Intervals, and Work From Home toggles | high |
+| work-schedule/assign-panel.webp | A Work schedule panel on a person/tag with the Select schedule picker and inherited-value indicator | medium |
+| work-schedule/dated-assignments.webp | Two schedule assignments with Start date pickers showing a change over time | low |
+
+## help/documentation/custom-fields.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| custom-fields/field-details-type.webp | The Custom field details panel with the Field type picker and type-specific options | high |
+| custom-fields/field-visibility-panel.webp | The Custom field visibility panel (Visible for People/Time Records/Projects/Tasks with category pickers) | high |
+| custom-fields/predefined-values.webp | A Text field with Use predefined values and the Allowed values list | low |
+
+## help/documentation/roles-authorisations.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| roles/permission-grid.webp | The Person Roles permission grid showing permissions with Edit/View target selectors | high |
+| roles/target-selector.webp | A permission's target selector open (Me, My team, My projects, etc.) | medium |
+| roles/admin-full-access.webp | The "Admin role (full access)" checkbox at the top of the grid | low |
+
+## help/documentation/assignments.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| assignments/show-hide-by-default.webp | The Show or hide by default panel with the six toggles | high |
+| assignments/who-has-access-panel.webp | A project's Who has access? panel with the Available/Unavailable toggle and Individually / By tags | high |
+| assignments/show-hide-person.webp | A person's Show or Hide panel showing the Show/Hide sections for projects, time off, etc. | medium |
+
+## help/documentation/journal.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| journal/activity-feed.webp | The Journal feed showing the chronological timeline with the "new" separator and mixed event types | high |
+| journal/message-thread.webp | A threaded message with rich text, @mention, and pin | medium |
+
+## help/documentation/notifications.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| notifications/preferences-panel.webp | The Notifications panel with Email/Push channels and per-event frequency selectors (Instant/Daily/Weekly/None) | high |
+| notifications/budget-threshold-alert.webp | The Budget threshold alert row with the percentage and "When over budget" | medium |
+| notifications/email-templates.webp | The Email templates panel with the per-type tabs and the editor | medium |
+
+## help/documentation/account-settings.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| account-settings/settings-panels.webp | The Account Settings page header (name, logo, accent color) above the list of settings panels | high |
+| account-settings/localization-panel.webp | The Localization panel with time zone, currency, formats, and first day of the week | medium |
+| account-settings/delete-account.webp | The Delete Account screen with the confirm/cancel deletion flow | low |
+
+## help/documentation/authentication.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| authentication/signin-email-code.webp | The Beebole sign-in page entering email and the 6-digit code prompt | high |
+| authentication/sso-panel.webp | The Single Sign-On panel with Google/Microsoft/Custom OpenID tabs and Linked domains | high |
+| authentication/api-key-page.webp | The API Key page with the masked key, Copy, and Reset | medium |
+| authentication/sign-in-as.webp | The Sign in as… search box from the user menu | low |
+
+## help/documentation/subscription.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| subscription/plans-seats.webp | The Subscription page showing the Free/Essential/Advanced plans, seat stepper, and billing interval | high |
+| subscription/addons.webp | The add-ons section (Costs/Expenses/Budgets and Custom fields/roles) on the Essential plan | medium |
+
+## help/documentation/audit-trail.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| audit-trail/journal-audit-feed.webp | The Journal feed showing audit messages (operation, person, timestamp) | medium |
+| audit-trail/record-logs-view.webp | A record's Modified by label with the expanded Logs change history | high |
 
 ## help/documentation/legacy-migration.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| legacy-migration/migration-settings.webp | Legacy API Key field, "Only active entities" toggle, date picker | high |
-| legacy-migration/audit-results.webp | Audit results: entity counts (people, projects, tasks, etc.) | high |
-| legacy-migration/migration-progress.webp | Progress bar with phases completing sequentially | medium |
-| legacy-migration/migration-report.webp | Summary: created, skipped, failed counts per phase | medium |
+| legacy-migration/migration-options.webp | The Legacy Migration tool with the Legacy API Key field and the migration options (Only active entities, Include time records from) | high |
+| legacy-migration/audit-results.webp | The Audit Results screen showing record counts and the time-record date range | medium |
+| legacy-migration/migration-report.webp | The final migration report summary (created / skipped / failed per phase) | low |
+
+## help/documentation/mobile.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high |
+| mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium |
+| mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium |
+| mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low |
+| mobile/dark-mode.webp | Beebole in dark mode on mobile | low |
+
+---
+
+# Integrations
 
 ## help/integrations/introduction.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/integrations-settings-page.webp | Settings > Integrations: all integration cards in a grid | high |
-
-## help/integrations/google.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| integrations/google-sso-connect.webp | Google card with Connect button | medium |
-| integrations/google-sso-active.webp | Google integration shown as active/connected | medium |
-| integrations/sign-in-with-google-button.webp | Login page "Sign in with Google" button | medium |
-
-## help/integrations/microsoft.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| integrations/microsoft-sso-connect.webp | Microsoft card with Connect button | medium |
-| integrations/sign-in-with-microsoft-button.webp | Login page "Sign in with Microsoft" button | medium |
-
-## help/integrations/google-calendar.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| integrations/google-calendar-panel.webp | Timesheet with Calendar panel showing Google Calendar events | high |
-| integrations/google-calendar-connect.webp | "Connect to Google Calendar" button before connection | high |
-| integrations/google-calendar-drag-drop.webp | Calendar event dragged onto a timesheet project row | high |
-| integrations/google-calendar-already-tracked.webp | Events with "Already tracked" indicator | medium |
-
-## help/integrations/microsoft-calendar.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| integrations/microsoft-calendar-panel.webp | Timesheet with Calendar panel showing Outlook events | high |
-| integrations/microsoft-calendar-connect.webp | "Connect to Microsoft Calendar" button | high |
-| integrations/microsoft-calendar-drag-drop.webp | Outlook event dragged onto a timesheet row | medium |
+| integrations/settings-integrations-list.webp | The Settings > Integrations page listing all integrations (Asana, Jira, Linear, Monday.com, QuickBooks, Xero, BambooHR, Webhooks), reached from the initials button at the bottom of the sidebar | high |
 
 ## help/integrations/jira.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/jira-connect.webp | Jira Connect button and Cloud URL field | high |
-| integrations/jira-params.webp | Jira params: import destination, default role | high |
-| integrations/jira-validate.webp | Projects page with imported "Jira" category | medium |
+| integrations/jira-connect.webp | Settings > Integrations > Jira showing the Connect to Jira button (and the Jira Cloud URL prompt in the popup) | high |
+| integrations/jira-params.webp | The Jira config panel: Where to import your tasks and Default role for imported employees | medium |
+| integrations/jira-validate.webp | The Projects page with the new Jira category expanded, showing imported projects and issues | medium |
+
+## help/integrations/linear.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/linear-connect.webp | Settings > Integrations > Linear showing the Connect to Linear button | high |
+| integrations/linear-params.webp | The Linear config panel: import-destination choice and Default role for imported employees | medium |
 
 ## help/integrations/monday.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/monday-connect.webp | Monday.com Connect button | high |
-| integrations/monday-params.webp | Monday params: workspace, destination, default role | high |
-| integrations/monday-validate.webp | Projects page with imported "Monday" category | medium |
-
-## help/integrations/bamboohr.mdx
-
-| Screenshot | Description | Priority |
-|---|---|---|
-| integrations/bamboohr-connect.webp | BambooHR subdomain field and Connect button | high |
-| integrations/bamboohr-params.webp | Connected domain, default role, Enable toggle | high |
-| integrations/bamboohr-audit-summary.webp | Import summary: successful and failed counts | medium |
-| integrations/bamboohr-manual-sync.webp | "Manually sync" section with Manual sync button | medium |
+| integrations/monday-connect.webp | Settings > Integrations > Monday.com showing the Connect to Monday.com button | high |
+| integrations/monday-params.webp | The Monday.com config panel: workspace selector, Where to import your boards, and Default role | medium |
 
 ## help/integrations/quickbooks.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/quickbooks-connect.webp | QuickBooks card with Connect button and Intuit OAuth prompt | high |
-| integrations/quickbooks-export-page.webp | Export page: date range, summary, Export button | high |
-| integrations/quickbooks-export-summary.webp | Export review: entries and expenses to send | medium |
+| integrations/quickbooks-connect.webp | Settings > Integrations > QuickBooks Online showing Connect to QB Online and the Default role / Enable integration controls | high |
+| integrations/quickbooks-export.webp | The Select period to export control with the Export button | high |
+| integrations/quickbooks-export-result.webp | The result panel: Entries successfully exported count and the expandable Entries not exported list | medium |
+
+## help/integrations/xero.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high |
+| integrations/xero-export-invoice.webp | The invoice-export panel: Select client, Select period to export, and Create invoice | high |
+| integrations/xero-sync-result.webp | A Manual sync result showing the Created / Archived / Unarchived / Deleted / Renamed counts | low |
+
+## help/integrations/bamboohr.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/bamboohr-connect.webp | Settings > Integrations > BambooHR showing the Company subdomain field and Connect to BambooHR button | high |
+| integrations/bamboohr-params.webp | The config panel after connecting: confirmed BambooHR domain, Default role, and Enable integration toggle | medium |
+
+## help/integrations/google.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium |
+| integrations/google-sso-panel.webp | Account Settings > Single Sign-On panel, Google tab: Linked domains, auto-provision toggle, and the SSO-only toggle | high |
+
+## help/integrations/microsoft.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/microsoft-sso-panel.webp | Account Settings > Single Sign-On panel, Microsoft tab, showing the "Only Microsoft sign-in allowed" toggle | high |
+
+## help/integrations/google-calendar.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/google-calendar-pane.webp | The timesheet with the external-calendar pane open, showing imported Google events grouped by day (with a Tracked badge) | high |
+| integrations/google-calendar-assign.webp | Click-to-assign: a selected event with the "Click a timesheet row to assign" prompt, or an event dragged onto a highlighted row | medium |
+
+## help/integrations/microsoft-calendar.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/microsoft-calendar-pane.webp | The timesheet with the external-calendar pane showing imported Outlook events (with Tracked badge) and the Sign in with Microsoft entry point | high |
 
 ## help/integrations/webhooks.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/webhooks-settings.webp | Webhook list with "Add webhook" button | high |
-| integrations/webhook-config-form.webp | Webhook config: Name, URL, Secret, Enabled, Events | high |
-| integrations/webhook-events-list.webp | Individual event checkboxes | medium |
+| integrations/webhooks-config.webp | Settings > Integrations > Webhooks showing the Add webhook form: Name, URL, Secret (with Regenerate), Enabled toggle, and the Events / All events selector | medium |
 
-## help/api/introduction.mdx
+## help/integrations/custom-integrations.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| api/api-settings-page.webp | Settings > API: API Key with Copy and Reset buttons | high |
+| integrations/api-key-panel.webp | The API Key panel opened from the initials button at the bottom of the sidebar, showing the key with Copy and Reset | medium |
+
+## help/integrations/asana.mdx
+
+_Already illustrated on disk (asana-connect, asana-params, asana-updating, asana-validate) — no additional shots needed._
 
 ---
 
-## Pages needing no screenshots
+# API
 
-| Page | Reason |
-|---|---|
-| help/index.mdx | Landing page with navigation cards only |
-| help/documentation/sso.mdx | Redirect to authentication page |
-| help/guides/employee.mdx | Placeholder with card links |
-| help/guides/team-leader.mdx | Placeholder with card links |
-| help/guides/project-manager.mdx | Placeholder with card links |
-| help/guides/faq.mdx | Pure FAQ text; UI covered by feature pages |
-| help/integrations/asana.mdx | Already has 4 screenshots |
-| help/integrations/linear.mdx | Already has 3 screenshots |
-| help/integrations/custom-integrations.mdx | Conceptual/developer page |
-| help/api/queries.mdx | Pure API reference with code examples |
-| help/api/mutations.mdx | Pure API reference with code examples |
-| help/api/schema-explorer.mdx | Dynamic embedded content |
-| help/news/releases.mdx | Text-only release notes |
+## help/api/schema-explorer.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| api/graphiql-playground.webp | The built-in GraphiQL IDE at app.beebole.com/graphql showing the query editor and the Documentation/Explorer schema panel | high |
+| api/graphiql-apikey-header.webp | GraphiQL's HTTP headers editor with the apikey header being added before running a query | high |
+
+_Other API pages (introduction, queries, mutations, examples) are code reference — no screenshots._
+
+---
+
+# Pages needing no screenshots
+
+- help/guides/employee.mdx, project-manager.mdx, team-leader.mdx, migration.mdx, faq.mdx — role walkthroughs / Q&A that link out to feature pages
+- help/api/introduction.mdx, queries.mdx, mutations.mdx, examples/example-1.mdx, examples/example-2.mdx — developer code reference
+- help/news/releases.mdx — text-only update log
+
+---
+
+## Suggested first capture session (top ~20 high-priority)
+
+1. timesheets/weekly-grid.webp
+2. approval/pending-pane.webp · approval/workflow-stages.webp
+3. planning/tasks-page-views.webp · gantt/timeline-bars.webp · gantt/workload-heatmap.webp · kanban/board-columns.webp
+4. projects/project-tree-categories.webp · people/people-list.webp · tags/tag-tree-categories.webp
+5. timeoff/absence-types-list.webp · timeoff/absence-allowances-panel.webp
+6. billing/billing-rate-card.webp · budgets/budget-status-report.webp
+7. reports/folders-and-reports.webp · custom-reports/matrix-view.webp · data-exports/export-submenu.webp
+8. roles/permission-grid.webp · authentication/sso-panel.webp · mobile/mobile-timesheet.webp
+9. integrations/settings-integrations-list.webp · integrations/google-calendar-pane.webp

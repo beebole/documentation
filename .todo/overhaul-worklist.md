@@ -1,6 +1,17 @@
 # Overhaul worklist
 
-## ▶ RESUME STATE (updated 2026-06-10, end of session 1)
+## ▶ RESUME STATE (updated 2026-06-11, end of session 3 — ALL PHASES COMPLETE)
+
+- **✅ OVERHAUL COMPLETE.** Phases 0–4 all done and pushed. Every one of the 64 worklist lines is `[x]`. EN-only site, all pages remediated/rewritten against `../reboot`, gate-reviewed, broken-links clean, nav reconciled, screenshot inventory regenerated.
+- **Batches:** 2a (commit c4a0bb5), 2b + leftovers, 2c (incl. custom-domain/sso deletion + redirects), 2d (guides), 2e (integrations + new xero.mdx), 2f (API), 2g (news), Phase 3 (coherence), Phase 4 (screenshot-needs regenerated → `.todo/screenshot-needs.md`, ~132 needs, baseline in git history). All pushed to origin/main.
+- **AWAITING: final Yves review of the whole English site** (the single human gate per the no-per-batch-checkpoint decision). Drop markup into `docs/feedback/` → run `/triage` → fix.
+- **DEFERRED follow-ons (not started, intentional):** (1) `/illustrate --capture` against `.todo/screenshot-needs.md` once the app is available; (2) `/translate` to rebuild FR/ES and restore their `docs.json` nav entries — only after English is signed off; (3) `/sync-features` to fold in the catalog corrections we made.
+- **Open flags for Yves:** accruals.mdx + timeoff.mdx are hedged (accrual awarding engine unshipped — un-hedge if it ships); GDPR/Export-your-data Settings entries are inert placeholders (documented as such / removed); recurring tasks hidden behind a flag (not documented).
+- **LESSON (for future review batches):** gate-review agents over-flag on label-string existence — confirm against the actual render path / served config before "fixing" a label or adding a permission row. Several reviewer "criticals" this run were false (Add Schedule/Add Custom Field labels; Time off records permission). Conversely they caught real critical leaks (stray `</content></invoke>` tool-call artifacts in 2 integration pages) — keep running them.
+
+---
+
+## ▶ RESUME STATE (historical — session 1, 2026-06-10)
 
 - **Done:** Phase 0 (EN-only docs.json, commit 5b74efb) · Phase 1 (gaps + classification, commits ba96bb5/c110476) · Checkpoint 1 decisions (commit 1be70be) · **Batch 2a complete and gate-reviewed** (15 pages, commit c4a0bb5). All `[x]` lines below are done.
 - **Batch 2b FULLY DONE 2026-06-11** (13 pages; all gate reviews complete, criticals fixed, non-critical warnings applied, committed). Config-pages gate review re-run: 2 of its 4 "criticals" were FALSE (reviewer matched label strings without checking render path — **Add Schedule**/**Add Custom Field** ARE the real rendered labels via `entity.addEntity`+entity name; `absenceRecords`/"Time off records" is NOT a served grid permission). Real fixes applied: "entity/entities" prose removed from custom-fields.mdx (×5) + assignments.mdx (×1). NEW finding: GDPR/Export-your-data Settings entries are inert placeholders (catalog corrected; data-exports vapor section removed). LESSON: gate-review agents over-flag on label-string existence; trust render-path verification.
