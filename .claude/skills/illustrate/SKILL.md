@@ -80,6 +80,18 @@ For each identified need:
 
 **Complex views (guided):** navigate, snapshot, ask the user to set up the required state (specific data, open modals), then capture once confirmed. Many needs require real seed data the docs reference (e.g. **Acme Corp**, the **Clients/Internal/Activities** categories, a budget over threshold, a pending approval) — capture against a seeded account so examples match the prose.
 
+**Partial / element captures (panels, dialogs, pop-ups, a single grid).** For any shot that isn't the full screen, capture just the element — tighter, no dead space, smaller file, same DPR 2. Use `mcp__playwright__browser_run_code_unsafe` so the raw PNG can go to `/tmp` (the dedicated screenshot tool only writes inside the repo):
+
+```js
+async (page) => { await page.locator('<selector>').screenshot({ path: '/tmp/bb-shots/<name>.png', scale: 'device' }); }
+```
+
+Finding the target without the user hand-measuring:
+- Beebole's UI is web components with semantic tags — many regions are a single clean element (e.g. `timesheet-main` = just the grid, `.timesheetPopup` = the entry pop-up). Prefer those.
+- To locate an open pop-up/overlay, scan for the visible positioned node with the highest `z-index`: iterate `document.querySelectorAll('body *')`, keep `position:fixed|absolute` + visible + sane size, sort by z-index. (That's how `.timesheetPopup` was found.)
+- **Outline before capturing** so the user confirms the box: temporarily set `outline:3px solid red` on the candidate, show them, then capture. Remove the outline before the real shot.
+- If the element clips an edge control or looks cramped, target a wrapping container, add a few px padding for the shot, or use a `clip` rectangle (union of the relevant boxes) instead.
+
 ### 3. Optimize and place
 
 **Never write raw captures into the repo working tree.** The Playwright screenshot `filename` resolves relative to the repo root, so always pass an **absolute temp path outside the repo** (e.g. `/tmp/bb-shots/<name>.png`) for the raw capture. Only the final optimized `.webp` is ever written into `help/images/`. (During a test capture an in-repo raw PNG path coincided with a tracked image — `help/images/index-beebole-documentation.webp` — briefly disappearing from the working tree; keeping raw captures in `/tmp` avoids any risk to tracked files.)
