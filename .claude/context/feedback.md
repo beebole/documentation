@@ -76,9 +76,9 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **Why:** `<Info>`-only is a project rule (`documentation-structure.md:66`) for cross-site consistency. `--` renders inconsistently across browsers and is a typewriter stand-in, not real punctuation.
   - **How to apply:** No `<Note>` in any new draft. Type `—` or use Option-Shift-Hyphen on macOS.
 
-- **Title format: `Feature Name — Beebole`, 50–60 characters.**
-  - **Why:** SEO/GEO target — search results truncate around 60 chars; including "Beebole" on every title strengthens entity recognition. Already in `seo-geo.md` and `documentation-structure.md`, but consistently violated.
-  - **How to apply:** Build the title as `<Feature> — Beebole` first. If the result is shorter than ~50 chars, expand the feature side (e.g. "Custom Fields — Beebole" → "Custom fields for projects, people, and tasks — Beebole"). API title format is `<Topic> — Beebole API`.
+- **Title format: `Feature Name — Beebole`, 50–60 characters — AND always pair it with a short `sidebarTitle`.**
+  - **Why:** SEO/GEO target — search results truncate around 60 chars; including "Beebole" on every title strengthens entity recognition. But Mintlify renders `title` in the sidebar navigation, and 50–60-char titles wrap to 2–3 lines and wreck the nav (Yves, 2026-06-11). `sidebarTitle` keeps the nav clean while `title` serves SEO.
+  - **How to apply:** Build the title as `<Feature> — Beebole` first; expand the feature side if under ~50 chars. API title format is `<Topic> — Beebole API`. Then ALWAYS add `sidebarTitle: "<1–3 title-case words>"` (e.g. `Quickstart`, `Timesheet Settings`, `Kanban Board`) matching the sidebar's existing style. Every content page needs both fields.
 
 ## Per-page
 
