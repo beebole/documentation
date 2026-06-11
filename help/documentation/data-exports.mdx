@@ -59,8 +59,7 @@ Exports contain:
 
 - All rows visible in the report, respecting applied filters
 - All selected columns, including financial data (billing, cost, profit) and custom field values
-- Grouped data with subtotals matching the report layout
-- Date range and grouping period information
+- The period appears in the export filename
 
 <Warning>
   Exports respect user permissions. If a user cannot see certain projects or people in reports, that data is excluded from their export as well.
@@ -112,13 +111,13 @@ During the grace period, Beebole displays a banner showing who scheduled the del
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Audit Trail" href="/help/documentation/audit-trail">
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/help/documentation/audit-trail">
     Review a complete log of changes before exporting for compliance.
   </Card>
-  <Card title="Account Settings" href="/help/documentation/account-settings">
+  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
     Configure organization-wide settings, including deleting your organization.
   </Card>
-  <Card title="Custom Reports" href="/help/documentation/custom-reports">
+  <Card title="Custom Reports" icon="table" href="/help/documentation/custom-reports">
     Build and save the exact report you need before exporting it.
   </Card>
 </CardGroup>

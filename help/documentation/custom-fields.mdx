@@ -32,7 +32,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
     The options for the selected type appear below it — defaults, limits, validation. Every change is saved automatically.
   </Step>
   <Step title="Choose where the field appears">
-    In the **Custom field visibility** panel, turn on **Visible for People**, **Visible for Time Records**, **Visible for Projects**, or **Visible for Tasks**. The field then appears on the matching entities.
+    In the **Custom field visibility** panel, turn on **Visible for People**, **Visible for Time Records**, **Visible for Projects**, or **Visible for Tasks**. The field then appears on the matching records.
   </Step>
 </Steps>
 
@@ -78,7 +78,7 @@ Turn on **Use predefined values** to restrict a text field to a fixed list: add 
 
 ## Choosing where a field appears
 
-The **Custom field visibility** panel controls which entities carry the field. Each toggle is saved automatically:
+The **Custom field visibility** panel controls which items carry the field. Each toggle is saved automatically:
 
 - **Visible for People** — The field appears on every person's profile.
 - **Visible for Projects** — Turn it on, then use **Add a category** to choose the project categories where the field applies. Within each category you can tick the hierarchy levels — for example top-level projects only, or their subprojects too.
@@ -89,13 +89,13 @@ The **Custom field visibility** panel controls which entities carry the field. E
 
 ## Entering values
 
-Once a field is visible for an entity type, it appears automatically on every matching entity — there is nothing to add per entity. Open a person, project, or task and fill in the field in its **Custom fields** panel; values are saved automatically as you enter them. For time records, open the entry's details on the timesheet and fill in the field there.
+Once a field is visible for a given type, it appears automatically on every matching record — there is nothing to add one by one. Open a person, project, or task and fill in the field in its **Custom fields** panel; values are saved automatically as you enter them. For time records, open the entry's details on the timesheet and fill in the field there.
 
 ---
 
 ## Custom fields in reports
 
-Custom field values flow into reporting. When you build a [custom report](/help/documentation/custom-reports), any custom field visible on people, projects, or tasks is available as a column for that entity — so a field like a client reference or region becomes a regular report dimension.
+Custom field values flow into reporting. When you build a [custom report](/help/documentation/custom-reports), any custom field visible on people, projects, or tasks is available as a column for that type — so a field like a client reference or region becomes a regular report dimension.
 
 ---
 
@@ -106,7 +106,7 @@ To manage an existing field, open it in **Settings** > **Custom Field** and clic
 Archived fields disappear from the list. Click **Show Archived** to display them, then use the **⋯** action menu and **Unarchive** to restore one.
 
 <Warning>
-  **Delete** removes the custom field entirely, including the values stored on your entities. Choose **Archive** instead if you may need the field or its data again.
+  **Delete** removes the custom field entirely, including the values stored on your people, projects, and tasks. Choose **Archive** instead if you may need the field or its data again.
 </Warning>
 
 ---

@@ -11,7 +11,7 @@ keywords: ["beebole", "cost rates", "labor costs", "project costs", "project pro
 Beebole's cost rates track what work costs your organization internally. While [billing rates](/help/documentation/billing) represent what you charge, cost rates capture what you spend — and with both in place, Beebole shows you the margin on every project, person, and period in your reports.
 
 <Info>
-  Cost rates are available on higher-tier Beebole plans. Who can view and edit them is controlled by the **Costs** permission — see [Roles & permissions](/help/documentation/roles-authorisations).
+  Cost rates are not included in every Beebole plan. Review your plan and add-ons on the [Subscription](/help/documentation/subscription) page. Who can view and edit them is controlled by the **Costs** permission — see [Roles & permissions](/help/documentation/roles-authorisations).
 </Info>
 
 ---
@@ -31,7 +31,7 @@ Each cost rate uses one of four methods:
 
 ## Where to set cost rates
 
-Cost rates live in the **Cost** section of an entity's settings panel — the same panel where [billing rates](/help/documentation/billing) are configured. You can set them at four levels:
+Cost rates live in the **Cost** section of the organization, tag, project, or person settings panel — the same panel where [billing rates](/help/documentation/billing) are configured. You can set them at four levels:
 
 | Level | Typical use |
 |-------|-------------|
@@ -42,7 +42,7 @@ Cost rates live in the **Cost** section of an entity's settings panel — the sa
 
 <Steps>
   <Step title="Open the Cost section">
-    Open the organization (**Settings** > **Account Settings**), or click **Tags**, **Projects**, or **People** in the sidebar and then the entity's name. Scroll to **Cost**.
+    Open the organization (**Settings** > **Account Settings**), or click **Tags**, **Projects**, or **People** in the sidebar and then the tag, project, or person name. Scroll to **Cost**.
   </Step>
   <Step title="Add a rate">
     Click **Add** (**Add a new cost rate**).
@@ -63,13 +63,13 @@ Cost rates live in the **Cost** section of an entity's settings panel — the sa
 
 ## Which rate applies to a time entry
 
-Cost rates resolve the same way as billing rates: the most specific rate wins. For each time entry, Beebole looks for a cost rate on the project the time was logged against — starting at the deepest subproject and walking up the hierarchy — and falls back to the person's rate when no project rate applies. Rates inherited from tags or the organization count as the rate of the entity they cascade to. Cost rates cannot be set directly on a task.
+Cost rates resolve the same way as billing rates: the most specific rate wins. For each time entry, Beebole looks for a cost rate on the project the time was logged against — starting at the deepest subproject and walking up the hierarchy — and falls back to the person's rate when no project rate applies. Rates inherited from tags or the organization count as the rate of the project or person they cascade to. Cost rates cannot be set directly on a task.
 
 ---
 
 ## Rate splits
 
-With an **Hourly rate** or **Daily rate**, you can replace the single amount with per-entity amounts:
+With an **Hourly rate** or **Daily rate**, you can replace the single amount with a separate amount per person or project:
 
 - **No split** — one cost applies to everyone.
 - **Split by persons** — a separate cost for each person you add to the list, for projects or tags where team members cost different amounts.
