@@ -127,12 +127,12 @@ NOTE for batches 2b/2d/2e: pages linking to `/help/documentation/planning` (work
 
 ## API (batch 2f)
 
-- [ ] fix | help/api/introduction.mdx | 2/3 | "Settings > API" wrong (real: **API Key** user-menu item); rate-limit claim overstates (only signin/signup/invite/holiday ops); title format; empty "Plan requirements" section
-- [ ] rewrite | help/api/schema-explorer.mdx | 3/0 | frontmatter-only stub, zero body
-- [ ] rewrite | help/api/queries.mdx | 4/2 | fabricated filter syntax (real: typed input objects); `currentOrganisation` not `currentOrganization`; every example selects `_id` but field is `id`; undocumented top-level args
-- [ ] rewrite | help/api/mutations.mdx | 12/2 | 5 fabricated mutations; organisation-spelled mutation names; duration is MILLISECONDS not minutes (×3); `cloneTimeRecords` signature wrong; `addExpenseRecord` args wrong; `_id` vs `id`
-- [ ] rewrite | help/api/examples/example-1.mdx | 3/0 | frontmatter-only stub
-- [ ] rewrite | help/api/examples/example-2.mdx | 4/0 | stub + description promises pagination that the schema doesn't have
+- [x] fix | help/api/introduction.mdx | 2/3 | "Settings > API" wrong (real: **API Key** user-menu item); rate-limit claim overstates (only signin/signup/invite/holiday ops); title format; empty "Plan requirements" section
+- [x] rewrite | help/api/schema-explorer.mdx | 3/0 | frontmatter-only stub, zero body
+- [x] rewrite | help/api/queries.mdx | 4/2 | fabricated filter syntax (real: typed input objects); `currentOrganisation` not `currentOrganization`; every example selects `_id` but field is `id`; undocumented top-level args
+- [x] rewrite | help/api/mutations.mdx | 12/2 | 5 fabricated mutations; organisation-spelled mutation names; duration is MILLISECONDS not minutes (×3); `cloneTimeRecords` signature wrong; `addExpenseRecord` args wrong; `_id` vs `id`
+- [x] rewrite | help/api/examples/example-1.mdx | 3/0 | frontmatter-only stub
+- [x] rewrite | help/api/examples/example-2.mdx | 4/0 | stub + description promises pagination that the schema doesn't have
 
 ## News (batch 2g)
 

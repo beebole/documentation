@@ -1,4 +1,180 @@
 ---
-title: 'Basic GraphQL API request example'
-description: 'Walk through a basic Beebole GraphQL API request — see how to structure the query, pass authentication, and read the response payload.'
+title: "Export a Month of Time Records — Beebole GraphQL API"
+sidebarTitle: "Export time records"
+description: "End-to-end Beebole GraphQL example: authenticate, query getTimeRecords with a typed filter and date window, and read durations in milliseconds."
+keywords: ["beebole", "export time records", "getTimeRecords", "GraphQL example", "time tracking api", "beebole api"]
+"og:title": "Export Time Records with the Beebole API"
+"og:description": "A read workflow over the Beebole GraphQL API — query time records for a period, filter by person, and parse the millisecond durations."
+"og:type": "article"
 ---
+
+This example walks through a complete read workflow with the [Beebole GraphQL API](/help/api/introduction): exporting one month of logged time for reporting. You authenticate with your API key, query `getTimeRecords` for a date window, narrow the results with a typed filter, select the fields you need, and read the returned durations — which Beebole expresses in milliseconds.
+
+<Info>
+  This is a read-only workflow. `getTimeRecords` never modifies data. To create or edit entries, see [Log time entries programmatically](/help/api/examples/example-2).
+</Info>
+
+---
+
+## What this example does
+
+It fetches every worked time record for one person across a calendar month, returning each record's duration, day, billable flag, and the related person and projects. The result is the raw data you would feed into a report, an invoice, or a data warehouse.
+
+The query uses three pieces of the API:
+
+- The `startTime` and `endTime` top-level arguments to bound the period (Unix timestamps in milliseconds).
+- The `time: true` argument to return only worked time, excluding absence entries.
+- The `filter` argument — a list of typed input objects — to restrict results to one person.
+
+---
+
+## Step 1 — Send the request with your API key
+
+Every request is a `POST` to `https://app.beebole.com/graphql` with your key in the `apikey` HTTP header. Here is the full call with `curl`:
+
+```bash
+curl -X POST https://app.beebole.com/graphql \
+  -H "Content-Type: application/json" \
+  -H "apikey: YOUR_API_KEY" \
+  -d '{
+    "query": "query ($start: Timestamp, $end: Timestamp, $filter: [BeeboleTimeRecordFilter]) { getTimeRecords(startTime: $start, endTime: $end, time: true, filter: $filter) { id duration startTime nonBillable person { id name } projects { id name } } }",
+    "variables": {
+      "start": 1717200000000,
+      "end": 1719791999999,
+      "filter": [{ "personId": "64a1b2c3d4e5f6a7b8c9d0e1" }]
+    }
+  }'
+```
+
+The two timestamps bracket June 2024: `1717200000000` is June 1 at 00:00 UTC and `1719791999999` is the last millisecond of June 30.
+
+---
+
+## Step 2 — The query
+
+The same operation written as a standalone GraphQL document:
+
+```graphql
+query ExportTimeRecords {
+  getTimeRecords(
+    startTime: 1717200000000
+    endTime: 1719791999999
+    time: true
+    filter: [{ personId: "64a1b2c3d4e5f6a7b8c9d0e1" }]
+  ) {
+    id
+    duration
+    startTime
+    nonBillable
+    person {
+      id
+      name
+    }
+    projects {
+      id
+      name
+    }
+  }
+}
+```
+
+Each object in the `filter` array sets a single matching field. To combine conditions — for example, one person on a specific project — chain them with a `following` value of `AND` or `OR`:
+
+```graphql
+query {
+  getTimeRecords(
+    startTime: 1717200000000
+    endTime: 1719791999999
+    time: true
+    filter: [
+      { personId: "64a1b2c3d4e5f6a7b8c9d0e1", following: AND }
+      { projectIds: ["64a1b2c3d4e5f6a7b8c9d0e2"] }
+    ]
+  ) {
+    id
+    duration
+    projects {
+      id
+      name
+    }
+  }
+}
+```
+
+<Info>
+  The Beebole query API has no pagination — there are no `limit`, `offset`, or cursor arguments. `getTimeRecords` returns every record matching its arguments. Size the result first with `countTimeRecords`, which takes the same arguments and returns an integer.
+</Info>
+
+---
+
+## Step 3 — Read the response
+
+A successful response returns the matching records under `data.getTimeRecords`:
+
+```json
+{
+  "data": {
+    "getTimeRecords": [
+      {
+        "id": "665b1f8e0a1c2d3e4f5a6b70",
+        "duration": 7200000,
+        "startTime": 1717372800000,
+        "nonBillable": false,
+        "person": {
+          "id": "64a1b2c3d4e5f6a7b8c9d0e1",
+          "name": "Alice Martin"
+        },
+        "projects": [
+          {
+            "id": "64a1b2c3d4e5f6a7b8c9d0e2",
+            "name": "Website Redesign"
+          }
+        ]
+      },
+      {
+        "id": "665b1f8e0a1c2d3e4f5a6b71",
+        "duration": 27000000,
+        "startTime": 1717459200000,
+        "nonBillable": true,
+        "person": {
+          "id": "64a1b2c3d4e5f6a7b8c9d0e1",
+          "name": "Alice Martin"
+        },
+        "projects": [
+          {
+            "id": "64a1b2c3d4e5f6a7b8c9d0e3",
+            "name": "Internal"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Reading the milliseconds duration
+
+`duration` is an integer count of **milliseconds**. To present it as hours, divide by `3600000` (1000 × 60 × 60):
+
+- `7200000` ms ÷ `3600000` = **2 hours**
+- `27000000` ms ÷ `3600000` = **7.5 hours**
+
+`startTime` is also in milliseconds — a Unix timestamp marking the day the time was logged. Convert it with your language's date utilities (for example, `new Date(1717372800000)` in JavaScript). The `nonBillable` flag tells you whether the entry counts as billable when you build invoicing reports.
+
+---
+
+## Related content
+
+<CardGroup cols={3}>
+  <Card title="API Introduction" icon="book" href="/help/api/introduction">
+    Authenticate with your API key and send your first request.
+  </Card>
+  <Card title="Queries" icon="magnifying-glass" href="/help/api/queries">
+    Every read operation, with the typed filter input and date arguments.
+  </Card>
+  <Card title="Mutations" icon="pen" href="/help/api/mutations">
+    The write operations that create and update records.
+  </Card>
+</CardGroup>

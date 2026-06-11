@@ -1,4 +1,185 @@
 ---
-title: 'Advanced GraphQL query: filters and pagination'
-description: 'Advanced Beebole GraphQL API example showing how to combine filters, paginate results, and request nested fields in a single request.'
+title: "Log Time Entries Programmatically — Beebole GraphQL API"
+sidebarTitle: "Log time entries"
+description: "End-to-end Beebole GraphQL example: add a time record with a millisecond duration, adjust it, clone a week, and submit the timesheet for approval."
+keywords: ["beebole", "log time", "addTimeRecord", "submitTimesheet", "GraphQL mutation example", "beebole api"]
+"og:title": "Log Time Entries with the Beebole API"
+"og:description": "A write workflow over the Beebole GraphQL API — add and edit time records, clone a week, and submit a timesheet for approval."
+"og:type": "article"
 ---
+
+This example walks through a complete write workflow with the [Beebole GraphQL API](/help/api/introduction): logging time on behalf of a team member and moving it through the approval flow. You authenticate with your API key, create a time record with `addTimeRecord`, adjust it, clone a full week with `cloneTimeRecords`, and submit the period with `submitTimesheet`. Every duration in Beebole is expressed in milliseconds.
+
+<Info>
+  These are write operations — they create and change data. For read-only reporting, see [Export last month's time records](/help/api/examples/example-1).
+</Info>
+
+---
+
+## Step 1 — Log a time entry
+
+`addTimeRecord` creates one logged entry for a person on a given day. The required arguments are `startTime` (a Unix timestamp in milliseconds), `duration` (milliseconds), and `personId`. Pass `taskId`, `absenceId`, or `projectIds` to link the entry. Here the call logs 2 hours against a task.
+
+<Info>
+  Durations are in **milliseconds**. To log 2 hours, pass `7200000` (2 × 60 × 60 × 1000) — not `120` and not `2`.
+</Info>
+
+```bash
+curl -X POST https://app.beebole.com/graphql \
+  -H "Content-Type: application/json" \
+  -H "apikey: YOUR_API_KEY" \
+  -d '{
+    "query": "mutation { addTimeRecord(startTime: 1717200000000, duration: 7200000, personId: \"64a1b2c3d4e5f6a7b8c9d0e1\", taskId: \"64a1b2c3d4e5f6a7b8c9d0e3\") { id duration startTime } }"
+  }'
+```
+
+The same operation as a GraphQL document:
+
+```graphql
+mutation LogTime {
+  addTimeRecord(
+    startTime: 1717200000000
+    duration: 7200000
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    taskId: "64a1b2c3d4e5f6a7b8c9d0e3"
+  ) {
+    id
+    duration
+    startTime
+  }
+}
+```
+
+The mutation returns the created record, including its `id`:
+
+```json
+{
+  "data": {
+    "addTimeRecord": {
+      "id": "665b1f8e0a1c2d3e4f5a6b70",
+      "duration": 7200000,
+      "startTime": 1717200000000
+    }
+  }
+}
+```
+
+Store the returned `id` — you will need it to update the record.
+
+---
+
+## Step 2 — Adjust the entry
+
+Each editable field has its own mutation. To correct the logged duration, call `editTimeRecordDuration` with the record `id` and the new millisecond value. This changes the entry from 2 hours to 3 hours (`10800000` ms):
+
+```graphql
+mutation {
+  editTimeRecordDuration(
+    id: "665b1f8e0a1c2d3e4f5a6b70"
+    duration: 10800000
+  ) {
+    id
+    duration
+  }
+}
+```
+
+Related per-field mutations follow the same shape: `editTimeRecordStartTime`, `editTimeRecordProjects`, `editTimeRecordTask`, `editTimeRecordComment`, and `editTimeRecordNonBillable`. Each takes the record `id` plus the one value to change and returns the updated record.
+
+---
+
+## Step 3 — Clone a full week
+
+When a person's week repeats a regular pattern, `cloneTimeRecords` copies their entries from a source period to a target period in one call. Set `replaceExisting: true` to clear the target period before cloning.
+
+```graphql
+mutation CloneWeek {
+  cloneTimeRecords(
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    sourceStartTime: 1717200000000
+    sourceEndTime: 1717718400000
+    targetStartTime: 1717804800000
+    targetEndTime: 1718323200000
+    replaceExisting: true
+  ) {
+    id
+    startTime
+    duration
+  }
+}
+```
+
+The mutation returns the list of newly created records:
+
+```json
+{
+  "data": {
+    "cloneTimeRecords": [
+      {
+        "id": "665b2a110a1c2d3e4f5a6b80",
+        "startTime": 1717804800000,
+        "duration": 10800000
+      },
+      {
+        "id": "665b2a110a1c2d3e4f5a6b81",
+        "startTime": 1717891200000,
+        "duration": 7200000
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Step 4 — Submit the timesheet
+
+Once the period is complete, `submitTimesheet` sends it into the approval workflow. It takes the `personId` and the `startTime` / `endTime` of the period, and returns a submit event whose `id` you pass to `approveTimesheet` or `rejectTimesheet` later.
+
+```graphql
+mutation SubmitMonth {
+  submitTimesheet(
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    startTime: 1717200000000
+    endTime: 1719791999999
+  ) {
+    id
+    status
+    stage
+  }
+}
+```
+
+```json
+{
+  "data": {
+    "submitTimesheet": {
+      "id": "665b3c920a1c2d3e4f5a6b90",
+      "status": "s",
+      "stage": 0
+    }
+  }
+}
+```
+
+The `status` field reports the period's approval state — `d` (draft), `s` (submitted), `a` (approved), or `r` (rejected). Beebole determines the current approval `stage` automatically.
+
+<Warning>
+  Deletions made through the API cannot be undone. `cloneTimeRecords` with `replaceExisting: true` first deletes the existing records in the target period — make sure the target window is correct before sending it.
+</Warning>
+
+---
+
+## Related content
+
+<CardGroup cols={3}>
+  <Card title="API Introduction" icon="book" href="/help/api/introduction">
+    Authenticate with your API key and send your first request.
+  </Card>
+  <Card title="Mutations" icon="pen" href="/help/api/mutations">
+    Every write operation, with full argument signatures.
+  </Card>
+  <Card title="Queries" icon="magnifying-glass" href="/help/api/queries">
+    Read back the records you create with these mutations.
+  </Card>
+</CardGroup>

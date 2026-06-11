@@ -1,46 +1,109 @@
 ---
-title: "API Queries"
-description: "Reference for Beebole GraphQL queries — retrieve people, projects, tasks, tags, time records, expenses, and other account data with filters."
-keywords: ["beebole", "GraphQL queries", "API queries", "read data", "time records api", "beebole api"]
-"og:title": "Beebole API Queries Reference"
-"og:description": "Full reference for all available GraphQL read operations in the Beebole API."
+title: "Querying time records, projects, and people — Beebole API"
+sidebarTitle: "Queries"
+description: "Reference for Beebole GraphQL queries — read organisations, people, projects, tasks, tags, time records, and expenses, with typed filter inputs."
+keywords: ["beebole", "GraphQL queries", "API queries", "time records api", "beebole api"]
+"og:title": "Beebole API Queries — GraphQL Read Operations"
+"og:description": "Runnable Beebole GraphQL query examples with real names, arguments, fields, and the typed filter input."
 "og:type": "article"
 ---
 
-Queries retrieve data from Beebole without modifying anything. All queries require a valid API key — see [Authentication](/help/api/introduction#authentication) for setup instructions.
+Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organisation, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
+
+<Info>
+  Queries never change data. To create, update, archive, or delete records, use [Mutations](/help/api/mutations) instead. For authentication setup, see the [API introduction](/help/api/introduction#authentication).
+</Info>
+
+Field names follow GraphQL conventions exactly as defined in the schema. Every entity exposes its identifier as `id` (not `_id`), and the organisation-level query is spelled `currentOrganisation` (British spelling, as in the schema).
+
+---
+
+## Organisation
+
+Read account-level data with `currentOrganisation` and `getAuditTrails`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `currentOrganisation` | none | The organisation linked to the authenticated API key |
+| `getAuditTrails` | `startTime`, `fromPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organisation |
+
+```graphql
+query {
+  currentOrganisation {
+    id
+    name
+    locked
+  }
+}
+```
+
+`getAuditTrails` returns mutations performed in the account. With no `startTime`, it covers the last seven days; `startTime` selects a different seven-day window.
+
+```graphql
+query {
+  getAuditTrails(operations: ["addTimeRecord", "deleteTimeRecords"]) {
+    operationName
+    timestamp
+    person {
+      id
+      name
+    }
+    arguments {
+      name
+      value
+    }
+  }
+}
+```
 
 ---
 
 ## People
 
-| Query | Description |
-|-------|-------------|
-| `currentPerson` | Returns the person linked to the API key used for the request |
-| `getPerson(id)` | Fetches a single person by ID |
-| `getPersons(filter, archived)` | Lists people, optionally filtered and including archived records |
-| `countPersons(filter, archived)` | Returns the count of people matching the given criteria |
-| `filterPersonIds(filter, archived)` | Returns only the IDs of matching people |
+Read team members with `currentPerson`, `getPerson`, `getPersons`, `countPersons`, and `filterPersonIds`. `getPotentialProjectOwners` lists the people allowed to own a given project.
 
-### Example: fetch all active people
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `currentPerson` | none | The person linked to the API key |
+| `getPerson` | `id` | A single person |
+| `getPersons` | `filter`, `archived` | A list of people |
+| `countPersons` | `filter`, `archived` | The number of matching people |
+| `filterPersonIds` | `filter`, `archived` | Only the IDs of matching people |
+| `getPotentialProjectOwners` | `projectId` | People eligible to own the project |
 
 ```graphql
 query {
   getPersons {
-    _id
+    id
     name
     email
+    archived
   }
 }
 ```
 
-### Example: fetch a single person
-
 ```graphql
 query {
   getPerson(id: "64a1b2c3d4e5f6a7b8c9d0e1") {
-    _id
+    id
     name
     email
+    role {
+      id
+      name
+    }
+  }
+}
+```
+
+By default `getPersons` returns only active people. Pass `archived: true` to include archived ones.
+
+```graphql
+query {
+  getPersons(archived: true) {
+    id
+    name
+    archived
   }
 }
 ```
@@ -49,22 +112,47 @@ query {
 
 ## Projects
 
-| Query | Description |
-|-------|-------------|
-| `getProject(id)` | Fetches a single project by ID |
-| `getProjects(filter, archived)` | Lists projects, optionally filtered and including archived records |
-| `countProjects(filter, archived)` | Returns the count of matching projects |
-| `filterProjectIds(filter, archived)` | Returns only the IDs of matching projects |
-| `getProjectCategories` | Lists all project categories (top-level groupings) |
+Read projects with `getProject`, `getProjects`, `countProjects`, and `filterProjectIds`. `getProjectCategories` lists the top-level groupings projects are organised into.
 
-### Example: fetch all active projects
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getProject` | `id` | A single project |
+| `getProjects` | `filter`, `archived`, `categoryId` | A list of projects |
+| `countProjects` | `filter`, `archived`, `categoryId` | The number of matching projects |
+| `filterProjectIds` | `filter`, `archived`, `categoryId` | Only the IDs of matching projects |
+| `getProjectCategories` | none | All project categories |
 
 ```graphql
 query {
   getProjects {
-    _id
+    id
     name
     level
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+The `level` field is the project's depth in the hierarchy, where `0` is a top-level project. Restrict results to one category with `categoryId`:
+
+```graphql
+query {
+  getProjects(categoryId: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    id
+    name
+  }
+}
+```
+
+```graphql
+query {
+  getProjectCategories {
+    id
+    name
+    levelNames
   }
 }
 ```
@@ -73,21 +161,65 @@ query {
 
 ## Tasks
 
-| Query | Description |
-|-------|-------------|
-| `getTask(id)` | Fetches a single task by ID |
-| `getTasks(filter, archived)` | Lists tasks, optionally filtered and including archived records |
-| `countTasks(filter, archived)` | Returns the count of matching tasks |
-| `filterTaskIds(filter, archived)` | Returns only the IDs of matching tasks |
-| `getTaskCategories` | Lists all task categories |
+Read tasks with `getTask`, `getTasks`, `countTasks`, and `filterTaskIds`. `getTaskCategories` lists the categories (boards) tasks belong to.
 
-### Example: fetch all active tasks
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getTask` | `id` | A single task |
+| `getTasks` | `filter`, `archived`, `categoryId` | A list of tasks |
+| `countTasks` | `filter`, `archived`, `categoryId` | The number of matching tasks |
+| `filterTaskIds` | `filter`, `archived`, `categoryId` | Only the IDs of matching tasks |
+| `getTaskCategories` | none | All task categories |
 
 ```graphql
 query {
   getTasks {
-    _id
+    id
     name
+    startTime
+    endTime
+    status {
+      id
+      name
+    }
+  }
+}
+```
+
+```graphql
+query {
+  getTask(id: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    id
+    name
+    effort
+    dependencies {
+      id
+      name
+    }
+  }
+}
+```
+
+---
+
+## Tags
+
+Read tags with `getTag`, `getTags`, `countTags`, and `filterTagIds`. `getTagCategories` lists the categories tags are grouped into.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getTag` | `id` | A single tag |
+| `getTags` | `filter`, `archived`, `categoryId` | A list of tags |
+| `countTags` | `filter`, `archived`, `categoryId` | The number of matching tags |
+| `filterTagIds` | `filter`, `archived`, `categoryId` | Only the IDs of matching tags |
+| `getTagCategories` | none | All tag categories |
+
+```graphql
+query {
+  getTags {
+    id
+    name
+    level
   }
 }
 ```
@@ -96,23 +228,52 @@ query {
 
 ## Time records
 
-| Query | Description |
-|-------|-------------|
-| `getTimeRecord(id)` | Fetches a single time record by ID |
-| `getTimeRecords(filter)` | Lists time records matching the given filter criteria |
-| `countTimeRecords(filter)` | Returns the count of matching time records |
+A time record is a logged time entry for one person on a specific day, linked to projects, a task, or an absence type. Read them with `getTimeRecord`, `getTimeRecords`, and `countTimeRecords`. `getAbsenceConsumed` returns how much of an absence type a person has used in a window.
 
-Filters let you narrow results by person, project, date range, and other dimensions. Use the [Schema explorer](/help/api/schema-explorer) to see the full `BeeboleTimeRecordFilter` type.
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getTimeRecord` | `id` | A single time record |
+| `getTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | A list of time records |
+| `countTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | The number of matching time records |
+| `getAbsenceConsumed` | `personId`, `absenceId`, `startTime`, `endTime` | Absence consumed in the window, in the type's unit |
 
-### Example: fetch time records
+`getTimeRecords` and `countTimeRecords` accept top-level arguments alongside `filter`:
+
+- **`startTime`** / **`endTime`** — Unix timestamps in milliseconds bounding the period.
+- **`time`** — when `true`, return only worked time (entries without an absence type).
+- **`absence`** — when `true`, return only absence entries (entries with an absence type).
+- **`wfh`** — when `true`, return only entries logged as working from home.
+- **`filter`** — a typed filter array (see [Filtering results](#filtering-results)).
 
 ```graphql
 query {
-  getTimeRecords(filter: [{ field: "personId", value: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
-    _id
+  getTimeRecords(startTime: 1704067200000, endTime: 1706745600000, time: true) {
+    id
     duration
     startTime
+    nonBillable
+    person {
+      id
+      name
+    }
+    projects {
+      id
+      name
+    }
   }
+}
+```
+
+Durations and timestamps are integers in milliseconds. The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
+
+```graphql
+query {
+  getAbsenceConsumed(
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    absenceId: "64a1b2c3d4e5f6a7b8c9d0e2"
+    startTime: 1704067200000
+    endTime: 1735689600000
+  )
 }
 ```
 
@@ -120,39 +281,28 @@ query {
 
 ## Expense records
 
-| Query | Description |
-|-------|-------------|
-| `getExpenseRecord(id)` | Fetches a single expense record by ID |
-| `getExpenseRecords(filter)` | Lists expense records matching the given filter criteria |
+An expense record is an expense logged by a person against a project and an expense type. Read them with `getExpenseRecord` and `getExpenseRecords`.
 
-### Example: fetch expense records
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getExpenseRecord` | `id` | A single expense record |
+| `getExpenseRecords` | `startTime`, `endTime`, `filter` | A list of expense records |
 
 ```graphql
 query {
-  getExpenseRecords {
-    _id
-    amount
+  getExpenseRecords(startTime: 1704067200000, endTime: 1706745600000) {
+    id
     date
-  }
-}
-```
-
----
-
-## Organization
-
-| Query | Description |
-|-------|-------------|
-| `currentOrganization` | Returns the organization linked to the authenticated API key |
-| `getAuditTrails` | Returns the audit log for the organization |
-
-### Example: fetch organization info
-
-```graphql
-query {
-  currentOrganization {
-    _id
-    name
+    amount
+    comment
+    expenseType {
+      id
+      name
+    }
+    project {
+      id
+      name
+    }
   }
 }
 ```
@@ -161,23 +311,96 @@ query {
 
 ## Absence types
 
-| Query | Description |
-|-------|-------------|
-| `getAbsenceType(id)` | Fetches a single absence type by ID |
-| `getAbsenceTypes(filter, archived)` | Lists absence types |
-| `countAbsenceTypes(filter, archived)` | Returns the count of matching absence types |
+Absence types are the kinds of leave people can log against, such as vacation or sick leave. Read them with `getAbsenceType`, `getAbsenceTypes`, and `countAbsenceTypes`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getAbsenceType` | `id` | A single absence type |
+| `getAbsenceTypes` | `filter`, `archived` | A list of absence types |
+| `countAbsenceTypes` | `filter`, `archived` | The number of matching absence types |
+
+```graphql
+query {
+  getAbsenceTypes {
+    id
+    name
+    unit
+    involveCosts
+  }
+}
+```
 
 ---
 
-## Tips
+## Filtering results
 
-<Tip>
-  Use `filter` arguments to narrow results when querying large datasets. Fetching without filters returns all records, which may be slow for accounts with extensive history.
-</Tip>
+The `filter` argument is **a list of typed input objects** — not a list of `field`/`value` pairs. Each entity has its own filter input type, such as `BeeboleTimeRecordFilter`, `BeebolePersonFilter`, or `BeeboleProjectFilter`. You set the named fields you want to match directly on each object.
 
-- Combine `getPersons` with `getTimeRecords` filters to pull time data scoped to specific team members.
-- Use `countTimeRecords` before fetching records to estimate response size.
-- For write operations, see [Mutations](/help/api/mutations).
+```graphql
+query {
+  getTimeRecords(filter: [{ personId: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
+    id
+    duration
+    startTime
+  }
+}
+```
+
+Each object in the array should set a single matching field. To combine conditions, add a `following` value of `AND` or `OR` to chain one condition to the next:
+
+```graphql
+query {
+  getProjects(
+    filter: [
+      { categoryId: "64a1b2c3d4e5f6a7b8c9d0e1", following: AND }
+      { archived: false }
+    ]
+  ) {
+    id
+    name
+  }
+}
+```
+
+### Time record filter fields
+
+`BeeboleTimeRecordFilter` accepts these fields (each optional):
+
+| Field | Type | Matches |
+| --- | --- | --- |
+| `id` / `notId` | ID | A specific time record, or all but one |
+| `personId` / `notPersonId` | ID | Records for (or excluding) one person |
+| `personIds` | `[ID]` | Records for any of several people |
+| `startTime` / `endTime` | Timestamp | Records starting after / ending before a millisecond timestamp |
+| `projectIds` / `notProjectIds` | `[ID]` | Records on (or excluding) projects, including their sub-projects |
+| `taskIds` / `notTaskIds` | `[ID]` | Records on (or excluding) tasks |
+| `projectTagIds` / `projectNotTagIds` | `[ID]` | Records whose projects carry (or lack) given tags |
+| `personTagIds` / `personNotTagIds` | `[ID]` | Records whose person carries (or lacks) given tags |
+| `projectCategoryIds` / `notProjectCategoryIds` | `[ID]` | Records by project category |
+| `taskCategoryIds` / `notTaskCategoryIds` | `[ID]` | Records by task category |
+| `isAbsence` | Boolean | Whether the record is an absence |
+| `following` | `AND` / `OR` | Logical operator chaining this condition to the next |
+
+Other entities expose filter types tuned to their own fields — for example `BeebolePersonFilter` supports `roleId`, `tagIds`, and `name` (a case-insensitive match), while `BeeboleProjectFilter` supports `categoryId`, `managedById`, and `subProjectId`. Browse every filter type and its fields in the [Schema explorer](/help/api/schema-explorer).
+
+---
+
+## Counting and ID-only queries
+
+For each major entity, alongside the full `get…` query you also get a counterpart that returns just a count, and (for people, projects, tasks, and tags) one that returns only matching IDs.
+
+- **`count…`** queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`) return an integer. Use them to size a result set before fetching it.
+- **`filter…Ids`** queries (`filterPersonIds`, `filterProjectIds`, `filterTaskIds`, `filterTagIds`) return an array of IDs instead of full objects, which is lighter when you only need identifiers.
+
+```graphql
+query {
+  countTimeRecords(startTime: 1704067200000, endTime: 1706745600000)
+}
+```
+
+<Info>
+  The Beebole query API has no pagination — there are no `limit`, `offset`, `first`, or `cursor` arguments. A list query returns every record that matches its arguments. Narrow large result sets with `filter`, the `startTime` / `endTime` window, or `categoryId`, and use a `count…` query first to gauge the size.
+</Info>
 
 ---
 
@@ -185,26 +408,12 @@ query {
 
 <CardGroup cols={2}>
   <Card title="API Introduction" icon="book" href="/help/api/introduction">
-    Learn how to authenticate and make your first API request.
+    Authenticate with an API key and send your first request.
   </Card>
   <Card title="Mutations" icon="pen" href="/help/api/mutations">
-    All available GraphQL write operations in the Beebole API.
+    The write operations that create, update, archive, and delete records.
+  </Card>
+  <Card title="Schema explorer" icon="sitemap" href="/help/api/schema-explorer">
+    Browse every query, type, field, and filter input interactively.
   </Card>
 </CardGroup>
-
-## Frequently asked questions
-
-<AccordionGroup>
-  <Accordion title="How do I filter time records by date range?">
-    Pass a filter array to `getTimeRecords` with conditions on `startTime` or `endTime`. Use the [Schema explorer](/help/api/schema-explorer) to see the exact filter field names and operators available.
-  </Accordion>
-  <Accordion title="Can I fetch archived people and projects?">
-    Yes. Pass `archived: true` to `getPersons` or `getProjects` to include archived records in the results.
-  </Accordion>
-  <Accordion title="What does filterPersonIds return?">
-    It returns an array of IDs instead of full objects. Use it when you only need to check membership or build a filter for a subsequent query without fetching full records.
-  </Accordion>
-  <Accordion title="How do I see all available fields on a query result type?">
-    Use the [Schema explorer](/help/api/schema-explorer) to browse every field on every type — including nested objects like billing rates, schedule settings, and custom field values.
-  </Accordion>
-</AccordionGroup>

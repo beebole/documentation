@@ -1,6 +1,7 @@
 ---
-title: "Introduction to the Beebole API"
-description: "Get started with the Beebole GraphQL API: how endpoints work, how to authenticate with an API key, and how to send your first query or mutation."
+title: "Introduction, Endpoint & Authentication — Beebole API"
+sidebarTitle: "Introduction"
+description: "Get started with the Beebole GraphQL API: how the endpoint works, how to authenticate with an API key, and how to send your first query or mutation."
 keywords: ["beebole", "GraphQL API", "API introduction", "API authentication", "API key", "beebole api"]
 "og:title": "Beebole GraphQL API — Introduction"
 "og:description": "Authenticate with the Beebole GraphQL API using an API key and start querying or mutating your account data."
@@ -34,19 +35,21 @@ apikey: YOUR_API_KEY
 ```
 
 <Steps>
-  <Step title="Open API settings">
-    Go to **Settings** > **API** in your Beebole account.
+  <Step title="Open your API key">
+    In Beebole, click the button with your initials at the bottom of the left sidebar, then click **API Key**.
   </Step>
   <Step title="Copy your API key">
-    Your **API Key** is displayed on this page. Click **Copy** to copy it to the clipboard.
+    Beebole creates one **API Key** automatically the first time you open this panel. Click **Copy** to copy it to the clipboard.
   </Step>
   <Step title="Include the key in every request">
     Add the `apikey` header to all HTTP requests you send to the endpoint.
   </Step>
 </Steps>
 
+Each account has a single API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions.
+
 <Warning>
-  Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, click **Reset** on the **Settings** > **API** page to revoke it and generate a new one.
+  Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, open the **API Key** panel and click **Reset** to revoke the current key and generate a new one.
 </Warning>
 
 ---
@@ -88,7 +91,7 @@ See the full reference pages for details:
 
 - [Queries](/help/api/queries) — all available read operations
 - [Mutations](/help/api/mutations) — all available write operations
-- [Schema explorer](/help/api/schema-explorer) — interactive schema browser
+- [Schema explorer](/help/api/schema-explorer) — how to explore the schema with introspection and a GraphQL client
 
 ---
 
@@ -111,20 +114,18 @@ Common error messages:
 | Message | Cause |
 |---------|-------|
 | `APIKeyError:InvalidKey` | The API key is missing or not recognized |
-| `APIKeyError:CantFindLinkedAccount` | The account linked to this key no longer exists |
-| `AdminOnly` | The operation requires an administrator role |
+| `APIKeyError:CantFindLinkedAccount` | The person linked to this key no longer exists |
+| `APIKeyError:CantFindLinkedOrganisation` | The organization linked to this key no longer exists |
+
+Beebole resolves permissions per operation. If a request asks for data or an action the linked person is not authorized for, the response omits that data or returns an authorization error for the affected field rather than failing the whole request.
+
+When an account's subscription is inactive, API-key requests are blocked with HTTP `402 Payment Required` and an `AccountIsInactive` error. Browser sessions are not blocked the same way, so this only affects API access.
 
 ---
 
 ## Rate limits
 
-The API enforces rate limits to ensure fair usage across all accounts. If you exceed the limit, reduce your request frequency or batch operations where possible. For high-volume integration needs, contact [support@beebole.com](mailto:support@beebole.com).
-
----
-
-## Plan requirements
-
-Contact [support@beebole.com](mailto:support@beebole.com) if you are unsure whether your plan includes API access.
+Beebole does not apply a general rate limit to GraphQL API traffic. Rate limiting is reserved for a small set of sensitive operations — such as sign-in, sign-up, inviting people, and loading public holidays — which are not part of a typical integration workflow. For very high request volumes, batch related operations into fewer requests where possible, and contact [support@beebole.com](mailto:support@beebole.com) if you have specific throughput needs.
 
 ---
 
@@ -149,12 +150,12 @@ Contact [support@beebole.com](mailto:support@beebole.com) if you are unsure whet
     Yes. The API is standard GraphQL over HTTPS. Any language with an HTTP client — Python, JavaScript, Ruby, Go, Java, and others — can make requests.
   </Accordion>
   <Accordion title="Where do I find my API key?">
-    Go to **Settings** > **API** in your Beebole account. Your **API Key** is displayed there. You can copy or reset it from that page.
+    In Beebole, click the button with your initials at the bottom of the left sidebar, then click **API Key**. Beebole creates the key automatically, and you can **Copy** or **Reset** it from that panel.
   </Accordion>
   <Accordion title="Can I use the API to read and write time records?">
     Yes. The API supports both queries (reading time records) and mutations (creating and editing time entries). See [Queries](/help/api/queries) and [Mutations](/help/api/mutations) for the full list of operations.
   </Accordion>
-  <Accordion title="How do I explore the API schema interactively?">
-    Use the [Schema explorer](/help/api/schema-explorer) to browse all available types, queries, and mutations with their arguments and descriptions.
+  <Accordion title="How do I explore the API schema?">
+    The Beebole API supports GraphQL introspection, so any standard GraphQL client can fetch the full schema — types, queries, mutations, and their arguments. See the [Schema explorer](/help/api/schema-explorer) page for how to connect a GraphQL client.
   </Accordion>
 </AccordionGroup>

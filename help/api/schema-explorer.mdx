@@ -1,4 +1,117 @@
 ---
-title: 'Schema Explorer'
-description: 'Browse the full Beebole GraphQL schema interactively — explore types, queries, mutations, and field documentation directly in your browser.'
+title: "GraphQL Schema Explorer & Introspection — Beebole API"
+sidebarTitle: "Schema Explorer"
+description: "Explore the Beebole GraphQL schema with introspection — connect a GraphQL client to the endpoint to browse types, queries, mutations, and field docs."
+keywords: ["beebole", "GraphQL schema", "introspection", "schema explorer", "GraphQL client", "GraphiQL", "beebole api"]
+"og:title": "Exploring the Beebole GraphQL Schema"
+"og:description": "Use GraphQL introspection and a GraphQL client to explore the Beebole API schema: types, queries, mutations, arguments, and field documentation."
+"og:type": "article"
 ---
+
+The Beebole GraphQL API is self-describing through introspection, so you can explore the full schema — every type, query, mutation, argument, and field — directly from a GraphQL client. Beebole does not ship a separate hosted schema browser; instead, you point any standard GraphQL tool at the API endpoint and let introspection reveal the schema.
+
+<Info>
+  Introspection is enabled for API-key requests against the Beebole GraphQL endpoint. There is nothing to turn on in your account — any GraphQL client that supports introspection can read the schema as soon as it can authenticate.
+</Info>
+
+---
+
+## The endpoint and authentication
+
+Schema exploration uses the same endpoint and authentication as every other API call:
+
+```
+POST https://app.beebole.com/graphql
+```
+
+Authenticate by sending your API key in the `apikey` HTTP header:
+
+```http
+apikey: YOUR_API_KEY
+```
+
+For where to find your key, see [Introduction to the Beebole API](/help/api/introduction).
+
+---
+
+## Exploring the schema with introspection
+
+Introspection is a built-in GraphQL feature: the schema can be queried like any other data. A minimal introspection query lists every type the API exposes:
+
+```graphql
+{
+  __schema {
+    types {
+      name
+      kind
+    }
+  }
+}
+```
+
+You can also introspect a single type to see its fields, their types, and any descriptions:
+
+```graphql
+{
+  __type(name: "Person") {
+    name
+    description
+    fields {
+      name
+      description
+      type {
+        name
+        kind
+      }
+    }
+  }
+}
+```
+
+Most GraphQL clients run a full introspection query automatically when you connect, so you rarely write these queries by hand — the client uses the result to power autocomplete, type-aware validation, and a browsable schema view.
+
+---
+
+## Connecting a GraphQL client
+
+Any GraphQL client or IDE that supports introspection can explore the Beebole schema. Configure it with the endpoint URL and the `apikey` header:
+
+<Steps>
+  <Step title="Set the endpoint URL">
+    Point the client at `https://app.beebole.com/graphql`.
+  </Step>
+  <Step title="Add the API key header">
+    In the client's HTTP headers configuration, add a header named `apikey` with your key as the value.
+  </Step>
+  <Step title="Load the schema">
+    Run the client's introspection or "refresh schema" action. The client fetches the schema and enables documentation browsing, autocomplete, and validation.
+  </Step>
+</Steps>
+
+This works with desktop GraphQL IDEs, GraphQL plugins for code editors, and command-line tools that fetch a schema for code generation. Because the schema comes from introspection, it always reflects the live API — there is no separate schema file to download or keep in sync.
+
+---
+
+## Built-in GraphiQL at the endpoint
+
+Beebole serves a GraphiQL IDE — including the schema Explorer panel — directly at the API endpoint. Open `https://app.beebole.com/graphql` in a browser to load it. GraphiQL provides a query editor, a documentation explorer for browsing types and fields, and an Explorer panel for building queries by clicking through the schema.
+
+<Info>
+  GraphiQL sends requests to the same `POST /graphql` endpoint, so it follows the same authentication rules. Use GraphiQL's headers editor to add your `apikey` header before running introspection or queries.
+</Info>
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Introduction" icon="book-open" href="/help/api/introduction">
+    The endpoint, API-key authentication, and how to send your first request.
+  </Card>
+  <Card title="Queries" icon="magnifying-glass" href="/help/api/queries">
+    All available GraphQL read operations in the Beebole API.
+  </Card>
+  <Card title="Mutations" icon="pen" href="/help/api/mutations">
+    All available GraphQL write operations in the Beebole API.
+  </Card>
+</CardGroup>
