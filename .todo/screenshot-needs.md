@@ -10,6 +10,15 @@ Capture is a deferred follow-on effort — run `/illustrate --capture` against t
 - `help/images/index-beebole-documentation.webp` (landing hero)
 - `help/images/integrations/asana-connect.webp`, `asana-params.webp`, `asana-updating.webp`, `asana-validate.webp`
 
+## Capture spec (locked 2026-06-11 — apply to every shot)
+
+- **DPR 2** on the Playwright context (`deviceScaleFactor: 2`) — this, not the physical monitor (retina vs 4K is irrelevant), is what makes shots crisp. `browser_resize` does NOT set DPR; verify `window.devicePixelRatio === 2` before capturing.
+- **Viewport by type:** full app/dashboard = **1440×900** logical; panel/dialog/single control = element screenshot (`locator.screenshot()`) or ~**1024** wide so it fills the frame; mobile (`mobile/*`) = **390×844**.
+- **WebP:** `cwebp -q 80` → must be under 200 KB → drop to `-q 60` if over.
+- **One DPR + one viewport-set for all shots** — consistency is the priority. Mintlify renders images in a ~700px column, so 1440@2x downscales crisp everywhere; DPR 3 just bloats files.
+- **Seed data:** capture against a seeded account so examples match the prose (**Acme Corp**, **Clients/Internal/Activities**, a budget over threshold, a pending approval, etc.).
+- **Best run as a guided session** (app running locally with seed data; Playwright drives navigation/framing; operator confirms state on complex shots).
+
 ---
 
 ## Changes since 2026-04-07
