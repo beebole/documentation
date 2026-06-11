@@ -360,6 +360,10 @@ def write_mdx(out_slug, title, desc, md_body, prepend=""):
     fm = ["---", f"title: {json.dumps(title)}"]
     if desc:
         fm.append(f"description: {json.dumps(desc)}")
+    # Pages with a huge heading count produce an unwieldy "On this page" TOC;
+    # wide mode hides it and reclaims the horizontal space (e.g. the API page).
+    if len(re.findall(r"^#{2,4} ", md_body, re.M)) > 40:
+        fm.append('mode: "wide"')
     fm.append("---")
     content = "\n".join(fm) + "\n\n" + prepend + md_body + "\n"
     os.makedirs(OUT_DIR, exist_ok=True)
