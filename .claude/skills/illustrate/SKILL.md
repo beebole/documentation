@@ -1,6 +1,6 @@
 ---
 name: illustrate
-description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet. Replaces the /screenshot skill with the needs/capture split made explicit.'
+description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet; `--commercial` to capture PNGs for the marketing website (no WebP, no docs placement). Replaces the /screenshot skill with the needs/capture split made explicit.'
 disable-model-invocation: true
 ---
 
@@ -20,6 +20,7 @@ Make sure every page has the screenshots it needs. Identify placeholders or expl
 - **`--capture`:** `/illustrate --capture <needs-file>` — run Playwright against a list produced by `--identify` or by `/write`.
 - **`--optimize`:** `/illustrate --optimize` — run `bash .claude/scripts/optimize-images.sh` against all images in `help/images/**`. Use when images were added manually or a batch needs recompressing.
 - **`--arcade <url>`:** generate a Mintlify-friendly Arcade embed snippet for an Arcade share URL.
+- **`--commercial`:** capture screenshots for the **marketing website** (beebole.com), not the docs. Same capture mechanics as docs shots — DPR 2, viewport, **the Intercom messenger and the Beta badge hidden** (same injected style), full/element/Mac-drop — but the output stays **PNG — do NOT convert to WebP** and do NOT place into `help/images/` or wire into any `.mdx`. The marketing site (the `website-next` sibling repo) has its own image pipeline that generates resized, compressed variants, so a high-quality PNG is the right input; no 200 KB budget applies. **Save the PNGs to a dated folder on the Desktop: `~/Desktop/screenshots-<YYYY-MM-DD>/`** (use the current date from `date +%F`; create the folder if absent). That's the handoff location — the user moves the folder's contents into the website project.
 
 ## Prerequisites
 
@@ -92,11 +93,18 @@ Finding the target without the user hand-measuring:
 - **Outline before capturing** so the user confirms the box: temporarily set `outline:3px solid red` on the candidate, show them, then capture. Remove the outline before the real shot.
 - If the element clips an edge control or looks cramped, target a wrapping container, add a few px padding for the shot, or use a `clip` rectangle (union of the relevant boxes) instead.
 
+**User-supplied screenshots (Mac Desktop handoff).** Capture is a hybrid: Playwright handles full/standard views (consistent viewport, auto-hidden chrome, repeatable), but the user often frames context/partial shots better by eye (e.g. a pop-up shown in situ over the grid, rather than a cropped-out dialog). For those:
+- The user takes a macOS screenshot (Cmd+Shift+4) — it lands on `~/Desktop` — and drops it in chat so you see the framing. **You then read the actual file from `~/Desktop`** (`ls -t ~/Desktop/Screenshot*.png | head -1`); the chat-pasted image is only a visual, not the original pixels.
+- **Verify resolution is 2× before using it.** macOS captures at 2× only on a retina display (built-in MacBook screen, or an external set to a HiDPI "scaled" mode); on a 1× display (e.g. a 4K at native scaling) it captures at 1× and will look soft in Mintlify's ~700 px column next to the 2× Playwright shots. Check `sips -g pixelWidth -g pixelHeight`: the pixel width should be ~**double** the on-screen selection. If it comes in at 1×, flag it and ask the user to reshoot on the retina screen — don't ship a soft image.
+- Then process per mode: **docs** → optimize to WebP + place in `help/images/<section>/` + wire the `<Frame>`; **`--commercial`** → keep the PNG, move it to the handoff folder, no conversion/placement.
+
 ### 3. Optimize and place
 
-**Never write raw captures into the repo working tree.** The Playwright screenshot `filename` resolves relative to the repo root, so always pass an **absolute temp path outside the repo** (e.g. `/tmp/bb-shots/<name>.png`) for the raw capture. Only the final optimized `.webp` is ever written into `help/images/`. (During a test capture an in-repo raw PNG path coincided with a tracked image — `help/images/index-beebole-documentation.webp` — briefly disappearing from the working tree; keeping raw captures in `/tmp` avoids any risk to tracked files.)
+**`--commercial` mode skips this whole section:** the capture stays a PNG, goes to the handoff folder, and is never converted or placed in `help/images/`. The steps below are for **docs** screenshots only.
 
-For each captured screenshot:
+**Never write raw captures into the repo working tree.** The Playwright screenshot `filename` resolves relative to the repo root, so always pass an **absolute temp path outside the repo** (e.g. `/tmp/bb-shots/<name>.png`) for the raw capture. Only the final optimized `.webp` is ever written into `help/images/`. **Watch out for two ways tracked images vanish from the working tree:** (1) an in-repo raw-capture path, and (2) a **running `mintlify dev`** — its file-watcher was observed deleting *all* of `help/images/**` (the hero + every other image). Keep raw captures in `/tmp`, and after any capture/preview session run `git status` and restore with `git checkout -- help/images/` if images show as deleted. (None of this affects committed history — the files stay safe in HEAD.)
+
+For each captured screenshot (docs mode):
 
 1. Save the raw capture to an absolute temp path outside the repo (`/tmp/bb-shots/<name>.png`).
 2. Convert to WebP:
