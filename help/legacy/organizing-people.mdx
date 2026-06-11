@@ -1,0 +1,117 @@
+---
+title: "Organizing People and Teams"
+description: "Learn how to set up and configure people and teams on our tool (users, roles, groups)."
+---
+
+Before you can configure roles and groups, you need to [**add and invite users to Beebole**](/help/legacy/learn-the-basics#adding-and-managing-people). You can do this using either the *People* module or *Add a Person* module.
+
+## Roles
+
+When you add a user to Beebole, you can select a **"User group" or role** for them in the *User details* module. A user can be an **administrator, contractor, employee, project manager, or team leader**. The role you select will determine a person's permissions, access rights, and responsibilities in the platform.
+
+**Administrators have access to everything** in the platform, including the right to approve and reject any hours and to track time on behalf of other users. You can change a person's user group at any time.
+
+You can assign people to **team leaders** and projects to **project managers**, which will give them additional access to hours tracked by certain people or on certain projects, as well as approval rights.
+
+Check our documentation to read more about [configuring access rights and authorizations](/help/legacy/organizing-people#customizing-access-rights-and-authorizations) for different user groups.
+
+Another way to control which modules users have access to is by configuring default screens for different user groups. You can do this with the [*User Screens*](/help/legacy/settings#how-to-customize-screens)[ ]()module in the Settings screen.
+
+## Using Groups to Create Teams, Departments, etc.
+
+**Users can be organized by team, department, location, employee type, etc. using the *****Groups Settings***** and *****Groups***** modules**. Groups are categories that you create, so they can be anything. They also can be used for any entity, including companies and projects.
+
+Groups are useful for a variety of reasons. You can **use groups to filter reports** in the *Report* and *Chart & Table* modules. You can also use them to make bulk selections when configuring certain modules, such as *Exclusive Members*, *Is Team Leader Of*, and *Project Manager*. Rather than selecting employees one by one, use the "Add groups" button.
+
+Start by **creating groups in the *****Groups Settings***** module** in the Settings screen. If the module isn't visible, you can add it by clicking "Customize" in the top right corner and dragging and dropping the module anywhere on the screen.
+
+Ideally, groups should have a hierarchy of two levels or more, as seen in the example below.
+
+![Group settings](/help/images/legacy/organizing-people/group-settings.webp)**To create groups**:
+
+1. Click on the field labeled "Type here the name of a new group" to add a name to the top level of your hierarchy (for example, "Locations" or "Departments"). Each time you fill in a row a new one will be added. All changes are saved automatically.
+2. To add a second level to a group (for example, "New York" or "Marketing") click the "+" to the left of the group name. You can add as many categories as needed by clicking the "+".
+3. To delete a group, click the red "X" to the right of the row.
+
+To **assign the groups you've created to an entity** (an employee, project, company, etc.) use the *Groups* module on that entity's page. You can add the module to an entity page by clicking "Customize" in the top right corner and dragging and dropping the module anywhere on the screen. Then click "Add Group".
+
+All of the groups and subgroups you have created will appear. You can assign as many groups as you want to an entity, and remove a group by clicking the "X" to the left of the group name.
+
+In some cases, you may want to **assign an entity to a group for a specific period of time*****. ***For example, an employee who switches departments or changes offices. To do so, in the *Groups* module click on the calendar icon that appears to the right of the group name and select the start date for the assignment. An end date will only be applied if a new assignment of the same category is added.
+
+In the example below, John Smith was assigned to the UK office starting May 11th of 2022. Therefore, the end date of May 10th is automatically applied to his previous assignment in the US office.
+
+![Groups assignment](/help/images/legacy/organizing-people/groups-assignment.webp)
+
+Note that **using dates for group assignments will impact your reports**. If you run a report using the example from above, the hours recorded from October 7th, 2020 to May 10th, 2022 will appear under the US office, while hours recorded after May 11th, 2022 will appear under the UK office.
+
+If you use groups in modules like *Exclusive Members*, *Is Team Leader Of*, and *Project Manager*, the added groups will only include valid members for the current date.
+
+In our reporting documentation, you can read more about [**filtering reports using groups**](/help/legacy/reporting#using-groups-and-custom-fields-in-reports).
+
+## Customizing Access Rights and Authorizations
+
+There are three different ways that you can configure access rights and authorizations in Beebole:
+
+1. **Limit the clients or projects visible to users in their timesheets**: by default, the timesheet shows all clients and projects, but you can limit this by creating **exclusive members**.
+2. **Give managers access to their teams and projects**: you can define certain users as team leaders or project managers and give them access to the hours recorded for those people and/or projects. This will also make them responsible for [approving hours](/help/legacy/timesheets#approving-rejecting-and-locking-hours).
+3. **Define what modules are visible to each group of users**: you can use the *Authorizations* module in the Settings screen to define which modules are visible to each user group (employees, contractors, team leaders, and project managers).
+
+**NOTE:** The above configurations do not apply to account administrators, who have access to everything in the application.
+
+To **configure exclusive members** use the *Exclusive Members* module on any company, project, or subproject page, or the *Exclusive Member Of* module on a user's page. You can add these modules to any page by clicking "Customize" in the top right corner and dragging and dropping the module anywhere on the screen.
+
+In the ***Exclusive Members**** *module, click "Add" or "Add groups" to add individual members or whole groups, respectively. The company, project, or subproject will now only appear in the *Timesheet* module of these members.
+
+![Exclusive members](/help/images/legacy/organizing-people/exclusive-members.webp)
+
+In the ***Exclusive Member Of*** module, click "Add" and select the company, project, or subproject from the dropdown menu. The company, project, or subproject will now only appear in the *Timesheet* module of the users you've added this configuration for.
+
+![Exclusive member of](/help/images/legacy/organizing-people/exclusive-member-of.webp)
+
+To **assign a team to a manager**, use the *Team* module ("Is team leader of ") on the manager's screen. Click "Add a new person to the team" and select a name from the dropdown menu.
+
+If you have previously defined groups in the *Groups Settings* module, you can also assign them to the manager by clicking "Add groups" and selecting from the list that appears. To remove a group or person, hover over the name and click "Delete".
+
+![Team leaders](/help/images/legacy/organizing-people/team-leader-of.webp)
+
+Note that any user can be both a team leader *and* a member of a team with a different leader. The person in the example below is the team leader of the IT team and US office, but also belongs to John Smith's team.
+
+![Team leader and member](/help/images/legacy/organizing-people/team-leader-example.webp)
+
+To **assign projects to a manager**, use the *Project Manager* module on either the project page or the manager's screen and click "Add a new". On the project page, the module will allow you to add a list of people who are managing that project. On the manager's screen, the module will let you define a list of projects managed by that person.
+
+![Project manager](/help/images/legacy/organizing-people/project-manager.webp)
+
+In either case, this will allow project managers to:
+
+- see all hours recorded by employees for the project(s) in the various modules where hours are shown (*Chart & Table*, *Reports*, etc.).
+- approve all hours recorded by employees for the project(s) using the [*Approval*](/help/legacy/timesheets#approving-rejecting-and-locking-hours) module.
+
+**NOTE:**
+
+- For project managers to see their assigned projects their "User group" must be set as "Project Manager" in the *User details* module on their page.
+- A user who has been given the role of "Project Manager" but has no projects assigned to them will be able to view and approve all hours on all projects.
+
+To **configure which modules are available to certain groups**, use the *Authorizations* module in the Settings screen. Note that this is different from customizing the [default screens](/help/legacy/settings#how-to-customize-screens) for different groups. If you are continuously adding or removing modules, we recommend customizing default screens instead.
+
+**Authorizations are defined by user group**. Select a user group from the dropdown menu to view a list of that group's current authorizations. Click "delete" in any row to remove that authorization for the given user group. Click "show all" to clear any applied filters and view all authorizations for that user group. Click "Reset authorizations" in the top right to return to the default authorizations that were applied when the account was created.
+
+To **add new authorizations**:
+
+1. Once you have selected a user group, choose the module you wish to make available from the "Module" dropdown menu.
+2. Choose where you want the module to be visible using the "Entity group" dropdown menu.
+3. Depending on the module, a "read only" option may appear. Tick it if you do not want the given user group to be able to edit the information/content in the module.
+
+For example, in the screenshot below we have made the *Approval* module available to project managers on the pages of all people.
+
+![Permissions and authorizations](/help/images/legacy/organizing-people/authorizations.webp)
+
+**NOTE:**
+
+- Just because a module is available for a certain user group does not mean they have full permissions to use it. For example, project managers have access to the *Approval* module on the pages of all people, but they can only approve hours recorded on the projects they actually manage.
+- The home screen also serves as a user's personal screen when logged into their own account. Therefore, to give authorization to a module on the home page, select "Person - **Self**". 
+
+## Customizing Default Screens by Group
+
+You can [customize the default screens](/help/legacy/settings#how-to-customize-screens) visible to each user group (employees, team leaders, etc.) using the *User Screens* module, available in the Settings screen.

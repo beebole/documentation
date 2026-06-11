@@ -1,0 +1,107 @@
+---
+title: "Costs, Billing and Budgets"
+description: "Learn how to set up and configure costs, billing and budgets on our tool."
+---
+
+## How to Configure Billing
+
+Billing is what you invoice your clients for the work done. In Beebole, it can be configured for an external client or for another department within your organization. Using the *Billing Methods* module, you can set fixed fees or a billing rate per entity (person, project, client, task, etc.).
+
+To **set a billing rate or a fixed fee**, go to the client, project, or person page where you want to configure billing. If it does not already appear, add the *Billing Methods* module to the screen by clicking "Customize" in the top right corner and dragging and dropping the module anywhere on the screen. 
+
+![Billing methods](/help/images/legacy/costs-billing-budgets/billing-methods-module.webp)
+
+Depending on what type of entity page you are on (client, project, or person), a dropdown menu will appear with the following options:
+
+- **A rate per person:** note that you can only set a billing rate per person on a project if they have been added to the project as an [exclusive member](/help/legacy/organizing-people#customizing-access-rights-and-authorizations).
+- **A rate per subproject:** if you want to set a different billing rate for each subproject within a project. Note that this option is only available when using the *Billing Methods* module on a project page. Alternatively, you can use the module directly on a subproject page.
+- **A rate per task:** if you want to set a different billing rate per task. Remember that tasks are defined by administrators via the *Tasks* and *Specific Tasks* modules.
+- **A single rate per hour:** if everyone has the same billing rate for that project, customer, etc.
+- **A fixed fee:** fixed fees can be set on projects, subprojects, or customers. The billing rate will be automatically recalculated each time hours are added to the project. For example, if a project has a fixed fee of $5,000 USD, the first 10 hours added to the project will appear in your reports as having a billing rate of $500 USD per hour. If 20 hours are added to the project, the billing rate per hour will automatically change to $250 USD.
+- **Non-billable:** note that selecting "non-billable" is not the same as just leaving the billing methods blank. When the *Billing Methods* module on an entity is left blank, the billing configuration could be taken from a different, related entity. For example, hours worked on a project with no billing method defined can still be billed using the rate defined at the company level. On the other hand, if you select "Non-billable" for the same project, those hours will not be billed regardless of the configuration at the company level.
+
+Depending on which of the above options you select from the dropdown menu, additional fields will appear where you can set the exact rates/fees and currency.
+
+When you **apply a new billing method or update an existing one**, by default, the change will only be applied to hours that are recorded after the change. However, the platform will give you the option to apply the change to existing time entries. You can apply the new billing rate to a date range of your choice or to all hours tracked on the given entity.
+
+![Update billing methods](/help/images/legacy/costs-billing-budgets/update-billing-methods.webp)
+
+Alternatively, you can also apply billing rates to existing time entries via the *Approval* module. Just select the hours you want to apply the new rates to and click the "Update billing" button.
+
+![Update billing methods in approval module](/help/images/legacy/costs-billing-budgets/update-billing-approval-module.webp)
+
+As mentioned above, since billing methods can be set at multiple levels, it's important to bear in mind the **hierarchy of billing configurations**. If there are multiple possible billing rates for tracked hours, one will be applied according to the following order of priority:
+
+1. The subproject
+2. The project
+3. The project's company
+4. The company of the employee filling out the timesheet
+5. The employee
+6. The main company
+7. Unbillable
+
+## How to Configure Costs
+
+You can **set an hourly cost for any person** in your organization using the *Standard Cost* module. Bear in mind that Beebole is not an expense tracking tool; the standard costs that you add to the platform should be previously calculated figures based on things like salaries, benefits, insurance, additional expenses, etc.
+
+<Card title="How to Calculate the True Cost of an Employee" href="https://beebole.com/blog/how-to-calculate-the-real-cost-of-an-employee/">
+  Explore the main variables to help calculate the actual annual cost of your workforce
+</Card>
+
+To **set a standard cost**, go to a person's page and add the *Standard Cost* module by clicking "Customize" in the top right corner and dragging and dropping it anywhere on the screen. Choose how the cost will be distributed (a unique cost per hour or a cost per task) and fill in the amount and currency. 
+
+![Standard costs](/help/images/legacy/costs-billing-budgets/standard-cost-module.webp)
+
+If your employees' costs vary from one customer to another, you can **define the unique costs directly on the customer or project page**. Just add the *Standard Cost* module to the customer or project screen, choose how the cost will be distributed (a unique cost per hour, cost per person, or cost per task), and add the amount and currency.
+
+Just like with billing rates, standard costs can be configured at multiple levels and are therefore **applied according to the following hierarchy**:
+
+1. The subproject
+2. The project
+3. The client or company
+4. The employee
+
+Also like billing rates, selecting "No cost" is not the same as simply leaving costs blank. When the *Standard Cost* module is left blank, costs may be taken from a different related entity according to the above hierarchy.
+
+When you **apply a new standard cost or update an existing one**, by default, the change is only applied to hours tracked after the change. However, in the *Standard Cost* module you can select a time period to apply the change to existing time entries.
+
+You can also apply new costs to existing time entries using the *Approval* module. Just select the hours you want to apply the new costs to and click the "Update costs" button.
+
+You can **download a list of all costs defined** in Beebole in the [**Download your data**](/help/legacy/settings#download-audit-trails-and-other-timesheet-data) section of the *Account* module. You can also **import costs for many entities at once** using the [*Import*](/help/legacy/settings#importing-data) module.
+
+## How to Configure Budgets
+
+Budgets can be set for projects and/or subprojects and may be either monetary or a number of hours. To **configure a budget**, use the *Budget* module on the chosen project's screen. 
+
+"No budget" will be selected in the dropdown menu by default. Choose "Budget amount" or "Budget in hours". Additional fields will appear where you can enter the initial budget and a purchase order, if applicable.
+
+![Create project budgets](/help/images/legacy/costs-billing-budgets/budget.webp)
+
+To **add budget extensions** click the "Add another budget" button on the right hand side of the module. An additional line will appear where you can add the amount and purchase order for the extension. The total budget will appear at the top of the module.
+
+To **delete a budget extension** click the red "Delete" button on the right hand side. You can reset the module entirely and delete all data by clicking "Reset" at the top of the module.
+
+If a project has subprojects, the option to **add individual budgets for each subproject** will also appear in the *Budget* module. You can define budgets for subprojects as well as a global project budget at the same time, but note that the total budget shown at the top of the module will be the sum of both the project and subproject budgets.
+
+In other words, if you set a budget of $500 on subprojects a, b, and c and then also fill in a global project budget of $1500, the total budget will be $3000. If you want the total budget to be the sum of the subproject budgets, you should leave the project budget blank.
+
+![Create subproject budgets](/help/images/legacy/costs-billing-budgets/budget-by-subprojects.webp)
+
+**NOTE:**
+
+- If using a monetary budget on a project, the currency is set by default to the currency of the company owning said project. You can, however, change the budget currency in the *Budget* module.
+- If you are using multiple currencies, the exchange rate used by Beebole is updated daily. All data like billing, costs, etc. are stored in the currencies in which they were defined. In other words, if you define costs in euros and billing in US dollars, the information will be stored that way. However, when viewing reports, charts, or the approval module, amounts will be converted and shown in the currency of the user viewing the module.
+
+To **track the budgets you have already configured**, use the *Budget Status* module. The module can be used:
+
+- On your home screen, showing all active projects that have a budget set.
+- On a company screen, showing all projects for that company that have a budget set.
+- On a project screen, showing the budget for that single project.
+
+![Budget status module](/help/images/legacy/costs-billing-budgets/budget-status.webp)
+
+The *Budget Status* module will show **how much budget has been spent and how much remains** in hours or currency, depending on how you have configured the budget. It also will show billing and/or costs, depending on what you have configured in the *Billing Methods* and *Standard cost* modules.
+
+<Card title="Budget vs. Actuals: An Excel Template" href="https://beebole.com/blog/budget-vs-actuals-template-microsoft-excel/">
+  Learn how to set up a dynamic model in Excel using Power Query and Power Pivot
+</Card>
