@@ -76,9 +76,9 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **Why:** `<Info>`-only is a project rule (`documentation-structure.md:66`) for cross-site consistency. `--` renders inconsistently across browsers and is a typewriter stand-in, not real punctuation.
   - **How to apply:** No `<Note>` in any new draft. Type `—` or use Option-Shift-Hyphen on macOS.
 
-- **Title format: `Feature Name — Beebole`, 50–60 characters — AND always pair it with a short `sidebarTitle`.**
-  - **Why:** SEO/GEO target — search results truncate around 60 chars; including "Beebole" on every title strengthens entity recognition. But Mintlify renders `title` in the sidebar navigation, and 50–60-char titles wrap to 2–3 lines and wreck the nav (Yves, 2026-06-11). `sidebarTitle` keeps the nav clean while `title` serves SEO.
-  - **How to apply:** Build the title as `<Feature> — Beebole` first; expand the feature side if under ~50 chars. API title format is `<Topic> — Beebole API`. Then ALWAYS add `sidebarTitle: "<1–3 title-case words>"` (e.g. `Quickstart`, `Timesheet Settings`, `Kanban Board`) matching the sidebar's existing style. Every content page needs both fields.
+- **`title` is a clean, human-readable H1 with NO "— Beebole" suffix. The brand goes in `og:title`. Always pair `title` with a short `sidebarTitle`.**
+  - **Why:** Mintlify renders the frontmatter `title` as the page's visible H1 heading AND auto-builds the browser-tab `<title>` as "Page Title - Site Name" (the site `name` in `docs.json` is appended automatically). So a "— Beebole" suffix in `title` (a) shows as literal awkward text in the H1 and (b) doubles the brand in the browser tab ("… — Beebole - Beebole Documentation"). Yves caught this 2026-06-11; the earlier "Feature — Beebole" rule was wrong for Mintlify and was reverted across all pages.
+  - **How to apply:** `title` = a concise, descriptive heading (sentence case), e.g. `"Timesheets: tracking and submitting your time"` — no brand suffix, no padding to hit a length target. Put the branded, 50–60-char SEO/social title in `"og:title"` instead (e.g. `"Tracking and Submitting Time with the Beebole Timesheet"`) — every content page needs an `og:title`. Always add `sidebarTitle: "<1–3 title-case words>"` (e.g. `Quickstart`, `Timesheet Settings`, `Kanban Board`) for clean nav. So every content page carries three: a clean `title` (H1), a short `sidebarTitle` (nav), and a branded `og:title` (SEO).
 
 ## Per-page
 
