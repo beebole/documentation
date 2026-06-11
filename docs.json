@@ -132,7 +132,6 @@
                   "help/documentation/account-settings",
                   "help/documentation/authentication",
                   "help/documentation/subscription",
-                  "help/documentation/custom-domain",
                   "help/documentation/audit-trail",
                   "help/documentation/legacy-migration"
                 ]
@@ -265,5 +264,15 @@
       "github": "https://github.com/beebole",
       "linkedin": "https://linkedin.com/company/beebole"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/help/documentation/custom-domain",
+      "destination": "/help/documentation/authentication"
+    },
+    {
+      "source": "/help/documentation/sso",
+      "destination": "/help/documentation/authentication"
+    }
+  ]
 }

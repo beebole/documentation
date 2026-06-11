@@ -1,8 +1,9 @@
 ---
-title: "Legacy Migration"
+title: "Legacy Migration — Import Your Old Data into Beebole"
+sidebarTitle: "Legacy Migration"
 description: "Import your existing Beebole data — people, projects, time records, and settings — into the current platform with the one-time Legacy Migration tool."
 keywords: ["beebole", "legacy migration", "migrate data", "import data", "beebole migration", "data import", "account migration"]
-"og:title": "Migrating Your Legacy Beebole Account"
+"og:title": "Migrating Your Legacy Beebole Account to the New App"
 "og:description": "Use the Legacy Migration tool to bring all your existing Beebole data into the current platform in a single operation."
 "og:type": "article"
 ---
@@ -32,10 +33,10 @@ The migration imports the following data from your legacy account:
 | **Schedules** | Work schedule definitions and person assignments |
 | **Custom fields** | Field definitions and their values |
 | **Time records** | Historical time entries, including billability and project assignments |
-| **External IDs** | Preserved for any entities that had external identifiers |
+| **External IDs** | Preserved for any records that had external identifiers |
 
 <Tip>
-  If you choose to include only active entities, archived people and projects are skipped. Archived entities referenced by time records are still created to maintain data integrity.
+  If you choose to include only active records, archived people and projects are skipped. Archived records referenced by time records are still created to maintain data integrity.
 </Tip>
 
 ---
@@ -45,8 +46,8 @@ The migration imports the following data from your legacy account:
 Before running the migration, confirm the following:
 
 - You are an administrator of the new Beebole account.
-- You have your **Legacy API Key** from your previous Beebole account. Find it in your legacy account under **Settings** > **API**.
-- You have decided whether to migrate all entities or only active ones.
+- You have your **Legacy API Key** from your previous Beebole account. You can find it in your legacy account's API settings, or contact [support@beebole.com](mailto:support@beebole.com) if you are unsure where to look.
+- You have decided whether to migrate all records or only active ones.
 - You have decided how far back to import time records (or whether to import them at all).
 
 ---
@@ -72,7 +73,7 @@ Before running the migration, confirm the following:
     <Info>The audit may take a few seconds depending on your data volume.</Info>
   </Step>
   <Step title="Review the audit results">
-    The **Audit Results** screen shows a breakdown of entities found in your legacy account. Review the counts and the time record date range before proceeding.
+    The **Audit Results** screen shows a breakdown of records found in your legacy account. Review the counts and the time record date range before proceeding.
   </Step>
   <Step title="Start the migration">
     Click **Start Migration**. The migration runs in the background and a progress bar shows each phase as it completes.
@@ -102,7 +103,7 @@ The migration runs through the following phases in order:
 10. **Activities** — Migrates job/activity types as tasks
 11. **Absence Types** — Creates absence categories
 12. **Schedules** — Imports work schedule definitions
-13. **Tag Assignments** — Links tags to entities
+13. **Tag Assignments** — Links tags to records
 14. **Time Records** — Imports historical time entries (if selected)
 15. **Custom Field Values** — Attaches custom field data to records
 16. **Absence Quotas** — Migrates leave quota balances
@@ -138,11 +139,8 @@ The migration runs through the following phases in order:
   <Accordion title="Can I run the migration more than once?">
     No. The migration is a one-time operation. Once it has been completed, the tool is locked and displays a confirmation message. If you need to re-migrate data, contact [support@beebole.com](mailto:support@beebole.com).
   </Accordion>
-  <Accordion title="Where do I find my Legacy API Key?">
-    Log in to your previous Beebole account and go to **Settings** > **API**. Your **Legacy API Key** is displayed there. Copy it and paste it into the migration tool.
-  </Accordion>
   <Accordion title="Can I migrate only part of my data?">
-    Yes. You can choose to migrate only active entities (skipping archived people and projects) and set a start date to limit how far back time records are imported. You can also choose not to include time records at all if you only need to bring over the account structure.
+    Yes. You can choose to migrate only active records (skipping archived people and projects) and set a start date to limit how far back time records are imported. You can also choose not to include time records at all if you only need to bring over the account structure.
   </Accordion>
   <Accordion title="What happens if some records fail to migrate?">
     The migration completes even if individual records fail. The final report shows which phases had failures and how many records were affected. Most failures are caused by data inconsistencies in the legacy account. Review the warnings and contact support if you need help.
@@ -151,6 +149,6 @@ The migration runs through the following phases in order:
     No. Migrating people creates their records in Beebole but does not send invitation emails. You can invite them from the **People** page in the sidebar whenever you are ready for them to log in.
   </Accordion>
   <Accordion title="Can two accounts migrate at the same time?">
-    No. The migration process runs one account at a time. If another account's migration is already in progress, you will see a message asking you to wait. Beebole notifies you when it is ready to run your migration.
+    No. The migration process runs one account at a time. If another account's migration is already in progress, you will see a message letting you know that Beebole will be ready for yours shortly.
   </Accordion>
 </AccordionGroup>

@@ -1,105 +1,85 @@
 ---
-title: "Audit Trail"
-description: "Track every change made in your Beebole account with a detailed audit trail. See who changed what, when, and which fields were modified."
-keywords: ["beebole", "audit trail", "audit log", "change tracking", "activity log", "compliance", "accountability"]
-"og:title": "Audit Trail in Beebole"
-"og:description": "Track every change made in your Beebole account. See who changed what, when, and which fields were modified."
+title: "Audit trail: track every change in your account — Beebole"
+sidebarTitle: "Audit Trail"
+description: "Beebole's audit trail records who changed what and when, surfaced in the Journal feed and as a Logs view on individual records."
+keywords: ["beebole", "audit trail", "audit log", "change tracking", "activity log", "accountability"]
+"og:title": "Track Who Changed What with the Beebole Audit Trail"
+"og:description": "See who changed what and when in Beebole. The audit trail surfaces in the Journal feed and as a Logs view on individual records."
 "og:type": "article"
 ---
 
-Beebole's audit trail records every create, update, and delete action in your account. You can see exactly who made a change, when it happened, and which fields were affected. This gives your organization full transparency and accountability over its time tracking data.
+Beebole's audit trail records every change made to your account's data — who made it and when. It gives administrators an accountable history of edits across people, projects, tasks, time, and configuration, so you can trace any modification back to a person and a moment in time.
 
 <Info>
-  Only administrators can access the audit trail.
+  The audit trail is part of higher-tier subscriptions and is not available on the entry-level plan. If you don't see it, check your [subscription](/help/documentation/subscription).
 </Info>
 
----
+## What the audit trail records
 
-## What the audit trail captures <Badge>Admin only</Badge>
-
-Every significant action in Beebole is logged automatically. The audit trail records:
+Each audit trail entry captures the operation that ran, who performed it, when it happened, and the values that were submitted with the change.
 
 | Detail | Description |
 |--------|-------------|
-| **Operation** | Whether the action was a create, update, or delete |
+| **Operation** | The action that ran, such as adding, editing, or removing a record |
 | **Person** | Who performed the action |
 | **Timestamp** | When the action occurred |
-| **Entity** | What was changed (e.g., a project, a time entry, a person) |
-| **Field-level changes** | Exactly which fields changed, including the previous and new values |
+| **Submitted values** | The argument names and values passed with the operation |
 
-This level of detail means you can trace any modification back to a specific person and moment in time.
+Beebole records the values submitted with a change — the new state, not a before-and-after comparison. So the audit trail tells you what was set and by whom, rather than displaying the prior value side by side.
 
----
+## View audit activity in the Journal
 
-## Viewing the audit trail <Badge>Admin only</Badge>
+The richest view of audit activity is the **Journal** feed. Audit messages appear there alongside other account activity, newest first.
 
 <Steps>
-  <Step title="Open the audit trail">
-    Open **Journal** in the sidebar. Audit information appears as activity messages in the journal feed and as last-edited indicators on individual entities.
+  <Step title="Open the Journal">
+    Click **Journal** in the sidebar.
   </Step>
-  <Step title="Browse recent activity">
-    The audit trail displays a chronological list of changes, with the most recent entries first.
+  <Step title="Read the activity feed">
+    Browse the messages in chronological order to see recent changes across the account.
   </Step>
-  <Step title="Filter by person">
-    Use the person filter to view only changes made by a specific team member. This is useful when investigating a particular modification.
+  <Step title="Filter out noise">
+    Use **Hide similar entries** to collapse repetitive audit messages of the same kind, so a bulk change doesn't flood the feed.
   </Step>
 </Steps>
 
----
+## See the change history on a record
 
-## Understanding change details <Badge>Admin only</Badge>
+Individual records carry their own change history. When you view a project, person, task, or other record, Beebole shows who last modified it next to a **Modified by** label.
 
-Each audit trail entry shows a summary of what happened. Click on an entry to expand it and see the field-level details:
-
-- **Field name** — The specific attribute that changed (e.g., "Name", "Status", "Start date").
-- **Previous value** — What the field contained before the change.
-- **New value** — What the field was changed to.
-
-This field-level tracking lets you reconstruct exactly what changed and why, which is valuable for compliance, dispute resolution, and quality control.
+Click the **Logs** link to expand the full history for that record. Each line lists an operation, who performed it, and how long ago — giving you a focused history without opening the whole Journal.
 
 <Tip>
-  Use the audit trail to verify that timesheet corrections were made correctly, or to confirm who approved or rejected a submission.
+  Use the **Logs** view on a single record to confirm who made a specific edit, then switch to the **Journal** feed when you need the wider picture across the account.
 </Tip>
-
----
-
-## Last-edited indicators <Badge>Admin only</Badge>
-
-In addition to the centralised audit trail, Beebole displays last-edited information directly on entities throughout the application. When you view a project, person, time entry, or other record, you can see who last modified it and when.
-
-This gives you a quick reference without needing to open the full audit trail.
-
----
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Roles & Authorizations" href="/help/documentation/roles-authorisations">
-    Control who has admin access to view the audit trail.
+  <Card title="Roles & Authorizations" icon="user-shield" href="/help/documentation/roles-authorisations">
+    Control who has admin access to view audit activity.
   </Card>
-  <Card title="Data Exports" href="/help/documentation/data-exports">
-    Export your organization data for compliance and reporting needs.
+  <Card title="Data Exports" icon="file-export" href="/help/documentation/data-exports">
+    Export your organization's data for reporting and record-keeping.
   </Card>
 </CardGroup>
-
----
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="How far back does the audit trail go?">
-    The Beebole audit trail retains records for the lifetime of your account. You can view historical changes going back to when your organization was created.
+  <Accordion title="Does Beebole's audit trail show the previous value of a field?">
+    No. Beebole records the values submitted with each change — the new state — along with the operation, who ran it, and when. It does not display a before-and-after comparison of the field.
   </Accordion>
-  <Accordion title="Can I export the audit trail?">
-    The audit trail is available for viewing within Beebole. For export needs, use the [API](/help/api/introduction) to query audit data programmatically.
+  <Accordion title="Where do I see audit activity in Beebole?">
+    In two places. The **Journal** feed shows audit messages across the whole account, and the **Logs** view on an individual record shows that record's own change history.
   </Accordion>
   <Accordion title="Does the audit trail record who viewed data, or only changes?">
-    The audit trail records create, update, and delete actions only. It does not track who viewed or accessed data.
+    Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record.
   </Accordion>
-  <Accordion title="Can I see changes made by archived users?">
-    Yes. Changes made by a person are retained in the audit trail even after that person is archived. The person's name still appears alongside their actions.
+  <Accordion title="Can I see changes made by archived people?">
+    Yes. Changes a person made stay in the audit trail after that person is archived, and their name still appears next to their actions.
   </Accordion>
-  <Accordion title="Are bulk actions recorded individually?">
-    Yes. If you perform a bulk update (e.g., archiving multiple people at once), each individual change is recorded as a separate entry in the audit trail.
+  <Accordion title="Is the audit trail available on every plan?">
+    No. The audit trail is part of higher-tier Beebole subscriptions and is excluded from the entry-level plan. Review your [subscription](/help/documentation/subscription) if it isn't available.
   </Accordion>
 </AccordionGroup>

@@ -1,235 +1,153 @@
 ---
-title: "Notifications"
-description: "Configure how Beebole notifies you and your team about approvals, mentions, timesheet reminders, and other events via email and in-app alerts."
-keywords: ["Beebole notifications", "email notifications", "timesheet reminders", "approval notifications", "notification settings", "email templates", "push notifications", "beebole"]
-"og:title": "Notifications in Beebole"
-"og:description": "Learn how to configure email and in-app notifications for approvals, reminders, and team events in Beebole."
+title: "Notifications: Email & Push Alerts and Reminders — Beebole"
+sidebarTitle: "Notifications"
+description: "Set up email and push notifications in Beebole for mentions, approval updates, budget threshold alerts, and timesheet reminders — instant, daily, or weekly."
+keywords: ["beebole notifications", "email notifications", "push notifications", "timesheet reminders", "approval updates", "budget threshold alerts", "email templates"]
+"og:title": "Notifications & Reminders in Beebole: Email & Push Alerts"
+"og:description": "Configure email and push notifications in Beebole for mentions, approval updates, budget alerts, and timesheet reminders."
 "og:type": "article"
 ---
 
-Beebole keeps your team informed through in-app and email notifications. Notifications alert you to approval actions, mentions, timesheet reminders, and other important events — so nothing slips through the cracks. Each person can customize their notification preferences, and administrators can configure organization-wide settings like reminders and email templates.
+Beebole's notifications keep you informed about mentions, approval updates, and budget thresholds through email and push notifications. Each person chooses which events to receive and how often — **Instant**, **Daily**, **Weekly**, or **None**. Administrators configure account-wide timesheet reminders and the email content people receive.
 
 <Info>
-  Beebole's notification system is designed to reduce noise. Digest batching, customizable preferences, and one-click unsubscribe ensure your team gets the right information without email overload.
+  Notification preferences are personal. You set yours from your own profile, and they cascade down through tags the same way other settings do — so a default can be set once on the organization or a tag and inherited by everyone beneath it.
 </Info>
 
----
+## What you get notified about
 
-## Notification types
+Beebole sends notifications for a fixed set of events. You control each one independently in your **Notifications** preferences.
 
-Beebole sends notifications for the following events:
-
-| Event | Description | Who receives it |
-|-------|-------------|----------------|
-| **Timesheet submitted** | A team member submits their timesheet for approval | The assigned approver |
-| **Timesheet approved** | A timesheet is approved | The person who submitted it |
-| **Timesheet rejected** | A timesheet is rejected or sent back for changes | The person who submitted it |
-| **Mentions** | Someone @mentions you in a journal message | The mentioned person |
-| **Timesheet reminders** | Automated reminders for unfilled or unsubmitted timesheets | People with incomplete timesheets |
-| **Approval reminders** | Automated reminders for pending approval actions | Approvers with pending timesheets |
-| **Team events** | New team members, schedule changes, and other organizational updates | Relevant team members and managers |
-
----
+| Event | What it covers |
+|-------|----------------|
+| **When you're @mentioned** | Someone @mentions you in a Journal message. |
+| **Items you manage are mentioned** | A project, person, or other item you manage is mentioned. |
+| **Items assigned to you are mentioned** | An item assigned to you is mentioned. |
+| **Approval updates** | A timesheet you submitted is approved or rejected, or one is submitted for your approval. |
+| **Budget threshold alerts** | A project reaches a chosen percentage of its budget, or goes **When over budget**. |
 
 ## Notification channels
 
-### In-app notifications
+Beebole delivers notifications through two channels, which you turn on or off independently.
 
-Notifications appear in the **Journal** with unread indicators. Beebole displays a badge count for unread notifications on the Journal icon, and uses a "new" separator line to help you quickly spot what you have not seen yet.
-
-### Email notifications
-
-Beebole sends email notifications for important events. Each email includes relevant context — for example, an approval notification email includes a summary of the submitted timesheet with dates, hours, and projects.
+- **Email** — Notifications arrive in your inbox. Approval emails include action buttons so you can approve or reject without opening Beebole, and you can reply to a Journal message straight from the email.
+- **Push notifications** — Your browser shows desktop alerts in real time, even when Beebole is not the active tab. Turning this on prompts your browser for permission.
 
 <Info>
-  You can approve or reject timesheets directly from the email notification without opening Beebole. Reply-to-journal functionality also lets you respond to messages via email.
+  You need at least one channel enabled to receive notifications. If you turn both **Email** and **Push notifications** off, per-event preferences are hidden because there is nowhere to deliver them.
 </Info>
 
-### Web push notifications
+## Choosing how often you're notified
 
-Beebole supports browser push notifications for real-time alerts. When enabled, you receive desktop notifications even when you are not actively using the Beebole tab.
+For each event, you pick a frequency per the channels you have enabled:
 
----
+| Frequency | What it does |
+|-----------|--------------|
+| **Instant** | Sends a notification as soon as the event happens. |
+| **Daily** | Batches the day's events into a single digest, sent at the hour you choose. |
+| **Weekly** | Batches the week's events into one digest, sent on the day and hour you choose. |
+| **None** | Turns the event off entirely. |
 
-## Digest batching
-
-Instead of receiving individual emails for every event, Beebole can aggregate notifications into periodic digests. This reduces email volume while keeping you informed of all activity.
-
-Digests group related events together — for example, multiple timesheet submissions from your team appear as a single summary email rather than separate messages for each submission.
-
----
-
-## Configuring your notification preferences
-
-Each person can customize which notifications they receive and how they receive them:
+Daily and weekly digests reduce inbox volume by grouping events into one message instead of sending one email per event.
 
 <Steps>
-  <Step title="Open your profile settings">
-    Click your profile picture or name in the top-right corner, then select **Settings**.
+  <Step title="Open your Notifications preferences">
+    Open your own profile, then open the **Notifications** panel.
   </Step>
-  <Step title="Go to Notifications">
-    Select the **Notifications** tab.
+  <Step title="Enable a channel">
+    Tick **Email**, **Push notifications**, or both. At least one must be on to configure events.
   </Step>
-  <Step title="Choose your preferences">
-    For each event type, toggle notifications on or off. Where available, choose between individual emails and digest batching.
-  </Step>
-  <Step title="Save your preferences">
-    Click **Save**. Your preferences take effect immediately.
+  <Step title="Set a frequency per event">
+    For each event, choose **Instant**, **Daily**, **Weekly**, or **None**. For **Daily** and **Weekly** you also pick the delivery hour, and for **Weekly** the day of the week.
   </Step>
 </Steps>
 
-<Tip>
-  Every notification email includes a one-click **Unsubscribe** link at the bottom. You can manage your preferences directly from your inbox without logging into Beebole.
-</Tip>
+<Info>
+  Your preferences save automatically as you select them — there is no separate save step. To apply the same frequency to every event at once, hold the meta key (⌘ or Ctrl) while clicking a frequency.
+</Info>
 
----
+### Budget threshold alerts
+
+Budget threshold alerts let you know when a project's spending approaches or exceeds its [budget](/help/documentation/projects). This alert behaves slightly differently from the others:
+
+- It supports **Daily** and **Weekly** delivery (and **None**), but not **Instant**.
+- You set the percentage of the budget that triggers the alert — for example, 50%, 80%, or 100%.
+- Tick **When over budget** to also be alerted once a project passes 100% of its budget.
 
 ## Timesheet reminders
 
-Beebole can automatically remind team members to fill in and submit their timesheets. Administrators configure reminders at the organization level:
+Reminders are configured by administrators in **Timesheet settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work.
 
 <Steps>
-  <Step title="Open reminder settings">
-    Go to **Settings** > **Notifications** (or **Settings** > **Reminders**, depending on your configuration).
+  <Step title="Open Timesheet settings">
+    Open the organization, a tag, or a person, then open the **Timesheet settings** panel and select the **Reminders** tab.
   </Step>
-  <Step title="Enable timesheet reminders">
-    Toggle timesheet reminders on and configure the frequency — for example, daily or weekly.
+  <Step title="Remind people to submit">
+    Next to **Remind to submit**, choose **Start of next period** or **End of current period**, then set the hour the reminder is sent. Click the selected option again to turn it off.
   </Step>
-  <Step title="Set trigger conditions">
-    Define when reminders fire: after a timesheet has been incomplete for a configurable number of days, or when a submission deadline approaches.
-  </Step>
-  <Step title="Choose the scope">
-    Apply reminders to everyone in the organization, or configure them per person or tag.
-  </Step>
-  <Step title="Save">
-    Click **Save**. Reminders are sent automatically according to your schedule.
-  </Step>
-</Steps>
-
----
-
-## Approval reminders
-
-Separate from timesheet reminders, approval reminders notify approvers when timesheets are waiting for their action. This helps prevent bottlenecks in the [approval workflow](/help/documentation/approval).
-
-Approval reminders are configured alongside timesheet reminders. You can set:
-
-- **Frequency** — How often the reminder is sent while timesheets remain pending.
-- **Delay** — How many days after submission before the first reminder is sent.
-
----
-
-## Absence frequency alerts
-
-Beebole can send administrators an alert when a team member takes a specific absence type more often than expected within a set period. Use it to surface attendance patterns early — for example, a person taking sick leave on more than three separate occasions in a month, or unpaid leave more than five times in a year.
-
-Frequency alerts are configured per absence type, alongside the other absence notifications. Each absence type can have its own threshold.
-
-<Steps>
-  <Step title="Open the absence type">
-    Go to **Settings** > **Time Off** and click the absence type you want to monitor (e.g., **Sick leave**).
-  </Step>
-  <Step title="Enable the frequency alert">
-    Tick the alert checkbox in the notifications section, then set the threshold using the **more than [N] occurrences in a [Month / Year]** controls.
-  </Step>
-  <Step title="Save">
-    The alert is active immediately. Beebole counts each separate absence period as one occurrence — a continuous five-day vacation counts as one occurrence, while five one-day sick days in the same month count as five.
+  <Step title="Remind approvers">
+    Set **Remind approvers after** a number of **days if not yet approved** to chase pending approvals automatically.
   </Step>
 </Steps>
 
 <Info>
-  The alert counts **occurrences** (separate booking periods), not total hours or days taken. This makes the rule useful for spotting frequent short absences rather than long single absences. Pair it with [absence balance](/help/documentation/timeoff#tracking-balances) tracking to monitor both frequency and total amount.
+  Reminder settings save automatically and cascade like other timesheet settings — set them once on the organization and they apply everywhere, or override them on a tag or person.
 </Info>
-
----
 
 ## Email templates
 
-Administrators can customize the content of notification emails to match your organization's tone and branding:
+Administrators can customize the wording of the emails Beebole sends. Email templates live in the **Email templates** panel, where each email type has its own tab: **Sign Up**, **Sign In**, **Invite**, **Mention**, **Timesheet Submitted**, **Reminder**, **Approval Reminder**, and **Digest**.
 
 <Steps>
-  <Step title="Open email templates">
-    Go to **Settings** > **Email Templates**.
+  <Step title="Open Email templates">
+    Open the organization, a tag, or a person, then open the **Email templates** panel.
   </Step>
-  <Step title="Select a template">
-    Choose the notification type you want to customize (e.g., submission confirmation, approval notification, reminder).
+  <Step title="Pick the email type">
+    Select the tab for the email you want to change.
   </Step>
-  <Step title="Edit the template">
-    Modify the subject line and body text. Use dynamic fields to insert data automatically — such as the person's name, project name, date range, or hours total.
-  </Step>
-  <Step title="Preview and save">
-    Preview the template to verify the layout and dynamic fields. Click **Save** to activate it.
+  <Step title="Edit the content">
+    Edit the text in the editor. Insert the listed placeholders (for example, the recipient's name or an action link) where you want Beebole to fill in real values.
   </Step>
 </Steps>
 
 <Info>
-  Email template changes apply to all future notifications of that type. Previously sent emails are not affected.
+  Template edits save automatically as you type. To revert a customized email to Beebole's built-in wording, choose **Reset to default template**. Templates inherit down through tags, so a custom template set higher up applies to everyone beneath it unless overridden.
 </Info>
-
----
 
 ## Reliable delivery
 
-Beebole uses an outbox queue to ensure notifications are delivered even when a temporary network or service issue occurs. When a notification fails to send, Beebole retries it automatically up to three times before marking it as permanently failed.
-
-<Info>
-  Retry handling is fully automatic — you do not need to take any action if a notification is delayed. Beebole will attempt redelivery in the background and deliver the notification once the issue resolves.
-</Info>
-
----
-
-## Notification history
-
-Beebole keeps a personal notification history for each user. All sent notifications are stored against your profile and surfaced in the **Journal** feed, giving you a record of past approvals, mentions, and reminders.
-
-- **Per-context read tracking** — each notification is individually tracked. Beebole records when you read it so unread counts stay accurate across sessions and devices.
-- **Filterable feed** — you can filter the Journal by notification type (e.g., show only mentions or only approval events).
-- **Paginated history** — older notifications load on demand as you scroll, so the full history remains accessible without slowing down the initial view.
-
----
-
-## Unread counts and management
-
-Beebole tracks unread notifications per person:
-
-- The **Journal** icon in the sidebar displays a badge with the number of unread items.
-- Opening the Journal and scrolling past a notification marks it as read.
-- A "new" separator line distinguishes items you have not yet seen from older ones.
-
----
+Beebole delivers notifications through a background queue so a temporary network or service hiccup does not lose them. If a notification fails to send, Beebole retries it automatically up to three times before marking it as failed. No action is needed on your side — delayed notifications are redelivered once the issue clears.
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Approval" href="/help/documentation/approval">
-    Notifications are triggered by timesheet submission and approval actions.
+  <Card title="Journal" icon="rss" href="/help/documentation/journal">
+    @Mentions, approval events, and reminders all appear in the Journal feed.
   </Card>
-  <Card title="Journal" href="/help/documentation/journal">
-    In-app notifications appear in the Journal feed alongside messages.
+  <Card title="Approval" icon="circle-check" href="/help/documentation/approval">
+    Approval updates and approver reminders are tied to the timesheet approval workflow.
   </Card>
-  <Card title="Account Settings" href="/help/documentation/account-settings">
-    Administrators configure organization-wide notification defaults.
+  <Card title="Projects" icon="folder-tree" href="/help/documentation/projects">
+    Budget threshold alerts watch the budgets you set on projects.
   </Card>
 </CardGroup>
-
----
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I turn off all email notifications?">
-    Yes. In your notification preferences, disable email for each event type. You will still see notifications in the in-app Journal.
+  <Accordion title="Can I turn off all notifications?">
+    Yes. In your **Notifications** preferences in Beebole, turn off both **Email** and **Push notifications**, or set every event to **None**. Either way you stop receiving notifications for those events.
   </Accordion>
-  <Accordion title="Can an administrator configure notification settings for the whole team?">
-    Administrators control organization-wide settings like reminder frequency, trigger conditions, and email templates. Individual notification preferences — such as which events to receive — are managed by each person from their own profile.
+  <Accordion title="What is the difference between instant and digest notifications?">
+    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed.
   </Accordion>
-  <Accordion title="Can I respond to approval notifications by email?">
-    Yes. Beebole's approval notification emails include action buttons to approve or reject timesheets directly. You can also reply to journal messages via email.
+  <Accordion title="Who sets up timesheet reminders?">
+    Administrators set timesheet reminders in Beebole's **Timesheet settings**, on the **Reminders** tab. Reminders prompt people to submit timesheets and chase approvers about pending work, and they cascade from the organization down through tags and people.
   </Accordion>
-  <Accordion title="What is the difference between individual notifications and digests?">
-    Individual notifications send one email per event as it happens. Digests group multiple events into a single periodic summary email. Digests reduce inbox volume while still keeping you informed of all activity.
+  <Accordion title="Can I respond to a notification by email?">
+    Yes. Beebole's approval emails include buttons to approve or reject a timesheet without opening the app. You can also reply to a Journal message email directly, and Beebole adds your reply to the right thread.
   </Accordion>
-  <Accordion title="Do notification preferences sync across devices?">
-    Yes. Your notification preferences are stored in your Beebole profile and apply everywhere — web browser, mobile, and email. Changing preferences on one device updates them for all.
+  <Accordion title="When do budget threshold alerts fire?">
+    Budget threshold alerts in Beebole fire when a project reaches the percentage of its budget you choose — such as 80% or 100%. Tick **When over budget** to also be alerted once a project passes its budget. These alerts are delivered as a **Daily** or **Weekly** digest.
   </Accordion>
 </AccordionGroup>
