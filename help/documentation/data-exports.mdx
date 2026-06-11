@@ -1,9 +1,10 @@
 ---
-title: "Data Exports"
-description: "Export Beebole report data as CSV or Excel files for offline analysis, backup, payroll processing, or sharing with clients and external stakeholders."
-keywords: ["Beebole data export", "export CSV", "export Excel", "download report", "export time data", "reporting export", "beebole"]
-"og:title": "Exporting Data from Beebole"
-"og:description": "Download your Beebole reports in CSV or Excel format for offline analysis and sharing."
+title: "Exporting Report Data to CSV, Excel, and PDF — Beebole"
+sidebarTitle: "Data Exports"
+description: "Export Beebole report data as Excel, CSV, PDF, JSON, and more for offline analysis, payroll processing, or sharing with clients and stakeholders."
+keywords: ["Beebole data export", "export CSV", "export Excel", "export PDF", "download report", "export time data", "reporting export", "beebole"]
+"og:title": "Export Beebole Reports as CSV, Excel, PDF, and More"
+"og:description": "Download your Beebole reports in Excel, CSV, PDF, JSON, and other formats for offline analysis and sharing."
 "og:type": "article"
 ---
 
@@ -13,31 +14,36 @@ Beebole lets you export report data so you can analyze it offline, share it with
 
 ## Export formats
 
-Beebole supports two export formats:
+Beebole exports report data in the following formats, all available from the report's **Export** submenu:
 
 | Format | Best for |
 |--------|----------|
+| **Excel (XLSX)** | Sharing with colleagues, creating formatted spreadsheets, or further analysis in Excel |
 | **CSV** | Importing into databases, BI tools, or any software that reads plain text files |
-| **Excel (.xlsx)** | Sharing with colleagues, creating formatted spreadsheets, or further analysis in Excel |
+| **TSV** | Tab-separated data for tools that expect tabs instead of commas |
+| **JSON** | Feeding scripts or applications that consume structured data |
+| **PDF** | Sending a fixed, print-ready copy of the report table |
+| **Chart (PNG)** | Saving the report's chart as an image for slides or documents |
+| **Matrix (CSV)**, **Matrix (Excel)**, **Matrix (PDF)** | Exporting the report's matrix view |
 
-Both formats include all visible columns and respect the filters applied to the report.
+Table exports include the report's columns and respect the filters applied to the report.
 
 ---
 
 ## Exporting a report
 
 <Steps>
-  <Step title="Run your report">
-    Open [Reports](/help/documentation/reports) and run a built-in or [custom report](/help/documentation/custom-reports) with the dimensions, grouping, and filters you need.
+  <Step title="Open Reports">
+    Click **Reports** in the sidebar and open the folder that contains your report. You can export any [report](/help/documentation/reports), including your [saved custom reports](/help/documentation/custom-reports).
   </Step>
-  <Step title="Click Export">
-    Click the **Export** button in the report toolbar.
+  <Step title="Open the report's action menu">
+    Hover over the report in the list and click the **⋯** action menu next to its name.
   </Step>
-  <Step title="Choose a format">
-    Select **CSV** or **Excel** as your export format.
+  <Step title="Choose Export and a format">
+    Click **Export**, then pick a format from the submenu — for example **Excel (XLSX)** or **CSV**.
   </Step>
   <Step title="Download the file">
-    Your browser downloads the file. The filename includes the report name and date range for easy identification.
+    Beebole runs the report if it is not already open, then your browser downloads the file. The filename includes the report name, plus its period when one is set.
   </Step>
 </Steps>
 
@@ -78,28 +84,24 @@ Exports contain:
 
 If you need to pull Beebole data into a spreadsheet regularly, consider using a direct connection instead of manual exports:
 
-- [Excel add-in](/help/documentation/excel-addin) — Refresh Beebole data directly in Excel without manual downloads
-- [Google Sheets add-on](/help/documentation/gsheets-addon) — Keep a Google Sheets spreadsheet synced with your Beebole data
+- [Excel add-in](/help/documentation/excel-addin) — Link Excel worksheets to your saved Beebole reports and refresh the data without manual downloads
+- [Google Sheets add-on](/help/documentation/gsheets-addon) — Link Google Sheets to your saved Beebole reports and refresh the data from a sidebar
 
-These tools let you set up a report once and refresh the data on demand, saving time on repetitive exports.
+These tools let you save a report once in Beebole and refresh its data on demand, saving time on repetitive exports.
 
 ---
 
 ## GDPR and personal data
 
-Beebole provides built-in tools to support your GDPR obligations. You can access these from **Settings** > **GDPR**.
-
-### Export your data
-
-Use the **Export your data** option in settings to download a copy of your organization's data. This is useful for data portability requests, internal audits, or migrating to another system.
-
 ### Account deletion
 
-If you need to permanently delete the organization and all associated personal data — for example, to honour a right-to-erasure request — use the account deletion flow in **Account Settings**.
+If you need to delete the organization and all associated personal data — for example, to honor a right-to-erasure request — go to **Settings** > **Delete Account**.
 
 <Warning>
-  Deleting your organization is permanent and irreversible. All personal data, time records, projects, and configuration are removed. Export any data you need to retain before proceeding.
+  Confirming the deletion schedules your account for deletion: all personal data, time records, projects, and configuration are permanently deleted after a 7-day grace period, and all admins are notified by email. Export any data you need to retain before proceeding.
 </Warning>
+
+During the grace period, Beebole displays a banner showing who scheduled the deletion and how long remains. An admin can click **Cancel deletion** — in the banner or on the **Delete Account** page — to stop the process and keep the account.
 
 <Info>
   For individual data deletion requests (e.g., removing a specific person's data), remove that person from your Beebole account and delete their time entries and profile. Contact support@beebole.com if you need assistance handling a specific GDPR request.
@@ -114,10 +116,10 @@ If you need to permanently delete the organization and all associated personal d
     Review a complete log of changes before exporting for compliance.
   </Card>
   <Card title="Account Settings" href="/help/documentation/account-settings">
-    Access the GDPR data export and organization deletion tools.
+    Configure organization-wide settings, including deleting your organization.
   </Card>
   <Card title="Custom Reports" href="/help/documentation/custom-reports">
-    Build the exact report you need before downloading as CSV or Excel.
+    Build and save the exact report you need before exporting it.
   </Card>
 </CardGroup>
 
@@ -133,9 +135,9 @@ If you need to permanently delete the organization and all associated personal d
     Beebole exports all matching data. For very large datasets, the download may take a moment. If performance is an issue, narrow your date range or apply additional filters.
   </Accordion>
   <Accordion title="Can I export expense data?">
-    Yes. Create a report using the **Expense records** dimension, configure the columns you need, and export it. Expense data supports the same CSV and Excel formats as time data.
+    Yes. Create a report using the **Expense records** dimension, configure the columns you need, and export it. Expense data supports the same export formats as time data.
   </Accordion>
   <Accordion title="Do exports include budget information?">
-    Yes. If you add budget columns (target, consumed, remaining) to your report, they are included in the export alongside time and financial data.
+    Yes. Open the **Budget Status** report and use its **Export** button — budget progress data exports in the same formats as other reports.
   </Accordion>
 </AccordionGroup>

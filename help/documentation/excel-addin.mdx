@@ -1,137 +1,141 @@
 ---
-title: "Excel Add-in"
-description: "Install the Beebole Excel add-in to pull time tracking, billing, and project data straight into your spreadsheets for live reports and analysis."
-keywords: ["Beebole Excel add-in", "Excel integration", "spreadsheet reporting", "Excel time tracking", "pull data into Excel", "beebole"]
-"og:title": "Beebole Excel Add-in"
-"og:description": "Pull Beebole time, billing, and project data directly into Excel with the official add-in."
+title: "Excel Add-in: Link Sheets to Saved Reports — Beebole"
+sidebarTitle: "Excel Add-in"
+description: "Link Excel worksheets to your saved Beebole reports and refresh time tracking, billing, and project data with one click — no manual exports."
+keywords: ["beebole", "Beebole Excel add-in", "Excel time tracking reports", "refresh report data in Excel", "link Excel sheet to report", "spreadsheet reporting"]
+"og:title": "Beebole Excel Add-in: Live Report Data in Your Sheets"
+"og:description": "Link any Excel worksheet to a saved Beebole report and refresh your time tracking data with one click."
 "og:type": "article"
 ---
 
-The Beebole Excel add-in connects your Beebole account directly to Microsoft Excel. Instead of exporting CSV files and importing them manually, you can pull time tracking, billing, cost, and project data into your spreadsheet with a few clicks — and refresh it whenever you need updated figures.
+The Beebole Excel add-in links worksheets in your Excel workbook to your saved Beebole reports. Instead of exporting files and importing them by hand, you save a report once in Beebole, link a sheet to it, and refresh the data whenever you need the latest figures.
+
+<Info>
+  The add-in loads saved reports. Build and save the report you need in Beebole first — its columns, filters, and period all come from the report configuration, not from the add-in.
+</Info>
 
 ---
 
-## What the add-in does
+## How the add-in works
 
-The Excel add-in lets you:
+Each worksheet links to one saved Beebole report. When you refresh, the add-in runs the report in your Beebole account, clears the linked sheet, and writes a header row followed by the report data. The links are stored inside the Excel file, so they travel with the workbook when you share it.
 
-- **Pull report data** directly into Excel worksheets
-- **Choose dimensions and filters** using the same options available in [Beebole reports](/help/documentation/reports)
-- **Refresh data on demand** to get the latest figures without reconfiguring
-- **Build custom dashboards** by combining Beebole data with Excel formulas, charts, and pivot tables
-
-<Info>
-  The add-in pulls data from your Beebole account in real time. It does not store a copy of your data — each refresh fetches the latest information.
-</Info>
+The add-in connects with your Beebole API key — you never enter a password. The key is stored privately on your device and is never saved inside the Excel file.
 
 ---
 
 ## Installing the add-in
 
 <Steps>
-  <Step title="Open Excel">
-    Launch Microsoft Excel on your desktop (Windows or macOS).
+  <Step title="Open Excel's add-in store">
+    In Excel, open the Office Add-ins store from the ribbon. You can also find the Beebole add-in on Microsoft AppSource.
   </Step>
-  <Step title="Go to the Add-ins store">
-    Click **Insert** in the Excel ribbon, then select **Get Add-ins** (or **Office Add-ins**).
+  <Step title="Add the Beebole add-in">
+    Search for **Beebole** and add it to Excel.
   </Step>
-  <Step title="Search for Beebole">
-    In the add-ins store, search for **Beebole** and click **Add** to install it.
-  </Step>
-  <Step title="Sign in to your Beebole account">
-    Once installed, open the Beebole add-in from the **Home** tab or the add-ins menu. Sign in with your Beebole credentials.
+  <Step title="Open the task pane">
+    Click the **Beebole Reports** button on the **Home** tab of the ribbon to open the Beebole task pane.
   </Step>
 </Steps>
 
-<Tip>
-  The add-in works with Microsoft 365 (formerly Office 365) and Excel 2016 or later on both Windows and macOS.
-</Tip>
-
 ---
 
-## Pulling data into Excel
+## Connecting with your API key
+
+The first time you open the task pane, the add-in asks for your Beebole API key.
 
 <Steps>
-  <Step title="Open the Beebole add-in panel">
-    Click the **Beebole** button in the Excel ribbon to open the add-in panel.
+  <Step title="Copy your API key from Beebole">
+    In Beebole, click the button with your initials at the bottom of the sidebar, then **API Key**. Click **Copy**.
   </Step>
-  <Step title="Select a dimension">
-    Choose the type of data you want: **Time records**, **Expense records**, or **Task records**.
-  </Step>
-  <Step title="Configure filters">
-    Set a date range and apply filters for people, projects, tags, or custom fields — just like in [Beebole reports](/help/documentation/reports).
-  </Step>
-  <Step title="Choose columns">
-    Select which data fields to include: hours, billing amounts, cost rates, project codes, custom fields, and more.
-  </Step>
-  <Step title="Insert the data">
-    Click **Insert** to pull the data into the active worksheet. The add-in populates the cells starting from your selected position.
+  <Step title="Paste the key into the add-in">
+    In the task pane, paste the key into the **API Key** field and click **Connect**.
   </Step>
 </Steps>
 
+<Info>
+  The API key gives the add-in the same access as your Beebole account: you only see the saved reports — and the data — that your [role and authorizations](/help/documentation/roles-authorisations) allow. The **Reset** button next to your API key in Beebole revokes the current key and generates a new one.
+</Info>
+
 ---
 
-## Refreshing data
+## Linking a sheet to a report
 
-When you need updated figures, click **Refresh** in the Beebole add-in panel. The add-in re-runs your query with the same configuration and updates the data in your spreadsheet.
+<Steps>
+  <Step title="Open the add-link form">
+    In the task pane, click **+ Add link** under **Beebole reports linked**.
+  </Step>
+  <Step title="Pick a report">
+    In the **Add Report Link** form, select one of your saved Beebole reports in the **Report** field.
+  </Step>
+  <Step title="Pick a sheet">
+    Choose an existing sheet in the **Worksheet** field, or type a name in **New sheet name** to create one.
+  </Step>
+  <Step title="Confirm">
+    Click **Add Link**. The link appears in the **Beebole reports linked** table.
+  </Step>
+</Steps>
+
+To remove a link, click the **✕** button next to it in the table. This removes the link only — the sheet and its current data stay in place.
+
+---
+
+## Refreshing your data
+
+In the **Refresh** section of the task pane:
+
+- **Refresh This Sheet** — refreshes the sheet you are currently viewing.
+- **Refresh All** — refreshes every linked sheet in the workbook.
+
+The add-in also refreshes automatically: every linked sheet refreshes when you open the task pane, and in Excel versions that support workbook-open events, linked sheets refresh in the background each time you open the file.
 
 <Warning>
-  Refreshing replaces the existing data in the cells populated by the add-in. If you have added formulas or notes in those cells, they will be overwritten. Place your own formulas and analysis in separate columns or rows.
+  Refreshing clears the linked sheet before writing the new data. Anything you typed into that sheet — formulas, notes, formatting — is removed. Keep your own calculations and charts in separate sheets that reference the linked one.
 </Warning>
 
----
-
-## Building reports in Excel
-
-Once your Beebole data is in Excel, you can use all of Excel's features to analyze it:
-
-- **Pivot tables** — Summarize and slice data by any dimension
-- **Charts** — Create visual dashboards from your time and billing data
-- **Formulas** — Apply calculations, conditional formatting, or lookups
-- **Multiple queries** — Pull different datasets into separate worksheets and cross-reference them
-
-<Tip>
-  Create a workbook template with your preferred layout, charts, and formulas. Each time you refresh the data, your entire dashboard updates automatically.
-</Tip>
+If a linked report no longer exists in Beebole, the add-in writes an error message to the sheet so you know the link needs updating.
 
 ---
 
-## Permissions and data access
+## Updating or removing your API key
 
-The add-in respects your Beebole account permissions. You only see data for the projects and people your role allows. If you need access to additional data, ask your Beebole account administrator to adjust your [role and authorizations](/help/documentation/roles-authorisations).
+Click **Update API** at the top of the task pane to open the key settings:
+
+- Paste a new key into **New API Key** and click **Update API Key** to switch accounts or replace a reset key.
+- Click **Remove API Key** to delete the saved key from your device. You will need to enter a key again to use the add-in.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
+  <Card title="Reports" icon="chart-line" href="/help/documentation/reports">
+    Understand report dimensions, filters, grouping, and columns in Beebole.
+  </Card>
   <Card title="Custom Reports" icon="chart-bar" href="/help/documentation/custom-reports">
-    Build and save custom report templates in Beebole.
+    Build and save the reports your linked sheets will load.
   </Card>
   <Card title="Google Sheets Add-on" icon="table" href="/help/documentation/gsheets-addon">
-    Pull Beebole data directly into Google Sheets.
+    Link Google Sheets to your saved Beebole reports the same way.
   </Card>
   <Card title="Data Exports" icon="download" href="/help/documentation/data-exports">
-    Export Beebole data as CSV or other formats.
+    Download one-off exports in Excel, CSV, PDF, and other formats.
   </Card>
 </CardGroup>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Does the add-in work with Excel for the web?">
-    The add-in is designed for the Excel desktop application (Windows and macOS). Check the Microsoft add-ins store for the latest compatibility information.
+  <Accordion title="Can I configure columns and filters inside the add-in?">
+    No. The Beebole Excel add-in loads saved reports exactly as they are configured in Beebole. To change the columns, filters, or period of the data in a sheet, edit the saved report in Beebole and refresh the sheet.
   </Accordion>
-  <Accordion title="Can multiple people use the add-in on the same workbook?">
-    Each person signs in with their own Beebole credentials and sees only the data their permissions allow. You can share the workbook, but each user's data refresh uses their own access level.
+  <Accordion title="What happens when I share the workbook with someone else?">
+    The sheet-to-report links are stored inside the Excel file and travel with it. Your API key does not — it stays on your device. The other person sees the last refreshed data, and to refresh it themselves they connect with their own Beebole API key, which shows only the reports their account can access.
   </Accordion>
-  <Accordion title="Is there a limit to how much data I can pull?">
-    The add-in can pull large datasets. For very broad queries (e.g., all time records with no date filter), the request may take longer. Use date range filters to keep queries performant.
+  <Accordion title="Does refreshing overwrite my formulas?">
+    Yes. A refresh clears the linked sheet completely before writing the report data. Place your own formulas, pivot tables, and charts in separate sheets that reference the linked sheet, so they survive every refresh.
   </Accordion>
-  <Accordion title="How is this different from exporting a CSV?">
-    The add-in maintains a live connection to your Beebole account. You configure the query once and refresh data on demand. With CSV [exports](/help/documentation/data-exports), you download a snapshot each time and import it manually.
-  </Accordion>
-  <Accordion title="Can I use the add-in with saved reports from Beebole?">
-    The add-in uses its own query configuration within Excel. You set up the dimension, filters, and columns directly in the add-in panel. For saved report templates, use the [custom reports](/help/documentation/custom-reports) feature in Beebole.
+  <Accordion title="What happens if the linked report is deleted in Beebole?">
+    The add-in writes an error message to the sheet telling you the linked report no longer exists. Remove the link and create a new one pointing to another saved Beebole report.
   </Accordion>
 </AccordionGroup>

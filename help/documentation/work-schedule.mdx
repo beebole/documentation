@@ -1,132 +1,123 @@
 ---
-title: "Work Schedules"
-description: "Define work patterns in Beebole — weekly or any cycle length — create multiple schedules for different teams, and assign them to people, tags, or your organization."
-keywords: ["Beebole work schedules", "weekly work pattern", "working hours", "schedule assignment", "work schedule setup", "time tracking schedule", "beebole"]
-"og:title": "Work Schedules in Beebole"
-"og:description": "Learn how to define, assign, and manage work schedules for your team in Beebole."
+title: "Work schedules: define and assign work patterns — Beebole"
+sidebarTitle: "Work Schedules"
+description: "Define work schedules in Beebole — weekly or longer cycles — and assign them at the organization, tag, or person level, each from its own start date."
+keywords: ["beebole", "work schedules", "working hours", "schedule assignment", "rotating schedule", "scheduled hours"]
+"og:title": "Defining and Assigning Team Work Schedules in Beebole"
+"og:description": "Learn how to create work schedules in Beebole, assign them to your organization, tags, or people, and change them over time with start dates."
 "og:type": "article"
 ---
 
-Beebole's work schedules define the standard working hours for your team. A schedule specifies how many hours each person is expected to work on each day of the week. Schedules drive timesheet validation, time-off calculations, and capacity planning — making them one of the first things to configure when setting up your account.
+Work schedules in Beebole define the hours each person is expected to work on every day of a repeating cycle. Beebole uses them to show scheduled hours on the timesheet, calculate overtime in reports, and measure capacity in the Gantt workload heatmap — so setting them up is one of the first steps when configuring your account.
 
 <Info>
-  Work schedules are used throughout Beebole to calculate expected hours, validate timesheet entries, and determine time-off balances. Getting them right early saves configuration work later.
+  If no work schedule is assigned anywhere, Beebole falls back to a virtual **24/7 work schedule** that treats every day as a full working day. Assign a default schedule to your organization so scheduled hours reflect reality.
 </Info>
 
 ---
 
-## Understanding work schedules
+## How work schedules work
 
-A work schedule is a repeating pattern that defines working hours for each day of its cycle. For example, a standard full-time schedule might specify 8 hours from Monday to Friday and 0 hours on weekends — but the cycle can span any number of days (see [Schedule length](#schedule-length)).
+A work schedule is a repeating pattern. Each day of the cycle defines the expected **Hours**, optional **Intervals** with **Start** and **End** times, and whether it is a **Work From Home** day. The cycle is 7 days by default — a weekly pattern — but the **Length in days** can be any number, so rotating patterns are possible too.
 
-Beebole supports multiple schedules in a single account, so you can define different patterns for different teams, roles, or employment types — such as full-time, part-time, or shift-based arrangements.
+Beebole supports multiple work schedules in one account. Create one schedule per work pattern — full-time, part-time, shift rotation — and assign each to the right people.
 
 ---
 
 ## Creating a work schedule
 
 <Steps>
-  <Step title="Open Schedule types">
-    Go to **Settings** > **Schedule types**.
+  <Step title="Open the Work Schedules settings">
+    Click the button with your initials at the bottom of the sidebar, then go to **Settings** > **Work Schedules**.
   </Step>
-  <Step title="Add a new schedule">
-    Click the **+** button, enter a **Name** for the schedule (e.g., "Full-time", "Part-time 80%"), and click **Add**. The schedule is created right away — you define its pattern next.
+  <Step title="Add the schedule">
+    Click **Add Schedule**, type a name — for example "Full-time 40h" or "4-day week" — and click **Add Schedule** to confirm.
   </Step>
-  <Step title="Define the pattern">
-    In the schedule's **Details**, enter the expected working hours for each day, leaving non-working days at 0. You can also set the **Length in days** for cycles longer than a week, define **Intervals** (start and end times for each day), and toggle **Work From Home** on the days it applies. Changes save automatically.
+  <Step title="Define the daily pattern">
+    In the **Details** panel, enter the **Hours** for each working day and leave non-working days empty. Use **Copy to next day** to repeat a day's setup and **Clear that day** to reset one. Every change is saved automatically.
   </Step>
-  <Step title="Assign it">
-    Use the schedule's **Assigned to** section — or a person's **Work schedule** attribute — to apply it to the organization, a tag, or individual people.
+  <Step title="Refine each day if needed">
+    Add **Intervals** with **Start** and **End** times to spell out when work happens, and turn on **Work From Home** for the days it applies.
   </Step>
 </Steps>
 
 <Tip>
-  Create descriptive schedule names that your team will recognize — like "Full-time 40h" or "4-day week" — so assignments are easy to understand at a glance.
+  Give each schedule a name your team recognizes at a glance — like "Full-time 40h" or "Night shift rotation" — so assignments stay easy to read.
 </Tip>
 
 ---
 
-## Schedule length
+## Cycles longer than a week
 
-A work schedule doesn't have to follow a weekly pattern — it can repeat over any number of days. The most common setup is a 7-day cycle that repeats every week, but you can just as easily configure a 14-day cycle where the first 7 days have different hours from the next 7, or a 10-day rotation for shift-based teams.
-
-To configure a longer cycle, increase the **Length in days** when editing the schedule. Each day in the cycle gets its own set of working hours, and Beebole repeats the full cycle indefinitely.
+A work schedule doesn't have to repeat weekly. Increase the **Length in days** to build longer rotations — for example a 14-day cycle where the two weeks differ, or a 10-day shift rotation. Each day in the cycle gets its own hours, and Beebole repeats the full cycle indefinitely. Use **Start from** to anchor day 1 of the cycle to a calendar date, so Beebole knows where the rotation begins.
 
 ---
 
-## Assigning schedules
+## Assigning a work schedule
 
-You can assign work schedules at three levels. Beebole uses a cascading inheritance model — more specific assignments override broader ones.
+You can assign work schedules at three levels. The most specific assignment wins: a person's own schedule overrides their tag's, and a tag's schedule overrides the organization default.
 
-| Level | How to assign | Use case |
-|-------|--------------|----------|
-| **Organization** | **Settings** > **Schedule types** > assign to the organization | One schedule applies to everyone unless overridden |
-| **Tag** | Open a tag > **Work Schedule** section | A department or team shares a schedule |
-| **Person** | Open a person's profile > **Work Schedule** section | An individual has a unique arrangement |
+| Level | Where to assign | Use case |
+|-------|-----------------|----------|
+| Organization | **Settings** > **Account Settings**, in the **Work schedule** panel | The default pattern for everyone |
+| Tag | Click **Tags** in the sidebar, open the tag, then the **Work schedule** panel | A team or department shares a pattern |
+| Person | Click **People** in the sidebar, open the person, then the **Work schedule** panel | An individual arrangement |
 
-### How inheritance works
-
-Beebole resolves the effective schedule for each person by checking from most specific to least specific:
-
-1. **Person-level schedule** — If a schedule is assigned directly to the person, Beebole uses it.
-2. **Tag-level schedule** — If no person-level schedule exists, Beebole checks the person's tags. If a tag has a schedule, it applies.
-3. **Organization-level schedule** — If neither the person nor their tags have a schedule, the organization default applies.
+In each **Work schedule** panel, use the **Select schedule** picker and type the name of a schedule to assign it. The assignment is saved automatically. On the schedule's own page in **Settings** > **Work Schedules**, the **Assigned to** panel shows where it is in use.
 
 <Info>
-  This inheritance model means you only need to configure exceptions. Set your most common schedule at the organization level, override at the tag level for specific teams, and override at the person level for individual arrangements.
+  Configure exceptions only. Set the most common pattern on the organization, override it with tags for teams that differ, and override per person for individual cases.
 </Info>
 
 ---
 
-## Time period management
+## Changing a schedule over time
 
-Schedules can change over time. Beebole lets you assign schedules for specific date ranges, so you can track when a person's working pattern changed — for example, when someone moves from full-time to part-time.
+Work patterns change — someone moves from full-time to part-time, or a team adopts a 4-day week. In Beebole, you don't end one assignment and start another: you simply assign the new schedule, and it takes over from its start date.
 
-To set a schedule for a specific period:
+- While a single schedule is assigned, it applies without any date.
+- When you assign a second schedule at the same level, each assignment shows a **Start date:** with a date picker so you can adjust when it begins.
+- On any given day, the assignment with the most recent start date on or before that day applies. Days before the earliest dated assignment follow the first schedule in the list.
 
-<Steps>
-  <Step title="Open the person's profile">
-    Go to **People** and click the person's name.
-  </Step>
-  <Step title="Go to the Work Schedule section">
-    Scroll to the **Work Schedule** area of the profile.
-  </Step>
-  <Step title="Add a time period">
-    Click **Add** to define a new schedule period. Select the **Schedule**, then set the **Start date** and **End date**. The assignment is saved automatically and applies only within that date range.
-  </Step>
-</Steps>
-
-<Info>
-  It is not possible to assign schedules for overlapping periods at the same level (person, tag, or organisation). If a new assignment overlaps an existing one at that level, Beebole rejects it — adjust the dates of the existing period first.
-</Info>
+There is no end date to manage — a newer assignment supersedes the older one from its start date forward, and the history of past assignments is preserved.
 
 ---
 
-## Schedules and other features
+## Archiving and deleting a work schedule
 
-Work schedules connect to several other areas in Beebole:
+To retire a schedule you no longer assign, open it in **Settings** > **Work Schedules** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
-- **Timesheets** — Expected hours from the schedule appear on the timesheet, helping team members know how much time to log. See [Timesheets](/help/documentation/timesheets).
-- **Time off** — Leave balances are calculated based on scheduled hours. A day off for a person scheduled for 8 hours deducts 8 hours. See [Time off](/help/documentation/timeoff).
-- **Reports** — Compare actual hours worked against scheduled hours to identify over- or under-utilization. See [Reports](/help/documentation/reports).
-- **Planning** — Capacity planning uses schedules to determine available hours. See [Planning](/help/documentation/planning).
+Archived schedules disappear from the list. Click **Show Archived** to display them, then use the **⋯** action menu and **Unarchive** to restore one.
+
+<Warning>
+  **Delete** removes the work schedule entirely. If you might need it again — or want to keep its history visible — choose **Archive** instead.
+</Warning>
+
+---
+
+## Where Beebole uses work schedules
+
+- **Timesheets** — Each day's header on the timesheet shows time reported against scheduled hours, non-working days appear hatched, and the total row compares logged time with the scheduled total. See [Timesheets](/help/documentation/timesheets).
+- **Reports** — Reports can compare worked hours against scheduled hours to surface overtime, and break down work-from-home time. See [Reports](/help/documentation/reports).
+- **Time off** — When absences are tracked in days, a full day off converts to the hours defined in the person's schedule for that day. See [Time off](/help/documentation/timeoff).
+- **Task planning** — The [Gantt chart](/help/documentation/gantt) workload heatmap measures planned effort against each person's capacity, which comes from their work schedule.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="People" href="/help/documentation/people">
-    Assign work schedules directly to individual people.
+  <Card title="People" icon="users" href="/help/documentation/people">
+    Open a person's profile to assign their individual work schedule.
   </Card>
-  <Card title="Tags" href="/help/documentation/tags">
-    Apply a shared schedule to an entire department or team via tags.
+  <Card title="Tags" icon="tags" href="/help/documentation/tags">
+    Cascade a shared schedule to a whole team or department through tags.
   </Card>
-  <Card title="Time Off" href="/help/documentation/timeoff">
-    Leave balances are calculated based on scheduled working hours.
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    See how scheduled hours appear next to reported time on the timesheet.
   </Card>
-  <Card title="Timesheet Settings" href="/help/documentation/timesheetSettings">
-    Configure timesheet validation rules that use schedule data.
+  <Card title="Time Off" icon="calendar" href="/help/documentation/timeoff">
+    Absences tracked in days convert to hours using the work schedule.
   </Card>
 </CardGroup>
 
@@ -135,19 +126,19 @@ Work schedules connect to several other areas in Beebole:
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I have different schedules for different teams?">
-    Yes. Beebole supports multiple work schedules. Create a schedule for each team or work pattern and assign them using tags or individual person profiles.
+  <Accordion title="Can I have different work schedules for different teams?">
+    Yes. Beebole supports multiple work schedules in one account. Create one schedule per pattern and assign each to the right tag or person — the most specific assignment overrides the organization default.
   </Accordion>
-  <Accordion title="What happens if I change a person's schedule mid-month?">
-    Beebole applies each schedule to its configured date range. Days before the change use the old schedule, and days after use the new one. Timesheet expected hours update automatically.
-  </Accordion>
-  <Accordion title="Do schedules affect time-off calculations?">
-    Yes. When a person takes a day off, Beebole deducts the number of hours defined in their schedule for that day. A person scheduled for 6 hours on Fridays uses 6 hours of leave when taking a Friday off.
+  <Accordion title="What happens if a person has no work schedule assigned?">
+    Beebole falls back to a virtual **24/7 work schedule** that counts every day as a full working day. The fallback appears grayed out in the **Work schedule** panel. Assign a default schedule to your organization so scheduled hours match your real working pattern.
   </Accordion>
   <Accordion title="Can I create a schedule that rotates every two weeks?">
-    Yes. Use the schedule length setting to define multi-week rotations. Each week in the cycle can have its own daily hour pattern.
+    Yes. Set the schedule's **Length in days** to 14 and define each of the 14 days separately. Beebole repeats the full cycle indefinitely, and **Start from** anchors where the rotation begins.
   </Accordion>
-  <Accordion title="What if a person has no schedule assigned?">
-    If no schedule is assigned at the person, tag, or organization level, Beebole treats every day as a non-working day with 0 expected hours. Always ensure at least an organization-level default schedule is set.
+  <Accordion title="How do I change someone's schedule from a specific date?">
+    Assign the new schedule in the person's **Work schedule** panel and set its **Start date:**. Beebole applies the old schedule before that date and the new one from that date forward — there is no end date to configure.
+  </Accordion>
+  <Accordion title="How do I set up a part-time schedule in Beebole?">
+    Create a new work schedule and enter **Hours** only on the days the person works — for example 4 hours from Monday to Friday, or full days from Monday to Wednesday. Then assign it to the person.
   </Accordion>
 </AccordionGroup>

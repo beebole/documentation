@@ -185,7 +185,7 @@
 - `org/number-format` **Decimal/thousand separators** — Regional number formatting
 - `org/time-format` **12/24 hour time format**
 - `org/deletion` **Organisation deletion** — Permanently remove an organisation and all its data
-- `org/gdpr` **Data export & GDPR** — Export your personal data or submit a GDPR deletion request directly from your account settings
+- `org/gdpr` **Data export & GDPR** — NOT IMPLEMENTED: the **Export your data** and **GDPR** Settings-menu entries render as inert placeholders (no route, handler, or backend endpoint; verified 2026-06-11). Only account deletion (7-day grace) is real — do NOT document export/GDPR flows
 - `org/logo` **Organisation logo** — Upload a logo for your organisation; it appears in the sidebar navigation and is automatically included in all outgoing email communications.
 - `org/accent-colour` **Organisation accent colour** — Administrators can set a colour for the organisation that becomes the default interface accent for all team members.
 

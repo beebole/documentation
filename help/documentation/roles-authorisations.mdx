@@ -1,235 +1,233 @@
 ---
-title: "Roles & Authorizations"
-description: "Set up role-based access control in Beebole. Define roles with granular permissions across 24+ scopes to control what each team member can see and do."
-keywords: ["Beebole roles", "permissions", "authorizations", "access control", "RBAC", "role-based permissions", "user roles", "beebole"]
-"og:title": "Roles & Authorizations in Beebole"
-"og:description": "Learn how to configure roles and permissions to control access across your Beebole account."
+title: "Roles and permissions: control who sees what — Beebole"
+sidebarTitle: "Roles & Permissions"
+description: "Create roles in Beebole and set Edit and View permissions for timesheets, billing, time off, reports, and more, each scoped to the right people."
+keywords: ["beebole", "roles", "permissions", "access control", "person roles", "view and edit permissions"]
+"og:title": "Setting Up Roles, Permissions, and Access in Beebole"
+"og:description": "Learn how to create roles in Beebole and set Edit and View permissions scoped to the right people, projects, and tasks."
 "og:type": "article"
 ---
 
-Beebole's role-based access control lets you define exactly what each person can see and do. Every person in your account is assigned a role, and each role is a collection of permissions across more than 24 scopes — from time tracking and project management to billing, expenses, and custom fields. This gives you fine-grained control over who accesses what.
+A role in Beebole is a named set of permissions that controls what its holders can see and do. Every person has exactly one role, and each permission in a role sets two levels — **View** and **Edit** — scoped to targets such as **Me**, **My team**, or **My projects**. This page explains how roles work and what every permission controls.
 
 <Info>
-  Beebole includes default roles (Administrator, Manager, Employee) that cover common setups. You can use them as-is or create custom roles tailored to your organization's structure.
+  Roles control what a person's role lets them **do** — view or edit data. Which projects, time off types, and expense types are **available** to each person is a separate system, covered in [Assignments](/help/documentation/assignments).
 </Info>
 
----
+## How roles work
 
-## How roles work <Badge>Admin only</Badge>
+Roles live in **Settings** > **Person Roles** — click the button with your initials at the bottom of the sidebar to open **Settings**. Each role is a grid of permissions with three pieces:
 
-A role is a named set of permissions. Each person has exactly one role, and that role determines:
+- **Permission** — the area of Beebole it controls, such as **Timesheet entries** or **Billing rates**.
+- **Edit** — the targets whose data the role can create, change, or delete.
+- **View** — the targets whose data the role can see.
 
-- Which pages and features they can access
-- Whether they can view or manage data
-- What scope of data they can reach (their own, their team's, or the entire organization's)
+A permission with nothing selected shows **Not allowed**: people with that role don't see that area at all. Some permissions — mostly account-wide definitions like **Define time off** or **Tags** — are simple on/off checkboxes instead of target selectors.
 
-When you change a role's permissions, the change applies immediately to everyone assigned that role.
+Edit access always includes view access. When you add a target under **Edit**, Beebole adds it to **View** automatically; when you remove a target from **View**, it is removed from **Edit** too.
 
----
+At the top of the grid, the **Admin role (full access)** checkbox grants everything at once. Checking it replaces all individual permissions with full access; unchecking it clears the role so you can build it permission by permission.
 
-## Creating and managing roles <Badge>Admin only</Badge>
+<Info>
+  A few permissions — such as **Billing rates**, **Costs**, **Project budgets**, and **Time off balance** — correspond to features included in higher-tier plans. If your subscription doesn't include the feature, the permission has no effect, even for admins.
+</Info>
+
+## Creating and managing roles
 
 <Steps>
-  <Step title="Open the Roles page">
-    Go to **Settings** > **Roles**.
+  <Step title="Open the roles page">
+    Click the button with your initials at the bottom of the sidebar to open **Settings**, then click **Person Roles**.
   </Step>
-  <Step title="Add a new role">
-    Click the **[+]** button. Enter a **Name** for the role (e.g., "Project Manager", "Finance Viewer", "Team Lead").
+  <Step title="Add a role">
+    Click **Add a role** and type a name — for example Editor, Staff, or Project Lead.
   </Step>
-  <Step title="Configure permissions">
-    For each authorization scope, choose the permission level. See the sections below for details on scopes and targets.
-  </Step>
-  <Step title="Save the role">
-    Click **Save**. The role is now available for assignment to people.
+  <Step title="Set the permissions">
+    For each permission, pick targets under **Edit** and **View**, or check the **Admin role (full access)** box for full access. Use the **Search…** field to find a permission by name.
   </Step>
 </Steps>
 
+There is no Save button — every change to a role is saved automatically and applies to everyone holding that role.
+
+To manage an existing role, open its **⋯** action menu in the roles list: **Duplicate** copies the role with all its permissions, **Archive** hides it, and **Delete** removes it.
+
 <Tip>
-  Start with one of the default roles and duplicate it to create variations. This is faster than building a new role from scratch and helps you avoid accidentally missing a scope.
+  Start from a role that is close to what you need and use **Duplicate**, then adjust the copy. It is faster than building a role from scratch and you are less likely to miss a permission.
 </Tip>
 
----
+Every new Beebole account starts with three roles: **Admin** (full access), **Manager**, and **Employee**. You can edit them, duplicate them, or add your own.
 
-## Authorization scopes <Badge>Admin only</Badge>
+## Permission scopes
 
-Beebole organizes permissions into more than 24 scopes, each covering a specific area of the application. Here are the main scope categories:
+For permissions with target selectors, the targets you pick under **Edit** and **View** define whose data the permission covers. Each permission only offers the targets that make sense for it.
 
-| Scope category | What it controls |
-|---------------|-----------------|
-| **Admin** | Account-wide settings, subscription, and configuration |
-| **Organization** | Organization structure, companies, and global preferences |
-| **Staff / People** | Viewing and managing people profiles, invitations, and personal data |
-| **Projects** | Creating, editing, and archiving projects and subprojects |
-| **Tasks** | Managing tasks within projects |
-| **Time tracking** | Viewing and editing time entries on timesheets |
-| **Absences** | Managing time-off requests, leave types, and quotas |
-| **Expenses** | Viewing and managing expense entries |
-| **Custom fields** | Accessing and editing custom field values |
-| **Budgets** | Viewing and managing project and task budgets |
-| **Billing / Costs** | Accessing billing rates, cost rates, and financial data |
-| **Messages / Journal** | Reading and writing journal messages |
-| **Schedules** | Viewing and managing work schedules |
-| **Email templates** | Editing notification email templates |
+| Target | Who or what it covers |
+| --- | --- |
+| **All** | No restriction — every target at once |
+| **Me** | The person's own data |
+| **My team** | People they manage, directly or through tags they manage |
+| **Team colleagues** | People who share the same managers |
+| **Project colleagues** | People assigned to the same projects |
+| **Task colleagues** | People assigned to the same tasks |
+| **People working on my projects** | People assigned to the projects they manage |
+| **My projects** | Projects they manage, directly or through tags they manage |
+| **Project assigned** | Projects assigned to them |
+| **My tasks** | Tasks they own |
+| **Task assigned** | Tasks assigned to them |
+| **My tags** | Tags they manage, including descendant tags |
+| **Global settings** | The organization-wide value of the setting |
 
----
+For example, a team leader role could have **Timesheet entries** set to **Edit: My team** and **View: My team, Project colleagues** — they can correct their own team's timesheets and see, but not change, entries from project colleagues.
 
-## Permission targets <Badge>Admin only</Badge>
+## Timesheet, time off, and schedule permissions
 
-For most scopes, you choose not only the action (view or manage) but also the target — the range of data the permission covers:
+These permissions control day-to-day time tracking data.
 
-| Target | Description |
-|--------|-------------|
-| **Me only** | The person can access only their own data |
-| **My people** | The person can access data for people they manage (directly or via tags) |
-| **My projects** | The person can access data for projects they are assigned to as manager |
-| **Organization** | The person can access all data across the entire organization |
+| Permission | What it controls |
+| --- | --- |
+| **Timesheet entries** | Time entries on timesheets — scoped by people, projects, and tasks |
+| **Time settings** | The timesheet configuration panel on people and on the account |
+| **Valid period for time entry** | The setting that limits how far back or forward time can be entered |
+| **Define time off** | Creating and configuring time off types (on/off) |
+| **Time off balance** | People's time off allowances and balances |
+| **Holidays** | Public holiday calendars assigned to people |
+| **Schedule assignment** | Which work schedule is assigned to a person, tag, or the account |
+| **Define schedules** | Creating and editing work schedules (on/off) |
 
-<Info>
-  Combining scope and target gives you precise control. For example, a team leader might have **Time tracking — Manage — My people** (can edit their team's timesheets) but only **Billing — View — My projects** (can see billing rates on their projects, but not change them).
-</Info>
+## Approval permissions
 
----
+| Permission | What it controls |
+| --- | --- |
+| **Approval workflow** | The approval stages configured on the account and on people |
+| **Approval events** | Approval activity — submissions, approvals, and rejections — scoped by people and projects |
 
-## View vs. manage permissions <Badge>Admin only</Badge>
+A manager who approves timesheets needs **Approval events** edit access for their team; only admins who design the flow need **Approval workflow**.
 
-Each scope offers two levels of access:
+## Billing, cost, and budget permissions
 
-- **View** — The person can see the data but cannot create, edit, or delete it.
-- **Manage** — The person can view, create, edit, and delete data within the scope.
+| Permission | What it controls |
+| --- | --- |
+| **Billing rates** | Billing rates on people and projects |
+| **Costs** | Cost rates on people and projects |
+| **Project budgets** | Budgets defined on projects |
 
-Setting a scope to **None** hides it entirely — the person does not see that area of the application.
+Financial data is hidden from anyone whose role has these set to **Not allowed** — they don't see billing or cost amounts anywhere in Beebole, including reports.
 
-| Level | Can see | Can create/edit/delete |
-|-------|---------|----------------------|
-| **None** | No | No |
-| **View** | Yes | No |
-| **Manage** | Yes | Yes |
+## Expense permissions
 
----
+| Permission | What it controls |
+| --- | --- |
+| **Define Expenses** | Creating and configuring expense types (on/off) |
+| **Expense records** | Expense entries, scoped by people and projects |
 
-## Field-level permissions <Badge>Admin only</Badge>
+## People permissions
 
-Some permissions go beyond page-level access and control visibility of specific fields. For example:
+| Permission | What it controls |
+| --- | --- |
+| **People details** | People's profiles — names, pictures, and profile data |
+| **User account** | The **Email & role** panel — a person's email, invitation, and role |
+| **Manager** | Seeing and changing who a person manages |
+| **Managed people** | Seeing and changing who manages a person |
 
-- **Billing rates** can be hidden from people who do not need to see financial data.
-- **Cost rates** can be restricted so only finance or admin roles see internal costs.
-- **Personal information** fields (phone number, address) can be limited to HR or admin roles.
+Be deliberate with **User account** edit access: whoever holds it can change other people's roles.
 
-When a field is hidden by permissions, it does not appear on the interface at all — there is no indication that the field exists.
+## Project, task, and tag permissions
 
-<Warning>
-  Review field-level permissions carefully when creating roles. A person who cannot see billing rates will not see rate columns in reports, on timesheets, or on project settings — which may affect their ability to do their job if they need that information.
-</Warning>
+| Permission | What it controls |
+| --- | --- |
+| **Project details** | Projects — creating, editing, and archiving them |
+| **Secondary projects** | The secondary projects allowed on a project |
+| **Tasks** | Tasks in Planning — scoped to **My tasks** and **Task assigned** |
+| **Tags** | Creating and managing tags (on/off) |
 
----
+## Custom field permissions
 
-## Default roles <Badge>Admin only</Badge>
+| Permission | What it controls |
+| --- | --- |
+| **Define Custom Fields** | Creating and configuring custom fields (on/off) |
+| **Custom fields values** | The values filled in on people and projects |
 
-Beebole ships with three built-in roles:
+## Journal and report permissions
 
-| Role | Typical use |
-|------|------------|
-| **Administrator** | Full access to everything. At least one person must have this role. |
-| **Manager** | Can manage their team's timesheets, view projects, and run reports for their scope. |
-| **Employee** | Can track their own time, submit timesheets, and view their own data. |
+| Permission | What it controls |
+| --- | --- |
+| **Journal** | Journal messages on people, projects, and tasks |
+| **Journal feed** | The **Journal** page in the sidebar |
+| **Reports** | The **Reports** page, scoped by people and projects |
 
-You can modify the permissions of default roles or create additional roles as needed.
+## Account and visibility permissions
 
----
+These permissions cover account configuration and the access-control settings themselves.
 
-## Assigning roles to people <Badge>Admin only</Badge>
+| Permission | What it controls |
+| --- | --- |
+| **Global settings** | The organization's account settings (on/off) |
+| **Localization** | Language, time zone, and format settings on people and the account |
+| **Single sign-on (SSO)** | The SSO configuration on the account |
+| **Templates for emails** | The email templates Beebole sends |
+| **Notification settings** | Notification preferences on people and the account |
+| **Notification history** | The list of notifications already sent (on/off) |
+| **Push notifications** | Browser push notification subscriptions (on/off) |
+| **Show or hide** | The **Show or Hide** panels on people, tags, and projects |
+| **Show or hide by default** | The account-wide **Show or hide by default** settings |
+| **Related items** | The **Who has access?** panels on projects, time off types, expense types, and other items |
+| **Description** | The description panel on people, projects, tasks, and the account |
+
+The last four are the controls described in [Assignments](/help/documentation/assignments) — a role needs them to manage who has access to what.
+
+## Assigning a role to a person
 
 <Steps>
-  <Step title="Open the person's profile">
-    Go to **People** and click the person's name.
+  <Step title="Open the person">
+    Click **People** in the sidebar and click the person's name.
   </Step>
-  <Step title="Select a role">
-    In the **Role** dropdown, choose the role you want to assign.
+  <Step title="Open the Email & role panel">
+    In the person's details, open the **Email & role** panel.
   </Step>
-  <Step title="Save">
-    Click **Save**. The person's access updates immediately.
+  <Step title="Pick the role">
+    Next to **Role**, click the current role and choose another one from the **Choose a role** selector. The change is saved automatically.
   </Step>
 </Steps>
 
-<Info>
-  Changing a person's role takes effect immediately. If you reduce their permissions, features and data they previously accessed become hidden right away.
-</Info>
+## Best practices
 
----
-
-## Availability controls <Badge>Admin only</Badge>
-
-Availability controls determine which projects, absence types, expense types, tasks, and custom fields are enabled by default for everyone in your organization. Admins set the global defaults in account settings, and those defaults can then be overridden for individual tags, people, or projects.
-
-### How it works
-
-- **Global default** — Open **Account Settings** (click the button with your initials at the bottom of the sidebar) and look for the **Show or hide by default** section. Toggle each element type on or off for the entire organization.
-- **Override per tag** — Open a tag's settings and adjust its **Show or hide** attribute to make specific element types available or hidden for everyone in that tag, regardless of the global default.
-- **Override per person** — Open a person's profile and adjust their **Show or hide** attribute to give that individual a different set of defaults.
-- **Override per project** — Open a project's settings to control whether it appears in the project selector for people who have not been explicitly assigned to it.
-
-The following element types have availability controls:
-
-| Element | What it controls |
-|---------|-----------------|
-| **Show all projects** | Whether all projects appear by default in the project selector |
-| **Show all secondary projects** | Whether subprojects are shown alongside primary projects |
-| **Show all time off** | Whether all absence types appear by default in the timesheet |
-| **Show all expenses** | Whether all expense types appear by default |
-| **Show all tasks** | Whether tasks appear in the timesheet by default |
-| **Show all custom fields** | Whether custom fields are visible by default |
-
-<Info>
-  The availability system uses a cascade: the organization default applies first, then the tag setting, then the individual person or project override. A more specific setting always wins over a more general one.
-</Info>
-
-<Tip>
-  Hold **⌘** (Mac) or **Ctrl** (Windows) while toggling any availability checkbox to apply the change to all element types at once.
-</Tip>
-
----
-
-## Best practices <Badge>Admin only</Badge>
-
-- **Principle of least privilege** — Give each role only the permissions it needs. Start restrictive and add permissions as needed.
-- **Use descriptive role names** — Names like "Finance Viewer" or "Project Lead" make it clear what the role is for.
-- **Audit regularly** — Review roles periodically to ensure permissions still match your team structure, especially after organizational changes.
-- **Test before deploying** — After creating a new role, assign it to a test person and verify they see the correct pages and data.
-
----
+- **Grant the least access that works.** Start from **Not allowed** and add **View** before **Edit**, only for the targets each role really needs.
+- **Name roles after responsibilities.** Names like Project Lead or Finance make it obvious who should hold them.
+- **Prefer few roles over many.** Targets like **My team** and **My projects** adapt to each holder, so one Manager role can serve every manager.
+- **Review roles when your structure changes.** Targets follow manager and tag relationships — check that permissions still reach the right people after a reorganization.
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="People" href="/help/documentation/people">
-    Assign roles to team members from their person profile.
+  <Card title="Assignments" icon="user-check" href="/help/documentation/assignments">
+    Control which projects, time off types, and expense types are available to each person.
   </Card>
-  <Card title="Tags" href="/help/documentation/tags">
-    Use tags to group people and combine them with permission targets.
+  <Card title="People" icon="users" href="/help/documentation/people">
+    Add and invite team members, and manage their profiles and roles.
   </Card>
-  <Card title="Account Settings" href="/help/documentation/account-settings">
-    Configure organization-wide defaults that roles can access or restrict.
+  <Card title="Tags" icon="tag" href="/help/documentation/tags">
+    Group people and projects with tags — several permission targets follow tag managers.
+  </Card>
+  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
+    Configure the organization-wide settings that several permissions gate.
   </Card>
 </CardGroup>
-
----
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can one person have multiple roles?">
-    No. Each person is assigned exactly one role. If someone needs a combination of permissions, create a custom role that includes everything they need.
+  <Accordion title="What is the difference between roles and assignments in Beebole?">
+    Roles control what a person can do: view or edit timesheets, billing rates, reports, and so on. Assignments control which items are available to them: which projects they can log time against, or which time off types they can pick. Beebole applies both — a person needs the permission and the item.
   </Accordion>
-  <Accordion title="What happens if I delete a role that people are using?">
-    You cannot delete a role that is currently assigned to people. Reassign those people to a different role first, then delete the unused role.
+  <Accordion title="Can a person have more than one role?">
+    No. Each person in Beebole holds exactly one role. If someone needs a mix of permissions from two roles, duplicate one of them and adjust the copy.
   </Accordion>
-  <Accordion title="Can I restrict access to specific projects?">
-    Role permissions control the scope of access (me, my people, my projects, or organization). For project-specific access, combine role permissions with [assignments](/help/documentation/assignments) to control which projects appear for each person.
+  <Accordion title="What do Edit, View, and Not allowed mean?">
+    For each permission, **View** lets the role see the data and **Edit** lets it create, change, or delete it, each scoped to the targets you select. A permission with no targets selected shows **Not allowed**, and that area of Beebole is hidden from the role entirely.
   </Accordion>
-  <Accordion title="Do permission changes take effect immediately?">
-    Yes. When you save changes to a role, every person assigned to that role sees the updated access immediately — no logout or refresh required.
+  <Accordion title="Which roles does a new Beebole account include?">
+    Every new account starts with **Admin**, **Manager**, and **Employee**. The Admin role has the **Admin role (full access)** box checked, which grants every permission. You can edit these roles or add your own.
   </Accordion>
-  <Accordion title="Is there a minimum role I must keep?">
-    Yes. At least one person in your account must have the **Administrator** role to ensure account management is always possible. Beebole prevents you from removing the last administrator.
+  <Accordion title="Do I need to save after changing a role?">
+    No. Beebole saves every change to a role automatically — adding a target, unchecking a permission, or renaming the role. There is no Save button on the roles page.
   </Accordion>
 </AccordionGroup>

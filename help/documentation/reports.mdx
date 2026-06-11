@@ -1,125 +1,174 @@
 ---
-title: "Reports"
-description: "Analyze time, costs, billing, budgets, and project performance with Beebole's built-in reports — filter, group, export, and share insights with your team."
-keywords: ["Beebole reports", "time tracking reports", "project reports", "timesheet reports", "built-in reports", "how to run reports", "reporting software"]
-"og:title": "Built-in Reports in Beebole"
-"og:description": "Explore ready-made reports in Beebole for time, cost, and performance insights."
+title: "Reports: analyze time, billing, and costs — Beebole"
+sidebarTitle: "Reports"
+description: "Run reports in Beebole to analyze tracked time, billing, costs, and budgets — filter and group data, schedule email delivery, and export results."
+keywords: ["beebole", "time tracking reports", "project reports", "timesheet reports", "budget status report", "report scheduling", "report folders"]
+"og:title": "Beebole Reports: Analyze Tracked Time and Spending"
+"og:description": "Run reports in Beebole to analyze time, billing, costs, and budgets — filter, group, schedule email delivery, and export results."
 "og:type": "article"
 ---
 
-Beebole's reporting tools give you a complete picture of how your team spends time, what it costs, and how much it generates. Reports pull data from timesheets, expenses, and project configurations to answer questions about productivity, profitability, and resource allocation.
+Beebole's reports turn tracked time, expenses, and planned work into answers about productivity, billing, costs, and budgets. Reports live in the **Reports** section of the sidebar, organized into folders, and they run on live data — every time you open a report, Beebole fetches the latest numbers.
 
 <Info>
-  Reports respect each user's permissions. Team members only see data for the projects and people they have access to, based on their [role and authorizations](/help/documentation/roles-authorisations).
+  Reports respect each person's permissions. A report only ever shows the projects and people the viewer is authorized to see, based on their [role](/help/documentation/roles-authorisations).
 </Info>
 
 ---
 
-## Accessing reports
+## Open the Reports section
 
-Click **Reports** in the left sidebar to open the reporting area. From here you can run a quick report using the built-in options or create a fully customized report.
+Click **Reports** in the sidebar. The Reports menu on the left lists your report folders — click a folder to see the reports inside, or click **New folder** to add one.
 
----
+Each folder carries two settings that apply to every report inside it:
 
-## Built-in reports
-
-Beebole provides several ready-made reports that cover common needs:
-
-| Report | What it shows |
-|--------|---------------|
-| **Time by project** | Total hours logged per project over a date range |
-| **Time by person** | Total hours logged per person over a date range |
-| **Time by tag** | Hours grouped by tag for department or team-level views |
-| **Billing summary** | Billable amounts by project, person, or tag |
-| **Cost summary** | Internal costs by project, person, or tag |
-| **Budget progress** | Budget consumption versus target for each project |
-
-Built-in reports are a fast way to get answers without any configuration. For more advanced analysis, use [Custom reports](/help/documentation/custom-reports).
+- **A period** — the date range the reports cover, chosen with the period selector next to the folder name.
+- **Filters** — conditions added with the **Filters** button that narrow the data for the whole folder.
 
 ---
 
-## Report dimensions
+## Sample reports in a new account
 
-Every report in Beebole is based on a dimension — the type of record you want to analyze:
+The first time you open **Reports** in a new Beebole account, Beebole creates two sample folders with ready-made reports inside:
 
-| Dimension | Description |
-|-----------|-------------|
-| **Time records** | Individual time entries logged in timesheets |
-| **Expense records** | Expense entries logged against projects |
-| **Time off records** | Absence and leave entries with type, dates, and approval status |
+| Folder | Reports |
+|--------|---------|
+| **Monthly Timesheets** | **Hours by person & project**, **Absences by person** |
+| **Monthly Billing** | **Billing by person & project**, **Absence billing by person** |
 
-The dimension you choose determines which columns and filters are available.
-
----
-
-## Grouping and period options
-
-You can group report data by different time periods to control the level of detail:
-
-- **Year** — Annual totals
-- **Quarter** — Quarterly breakdowns
-- **Month** — Monthly summaries
-- **Week** — Weekly details
-
-You can also group by entity — project, person, tag, or any combination — to create multi-dimensional views.
-
-<Tip>
-  Combine period grouping with entity grouping for powerful analysis. For example, group by **Month** and **Project** to see how time allocation shifts across projects over time.
-</Tip>
+Sample reports are regular reports — open them to see how columns and grouping work, then edit, duplicate, or delete them like any report you create yourself.
 
 ---
 
-## Filtering reports
+## What reports can analyze
 
-Use filters to narrow your report to exactly the data you need:
+A report in Beebole is built on one or more record types:
 
-- **Date range** — Select a start and end date, or use presets like "This month" or "Last quarter"
-- **People** — Filter by specific team members
-- **Projects** — Include or exclude specific projects or categories
-- **Tags** — Filter by one or more tags
-- **Tasks** — Narrow to specific tasks or subprojects
-- **Approval status** — Show only approved, pending, or rejected entries
-- **Custom fields** — Filter by any [custom field](/help/documentation/custom-fields) values you have configured
+| Record type | What it contains |
+|-------------|------------------|
+| Time records | Time entries logged in timesheets — both working time and [time off](/help/documentation/timeoff). Absences are time records, not a separate report type. |
+| Expense records | [Expense](/help/documentation/expenses) entries, with amounts, quantities, and expense billing |
+| Task records | The planned effort of [tasks](/help/documentation/planning) |
 
-<Info>
-  Filters can be combined. For example, filter by a specific tag and date range to see all billable time for a department last quarter.
-</Info>
+The columns you add to a report determine which record types it fetches — see [Custom reports](/help/documentation/custom-reports) for how columns work. For time records, a report can also narrow its scope to **Absences only** or **Working time only**.
 
 ---
 
-## Columns and data fields
+## Run a report
 
-Customize which columns appear in your report. Available columns depend on your chosen dimension and include:
+Click a report's name in the folder to open it — Beebole runs it immediately and shows the results. Next to each report name, three buttons toggle how the results display:
 
-- **Time data** — Hours, days, overtime, work-from-home indicator
-- **Financial data** — Billing amount, cost amount, profit, margin percentage
-- **Budget data** — Budget target, consumed, remaining, percentage used
-- **Metadata** — Project code, person email, tag, custom field values, comments
+- **Table** — rows and columns, with sorting, subtotals, and a frozen header.
+- **Chart** — one of 11 chart types with configurable axes.
+- **Matrix** — a two-axis grid with a metric per cell and an optional heat map.
+
+You can keep several views open at once. Beebole remembers which views each report uses — like every report setting, the choice is saved automatically. The [Custom reports](/help/documentation/custom-reports) page covers building the output and using the chart and matrix views in detail.
 
 ---
 
-## Next steps
+## Periods and filters
 
-For more advanced reporting capabilities, see:
+### Set the period
 
-- [Custom reports](/help/documentation/custom-reports) — Build tailored reports with saved templates and categories
-- [Data exports](/help/documentation/data-exports) — Export report data to CSV or Excel
-- [Excel add-in](/help/documentation/excel-addin) — Pull Beebole data directly into Excel
-- [Google Sheets add-on](/help/documentation/gsheets-addon) — Connect Beebole to Google Sheets
+The period selector next to the folder name controls the date range for every report in the folder. Choose a target — **Current**, **Previous**, **Next**, **Year to date**, **Last 12 months**, or **Custom** with explicit start and end dates — and, for the first three, a granularity: **Day**, **Week**, **Bi-week**, **Semi-month**, **Month**, **Quarter**, or **Year**.
+
+A single report can override its folder's period: open the report's **⋯** action menu and click **Period**. To drop the override and follow the folder again, click **Reset period** in the same menu.
+
+### Filter the data
+
+Add filters with the folder's **Filters** button, or per report via the **⋯** action menu's **Filter** entry. Available filter types:
+
+| Filter | What it narrows |
+|--------|-----------------|
+| **Person**, **Project**, **Task** | Specific people, projects, or tasks |
+| **Owner**, **Status** | Tasks by their owner or status |
+| **Person tag**, **Project tag**, **Task tag** | Entities carrying a given [tag](/help/documentation/tags) |
+| **Work location** | **Work from home** or **On-site** time entries |
+| **Absence/working time** | **Absence time only**, **Working time only**, or **Both** |
+
+Filters combine, and each condition can include or exclude. Filter and period changes are saved automatically and the open report re-runs.
+
+---
+
+## The report action menu
+
+Every report has a **⋯** action menu with its management actions:
+
+| Action | What it does |
+|--------|--------------|
+| **Duplicate** | Creates a copy of the report in the same folder |
+| **Filter** | Adds a filter condition to this report |
+| **Period** | Sets a period override for this report |
+| **Schedule** | Opens the **Schedule report** dialog for email delivery |
+| **Export** | Downloads the results as **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF**, **Chart (PNG)**, **Matrix (CSV)**, **Matrix (Excel)**, or **Matrix (PDF)** |
+| **Copy** | Copies the report so you can **Paste** it into another folder's menu |
+| **Share** | Shares the report with teammates |
+| **Reset period** | Removes the report's period override (shown only when one is set) |
+| **Delete** | Deletes the report |
+
+For recurring spreadsheet workflows, see [Data exports](/help/documentation/data-exports) and the [Excel add-in](/help/documentation/excel-addin) and [Google Sheets add-on](/help/documentation/gsheets-addon), which refresh saved report data from inside your spreadsheet.
+
+---
+
+## Email a report on a schedule
+
+Beebole can run a report on a recurring schedule and email the results.
+
+<Steps>
+  <Step title="Open the schedule dialog">
+    Open the report's **⋯** action menu and click **Schedule**. The **Schedule report** dialog opens.
+  </Step>
+  <Step title="Enable the schedule">
+    Switch the toggle from **Disabled** to **Enabled** to reveal the schedule settings.
+  </Step>
+  <Step title="Choose the report period">
+    Under **Report period**, pick what each delivery covers: **Current** or **Previous** combined with **Day**, **Week**, **Bi-week**, **Semi-month**, **Month**, or **Quarter** — or **Year to date** / **Last 12 months**.
+  </Step>
+  <Step title="Set the send timing">
+    Under **Send timing**, choose **Before end of period**, **After end of period**, or **Day of month**, plus an offset — for example, 2 days after the end of each month. Under **Send at**, pick the hour of delivery.
+  </Step>
+  <Step title="Add recipients">
+    Under **Send to**, type an email address and click **Add**. Repeat for each recipient.
+  </Step>
+</Steps>
+
+On schedule, Beebole runs the report and emails each recipient a link to the results. Every setting in the dialog is saved automatically as you change it.
+
+---
+
+## Budget Status
+
+When your subscription includes budgets, a **Budget Status** entry appears at the top of the Reports menu. It shows every project that has a [budget](/help/documentation/budgets) as a progress bar: the solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Budgets set on subprojects roll up into their parent project's bar.
+
+Controls at the top of the page:
+
+| Control | Options |
+|---------|---------|
+| View | **Hours**, **Billing**, **Costs** — toggle any combination |
+| Status filter | **All**, **> 80%** (at risk), **Over budget** |
+| **Sort:** | **% consumed**, **Name**, **Remaining** |
+| **Filters** | Narrow by project or project tag |
+| **Show archived** | Include archived projects |
+| **Export** | **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF** |
+
+Beebole can also notify you automatically when a budget passes its alert threshold or goes over budget — see the [Budgets](/help/documentation/budgets) page for how budget alerts work.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Custom Reports" href="/help/documentation/custom-reports">
-    Build tailored reports with saved templates and chart visualizations.
+  <Card title="Custom Reports" icon="table-columns" href="/help/documentation/custom-reports">
+    Build report output with columns, grouping, charts, and the matrix view.
   </Card>
-  <Card title="Cost Rates" href="/help/documentation/costs">
-    Configure cost rates so financial data appears in your reports.
+  <Card title="Budgets" icon="coins" href="/help/documentation/budgets">
+    Set billing, cost, or hours budgets on projects and track them against targets.
   </Card>
-  <Card title="Budgets" href="/help/documentation/budgets">
-    Monitor budget consumption alongside time and billing data.
+  <Card title="Data Exports" icon="file-export" href="/help/documentation/data-exports">
+    Download report results for offline analysis and sharing.
+  </Card>
+  <Card title="Cost Rates" icon="money-bill-trend-up" href="/help/documentation/costs">
+    Configure cost rates so cost and profit columns show data in reports.
   </Card>
 </CardGroup>
 
@@ -128,19 +177,19 @@ For more advanced reporting capabilities, see:
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I schedule reports to run automatically?">
-    Beebole supports exporting report data on demand. For automated workflows, use the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon) to refresh data in your spreadsheets.
+  <Accordion title="Does Beebole include ready-made reports?">
+    Yes. A new Beebole account starts with two sample folders — **Monthly Timesheets** and **Monthly Billing** — containing four ready-made reports, including **Hours by person & project**. They are regular reports you can run, edit, or delete, and they double as examples for building your own.
   </Accordion>
-  <Accordion title="Why do I see different data than my colleague in the same report?">
-    Reports respect user permissions. Each person only sees data for the projects and people they are authorized to access. An admin sees all data, while a team leader sees only their team's entries.
+  <Accordion title="Can Beebole email me a report automatically?">
+    Yes. Open the report's **⋯** action menu and click **Schedule**. In the **Schedule report** dialog you choose the period each delivery covers, when to send it, and who receives it. Beebole then runs the report on schedule and emails each recipient a link to the results.
   </Accordion>
-  <Accordion title="Can I include custom fields in my reports?">
-    Yes. Any [custom field](/help/documentation/custom-fields) you create is available as both a column and a filter in reports. This lets you slice data by project type, region, priority, or any other custom attribute.
+  <Accordion title="Can I report on time off?">
+    Yes. In Beebole, absences are time records, so any time-based report can include them. Add an **Absence type** column to break results down by leave type, or narrow a report to **Absences only** — the sample report **Absences by person** shows this setup.
   </Accordion>
-  <Accordion title="How far back can I run reports?">
-    Reports can cover any date range within your account's history. There is no time limit — all data since your account was created is available for reporting.
+  <Accordion title="Why do I see different data than a colleague in the same report?">
+    Reports respect permissions. Each person only sees the projects and people their [role](/help/documentation/roles-authorisations) allows, so the same report can return different rows for different viewers.
   </Accordion>
-  <Accordion title="Do archived projects appear in reports?">
-    Yes. Archived projects and their time entries are fully available in reports. Archiving only removes a project from active timesheets, not from historical data.
+  <Accordion title="What formats can I export a report to?">
+    Beebole exports report results as JSON, CSV, TSV, Excel (XLSX), or PDF, plus the chart as a PNG image and the matrix view in CSV, Excel, or PDF. For spreadsheets that refresh themselves, connect a saved report to the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon).
   </Accordion>
 </AccordionGroup>

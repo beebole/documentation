@@ -1,118 +1,131 @@
 ---
-title: "Expenses"
-description: "Configure expense types and track project expenses in Beebole to capture billable and non-billable costs alongside time for accurate reporting."
-keywords: ["Beebole expenses", "expense tracking", "project expenses", "expense types", "expense reports", "how to track expenses"]
-"og:title": "Expense Tracking in Beebole"
-"og:description": "Learn how to configure expense types and track project expenses in Beebole."
+title: "Expense tracking: categories, records, and reports — Beebole"
+sidebarTitle: "Expenses"
+description: "Track project and employee expenses in Beebole — create expense categories, log amounts or quantities, and report on spending alongside time."
+keywords: ["beebole", "expense tracking", "project expenses", "expense types", "expense reports", "billing markup", "how to track expenses"]
+"og:title": "Expense Tracking in Beebole: Categories and Reports"
+"og:description": "Learn how to create expense categories and track project and employee expenses in Beebole."
 "og:type": "article"
 ---
 
-Beebole's expense tracking lets you record and manage project-related expenses alongside time entries. Expenses are categorized by type and can be included in reports for a complete picture of project costs.
+Beebole's expense tracking lets you record spending — travel, meals, mileage, equipment — against the projects and people it belongs to. Expenses are grouped into categories you define, can carry a billing markup, and appear in reports and budgets alongside tracked time.
+
+<Info>
+  Expense tracking is not included in every Beebole plan. If you don't see expense features in your account, review your plan and add-ons on the [Subscription](/help/documentation/subscription) page.
+</Info>
 
 ---
 
-## Expense types
+## How expenses work in Beebole
 
-Before your team can log expenses, you need to define the expense types they'll use. Expense types categorize spending into meaningful groups.
+Expense tracking has two building blocks:
 
-### Creating expense types
+- **Expense types** — The categories of spending your organization recognizes (Travel, Meals, Equipment, …). You create them once in Beebole's settings.
+- **Expense records** — The individual entries: a date, a category, an amount or quantity, and an optional note. You log them on the **Expenses** panel of a person or a project.
+
+Every expense record must be linked to at least a person or a project — it can be linked to both, so you know who incurred the expense and which project it is charged to.
+
+---
+
+## Creating expense types
 
 <Steps>
-  <Step title="Open Settings">
-    Go to **Settings** > **Expense types**.
+  <Step title="Open the Expense Type settings">
+    Click the button with your initials at the bottom of the sidebar, then go to **Settings** > **Expense Type**.
   </Step>
   <Step title="Add an expense type">
-    Click **[+]** and enter a name for the type (e.g., Travel, Meals, Equipment, Software licenses).
+    Click **+ Add Expense Type**, enter a **Name** (e.g., "Travel", "Meals", "Mileage"), and click **Add Expense Type**.
   </Step>
-  <Step title="Configure the type">
-    Toggle **Currency** on for monetary expenses, off for unit-based expenses (e.g., kilometres, meals). Optionally set the **Billing markup in %** for client billing, and enable **Impacts budget** if entries of this type should count against project budgets.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The expense type is now available for logging.
+  <Step title="Configure the Details panel">
+    In the expense type's **Details** panel, check **Currency** if entries of this type are monetary amounts; leave it unchecked for quantity-based expenses such as kilometers or meals. Changes are saved automatically.
   </Step>
 </Steps>
 
+For currency-based expense types, two more settings appear in the **Details** panel:
+
+| Setting | What it does |
+|---------|--------------|
+| **Billing markup in %** | The percentage applied to the expense amount when calculating the billed amount in reports. The billed amount is `expense amount × markup / 100`, so a markup of 100 bills the expense at cost. |
+| **Impacts budget** | When enabled, expenses of this type count toward project [budgets](/help/documentation/budgets). |
+
 ---
 
-## Controlling expense types per project
+## Controlling who can use an expense type
 
-Not every expense type applies to every project. You can control which expense types are available on each project through [Assignments](/help/documentation/assignments):
+Each expense type has a **Who has access?** panel where you assign it to specific people, tags, or projects — for example, mileage reimbursement for field staff only.
 
-- By default, all expense types are available on all projects.
-- Restrict specific types to specific projects when needed.
-- Override availability at the tag or person level.
+The organization-wide default is the **Show all expenses** toggle in your organization's **Show or hide by default** panel: when it's on, every expense type is available unless you exclude it; when it's off, an expense type is only available where you assign it. See [Assignments](/help/documentation/assignments) for the full availability model.
 
 ---
 
 ## Logging expenses
 
-Team members log expenses from their timesheet or from the project view:
+You log expense records on the **Expenses** panel of a person or a project:
 
 <Steps>
-  <Step title="Select the project">
-    Choose the project the expense relates to.
+  <Step title="Open the person or project">
+    Click **People** or **Projects** in the sidebar and select the person who incurred the expense or the project it is charged to.
   </Step>
-  <Step title="Add an expense entry">
-    Select the expense type, enter the amount (or quantity), date, and an optional description.
+  <Step title="Open the Expenses panel">
+    In the detail panel, open the **Expenses** panel.
   </Step>
-  <Step title="Save">
-    The expense is recorded and included in project cost tracking.
+  <Step title="Add the expense">
+    Click **Add**, then pick a category with **Select expense category**. Beebole creates the record, dated today, and saves it automatically.
+  </Step>
+  <Step title="Fill in the details">
+    Adjust the **Date**, enter the **Amount** (for currency-based categories, with its own currency) or **Quantity** (for unit-based categories), link the **Project** — or the **Person** when you started from a project — and add an optional **Note**. Every change is saved automatically.
   </Step>
 </Steps>
+
+To remove an expense record, open it in the **Expenses** panel and click the trash button (**Delete**).
+
+<Info>
+  What a person can see and do in the **Expenses** panel depends on the **Expense records** permission of their role. See [Roles and authorizations](/help/documentation/roles-authorisations).
+</Info>
 
 ---
 
 ## Expenses in reports
 
-Expense data appears in [Reports](/help/documentation/reports) when you select the **Expense records** dimension. You can group and filter expenses by project, person, expense type, and date range.
+To analyze spending, click **Reports** in the sidebar and choose **Expenses** as the report's source. You can group expense records by expense type, person, project, tag, or period, and filter them like any other report. Expense columns include **Expense amount**, **Expense quantity**, and **Expense billing** — the billed amount with the category's markup applied. See [Reports](/help/documentation/reports) for folders, charts, sharing, and exports.
 
-<Info>
-  Expenses with markup are automatically calculated in reports — showing both the base cost and the marked-up amount for client billing.
-</Info>
-
----
-
-## Budget tracking for expenses
-
-Expense amounts contribute to project [budgets](/help/documentation/budgets) when cost budgets are configured. This means you can monitor total project spending — including both labor costs and expenses — against a single budget target.
-
-To track expenses against a budget, set a **cost budget** on the project. As team members log expenses, the amounts are added to the budget consumption alongside time-based cost calculations.
-
-<Tip>
-  Review budget progress regularly in [Reports](/help/documentation/reports) to catch overspending early. Beebole does not block expense entries when a budget is exceeded.
-</Tip>
+For expense types with **Impacts budget** enabled, expense amounts also count toward the project's budget consumption, alongside time-based costs — track them in the **Budget Status** report described in [Budgets](/help/documentation/budgets).
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Projects" href="/help/documentation/projects">
-    Configure which expense types are available per project.
+  <Card title="Budgets" icon="chart-bar" href="/help/documentation/budgets">
+    Set billing, cost, and hours targets on projects and monitor consumption — including expenses.
   </Card>
-  <Card title="Cost Rates" href="/help/documentation/costs">
-    Track internal labor costs alongside project expenses.
+  <Card title="Reports" icon="chart-line" href="/help/documentation/reports">
+    Build, filter, and share reports on time and expense records.
   </Card>
-  <Card title="Custom Reports" href="/help/documentation/custom-reports">
-    Build expense reports with custom dimensions and filters.
+  <Card title="Assignments" icon="user-check" href="/help/documentation/assignments">
+    Control which expense types, projects, and absence types are available to each person.
+  </Card>
+  <Card title="Projects" icon="folder" href="/help/documentation/projects">
+    Create the projects that expenses and budgets are tracked against.
   </Card>
 </CardGroup>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can expenses go through the approval workflow?">
-    Yes. Expenses are included in the [approval workflow](/help/documentation/approval) alongside time entries.
+  <Accordion title="Do expenses go through the approval workflow?">
+    No. Beebole's approval workflow covers timesheets and time-off requests. Expense records are not submitted or approved — anyone with the **Expense records** permission can add and edit them directly.
   </Accordion>
-  <Accordion title="Can I set a budget for expenses?">
-    Expense amounts contribute to project [budgets](/help/documentation/budgets) when cost budgets are configured.
+  <Accordion title="Can I track mileage or other unit-based expenses?">
+    Yes. Leave the **Currency** setting unchecked on the expense type, and Beebole records a **Quantity** instead of a monetary amount — useful for kilometers, meals, or any per-unit expense.
+  </Accordion>
+  <Accordion title="How does the billing markup work?">
+    Each currency-based expense type has a **Billing markup in %** setting. In reports, the **Expense billing** column shows `expense amount × markup / 100` — so a markup of 100 bills the expense at cost, and a markup of 120 adds 20%.
   </Accordion>
   <Accordion title="Can I restrict who can log certain expense types?">
-    Yes. Use [Assignments](/help/documentation/assignments) to control expense type availability by person, tag, or project.
+    Yes. Use the expense type's **Who has access?** panel in Beebole to assign it to specific people, tags, or projects, and the organization's **Show all expenses** toggle to set the default for everyone else.
   </Accordion>
-  <Accordion title="How does markup work on expenses?">
-    When you configure a markup percentage on an expense type, Beebole automatically calculates the marked-up amount for client billing. Reports show both the base cost and the marked-up amount.
+  <Accordion title="What currency is an expense recorded in?">
+    Each expense record carries its own currency, which you can change on the **Amount** field. The default comes from the person's currency settings, or from the organization's currency when the record is linked only to a project.
   </Accordion>
 </AccordionGroup>
-
----

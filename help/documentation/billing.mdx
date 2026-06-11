@@ -1,111 +1,132 @@
 ---
-title: "Billing Rates"
-description: "Set up billing rates in Beebole at the person, project, tag, or organization level to track billable hours and forecast client revenue accurately."
-keywords: ["Beebole billing", "billing rates", "billable time", "billable hours", "project billing", "client billing", "how to set billing rates"]
-"og:title": "Billing Rates in Beebole"
-"og:description": "Learn how to configure billing rates in Beebole for accurate revenue tracking."
+title: "Billing rates: turn tracked time into revenue — Beebole"
+sidebarTitle: "Billing Rates"
+description: "Set billing rates in Beebole at the organization, tag, project, or person level and turn tracked hours into billable amounts in reports."
+keywords: ["beebole", "billing rates", "billable hours", "project billing", "client billing", "hourly rate", "how to set billing rates"]
+"og:title": "Setting Up Billing Rates for Client Work in Beebole"
+"og:description": "Learn how to configure billing rates in Beebole and turn tracked time into billable amounts."
 "og:type": "article"
 ---
 
-Beebole's billing rates let you track how much revenue your team's work generates. Billing rates can be configured at multiple levels — organization, tag, project, or person — and Beebole automatically calculates billable amounts based on tracked time.
+Beebole's billing rates turn tracked time into revenue figures. You define what an hour, a day, or a piece of work is worth, and Beebole calculates billable amounts from the time your team logs — ready to analyze in reports and to measure against budgets.
+
+<Info>
+  Billing rates are available on paid Beebole plans. Who can view and edit them is controlled by the **Billing rates** permission — see [Roles & permissions](/help/documentation/roles-authorisations).
+</Info>
 
 ---
 
-## Rate methods
+## Billing methods
 
-Beebole supports several billing rate methods:
+Each billing rate uses one of four methods:
 
-| Method | Description |
-|--------|-------------|
-| **Hourly** | A fixed amount per hour worked |
-| **Daily** | A fixed amount per day worked |
-| **Fixed fee** | A flat fee regardless of time spent |
-| **Non-billable** | Mark time as non-billable (no revenue calculated) |
+| Method | What it means |
+|--------|---------------|
+| **Hourly rate** | A fixed amount per hour worked |
+| **Daily rate** | A fixed amount per day worked |
+| **Fixed fee** | A flat amount, regardless of time spent — optionally repeating |
+| **Non-billable** | No billing amount is calculated for the time covered by this rate |
 
 ---
 
 ## Where to set billing rates
 
-Billing rates can be defined at five levels. When multiple rates exist, Beebole uses the most specific one:
+Billing rates live in the **Billing** section of an entity's settings panel. You can set them at four levels: organization, tag, project, and person.
 
-| Priority | Level | Use case |
-|----------|-------|----------|
-| 1 (highest) | **Person** | A contractor with a unique rate |
-| 2 | **Task** | A specific task billed at a different rate |
-| 3 | **Project** | A client project with a negotiated rate |
-| 4 | **Tag** | A department-wide default rate |
-| 5 (lowest) | **Organization** | A company-wide default rate |
+| Level | Typical use |
+|-------|-------------|
+| **Organization** | A company-wide default rate |
+| **Tag** | A default for everything under the tag — a department or a client group, for example |
+| **Project** | A rate negotiated for one project, including its subprojects |
+| **Person** | A rate tied to one person, such as a contractor |
 
-### On a person
+To open the **Billing** section at each level:
 
-Open a person's profile in [People](/help/documentation/people) and navigate to their billing settings. This rate applies to all time this person logs, unless overridden by a project-level rate.
+- **Organization** — click the button with your initials at the bottom of the sidebar, then go to **Settings** > **Account Settings**.
+- **Tag** — click **Tags** in the sidebar, then the tag's name.
+- **Project** — click **Projects** in the sidebar, then the project's name.
+- **Person** — click **People** in the sidebar, then the person's name.
 
-### On a task
+### Adding a billing rate
 
-Open a project in [Projects](/help/documentation/projects) and navigate to its tasks. Set a billing rate on a specific task to override the project-level rate for that task only.
+<Steps>
+  <Step title="Open the Billing section">
+    In the entity's settings panel, scroll to **Billing**.
+  </Step>
+  <Step title="Add a rate">
+    Click **Add** (**Add a new billing rate**).
+  </Step>
+  <Step title="Set the start date">
+    Pick the **From** date — the date the rate takes effect.
+  </Step>
+  <Step title="Choose the method and amount">
+    Select a **Billing method** and enter the **Amount** with its currency. Changes are saved automatically.
+  </Step>
+</Steps>
 
-### On a project
+<Info>
+  Rates set on the organization or on a tag cascade down: a project or person without its own rate shows the rate it inherits. Adding a rate directly on the project or person overrides the inherited one.
+</Info>
 
-Open a project in [Projects](/help/documentation/projects) and configure its billing rate. You can optionally **split by person** to set different rates for different team members on the same project.
+---
 
-### On a tag
+## Which rate applies to a time entry
 
-Open a tag in [Tags](/help/documentation/tags) and set a billing rate. This rate applies to all people and projects within that tag, unless overridden at a more specific level.
+When several billing rates could apply to the same time entry, the most specific rate wins. For each entry, Beebole looks for a rate in this order:
 
-### At the organization level
+1. **The project the time was logged against** — starting at the deepest subproject and walking up the project hierarchy.
+2. **The person who logged the time** — used when no project in the chain has a rate.
 
-Open **Account Settings** to define the default billing rate for your entire account. This serves as the fallback when no other rate is configured.
+Rates inherited from tags or from the organization count as the rate of the project or person they cascade to, so a company-wide default still applies through this same lookup. Billing rates cannot be set directly on a task; time tracked on a task is billed through the project and person rates above.
 
 ---
 
 ## Rate splits
 
-For projects where different team members bill at different rates, use **rate splits**:
+With an **Hourly rate** or **Daily rate**, you can replace the single amount with per-entity amounts. The split options are:
 
-- **Split by person** — Set a specific rate for each person assigned to the project.
-- **Split by project** — When a tag-level rate needs per-project overrides.
-- **Flat** — One rate applies to everyone equally.
+- **No split** — one amount applies to everyone.
+- **Split by persons** — a separate amount for each person you add to the list. Available on organizations, tags, and projects.
+- **Split by projects** — a separate amount for each project you add to the list. Useful on a person or tag whose work is billed differently per project.
 
----
-
-## Effective dates
-
-Billing rates can have start and end dates, so rates change automatically over time. This is useful for:
-
-- Annual rate increases
-- Contract renewals with new terms
-- Temporary promotional rates
+Each row in a split has its own **Amount**, and a **Non-billable** checkbox to exclude that person or project from billing entirely.
 
 ---
 
-## Recurring rates
+## Changing rates over time
 
-Recurring rates let you define a repeating rate pattern that applies automatically over time. This is useful when rates follow a predictable cycle — for example, seasonal adjustments or periodic rate increases that repeat annually.
+Each billing rate has a single **From** date. The rate applies to time entries dated on or after that date, until a rate with a later **From** date takes over. To raise a project's rate from January 1, add a new rate starting January 1 — entries before that date keep the old rate, with no recalculation needed.
 
-To set up a recurring rate, configure the rate with a start date and a recurrence interval. Beebole applies the rate pattern automatically for each cycle.
+You can also click **Duplicate** inside a rate card to copy an existing rate as the starting point for the new one.
 
 ---
 
-## Viewing billing data in reports
+## Recurring fixed fees
 
-Billing amounts appear automatically in [Reports](/help/documentation/reports) when you include billing-related columns. You can group and filter by project, person, tag, or time period to analyze revenue from any angle.
+A **Fixed fee** applies once. To bill it repeatedly — a monthly retainer, for example — turn on **Repeat** in the rate card and choose how often it recurs: **Every** 1 or more days, weeks, months, or years. Choose **End** to stop the repetition on a given date, or **Do not end** to let it run indefinitely.
+
+---
+
+## Billing in reports
+
+Tracked time is multiplied by the resolved rate and shown in [reports](/help/documentation/reports). In a [custom report](/help/documentation/custom-reports), add the **Billing** column to see billable amounts, and group by project, person, tag, or period to analyze revenue from any angle. When [cost rates](/help/documentation/costs) are configured too, the **Margin** column shows billing minus cost.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Subscription & Billing" icon="credit-card" href="/help/documentation/subscription">
-    Manage your Beebole plan, payment method, and invoices.
-  </Card>
-  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
-    Manage your organization profile and feature settings.
+  <Card title="Cost Rates" icon="coins" href="/help/documentation/costs">
+    Track what the same work costs you internally and measure margins.
   </Card>
   <Card title="Budgets" icon="chart-pie" href="/help/documentation/budgets">
-    Set billing, cost, and hours targets on your projects.
+    Set billing, cost, and hours targets on projects and monitor progress.
   </Card>
-  <Card title="Reports" icon="chart-bar" href="/help/documentation/reports">
-    Analyze billing data across projects, people, and time periods.
+  <Card title="Custom Reports" icon="table" href="/help/documentation/custom-reports">
+    Build reports with billing and cost columns, grouped and filtered your way.
+  </Card>
+  <Card title="Projects" icon="folder-tree" href="/help/documentation/projects">
+    Create and organize the projects and subprojects your team bills time to.
   </Card>
 </CardGroup>
 
@@ -113,19 +134,18 @@ Billing amounts appear automatically in [Reports](/help/documentation/reports) w
 
 <AccordionGroup>
   <Accordion title="What happens if no billing rate is set?">
-    Time entries without a billing rate are treated as non-billable. They still appear in reports but with zero billing amount.
+    Beebole calculates no billing amount for that time. The hours still appear in reports, but the **Billing** column stays empty for those entries until a rate at some level applies to them.
   </Accordion>
-  <Accordion title="Can I mark individual time entries as non-billable?">
-    Yes. Each time entry has a non-billable flag that overrides the default rate for that specific entry.
-  </Accordion>
-  <Accordion title="Can I set different rates for the same person on different projects?">
-    Yes. Use project-level rate splits by person. The project rate takes priority over the person's default rate.
-  </Accordion>
-  <Accordion title="How do recurring rates work?">
-    Recurring rates repeat a rate pattern over time. This is useful for rates that follow a predictable cycle, such as seasonal adjustments.
+  <Accordion title="Can I bill the same person at different rates on different projects?">
+    Yes. Set a billing rate on each project — project rates take priority over the person's own rate in Beebole. On a single project, use **Split by persons** to give each team member their own amount.
   </Accordion>
   <Accordion title="Can I set a billing rate on a specific task?">
-    Yes. Task-level billing rates override the project-level rate. This is useful when certain tasks within a project are billed at a different rate.
+    No. In Beebole, billing rates are set on the organization, tags, projects, and people. Time tracked on a task is billed through the rate of the project it was logged against, or the person's rate.
+  </Accordion>
+  <Accordion title="How do I change a rate without affecting past entries?">
+    Add a new rate with a **From** date set to when the change starts. Beebole applies each rate only to time entries dated on or after its From date, so earlier entries keep the previous rate.
+  </Accordion>
+  <Accordion title="How do I mark work as non-billable?">
+    Choose the **Non-billable** billing method on the relevant project, person, or tag, or tick the **Non-billable** checkbox next to a person or project inside a rate split. Beebole then calculates no billing amount for that time.
   </Accordion>
 </AccordionGroup>
-

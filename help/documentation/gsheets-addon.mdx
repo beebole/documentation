@@ -1,138 +1,141 @@
 ---
-title: "Google Sheets Add-on"
-description: "Install the Beebole Google Sheets add-on to pull time tracking, billing, and project data straight into your spreadsheets for live reports and analysis."
-keywords: ["Beebole Google Sheets add-on", "Google Sheets integration", "spreadsheet reporting", "Google Sheets time tracking", "pull data into Google Sheets", "beebole"]
-"og:title": "Beebole Google Sheets Add-on"
-"og:description": "Pull Beebole time, billing, and project data directly into Google Sheets with the official add-on."
+title: "Google Sheets Add-on: Link Sheets to Reports — Beebole"
+sidebarTitle: "Google Sheets Add-on"
+description: "Link Google Sheets to your saved Beebole reports and refresh time tracking, billing, and project data from a sidebar — no manual exports."
+keywords: ["beebole", "Beebole Google Sheets add-on", "Google Sheets time tracking reports", "refresh report data in Google Sheets", "link sheet to report", "spreadsheet reporting"]
+"og:title": "Beebole Google Sheets Add-on: Refresh Reports in Sheets"
+"og:description": "Link any Google Sheets sheet to a saved Beebole report and refresh your time tracking data from a sidebar."
 "og:type": "article"
 ---
 
-The Beebole Google Sheets add-on connects your Beebole account directly to Google Sheets. Pull time tracking, billing, cost, and project data into your spreadsheet without manual exports — and refresh it whenever you need the latest figures.
+The Beebole Google Sheets add-on links sheets in your spreadsheet to your saved Beebole reports. Instead of exporting files and importing them by hand, you save a report once in Beebole, link a sheet to it, and refresh the data from the **Beebole Reports** sidebar whenever you need the latest figures.
+
+<Info>
+  The add-on loads saved reports. Build and save the report you need in Beebole first — its columns, filters, and period all come from the report configuration, not from the add-on.
+</Info>
 
 ---
 
-## What the add-on does
+## How the add-on works
 
-The Google Sheets add-on lets you:
+Each sheet links to one saved Beebole report. When you refresh, the add-on runs the report in your Beebole account, clears the linked sheet, and writes a header row followed by the report data. The links are stored in the spreadsheet, so they travel with the file when you share it.
 
-- **Pull report data** directly into Google Sheets
-- **Choose dimensions and filters** using the same options available in [Beebole reports](/help/documentation/reports)
-- **Refresh data on demand** to get updated figures without reconfiguring
-- **Build shared dashboards** by combining Beebole data with Google Sheets formulas, charts, and pivot tables
-
-<Info>
-  The add-on pulls data from your Beebole account in real time. It does not store a copy of your data — each refresh fetches the latest information.
-</Info>
+The add-on connects with your Beebole API key — you never enter a password. The key is stored privately for your Google account and is never saved inside the spreadsheet.
 
 ---
 
 ## Installing the add-on
 
 <Steps>
-  <Step title="Open Google Sheets">
-    Go to [sheets.google.com](https://sheets.google.com) and open a new or existing spreadsheet.
+  <Step title="Open the Google Workspace Marketplace">
+    In Google Sheets, click **Extensions** > **Add-ons** > **Get add-ons**.
   </Step>
-  <Step title="Open the add-ons menu">
-    Click **Extensions** > **Add-ons** > **Get add-ons** to open the Google Workspace Marketplace.
+  <Step title="Install the Beebole add-on">
+    Search for **Beebole**, open the add-on, and click **Install**. Grant the requested permissions when prompted.
   </Step>
-  <Step title="Search for Beebole">
-    Search for **Beebole** in the marketplace and click **Install**. Grant the requested permissions when prompted.
-  </Step>
-  <Step title="Sign in to your Beebole account">
-    After installation, open the add-on from **Extensions** > **Beebole**. Sign in with your Beebole credentials.
+  <Step title="Open the sidebar">
+    In the **Extensions** menu, open the Beebole add-on and click **Open Beebole Reports**. Once installed, the sidebar also opens automatically when you open the spreadsheet.
   </Step>
 </Steps>
 
-<Tip>
-  The add-on works in any modern web browser. Since Google Sheets is cloud-based, your data and dashboards are accessible from any device.
-</Tip>
-
 ---
 
-## Pulling data into Google Sheets
+## Connecting with your API key
+
+The first time you open the sidebar, the add-on asks for your Beebole API key.
 
 <Steps>
-  <Step title="Open the Beebole add-on">
-    Go to **Extensions** > **Beebole** to open the add-on sidebar.
+  <Step title="Copy your API key from Beebole">
+    In Beebole, click the button with your initials at the bottom of the sidebar, then **API Key**. Click **Copy**.
   </Step>
-  <Step title="Select a dimension">
-    Choose the type of data you want: **Time records**, **Expense records**, or **Task records**.
-  </Step>
-  <Step title="Configure filters">
-    Set a date range and apply filters for people, projects, tags, or custom fields — just like in [Beebole reports](/help/documentation/reports).
-  </Step>
-  <Step title="Choose columns">
-    Select which data fields to include: hours, billing amounts, cost rates, project codes, custom fields, and more.
-  </Step>
-  <Step title="Insert the data">
-    Click **Insert** to pull the data into the active sheet. The add-on populates cells starting from your selected position.
+  <Step title="Paste the key into the add-on">
+    In the sidebar, paste the key into the **API Key** field and click **Connect**.
   </Step>
 </Steps>
 
+<Info>
+  The API key gives the add-on the same access as your Beebole account: you only see the saved reports — and the data — that your [role and authorizations](/help/documentation/roles-authorisations) allow. The **Reset** button next to your API key in Beebole revokes the current key and generates a new one.
+</Info>
+
 ---
 
-## Refreshing data
+## Linking a sheet to a report
 
-Click **Refresh** in the Beebole add-on sidebar to re-run your query and update the data in your spreadsheet with the latest figures from Beebole.
+<Steps>
+  <Step title="Open the add-link form">
+    In the sidebar, click **+ Add link** under **Beebole reports linked**.
+  </Step>
+  <Step title="Pick a report">
+    In the **Add Report Link** form, select one of your saved Beebole reports in the **Report** field.
+  </Step>
+  <Step title="Pick a sheet">
+    Choose an existing sheet in the **Sheet** field, or type a name in **New sheet name** to create one.
+  </Step>
+  <Step title="Confirm">
+    Click **Add Link**. The link appears in the **Beebole reports linked** table.
+  </Step>
+</Steps>
+
+To remove a link, click the **✕** button next to it in the table. This removes the link only — the sheet and its current data stay in place.
+
+---
+
+## Refreshing your data
+
+In the **Refresh** section of the sidebar:
+
+- **Refresh This Sheet** — refreshes the sheet you are currently viewing.
+- **Refresh All** — refreshes every linked sheet in the spreadsheet.
+
+The add-on also refreshes automatically: when you open the spreadsheet, the sidebar opens and refreshes every linked sheet.
 
 <Warning>
-  Refreshing replaces the existing data in cells populated by the add-on. Place your own formulas, charts, and analysis in separate columns or sheets to avoid them being overwritten.
+  Refreshing clears the linked sheet before writing the new data. Anything you typed into that sheet — formulas, notes, formatting — is removed. Keep your own calculations and charts in separate sheets that reference the linked one.
 </Warning>
 
----
-
-## Building dashboards in Google Sheets
-
-With Beebole data in Google Sheets, you can take advantage of the full Google Sheets feature set:
-
-- **Charts and graphs** — Create visual dashboards from time and billing data
-- **Pivot tables** — Summarize and slice data by any dimension
-- **Formulas** — Apply calculations, conditional logic, or cross-sheet references
-- **Sharing** — Share the spreadsheet with colleagues or stakeholders for collaborative review
-- **Multiple queries** — Pull different datasets into separate sheets within the same spreadsheet
-
-<Tip>
-  Create a template spreadsheet with your preferred charts, formulas, and layout. Each time you refresh, the entire dashboard updates with the latest Beebole data. Share the spreadsheet with stakeholders who do not have Beebole accounts for easy read-only access to reports.
-</Tip>
+If a linked report no longer exists in Beebole, the add-on writes an error message to the sheet so you know the link needs updating.
 
 ---
 
-## Permissions and data access
+## Updating or removing your API key
 
-The add-on respects your Beebole account permissions. You only see data for the projects and people your role allows. If you need access to additional data, ask your Beebole account administrator to adjust your [role and authorizations](/help/documentation/roles-authorisations).
+Click **Update API** at the top of the sidebar to open the key settings:
+
+- Paste a new key into **New API Key** and click **Update API Key**. Switching to a different key clears the spreadsheet's existing report links, since they belonged to the previous account's reports.
+- Click **Remove API Key** to delete your saved key. You will need to enter a key again to use the add-on.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
+  <Card title="Reports" icon="chart-line" href="/help/documentation/reports">
+    Understand report dimensions, filters, grouping, and columns in Beebole.
+  </Card>
   <Card title="Custom Reports" icon="chart-bar" href="/help/documentation/custom-reports">
-    Build and save custom report templates in Beebole.
+    Build and save the reports your linked sheets will load.
   </Card>
   <Card title="Excel Add-in" icon="file-excel" href="/help/documentation/excel-addin">
-    Pull Beebole data directly into Microsoft Excel.
+    Link Excel worksheets to your saved Beebole reports the same way.
   </Card>
   <Card title="Data Exports" icon="download" href="/help/documentation/data-exports">
-    Export Beebole data as CSV or other formats.
+    Download one-off exports in Excel, CSV, PDF, and other formats.
   </Card>
 </CardGroup>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I share a spreadsheet with people who do not have Beebole accounts?">
-    Yes. You can share the Google Sheets spreadsheet with anyone using standard Google Sheets sharing. They see the data that was last refreshed, but they cannot refresh the data themselves without a Beebole account.
+  <Accordion title="Can I configure columns and filters inside the add-on?">
+    No. The Beebole Google Sheets add-on loads saved reports exactly as they are configured in Beebole. To change the columns, filters, or period of the data in a sheet, edit the saved report in Beebole and refresh the sheet.
   </Accordion>
-  <Accordion title="Can I set up automatic data refreshes?">
-    The add-on supports on-demand refreshes. To automate reporting workflows, you can combine the add-on with Google Sheets scripts or scheduled triggers for periodic updates.
+  <Accordion title="Can I share the spreadsheet with people who do not use Beebole?">
+    Yes. The refreshed report data is ordinary cell values, so anyone you share the spreadsheet with can read it. The sheet-to-report links travel with the file, but your API key does not — to refresh the data, a person connects with their own Beebole API key, which shows only the reports their account can access.
   </Accordion>
-  <Accordion title="Is there a limit to how much data I can pull?">
-    The add-on can pull large datasets. For very broad queries, the request may take longer. Use date range filters to keep queries performant. Google Sheets also has a cell limit (currently 10 million cells per spreadsheet).
+  <Accordion title="Does refreshing overwrite my formulas?">
+    Yes. A refresh clears the linked sheet completely before writing the report data. Place your own formulas, pivot tables, and charts in separate sheets that reference the linked sheet, so they survive every refresh.
   </Accordion>
-  <Accordion title="How is this different from downloading a CSV export?">
-    The add-on maintains a live connection to your Beebole account. You configure the query once and refresh data on demand. With CSV [exports](/help/documentation/data-exports), you download a static file each time and import it manually.
-  </Accordion>
-  <Accordion title="Can I pull data from multiple Beebole accounts into one spreadsheet?">
-    The add-on connects to one Beebole account at a time. To combine data from multiple accounts, pull each into a separate sheet and use formulas to consolidate.
+  <Accordion title="Can I refresh the data automatically?">
+    The Beebole add-on refreshes every linked sheet automatically when you open the spreadsheet. For anything in between, use **Refresh This Sheet** or **Refresh All** in the sidebar.
   </Accordion>
 </AccordionGroup>
