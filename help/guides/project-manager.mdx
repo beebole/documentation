@@ -1,25 +1,86 @@
 ---
-title: "Project Manager Guide"
-description: "Essential Beebole guide for project managers: set up projects, monitor budgets, run profitability reports, plan resources, and forecast team capacity."
-keywords: ["beebole", "project manager guide", "project tracking", "budget management", "resource planning", "reports"]
-"og:title": "Project Manager Guide — Beebole"
-"og:description": "How project managers use Beebole to track projects, monitor budgets, analyze reports, and plan resources."
+title: "Project Manager Guide: plan and run projects — Beebole"
+sidebarTitle: "Project Manager Guide"
+description: "A Beebole guide for project managers: set up projects and categories, plan tasks on Gantt and Kanban, set rates and budgets, run reports, and approve time."
+keywords: ["beebole", "project manager guide", "project setup", "task planning", "gantt", "kanban", "budgets", "project reports"]
+"og:title": "Project Manager Guide: Run Projects in Beebole"
+"og:description": "How project managers use Beebole to set up projects, plan tasks, set rates and budgets, run reports, and approve time on their projects."
 "og:type": "article"
 ---
+
+As a project manager in Beebole, you set up the work your team tracks against and keep it on budget. This guide covers the core flow — create projects, plan tasks, set rates and budgets, run reports, and approve the time logged on your projects. Each step links to the page with the full detail.
+
+<Info>
+  How much you can configure depends on the role your administrator assigned you. The tasks below assume your role grants management rights over your projects.
+</Info>
+
+## Set up your projects
+
+Open **Projects** in the sidebar to create the projects your team logs time against. Projects belong to categories — the broadest cut of your work, such as **Clients**, **Internal**, or **Activities** — and can nest into subprojects as deep as you need.
+
+Create a project, place it in a category, and add subprojects to break the work down. See [Projects](/help/documentation/projects) for the full hierarchy and project settings.
+
+## Plan the work as tasks
+
+Open **Tasks** in the sidebar to plan the work to be done. A task is a planning item you can schedule, assign to people, and link to a project so it inherits that project's rates and approval rules. The same tasks appear in two views:
+
+- **Gantt** — a timeline view for scheduling tasks, durations, and dependencies.
+- **Kanban** — a board view for moving tasks through their status workflow.
+
+Add a task with **Add Task**, then schedule it on the [Gantt](/help/documentation/gantt) chart or track its status on the [Kanban](/help/documentation/kanban) board. The [Tasks overview](/help/documentation/planning) explains how both views share the same underlying tasks.
+
+## Set rates and budgets
+
+To turn hours into money, set billing and cost rates on your projects, and add budgets to cap spend or effort.
+
+- **Rates** — set a billing rate (what you charge) and a cost rate (what the work costs) on a project; Beebole resolves the right rate for each entry. See [Billing](/help/documentation/billing).
+- **Budgets** — set a ceiling in billing currency, cost currency, or hours on a project, and split it across people or subprojects. See [Budgets](/help/documentation/budgets).
+
+## Run reports
+
+Use **Reports** in the sidebar to analyze your projects — hours logged, billing, costs, and profitability — grouped by project, person, task, or period. Save a report configuration to reuse and refresh it later.
+
+See [Reports](/help/documentation/reports) for grouping, filtering, and saved reports.
+
+## Approve time on your projects
+
+When approval is configured, the timesheets your team submits enter a workflow where you review the work logged on your projects. Open the approval view, check each submitted period, and click **Approve** to validate it or **Reject** to send it back with a comment.
+
+See [Approval](/help/documentation/approval) for how the stages work.
 
 ## Related content
 
 <CardGroup cols={2}>
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
-    Create and organize projects for your team to track time against.
+    Create projects, organize them by category, and nest subprojects.
+  </Card>
+  <Card title="Tasks overview" icon="list-check" href="/help/documentation/planning">
+    See how Gantt and Kanban share the same underlying tasks.
   </Card>
   <Card title="Budgets" icon="coins" href="/help/documentation/budgets">
-    Set billing, cost, and hours targets on your projects.
+    Cap spend or effort on a project and split it across the team.
   </Card>
   <Card title="Reports" icon="chart-bar" href="/help/documentation/reports">
-    Analyze time, costs, and billing across projects and people.
-  </Card>
-  <Card title="Planning" icon="calendar-days" href="/help/documentation/planning">
-    Plan tasks and schedule work across your projects.
+    Analyze hours, billing, costs, and profitability across projects.
   </Card>
 </CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I create a project in Beebole?">
+    Open **Projects** in the sidebar, create a project, and place it in a category such as **Clients** or **Internal**. You can add subprojects to break the work down as deep as you need.
+  </Accordion>
+  <Accordion title="What is the difference between Gantt and Kanban in Beebole?">
+    Both views show the same Beebole tasks. **Gantt** is a timeline for scheduling tasks, durations, and dependencies, while **Kanban** is a board for moving tasks through their status workflow.
+  </Accordion>
+  <Accordion title="How do I set what a project costs and charges?">
+    Set a billing rate and a cost rate on the project in Beebole. The billing rate is what you charge the client; the cost rate is what the work costs you. Beebole resolves the right rate for each time entry automatically.
+  </Accordion>
+  <Accordion title="Can I cap how much a project spends?">
+    Yes. Add a budget to the project in Beebole as a ceiling in billing currency, cost currency, or hours, and split it across people or subprojects to track progress against the limit.
+  </Accordion>
+  <Accordion title="How do I approve the time logged on my projects?">
+    When approval is configured, open the approval view in Beebole, review each submitted timesheet, and click **Approve** to validate it or **Reject** to return it with a comment.
+  </Accordion>
+</AccordionGroup>

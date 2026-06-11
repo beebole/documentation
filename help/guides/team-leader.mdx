@@ -1,25 +1,87 @@
 ---
-title: "Team Leader Guide"
-description: "Beebole guide for team leaders: approve timesheets and time-off requests, run team reports, manage people, and plan upcoming work for your direct reports."
-keywords: ["beebole", "team leader guide", "timesheet approval", "team reports", "people management", "planning"]
-"og:title": "Team Leader Guide — Beebole"
-"og:description": "How team leaders use Beebole to approve timesheets, view team reports, manage people, and plan work."
+title: "Team Leader Guide: manage and approve your team — Beebole"
+sidebarTitle: "Team Leader Guide"
+description: "A Beebole guide for team leaders: add and invite people, assign roles and work schedules, approve timesheets and time off, and monitor team compliance."
+keywords: ["beebole", "team leader guide", "invite people", "assign roles", "work schedule", "timesheet approval", "timesheet score"]
+"og:title": "Team Leader Guide: Manage People in Beebole"
+"og:description": "How team leaders use Beebole to add and invite people, assign roles and schedules, approve timesheets and time off, and keep the team on track."
 "og:type": "article"
 ---
+
+As a team leader in Beebole, you manage the people on your team and keep their time tracking on track. This guide covers the core flow — add and invite people, assign their roles and work schedules, approve the timesheets and time off they submit, and monitor compliance. Each step links to the page with the full detail.
+
+<Info>
+  What you can do depends on the role your administrator assigned you. The tasks below assume your role grants management rights over your team's people, schedules, and approvals.
+</Info>
+
+## Add and invite people
+
+Open **People** in the sidebar to add the team members who track time. Click the **+** button (**Add person**) and enter their **Name**, **Email**, and **Role**. To add several people at once, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and add them all.
+
+Adding a person and inviting them are two separate steps: a profile exists as soon as you save it, but the person cannot sign in until you invite them. Open the person's profile and click **Invite by email** — Beebole emails a secure link, with no password to set.
+
+See [People](/help/documentation/people) for the full add, invite, and offboarding flow.
+
+## Assign roles
+
+Each person has a role that controls what they can see and do in Beebole. You set the role when you add a person, and you can change it at any time from the **Role** field on their profile. Roles are defined under **Settings** > **Person Roles**, where you can create roles and choose the permissions each one grants.
+
+See [Roles & permissions](/help/documentation/roles-authorisations) for what each permission scope covers.
+
+## Assign work schedules
+
+A work schedule defines a person's standard working hours and days, which Beebole uses to measure overtime and undertime when they submit. Open a person's profile, use the **Work schedule** panel, and pick a schedule with the **Select schedule** picker — the assignment saves automatically. A schedule set on a person overrides one inherited from their tags or the organization default.
+
+See [Work schedules](/help/documentation/work-schedule) for creating schedules and assigning them at the organization, tag, and person levels.
+
+## Approve timesheets and time off
+
+When approval is configured, the timesheets your team submits enter a workflow where you review their work. Open the approval view, check each submitted period, and click **Approve** to validate it or **Reject** to return it with a comment. Rejecting requires a reason, and the person resubmits after fixing their entries. Time-off requests follow the same review workflow.
+
+See [Approval](/help/documentation/approval) for how the stages work and how to handle time off.
+
+## Monitor team compliance
+
+Keep your team on track from two places in Beebole:
+
+- **Timesheet score** — a per-person compliance score shown on your team and approval views. It reflects whether each person is **On time**, has **Late submissions**, has **Not submitted**, or has **Rejections** — a quick read on who needs a nudge.
+- **Journal** — open **Journal** in the sidebar for your team's activity feed: submissions, approvals, rejections, and messages. You can filter the feed and post messages to follow up with people.
+
+See [Journal](/help/documentation/journal) for the activity feed, filtering, and messages.
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Approval" icon="check" href="/help/documentation/approval">
-    Review and approve timesheets submitted by your team.
-  </Card>
-  <Card title="Reports" icon="chart-bar" href="/help/documentation/reports">
-    Analyze time and performance across your team.
-  </Card>
   <Card title="People" icon="users" href="/help/documentation/people">
-    Add and manage team members in your account.
+    Add team members, invite them by email, and offboard people.
   </Card>
-  <Card title="Planning" icon="calendar-days" href="/help/documentation/planning">
-    Plan and schedule work for your team.
+  <Card title="Roles & permissions" icon="shield-halved" href="/help/documentation/roles-authorisations">
+    Define roles and choose what each person can see and do.
+  </Card>
+  <Card title="Approval" icon="circle-check" href="/help/documentation/approval">
+    Review submitted timesheets and time off, then approve or reject.
+  </Card>
+  <Card title="Journal" icon="rss" href="/help/documentation/journal">
+    Follow your team's activity feed and message people directly.
   </Card>
 </CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How do I invite a team member to Beebole?">
+    Add the person first: open **People** in the sidebar, click the **+** button (**Add person**), and enter their **Name**, **Email**, and **Role**. Then open their profile and click **Invite by email**. Beebole sends a secure sign-in link — there is no password to set.
+  </Accordion>
+  <Accordion title="How do I add several people at once?">
+    In the add-person panel in Beebole, copy rows from a spreadsheet — one person per line, with the name and email separated by **Tab** — click **Paste**, review the entries, and add them all in one step.
+  </Accordion>
+  <Accordion title="How do I change someone's role?">
+    Open the person's profile in Beebole and select a new role from the **Role** field. The change applies immediately. Roles themselves are created under **Settings** > **Person Roles**.
+  </Accordion>
+  <Accordion title="How do I approve my team's timesheets?">
+    When approval is configured, open the approval view in Beebole, review each submitted period, and click **Approve** to validate it or **Reject** to return it with a required reason. Time-off requests follow the same workflow.
+  </Accordion>
+  <Accordion title="How do I see who has not submitted their timesheet?">
+    Use the **Timesheet score** on your team and approval views in Beebole. It flags each person as **On time**, **Late submissions**, **Not submitted**, or **Rejections**, so you can spot who needs a reminder at a glance.
+  </Accordion>
+</AccordionGroup>

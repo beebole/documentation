@@ -102,11 +102,11 @@ NOTE for batches 2b/2d/2e: pages linking to `/help/documentation/planning` (work
 
 ## Guides (batch 2d)
 
-- [ ] rewrite | help/guides/employee.mdx | 4/1 | empty stub (frontmatter + cards only); no body, no FAQ
-- [ ] rewrite | help/guides/project-manager.mdx | 4/1 | empty stub; description promises content page doesn't deliver
-- [ ] rewrite | help/guides/team-leader.mdx | 4/1 | empty stub; description promises content page doesn't deliver
-- [ ] rewrite | help/guides/migration.mdx | 6/5 | fabricated Slack digests; "Coming soon" list names shipped features (accruals, add-ins, calendar); fabricated browser extension + overtime settings; no FAQ; "PIN-code" auth wording
-- [ ] rewrite | help/guides/faq.mdx | 5/5 | fabricated custom-domain "Yes" answer; **Person Roles**; **Paste** not "Import"; no intro; internal rate-priority contradiction
+- [x] rewrite | help/guides/employee.mdx | 4/1 | empty stub (frontmatter + cards only); no body, no FAQ
+- [x] rewrite | help/guides/project-manager.mdx | 4/1 | empty stub; description promises content page doesn't deliver
+- [x] rewrite | help/guides/team-leader.mdx | 4/1 | empty stub; description promises content page doesn't deliver
+- [x] rewrite | help/guides/migration.mdx | 6/5 | fabricated Slack digests; "Coming soon" list names shipped features (accruals, add-ins, calendar); fabricated browser extension + overtime settings; no FAQ; "PIN-code" auth wording
+- [x] rewrite | help/guides/faq.mdx | 5/5 | fabricated custom-domain "Yes" answer; **Person Roles**; **Paste** not "Import"; no intro; internal rate-priority contradiction
 
 ## Integrations (batch 2e)
 
