@@ -56,13 +56,25 @@ Present a plan and ask: _"Ready to capture? Make sure the app is running."_
   - Mobile views (`mobile/*` entries): **390×844** logical (phone form factor).
 - **One DPR, one viewport-set for all shots.** Never mix 1x and 2x or vary widths arbitrarily — inconsistency is the most visible defect on a docs page. Mintlify renders content images in a ~700px column, so a 1440-logical@2x (2880px) source is always crisp downscaled; DPR 3 only inflates file size with no visible gain.
 
+**Hide UI chrome that shouldn't appear in docs (run before every capture).** The Beebole app shows an Intercom chat launcher and a "Beta" badge bottom-right. Hide them with an injected style — no app-code change, DOM-only, scoped to the browser session. It's idempotent and survives in-app (SPA) navigation but is wiped by a hard reload, so re-run it right before each capture via `mcp__playwright__browser_evaluate`:
+
+```js
+() => {
+  const ID = 'bb-screenshot-hide';
+  let s = document.getElementById(ID) || document.head.appendChild(Object.assign(document.createElement('style'), { id: ID }));
+  s.textContent = `[class*="intercom" i],[id*="intercom" i],iframe[name*="intercom" i],beta-badge{display:none !important;visibility:hidden !important;}`;
+}
+```
+(Add other transient chrome to the selector list if new widgets appear. The 1×1 `#intercom-frame` utility iframe is invisible and can be ignored.)
+
 For each identified need:
 
 1. Navigate to the app screen — `mcp__playwright__browser_navigate`
 2. Wait for the page to load — `mcp__playwright__browser_wait_for`
 3. Set the viewport for the shot type (see spec above) — `mcp__playwright__browser_resize` (DPR is already fixed at 2 on the context, not set here)
-4. Snapshot to verify the right screen — `mcp__playwright__browser_snapshot`
-5. Capture — full page with `mcp__playwright__browser_take_screenshot`, or element-scoped for panels/dialogs
+4. Inject the hide-chrome style (snippet above) — `mcp__playwright__browser_evaluate`
+5. Snapshot to verify the right screen — `mcp__playwright__browser_snapshot`
+6. Capture — full page with `mcp__playwright__browser_take_screenshot`, or element-scoped for panels/dialogs
 
 **Standard views (auto):** navigate, capture, done.
 

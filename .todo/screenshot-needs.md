@@ -16,6 +16,7 @@ Capture is a deferred follow-on effort — run `/illustrate --capture` against t
 - **Viewport by type:** full app/dashboard = **1440×900** logical; panel/dialog/single control = element screenshot (`locator.screenshot()`) or ~**1024** wide so it fills the frame; mobile (`mobile/*`) = **390×844**.
 - **WebP:** `cwebp -q 80` → must be under 200 KB → drop to `-q 60` if over.
 - **One DPR + one viewport-set for all shots** — consistency is the priority. Mintlify renders images in a ~700px column, so 1440@2x downscales crisp everywhere; DPR 3 just bloats files.
+- **Hide app chrome before each shot:** inject a DOM-only style (no code change) hiding the Intercom launcher and the `<beta-badge>` — `[class*="intercom" i],[id*="intercom" i],iframe[name*="intercom" i],beta-badge{display:none!important}`. Re-apply after any hard reload (it's wiped on full reload but survives in-app SPA navigation). Full snippet in the `/illustrate` skill.
 - **Seed data:** capture against a seeded account so examples match the prose (**Acme Corp**, **Clients/Internal/Activities**, a budget over threshold, a pending approval, etc.).
 - **Best run as a guided session** (app running locally with seed data; Playwright drives navigation/framing; operator confirms state on complex shots).
 
