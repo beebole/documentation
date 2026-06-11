@@ -82,9 +82,11 @@ For each identified need:
 
 ### 3. Optimize and place
 
+**Never write raw captures into the repo working tree.** The Playwright screenshot `filename` resolves relative to the repo root, so always pass an **absolute temp path outside the repo** (e.g. `/tmp/bb-shots/<name>.png`) for the raw capture. Only the final optimized `.webp` is ever written into `help/images/`. (During a test capture an in-repo raw PNG path coincided with a tracked image — `help/images/index-beebole-documentation.webp` — briefly disappearing from the working tree; keeping raw captures in `/tmp` avoids any risk to tracked files.)
+
 For each captured screenshot:
 
-1. Save the raw capture to a temp location.
+1. Save the raw capture to an absolute temp path outside the repo (`/tmp/bb-shots/<name>.png`).
 2. Convert to WebP:
 
    ```bash
