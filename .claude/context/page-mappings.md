@@ -28,11 +28,10 @@ Use this table to map app change keywords to the documentation pages they likely
 | export, data export, GDPR | `help/documentation/data-exports.mdx` |
 | excel, add-in, spreadsheet | `help/documentation/excel-addin.mdx` |
 | google sheets, gsheets, sheets addon | `help/documentation/gsheets-addon.mdx` |
-| SSO, passkey, passwordless, OAuth, sign-in, login, auth | `help/documentation/authentication.mdx`, `help/documentation/sso.mdx` |
+| SSO, passkey, passwordless, OAuth, sign-in, login, auth | `help/documentation/authentication.mdx` |
 | account, settings, password, profile, 2FA | `help/documentation/account-settings.mdx` |
 | subscription, plan, seat, add-on, promotion | `help/documentation/subscription.mdx` |
 | invoice, payment, billing portal | `help/documentation/billing.mdx` |
-| custom domain | `help/documentation/custom-domain.mdx` |
 | onboarding, quickstart, setup, wizard | `help/documentation/quickstart.mdx` |
 | integration, jira, asana, linear, webhook | `help/integrations/jira.mdx`, `help/integrations/asana.mdx`, `help/integrations/linear.mdx`, `help/integrations/custom-integrations.mdx` |
 | quickbooks, qbo | `help/integrations/quickbooks.mdx` |
