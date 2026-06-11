@@ -239,6 +239,57 @@
             "pages": [
               "help/news/releases"
             ]
+          },
+          {
+            "tab": "Legacy",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "help/legacy/index",
+                  "help/legacy/learn-the-basics",
+                  "help/legacy/entities"
+                ]
+              },
+              {
+                "group": "People & onboarding",
+                "pages": [
+                  "help/legacy/organizing-people",
+                  "help/legacy/onboard-your-team"
+                ]
+              },
+              {
+                "group": "Time tracking",
+                "pages": [
+                  "help/legacy/timesheets",
+                  "help/legacy/time-clock",
+                  "help/legacy/time-off",
+                  "help/legacy/work-schedules"
+                ]
+              },
+              {
+                "group": "Reporting & billing",
+                "pages": [
+                  "help/legacy/reporting",
+                  "help/legacy/costs-billing-budgets"
+                ]
+              },
+              {
+                "group": "Configuration & integrations",
+                "pages": [
+                  "help/legacy/settings",
+                  "help/legacy/integrations",
+                  "help/legacy/mobile-app",
+                  "help/legacy/api"
+                ]
+              },
+              {
+                "group": "Help",
+                "pages": [
+                  "help/legacy/faq"
+                ]
+              }
+            ]
           }
         ]
       }
@@ -265,15 +316,5 @@
       "github": "https://github.com/beebole",
       "linkedin": "https://linkedin.com/company/beebole"
     }
-  },
-  "redirects": [
-    {
-      "source": "/help/documentation/custom-domain",
-      "destination": "/help/documentation/authentication"
-    },
-    {
-      "source": "/help/documentation/sso",
-      "destination": "/help/documentation/authentication"
-    }
-  ]
+  }
 }

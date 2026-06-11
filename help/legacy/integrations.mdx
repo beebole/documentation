@@ -1,0 +1,186 @@
+---
+title: "Integrations"
+description: "Learn how to link Beebole with Google Workspace or Microsoft 365 and Azure."
+---
+
+## Integrations Using Zapier and Pipedream
+
+**Zapier** allows you to easily **connect Beebole with thousands of other applications**. Integrate with tools like Quickbooks, Jira, Asana, Slack, BambooHR, and more without coding by using Zaps.
+
+Zaps are workflows that connect applications to help automate tasks. Zaps begin with an event called a trigger and perform one or multiple events called actions. For example, creating a new issue in Jira can trigger the creation of a subproject in Beebole.
+
+You can read more about [using Zapier with Beebole](https://zapier.com/apps/beebole/integrations) and refer to Zapier's [documentation](https://zapier.com/resources/guides) for help building your first Zaps.
+
+For added flexibility, **Pipedream** offers many of the same integrations as Zapier but with **code-level control** when you need it, and many no-code integrations as well. Harness Beebole's API to adapt integrations to meet your team's specific needs. For example, build workflows to automate payroll reporting or send alerts to managers for usual time entries. Read more about [using Beebole with Pipedream](https://pipedream.com/apps/beebole-app) on their site.
+
+For any additional questions about integrations, please reach out to our support team.
+
+## Link Your Account with Google Workspace
+
+It is easy to link your Beebole account to your **Google Workspace** account (previously called Google Apps or Google Suite).
+
+**If you do not have a Beebole account**, visit our listing on the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/beebole_timesheet/888715311106) and click the "Install" button at the top of the page. Follow the steps provided and be sure to launch Beebole when prompted to create a new account.
+
+![Google Workspace integration](/help/images/legacy/integrations/link-google-workspace1.webp)
+
+**If you already have a Beebole account**, sign in and click "Settings" in the top right corner of your screen. In the *Account* module, click on **Google Apps Integration**. Type your Google Workspace domain (e.g. your_company.com) and click "Add". Then, go to Beebole's listing on the [Google Workspace Marketplace](https://workspace.google.com/marketplace/app/beebole_timesheet/888715311106). Click the "Install" button at the top of the page and follow the steps provided.
+
+![Google apps integration](/help/images/legacy/integrations/google-integration-account-module.webp)
+
+Once your Beebole account and Google Workspace domain are linked, all **users of your Google Workspace domain will be able to connect to Beebole through the Workspace menu** available in all Google apps or by clicking "Sign In with Google" on the Beebole login page.
+
+Alternatively, you can add the following URL to your intranet and replace yourDomain.com with your actual Google Workspace domain:  
+https://beebole-apps.com/sso2/google?domain=yourDomain.com
+
+If you use multiple Google Workspace domains and would like to link them all to a single Beebole account, you can do so by entering all domains in the ad-hoc field, separated by a semicolon.
+
+You can also **link multiple Beebole accounts to a single Google Apps domain**. In this case, users will be presented with a list of all linked accounts to choose from when logging in.
+
+**NOTE:**
+
+- When using the Google Workspace authentication, you do not need to manually import employees. New users that do not already exist in Beebole will be **added automatically the first time they use the app**. They will be classified as an Employee by default, but their user group can be changed (e.g. to Team Leader, Project Manager, etc.) in the [*User Details*](/help/legacy/organizing-people#roles) module.
+- When adding users manually, it is important to ensure that the email address **exactly matches the email used in the Google Workspace domain**, otherwise duplicate users will be created. For example, john.smith@company.com is not an exact match of jsmith@company.com. Even if John Smith can receive emails at both addresses, the system will consider these two distinct users.
+- If your subscription limit is reached, each new user will be added as inactive and will not be able to record time. You can [increase the users in your subscription](/help/legacy/settings#managing-your-subscription) and then activate them using the *Person Details* module on their individual pages.
+
+## Microsoft Azure and Microsoft 365 Integrations
+
+By default, all users can connect to Beebole with their Microsoft credentials (Azure, 365, etc.) by clicking on the Microsoft login button on the [sign in page](https://beebole-apps.com/signin/). You can require that users sign in exclusively using the Microsoft SSO (Single Sign On) integration by going to the **Microsoft Integration** section of the *Account* module, which can be found in the Settings screen.
+
+This is automatic, and you don't need to take any further steps. If you'd like to also enable the app in Azure, please read on.
+
+Follow the steps below to **integrate with Microsoft Azure and add Beebole to your Azure portal**:
+
+1. In your Azure administrator account, go to "Register an application" under *App Registrations*. Fill in the required fields. Be sure to define the authentication scenario for the redirect URI as "Web". The redirect URI is https://beebole-apps.com/sso2cb/xxxxx, where xxxxx should be replaced by your account ID. You can also directly retrieve the URI from your Beebole account in the **OpenID SSO** section of the *Account* module in the Settings screen. Clicking "Register" will take you to the app overview page.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/register-application.webp)
+2. In the app overview page, copy the **Application (client) ID** and paste it into the client ID field in your Beebole account under *Account > OpenID SSO*.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/beebole-azure.webp)
+3. In the app overview page, click on "Endpoints" at the top of the screen to view the API endpoints. Copy and paste the **authorization endpoint (v2) **and **token endpoint (v2)** into the Auth URI and Token URI fields in your Beebole account under *Account > OpenID SSO*.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/integration-endpoints.webp)
+4. In the app overview page, click "Branding" in the menu on the left. Here you can modify the app name, upload a logo, and define the home screen URL. The URL is https://beebole-apps.com/sso2/xxxxx where xxxxx should be replaced by your account ID. You can also directly retrieve the URL from your Beebole account in the **OpenID SSO** section of the *Account* module (called *Initiate login URI*).
+
+  ![Microsoft Azure integrations](/help/images/legacy/integrations/beebole-page-azure.webp)
+5. In the app overview page, click "Authentication" in the menu on the left. Tick the box for *ID tokens* under **Implicit grant and hybrid flows**.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/authentication.webp)
+6. In the app overview page, click "Certificates & secrets" in the menu on the left. Click **New client secret**. Copy and paste the Client Secret, which should now appear in your Beebole account under *Account > OpenID SSO*.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/certificates-secrets.webp)
+7. Be sure to grant Beebole the necessary API permissions and assign it to the desired users and groups in Azure. You should also set it as "Visible to users", which can be done in the "Properties" tab.
+
+  ![Microsoft Azure integration](/help/images/legacy/integrations/properties.webp)
+8. All employees assigned to Beebole in your Azure portal will now be able to see the application in their Access Panel and O365 launcher. Clicking on the app there will automatically connect them and redirect them to their Beebole account.
+
+## Enabling SSO Integrations
+
+You can connect to your Beebole account with Single Sign On using **OpenID Connect/OAuth2.0**. The following information is generic to OpenID Connect/OAuth2.0 configurations, which can be used with SSO solutions such as **Okta** or **OneLogin**, although instructions for these specific platforms are provided below.
+
+Beebole also has built-in SSO integrations for Google Workspace and Microsoft, which you can read more about above.
+
+To configure SSO for your account, go to the **OpenID SSO** section of the *Account* module in your Settings screen. The following screen will appear:
+
+![SSO configuration](/help/images/legacy/integrations/single-sign-on-configuration.webp)
+
+The OpenID Connect/OAuth2.0 protocol is a standard way of ensuring a secure connection to third-party tools, such as Beebole, from your SSO portal. There are many solutions available, but most of them will use the same principles.
+
+In your SSO portal, you will need to **create or register Beebole as a new application**. During this process, you will receive a **Client ID** and a **Client Secret**, which you must add to corresponding fields in the *Account* module in Beebole. 
+
+Each SSO portal will also have a specific API endpoint to authorize and deliver a token. Please refer to your SSO portal's documentation for these URIs.
+
+When creating Beebole as an app in your SSO portal, you will need to provide an initial login URI and a login redirect URI. These can be found in your Beebole account in the **OpenID SSO** section of the *Account* module. The exact terminology used for these URI might change depending on the SSO portal used.
+
+### Okta SSO Integration
+
+Follow the steps below to create an SSO connection to your Beebole account using Okta:
+
+1. Once you’ve connected as an administrator to your Okta portal, create a new app. Be sure to define it as a web platform using the OpenID Connect protocol.  
+  ![Integrate Okta and Beebole](/help/images/legacy/integrations/okta-integration-create.webp)  
+
+2. In the next step, give your new app a name, such as Beebole, and upload a logo of your choice. Define the “Login redirect URI” as [https://beebole-apps.com/sso2cb/xxxxxx](https://beebole-apps.com/sso2cb/xxxxxx), where xxxxxx should be replaced by your account ID. You can directly retrieve the URI from your Beebole account’s Settings page under “OpenID Connect” in the *Account* module.  
+    
+  ![Integrate Okta and Beebole](/help/images/legacy/integrations/okta-integration-naming.webp)
+3. The app is now created in your Okta portal. In the next screen you will be able to retrieve the Client ID and the Client Secret. Both should be added to your Beebole account under “OpenID Connect” in the *Account* module on the Settings page.   
+  ![Integrate Okta and Beebole](/help/images/legacy/integrations/okta-integration-credentials.webp)  
+
+4. Complete the app configuration in the “General Settings” section under “Application”. Under the “Login” section, replace xxxxxx with your Beebole account ID or retrieve the “Initiate login URI” from your Beebole account Settings page under “OpenID Connect” in the *Account* module.  
+    
+  ![Okta parameters](/help/images/legacy/integrations/oktaapplicationlogin.webp)  
+  ![Integrate Okta and Beebole](/help/images/legacy/integrations/okta-integration-login.webp)*(*)User Consent is optional*
+5. Return to the “OpenID Connect” section in the *Account* module of your Beebole Settings page. Here, define the Okta API endpoints. You can read more about these in the Okta documentation here: [https://developer.okta.com/docs/reference/api/oidc/](https://developer.okta.com/docs/reference/api/oidc/)  
+  These URIs should look something like this:
+
+    
+  Authorize: [https://$\{yourOktaDomain\}/oauth2/default/v1/authorize](about:blank)
+
+    
+  Token: [https://$\{yourOktaDomain\}/oauth2/default/v1/token](about:blank)
+6.  Assign the new app to the desired people or group using the *Assignment* tab in Okta.
+7. Employees assigned to Beebole in your Okta portal will now see a new Beebole app in their Okta end-user dashboard. Clicking on the app will automatically connect them and redirect them to their Beebole account.
+
+### OneLogin SSO Integration
+
+Follow the steps below to create an SSO connection to your Beebole account using OneLogin:
+
+1. Once you’ve connected as an administrator to your OneLogin portal, go to Applications > Custom Connectors and create a new connector. Give the connector a name, such as Beebole, and define the sign on method as OpenID Connect. Upload a logo of your choice.  
+
+2. Define the Redirect URI as https://beebole-apps.com/sso2cb/xxxxxx, where xxxxxx should be replaced by your account ID. You can directly retrieve the URI from your Beebole account’s Settings page, under “OpenID Connect” in the *Account* module, as “Login Redirect URI”.
+3. Define the Login URL as https://beebole-apps.com/sso2/xxxxxx, where xxxxxx should be replaced by your account ID. You can directly retrieve the URI from your Beebole account’s Settings page, under “OpenID Connect” in the *Account* module, as “Initiate Login URI”.  
+  ![Integrate OneLogin and Beebole](/help/images/legacy/integrations/onelogin-integration-uri.webp)
+4. Back on the Custom Connectors page, click on “Add an app to the connector” next to the connector you just created. The parameters should appear by default.  
+  ![Integrate OneLogin and Beebole](/help/images/legacy/integrations/onelogin-integration-app.webp)
+5. The app is now created. Click on “SSO” in the left menu. Be sure that the application type is “Web” and the authentication method is “POST”. Retrieve the Client ID and the Client Secret and paste these values into your Beebole account under “UponID Connect” in the *Account* module on your Settings page. 
+6. Back on the SSO tab, click on “Well-known configuration” and retrieve the API endpoints. Look for the *authorization_endpoint* and the *token_endpoint* URLs and paste these values into your Beebole account under “UponID Connect” in the *Account* module on your Settings page.   
+  ![Integrate OneLogin and Beebole](/help/images/legacy/integrations/onelogin-integration-endpoints.webp)
+7. Assign the new app to the desired people or group using the *Users* tab in the left menu of OneLogin.
+8. Employees assigned to Beebole in your OneLogin portal will now see a new Beebole app in their OneLogin app portal. Clicking on the app will automatically connect them and redirect them to their Beebole account.  
+  ![Integrate OneLogin and Beebole](/help/images/legacy/integrations/onelogin-integration-employees.webp)
+
+## GSheets Add-on
+
+The Google Sheets add-on for Beebole can be used to **enhance your Google Spreadsheets and to retrieve real-time data from your Beebole account**. Design pivot tables, charts, and more complex calculations to build the perfect report. You can even send periodic, automated emails with updated reports to specific recipients.
+
+To **install the add-on**: 
+
+1. In your Google Spreadsheet click on *Extensions >> Add-ons >>* *Get add-ons*. Search for Beebole and click the "FREE" button to install.
+2. You may be prompted to grant certain authorizations. Click "Allow" to ensure the add-on can be installed. The add-on will now be available in any Google Sheet you use.
+
+  ![Google sheets add on](/help/images/legacy/integrations/install-gsheets-addon.webp)
+3. To **connect the add-on to your Beebole account**, retrieve your API token from Beebole using the *API Token* module on your home screen.
+4. In your Google Spreadsheet, click *Extensions > Beebole Timesheet for Google Sheets > Connect your account*. Copy and paste the API token into the "Token" field and click "Save".
+
+![Google Sheets add-on](/help/images/legacy/integrations/gsheets-addon-connection-info.webp)
+
+To run a report and **retrieve real-time data from Beebole**, in your Google Spreadsheet click *Extensions > Beebole Timesheet for Google Sheets > Run report*. 
+
+In the menu that appears you can set the desired date range, hours type, and status, and add columns. 
+
+Click "Refresh data". This will update the "Results" sheet or will create the sheet if it does not already exist. Note that manually updating this sheet is **not** recommended.
+
+![Google Sheets reports](/help/images/legacy/integrations/ghseets-addon-run-report.webp)
+
+You can **schedule automated emails with your reports** by going to *Extensions > Beebole Timesheet for Google Sheets > Schedule & send report*. Set the period you want the report to run for and how often. Enter the email recipients (separated by commas) and subject line. You can also choose to send the report as a PDF attachment.
+
+![Schedule and send reports](/help/images/legacy/integrations/gsheets-addon-send-report.webp)
+
+<Card title="5 Things You Can Do With Our Add-on for Google Sheets" href="https://beebole.com/blog/google-spreadsheet-timesheet/">
+  Plus more ways that Beebole users are taking advantage of this powerful, free integration
+</Card>
+
+## Excel Add-in
+
+Just like Beebole's add-on for Google Sheets, the Excel add-in allows you to **enhance your spreadsheets by retrieving real-time data from your Beebole account**. 
+
+To **install the add-in: **
+
+1. Open an Excel spreadsheet and select the option *Insert > Office Add-ins*. Search for the Beebole add-in in the store and click "Add". Click "Continue" to accept the terms. You can also find the integration on [Microsoft AppSource](https://appsource.microsoft.com/en-us/product/office/WA200003228?exp=kyyw&tab=Overview).
+2. Click on the Beebole icon that appears in your *Home* tab. A pop-up window should appear asking for your API token (if it does not appear automatically, click on the button to "Update API Token").
+3. Retrieve your **Base64** API token from the *API Token* module on your Beebole home screen. Copy and paste it into the pop-up in your Excel and click "Done".
+4. Remember that you must have enabled API calls in the *Account* module on the Settings screen.
+
+To **retrieve real-time data from Beebole**, use the right-hand menu. Here you can select the date range, hours type, hours status, and columns. Click "Refresh data". This will update data on the "Results" sheet or create the sheet if it does not already exist.
+
+<Card title="Power up Your Excel Spreadsheets with the Free Add-in" href="https://beebole.com/blog/timesheet-excel-addin/">
+  Check out this step by step tutorial on linking your Beebole account data with Excel spreadsheets
+</Card>

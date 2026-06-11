@@ -1,0 +1,256 @@
+---
+title: "Reporting"
+description: "Learn how to use and configure our powerful and customizable reports, and create a KPI dashboard."
+---
+
+Reporting in Beebole is done using either the *Reports* or *Chart & Table* module. Both modules can be used on your home screen or on any person, company, project, subproject, absence, or task page. 
+
+Note that reports are only available on the desktop version of Beebole.
+
+To add the modules, click "Customize" in the top right corner and drag and drop them anywhere on the screen. You can add as many of these modules as you want to **create a customized KPI dashboard featuring your most used reports**. 
+
+**Changes to reports are saved automatically**; they will remain in your dashboard and their data will be automatically updated until you modify or remove them.
+
+When used on the home screen, these modules give you access to all data that you have authorization to see:
+
+- Everything if you are an administrator
+- Your team's data if you are a team leader
+- Your projects' data if you are a project manager
+- Your own data if you are an employee or contractor
+
+**NOTE:** In both modules, there are certain data types that are only available if you have configured the necessary settings. For example, to use the "days" and "daily rate" units, you must first configure the "number of hours per day" in the [*Timesheet Settings*](/help/legacy/settings#timesheet-settings-module) module. Similarly, reports on [billing and costs](/help/legacy/costs-billing-budgets) will not be available if the *Billing Methods* and *Standard Cost**** ***modules have not been configured.
+
+## Using the Reports Module
+
+<Frame>
+  <iframe src="https://www.youtube.com/embed/wAWN1tL1qnk" allowFullScreen />
+</Frame>
+
+With the *Reports* module, you can create tables with more than 40 types of available data. **To create a report**:
+
+1. Click "Change this report". You can start by giving the report a name, which is handy if you have multiple reports on a single page.
+2. Select the type of information you want to display from the first dropdown menu. This could be absences, working time, both working time *and* absences, or absence quotas.
+3. Add, remove, and edit the columns. To add a column, fill in the blank column on the right hand side using the dropdown menu. To delete a column, select the blank field from that column's dropdown menu, or click and drag the column away. You can also click and drag the columns sideways to reorder them. In each column you can choose from an extensive list of available data. All of the data types available in the *Reports* module are listed below.
+4. Click "Add a Group or Custom Field" if you want to add additional filters using your [groups and custom fields](/help/legacy/reporting#using-groups-and-custom-fields-in-reports). 
+5. Select the status of the recorded time that you want to include in the report: draft, submitted, approved, rejected, or locked.
+6. Reports are shown in the currency configured for your account by default. However, if you want to change the currency for a specific report, you can do so using the "Currency for amounts" dropdown menu.
+7. Click "Run the report" to view the report you have just configured. You can change the time frame shown by clicking on the date range at the top of the module and toggle backward and forward in time using the arrow buttons.
+
+![Change report](/help/images/legacy/reporting/run-report.webp)
+
+There are two ways you can **refine the data shown in a report**:
+
+1. If you use the *Reports* module on any company, project, subproject, task, absence, or person's page it will only display data related to that specific entity.
+2. Most entities shown in a report are clickable. Clicking on one will automatically filter the report results to only show time entries for that entity. For example, if you have a report showing multiple projects, clicking on one of them will filter the report and only show you data for the selected project. Click "All hours" at the top of the module to return to the view of all data.
+
+Data from the *Reports *module can be **exported in four formats: PDF, CSV, Google Drive Spreadsheet, and Microsoft OneDrive**. Check our documentation for more information about [exporting data from reports](/help/legacy/reporting#exporting-your-data-charts-and-reports).
+
+### Data available in the Reports module:
+
+- **Absence:** the absence name.
+- **Absence ID:** the absence ID, which would be an automatic ID or, if defined, the ID from the *Absence Details* module.
+- **Activity:** will display a concatenation of the company name, project name, and subproject name or the absence name.
+- **Billable - Ratio:** the % of billable hours for the row.
+- **Billable Utilization %: **the % of billable hours for an employee.
+- **Billable / Non-Billable:** will split the hours recording in billable and non-billable time and will display "billable" or "non-billable".
+- **Billing:** the total billing for the row.
+- **Billing - %:** the % of billing that the row represents compared to the total billing for the report.
+- **Budget:** budget information defined in the *Budget* module. The budgets are time independent and won't be impacted by the time frame selected.
+- **Business days:** number of working days for the selected timeframe, ie the number of days in the timeframe minus the weekends and holidays.
+- **Business days remaining:** number of business days for the selected timeframe minus the number of days worked.
+- **Business hours:** number of working hours for the selected timeframe, ie the number of hours in the timeframe minus the weekends and holidays.
+- **Business hours remaining:** number of business hours for the selected timeframe minus the number of hours worked.
+- **Comment:** the comment/note of a time entry.
+- **Company:** the company name.
+- **Company ID:** the company ID, which would be an automatic ID or, if defined, the ID from the Company Details module.
+- **Costs:** the total cost for the row.
+- **Costs - %:** the % of the cost that the row represents compared to the total cost for the report.
+- **Daily Cost:** the average cost calculated for a day. (The conversion between hours and days is done in the *Timesheet Settings* module).
+- **Daily Rate:** the billing rate calculated for a day. (The conversion between hours and days is done in the *Timesheet Settings* module).
+- **Date:** the date of the time entry.
+- **Days:** the time entries expressed in days. (The conversion between hours and days is done in the *Timesheet Settings* module).
+- **Groups, Custom Field:** groups or custom field values defined for a row (for example, a department for an employee).
+- **Hourly Cost:** the average cost per hour for a row.
+- **Hourly Rate:** the average billing rate per hour for a row.
+- **Hours:** the time entries expressed in hours.
+- **Hours - %:** the % of hours that the row represents compared to the total hours for the report.
+- **Is working:** "True" if the employee currently has a timer running at the moment of the report.
+- **Month:** the month of the time entry, displayed as YYYY-MM.
+- **Overtime/day:** the amount of hours above the number of hours per week defined in *Timesheet Settings* + hours worked on weekends and holidays.
+- **Person:** the person's name.
+- **Person ID:** the person ID, which would be an automatic ID or, if defined, the ID from the *Person details* module.
+- **Profit:** the billing - cost for a row.
+- **Profit - %:** the % of profit that the row represents compared to the total profit for the report.
+- **Profit - ratio:** the % of hours with profit for the row.
+- **Project:** the project name.
+- **Project ID:** the project ID, which would be an automatic ID or, if defined, the ID from the *Project details* module.
+- **Status:** draft, submitted, approved, rejected, or locked.
+- **Subproject:** the subproject name.
+- **Subproject ID:** the subproject ID, which would be an automatic ID or, if defined, the ID from the *Subproject details* module.
+- **Task:** the task name.
+- **Task ID:** the task ID, which would be an automatic ID or, if defined, the ID from the *Task Details* module.
+- **Time End:** the end time of a time entry (when using the daily view in the *Timesheet* module).
+- **Time Start:** the start time of a time entry (when using the daily view in the *Timesheet* module).
+- **Week:** the week number.
+
+## Using the Chart & Table* *Module
+
+<Frame>
+  <iframe src="https://www.youtube.com/embed/BFIdb17r_08" allowFullScreen />
+</Frame>
+
+
+
+Use the *Chart & Table* module to view your data in easy to read graphs and charts. **To create a chart or table**:
+
+1. Click "Change this report". In the first dropdown menu, labeled "Choose another report..", you can select from a list of existing standard reports (e.g. costs by company, profitability by project, time spent by tasks, etc.). Even if you want to create your own customized chart, it's usually easiest to start with one of these standard reports and modify it accordingly.
+2. Give your chart a name. This is useful if you are adding multiple charts and graphs to a single page.
+3. Choose the status of the time (draft, submitted, approved, rejected, locked) and the type of information (working time, absences, or both) that you want to include in the chart.
+4. Click "Add a step to drill down" to create the steps for your chart. You can include as many steps as you want, each one being a more detailed view of the previous.
+
+**To configure each step of a chart**:
+
+1. Choose the chart type from the first dropdown menu (area chart, column chart, bar chart, pie chart, or table).
+2. Select the units (days, cost, hours, etc.) and the first data type (absences, tasks, companies, etc.) from the next two dropdown menus. These first two steps will result in something like "Display a *column chart* with *hours* by *projects*". You can click "Reverse" to switch the axes.
+3. If you'd like, you can choose a second data type from the dropdown menu labeled "then split by". This is a kind of third axis that will add additional data to the chart. This option is not available on pie charts. 
+4. Add as many steps as you need by clicking "Add a step to drill down". Once you have finished configuring the chart, click "Run the report".
+
+Click on the data points in a chart or graph **to view the steps you have configured**.
+
+Let's look at an example with hours tracked per week on projects for a client during the month of June:
+
+![Project report](/help/images/legacy/reporting/chart-steps-projects.webp)
+
+Click on one of the projects to see the next step, ie the hours tracked by each person. Note that you can use the navigation menu in the top right corner to go to another step:
+
+![Employee time worked](/help/images/legacy/reporting/chart-steps-people.webp)
+
+ You can also get a more detailed view of both axes by clicking on an area in the chart. For example, by clicking on the hours for Website Design during the week of June 20th:
+
+![Hours worked on projects](/help/images/legacy/reporting/chart-steps-drill-down.webp)
+
+This will give you a detailed view of the hours tracked by each person for that project per day during the week of June 20th:
+
+![Daily time on projects](/help/images/legacy/reporting/chart-steps-daily.webp)
+
+Note that **each step you add will filter a report**. For example, if you add a step with subprojects, the report will be filtered to only show hours related to subprojects. However, if you want to view hours for all projects, both with and without subprojects, you can tick the ***Optional*** box next to the dropdown menu for that data type.
+
+Using the *Chart & Table* module on a person, company, task, project, subproject, or absence page will automatically filter the data and only display information related to that specific entity.
+
+You can **change the time period***** ***shown in a chart by clicking on the date range at the top of the module. Toggle backward and forward in time by using the gray arrow buttons.
+
+Data from the *Chart & Table* module can be exported to a spreadsheet in CSV format by clicking on the CSV icon. Check our documentation to [read more about exporting data](/help/legacy/reporting#exporting-your-data-charts-and-reports).
+
+Click on the blue arrows in the top right corner of the module to **view a chart or table in fullscreen**. You can minimize the chart by clicking on the same icon again.
+
+<Card title="Tips for Better BI Reports" href="https://beebole.com/blog/business-intelligence-reporting-features/">
+  Learn how to take advantage of all of Beebole's reporting features and gain business intelligence
+</Card>
+
+## Using Groups and Custom Fields in Reports
+
+Groups and custom fields can considerably expand your reporting capabilities by using them to filter results. You will be able to view data by department, country, external ID, or any other [group hierarchy](/help/legacy/organizing-people#using-groups-to-create-teams-departments-etc) or [custom field](/help/legacy/settings#creating-custom-fields) that you have created.
+
+**In the***** Report***** module**, when creating or changing a report, click the "Add a Group or Custom Field" button. A list of all the existing groups and custom fields will appear. You can select as many as you want to filter data in the report. To remove a filter, click the red "X" in the top left corner of its name.
+
+You can also further refine a filter by **adding "AND" or "OR" conditions**. The "AND" condition means that all entities displayed in the report must be assigned both groups/custom fields at the same time. The "OR" condition means that all entities displayed must be assigned to any one of the groups/custom fields selected.
+
+For example, a report with the filter shown below will only show data for senior consultants in sales & marketing who are working at *either* the UK *or* the US office:
+
+![Reports with groups](/help/images/legacy/reporting/report-group-filter.webp)
+
+**In the *****Chart & Table***** module**, when creating or changing a report, you can select a group or custom field as the category for the chart. Under each step, select "Group, Custom Field..." from the dropdown menu after "by".
+
+A second dropdown menu will appear listing all the existing groups and custom fields. For example, "Display a *column chart* with *hours* by *department*", as shown in the example below.
+
+![Configure report steps](/help/images/legacy/reporting/report-steps-groups.webp)
+
+**IMPORTANT NOTE:** If you assign the same group to multiple entities, hours in reports will be displayed in the following order:
+
+- Person
+- Absence
+- Task
+- Subproject
+- Project
+- Company
+
+For example, if you assign Department/HR to a person and Department/IT to a project, the hours this person tracks for said project will appear under Department/HR (as "person" comes before "project" in the above list).
+
+## Tracking Overtime
+
+Beebole does not have a dedicated overtime module. Rather, overtime is tracked via reports. **To track overtime**, first you must set a number of "Hours per day" and "Hours per week" in the [*Timesheet Settings*](/help/legacy/settings#timesheet-settings-module) module.
+
+You can then add the column "Overtime/day" and "Overtime/week" to any of your reports. This will automatically include any hours worked on weekends or holidays. Remember that weekends can be configured in the [*Localization*](/help/legacy/settings#localization) module and holidays in the [*Holidays*](/help/legacy/entities#how-to-define-public-holidays) module.
+
+![Overtime report](/help/images/legacy/reporting/overtime-report.webp)
+
+## Exporting Your Data, Charts, and Reports
+
+You can **export your timesheet data to a PDF, spreadsheet, Microsoft OneDrive, or to Google Drive** using the *Report* module. This is especially useful if you want to share branded reports with your customers, print timesheet data to submit to a manager, or build a spreadsheet report with a specific set of columns.
+
+Once you have created a report you want to export using the *Report* module, select the desired export format by clicking one of the icons in the top right corner of the module. Note that Google Drive and OneDrive exports are only available for Google Suite (Gmail) or Microsoft email (Office 365, Skype, Yahoo, etc.) users, respectively.
+
+You can also **export the data from a chart or table** using the *Chart & Table* module. To do so, click on the CSV icon in the bottom right of the module.
+
+Finally, you can **export your configuration data to a spreadsheet***** ***using the *Account* module. Almost all of your account configuration data will be available in the dropdown menu under "[Download your data](/help/legacy/settings#download-audit-trails-and-other-timesheet-data)".
+
+**NOTE:** When opening a CSV file exported from Beebole, your spreadsheet editor may display the data in a single column. This is usually due to discrepancies in the value separator used (eg "," versus ";"). To resolve this, go to the [*Localization*](/help/legacy/settings#localization) module in your Settings screen. Here, change the "List separator for exports" from a comma to a semicolon. Alternatively, you can change the list separator under the regional settings on your computer.
+
+## Exporting Your Data to QuickBooks
+
+Hours recorded in Beebole can be exported as a Timer IIF file and imported to QuickBooks for Windows. Start by setting up the QuickBooks export in your Beebole account:
+
+1. Go to the Settings screen and add the *QuickBooks Settings* module to your screen by clicking "Customize" in the top right corner and dragging and dropping the module anywhere.  
+  ![Quickbooks settings](/help/images/legacy/reporting/quickbooks-settings.webp)
+2. In the *QuickBooks Settings* module, fill in the Company Name, Company Create Time, and QuickBooks version exactly as they appear in your QuickBooks account. You can find the Company Create Time by going to *File > Utilities > Export > Timer Lists* and downloading the IIF file. The Company Create Time should appear in the second line.
+3. If you are using QuickBooks Payroll fill in the PITEM (payroll item) for billable hours and PITEM for non-billable hours.
+4. Next, add the *QuickBooks Export* module to your Settings screen. Select the time period and status of the hours you want to export, and click the "Export" button. This will download a Timer IIF file.  
+  ![Quickbooks export](/help/images/legacy/reporting/quickbooks-export.webp)
+5. To import this file to QuickBooks 2006-2007, go to *File > Import > Timer Activities* in your QuickBooks account and select the file you exported from Beebole. The same operation can be performed in QuickBooks 2008-2011 by going to *File > Utilities > Import > Timer Activities*.
+
+Any companies, projects, and tasks from Beebole that do not exist in QuickBooks will be automatically created, so it's important that all spelling and spacing are consistent between the two platforms. **Below is a list of entities in Beebole and their equivalents in QuickBooks**:
+
+| BEEBOLE | QUICKBOOKS |
+| --- | --- |
+| Company / Customer | Client |
+| Project | Job |
+| Subproject | Sub-job |
+| Task | Service |
+| People | Employee |
+
+
+
+**NOTE:**
+
+- QuickBooks Mac is not supported, as it does not allow time imports.
+- The QuickBooks integration is not available on free accounts.
+- Absences are not exported by the *QuickBooks Export* module.
+
+## Creating Branded Reports
+
+The *Export Setting *module will allow you to configure the format of your PDF exports, which can be used to create branded reports.
+
+Administrators can find the *Export Settings* module on their Settings page. Here you can choose a Letter or A4 paper format, add a letterhead to the first page, and add a footer to each page.
+
+![Export settings](/help/images/legacy/reporting/export-settings-module.webp)
+
+With a bit of HTML knowledge, you can **add your logo to reports** using \<img>. For example: *\<img src="logo.jpg" height="100" width="100" />*
+
+Again, you can **use HTML to format the header and footer** text the way you want. For example:
+
+*\<p>*  
+*\<b style="font-size:16px">Sterling Cooper\</b>\<br/>*  
+*Madison Avenue, NY, NY*  
+*\</p>*
+
+If you want both the employee and the client to sign the printed timesheet, copy and paste the following example in the footer section:
+
+*\<table style="width:100%"> *  
+*\<tr> *  
+*\<td style="border-top:solid 1px #777;width:30%;font-size:12px">Employee signature\</td> *  
+*\<td style="border-top:solid 1px #777;width:15%;font-size:12px">Date\</td> *  
+*\<td style="width:10%">&nbsp;\</td> *  
+*\<td style="border-top:solid 1px #777;width:30%;font-size:12px">Client Signature\</td> *  
+*\<td style="border-top:solid 1px #777;width:15%;font-size:12px">Date\</td> *  
+*\</tr> *  
+*\</table>*
