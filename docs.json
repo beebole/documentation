@@ -235,7 +235,7 @@
               {
                 "group": "Legacy",
                 "pages": [
-                  "help/legacy/api"
+                  "help/api/legacy-api"
                 ]
               }
             ]

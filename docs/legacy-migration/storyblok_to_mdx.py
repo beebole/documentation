@@ -30,6 +30,11 @@ ORDER = [
     "integrations", "mobile-app", "api", "faq",
 ]
 
+# Short sidebar labels for pages whose full title wraps in the left nav.
+SIDEBAR_TITLES = {
+    "time-off": "Approving Time Off",
+}
+
 warnings = []
 
 
@@ -356,6 +361,8 @@ def convert(slug, story_id):
 
 def write_mdx(out_slug, title, desc, md_body, prepend=""):
     fm = ["---", f"title: {json.dumps(title)}"]
+    if out_slug in SIDEBAR_TITLES:
+        fm.append(f"sidebarTitle: {json.dumps(SIDEBAR_TITLES[out_slug])}")
     if desc:
         fm.append(f"description: {json.dumps(desc)}")
     # Pages with a huge heading count produce an unwieldy "On this page" TOC;
