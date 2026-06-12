@@ -2,6 +2,22 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "almond",
   "name": "Beebole Documentation",
+  "redirects": [
+    { "source": "/help/settings", "destination": "/help/legacy/settings" },
+    { "source": "/help/entities", "destination": "/help/legacy/entities" },
+    { "source": "/help/learn-the-basics", "destination": "/help/legacy/learn-the-basics" },
+    { "source": "/help/reporting", "destination": "/help/legacy/reporting" },
+    { "source": "/help/organizing-people", "destination": "/help/legacy/organizing-people" },
+    { "source": "/help/costs-billing-budgets", "destination": "/help/legacy/costs-billing-budgets" },
+    { "source": "/help/onboard-your-team", "destination": "/help/legacy/onboard-your-team" },
+    { "source": "/help/mobile-app", "destination": "/help/legacy/mobile-app" },
+    { "source": "/help/timesheets", "destination": "/help/legacy/timesheets" },
+    { "source": "/help/time-off", "destination": "/help/legacy/time-off" },
+    { "source": "/help/time-clock", "destination": "/help/legacy/time-clock" },
+    { "source": "/help/work-schedules", "destination": "/help/legacy/work-schedules" },
+    { "source": "/help/integrations-and-api", "destination": "/help/legacy/api" },
+    { "source": "/help/gettingstarted", "destination": "/help/legacy/learn-the-basics" }
+  ],
   "seo": {
     "metatags": {
       "description": "Official documentation for Beebole project time tracking. Learn how to set up, configure, and use Beebole effectively.",
