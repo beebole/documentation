@@ -1,31 +1,31 @@
 ---
 title: "Querying time records, projects, and people"
 sidebarTitle: "Queries"
-description: "Reference for Beebole GraphQL queries — read organisations, people, projects, tasks, tags, time records, and expenses, with typed filter inputs."
+description: "Reference for Beebole GraphQL queries — read organizations, people, projects, tasks, tags, time records, and expenses, with typed filter inputs."
 keywords: ["beebole", "GraphQL queries", "API queries", "time records api", "beebole api"]
 "og:title": "Beebole API Queries — GraphQL Read Operations"
 "og:description": "Runnable Beebole GraphQL query examples with real names, arguments, fields, and the typed filter input."
 "og:type": "article"
 ---
 
-Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organisation, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
+Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organization, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
 
 <Info>
   Queries never change data. To create, update, archive, or delete records, use [Mutations](/help/api/mutations) instead. For authentication setup, see the [API introduction](/help/api/introduction#authentication).
 </Info>
 
-Field names follow GraphQL conventions exactly as defined in the schema. Every entity exposes its identifier as `id` (not `_id`), and the organisation-level query is spelled `currentOrganisation` (British spelling, as in the schema).
+Field names follow GraphQL conventions exactly as defined in the schema. Every entity exposes its identifier as `id` (not `_id`), and the organization-level query is spelled `currentOrganisation` (British spelling, as in the schema).
 
 ---
 
-## Organisation
+## Organization
 
 Read account-level data with `currentOrganisation` and `getAuditTrails`.
 
 | Query | Arguments | Returns |
 | --- | --- | --- |
-| `currentOrganisation` | none | The organisation linked to the authenticated API key |
-| `getAuditTrails` | `startTime`, `fromPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organisation |
+| `currentOrganisation` | none | The organization linked to the authenticated API key |
+| `getAuditTrails` | `startTime`, `fromPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organization |
 
 ```graphql
 query {
@@ -176,8 +176,14 @@ query {
   getTasks {
     id
     name
-    startTime
-    endTime
+    startTime {
+      ts
+      iso
+    }
+    endTime {
+      ts
+      iso
+    }
     status {
       id
       name
@@ -250,7 +256,10 @@ query {
   getTimeRecords(startTime: 1704067200000, endTime: 1706745600000, time: true) {
     id
     duration
-    startTime
+    startTime {
+      ts
+      iso
+    }
     nonBillable
     person {
       id
@@ -264,7 +273,7 @@ query {
 }
 ```
 
-Durations and timestamps are integers in milliseconds. The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
+`duration` is an integer in milliseconds. `startTime` and `endTime` are `BeeboleTime` objects — select their subfields `ts` (a Unix timestamp in milliseconds) and `iso` (an ISO 8601 string). The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
 
 ```graphql
 query {
@@ -292,8 +301,14 @@ An expense record is an expense logged by a person against a project and an expe
 query {
   getExpenseRecords(startTime: 1704067200000, endTime: 1706745600000) {
     id
-    date
-    amount
+    date {
+      ts
+      iso
+    }
+    amount {
+      value
+      currency
+    }
     comment
     expenseType {
       id
@@ -306,6 +321,8 @@ query {
   }
 }
 ```
+
+`date` is a `BeeboleTime` object (`ts` in milliseconds, `iso` as an ISO 8601 string). `amount` is an object with `value` (an integer in the currency's smallest unit) and `currency`.
 
 ---
 
@@ -341,7 +358,10 @@ query {
   getTimeRecords(filter: [{ personId: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
     id
     duration
-    startTime
+    startTime {
+      ts
+      iso
+    }
   }
 }
 ```
@@ -372,7 +392,7 @@ query {
 | `personId` / `notPersonId` | ID | Records for (or excluding) one person |
 | `personIds` | `[ID]` | Records for any of several people |
 | `startTime` / `endTime` | Timestamp | Records starting after / ending before a millisecond timestamp |
-| `projectIds` / `notProjectIds` | `[ID]` | Records on (or excluding) projects, including their sub-projects |
+| `projectIds` / `notProjectIds` | `[ID]` | Records on (or excluding) projects, including their subprojects |
 | `taskIds` / `notTaskIds` | `[ID]` | Records on (or excluding) tasks |
 | `projectTagIds` / `projectNotTagIds` | `[ID]` | Records whose projects carry (or lack) given tags |
 | `personTagIds` / `personNotTagIds` | `[ID]` | Records whose person carries (or lacks) given tags |

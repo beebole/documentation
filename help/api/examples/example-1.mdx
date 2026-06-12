@@ -37,7 +37,7 @@ curl -X POST https://app.beebole.com/graphql \
   -H "Content-Type: application/json" \
   -H "apikey: YOUR_API_KEY" \
   -d '{
-    "query": "query ($start: Timestamp, $end: Timestamp, $filter: [BeeboleTimeRecordFilter]) { getTimeRecords(startTime: $start, endTime: $end, time: true, filter: $filter) { id duration startTime nonBillable person { id name } projects { id name } } }",
+    "query": "query ($start: BeeboleTimestamp, $end: BeeboleTimestamp, $filter: [BeeboleTimeRecordFilter]) { getTimeRecords(startTime: $start, endTime: $end, time: true, filter: $filter) { id duration startTime { ts iso } nonBillable person { id name } projects { id name } } }",
     "variables": {
       "start": 1717200000000,
       "end": 1719791999999,
@@ -64,7 +64,10 @@ query ExportTimeRecords {
   ) {
     id
     duration
-    startTime
+    startTime {
+      ts
+      iso
+    }
     nonBillable
     person {
       id
@@ -118,7 +121,10 @@ A successful response returns the matching records under `data.getTimeRecords`:
       {
         "id": "665b1f8e0a1c2d3e4f5a6b70",
         "duration": 7200000,
-        "startTime": 1717372800000,
+        "startTime": {
+          "ts": 1717372800000,
+          "iso": "2024-06-03T00:00:00.000Z"
+        },
         "nonBillable": false,
         "person": {
           "id": "64a1b2c3d4e5f6a7b8c9d0e1",
@@ -134,7 +140,10 @@ A successful response returns the matching records under `data.getTimeRecords`:
       {
         "id": "665b1f8e0a1c2d3e4f5a6b71",
         "duration": 27000000,
-        "startTime": 1717459200000,
+        "startTime": {
+          "ts": 1717459200000,
+          "iso": "2024-06-04T00:00:00.000Z"
+        },
         "nonBillable": true,
         "person": {
           "id": "64a1b2c3d4e5f6a7b8c9d0e1",
@@ -161,7 +170,7 @@ A successful response returns the matching records under `data.getTimeRecords`:
 - `7200000` ms ÷ `3600000` = **2 hours**
 - `27000000` ms ÷ `3600000` = **7.5 hours**
 
-`startTime` is also in milliseconds — a Unix timestamp marking the day the time was logged. Convert it with your language's date utilities (for example, `new Date(1717372800000)` in JavaScript). The `nonBillable` flag tells you whether the entry counts as billable when you build invoicing reports.
+`startTime` is an object with two fields: `ts` (a Unix timestamp in milliseconds, marking the day the time was logged) and `iso` (the same instant as an ISO 8601 string). Use `ts` with your language's date utilities (for example, `new Date(record.startTime.ts)` in JavaScript), or read `iso` directly. The `nonBillable` flag tells you whether the entry counts as billable when you build invoicing reports.
 
 ---
 

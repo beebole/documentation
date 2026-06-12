@@ -46,7 +46,7 @@ apikey: YOUR_API_KEY
   </Step>
 </Steps>
 
-Each account has a single API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions.
+The panel shows a single active API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions.
 
 <Warning>
   Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, open the **API Key** panel and click **Reset** to revoke the current key and generate a new one.
@@ -97,19 +97,21 @@ See the full reference pages for details:
 
 ## Error handling
 
-When a request fails, the API returns an `errors` array alongside (or instead of) the `data` field:
+GraphQL responses follow the standard shape: results come back under `data`, and any operation-level errors come back in an `errors` array.
 
 ```json
 {
   "errors": [
     {
-      "message": "APIKeyError:InvalidKey"
+      "message": "AccountIsInactive"
     }
   ]
 }
 ```
 
-Common error messages:
+### Authentication errors
+
+If the `apikey` header is missing or invalid, Beebole cannot resolve the linked person. You may see one of these authentication messages in the `errors` array:
 
 | Message | Cause |
 |---------|-------|
@@ -117,7 +119,16 @@ Common error messages:
 | `APIKeyError:CantFindLinkedAccount` | The person linked to this key no longer exists |
 | `APIKeyError:CantFindLinkedOrganisation` | The organization linked to this key no longer exists |
 
-Beebole resolves permissions per operation. If a request asks for data or an action the linked person is not authorized for, the response omits that data or returns an authorization error for the affected field rather than failing the whole request.
+### Permission handling
+
+Beebole resolves permissions per operation. If a request asks for data or an action the linked person is not authorized for, Beebole omits the affected fields from `data` and lists their paths in a `permissionsErrors` array, rather than failing the whole request:
+
+```json
+{
+  "data": {},
+  "permissionsErrors": ["Query.currentPerson", "BeebolePerson.*"]
+}
+```
 
 When an account's subscription is inactive, API-key requests are blocked with HTTP `402 Payment Required` and an `AccountIsInactive` error. Browser sessions are not blocked the same way, so this only affects API access.
 
