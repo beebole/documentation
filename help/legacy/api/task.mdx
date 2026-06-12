@@ -1,0 +1,199 @@
+---
+title: "Task"
+description: "Beebole legacy API \u2014 Task operations."
+---
+
+## **Create a Task**
+
+Request:
+
+```json
+{
+  "service": "task.create",
+  "task": {
+    "name": "Meeting",
+    "company": {"id": 233}
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 955
+}
+```
+
+## **Get a Task**
+
+Request:
+
+```json
+{
+  "service": "task.get",
+  "id": 955
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "task" : {
+    "id" : 955,
+    "name" : "Meeting",
+    "company" : {"id" : 233},
+    "active" : true
+  }
+}
+```
+
+## **Update a Task**
+
+Request:
+
+```json
+{
+  "service" : "task.update",
+  "task" : {
+    "id" : 955,
+    "name" : "newName"
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Tasks**
+
+Request:
+
+```json
+{
+  "service": "task.list",
+  "company" : {"id" : 233}
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "tasks": [
+    {
+      "id" : 955,
+      "name" : "Meeting",
+      "company" : {"id" : 233},
+      "active" : true
+    }, ...
+  ]
+}
+```
+
+## **Activate a Task**
+
+Request:
+
+```json
+{
+  "service": "task.activate",
+  "id": 955
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate a Task**
+
+Request:
+
+```json
+{
+  "service": "task.deactivate",
+  "id": 955
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Group to a Task**
+
+Request:
+
+```json
+{
+  "service" : "task.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to a Task**
+
+Request:
+
+```json
+{
+  "service" : "task.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to a Task**
+
+Request:
+
+```json
+{
+  "service" : "task.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```

@@ -231,6 +231,12 @@
                   "help/api/examples/example-1",
                   "help/api/examples/example-2"
                 ]
+              },
+              {
+                "group": "Legacy",
+                "pages": [
+                  "help/legacy/api"
+                ]
               }
             ]
           },
@@ -280,7 +286,22 @@
                   "help/legacy/settings",
                   "help/legacy/integrations",
                   "help/legacy/mobile-app",
-                  "help/legacy/api"
+                  {
+                    "group": "API",
+                    "pages": [
+                      "help/legacy/api",
+                      "help/legacy/api/absence",
+                      "help/legacy/api/company",
+                      "help/legacy/api/person",
+                      "help/legacy/api/project",
+                      "help/legacy/api/subproject",
+                      "help/legacy/api/task",
+                      "help/legacy/api/group",
+                      "help/legacy/api/custom-field",
+                      "help/legacy/api/time",
+                      "help/legacy/api/time-export"
+                    ]
+                  }
                 ]
               },
               {

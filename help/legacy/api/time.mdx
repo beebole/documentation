@@ -1,0 +1,467 @@
+---
+title: "Time"
+description: "Beebole legacy API \u2014 Time operations."
+---
+
+This section deals with the **management of timesheet entries**.
+
+We will call “entity” a company, project, subproject, task, or absence.
+
+In order to log hours on an entity you should follow those simple rules:
+
+- You can log time on a combination of a company, a project, or a subproject with a task if any (mandatory), **or** on an absence.
+- You can only log hours on the leaves of the following hierarchical structure:
+
+    - company
+
+          - project
+
+                  - subproject
+
+## **Examples:**
+
+If a company has projects and the project you choose has subprojects and, moreover, general tasks are defined, you will enter the create/update service with the following parameters:
+
+```
+suproject.id
+task.id
+```
+
+without tasks:
+
+```
+subproject.id
+```
+
+if a company has only projects:
+
+```
+project.id
+task.id
+```
+
+if the company doesn’t have any projects:
+
+```
+company.id
+task.id
+```
+
+if you log hours on an absence (tasks don’t matter in this case):
+
+```
+absence.id
+```
+
+In summary, you get the entity ids and hierarchy with the service **get_entities**, you get the tasks associated, if any, using the **get_tasks** service, and you create or update a time entry following the rules mentioned.
+
+In the case of trying to log hours on inappropriate entities, you will receive an error message.
+
+## **Get Entities to Create a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.get_entities",
+  "company": {
+    "id": 3
+  },
+  "date": "2017-06-16"
+}
+```
+
+Response:
+
+```json
+{
+  "projects":[
+    {
+      "id":30,
+      "name":"Dev",
+      "active":true,
+      "subprojects":{"count":2}
+    },
+    {
+      "id":4131,
+      "name":"Marketing",
+      "active":true,
+      "subprojects":{"count":0}
+    },
+    {
+      "id":4128,
+      "name":"Sales",
+      "active":true,
+      "subprojects":{"count":0}
+    }
+  ]
+}
+```
+
+We want to log hours on the “Dev” project, which has subprojects. So, again, we call time_entry.get_entities but this time mentioning the project id (think of expanding a tree branch):
+
+Request:
+
+```json
+{
+  "service": "time_entry.get_entities",
+  "project": {
+    "id": 30
+  },
+  "date": "2017-06-16"
+}
+```
+
+Response:
+
+```json
+{
+  "subprojects":[
+    {
+      "active":true,
+      "name":"Analyse",
+      "id":37
+    },
+    {
+      "active":true,
+      "name":"Proto",
+      "id":31
+    }
+  ]
+}
+```
+
+We pick the “Analyse” subproject and, in order to know if any task is available for this entity, we use the following service with the subproject id:
+
+## **Get Tasks to Create a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.get_tasks",
+  "subproject": {
+    "id": 37
+  },
+  "date": "2017-07-16"
+}
+```
+
+Response:
+
+```json
+{
+  "tasks":[
+    {
+      "active":true,
+      "name":"Administration",
+      "id":17
+    },
+    {
+      "active":true,
+      "name":"Meetings",
+      "id":18
+    },
+    {
+      "active":true,
+      "name":"Research",
+      "id":19
+    }
+  ]
+}
+```
+
+We have now collected all the necessary information in order to fill in the create/update service request.
+
+## **Create a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.create",
+  "subproject": {
+    "id": 37
+  },  //company.id, project.id, subproject.id or absence.id
+  "task":{
+    "id": 17
+  },  //mandatory if any
+  "date": "2017-08-05",
+  "hours": 8,
+  "comment": "some comment"
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "timeEntry":{
+    "hours":8.0,
+    "status":"d",
+    "subproject":{
+      "id":37,
+      "name":"Analyse",
+      "active":true
+    },
+    "task":{
+      "name":"Administration",
+      "id":17,
+      "active":true
+    },
+    "id":500901,
+    "date":"2017-09-29",
+    "comment":"some comment"
+  }
+}
+```
+
+## **Update a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.update",
+  "id":500901,
+  "subproject":{
+    "id": 37
+  },//company.id, project.id, subproject.id or absence.id
+  "task":{
+    "id": 17
+  },//mandatory if there are tasks defined, and not an absence
+  "date": "2017-09-29",
+  "hours": 7,
+  "comment": "updated comment"
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "timeEntry":{
+    "hours":7.0,
+    "status":"d",
+    "subproject":{
+      "id":37,
+      "name":"Analyse",
+      "active":true
+    },
+    "task":{
+      "name":"Administration",
+      "id":17,
+      "active":true
+    },
+    "id":500901,
+    "date":"2017-09-29",
+    "comment":"updated comment"
+  }
+}
+```
+
+## **Get a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.get",
+  "id": 500901,
+  "date":"2017-09-29"
+}
+```
+
+Response:
+
+```json
+{
+ "status":"ok",
+ "timeEntry":{
+     "hours":7.0,
+     "status":"d",
+     "subproject":{
+       "id":37,
+       "name":"Analyse",
+       "active":true
+     },
+     "task":{
+       "name":"Administration",
+       "id":17,
+       "active":true
+     },
+     "id":500901,
+     "date":"2017-09-29",
+     "comment":"updated comment"
+   }
+}
+```
+
+## **Delete a Time Entry**
+
+Request:
+
+```json
+{
+  "service": "time_entry.delete",
+  "id": 500901,
+  "date":"2017-09-29"
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Time Entries**
+
+Request:
+
+```json
+{
+ "service": "time_entry.list",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-09-01",
+ "to": "2017-09-30"
+}
+```
+
+Response:
+
+```json
+{
+ "status":"ok",
+ "timeEntries":[
+   {
+     "hours":7.0,
+     "status":"d",
+     "subproject":{
+       "id":37,
+       "name":"Analyse",
+       "active":true
+     },
+     "task":{
+       "name":"Administration",
+       "id":17,
+       "active":true
+     },
+     "id":500901,
+     "date":"2017-09-29",
+     "comment":"updated comment"
+   },
+   ...
+ ]
+}
+```
+
+## **Submit Time Entry**
+
+Request:
+
+```json
+{
+ "service": "time_entry.submit",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-10-01", // As an alternative you can use "id": 500001,"date":"2017-11-07"
+ "to": "2017-10-15"    // instead of "from", "to", "id" being the time entry id
+}
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```
+
+## **Approve Time Entry**
+
+Request:
+
+```json
+{
+ "service": "time_entry.approve",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-10-01", // As an alternative you can use "id": 500001,"date":"2017-11-07"
+ "to": "2017-10-15"    // instead of "from", "to", "id" being the time entry id
+}
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```
+
+## **Reject Time Entry**
+
+Request:
+
+```json
+{
+ "service": "time_entry.reject",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-10-01", // As an alternative you can use "id": 500001,"date":"2017-11-07"
+ "to": "2017-10-15",    // instead of "from", "to", "id" being the time entry id
+ "memo": "Rejection reason"   // The rejection reason sent to the employee via email
+}
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```
+
+## **Lock Time Entry**
+
+Request:
+
+```json
+{
+ "service": "time_entry.lock",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-10-01", // As an alternative you can use "id": 500001,"date":"2017-11-07"
+ "to": "2017-10-15"    // instead of "from", "to", "id" being the time entry id
+}
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```
+
+## **Unlock Time Entry**
+
+Request:
+
+```json
+{
+ "service": "time_entry.unlock",
+ "person" : {
+   "id": 2
+ },
+ "from": "2017-10-01", // As an alternative you can use "id": 500001,"date":"2017-11-07"
+ "to": "2017-10-15"    // instead of "from", "to", "id" being the time entry id
+}
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```

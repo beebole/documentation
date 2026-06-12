@@ -1,0 +1,337 @@
+---
+title: "Person"
+description: "Beebole legacy API \u2014 Person operations."
+---
+
+## **Create a Person**
+
+Request:
+
+```json
+{
+  "service": "person.create",
+  "person": {
+    "name": "Rosa Parks",
+    "company": {"id": 233},
+    "email": "rosa.parks@example.com",      // optional: a user with this email as username will be created
+    "invite": true,                         // optional: when email is present, invite the user (email)
+    "userGroup": "employee",                // optional: define the user group.  Permitted values :
+                                            // "admin",
+                                            // "contractor",
+                                            // "employee"(default),
+                                            // "pm"(Project Manager),
+                                            // "leader"(Team Leader)
+
+    "leaders": [
+      {                                     // optional: the person will be linked to one or more team leaders
+        "id": 32,                           //
+        "name": "Jane Clark",               // you can use either the id(or xid), name, email or all fields
+        "email": "jane.clark@example.com"   // in order to retrieve the team leader
+      },                                    // if all mentioned : id>xid>email>name
+      ...
+    ]                                      
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 455
+}
+```
+
+## **Get a Person**
+
+Request:
+
+```json
+{
+  "service": "person.get",
+  "id": 455
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "person" : {
+    "id" : 455,
+    "name" : "Rosa Parks",
+    "company" : {"id" : 233},
+    "active" : true,
+    "email": "rosa.parks@example.com",
+    "userGroup": "employee",
+    "leaders" : {"count" : 1}
+  }
+}
+```
+
+## **Update a Person**
+
+Request:
+
+```json
+{
+  "service": "person.update",
+  "person": {
+    "id": 455,
+    "name": "Rosa Parks",
+    "email": "rosa.parks@example.com",      //optional: the person email and username will be updated
+    "invite": true,                         //optional: when email is present, invite the user (email)
+    "userGroup": "employee",                //optional: update the user group.  Permitted values :
+                                            // "admin",
+                                            // "contractor",
+                                            // "employee"(default),
+                                            // "pm"(Project Manager),
+                                            // "leader"(Team Leader)
+
+    "leaders": [
+      {                                     //optional: the person will be linked to one or more team leaders
+        "id": 32,                           //
+        "name": "Jane Clark",               // you can use either the id(or xid), name, email or all fields
+        "email": "jane.clark@example.com"   // in order to retrieve the team leader
+      },                                    // if all mentioned : id>xid>email>name
+      ...
+    ]                                      
+
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Persons**
+
+Request:
+
+```json
+{
+  "service": "person.list",
+  "company" : {"id" : 233}
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "people": [
+    {
+      "id": 455,
+      "name" : "Rosa Parks",
+      "company": {"id" : 233},
+      "active" : true,
+      "email": "rosa.parks@example.com",
+      "userGroup": "employee",
+      "leaders" : {"count" : 1}
+    }, ...
+  ]
+}
+```
+
+## **List Team Leaders of a Person**
+
+Request:
+
+```json
+{
+  "service": "person.leaders",
+  "id" : 455
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "leaders": [
+    {
+      "id": 32,
+      "name" : "Jane Clark",
+      "company": {"id" : 233},
+      "active" : true,
+      "email": "jane.clarks@example.com",
+      "userGroup": "leader",
+      "leaders" : {"count" : 1}
+    }, ...
+  ]
+}
+```
+
+## **Activate a Person**
+
+Request:
+
+```json
+{
+  "service": "person.activate",
+  "id": 455
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate a Person**
+
+Request:
+
+```json
+{
+  "service": "person.deactivate",
+  "id": 455
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Group to a Person**
+
+Request:
+
+```json
+{
+  "service" : "person.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to a Person**
+
+Request:
+
+```json
+{
+  "service" : "person.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to a Person**
+
+Request:
+
+```json
+{
+  "service" : "person.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```
+
+## **Set a Custom Field Value to a Person**
+
+Request:
+
+```json
+{
+  "service" : "person.set_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879,
+    "value" : "Salt Lake City, UT, USA"
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Clear a Person Custom Field Value**
+
+Request:
+
+```json
+{
+  "service" : "person.clear_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Custom Fields Assigned to a Person**
+
+Request:
+
+```json
+{
+  "service" : "person.custom_fields",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "customFields":[
+    {
+      "id" : 4879,
+      "name" : "location",
+      "value" : "Salt Lake City, UT, USA"
+    }, ...
+  ]
+}
+```

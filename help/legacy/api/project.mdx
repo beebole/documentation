@@ -1,0 +1,515 @@
+---
+title: "Project"
+description: "Beebole legacy API \u2014 Project operations."
+---
+
+## **Create a Project**
+
+Request:
+
+```json
+{
+  "service": "project.create",
+  "project": {
+    "name": "Development",
+    "startDate": "2017-10-13", //optional, default 1st current month
+    "description" : "some description ...", //optional
+    "company": {"id": 233}
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 321
+}
+```
+
+## **Get a Project**
+
+Request:
+
+```json
+{
+  "service": "project.get",
+  "id": 321
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "project" : {
+    "id" : 321,
+    "name" : "Development",
+    "startDate": "2017-10-13",
+    "description" : "some description ...",
+    "company" : {"id" : 233},
+    "subprojects" : {"count" : 2},
+    "active" : true
+  }
+}
+```
+
+## **Update a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.update",
+  "project" : {
+    "id" : 321,
+    "name" : "newName",
+    "startDate": "2017-10-13",
+    "description" : "some description ..."
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Projects**
+
+Request:
+
+```json
+{
+  "service": "project.list",
+  "company" : {"id" : 233}
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "projects": [
+    {
+      "id": 321,
+      "name" : "Development",
+      "startDate": "2017-10-13",
+      "description" : "some description ...",
+      "company": {"id" : 233},
+      "subprojects" : {"count" : 2},
+      "active" : true
+    }, ...
+  ]
+}
+```
+
+## **Activate a Project**
+
+Request:
+
+```json
+{
+  "service": "project.activate",
+  "id": 321
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate a Project**
+
+Request:
+
+```json
+{
+  "service": "project.deactivate",
+  "id": 321
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Specific Task to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.attach_specific_task",
+  "id" : 78,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign a Specific Task to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.detach_specific_task",
+  "id" : 78,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Specific Tasks Assigned to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "disabled" : false,  //default : false
+ "specificTasks": [
+   {
+     "name" : "Administration",
+     "id" : 345,
+     "active":true
+   }, ...
+ ]
+}
+```
+
+## **Enable Specific Tasks for a Project (enabled by default)**
+
+Request:
+
+```json
+{
+  "service" : "project.enable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Disable Specific Tasks for a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.disable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Assign an Exclusive Member to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.attach_member",
+  "id" : 78,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign an Exclusive Member to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.detach_member",
+  "id" : 78,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Exclusive Members Assigned to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.members",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "members": [
+   {
+     "name" : "John Le Carré",
+     "id" : 345
+   }, ...
+ ],
+ "groups": [
+   {
+     "name" : "US",
+     "id" : 978
+   }, ...
+ ]
+}
+```
+
+## **Assign a Project Manager to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.attach_manager",
+  "id" : 78,
+  "person" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign a Project Manager to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.detach_manager",
+  "id" : 78,
+  "person" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Project Managers Assigned to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.managers",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "members": [
+   {
+     "name" : "John Le Carré",
+     "id" : 345,
+     "email": "jlcarr@example.com",
+     "active": true
+   }, ...
+ ]
+}
+```
+
+## **Assign a Group to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```
+
+## **Set a Custom Field Value to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.set_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879,
+    "value" : "Salt Lake City, UT, USA"
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Clear a Project Custom Field Value**
+
+Request:
+
+```json
+{
+  "service" : "project.clear_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Custom Fields Assigned to a Project**
+
+Request:
+
+```json
+{
+  "service" : "project.custom_fields",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "customFields":[
+    {
+      "id" : 4879,
+      "name" : "location",
+      "value" : "Salt Lake City, UT, USA"
+    }, ...
+  ]
+}
+```

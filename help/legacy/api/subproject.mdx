@@ -1,0 +1,438 @@
+---
+title: "Subproject"
+description: "Beebole legacy API \u2014 Subproject operations."
+---
+
+## **Create a Subproject**
+
+Request:
+
+```json
+{
+  "service": "subproject.create",
+  "subproject": {
+    "name": "Prototype",
+    "project": {"id": 321}
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 765
+}
+```
+
+## **Get a Subproject**
+
+Request:
+
+```json
+{
+  "service": "subproject.get",
+  "id": 765
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "subproject" : {
+    "id" : 765,
+    "name" : "Prototype",
+    "project" : {"id" : 765},
+    "active" : true
+  }
+}
+```
+
+## **Update a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.update",
+  "subproject" : {
+    "id" : 765,
+    "name" : "newName"
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Subprojects**
+
+Request:
+
+```json
+{
+  "service": "subproject.list",
+  "project" : {"id" : 765}
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "subprojects": [
+    {
+      "id" : 765,
+      "name" : "Prototype",
+      "project" : {"id" : 765},
+      "active" : true
+    }, ...
+  ]
+}
+```
+
+## **Activate a Subproject**
+
+Request:
+
+```json
+{
+  "service": "subproject.activate",
+  "id": 765
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate a Subproject**
+
+Request:
+
+```json
+{
+  "service": "subproject.deactivate",
+  "id": 765
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Specific Task to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.attach_specific_task",
+  "id" : 86,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign a Specific Task to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.detach_specific_task",
+  "id" : 86,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Specific Tasks Assigned to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.specific_tasks",
+  "id" : 86
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "disabled" : false,  //default : false
+ "specificTasks": [
+   {
+     "name" : "Administration",
+     "id" : 345,
+     "active":true
+   }, ...
+ ]
+}
+```
+
+## **Enable Specific Tasks for a Subproject (enabled by default)**
+
+Request:
+
+```json
+{
+  "service" : "subproject.enable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Disable Specific Tasks for a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.disable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Assign an Exclusive Member to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.attach_member",
+  "id" : 765,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign an Exclusive Member to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.detach_member",
+  "id" : 765,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Exclusive Members Assigned to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.members",
+  "id" : 765
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "members": [
+   {
+     "name" : "Peter Flemming",
+     "id" : 350
+   }, ...
+ ],
+ "groups": [
+   {
+     "name" : "US",
+     "id" : 978
+   }, ...
+ ]
+}
+```
+
+## **Assign a Group to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```
+
+## **Set a Custom Field Value to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.set_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879,
+    "value" : "Salt Lake City, UT, USA"
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Clear a Subproject Custom Field Value**
+
+Request:
+
+```json
+{
+  "service" : "subproject.clear_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 4879
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Custom Fields Assigned to a Subproject**
+
+Request:
+
+```json
+{
+  "service" : "subproject.custom_fields",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "customFields":[
+    {
+      "id" : 4879,
+      "name" : "location",
+      "value" : "Salt Lake City, UT, USA"
+    }, ...
+  ]
+}
+```

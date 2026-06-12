@@ -1,0 +1,443 @@
+---
+title: "Company"
+description: "Beebole legacy API \u2014 Company operations."
+---
+
+## **Create a Company**
+
+Request:
+
+```json
+{
+  "service": "company.create",
+  "company": {
+    "name": "myCompany",
+    "corporate" : true      //optional: is the company corporate or customer ?  default false (customer)
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 233
+}
+```
+
+## **Get a Company**
+
+Request:
+
+```json
+{
+  "service": "company.get",
+  "id": 233
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "company" : {
+    "id" : 233,
+    "name" : "myCompany",
+    "projects": {
+      "count": 3
+    },
+    "active" : true
+  }
+}
+```
+
+## **Update a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.update",
+  "company" : {
+    "id" : 233,
+    "name" : "newName"
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Companies**
+
+Request:
+
+```json
+{
+  "service": "company.list"
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "companies": [
+    {
+      "id" : 233,
+      "name" : "myCompany",
+      "projects": {"count": 3},
+      "active" : true
+    }, ...
+  ]
+}
+```
+
+## **Activate a Company**
+
+Request:
+
+```json
+{
+  "service": "company.activate",
+  "id": 233
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate a Company**
+
+Request:
+
+```json
+{
+  "service": "company.deactivate",
+  "id": 233
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Specific Task to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.attach_specific_task",
+  "id" : 78,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign a Specific Task to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.detach_specific_task",
+  "id" : 78,
+  "task" : {
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Specific Tasks Assigned to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "disabled" : false,  //default : false
+ "specificTasks": [
+   {
+     "name" : "Administration",
+     "id" : 345,
+     "active":true
+   }, ...
+ ]
+}
+```
+
+## **Enable Specific Tasks for a Company (enabled by default)**
+
+Request:
+
+```json
+{
+  "service" : "company.enable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Disable Specific Tasks for a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.disable_specific_tasks",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Assign an Exclusive Member to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.attach_member",
+  "id" : 78,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Unassign an Exclusive Member to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.detach_member",
+  "id" : 78,
+  "person" : {  // "person" or "group"
+    "id" : 43
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Exclusive Members Assigned to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.members",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+ "status" : "ok",
+ "members": [
+   {
+     "name" : "John Le Carré",
+     "id" : 345
+   }, ...
+ ],
+ "groups": [
+   {
+     "name" : "US",
+     "id" : 978
+   }, ...
+ ]
+}
+```
+
+## **Assign a Group to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```
+
+## **Set a Custom Field Value to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.set_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 7206,
+    "value" : "Transportation"
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Clear a Company Custom Field Value**
+
+Request:
+
+```json
+{
+  "service" : "company.clear_custom_field_value",
+  "id" : 78,
+  "customField" : {
+    "id" : 7206
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Custom Fields Assigned to a Company**
+
+Request:
+
+```json
+{
+  "service" : "company.custom_fields",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "customFields":[
+    {
+      "id" : 7206,
+      "name" : "Industry",
+      "value" : "Transportation" 
+    },
+    {
+      "id" : 4149,
+      "name" : "location"
+    }, ...
+  ]
+}
+```

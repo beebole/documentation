@@ -1,0 +1,199 @@
+---
+title: "Absence"
+description: "Beebole legacy API \u2014 Absence operations."
+---
+
+## **Create an Absence Type**
+
+Request:
+
+```json
+{
+  "service": "absence.create",
+  "absence": {
+    "name": "myAbsence",
+    "company": {"id": 233}
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 78
+}
+```
+
+## **Get an Absence Type**
+
+Request:
+
+```json
+{
+  "service": "absence.get",
+  "id": 78
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "absence" : {
+    "id" : 78,
+    "name" : "myAbsence",
+    "company" : {"id" : 233},
+    "active" : true
+  }
+}
+```
+
+## **Update an Absence Type**
+
+Request:
+
+```json
+{
+  "service" : "absence.update",
+  "absence" : {
+    "id" : 78,
+    "name" : "newName"
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Absence Types**
+
+Request:
+
+```json
+{
+  "service": "absence.list",
+  "company" : {"id" : 233}
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "absences": [
+    {
+      "id" : 78,
+      "name" : "myAbsence",
+      "company": {"id" : 233},
+      "active" : true
+    }, ...
+  ]
+}
+```
+
+## **Activate an Absence Type**
+
+Request:
+
+```json
+{
+  "service": "absence.activate",
+  "id": 78
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Deactivate an Absence Type**
+
+Request:
+
+```json
+{
+  "service": "absence.deactivate",
+  "id": 78
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Assign a Group to an Absence Type**
+
+Request:
+
+```json
+{
+  "service" : "absence.add_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **Unassign a Group to an Absence Type**
+
+Request:
+
+```json
+{
+  "service" : "absence.remove_group",
+  "id" : 78,
+  "group" : {
+    "id" : 105
+  }
+}
+```
+
+Response:
+
+```json
+{"status": "ok"}
+```
+
+## **List Groups Assigned to an Absence Type**
+
+Request:
+
+```json
+{
+  "service" : "absence.groups",
+  "id" : 78
+}
+```
+
+Response:
+
+```json
+{
+  "status":"ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```

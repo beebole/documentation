@@ -16,9 +16,7 @@ import urllib.error
 
 SPACE = "118349"
 MAPI = f"https://mapi.storyblok.com/v1/spaces/{SPACE}"
-TOKEN = os.environ.get("SB_TOKEN")
-if not TOKEN:
-    sys.exit("SB_TOKEN env var is required")
+TOKEN = os.environ.get("SB_TOKEN")  # checked in main(); module stays importable
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT_DIR = os.path.join(REPO, "help", "legacy")
@@ -414,7 +412,73 @@ LANDING_INDEX = (
 )
 
 
+# The API article is one giant page (134 headings). Split it into an overview
+# plus one page per API resource so each gets a usable on-page table of contents.
+API_RESOURCES = [
+    "Absence", "Company", "Person", "Project", "Subproject",
+    "Task", "Group", "Custom Field", "Time", "Time Export",
+]
+
+
+def slugify(text):
+    s = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    return s or "section"
+
+
+def _promote_headings(body):
+    # Shift every heading up one level (### -> ##, #### -> ###) in a single pass.
+    return re.sub(
+        r"^(#{3,6}) ",
+        lambda m: "#" * (len(m.group(1)) - 1) + " ",
+        body, flags=re.M,
+    )
+
+
+def split_api_pages(title, desc, md_body):
+    """Write help/legacy/api.mdx (overview) + help/legacy/api/<resource>.mdx."""
+    lines = md_body.split("\n")
+    h2 = [(i, lines[i][3:].strip()) for i, l in enumerate(lines)
+          if re.match(r"^## ", l)]
+    res_set = set(API_RESOURCES)
+    starts = [(i, t) for (i, t) in h2 if t in res_set]
+    if not starts:
+        write_mdx("api", title, desc, md_body)
+        return []
+    overview_end = starts[0][0]
+    overview = "\n".join(lines[:overview_end]).strip()
+
+    # Build resource page list with their line spans.
+    bounds = [s[0] for s in starts] + [len(lines)]
+    nav = []
+    api_dir = os.path.join(OUT_DIR, "api")
+    os.makedirs(api_dir, exist_ok=True)
+    cards = []
+    for idx, (start, rtitle) in enumerate(starts):
+        end = bounds[idx + 1]
+        section = "\n".join(lines[start + 1:end]).strip()  # drop the "## <Res>"
+        section = _promote_headings(section)
+        slug = slugify(rtitle)
+        fm = ["---", f"title: {json.dumps(rtitle)}",
+              f"description: {json.dumps(f'Beebole legacy API — {rtitle} operations.')}",
+              "---"]
+        with open(os.path.join(api_dir, f"{slug}.mdx"), "w") as f:
+            f.write("\n".join(fm) + "\n\n" + section + "\n")
+        nav.append((slug, rtitle))
+        cards.append(
+            f'  <Card title="{rtitle}" href="/help/legacy/api/{slug}" />'
+        )
+        print(f"  wrote help/legacy/api/{slug}.mdx", flush=True)
+
+    # Overview page links out to each resource page.
+    resource_index = ("\n\n## API resources\n\n"
+                      "<CardGroup cols={3}>\n" + "\n".join(cards) + "\n</CardGroup>\n")
+    write_mdx("api", title, desc, overview + resource_index)
+    return nav
+
+
 def main():
+    if not TOKEN:
+        sys.exit("SB_TOKEN env var is required")
     print("Listing en/help stories...", flush=True)
     stories = list_help_stories()
     # Curated landing page (the `docs` story is a lorem-ipsum stub, skipped).
@@ -431,7 +495,10 @@ def main():
             continue
         print(f"Converting {slug}...", flush=True)
         title, desc, md = convert(slug, stories[slug])
-        write_mdx(slug, title, desc, md, "")
+        if slug == "api":
+            split_api_pages(title, desc, md)
+        else:
+            write_mdx(slug, title, desc, md, "")
         time.sleep(2)  # throttle mapi
     print("\nDONE.")
     if warnings:

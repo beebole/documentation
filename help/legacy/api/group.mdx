@@ -1,0 +1,180 @@
+---
+title: "Group"
+description: "Beebole legacy API \u2014 Group operations."
+---
+
+## **Create a Group**
+
+Request:
+
+```json
+{
+  "service": "group.create",
+  "group": {
+    "name": "Texas",
+    "parent": {"id": 4787} //optional: if not present, the group will be created at the root level
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "id": 1005
+}
+```
+
+## **Get a Group**
+
+Request:
+
+```json
+{
+  "service": "group.get",
+  "id": 1005
+}
+```
+
+Response:
+
+```json
+{
+  "status" : "ok",
+  "group" : {
+    "id" : 1005,
+    "name" : "Texas",
+    "parent" : {"id" : 4787}
+  }
+}
+```
+
+## **Update a Group**
+
+Request:
+
+```json
+{
+  "service" : "group.update",
+  "group" : {
+    "id" : 1005,
+    "name" : "Texas - Austin"
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **Delete a Group**
+
+Request:
+
+```json
+{
+  "service" : "group.delete",
+  "id" : 1005,
+  "force" : true //optional:  default is false. Force deletion even when the group has been assigned to entities
+  }
+}
+```
+
+Response:
+
+```json
+{"status" : "ok"}
+```
+
+## **List Groups Assigned to an Entity**
+
+Request:
+
+```json
+{
+  "service": "group.list",
+  "company" : {"id" : 233} // "absence", "company", "project", "subproject", "task" or "person"
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "groups":[
+    {
+      "id":4787,
+      "name":"US",
+      "groups":{"count":4}
+    }, ...
+  ]
+}
+```
+
+## **List Entities Assigned to a Group**
+
+Request:
+
+```json
+{
+  "service": "group.assignments",
+  "id" : 4787 // group id
+}
+```
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "companies": [
+    {
+      "id" : 233,
+      "name" : "myCompany",
+      "active" : true
+    }, ...
+  ],
+  "people": [
+    {
+      "id": 455,
+      "name" : "Rosa Parks",
+      "active" : true,
+      "email": "rosa.parks@example.com"
+    }, ...
+  ],
+  ...     //"companies", "projects", "subprojects", "tasks", "people", "absences"
+}
+```
+
+## **Groups Tree**
+
+Request:
+
+```json
+{
+  "service": "group.tree"
+}
+```
+
+Response:
+
+```json
+{
+  "groups": [
+    {
+      "id":4521,
+      "name":"Country",
+      "groups":[
+        {
+          "id":4787,
+          "name":"US"
+        }
+      ]
+    }
+  ]
+}
+```
