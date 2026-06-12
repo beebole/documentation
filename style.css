@@ -1,0 +1,47 @@
+/* Custom layout overrides for Beebole Documentation.
+ *
+ * Mintlify auto-loads any .css file in the repo (no docs.json entry needed).
+ * These rules widen the content region on large screens so wide monitors
+ * don't leave a large empty band to the right of the text + table of contents.
+ *
+ * Selectors are Mintlify's documented layout hooks:
+ *   #content-area  — primary content region (excludes sidebar + TOC)
+ *   #content       — inner text column
+ * NOTE: Mintlify warns these IDs can change between platform updates.
+ * Re-check this file after a Mintlify upgrade if the layout looks off.
+ */
+
+/* IMPORTANT: #content-area must match #content. The theme left-aligns the
+ * text column inside #content-area, so if the wrapper is wider than the text
+ * a large empty band opens up between the text and the table of contents.
+ * Keep both values equal. */
+@media (min-width: 1280px) {
+  #content-area {
+    max-width: 680px;
+  }
+
+  #content {
+    max-width: 680px;
+  }
+}
+
+/* Make the collapsible section toggles (Manage, Time Tracking, …) stand out
+ * from their child page links (Projects, People, Tags). The toggle renders as
+ * a <button> inside an <li data-group-tag>; bolding it sets it apart from the
+ * regular page links nested beneath it. Mintlify markup — re-check after an
+ * upgrade if the weighting looks off. */
+li[data-group-tag] > button {
+  font-weight: 500;
+}
+
+/* Distinguish the top-level group headers ("Getting started", "Documentation")
+ * from the bold Title-Case section toggles by rendering them as uppercase,
+ * letter-spaced category labels. These headers render as <h5> inside the
+ * sidebar nav container (#navigation-items); scoped there so page-content
+ * headings are untouched. Mintlify markup — re-check after an upgrade. */
+#navigation-items h5 {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  font-weight: 600;
+}

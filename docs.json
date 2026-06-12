@@ -60,86 +60,101 @@
                 ]
               },
               {
-                "group": "Manage",
+                "group": "Documentation",
                 "pages": [
-                  "help/documentation/projects",
-                  "help/documentation/people",
-                  "help/documentation/tags"
-                ]
-              },
-              {
-                "group": "Time Tracking",
-                "pages": [
-                  "help/documentation/timesheets",
-                  "help/documentation/timesheetSettings",
-                  "help/documentation/approval"
-                ]
-              },
-              {
-                "group": "Tasks & Planning",
-                "pages": [
-                  "help/documentation/planning",
-                  "help/documentation/gantt",
-                  "help/documentation/kanban"
-                ]
-              },
-              {
-                "group": "Time Off",
-                "pages": [
-                  "help/documentation/timeoff",
-                  "help/documentation/accruals",
-                  "help/documentation/public-holidays"
-                ]
-              },
-              {
-                "group": "Financial",
-                "pages": [
-                  "help/documentation/billing",
-                  "help/documentation/costs",
-                  "help/documentation/budgets",
-                  "help/documentation/expenses"
-                ]
-              },
-              {
-                "group": "Reporting",
-                "pages": [
-                  "help/documentation/reports",
-                  "help/documentation/custom-reports",
-                  "help/documentation/data-exports",
-                  "help/documentation/excel-addin",
-                  "help/documentation/gsheets-addon"
-                ]
-              },
-              {
-                "group": "Configuration",
-                "pages": [
-                  "help/documentation/work-schedule",
-                  "help/documentation/custom-fields",
-                  "help/documentation/roles-authorisations",
-                  "help/documentation/assignments"
-                ]
-              },
-              {
-                "group": "Communication",
-                "pages": [
-                  "help/documentation/journal",
-                  "help/documentation/notifications"
-                ]
-              },
-              {
-                "group": "Account",
-                "pages": [
-                  "help/documentation/account-settings",
-                  "help/documentation/authentication",
-                  "help/documentation/subscription",
-                  "help/documentation/audit-trail",
-                  "help/documentation/legacy-migration"
-                ]
-              },
-              {
-                "group": "Devices",
-                "pages": [
-                  "help/documentation/mobile"
+                  {
+                    "group": "Manage",
+                    "expanded": true,
+                    "pages": [
+                      "help/documentation/projects",
+                      "help/documentation/people",
+                      "help/documentation/tags"
+                    ]
+                  },
+                  {
+                    "group": "Time Tracking",
+                    "expanded": true,
+                    "pages": [
+                      "help/documentation/timesheets",
+                      "help/documentation/timesheetSettings",
+                      "help/documentation/approval"
+                    ]
+                  },
+                  {
+                    "group": "Tasks & Planning",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/planning",
+                      "help/documentation/gantt",
+                      "help/documentation/kanban"
+                    ]
+                  },
+                  {
+                    "group": "Time Off",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/timeoff",
+                      "help/documentation/accruals",
+                      "help/documentation/public-holidays"
+                    ]
+                  },
+                  {
+                    "group": "Financial",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/billing",
+                      "help/documentation/costs",
+                      "help/documentation/budgets",
+                      "help/documentation/expenses"
+                    ]
+                  },
+                  {
+                    "group": "Reporting",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/reports",
+                      "help/documentation/custom-reports",
+                      "help/documentation/data-exports",
+                      "help/documentation/excel-addin",
+                      "help/documentation/gsheets-addon"
+                    ]
+                  },
+                  {
+                    "group": "Configuration",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/work-schedule",
+                      "help/documentation/custom-fields",
+                      "help/documentation/roles-authorisations",
+                      "help/documentation/assignments"
+                    ]
+                  },
+                  {
+                    "group": "Communication",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/journal",
+                      "help/documentation/notifications"
+                    ]
+                  },
+                  {
+                    "group": "Account",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/account-settings",
+                      "help/documentation/authentication",
+                      "help/documentation/subscription",
+                      "help/documentation/audit-trail",
+                      "help/documentation/legacy-migration"
+                    ]
+                  },
+                  {
+                    "group": "Devices",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/mobile"
+                    ]
+                  }
                 ]
               }
             ]
@@ -238,12 +253,6 @@
                   "help/api/legacy-api"
                 ]
               }
-            ]
-          },
-          {
-            "tab": "News",
-            "pages": [
-              "help/news/releases"
             ]
           },
           {
