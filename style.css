@@ -45,3 +45,22 @@ li[data-group-tag] > button {
   font-size: 0.72rem;
   font-weight: 600;
 }
+
+/* Brand-colored hero card on the landing page: indigo background, white text,
+ * so "Get started with Beebole" stands out from the topic cards below it.
+ * Targeted by href — the only .card on the site linking to the quickstart.
+ * !important overrides the theme's Tailwind bg/text utilities. */
+a.card[href="/help/documentation/quickstart"] {
+  background-color: #4338ca !important;
+  border-color: #4338ca !important;
+}
+a.card[href="/help/documentation/quickstart"],
+a.card[href="/help/documentation/quickstart"] * {
+  color: #ffffff !important;
+}
+/* The card icon is a CSS-mask SVG whose visible color is its background-color
+ * (bg-primary = the same indigo), so on the indigo card it'd be invisible.
+ * Force the mask fill white. */
+a.card[href="/help/documentation/quickstart"] svg[class*="bg-primary"] {
+  background-color: #ffffff !important;
+}

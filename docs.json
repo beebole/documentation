@@ -272,6 +272,12 @@
             ]
           },
           {
+            "tab": "News",
+            "pages": [
+              "help/news/releases"
+            ]
+          },
+          {
             "tab": "Legacy",
             "groups": [
               {
