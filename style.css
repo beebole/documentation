@@ -48,19 +48,28 @@ li[data-group-tag] > button {
 
 /* Brand-colored hero card on the landing page: indigo background, white text,
  * so "Get started with Beebole" stands out from the topic cards below it.
- * Targeted by href — the only .card on the site linking to the quickstart.
+ *
+ * A `horizontal` <Card> renders as:
+ *   div.card  (the visible bordered box — has the `card` class, NO href)
+ *   └ div.px-6 py-5  (padding wrapper)
+ *     └ a[aria-hidden][style="display:contents"][href]  (routing anchor, no box)
+ * The `card` class lives on the OUTER div, not the <a>, so the older
+ * `a.card[href=...]` selector matched nothing. Target the .card box that
+ * CONTAINS the quickstart link via :has(), scoped to #content so the sidebar
+ * nav link and the footer "next" pagination link to the same page are left
+ * alone. (:has() is supported in all current browsers Mintlify targets.)
  * !important overrides the theme's Tailwind bg/text utilities. */
-a.card[href="/help/documentation/quickstart"] {
+#content .card:has(a[href="/help/documentation/quickstart"]) {
   background-color: #4338ca !important;
   border-color: #4338ca !important;
 }
-a.card[href="/help/documentation/quickstart"],
-a.card[href="/help/documentation/quickstart"] * {
+#content .card:has(a[href="/help/documentation/quickstart"]) :is(h2, p, span, div) {
   color: #ffffff !important;
 }
 /* The card icon is a CSS-mask SVG whose visible color is its background-color
  * (bg-primary = the same indigo), so on the indigo card it'd be invisible.
- * Force the mask fill white. */
-a.card[href="/help/documentation/quickstart"] svg[class*="bg-primary"] {
+ * Force it white. Scoped to the .size-6 icon slot so the hover arrow icon
+ * (a stroke SVG) doesn't get a white background block. */
+#content .card:has(a[href="/help/documentation/quickstart"]) .size-6 svg {
   background-color: #ffffff !important;
 }
