@@ -3,9 +3,9 @@ title: "Monday.com integration: import boards and items"
 sidebarTitle: "Monday.com"
 description: "Connect Monday.com to Beebole to import boards and items for time tracking. Automatic sync keeps your Monday.com workspace aligned with Beebole projects."
 keywords: ["beebole", "Monday.com", "integration", "project management", "board sync", "time tracking", "monday"]
-"og:title": "Monday.com Integration for Time Tracking with Beebole"
-"og:description": "Import Monday.com boards and items into Beebole for time tracking with automatic sync."
-"og:type": "article"
+og:title: "Monday.com Integration for Time Tracking with Beebole"
+og:description: "Import Monday.com boards and items into Beebole for time tracking with automatic sync."
+og:type: "article"
 ---
 
 Beebole's Monday.com integration imports your Monday.com boards, items, and team members into Beebole so your team can track time against their Monday.com work. The integration keeps your Monday.com workspace and Beebole account in sync automatically — when a board or item is created or renamed in Monday.com, the change is reflected in Beebole.
@@ -13,7 +13,7 @@ Beebole's Monday.com integration imports your Monday.com boards, items, and team
 You can import your Monday.com structure into Beebole's **Projects and activities** for time tracking with costs, billing, and expenses, or into **Planning and tasks** for resource assignment.
 
 | Monday.com | Projects and activities | Planning and tasks |
-|---|---|---|
+| --- | --- | --- |
 | Board | Project | Task |
 | Item | Subproject | Sub-task |
 | Sub-item | Sub-subproject | Sub-sub-task |
@@ -22,10 +22,12 @@ You can import your Monday.com structure into Beebole's **Projects and activitie
 
 ## Before you start
 
-<Info>You need administrative privileges in both Monday.com and Beebole to set up the integration.</Info>
+<Info>
+  You need administrative privileges in both Monday.com and Beebole to set up the integration.
+</Info>
 
 | What syncs from Monday.com | What stays in Beebole |
-|---|---|
+| --- | --- |
 | **Boards:** Imported as Beebole projects or tasks. | **Approval workflows:** Beebole handles the timesheet lifecycle. |
 | **Items and sub-items:** Imported as Beebole subprojects or sub-tasks. | **Billing rates:** Managed exclusively in Beebole. |
 | **Users:** Monday.com users are mapped as Beebole people. | **Budgets:** Set within Beebole's billing and budget settings. |
@@ -56,9 +58,20 @@ You can import your Monday.com structure into Beebole's **Projects and activitie
 
 <Steps>
   <Step title="Connect to Monday.com">
-    Go to **Settings** > **Integrations** > **Monday.com**. Click **Connect to Monday.com**.
+    Go to **Settings** \> **Integrations** \> **Monday.com**. Click **Connect to Monday.com**.
 
     A popup opens to authorize Beebole to access your Monday.com account. Complete the authorization flow. The popup closes automatically when the connection is established.
+  </Step>
+  <Step title="Configure integration parameters">
+    Once connected, configure the following options:
+
+    - **Monday.com workspace** -- If your account has multiple workspaces, select the one you want to import.
+    - **Where to import your boards** -- Choose between **Projects and activities** (for project time tracking with rates and billing) or **Plan and tasks** (for resource planning and assignment).
+    - **Default role for imported employees** -- Select the role to assign to Monday.com users when they are imported into Beebole.
+
+    <Tip>
+      You can review and manage existing roles in **Settings** \> **Person roles**.
+    </Tip>
   </Step>
   <Step title="Configure integration parameters">
     Once connected, configure the following options:
@@ -67,20 +80,39 @@ You can import your Monday.com structure into Beebole's **Projects and activitie
     - **Where to import your boards** — Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
     - **Default role for imported employees** — Select the role to assign to Monday.com users when they are imported into Beebole.
 
-    <Tip>You can review and manage existing roles in **Settings** > **Person Roles**.</Tip>
+    <Tip>
+      You can review and manage existing roles in **Settings** \> **Person Roles**.
+    </Tip>
   </Step>
   <Step title="Enable the integration">
     Click the toggle to **Enable integration**. Beebole imports all your active Monday.com boards, items, and users.
 
-    <Info>The initial import may take a few moments depending on the size of your Monday.com workspace. You can continue using Beebole while the import runs in the background.</Info>
+    <Note>
+      The initial import may take a few moments depending on the size of your Monday.com workspace. You can continue using Beebole while the import runs in the background.
+    </Note>
 
     Once complete, the integration is active. All future name changes and new boards or items in Monday.com are automatically reflected in Beebole.
+  </Step>
+  <Step title="Enable the integration">
+    Click the toggle to **Enable integration**. Beebole imports all your active Monday.com boards, items, and users.
+
+    <Info>
+      The initial import may take a few moments depending on the size of your Monday.com workspace. You can continue using Beebole while the import runs in the background.
+    </Info>
+
+    Once complete, the integration is active. All future name changes and new boards or items in Monday.com are automatically reflected in Beebole.
+  </Step>
+  <Step title="Validate the integration">
+    Click the **Projects** icon (or **Tasks** icon, depending on your import mode) in the left menu. You should see a new category called **Monday** containing all your imported boards and items. You can rename this category if needed.
   </Step>
   <Step title="Validate the integration">
     Click **Projects** in the sidebar (or **Tasks**, depending on your import mode). You should see a new category called **Monday** containing all your imported boards and items. You can rename this category if needed.
   </Step>
   <Step title="Configure the timesheet">
-    If you want the new Monday category to appear in the timesheet, go to **Settings** > **Account Settings** > **Timesheet settings** > **Categories** and select the Monday category.
+    If you want the new Monday category to appear in the timesheet, go to **Settings** \> **Account Settings** \> **Timesheet Settings** and select the Monday category.
+  </Step>
+  <Step title="Configure the timesheet">
+    If you want the new Monday category to appear in the timesheet, go to **Settings** \> **Account Settings** \> **Timesheet settings** \> **Categories** and select the Monday category.
   </Step>
 </Steps>
 
@@ -88,9 +120,11 @@ You can import your Monday.com structure into Beebole's **Projects and activitie
 
 ## Disabling the integration
 
-<Warning>If you disable the integration, any future changes made in Monday.com will no longer sync to Beebole. Previously imported data remains in Beebole as local records.</Warning>
+<Warning>
+  If you disable the integration, any future changes made in Monday.com will no longer sync to Beebole. Previously imported data remains in Beebole as local records.
+</Warning>
 
-To disable the integration, go to **Settings** > **Integrations** > **Monday.com** and toggle the integration off. You can re-enable it at any time to resume syncing.
+To disable the integration, go to **Settings** \> **Integrations** \> **Monday.com** and toggle the integration off. You can re-enable it at any time to resume syncing.
 
 To disconnect your Monday.com account entirely, click **Reset connection**.
 
@@ -102,12 +136,15 @@ To disconnect your Monday.com account entirely, click **Reset connection**.
   <Card title="Projects and activities" icon="folder" href="/help/documentation/projects">
     Manage your projects, subprojects, and billing rates in Beebole.
   </Card>
+
   <Card title="Planning and tasks" icon="calendar-check" href="/help/documentation/planning">
     Create, organize, and assign tasks, and track time against them.
   </Card>
+
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
     Build your own integrations using the Beebole GraphQL API.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Explore all available Beebole integrations.
   </Card>

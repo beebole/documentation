@@ -3,14 +3,34 @@ title: "Microsoft Outlook Calendar Time Tracking"
 sidebarTitle: "Microsoft Calendar"
 description: "Connect Microsoft Calendar to your Beebole timesheet to see your Outlook events for the week and turn them into time entries with a click or a drag."
 keywords: ["beebole", "Microsoft Calendar", "Outlook", "timesheet", "time tracking", "time entries"]
-"og:title": "Outlook Calendar Time Tracking in Beebole Timesheets"
-"og:description": "View your Microsoft Outlook events next to your Beebole timesheet and log them as time entries by clicking or dragging."
-"og:type": "article"
+og:title: "Outlook Calendar Time Tracking in Beebole Timesheets"
+og:description: "View your Microsoft Outlook events next to your Beebole timesheet and log them as time entries by clicking or dragging."
+og:type: "article"
 ---
+
+<Steps>
+  <Step title="Open your timesheet">
+    Navigate to your **Timesheet** page in Beebole.
+  </Step>
+  <Step title="Open the calendar panel">
+    Click the **Calendar** icon in the timesheet toolbar to open the calendar events panel.
+  </Step>
+  <Step title="Connect to Microsoft Calendar">
+    Click **Connect to Microsoft Calendar**. A popup appears asking you to sign in to your Microsoft account and authorize Beebole to read your calendar events.
+  </Step>
+  <Step title="Authorize access">
+    Follow the Microsoft OAuth prompts to grant Beebole read-only access to your calendar. The popup closes automatically when the connection is complete.
+  </Step>
+  <Step title="View your events">
+    Your Outlook calendar events for the current timesheet period now appear in the calendar panel. You can drag and drop them onto timesheet rows to log time.
+  </Step>
+</Steps>
 
 Beebole's Microsoft Calendar connection lets you view your Outlook calendar events next to your timesheet and turn them into time entries. It works per user and is read-only — Beebole reads your events for the displayed period and never writes anything back to Microsoft. Use it to log meetings and appointments you already have on your calendar without retyping them.
 
-<Info>This connection lives in the timesheet, not under **Settings** > **Integrations**. Each person connects their own calendar, and the connection stays in your browser.</Info>
+<Info>
+  This connection lives in the timesheet, not under **Settings** \> **Integrations**. Each person connects their own calendar, and the connection stays in your browser.
+</Info>
 
 ## Connect your Microsoft Calendar
 
@@ -53,9 +73,11 @@ In the calendar pane footer, click **Sign out / reset connection**. This clears 
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
     Record, submit, and manage your time entries in Beebole.
   </Card>
+
   <Card title="Google Calendar" icon="calendar" href="/help/integrations/google-calendar">
     Connect Google Calendar to your timesheet the same way.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Explore all available Beebole integrations.
   </Card>
@@ -69,7 +91,7 @@ In the calendar pane footer, click **Sign out / reset connection**. This clears 
   </Accordion>
 
   <Accordion title="Where do I connect my Microsoft Calendar in Beebole?">
-    You connect it from the timesheet, not from **Settings** > **Integrations**. Open the calendar pane with the calendar icon in the timesheet header (**Import your calendar events**), then click **Sign in with Microsoft**.
+    You connect it from the timesheet, not from **Settings** \> **Integrations**. Open the calendar pane with the calendar icon in the timesheet header (**Import your calendar events**), then click **Sign in with Microsoft**.
   </Accordion>
 
   <Accordion title="Is the connection shared with my team?">

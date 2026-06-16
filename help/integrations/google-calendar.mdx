@@ -3,14 +3,34 @@ title: "Google Calendar Time Tracking Integration"
 sidebarTitle: "Google Calendar"
 description: "Connect Google Calendar to your Beebole timesheet to see your events for the week and turn them into time entries with a click or a drag."
 keywords: ["beebole", "Google Calendar", "calendar", "timesheet", "time tracking", "time entries"]
-"og:title": "Google Calendar Time Tracking in Beebole Timesheets"
-"og:description": "View your Google Calendar events next to your Beebole timesheet and log them as time entries by clicking or dragging."
-"og:type": "article"
+og:title: "Google Calendar Time Tracking in Beebole Timesheets"
+og:description: "View your Google Calendar events next to your Beebole timesheet and log them as time entries by clicking or dragging."
+og:type: "article"
 ---
+
+<Steps>
+  <Step title="Open your timesheet">
+    Navigate to your **Timesheet** page in Beebole.
+  </Step>
+  <Step title="Open the calendar panel">
+    Click the **Calendar** icon in the timesheet toolbar to open the calendar events panel.
+  </Step>
+  <Step title="Connect to Google Calendar">
+    Click **Connect to Google Calendar**. A popup appears asking you to sign in to your Google account and authorize Beebole to read your calendar events.
+  </Step>
+  <Step title="Authorize access">
+    Follow the Google OAuth prompts to grant Beebole read-only access to your calendar. The popup closes automatically when the connection is complete.
+  </Step>
+  <Step title="View your events">
+    Your Google Calendar events for the current timesheet period now appear in the calendar panel. You can drag and drop them onto timesheet rows to log time.
+  </Step>
+</Steps>
 
 Beebole's Google Calendar connection lets you view your Google Calendar events next to your timesheet and turn them into time entries. It works per user and is read-only — Beebole reads your events for the displayed period and never writes anything back to Google. Use it to log meetings and appointments you already have on your calendar without retyping them.
 
-<Info>This connection lives in the timesheet, not under **Settings** > **Integrations**. Each person connects their own calendar, and the connection stays in your browser.</Info>
+<Info>
+  This connection lives in the timesheet, not under **Settings** \> **Integrations**. Each person connects their own calendar, and the connection stays in your browser.
+</Info>
 
 ## Connect your Google Calendar
 
@@ -53,9 +73,11 @@ In the calendar pane footer, click **Sign out / reset connection**. This clears 
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
     Record, submit, and manage your time entries in Beebole.
   </Card>
+
   <Card title="Microsoft Calendar" icon="calendar" href="/help/integrations/microsoft-calendar">
     Connect Microsoft Calendar to your timesheet the same way.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Explore all available Beebole integrations.
   </Card>
@@ -69,7 +91,7 @@ In the calendar pane footer, click **Sign out / reset connection**. This clears 
   </Accordion>
 
   <Accordion title="Where do I connect my Google Calendar in Beebole?">
-    You connect it from the timesheet, not from **Settings** > **Integrations**. Open the calendar pane with the calendar icon in the timesheet header (**Import your calendar events**), then click **Sign in with Google**.
+    You connect it from the timesheet, not from **Settings** \> **Integrations**. Open the calendar pane with the calendar icon in the timesheet header (**Import your calendar events**), then click **Sign in with Google**.
   </Accordion>
 
   <Accordion title="Is the connection shared with my team?">

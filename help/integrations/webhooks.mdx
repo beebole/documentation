@@ -3,9 +3,9 @@ title: "Outgoing Webhooks for Real-Time Notifications"
 sidebarTitle: "Webhooks"
 description: "Configure outgoing webhooks in Beebole to receive real-time notifications when data changes. Signed POST requests with HMAC-SHA256 and automatic retry."
 keywords: ["beebole", "webhooks", "outgoing webhooks", "integrations", "automation", "HMAC", "real-time notifications", "API"]
-"og:title": "Beebole Outgoing Webhooks with HMAC-SHA256 Signing"
-"og:description": "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
-"og:type": "article"
+og:title: "Beebole Outgoing Webhooks with HMAC-SHA256 Signing"
+og:description: "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
+og:type: "article"
 ---
 
 Beebole's outgoing webhooks let you subscribe to real-time notifications whenever data changes in your organization. Each webhook delivers a signed POST request to a URL you control, allowing external systems, automations, and integrations to react instantly to changes in Beebole.
@@ -18,7 +18,16 @@ You can configure multiple webhooks, each with its own URL, name, secret, and ev
 
 <Steps>
   <Step title="Open the webhook settings">
-    Go to **Settings** > **Integrations** > **Webhooks**. Click **Add webhook** to create a new webhook subscription.
+    Go to **Settings** \> **Integrations** \> **Webhooks**. Click **Add webhook** to create a new webhook subscription.
+  </Step>
+  <Step title="Configure the webhook">
+    Fill in the following fields for your new webhook:
+
+    - **Name** -- A label to identify this webhook (for example, "Slack notifications" or "ERP sync").
+    - **URL** -- The HTTPS endpoint that will receive POST requests from Beebole.
+    - **Secret** -- A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
+    - **Enabled** -- Toggle whether this webhook is active.
+    - **Events** -- Choose **All events** to receive every event type, or select individual events from the list.
   </Step>
   <Step title="Configure the webhook">
     Fill in the following fields for your new webhook:
@@ -32,7 +41,9 @@ You can configure multiple webhooks, each with its own URL, name, secret, and ev
   <Step title="Save and test">
     Changes are saved automatically as you edit each field. Once the webhook is enabled and your endpoint is ready, trigger an event in Beebole (for example, update a project) and verify that your endpoint receives the request.
 
-    <Tip>Use a service like [webhook.site](https://webhook.site) to inspect incoming payloads during development.</Tip>
+    <Tip>
+      Use a service like [webhook.site](https://webhook.site) to inspect incoming payloads during development.
+    </Tip>
   </Step>
 </Steps>
 
@@ -54,7 +65,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
 ```
 
 | Field | Description |
-|---|---|
+| --- | --- |
 | `event` | The name of the event that triggered the webhook (see [Available events](#available-events)). |
 | `entityIds` | Array of entity IDs that were created or updated. |
 | `deleteIds` | Array of entity IDs that were deleted. |
@@ -69,7 +80,7 @@ Beebole sends a JSON POST request to your endpoint for each matching event. The 
 The following event names can be subscribed to individually or via **All events**:
 
 | Event | Triggered when |
-|---|---|
+| --- | --- |
 | `absenceQuotaUpdate` | An absence quota is created, updated, or deleted. |
 | `absenceTypeUpdate` | An absence type is created, updated, or deleted. |
 | `approvalEventUpdate` | A timesheet approval action occurs. |
@@ -117,7 +128,9 @@ function verifySignature(secret, rawBody, signatureHeader) {
 }
 ```
 
-<Warning>Always verify the signature before acting on a webhook payload. Reject any request where the signature does not match.</Warning>
+<Warning>
+  Always verify the signature before acting on a webhook payload. Reject any request where the signature does not match.
+</Warning>
 
 The request also includes an `X-Beebole-Event` header containing the event name, which is identical to the `event` field in the JSON body.
 
@@ -128,7 +141,7 @@ The request also includes an `X-Beebole-Event` header containing the event name,
 If your endpoint returns a non-2xx HTTP status code, or if the connection times out (requests time out after 10 seconds), Beebole automatically retries delivery with the following delays:
 
 | Attempt | Delay |
-|---|---|
+| --- | --- |
 | 1st retry | 5 seconds |
 | 2nd retry | 10 seconds |
 | 3rd retry | 15 seconds |
@@ -154,9 +167,11 @@ After 5 failed attempts, Beebole stops retrying and abandons the delivery. There
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
     Build custom integrations using the Beebole GraphQL API.
   </Card>
+
   <Card title="API introduction" icon="book" href="/help/api/introduction">
     Explore the full Beebole GraphQL API reference and schema.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Explore all available Beebole integrations.
   </Card>

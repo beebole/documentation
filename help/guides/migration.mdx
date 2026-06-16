@@ -1,30 +1,37 @@
 ---
-title: "Moving to the New Beebole Platform Guide"
+title: "Moving to the New Beebole Platform"
 sidebarTitle: "Migration Guide"
 description: "A guide for existing Beebole customers moving to the new platform: how the two systems coexist, how to trial the new app, and what has changed."
 keywords: ["beebole", "migration guide", "new beebole platform", "free trial", "what's changed", "legacy account"]
-"og:title": "Moving to the New Beebole Platform — Migration Guide"
-"og:description": "How existing Beebole customers can trial the new platform while their legacy account keeps running, plan a smooth switch, and learn what has changed."
-"og:type": "article"
+og:title: "Moving to the New Beebole Platform — Migration Guide"
+og:description: "How existing Beebole customers can trial the new platform while their legacy account keeps running, plan a smooth switch, and learn what has changed."
+og:type: "article"
 ---
 
-Beebole's new platform is a full redesign of the time-tracking app, available at [app.beebole.com](https://app.beebole.com). This guide is for existing customers moving to it: it explains how the new and legacy systems coexist during the transition, how to trial the new app without touching your live account, and what has changed feature by feature. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is the faster path.
+This migration guide covers everything you need to know to move your account to the new Beebole platform, available at [app.beebole.com](https://app.beebole.com). You'll learn how the new and legacy systems coexist during the transition, what's new and different, and how the updated API and architecture might affect your planning.
+
+Note that this guide is for existing customers. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is a better place to start.
+
+<Warning>
+  The new Beebole is currently in **beta**. You may encounter occasional bugs or rough edges as we continue to improve the platform. We're committed to fixing issues quickly and releasing improvements regularly — and your feedback is a meaningful part of that process. If you notice anything, reach out via the in-app chat or email us at [support@beebole.com](mailto:support@beebole.com).
+</Warning>
 
 <Info>
-  Your legacy Beebole account keeps running throughout this process. There is no disruption to your current usage or data, and there is no deadline to switch.
+  Your legacy Beebole account stays active throughout this process. There is no disruption to your current usage or data, and there is no deadline to switch.
 </Info>
 
 ## How the transition works
 
-There is no rush to switch. You can keep using your legacy account for as long as you need, and start a free trial of the new platform whenever you want to evaluate it.
+There is no rush to switch. You can keep using your legacy account for as long as you need, and start a free trial of the new platform whenever you want.
 
-- Your legacy data stays untouched until you are ready to migrate.
-- Migration is handled by Beebole support, one account at a time. Contact us at [support@beebole.com](mailto:support@beebole.com) when you are ready, and we will arrange it.
-- The actual data move uses the in-app [Legacy Migration](/help/documentation/legacy-migration) tool, which brings your historical people, projects, time records, and settings into the new account in a single guided operation.
-- If you use Beebole's API, your integrations need to be updated for the new [GraphQL API](/help/api/introduction). Your legacy integrations keep working in your legacy account in the meantime.
+- Your legacy data stays safe and untouched until you're ready to migrate.
+- Migration will be done manually by our team, one account at a time. Contact us at [support@beebole.com](mailto:support@beebole.com) when you are ready to switch, and we'll get back to you as soon as possible.
+- Users can log in to both systems using the same page, even with multiple accounts.
+- We recommend taking advantage of this opportunity to reconsider the architecture of your projects, tasks, and teams. Migration is a chance to make a change.
+- If you use Beebole's API, your integrations need to be updated for the new [GraphQL API](/help/api/introduction). We're here to help. Your legacy integrations will continue working in your legacy account in the meantime.
 
 <Info>
-  Migration is a good moment to reconsider how your projects, tags, and teams are structured — see [Rethink your structure](#rethink-your-structure-before-you-switch) below.
+  The migration itself is handled by Beebole support. Historical projects, people, and time records are migrated manually on a case-by-case basis.
 </Info>
 
 ## Trial the new platform first
@@ -36,14 +43,14 @@ You can create a free trial of the new platform without affecting your legacy ac
     Create a free trial at [app.beebole.com/signup](https://app.beebole.com/signup). You can use the same email address as your existing account.
   </Step>
   <Step title="Explore the new features">
-    Add a few projects and people, log some time, build a report, and try the [Gantt chart](/help/documentation/gantt) and [Kanban board](/help/documentation/kanban). Nothing here touches your legacy data.
+    Use the trial account to explore new features, create time entries, discover resource planning, and play around with reports. Don't worry; when you're ready to switch permanently, you can start fresh with a clean account.
   </Step>
   <Step title="Share your feedback">
-    The platform is new, so tell us what you find at [support@beebole.com](mailto:support@beebole.com). When you are ready to switch for real, support migrates your legacy data into a clean account.
+    As with any new system, we anticipate some initial kinks. Please share them with us. You can reach out via the in-app chat or email [support@beebole.com](mailto:support@beebole.com) with questions or feedback.
   </Step>
 </Steps>
 
-## Signing in when you have both accounts
+## Signing in on both systems
 
 The new and legacy systems share the same [sign-in page](https://app.beebole.com/signin). Beebole detects which system an email address belongs to:
 
@@ -53,7 +60,7 @@ The new and legacy systems share the same [sign-in page](https://app.beebole.com
 
 Sign-in itself is passwordless on the new platform: you confirm your identity with a one-time 6-digit code emailed to you, a passkey, your Google or Microsoft account, or your organization's SSO provider. See [Authentication](/help/documentation/authentication) for details.
 
-## Rethink your structure before you switch
+## Review your structure before you switch
 
 Migration is a chance to clean up how your organization is modeled. Before you switch, it is worth asking:
 
@@ -62,11 +69,21 @@ Migration is a chance to clean up how your organization is modeled. Before you s
 - Have timesheet settings, localization, costs, and billing rates drifted into something hard to follow?
 - Which [custom fields](/help/documentation/custom-fields) would improve your data and invoicing on projects, people, tasks, or time records?
 
-The [Key concepts](/help/documentation/concepts) page explains Beebole's core building blocks — projects, people, tasks, and tags — and how they relate. Mapping out your structure ahead of time makes the migration smoother. When in doubt, [reach out](mailto:support@beebole.com).
+The [Key concepts](/help/documentation/concepts) page explains Beebole's core entities (projects, people, tasks, and tags) and how they relate to each other. Try mapping out your structures and settings ahead of time and, when in doubt, reach out to us.
+
+## New API and developer readiness
+
+The new platform includes a [GraphQL API](/help/api/introduction) for querying and mutating Beebole data. This is the primary developer-facing change for customers with integrations or automation.
+
+Review the [GraphQL API](/help/api/introduction) for the API basics and authentication model. Then, start planning the migration of any legacy integrations as part of the manual account migration.
+
+<Info>
+  The API is a major reason to evaluate the new platform early. It is also the right time to document your current integration points and decide which data should move first.
+</Info>
 
 ## What has changed
 
-The new platform reworks most areas of Beebole. The tables below summarize the main differences from the legacy system.
+The tables below summarize the main changes from the legacy system. Most will feel familiar.
 
 ### Time tracking
 
@@ -96,7 +113,7 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 
 | Topic | What's new |
 | :-- | :-- |
-| **Multi-stage workflow** | Define as many [approval](/help/documentation/approval) stages as you need (for example project manager → team leader → admin), separately for working time and absences. |
+| **Multi-stage workflow** | Define as many [approval](/help/documentation/approval) stages as you need (for example, project manager → team leader → admin), separately for working time and absences. |
 | **Quorum rules** | Per stage, require all approvers or any single approver before advancing. |
 | **Approval history** | Each timesheet keeps a full log of approvals, rejections, and comments, so you always see where it stands. |
 | **Email actions** | Approve or reject straight from the notification email. |
@@ -113,6 +130,7 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 | **Effort allocation** | Assign a percentage of a person's time to a task and spot over- or under-allocation. |
 | **Timesheet integration** | Tasks assigned to you can appear in your timesheet, ready to confirm. |
 | **Custom fields on tasks** | Add structured information to tasks beyond the description. |
+| **Recurring tasks** | Set up tasks that repeat on a schedule (e.g., every Friday). |
 
 <Info>
   Tasks are independent planning items in the new platform — they live on their own **Tasks** page and are not sub-elements of projects. See [Task planning](/help/documentation/planning).
@@ -123,7 +141,7 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 | Topic | What's new |
 | :-- | :-- |
 | **Project expenses** | Track [expenses](/help/documentation/expenses) on a project and factor them into budgets. |
-| **Expense types** | Define types with currency or quantity units (for example miles for travel). |
+| **Expense types** | Define types with currency or quantity units (for example, miles for travel). |
 | **Markup** | Set a billing markup on an expense type. |
 | **Budget impact** | Choose whether an expense type counts toward the project budget. |
 
@@ -144,7 +162,7 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 | **Multiple timesheet columns** | Add independent project columns to the timesheet. |
 | **Project availability** | Make projects visible to everyone by default, or hidden until explicitly assigned. |
 | **Tags as configuration** | [Tags](/help/documentation/tags) carry configuration (rates, schedules, holidays, allowances), and a person or project in several tags receives the combination of all of them. |
-| **Multiple tag trees** | A person can belong to several independent tag trees at once. |
+| **Multiple tag trees** | A person can belong to several independent tag trees at once. Tag trees are unlimited in depth and number. |
 
 ### Billing, costs, and reporting
 
@@ -153,6 +171,7 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 | **Daily rates** | Define [billing](/help/documentation/billing) and [cost](/help/documentation/costs) rates per day, not only per hour. |
 | **Fixed recurring fees** | Apply a fixed rate (such as a salary) for a period, regardless of hours worked. |
 | **Budgets** | Set [budgets](/help/documentation/budgets) for billing, cost, or hours, and split them by person or project. |
+| **Budget status reports** | Easily check the budget status and planned budget on any project for costs, billing, or time in reports. |
 | **Saved reports** | Create, save, and organize [reports](/help/documentation/reports) into folders, and toggle between table and chart views. |
 | **Spreadsheet add-ins** | Link a saved report to [Excel](/help/documentation/excel-addin) or [Google Sheets](/help/documentation/gsheets-addon) and refresh the data on demand. |
 
@@ -173,17 +192,20 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Legacy Migration" icon="right-left" href="/help/documentation/legacy-migration">
-    The in-app tool that imports your legacy data into the new account.
+  <Card title="Getting Started" icon="arrow-right" href="/help/documentation/quickstart">
+    Take a look at the quickstart guide to set up Beebole in a few steps.
   </Card>
-  <Card title="Quickstart" icon="rocket" href="/help/documentation/quickstart">
-    Set up a fresh Beebole account in a few steps.
+
+  <Card title="Custom fields" icon="tag" href="/help/documentation/custom-fields">
+    See how to set up custom fields on projects, people, tasks, and time records.
   </Card>
-  <Card title="Key concepts" icon="diagram-project" href="/help/documentation/concepts">
-    Understand projects, people, tasks, and tags before you map your structure.
+
+  <Card title="Tags" icon="tags" href="/help/documentation/tags">
+    Organize people and projects with tags for reporting and availability.
   </Card>
-  <Card title="FAQ" icon="circle-question" href="/help/guides/faq">
-    Common questions about timesheets, projects, billing, and more.
+
+  <Card title="API introduction" icon="code" href="/help/api/introduction">
+    Get started with Beebole's GraphQL API for custom integrations.
   </Card>
 </CardGroup>
 
@@ -191,15 +213,19 @@ The new platform reworks most areas of Beebole. The tables below summarize the m
 
 <AccordionGroup>
   <Accordion title="Do I have to migrate to the new Beebole platform right away?">
-    No. Your legacy Beebole account keeps running with no deadline. You can trial the new platform whenever you like, and migrate only when you are ready by contacting support@beebole.com.
+    No. Your legacy Beebole account keeps running with no deadline. You can trial the new platform whenever you like, and migrate only when you are ready by contacting [support@beebole.com](mailto:support@beebole.com).
   </Accordion>
 
   <Accordion title="Will I lose my historical data when I migrate?">
     No. Beebole migrates your historical people, projects, time records, and settings into the new account using the in-app Legacy Migration tool. Your legacy account stays untouched until the move is done.
   </Accordion>
 
+  <Accordion title="What should I do if I encounter a bug or if something doesn't work as expected?">
+    The new Beebole is in beta, so you may occasionally run into something that doesn't behave as expected. If that happens, let us know. Reach out via the in-app chat or email us at [support@beebole.com](mailto:support@beebole.com). We're actively working through issues as they're reported and releasing fixes regularly.
+  </Accordion>
+
   <Accordion title="Can I use the same email for my trial and my legacy account?">
-    Yes. You can sign up for a new-platform trial with the same email address. The shared sign-in page lets you choose which system to open when an email exists in both.
+    Yes. You can sign up for a new platform trial with the same email address. The shared sign-in page lets you choose which system to open when an email exists in both.
   </Accordion>
 
   <Accordion title="Do my API integrations carry over automatically?">

@@ -3,10 +3,18 @@ title: "Querying time records, projects, and people"
 sidebarTitle: "Queries"
 description: "Reference for Beebole GraphQL queries — read organizations, people, projects, tasks, tags, time records, and expenses, with typed filter inputs."
 keywords: ["beebole", "GraphQL queries", "API queries", "time records api", "beebole api"]
-"og:title": "Beebole API Queries — GraphQL Read Operations"
-"og:description": "Runnable Beebole GraphQL query examples with real names, arguments, fields, and the typed filter input."
-"og:type": "article"
+og:title: "Beebole API Queries — GraphQL Read Operations"
+og:description: "Runnable Beebole GraphQL query examples with real names, arguments, fields, and the typed filter input."
+og:type: "article"
 ---
+
+Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organisation, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
+
+<Info>
+  Queries never change data. To create, update, archive, or delete records, use [Mutations](/help/api/mutations) instead. For authentication setup, see the [API introduction](/help/api/introduction#authentication).
+</Info>
+
+Field names follow GraphQL conventions exactly as defined in the schema. Every entity exposes its identifier as `id` (not `_id`), and the organisation-level query is spelled `currentOrganisation` (British spelling, as in the schema).
 
 Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organization, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
 
@@ -15,6 +23,46 @@ Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/i
 </Info>
 
 Field names follow GraphQL conventions exactly as defined in the schema. Every entity exposes its identifier as `id` (not `_id`), and the organization-level query is spelled `currentOrganisation` (British spelling, as in the schema).
+
+---
+
+## Organisation
+
+Read account-level data with `currentOrganisation` and `getAuditTrails`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `currentOrganisation` | none | The organisation linked to the authenticated API key |
+| `getAuditTrails` | `startTime`, `fromPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organisation |
+
+```graphql
+query {
+  currentOrganisation {
+    id
+    name
+    locked
+  }
+}
+```
+
+`getAuditTrails` returns mutations performed in the account. With no `startTime`, it covers the last seven days; `startTime` selects a different seven-day window.
+
+```graphql
+query {
+  getAuditTrails(operations: ["addTimeRecord", "deleteTimeRecords"]) {
+    operationName
+    timestamp
+    person {
+      id
+      name
+    }
+    arguments {
+      name
+      value
+    }
+  }
+}
+```
 
 ---
 
@@ -59,6 +107,8 @@ query {
 ---
 
 ## People
+
+Read team members with `currentPerson`, `getPerson`, `getPersons`, `countPersons`, and `filterPersonIds`. `getPotentialProjectOwners` lists the people allowed to own a given project.
 
 Read team members with `currentPerson`, `getPerson`, `getPersons`, `countPersons`, and `filterPersonIds`. `getPotentialProjectOwners` lists the people allowed to own a given project.
 
@@ -108,9 +158,23 @@ query {
 }
 ```
 
+By default `getPersons` returns only active people. Pass `archived: true` to include archived ones.
+
+```graphql
+query {
+  getPersons(archived: true) {
+    id
+    name
+    archived
+  }
+}
+```
+
 ---
 
 ## Projects
+
+Read projects with `getProject`, `getProjects`, `countProjects`, and `filterProjectIds`. `getProjectCategories` lists the top-level groupings projects are organised into.
 
 Read projects with `getProject`, `getProjects`, `countProjects`, and `filterProjectIds`. `getProjectCategories` lists the top-level groupings projects are organised into.
 
@@ -157,9 +221,32 @@ query {
 }
 ```
 
+The `level` field is the project's depth in the hierarchy, where `0` is a top-level project. Restrict results to one category with `categoryId`:
+
+```graphql
+query {
+  getProjects(categoryId: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    id
+    name
+  }
+}
+```
+
+```graphql
+query {
+  getProjectCategories {
+    id
+    name
+    levelNames
+  }
+}
+```
+
 ---
 
 ## Tasks
+
+Read tasks with `getTask`, `getTasks`, `countTasks`, and `filterTaskIds`. `getTaskCategories` lists the categories (boards) tasks belong to.
 
 Read tasks with `getTask`, `getTasks`, `countTasks`, and `filterTaskIds`. `getTaskCategories` lists the categories (boards) tasks belong to.
 
@@ -176,6 +263,21 @@ query {
   getTasks {
     id
     name
+    startTime
+    endTime
+    status {
+      id
+      name
+    }
+  }
+}
+```
+
+```graphql
+query {
+  getTasks {
+    id
+    name
     startTime {
       ts
       iso
@@ -185,6 +287,20 @@ query {
       iso
     }
     status {
+      id
+      name
+    }
+  }
+}
+```
+
+```graphql
+query {
+  getTask(id: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    id
+    name
+    effort
+    dependencies {
       id
       name
     }
@@ -232,7 +348,139 @@ query {
 
 ---
 
+## Tags
+
+Read tags with `getTag`, `getTags`, `countTags`, and `filterTagIds`. `getTagCategories` lists the categories tags are grouped into.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getTag` | `id` | A single tag |
+| `getTags` | `filter`, `archived`, `categoryId` | A list of tags |
+| `countTags` | `filter`, `archived`, `categoryId` | The number of matching tags |
+| `filterTagIds` | `filter`, `archived`, `categoryId` | Only the IDs of matching tags |
+| `getTagCategories` | none | All tag categories |
+
+```graphql
+query {
+  getTags {
+    id
+    name
+    level
+  }
+}
+```
+
+---
+
 ## Time records
+
+A time record is a logged time entry for one person on a specific day, linked to projects, a task, or an absence type. Read them with `getTimeRecord`, `getTimeRecords`, and `countTimeRecords`. `getAbsenceConsumed` returns how much of an absence type a person has used in a window.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getTimeRecord` | `id` | A single time record |
+| `getTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | A list of time records |
+| `countTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | The number of matching time records |
+| `getAbsenceConsumed` | `personId`, `absenceId`, `startTime`, `endTime` | Absence consumed in the window, in the type's unit |
+
+`getTimeRecords` and `countTimeRecords` accept top-level arguments alongside `filter`:
+
+- **`startTime`** / **`endTime`** — Unix timestamps in milliseconds bounding the period.
+- **`time`** — when `true`, return only worked time (entries without an absence type).
+- **`absence`** — when `true`, return only absence entries (entries with an absence type).
+- **`wfh`** — when `true`, return only entries logged as working from home.
+- **`filter`** — a typed filter array (see [Filtering results](#filtering-results)).
+
+```graphql
+query {
+  getTimeRecords(startTime: 1704067200000, endTime: 1706745600000, time: true) {
+    id
+    duration
+    startTime
+    nonBillable
+    person {
+      id
+      name
+    }
+    projects {
+      id
+      name
+    }
+  }
+}
+```
+
+Durations and timestamps are integers in milliseconds. The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
+
+```graphql
+query {
+  getAbsenceConsumed(
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    absenceId: "64a1b2c3d4e5f6a7b8c9d0e2"
+    startTime: 1704067200000
+    endTime: 1735689600000
+  )
+}
+```
+
+---
+
+## Expense records
+
+An expense record is an expense logged by a person against a project and an expense type. Read them with `getExpenseRecord` and `getExpenseRecords`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getExpenseRecord` | `id` | A single expense record |
+| `getExpenseRecords` | `startTime`, `endTime`, `filter` | A list of expense records |
+
+```graphql
+query {
+  getExpenseRecords(startTime: 1704067200000, endTime: 1706745600000) {
+    id
+    date
+    amount
+    comment
+    expenseType {
+      id
+      name
+    }
+    project {
+      id
+      name
+    }
+  }
+}
+```
+
+---
+
+## Absence types
+
+Absence types are the kinds of leave people can log against, such as vacation or sick leave. Read them with `getAbsenceType`, `getAbsenceTypes`, and `countAbsenceTypes`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getAbsenceType` | `id` | A single absence type |
+| `getAbsenceTypes` | `filter`, `archived` | A list of absence types |
+| `countAbsenceTypes` | `filter`, `archived` | The number of matching absence types |
+
+```graphql
+query {
+  getAbsenceTypes {
+    id
+    name
+    unit
+    involveCosts
+  }
+}
+```
+
+---
+
+## Filtering results
+
+The `filter` argument is **a list of typed input objects** — not a list of `field`/`value` pairs. Each entity has its own filter input type, such as `BeeboleTimeRecordFilter`, `BeebolePersonFilter`, or `BeeboleProjectFilter`. You set the named fields you want to match directly on each object.
 
 A time record is a logged time entry for one person on a specific day, linked to projects, a task, or an absence type. Read them with `getTimeRecord`, `getTimeRecords`, and `countTimeRecords`. `getAbsenceConsumed` returns how much of an absence type a person has used in a window.
 
@@ -358,6 +606,16 @@ query {
   getTimeRecords(filter: [{ personId: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
     id
     duration
+    startTime
+  }
+}
+```
+
+```graphql
+query {
+  getTimeRecords(filter: [{ personId: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
+    id
+    duration
     startTime {
       ts
       iso
@@ -365,6 +623,43 @@ query {
   }
 }
 ```
+
+Each object in the array should set a single matching field. To combine conditions, add a `following` value of `AND` or `OR` to chain one condition to the next:
+
+```graphql
+query {
+  getProjects(
+    filter: [
+      { categoryId: "64a1b2c3d4e5f6a7b8c9d0e1", following: AND }
+      { archived: false }
+    ]
+  ) {
+    id
+    name
+  }
+}
+```
+
+### Time record filter fields
+
+`BeeboleTimeRecordFilter` accepts these fields (each optional):
+
+| Field | Type | Matches |
+| --- | --- | --- |
+| `id` / `notId` | ID | A specific time record, or all but one |
+| `personId` / `notPersonId` | ID | Records for (or excluding) one person |
+| `personIds` | `[ID]` | Records for any of several people |
+| `startTime` / `endTime` | Timestamp | Records starting after / ending before a millisecond timestamp |
+| `projectIds` / `notProjectIds` | `[ID]` | Records on (or excluding) projects, including their sub-projects |
+| `taskIds` / `notTaskIds` | `[ID]` | Records on (or excluding) tasks |
+| `projectTagIds` / `projectNotTagIds` | `[ID]` | Records whose projects carry (or lack) given tags |
+| `personTagIds` / `personNotTagIds` | `[ID]` | Records whose person carries (or lacks) given tags |
+| `projectCategoryIds` / `notProjectCategoryIds` | `[ID]` | Records by project category |
+| `taskCategoryIds` / `notTaskCategoryIds` | `[ID]` | Records by task category |
+| `isAbsence` | Boolean | Whether the record is an absence |
+| `following` | `AND` / `OR` | Logical operator chaining this condition to the next |
+
+Other entities expose filter types tuned to their own fields — for example `BeebolePersonFilter` supports `roleId`, `tagIds`, and `name` (a case-insensitive match), while `BeeboleProjectFilter` supports `categoryId`, `managedById`, and `subProjectId`. Browse every filter type and its fields in the [Schema explorer](/help/api/schema-explorer).
 
 Each object in the array should set a single matching field. To combine conditions, add a `following` value of `AND` or `OR` to chain one condition to the next:
 
@@ -422,6 +717,23 @@ query {
   The Beebole query API has no pagination — there are no `limit`, `offset`, `first`, or `cursor` arguments. A list query returns every record that matches its arguments. Narrow large result sets with `filter`, the `startTime` / `endTime` window, or `categoryId`, and use a `count…` query first to gauge the size.
 </Info>
 
+## Counting and ID-only queries
+
+For each major entity, alongside the full `get…` query you also get a counterpart that returns just a count, and (for people, projects, tasks, and tags) one that returns only matching IDs.
+
+- **`count…`** queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`) return an integer. Use them to size a result set before fetching it.
+- **`filter…Ids`** queries (`filterPersonIds`, `filterProjectIds`, `filterTaskIds`, `filterTagIds`) return an array of IDs instead of full objects, which is lighter when you only need identifiers.
+
+```graphql
+query {
+  countTimeRecords(startTime: 1704067200000, endTime: 1706745600000)
+}
+```
+
+<Info>
+  The Beebole query API has no pagination — there are no `limit`, `offset`, `first`, or `cursor` arguments. A list query returns every record that matches its arguments. Narrow large result sets with `filter`, the `startTime` / `endTime` window, or `categoryId`, and use a `count…` query first to gauge the size.
+</Info>
+
 ---
 
 ## Related content
@@ -430,9 +742,11 @@ query {
   <Card title="API Introduction" icon="book" href="/help/api/introduction">
     Authenticate with an API key and send your first request.
   </Card>
+
   <Card title="Mutations" icon="pen" href="/help/api/mutations">
     The write operations that create, update, archive, and delete records.
   </Card>
+
   <Card title="Schema explorer" icon="sitemap" href="/help/api/schema-explorer">
     Browse every query, type, field, and filter input interactively.
   </Card>

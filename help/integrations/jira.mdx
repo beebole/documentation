@@ -3,9 +3,9 @@ title: "Jira integration: import projects and issues"
 sidebarTitle: "Jira"
 description: "Connect Jira Cloud to Beebole to import projects and issues for time tracking. Automatic sync keeps your Jira Cloud site aligned with Beebole."
 keywords: ["beebole", "Jira", "integration", "project management", "issue tracking", "time tracking", "Jira Cloud"]
-"og:title": "Jira Cloud Integration for Time Tracking with Beebole"
-"og:description": "Import Jira projects and issues into Beebole for time tracking with automatic sync."
-"og:type": "article"
+og:title: "Jira Cloud Integration for Time Tracking with Beebole"
+og:description: "Import Jira projects and issues into Beebole for time tracking with automatic sync."
+og:type: "article"
 ---
 
 Beebole's Jira integration imports your Jira projects and issues into Beebole so your team can track time against their Jira work. The integration keeps your Jira Cloud site and Beebole account in sync automatically — when a project or issue is created or updated in Jira, the change is reflected in Beebole.
@@ -13,7 +13,7 @@ Beebole's Jira integration imports your Jira projects and issues into Beebole so
 You can import your Jira structure into Beebole's **Projects and activities** for time tracking with costs, billing, and expenses, or into **Planning and tasks** for resource assignment.
 
 | Jira | Projects and activities | Planning and tasks |
-|---|---|---|
+| --- | --- | --- |
 | Project | Project | Task |
 | Issue | Subproject | Sub-task |
 
@@ -21,10 +21,12 @@ You can import your Jira structure into Beebole's **Projects and activities** fo
 
 ## Before you start
 
-<Info>You need administrative privileges in both Jira and Beebole to set up the integration.</Info>
+<Info>
+  You need administrative privileges in both Jira and Beebole to set up the integration.
+</Info>
 
 | What syncs from Jira | What stays in Beebole |
-|---|---|
+| --- | --- |
 | **Projects:** Imported as Beebole projects or tasks. | **Approval workflows:** Beebole handles the timesheet lifecycle. |
 | **Issues:** Imported as Beebole subprojects or sub-tasks. | **Billing rates:** Managed exclusively in Beebole. |
 | **Users:** Jira users are mapped as Beebole people. | **Budgets:** Set within Beebole's billing and budget settings. |
@@ -53,9 +55,19 @@ You can import your Jira structure into Beebole's **Projects and activities** fo
 
 <Steps>
   <Step title="Connect to Jira">
-    Go to **Settings** > **Integrations** > **Jira**. Click **Connect to Jira**.
+    Go to **Settings** \> **Integrations** \> **Jira**. Click **Connect to Jira**.
 
     Follow the instructions in the popup to enter your Jira Cloud URL and authorize Beebole to access your Jira site. The popup closes automatically when the connection is complete.
+  </Step>
+  <Step title="Configure integration parameters">
+    Once connected, configure the following options:
+
+    - **Where to import your issues** -- Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
+    - **Default role for imported employees** -- Select the role to assign to Jira users when they are imported into Beebole.
+
+    <Tip>
+      You can review and manage existing roles in **Settings** \> **Person roles**.
+    </Tip>
   </Step>
   <Step title="Configure integration parameters">
     Once connected, configure the following options:
@@ -63,20 +75,39 @@ You can import your Jira structure into Beebole's **Projects and activities** fo
     - **Where to import your tasks** — Choose between **Projects and activities** (for project time tracking with rates and billing) or **Planning and tasks** (for resource planning and assignment).
     - **Default role for imported employees** — Select the role to assign to Jira users when they are imported into Beebole.
 
-    <Tip>You can review and manage existing roles in **Settings** > **Person Roles**.</Tip>
+    <Tip>
+      You can review and manage existing roles in **Settings** \> **Person Roles**.
+    </Tip>
   </Step>
   <Step title="Enable the integration">
     Click the toggle to **Enable integration**. Beebole imports all your active Jira projects and issues.
 
-    <Info>The initial import may take a few moments depending on the size of your Jira site. You can continue using Beebole while the import runs in the background.</Info>
+    <Note>
+      The initial import may take a few moments depending on the size of your Jira site. You can continue using Beebole while the import runs in the background.
+    </Note>
 
     Once complete, the integration is active. All future changes in Jira are automatically reflected in Beebole.
+  </Step>
+  <Step title="Enable the integration">
+    Click the toggle to **Enable integration**. Beebole imports all your active Jira projects and issues.
+
+    <Info>
+      The initial import may take a few moments depending on the size of your Jira site. You can continue using Beebole while the import runs in the background.
+    </Info>
+
+    Once complete, the integration is active. All future changes in Jira are automatically reflected in Beebole.
+  </Step>
+  <Step title="Validate the integration">
+    Click the **Projects** icon in the left menu to open the Projects page. Expand the categories -- you should see a new category called **Jira** containing all your imported projects and issues. You can rename this category if needed.
   </Step>
   <Step title="Validate the integration">
     Click **Projects** in the sidebar to open the Projects page. Expand the categories — you should see a new category called **Jira** containing all your imported projects and issues. You can rename this category if needed.
   </Step>
   <Step title="Configure the timesheet">
-    If you want the new Jira category to appear in the timesheet, go to **Settings** > **Account Settings** > **Timesheet settings** > **Categories** and select the Jira category.
+    If you want the new Jira category to appear in the timesheet, go to **Settings** \> **Account Settings** \> **Timesheet Settings** and select the Jira category.
+  </Step>
+  <Step title="Configure the timesheet">
+    If you want the new Jira category to appear in the timesheet, go to **Settings** \> **Account Settings** \> **Timesheet settings** \> **Categories** and select the Jira category.
   </Step>
 </Steps>
 
@@ -84,9 +115,11 @@ You can import your Jira structure into Beebole's **Projects and activities** fo
 
 ## Disabling the integration
 
-<Warning>If you disable the integration, any future changes made in Jira will no longer sync to Beebole. Previously imported data remains in Beebole as local records.</Warning>
+<Warning>
+  If you disable the integration, any future changes made in Jira will no longer sync to Beebole. Previously imported data remains in Beebole as local records.
+</Warning>
 
-To disable the integration, go to **Settings** > **Integrations** > **Jira** and toggle the integration off. You can re-enable it at any time to resume syncing.
+To disable the integration, go to **Settings** \> **Integrations** \> **Jira** and toggle the integration off. You can re-enable it at any time to resume syncing.
 
 To disconnect your Jira account entirely, click **Reset connection**.
 
@@ -98,12 +131,15 @@ To disconnect your Jira account entirely, click **Reset connection**.
   <Card title="Projects and activities" icon="folder" href="/help/documentation/projects">
     Manage your projects, subprojects, and billing rates in Beebole.
   </Card>
+
   <Card title="Planning and tasks" icon="calendar-check" href="/help/documentation/planning">
     Create, organize, and assign tasks, and track time against them.
   </Card>
+
   <Card title="Custom integrations" icon="code" href="/help/integrations/custom-integrations">
     Build your own integrations using the Beebole GraphQL API.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Explore all available Beebole integrations.
   </Card>

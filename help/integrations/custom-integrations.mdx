@@ -3,9 +3,9 @@ title: "Custom Integrations via GraphQL API"
 sidebarTitle: "Custom Integrations"
 description: "Build custom integrations with Beebole using the GraphQL API. Read and write your account data programmatically to connect Beebole to any tool."
 keywords: ["beebole", "custom integrations", "GraphQL API", "API key", "automation", "developer"]
-"og:title": "Building Custom Integrations with the Beebole API"
-"og:description": "Build custom integrations with the Beebole GraphQL API to connect Beebole to any tool or internal system."
-"og:type": "article"
+og:title: "Building Custom Integrations with the Beebole API"
+og:description: "Build custom integrations with the Beebole GraphQL API to connect Beebole to any tool or internal system."
+og:type: "article"
 ---
 
 Beebole's GraphQL API lets you build custom integrations that connect Beebole to any tool or internal system your organization uses. When the built-in integrations don't cover your needs, the API gives you full programmatic access to read and write your Beebole account data.
@@ -17,7 +17,7 @@ This page is a starting point. For endpoints, authentication details, queries, a
 Beebole's GraphQL API supports both queries (reading data) and mutations (creating or updating data). Common custom integrations include:
 
 | Use case | What it does |
-|----------|--------------|
+| --- | --- |
 | **HR system sync** | Create and update people in Beebole when employees change in your HR platform. |
 | **Custom reporting** | Pull time records, project data, and financial summaries into your own dashboard. |
 | **Automated time entries** | Create time entries programmatically from data in other systems. |
@@ -25,6 +25,25 @@ Beebole's GraphQL API supports both queries (reading data) and mutations (creati
 | **Payroll export** | Extract approved time data in the format your payroll provider requires. |
 
 ## Getting your API key
+
+<Steps>
+  <Step title="Access the API documentation">
+    Review the full API reference in the [API documentation](/help/api/introduction) tab. It covers authentication, the schema explorer, available queries, and mutations.
+  </Step>
+  <Step title="Generate an API token">
+    Go to **Settings** \> **API** in your Beebole account to generate an API token. This token authenticates your requests.
+
+    <Warning>
+      Keep your API token secure. Do not share it in client-side code or public repositories.
+    </Warning>
+  </Step>
+  <Step title="Explore the schema">
+    Use the [schema explorer](/help/api/schema-explorer) to browse all available types, queries, and mutations. This helps you understand the data model before writing your integration.
+  </Step>
+  <Step title="Build and test your integration">
+    Start with simple queries to read data, then move to mutations when you are ready to create or update records. Test thoroughly in a development environment before deploying to production.
+  </Step>
+</Steps>
 
 Every person in Beebole has a personal **API Key** that authenticates their API requests. The key is created automatically and does not expire.
 
@@ -46,7 +65,9 @@ Every person in Beebole has a personal **API Key** that authenticates their API 
 
 ## Best practices
 
-<Tip>Start with a read-only integration (queries only) to validate your data mapping before writing data back to Beebole.</Tip>
+<Tip>
+  Start with a read-only integration (queries only) to validate your data mapping before writing data back to Beebole.
+</Tip>
 
 - **Use clear names** for projects and people created through the API so they are easy to recognize in Beebole.
 - **Handle errors gracefully.** The API returns descriptive error messages — log and handle them in your code.
@@ -58,9 +79,11 @@ Every person in Beebole has a personal **API Key** that authenticates their API 
   <Card title="API introduction" icon="book" href="/help/api/introduction">
     Authenticate with the Beebole GraphQL API and send your first request.
   </Card>
+
   <Card title="Webhooks" icon="webhook" href="/help/integrations/webhooks">
     Send real-time Beebole event notifications to your own services.
   </Card>
+
   <Card title="All integrations" icon="plug" href="/help/integrations/introduction">
     Browse the built-in Beebole integrations.
   </Card>

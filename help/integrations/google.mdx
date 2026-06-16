@@ -3,9 +3,9 @@ title: "Sign in to Beebole with Google — SSO and Domain Links"
 sidebarTitle: "Google"
 description: "Sign in to Beebole with a Google account, link your Google Workspace domains, auto-provision people, and require Google sign-in across your organization."
 keywords: ["beebole", "Google sign-in", "Google SSO", "Google Workspace", "linked domains", "single sign-on", "authentication"]
-"og:title": "Sign in to Beebole with Google Workspace and SSO Setup"
-"og:description": "Use Google to sign in to Beebole, link your Workspace domains, auto-provision new people, and enforce Google-only sign-in."
-"og:type": "article"
+og:title: "Sign in to Beebole with Google Workspace and SSO Setup"
+og:description: "Use Google to sign in to Beebole, link your Workspace domains, auto-provision new people, and enforce Google-only sign-in."
+og:type: "article"
 ---
 
 Google sign-in lets anyone in your organization sign in to Beebole with their existing Google account, which is convenient for teams already on Google Workspace. It is a built-in sign-in option — no administrator setup is required to use it. Linking your Google domains adds organization-level controls: automatic provisioning and the option to require Google sign-in for everyone.
@@ -26,7 +26,7 @@ Linking a domain ties your Google Workspace organization to your Beebole account
 
 <Steps>
   <Step title="Open the Google tab">
-    Go to **Settings** > **Account Settings**, open the **Single Sign-On** panel, and select the **Google** tab.
+    Go to **Settings** \> **Account Settings**, open the **Single Sign-On** panel, and select the **Google** tab.
   </Step>
   <Step title="Add a domain">
     Type your organization's email domain in the **Linked domains** field and click **Add**. To unlink a domain, click **Remove** next to it. Changes save automatically.
@@ -42,6 +42,21 @@ On the **Google** tab, turn on **Automatically create new users on first SSO log
 
 ## Require Google sign-in
 
+<Steps>
+  <Step title="Open integration settings">
+    Go to **Settings** \> **Integrations** in your Beebole account.
+  </Step>
+  <Step title="Open integration settings">
+    Open **Settings** \> **Single Sign-On** in your Beebole account, then switch to the **Google** tab.
+  </Step>
+  <Step title="Enable Google SSO">
+    Locate the **Google** card and click **Connect**. Follow the OAuth prompts to authorize Beebole to verify your identity through Google.
+  </Step>
+  <Step title="Verify the connection">
+    Once connected, the Google integration shows as active in your integration settings. Users in your account can now sign in using the **Sign in with Google** button on the login page.
+  </Step>
+</Steps>
+
 To make Google the only way your team can sign in, turn on **Disable interactive sign-in. Only Google sign-in allowed.** on the **Google** tab. This blocks the email-code method for your organization, so everyone authenticates through Google.
 
 <Warning>
@@ -54,6 +69,7 @@ To make Google the only way your team can sign in, turn on **Disable interactive
   <Card title="Sign-in, passkeys, and SSO" icon="key" href="/help/documentation/authentication">
     How every sign-in method works in Beebole, including the Single Sign-On panel and Custom OpenID.
   </Card>
+
   <Card title="Microsoft sign-in" icon="microsoft" href="/help/integrations/microsoft">
     Sign in to Beebole with a Microsoft account and require Microsoft sign-in.
   </Card>
@@ -71,7 +87,7 @@ To make Google the only way your team can sign in, turn on **Disable interactive
   </Accordion>
 
   <Accordion title="What if my Google email is different from my Beebole email?">
-    Beebole matches accounts by email address. If your Google email does not match the email on your Beebole profile, Google sign-in will not find your account. Make the two email addresses match, or contact support@beebole.com.
+    Beebole matches accounts by email address. If your Google email does not match the email on your Beebole profile, Google sign-in will not find your account. Make the two email addresses match, or contact [support@beebole.com](mailto:support@beebole.com).
   </Accordion>
 
   <Accordion title="Can I make Google the only way my team signs in?">
@@ -79,6 +95,6 @@ To make Google the only way your team can sign in, turn on **Disable interactive
   </Accordion>
 
   <Accordion title="Where do I find the Google settings in Beebole?">
-    Go to **Settings** > **Account Settings**, open the **Single Sign-On** panel, and select the **Google** tab. SSO is configured on the organization itself, not as a separate menu item, and all settings save automatically.
+    Go to **Settings** \> **Account Settings**, open the **Single Sign-On** panel, and select the **Google** tab. SSO is configured on the organization itself, not as a separate menu item, and all settings save automatically.
   </Accordion>
 </AccordionGroup>
