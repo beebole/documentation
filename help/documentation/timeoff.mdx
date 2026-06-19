@@ -3,9 +3,9 @@ title: "Time off: absence types, allowances, and balances"
 sidebarTitle: "Time Off"
 description: "Configure absence types, set quotas, track balances, and manage vacation, sick leave, and other time-off requests for your team in Beebole."
 keywords: ["beebole", "time off", "absence management", "leave management", "vacation tracking", "PTO", "sick leave", "absence quota"]
-"og:title": "Managing Time Off, Allowances, and Balances in Beebole"
-"og:description": "Configure absence types, set quotas, and manage time-off requests for your team in Beebole."
-"og:type": "article"
+og:title: "Managing Time Off, Allowances, and Balances in Beebole"
+og:description: "Configure absence types, set quotas, and manage time-off requests for your team in Beebole."
+og:type: "article"
 ---
 
 Beebole's time-off management lets you define absence types, assign individual allowances, and track balances in real time. Your team records time off directly on their timesheets — each entry counts against the balance as soon as it's recorded — and the approval workflow lets managers review every absence.
@@ -13,6 +13,10 @@ Beebole's time-off management lets you define absence types, assign individual a
 <Info>
   Time off in Beebole is tracked through **absence types** — categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
 </Info>
+
+<div style={{position: "relative", paddingBottom: "calc(58.6934% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/ES36S84RdgWOOnlf030h?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Add Time Off Types" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
 
 ---
 
@@ -33,13 +37,22 @@ Each absence type can be configured with:
 
 <Steps>
   <Step title="Open the Time Off settings">
-    Go to **Settings** > **Time Off**.
+    Go to **Settings** \> **Time Off**.
+  </Step>
+  <Step title="Add a new absence type">
+    Click the **\[\+\]** button. Enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave").
   </Step>
   <Step title="Add a new absence type">
     Click **Add Time Off Type**, enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave"), and click **Add Time Off Type**.
   </Step>
   <Step title="Choose the unit">
+    Select whether this absence type is tracked in **Hours** or **Days**.
+  </Step>
+  <Step title="Choose the unit">
     In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. The change is saved automatically, and the new absence type is available for allowances and timesheet entry.
+  </Step>
+  <Step title="Save the absence type">
+    Click **Save**. The new absence type is now available for quota assignment and timesheet entry.
   </Step>
 </Steps>
 
@@ -53,7 +66,7 @@ Each absence type can be configured with:
 
 When a leave category is no longer offered, archive its absence type instead of deleting it — past time-off records stay intact while the type disappears from day-to-day use.
 
-1. Go to **Settings** > **Time Off** and open the absence type.
+1. Go to **Settings** \> **Time Off** and open the absence type.
 2. Click the **⋯** action menu next to its name, then **Archive**.
 
 To restore an archived type, click **Show Archived** in the list, open the archived type, and click the **⋯** action menu, then **Unarchive**. The same menu also offers **Duplicate**, **Rename**, and **Delete**.
@@ -65,17 +78,32 @@ To restore an archived type, click **Show Archived** in the list, open the archi
 An allowance (Beebole's term for a time-off quota) defines how much time off a person receives for a given absence type within a specific period. You can set allowances on the organization for everyone, on a tag for a group, or on an individual person.
 
 <Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** \> **Time Off** and click the absence type you want to configure.
+  </Step>
   <Step title="Open the Absence allowances panel">
-    For an organization-wide default, go to **Settings** > **Account Settings**. For a group, click **Tags** in the sidebar and open the tag. For one person, click **People** in the sidebar and open their profile. Each shows an **Absence allowances** panel.
+    For an organization-wide default, go to **Settings** \> **Account Settings**. For a group, click **Tags** in the sidebar and open the tag. For one person, click **People** in the sidebar and open their profile. Each shows an **Absence allowances** panel.
   </Step>
   <Step title="Add the allowance">
-    Click **+ Add new allowance** and select the absence type.
+    Click **\+ Add new allowance** and select the absence type.
+  </Step>
+  <Step title="Define the quota period">
+    Set the **Start date** and **End date** for the quota period (e.g., January 1 to December 31 for an annual allowance).
   </Step>
   <Step title="Define the period">
     Set the **Start - end** dates for the allowance period (e.g., January 1 to December 31 for an annual allowance).
   </Step>
+  <Step title="Set the default allowance">
+    Enter the default number of hours or days each person receives for this period.
+  </Step>
   <Step title="Set the amount">
     Enter the number of hours or days in the **Available** field. Every change is saved automatically.
+  </Step>
+  <Step title="Adjust individual quotas">
+    To give specific people a different allowance, go to their profile under **People** and adjust the quota for this absence type. Individual quotas override the default.
+  </Step>
+  <Step title="Save">
+    Click **Save** to apply the quota.
   </Step>
 </Steps>
 
@@ -90,7 +118,7 @@ An allowance (Beebole's term for a time-off quota) defines how much time off a p
 Beebole tracks time-off balances based on allowances, accruals, and recorded absences. Each card in the **Absence allowances** panel shows:
 
 | Balance field | What it shows |
-|---------------|---------------|
+| --- | --- |
 | **Available** | The amount of time off granted for the allowance period |
 | **Consumed** | The time off already recorded over the period (shown when you open an allowance on a person) |
 | **Accrued** | A manual adjustment field for accrued time |
@@ -119,7 +147,7 @@ Use this distinction to make sure your cost reports stay accurate when people ar
 
 <Steps>
   <Step title="Open the absence type">
-    Go to **Settings** > **Time Off** and click the absence type you want to configure.
+    Go to **Settings** \> **Time Off** and click the absence type you want to configure.
   </Step>
   <Step title="Toggle Is paid">
     In the **Units** panel, check the **Is paid (included in people costs)** checkbox to include this absence type in cost calculations. Uncheck it to exclude the absence from cost totals. The change is saved automatically and applies to all future cost calculations — existing reports reflect the new setting the next time they're generated.
@@ -144,6 +172,18 @@ Approval does not gate the balance: every recorded time-off entry counts against
 
 ---
 
+<Steps>
+  <Step title="Open the absence type">
+    Go to **Settings** \> **Time Off** and click the absence type you want to configure.
+  </Step>
+  <Step title="Toggle Is paid">
+    Tick the **Is paid (included in people costs)** checkbox to include this absence type in cost calculations. Untick it to exclude the absence from cost totals.
+  </Step>
+  <Step title="Save">
+    The change applies to all future cost calculations. Existing reports automatically reflect the new setting the next time they're generated.
+  </Step>
+</Steps>
+
 ## Absence notifications
 
 Beebole can send automatic notifications related to time off to keep managers and administrators informed. They are configured per absence type, in the **Time off notifications** panel:
@@ -152,7 +192,7 @@ Beebole can send automatic notifications related to time off to keep managers an
 - **Requesting in advance against accruals** — Triggered when someone requests time off they have not yet accrued.
 - A frequency alert — Triggered when a person takes this absence type more than a set number of occurrences in a **Month** or **Year**.
 
-To configure them, go to **Settings** > **Time Off**, click the absence type, and check the alerts you want in the **Time off notifications** panel. Changes are saved automatically. See [Notifications](/help/documentation/notifications) for the full setup.
+To configure them, go to **Settings** \> **Time Off**, click the absence type, and check the alerts you want in the **Time off notifications** panel. Changes are saved automatically. See [Notifications](/help/documentation/notifications) for the full setup.
 
 ---
 
@@ -187,12 +227,15 @@ Team members record absences directly on their timesheets, just like regular tim
   <Card title="Accruals" icon="calendar" href="/help/documentation/accruals">
     Configure how time-off allowances accrue on a recurring schedule.
   </Card>
+
   <Card title="Public Holidays" icon="clock" href="/help/documentation/public-holidays">
     Define non-working days so they don't consume time-off allowances.
   </Card>
+
   <Card title="Work Schedule" icon="users" href="/help/documentation/work-schedule">
     Set working hours so day-based absences calculate correctly.
   </Card>
+
   <Card title="Approvals" icon="check" href="/help/documentation/approval">
     Understand how absence entries flow through the approval workflow.
   </Card>
@@ -200,21 +243,40 @@ Team members record absences directly on their timesheets, just like regular tim
 
 ---
 
+<Steps>
+  <Step title="Open the timesheet">
+    Navigate to **Timesheets** and select the relevant week.
+  </Step>
+  <Step title="Add an absence row">
+    Click the **\[\+\]** button to add a new row. Select the absence type (e.g., "Vacation") instead of a project.
+  </Step>
+  <Step title="Enter the time off">
+    Enter the number of hours or days for each day of the week.
+  </Step>
+  <Step title="Submit the timesheet">
+    Click **Submit** to send the timesheet for approval. The time off counts against the balance once approved.
+  </Step>
+</Steps>
+
 ## Frequently asked questions
 
 <AccordionGroup>
   <Accordion title="Can I set different time-off allowances for different people?">
     Yes. Add an allowance in the **Absence allowances** panel of a person's profile under **People**. Person-level allowances take priority over tag-level ones and the organization default.
   </Accordion>
+
   <Accordion title="What happens when someone exceeds their time-off balance?">
     It depends on the allowance. If **Allow negative balance** is checked, the person can continue booking time off and their balance shows a negative number. If not, Beebole blocks the entry.
   </Accordion>
+
   <Accordion title="How does time off interact with approvals?">
     Time-off entries follow the same approval workflow as regular timesheet entries. Absences count against a person's allowance as soon as they are recorded — approval reviews and locks the timesheet but does not change the balance. See [Approvals](/help/documentation/approval).
   </Accordion>
+
   <Accordion title="Can I track time off in both hours and days?">
     Each absence type uses a single unit — **Hour** or **Day**. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
   </Accordion>
+
   <Accordion title="How do accruals work with time-off allowances?">
     Accrual policies describe how leave accumulates over time rather than being granted all at once. Accrued time is reflected on the allowance through its editable **Accrued** field, a manual adjustment to the accrued balance. See [Accruals](/help/documentation/accruals).
   </Accordion>

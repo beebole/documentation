@@ -3,9 +3,9 @@ title: "Billing rates: turn tracked time into revenue"
 sidebarTitle: "Billing Rates"
 description: "Set billing rates in Beebole at the organization, tag, project, or person level and turn tracked hours into billable amounts in reports."
 keywords: ["beebole", "billing rates", "billable hours", "project billing", "client billing", "hourly rate", "how to set billing rates"]
-"og:title": "Setting Up Billing Rates for Client Work in Beebole"
-"og:description": "Learn how to configure billing rates in Beebole and turn tracked time into billable amounts."
-"og:type": "article"
+og:title: "Setting Up Billing Rates for Client Work in Beebole"
+og:description: "Learn how to configure billing rates in Beebole and turn tracked time into billable amounts."
+og:type: "article"
 ---
 
 Beebole's billing rates turn tracked time into revenue figures. You define what an hour, a day, or a piece of work is worth, and Beebole calculates billable amounts from the time your team logs — ready to analyze in reports and to measure against budgets.
@@ -14,6 +14,10 @@ Beebole's billing rates turn tracked time into revenue figures. You define what 
   Billing rates are available on paid Beebole plans. Who can view and edit them is controlled by the **Billing rates** permission — see [Roles & permissions](/help/documentation/roles-authorisations).
 </Info>
 
+<div style={{position: "relative", paddingBottom: "calc(64.2075% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/3wV0eVBMv1hSdDc0Ix66?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Manage Costs and Billing Rates" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
+
 ---
 
 ## Billing methods
@@ -21,7 +25,7 @@ Beebole's billing rates turn tracked time into revenue figures. You define what 
 Each billing rate uses one of four methods:
 
 | Method | What it means |
-|--------|---------------|
+| --- | --- |
 | **Hourly rate** | A fixed amount per hour worked |
 | **Daily rate** | A fixed amount per day worked |
 | **Fixed fee** | A flat amount, regardless of time spent — optionally repeating |
@@ -34,7 +38,7 @@ Each billing rate uses one of four methods:
 Billing rates live in the **Billing** section of the organization, tag, project, or person settings panel. You can set them at four levels: organization, tag, project, and person.
 
 | Level | Typical use |
-|-------|-------------|
+| --- | --- |
 | **Organization** | A company-wide default rate |
 | **Tag** | A default for everything under the tag — a department or a client group, for example |
 | **Project** | A rate negotiated for one project, including its subprojects |
@@ -42,7 +46,7 @@ Billing rates live in the **Billing** section of the organization, tag, project,
 
 To open the **Billing** section at each level:
 
-- **Organization** — click the button with your initials at the bottom of the sidebar, then go to **Settings** > **Account Settings**.
+- **Organization** — click the button with your initials at the bottom of the sidebar, then go to **Settings** \> **Account Settings**.
 - **Tag** — click **Tags** in the sidebar, then the tag's name.
 - **Project** — click **Projects** in the sidebar, then the project's name.
 - **Person** — click **People** in the sidebar, then the person's name.
@@ -119,12 +123,15 @@ Tracked time is multiplied by the resolved rate and shown in [reports](/help/doc
   <Card title="Cost Rates" icon="coins" href="/help/documentation/costs">
     Track what the same work costs you internally and measure margins.
   </Card>
+
   <Card title="Budgets" icon="chart-pie" href="/help/documentation/budgets">
     Set billing, cost, and hours targets on projects and monitor progress.
   </Card>
+
   <Card title="Custom Reports" icon="table" href="/help/documentation/custom-reports">
     Build reports with billing and cost columns, grouped and filtered your way.
   </Card>
+
   <Card title="Projects" icon="folder-tree" href="/help/documentation/projects">
     Create and organize the projects and subprojects your team bills time to.
   </Card>
@@ -136,15 +143,19 @@ Tracked time is multiplied by the resolved rate and shown in [reports](/help/doc
   <Accordion title="What happens if no billing rate is set?">
     Beebole calculates no billing amount for that time. The hours still appear in reports, but the **Billing** column stays empty for those entries until a rate at some level applies to them.
   </Accordion>
+
   <Accordion title="Can I bill the same person at different rates on different projects?">
     Yes. Set a billing rate on each project — project rates take priority over the person's own rate in Beebole. On a single project, use **Split by persons** to give each team member their own amount.
   </Accordion>
+
   <Accordion title="Can I set a billing rate on a specific task?">
     No. In Beebole, billing rates are set on the organization, tags, projects, and people. Time tracked on a task is billed through the rate of the project it was logged against, or the person's rate.
   </Accordion>
+
   <Accordion title="How do I change a rate without affecting past entries?">
     Add a new rate with a **From** date set to when the change starts. Beebole applies each rate only to time entries dated on or after its From date, so earlier entries keep the previous rate.
   </Accordion>
+
   <Accordion title="How do I mark work as non-billable?">
     Choose the **Non-billable** billing method on the relevant project, person, or tag, or tick the **Non-billable** checkbox next to a person or project inside a rate split. Beebole then calculates no billing amount for that time.
   </Accordion>

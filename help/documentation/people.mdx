@@ -3,9 +3,9 @@ title: "People: add, invite, and manage your team"
 sidebarTitle: "People"
 description: "Add, invite, and manage your team members in Beebole. Configure profiles, assign roles, and set up schedules and rates for each person."
 keywords: ["Beebole people", "add team members", "invite users", "user management", "employee profiles", "how to add people"]
-"og:title": "Adding, Inviting, and Managing Your Team in Beebole"
-"og:description": "Learn how to add, invite, and manage your team members in Beebole."
-"og:type": "article"
+og:title: "Adding, Inviting, and Managing Your Team in Beebole"
+og:description: "Learn how to add, invite, and manage your team members in Beebole."
+og:type: "article"
 ---
 
 In Beebole, **People** represents every user or team member in your account — anyone who tracks time, manages projects, or views reports. Each person has a profile that combines their user account with configuration data like rates, schedules, and permissions.
@@ -18,12 +18,16 @@ In Beebole, **People** represents every user or team member in your account — 
 
 ## Adding your team
 
+<div style={{position: "relative", paddingBottom: "calc(60.2564% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/pWQG7nukT1uIVNZ9pabM?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Add a Person to Beebole" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
+
 <Steps>
   <Step title="Open the People page">
     Click **People** in the left sidebar.
   </Step>
   <Step title="Add a person">
-    Click the **+** button (**Add person**). Enter the person's **Name**, **Email**, and **Role**.
+    Click the **\+** button (**Add person**). Enter the person's **Name**, **Email**, and **Role**.
   </Step>
   <Step title="Add multiple people (optional)">
     To add a large team at once, use the **Or add multiple entries** area of the same panel. Copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and click **Add them all**.
@@ -106,7 +110,7 @@ Absence quotas define how much time off a person is entitled to for each absence
 
 ### Custom fields on persons
 
-Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** > **Custom Field** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
+Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** \> **Custom Field** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
 
 ---
 
@@ -139,12 +143,15 @@ Select multiple people from the list using the checkboxes to perform actions in 
   <Card title="Roles & permissions" icon="shield" href="/help/documentation/roles-authorisations">
     Configure what each person can see and do in Beebole with granular role-based permissions.
   </Card>
+
   <Card title="Tags" icon="tag" href="/help/documentation/tags">
     Organize people into departments, teams, and locations for better reporting and inherited configuration.
   </Card>
+
   <Card title="Work schedules" icon="clock" href="/help/documentation/work-schedule">
     Define standard working hours and days for individuals or groups.
   </Card>
+
   <Card title="Cost rates" icon="chart-bar" href="/help/documentation/costs">
     Track the internal cost of each team member's time for profitability reporting.
   </Card>
@@ -156,15 +163,19 @@ Select multiple people from the list using the checkboxes to perform actions in 
   <Accordion title="What happens when someone leaves the company?">
     Archive their profile instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription.
   </Accordion>
+
   <Accordion title="Can I create custom roles beyond Admin, Manager, and Employee?">
-    Yes. Go to **Settings** > **Person Roles** to create custom roles with granular permissions. See [Roles & permissions](/help/documentation/roles-authorisations).
+    Yes. Go to **Settings** \> **Person Roles** to create custom roles with granular permissions. See [Roles & permissions](/help/documentation/roles-authorisations).
   </Accordion>
+
   <Accordion title="Can I add multiple people at once?">
     Yes. Click **People** in the sidebar, then **Add person**. In the **Or add multiple entries** area, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, and confirm with **Add them all**.
   </Accordion>
+
   <Accordion title="What happens if I add a person when all seats are taken?">
     Beebole creates the person as archived automatically and displays a warning. The person cannot log in until you unarchive them. Unarchiving requires a free seat — either archive another person first or upgrade your subscription.
   </Accordion>
+
   <Accordion title="Can I sign in as another user for troubleshooting?">
     Yes. Administrators can use the **Sign in as…** <Badge>Admin only</Badge> action to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
   </Accordion>
