@@ -10,7 +10,9 @@ og:type: "article"
 
 This migration guide covers everything you need to know to move your account to the new Beebole platform, available at [app.beebole.com](https://app.beebole.com). You'll learn how the new and Legacy systems coexist during the transition, what's new and different, and how the updated API and architecture might affect your planning.
 
-Note that this guide is for existing customers. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is a better place to start.
+Note that this guide is for existing customers. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is a better place to start.\
+\
+The new Beebole is significantly different from Legacy, so the [Quickstart](/help/documentation/quickstart) is worth a read even if you've been using Beebole for years. It covers how the new system is structured and will help you get oriented before diving in.
 
 <Warning>
   The new Beebole is currently in **beta**. You may encounter occasional bugs or rough edges as we continue to improve the platform. We're committed to fixing issues quickly and releasing improvements regularly — and your feedback is a meaningful part of that process. If you notice anything, reach out via the in-app chat or email us at [support@beebole.com](mailto:support@beebole.com).
@@ -43,8 +45,17 @@ You can create a free account on the new platform without affecting your Legacy 
   <Step title="Sign up in the new system">
     Create a free trial account at [app.beebole.com/signup](https://app.beebole.com/signup). You can use the same email address as your Legacy account.
   </Step>
+  <Step title="Sign up in the new system">
+    Create a free trial account at [app.beebole.com/signup](https://app.beebole.com/signup). You can use the same email address as your Legacy account.
+  </Step>
   <Step title="Explore the new features">
     Use the trial account to explore new features, create time entries, discover resource planning, and play around with reports. Bear in mind that, when you're ready to switch permanently, we will migrate your data into a clean, new account.
+  </Step>
+  <Step title="Explore the new features">
+    Use the trial account to explore new features, create time entries, discover resource planning, and play around with reports. Bear in mind that, when you're ready to switch permanently, we will migrate your data into a clean, new account.
+  </Step>
+  <Step title="Share your feedback">
+    The new Beebole is still in beta and, as with any new system, we anticipate some initial kinks. Please share them with us. You can reach out via the in-app chat or email [support@beebole.com](mailto:support@beebole.com) with questions or feedback.
   </Step>
   <Step title="Share your feedback">
     The new Beebole is still in beta and, as with any new system, we anticipate some initial kinks. Please share them with us. You can reach out via the in-app chat or email [support@beebole.com](mailto:support@beebole.com) with questions or feedback.
@@ -224,6 +235,111 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 
   <Accordion title="Can I use the same email for my trial and my Legacy account?">
     Yes. You can sign up for the new platform  with the same email address. Login for the Legacy system is at [beebole-apps.com/signin](http://beebole-apps.com/signin/). Login for the new system is done at [app.beebole.com](https://app.beebole.com/signin). 
+  </Accordion>
+
+  <Accordion title="Do my API integrations carry over automatically?">
+    No. The new platform uses a GraphQL API, so Legacy integrations need to be updated. Your existing integrations keep working in your Legacy account.
+  </Accordion>
+</AccordionGroup>
+
+The new and Legacy systems have separate sign in pages.
+
+- Legacy login is still done at [beebole-apps.com/signin](http://beebole-apps.com/signin/), or via the login button at [beebole.com](http://beebole.com). In that sense, nothing changes for your employees still using Legacy.
+- Login for the new system is done at [app.beebole.com](https://app.beebole.com/signin).
+- Login in the new system is passwordless: you confirm your identity with a one-time 6-digit code emailed to you, a passkey, your Google or Microsoft account, or your organization's SSO provider. See [Authentication](/help/documentation/authentication) for details.
+
+The [Key concepts](/help/documentation/concepts) page explains Beebole's new core entities (projects, people, tasks, and tags) and how they relate to each other. Try mapping out your structures and settings ahead of time and, when in doubt, reach out to us.
+
+Review the [GraphQL API](/help/api/introduction) for the API basics and authentication model. Then, start planning the migration of any Legacy integrations as part of the manual account migration.
+
+<Info>
+  The API is a major reason to evaluate the new platform early. It is also the right time to document your current integration points and look for improvements and optimizations.
+</Info>
+
+The tables below summarize the main changes from the Legacy system. Most will feel familiar.
+
+| Topic | What's new |
+| :-- | :-- |
+| **Timesheet submission** | You submit a full timesheet period (such as a whole week), not individual entries. Submitting locks that period. |
+| **Timesheet periods** | Fixed daily, weekly, or monthly views are replaced by a configurable period — weekly, bi-weekly, 1st–15th, and so on — set in [Timesheet settings](/help/documentation/timesheetSettings). |
+| **Entry formats** | Log time in hours (hh:mm), decimal hours, days, or a percentage of a workday. |
+| **Work from home flag** | Mark an individual entry as remote work directly on the entry. |
+| **Non-billable flag** | Mark individual entries as non-billable. |
+| **Auto-submit** | Configure a timesheet to submit automatically after a set number of days, so forgotten periods still lock. |
+| **Direct edits** | Admins and managers can edit submitted or approved entries directly, without rejecting first. Every change is logged. |
+| **Custom fields on time entries** | Capture extra structured data per entry for reporting. |
+| **Calendar in the timesheet** | Connect your Google or Microsoft Outlook calendar and drag events onto timesheet rows. The connection is per-user and one way (Calendar to Beebole) only. |
+| **Timesheet score** | A per-person compliance score (0–100) based on on-time submissions, late submissions, missed timesheets, and rejections. It appears on team members in the team and approval views. |
+
+| Topic | What's new |
+| :-- | :-- |
+| **Carry-forward rules** | Set a maximum balance that rolls over when a [time-off](/help/documentation/timeoff) allowance period ends; any excess expires. |
+| **Absence unit** | Configure each absence type to be requested in days or hours, independently per type. |
+| **Public holidays** | [Public holiday calendars](/help/documentation/public-holidays) populate automatically by country and region, with custom holidays on top — no more manual entry each year. |
+| **Accruals (coming soon)** | Configure accrual frequency and quantity per absence, with accrued balances adjusted on the allowance's **Accrued** field. See [Accruals](/help/documentation/accruals). |
+
+| Topic | What's new |
+| :-- | :-- |
+| **Multi-stage workflow** | Define as many [approval](/help/documentation/approval) stages as you need (for example, project manager → team leader → admin). |
+| **Quorum rules** | Per stage, require all approvers or any single approver before advancing. |
+| **Approval history** | Each timesheet keeps a full log of approvals, rejections, and comments, so you always see where it stands. |
+| **Email actions** | Approve or reject straight from the notification email. |
+| **Approval reminders** | Approvers receive automatic reminders for pending timesheets. |
+| **Mobile approval** | Review and act on pending timesheets from a phone. |
+
+<Info>
+  Tasks are independent planning items in the new platform — they live on their own **Tasks** page and are not sub-elements of projects, although they can be linked to existing projects. See [Task planning](/help/documentation/planning).
+</Info>
+
+| Topic | What's new |
+| :-- | :-- |
+| **Project expenses** | Track [expenses](/help/documentation/expenses) on a project and factor them into budgets. |
+| **Expense types** | Define types with currency or quantity units (for example, miles for travel). |
+| **Markup** | Set a billing markup on an expense type. |
+| **Budget impact (coming soon)** | Choose whether an expense type counts toward the project budget. |
+
+| Topic | What's new |
+| :-- | :-- |
+| **Custom roles** | The fixed Legacy roles are gone. Use the default [roles](/help/documentation/roles-authorisations) or create as many custom ones as you need. |
+| **Bulk operations** | Bulk-archive, bulk-unarchive, and bulk-invite people. |
+| **Sign in as** | Admins can use **Sign in as…** to see exactly what a team member sees, for troubleshooting. |
+
+| Topic | What's new |
+| :-- | :-- |
+| **Daily rates** | Define [billing](/help/documentation/billing) and [cost](/help/documentation/costs) rates per day, not only per hour. |
+| **Fixed recurring fees** | Apply a fixed rate (such as a salary) for a period, regardless of hours worked. |
+| **Budgets** | Set [budgets](/help/documentation/budgets) for billing, cost, and hours, and split them by person or project. |
+| **Budget status reports** | Easily check the budget status and planned budget on any project for costs, billing, and time in reports. |
+| **Saved reports** | Create, save, and organize [reports](/help/documentation/reports) into folders, and toggle between table, chart, and matrix views. |
+| **Spreadsheet add-ins** | Link a saved report to [Excel](/help/documentation/excel-addin) or [Google Sheets](/help/documentation/gsheets-addon) and refresh the data on demand. |
+
+| Topic | What's new |
+| :-- | :-- |
+| **Journal** | Every record has a [Journal](/help/documentation/journal) — a threaded feed where you comment, attach files, mention people, and track changes. |
+| **Email reply-to-comment** | Reply to a Journal notification email to post a comment. |
+| **Email templates** | Customize the content of system emails, with dynamic placeholders. |
+| **Notifications** | Choose emails to be sent in a daily or weekly digest. |
+| **Passwordless sign-in** | Sign in with a one-time email code, a passkey, Google, Microsoft, or SSO — no passwords. See [Authentication](/help/documentation/authentication). |
+| **Organization branding** | Upload your organization's logo (it appears in the sidebar and on outgoing emails) and set an accent color for the interface. |
+| **Undo/redo** | A global undo/redo across the app. |
+| **Copy/paste setup** | Duplicate a project's configuration to reuse as a template, and add people, projects, or tags in bulk by pasting spreadsheet rows. |
+| **Integrations** | Native [integrations](/help/integrations/introduction) include Asana, Jira, Monday.com, Linear, QuickBooks, Xero, and BambooHR, plus webhooks. |
+
+<AccordionGroup>
+  <Accordion title="Do I have to migrate to the new Beebole platform right away?">
+    No. Your Legacy Beebole account keeps running with no deadline. You can trial the new platform whenever you like, and migrate only when you are ready by contacting [support@beebole.com](mailto:support@beebole.com).
+  </Accordion>
+
+  <Accordion title="Will I lose my historical data when I migrate?">
+    No. Beebole will migrate your historical people, projects, time records, and settings into the new account, and your Legacy account stays untouched.
+  </Accordion>
+
+  <Accordion title="What should I do if I encounter a bug or if something doesn't work as expected?">
+    The new Beebole is in beta, so you may occasionally run into something that doesn't behave as expected. If that happens, let us know. Reach out via the in-app chat or email us at [support@beebole.com](mailto:support@beebole.com). We're actively working through issues as they're reported and releasing fixes regularly.
+  </Accordion>
+
+  <Accordion title="Can I use the same email for my trial and my Legacy account?">
+    Yes. You can sign up for the new platform  with the same email address. Login for the Legacy system is at [beebole-apps.com/signin](http://beebole-apps.com/signin/). Login for the new system is done at [app.beebole.com](https://app.beebole.com/signin).
   </Accordion>
 
   <Accordion title="Do my API integrations carry over automatically?">

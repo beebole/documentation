@@ -3,9 +3,9 @@ title: "Managing projects and project categories"
 sidebarTitle: "Projects"
 description: "Create projects and subprojects in Beebole, organize them into categories, add many at once from a spreadsheet, and control rates, budgets, and access."
 keywords: ["beebole", "projects", "project hierarchy", "subprojects", "project categories", "create project", "project time tracking"]
-"og:title": "Creating and Managing Project Hierarchies in Beebole"
-"og:description": "Learn how to create projects and subprojects in Beebole, organize them into categories, and configure rates, budgets, and access."
-"og:type": "article"
+og:title: "Creating and Managing Project Hierarchies in Beebole"
+og:description: "Learn how to create projects and subprojects in Beebole, organize them into categories, and configure rates, budgets, and access."
+og:type: "article"
 ---
 
 Projects in Beebole are what your team logs time against. Every report, budget, and billing calculation builds on your project structure, so organizing it well pays off across the whole account. Projects live in categories you define and can be nested into subprojects as deep as you need.
@@ -20,15 +20,19 @@ Beebole uses a flexible hierarchy with three building blocks:
 - **Projects** — The engagements or work streams inside a category, such as a client account or an internal initiative.
 - **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit, and each category names its own levels (for example, the **Clients** category starts with the levels **Project** and **Job**).
 
-Projects describe *what* your team works on. To group projects and people across other dimensions — departments, locations, service lines — use [tags](/help/documentation/tags) instead of deepening the project hierarchy.
+Projects describe _what_ your team works on. To group projects and people across other dimensions — departments, locations, service lines — use [tags](/help/documentation/tags) instead of deepening the project hierarchy.
 
 <Info>
-  Which project categories your team can record time on is controlled by the **Record time on these project categories** setting, in the **Categories** tab of the **Timesheet settings** panel. Open it from **Settings** > **Account Settings**.
+  Which project categories your team can record time on is controlled by the **Record time on these project categories** setting, in the **Categories** tab of the **Timesheet settings** panel. Open it from **Settings** \> **Account Settings**.
 </Info>
 
 ---
 
 ## Creating a project
+
+<div style={{position: "relative", paddingBottom: "calc(57.9752% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/jqdjgwnaKL449N1i7l9l?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Create a Project in Beebole" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
 
 <Steps>
   <Step title="Open the Projects page">
@@ -38,10 +42,10 @@ Projects describe *what* your team works on. To group projects and people across
     Click the category name next to the **Projects:** heading and select the category the project belongs in. To create a new category, type its name in the field at the bottom of that menu and click **Add**.
   </Step>
   <Step title="Add the project">
-    Click the **Add [category]** button at the top right — its label shows the active category, for example **Add Clients**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
+    Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Clients**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
   </Step>
   <Step title="Add subprojects (optional)">
-    In the project list, expand the parent project, then click the **+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Job**).
+    In the project list, expand the parent project, then click the **\+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Job**).
   </Step>
 </Steps>
 
@@ -115,7 +119,7 @@ Open the project's **Billing** or **Cost** panel and click **Add** to create a r
 
 ### Custom fields on a project
 
-The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** > **Custom Field**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).
+The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** \> **Custom Field**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).
 
 ---
 
@@ -157,12 +161,15 @@ Archived projects are hidden from the list — click **Show Archived** at the to
   <Card title="Tags" icon="tag" href="/help/documentation/tags">
     Group projects and people by department, location, or any other dimension, and cascade configuration through tags.
   </Card>
+
   <Card title="Budgets" icon="chart-bar" href="/help/documentation/budgets">
     Set billing, cost, or hours budgets on your projects and track progress.
   </Card>
+
   <Card title="Billing rates" icon="money-bill" href="/help/documentation/billing">
     Configure billing rates at the organization, tag, project, or person level.
   </Card>
+
   <Card title="Assignments" icon="user-check" href="/help/documentation/assignments">
     Control which projects, expense types, and custom fields are available to each person or group.
   </Card>
@@ -174,15 +181,19 @@ Archived projects are hidden from the list — click **Show Archived** at the to
   <Accordion title="How deep can the project hierarchy go in Beebole?">
     Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. In practice, structures stay easiest to navigate and report on at four levels or fewer.
   </Accordion>
+
   <Accordion title="Can I move a project to a different category?">
     The **Change parent** control in Beebole moves a project anywhere within its own category — under another project or back to the top level. It does not move projects between categories.
   </Accordion>
+
   <Accordion title="Can I restrict which people track time on a project?">
     Yes. Open the project's **Who has access?** panel in Beebole to make it unavailable to everyone and then grant access individually or by tags. See [Assignments](/help/documentation/assignments) for the full availability model.
   </Accordion>
+
   <Accordion title="Can different people have different billing rates on the same project?">
     Yes. When adding a rate in the project's **Billing** panel, choose **Split by persons** to set a different rate for each team member. See [Billing rates](/help/documentation/billing) for details.
   </Accordion>
+
   <Accordion title="What happens when I archive a project?">
     The project disappears from the active list in Beebole, and its recorded time remains available in reports. Click **Show Archived** to display archived projects, and use **Unarchive** in the **⋯** action menu to make one active again.
   </Accordion>

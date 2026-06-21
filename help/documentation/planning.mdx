@@ -3,9 +3,9 @@ title: "Task planning: create, organize, and track tasks"
 sidebarTitle: "Task Planning"
 description: "Tasks in Beebole are independent planning entities. Create them one by one or from a spreadsheet, organize statuses and subtasks, assign owners, and track time."
 keywords: ["beebole", "tasks", "task management", "task planning", "task statuses", "subtasks", "task categories"]
-"og:title": "Creating, Organizing, and Tracking Tasks in Beebole"
-"og:description": "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
-"og:type": "article"
+og:title: "Creating, Organizing, and Tracking Tasks in Beebole"
+og:description: "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
+og:type: "article"
 ---
 
 Tasks in Beebole are independent planning entities — units of work that you schedule, assign, and track time on. A task is not a sub-element of a project: tasks live on their own **Tasks** page, and linking a task to a project is optional. Use tasks to plan the work to be done, and let your team track time directly on them.
@@ -14,11 +14,15 @@ Tasks in Beebole are independent planning entities — units of work that you sc
   To work with tasks, click **Tasks** in the sidebar. The same tasks can be displayed in two views: the [Gantt chart](/help/documentation/gantt) for timelines and the [Kanban board](/help/documentation/kanban) for status columns.
 </Info>
 
+<div style={{position: "relative", paddingBottom: "calc(71.0913% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/wYu0Rgx0fNwE0dw68iC3?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Create and Plan Tasks" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
+
 ---
 
 ## How tasks relate to projects
 
-[Projects](/help/documentation/projects) describe what hours are logged *into*; tasks describe the work *to be done*. The two are connected but independent:
+[Projects](/help/documentation/projects) describe what hours are logged _into_; tasks describe the work _to be done_. The two are connected but independent:
 
 - A task can exist without any project. You can plan, assign, and complete it entirely on the **Tasks** page.
 - A task can be linked to projects through its **Projects** attribute in the task detail panel.
@@ -57,7 +61,7 @@ Statuses always belong to a task category, not to a project: each category defin
 </Steps>
 
 <Tip>
-  Press **⌘+A** (Ctrl+A on Windows) anywhere on the **Tasks** page to open the add form. If a task is currently open, the new task is created as its subtask.
+  Press **⌘\+A** (Ctrl\+A on Windows) anywhere on the **Tasks** page to open the add form. If a task is currently open, the new task is created as its subtask.
 </Tip>
 
 ### Adding many tasks at once
@@ -110,10 +114,10 @@ Beebole distinguishes the person responsible for a task from the people it is av
 
 Tasks nest into subtasks, as deep as your plan requires. The hierarchy is shared by all views.
 
-- **Create a subtask** — Hover over a task name in the Gantt task list and click the **+** button that appears, or select the task and press **⌘+A**.
-- **Indent or outdent with the keyboard** — In the Gantt view, select a task and press **Tab** to make it a subtask of the task above it, or **Shift+Tab** to move it up one level.
+- **Create a subtask** — Hover over a task name in the Gantt task list and click the **\+** button that appears, or select the task and press **⌘\+A**.
+- **Indent or outdent with the keyboard** — In the Gantt view, select a task and press **Tab** to make it a subtask of the task above it, or **Shift\+Tab** to move it up one level.
 - **Move a task under a different parent** — Hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same category.
-- **Expand and collapse** — Click the chevron next to a parent task. **⌘+Click** the chevron to expand or collapse all.
+- **Expand and collapse** — Click the chevron next to a parent task. **⌘\+Click** the chevron to expand or collapse all.
 
 A parent task rolls up its children: it shows the period spanned by its subtasks and their total **Planned in hours**, read-only.
 
@@ -125,7 +129,7 @@ Open a task's detail panel to set its schedule:
 
 - **Dates** — Pick the start and end dates with the date-range picker.
 - **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, Beebole shows the maximum the owner's schedule allows between the task's dates (**Max value per schedule**).
-- **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the *unlocked* edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, a warning pill offers two one-click fixes: **Click to extend the unlocked date to fit planned time** or **Click to reduce planned time to capacity**.
+- **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the _unlocked_ edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, a warning pill offers two one-click fixes: **Click to extend the unlocked date to fit planned time** or **Click to reduce planned time to capacity**.
 
 If the owner already has another task with planned time in the same period, the panel shows an **Overlapping tasks causing overload** warning so you can rebalance.
 
@@ -155,7 +159,7 @@ You can also let task statuses drive time records automatically with **Auto Time
 Beyond scheduling, each task carries:
 
 - **Description** — A rich-text panel for context, acceptance criteria, links, and file attachments, with @mentions to reference teammates. See [task descriptions](/help/documentation/kanban#task-descriptions) for the editor's features.
-- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** > **Custom Fields** and make them visible for tasks — visibility can even be limited to specific task categories. See [Custom fields](/help/documentation/custom-fields).
+- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** \> **Custom Fields** and make them visible for tasks — visibility can even be limited to specific task categories. See [Custom fields](/help/documentation/custom-fields).
 - **Tags** — Label tasks with [tags](/help/documentation/tags) to group and filter them across categories, and to report on them by team, client, or any dimension you define.
 
 ---
@@ -181,6 +185,7 @@ The **Tasks** page shows your tasks through saved views — tabs above the task 
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
     Schedule tasks on a timeline, link dependencies, and spot overloaded owners with the workload heatmap.
   </Card>
+
   <Card title="Kanban board" icon="square-kanban" href="/help/documentation/kanban">
     Move task cards through status columns, set WIP limits, and start time records from a card.
   </Card>
@@ -194,12 +199,15 @@ The **Tasks** page shows your tasks through saved views — tabs above the task 
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
     How people log hours — including time tracked on tasks.
   </Card>
+
   <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
     Control which task categories accept time entries and configure Auto Timesheet.
   </Card>
+
   <Card title="Custom fields" icon="list-check" href="/help/documentation/custom-fields">
     Add structured data to tasks and use it in reports.
   </Card>
+
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
     Set up the project structure your time entries are logged against.
   </Card>
@@ -211,15 +219,19 @@ The **Tasks** page shows your tasks through saved views — tabs above the task 
   <Accordion title="Are tasks part of projects in Beebole?">
     No. Tasks in Beebole are independent planning entities with their own page, statuses, and hierarchy. You can link a task to projects through its **Projects** attribute, but a task doesn't need a project to exist, be assigned, or have time tracked on it.
   </Accordion>
+
   <Accordion title="How do I import many tasks at once?">
     Copy rows from a spreadsheet and paste them into Beebole. Click **Add Task**, find **Or add multiple entries**, click **Paste**, review the list, and click **Add them all**. Indent lines with Tab to create subtasks. There is no CSV file upload — the import works by pasting.
   </Accordion>
+
   <Accordion title="Can people track time on any task?">
     Only on tasks in the categories selected under **Record time on these task categories** in Beebole's Timesheet settings. Tasks in those categories appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards.
   </Accordion>
+
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">
     The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; they appear as **Assignee** in filters and on Kanban cards.
   </Accordion>
+
   <Accordion title="Should I archive or delete a finished task?">
     Archive it. Archiving hides the task from active views while keeping its time records for reporting, and you can unarchive it anytime. Deleting is permanent, and Beebole blocks the deletion entirely if time records exist against the task.
   </Accordion>

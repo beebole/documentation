@@ -3,9 +3,9 @@ title: "Project budgets: billing, cost, and hours targets"
 sidebarTitle: "Budgets"
 description: "Set and track budgets on projects and subprojects in Beebole to monitor hours, costs, and billing against your targets and catch overruns early."
 keywords: ["beebole", "project budgets", "budget tracking", "project overruns", "client budgets", "hours budget", "how to set budgets", "budget alerts"]
-"og:title": "Project Budgets in Beebole: Billing, Costs, and Hours"
-"og:description": "Learn how to set and track budgets across clients and projects in Beebole."
-"og:type": "article"
+og:title: "Project Budgets in Beebole: Billing, Costs, and Hours"
+og:description: "Learn how to set and track budgets across clients and projects in Beebole."
+og:type: "article"
 ---
 
 Beebole's budgets let you set targets for billing, costs, or hours on your projects and subprojects, and track progress against those targets in real time. Budgets help you spot overruns before they become problems.
@@ -14,6 +14,10 @@ Beebole's budgets let you set targets for billing, costs, or hours on your proje
   Budgets are not included in every Beebole plan. Review your plan and add-ons on the [Subscription](/help/documentation/subscription) page.
 </Info>
 
+<div style={{position: "relative", paddingBottom: "calc(57.2751% + 41px)", height: "0px", width: "100%"}}>
+  <iframe src="https://demo.arcade.software/q0H0Unl1TPtvZdf4MRwH?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Assign Project Budgets" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
+</div>
+
 ---
 
 ## Budget types
@@ -21,7 +25,7 @@ Beebole's budgets let you set targets for billing, costs, or hours on your proje
 Each budget on a project has three target fields:
 
 | Field | What it tracks | Example |
-|------|---------------|---------|
+| --- | --- | --- |
 | **Billing amount** | Revenue target | "This project should generate €50,000" |
 | **Cost amount** | Internal cost limit | "Don't spend more than €30,000 on this project" |
 | **Hours** | Time allocation | "This project has a 500-hour cap" |
@@ -84,12 +88,15 @@ Both are controlled by the **Budget threshold alerts** setting — including its
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
     Create and configure the projects where budgets are set and tracked.
   </Card>
+
   <Card title="Cost rates" icon="chart-bar" href="/help/documentation/costs">
     Define cost rates that feed into cost budget calculations.
   </Card>
+
   <Card title="Reports" icon="gear" href="/help/documentation/reports">
     View detailed budget progress, consumption, and variance in custom reports.
   </Card>
+
   <Card title="Billing rates" icon="tag" href="/help/documentation/billing">
     Configure billing rates used in billing budget tracking.
   </Card>
@@ -101,12 +108,15 @@ Both are controlled by the **Budget threshold alerts** setting — including its
   <Accordion title="Can I set budgets on categories (not just projects)?">
     Budgets are set on individual projects or subprojects. The **Budget Status** report rolls subproject consumption up the project hierarchy for a higher-level view.
   </Accordion>
+
   <Accordion title="Does Beebole alert me when a budget is exceeded?">
     Yes. Beebole sends a notification when a budget passes its alert threshold (80% by default) and another when it goes over budget — enable them with the **Budget threshold alerts** and **When over budget** options in your notification settings. Alert badges also appear on the budget itself, and the **Budget Status** report flags at-risk and over-budget projects.
   </Accordion>
+
   <Accordion title="Can I change a budget after it's been set?">
     Yes. You can update budget amounts at any time. Historical tracking is preserved — the report will reflect the current target.
   </Accordion>
+
   <Accordion title="Do expenses count toward project budgets?">
     Yes. Expense amounts contribute to a project's budget consumption alongside time-based costs — controlled per expense type by its **Impacts budget** setting. See [Expenses](/help/documentation/expenses).
   </Accordion>
