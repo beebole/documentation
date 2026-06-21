@@ -17,11 +17,25 @@ This skill produces the catalog that `/find-gaps` consumes to detect documentati
 
 ---
 
-## Source of truth: local `../reboot` only
+## Source of truth: local `../reboot` on the `prod` branch
 
 Always read code from the local sibling repo at `../reboot`. **Never use the GitHub API** (`gh api repos/beebole/reboot/...`) for this skill — a full audit reads thousands of files, which would be impractically slow and rate-limit-heavy via the API.
 
-If `../reboot` is unavailable or not a git repo, halt and tell the user to clone or symlink it. Do not silently fall back to GitHub.
+The catalog must reflect **what is live in production**, so the scan must run against the **`prod`** branch — never `dev` or any feature branch. The `dev` branch contains unreleased work that has not shipped to users; cataloguing it would document features that don't exist yet.
+
+**Before any scanning, in both modes, ensure `../reboot` is on an up-to-date `prod`:**
+
+```bash
+git -C ../reboot fetch origin prod
+git -C ../reboot status --porcelain   # must be empty
+git -C ../reboot checkout prod
+git -C ../reboot pull --ff-only origin prod
+git -C ../reboot rev-parse --abbrev-ref HEAD   # confirm: prod
+```
+
+- If `git status --porcelain` is **not empty** (uncommitted changes or untracked files), **halt** and tell the user — do not stash, discard, or check out over their work. The checkout is theirs.
+- Note the branch you started on; if it was not `prod`, mention in your summary that you switched the checkout to `prod` so the user knows.
+- If `../reboot` is unavailable, not a git repo, or the `prod` branch / `origin` remote is missing, halt and tell the user. Do not silently fall back to GitHub or to whatever branch is currently checked out.
 
 ---
 
@@ -87,6 +101,8 @@ Features are organised by functional area using plain English group headings (e.
 
 Execute every step in order. **Do not modify `features.md` at any point — produce a plan and wait for user confirmation.**
 
+0. **Pin `../reboot` to `prod`** — run the preflight from [Source of truth](#source-of-truth-local-reboot-on-the-prod-branch): fetch, verify a clean working tree, check out `prod`, fast-forward, and confirm `HEAD` is `prod`. Halt on a dirty tree or a missing branch/remote.
+
 1. **Check for `.claude/context/features.md`** — if absent, note it will be created from scratch.
 
 2. **Scan the entire `../reboot` codebase** — read backend entities, frontend components, services, and routes to identify every user-facing and admin-facing capability currently implemented. Use paths like `../reboot/backend/src/application/entities/`, `../reboot/frontend/src/components/`, `../reboot/frontend/src/models/types.ts`.
@@ -128,12 +144,14 @@ Execute every step in order. **Do not modify `features.md` at any point — prod
 
 Execute every step in order. **Do not modify `features.md` without user confirmation.**
 
+0. **Pin `../reboot` to `prod`** — run the preflight from [Source of truth](#source-of-truth-local-reboot-on-the-prod-branch): fetch, verify a clean working tree, check out `prod`, fast-forward, and confirm `HEAD` is `prod`. Halt on a dirty tree or a missing branch/remote. All commands below operate on the `prod` history.
+
 1. **Read `.claude/context/features.md`** — extract the `Last updated:` date.
 
-2. **Identify changed commits** — run:
+2. **Identify changed commits** — run (against `prod`, now checked out):
 
     ```bash
-    git -C ../reboot log --since="YYYY-MM-DD" --name-only --pretty=format:""
+    git -C ../reboot log prod --since="YYYY-MM-DD" --name-only --pretty=format:""
     ```
 
     If `../reboot` is unavailable or git history is unreadable, report what could not be checked and list those areas as requiring manual review rather than proceeding silently.
@@ -213,6 +231,8 @@ After applying approved changes, update the `**Last updated:** YYYY-MM-DD` line 
 - In full mode: scanning only recent commits instead of the entire codebase
 - Treating `docs/feature-requests/` entries as implemented — always verify in code first
 - **Guessing on ambiguous items** — always surface them in the clarification table
+- **Scanning the wrong branch** — the catalog reflects production, so the scan must run against `prod`. Never catalog `dev` or a feature branch; their unreleased work would document features that haven't shipped. Run the preflight and confirm `HEAD` is `prod` before scanning.
+- **Checking out over the user's work** — if `../reboot` has a dirty working tree, halt; never stash or discard to force the `prod` checkout.
 - **Falling back to the GitHub API** — always read locally from `../reboot`; halt if unavailable rather than degrading silently
 - **Silently deleting catalog entries** — features removed from the codebase must move to **Deprecated** with a `_(Last seen)_` suffix, never disappear
 - Not handling git failures — report gaps rather than proceeding with incomplete data
