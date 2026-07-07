@@ -3,9 +3,9 @@ title: "Custom fields: capture extra data on your work"
 sidebarTitle: "Custom Fields"
 description: "Create custom fields in Beebole to capture extra data on people, projects, tasks, and time records — six field types with validation and visibility rules."
 keywords: ["beebole", "custom fields", "field types", "field validation", "time record fields", "project custom fields"]
-"og:title": "Capturing Extra Data with Custom Fields in Beebole"
-"og:description": "Learn how to create custom fields in Beebole, configure field types and validation, and choose where each field appears."
-"og:type": "article"
+og:title: "Capturing Extra Data with Custom Fields in Beebole"
+og:description: "Learn how to create custom fields in Beebole, configure field types and validation, and choose where each field appears."
+og:type: "article"
 ---
 
 Custom fields in Beebole add your own data fields to people, projects, tasks, and time records. Use them to capture what Beebole's built-in attributes don't cover — an employee ID on every person, a client reference on each project, or a ticket number on every time entry — and reuse those values as columns in your reports.
@@ -20,7 +20,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
 
 <Steps>
   <Step title="Open the Custom Fields settings">
-    Click the button with your initials at the bottom of the sidebar, then go to **Settings** > **Custom Field**.
+    Click the button with your initials at the bottom of the sidebar, then go to **Settings** \> **Custom Field**.
   </Step>
   <Step title="Add the field">
     Click **Add Custom Field**, type a name — for example "Employee ID" or "Cost center" — and click **Add Custom Field** to confirm.
@@ -43,7 +43,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
 Beebole supports six field types, each suited to a different kind of data:
 
 | Type | Holds | Example use |
-|------|-------|-------------|
+| --- | --- | --- |
 | **Text** | Free text, or a pick list of predefined values | Employee ID, client reference |
 | **Number** | Numeric values, with optional prefix or suffix | Mileage, purchase order amount |
 | **Date** | A calendar date | Contract start, certification expiry |
@@ -60,7 +60,7 @@ You can change a field's **Field type** later from the **Custom field details** 
 Each type comes with its own options, all edited in the **Custom field details** panel and saved automatically:
 
 | Type | Options |
-|------|---------|
+| --- | --- |
 | **Text** | **Minimum length**, **Maximum length**, **Validation pattern (regex)**, **Placeholder text**, **Default value**, and **Use predefined values** with a list of **Allowed values** |
 | **Number** | **Minimum value**, **Maximum value**, **Step size**, **Allow decimal numbers**, **Decimal places**, **Prefix**, **Suffix**, **Default value** |
 | **Date** | **Earliest date**, **Latest date**, **Default date** |
@@ -77,6 +77,27 @@ Turn on **Use predefined values** to restrict a text field to a fixed list: add 
 ---
 
 ## Choosing where a field appears
+
+<Steps>
+  <Step title="Open the Custom Fields page">
+    Go to **Settings** \> **Custom Fields**.
+  </Step>
+  <Step title="Add a new field">
+    Click the **\[\+\]** button. Enter a **Name** for the field (e.g., "Employee ID", "Cost Center").
+  </Step>
+  <Step title="Choose the field type">
+    Select the appropriate type from the **Type** dropdown: **Text**, **Number**, **Date**, **Datetime**, **URL**, or **Boolean**.
+  </Step>
+  <Step title="Set the entity visibility">
+    Choose where this field appears: **Person**, **Project**, **Task**, or **Time entry**. A single field can apply to one or more entity types.
+  </Step>
+  <Step title="Configure optional settings">
+    Set a **Default value**, **Placeholder text**, or validation rules as needed (see sections below).
+  </Step>
+  <Step title="Save the field">
+    Click **Save**. The field now appears on the relevant entity forms.
+  </Step>
+</Steps>
 
 The **Custom field visibility** panel controls which items carry the field. Each toggle is saved automatically:
 
@@ -101,7 +122,7 @@ Custom field values flow into reporting. When you build a [custom report](/help/
 
 ## Managing custom fields
 
-To manage an existing field, open it in **Settings** > **Custom Field** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+To manage an existing field, open it in **Settings** \> **Custom Field** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
 Archived fields disappear from the list. Click **Show Archived** to display them, then use the **⋯** action menu and **Unarchive** to restore one.
 
@@ -111,18 +132,33 @@ Archived fields disappear from the list. Click **Show Archived** to display them
 
 ---
 
+<Steps>
+  <Step title="Open the custom field settings">
+    Go to **Settings** \> **Custom Fields** and click the field you want to configure.
+  </Step>
+  <Step title="Set category visibility">
+    In the **Visibility** section, select the specific project or task categories where this field should appear. Leave it blank to show the field on all categories.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The field now only appears on entities within the selected categories.
+  </Step>
+</Steps>
+
 ## Related content
 
 <CardGroup cols={2}>
   <Card title="People" icon="users" href="/help/documentation/people">
     Manage the profiles where person-level custom fields appear.
   </Card>
+
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
     Organize projects into the categories that drive field visibility.
   </Card>
+
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
     See where time-record custom fields show up when entering time.
   </Card>
+
   <Card title="Custom Reports" icon="table-columns" href="/help/documentation/custom-reports">
     Use custom field values as columns in your report layouts.
   </Card>
@@ -136,16 +172,20 @@ Archived fields disappear from the list. Click **Show Archived** to display them
   <Accordion title="Which field types does Beebole support?">
     Beebole offers six custom field types: **Text**, **Number**, **Date**, **Date & time**, **URL**, and **Boolean**. Each type has its own options, such as length limits and patterns for text or earliest and latest dates for date fields.
   </Accordion>
+
   <Accordion title="Do custom fields appear on the timesheet?">
     Yes. Turn on **Visible for Time Records** and the field appears when filling in a time entry's details on the timesheet. You can limit it to specific project or task categories, and the **Absences** toggle also shows it on time-off entries.
   </Accordion>
+
   <Accordion title="Can I restrict a custom field to a list of allowed values?">
     Yes. On a **Text** field, turn on **Use predefined values** and add the entries under **Allowed values**. In Beebole, users then pick from that list instead of typing free text.
   </Accordion>
+
   <Accordion title="Can I show a custom field only for some project categories?">
     Yes. Under **Visible for Projects**, add only the project categories where the field belongs, and tick the hierarchy levels it should cover. Projects in other categories won't show the field.
   </Accordion>
+
   <Accordion title="Can I change a custom field's type after creating it?">
-    Yes. Open the field in **Settings** > **Custom Field** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching.
+    Yes. Open the field in **Settings** \> **Custom Field** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching.
   </Accordion>
 </AccordionGroup>

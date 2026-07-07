@@ -3,9 +3,9 @@ title: "Assignments: control who has access to what"
 sidebarTitle: "Assignments"
 description: "Control which projects, time off types, and expense types each person can use in Beebole — set account-wide defaults and who has access to each item."
 keywords: ["beebole", "assignments", "project access", "who has access", "show or hide", "availability"]
-"og:title": "Managing Assignments and Access to Items in Beebole"
-"og:description": "Learn how to control which projects, time off types, expense types, and custom fields are available to each person in Beebole."
-"og:type": "article"
+og:title: "Managing Assignments and Access to Items in Beebole"
+og:description: "Learn how to control which projects, time off types, expense types, and custom fields are available to each person in Beebole."
+og:type: "article"
 ---
 
 Assignments in Beebole control which items each person can use: the projects they can log time against, the time off types and expense types they can pick, and the custom fields they see. Use them to keep timesheets short and relevant — each person only sees what applies to them.
@@ -62,10 +62,10 @@ Each project, time off type, expense type, and custom field has a **Who has acce
 | Item | Where to find it |
 | --- | --- |
 | Project | Click **Projects** in the sidebar, select the project, and open **Who has access?** |
-| Time off type | Go to **Settings** > **Time Off**, select the type, and open **Who has access?** |
-| Expense type | Go to **Settings** > **Expense Type**, select the type, and open **Who has access?** |
-| Custom field | Go to **Settings** > **Custom Field**, select the field, and open **Who has access?** |
-| Work schedule | Go to **Settings** > **Work Schedules**, select the schedule, and open **Assigned to** |
+| Time off type | Go to **Settings** \> **Time Off**, select the type, and open **Who has access?** |
+| Expense type | Go to **Settings** \> **Expense Type**, select the type, and open **Who has access?** |
+| Custom field | Go to **Settings** \> **Custom Field**, select the field, and open **Who has access?** |
+| Work schedule | Go to **Settings** \> **Work Schedules**, select the schedule, and open **Assigned to** |
 | Task | Click **Tasks** in the sidebar, select the task, and open **Potential owners** |
 
 The panel lists who is linked to the item:
@@ -73,7 +73,7 @@ The panel lists who is linked to the item:
 - **Individually** — add specific people with the **Select person** selector.
 - **By tags** — add whole groups with the **Select tag** selector. Everyone tagged with that tag, or any of its descendants, gets access.
 
-The panel adapts to the account-wide default. When the default already makes the item available to everyone, the sections flip into exclusion lists — **Excluded individually** and **Excluded by tags** — so you list the people who should *not* have it.
+The panel adapts to the account-wide default. When the default already makes the item available to everyone, the sections flip into exclusion lists — **Excluded individually** and **Excluded by tags** — so you list the people who should _not_ have it.
 
 On a project, the panel also starts with a toggle that overrides the account default for that one project: **Available to everyone** or **Unavailable to everyone**. Expense types have an extra **Projects** section to limit an expense type to specific projects, and custom fields have **Projects** and **Tasks** sections for the same purpose.
 
@@ -96,6 +96,27 @@ Tasks are independent planning items, separate from projects, and carry their ow
 - **Owner** — the single person responsible for the task, with their planned full-time percentage.
 - **Potential owners** — the people and tags the task is available to, managed like any **Who has access?** list with **Individually** and **By tags** sections.
 
+<Steps>
+  <Step title="Open the item's settings">
+    Navigate to the item (e.g., a project, an absence type) and open its settings.
+  </Step>
+  <Step title="Set the default">
+    Look for the **Availability** or **Assignment** section. Toggle whether the item is available by default.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The default availability applies to everyone unless overridden.
+  </Step>
+  <Step title="Open the item or person">
+    You can configure overrides from either direction — from the item's settings (e.g., a project's member list) or from the person/tag profile.
+  </Step>
+  <Step title="Add or remove availability">
+    In the **Availability** section, add people or tags to include them, or remove them to exclude them from accessing the item.
+  </Step>
+  <Step title="Save">
+    Click **Save**. The override takes effect immediately.
+  </Step>
+</Steps>
+
 To set either one, click **Tasks** in the sidebar, select the task, and open the **Owner** or **Potential owners** panel. See [Task Planning](/help/documentation/planning) for how owners and dates drive the Gantt and Kanban views.
 
 ## Example: a client project for a five-person team
@@ -114,12 +135,15 @@ Only those five now see the project when they log time. Everyone else's project 
   <Card title="Roles & Permissions" icon="shield" href="/help/documentation/roles-authorisations">
     Define what each role can view and edit across Beebole.
   </Card>
+
   <Card title="Projects" icon="folder" href="/help/documentation/projects">
     Create and organize the projects your team tracks time against.
   </Card>
+
   <Card title="Tags" icon="tag" href="/help/documentation/tags">
     Group people with tags to grant access to whole teams at once.
   </Card>
+
   <Card title="Time Off" icon="calendar" href="/help/documentation/timeoff">
     Configure time off types, allowances, and balances.
   </Card>
@@ -131,15 +155,19 @@ Only those five now see the project when they log time. Everyone else's project 
   <Accordion title="What is the difference between assignments and role permissions?">
     Assignments decide which items are available to a person in Beebole — which projects, time off types, and expense types they can pick. Role permissions decide what they can do with data — view it or edit it, and for whom. Both apply at the same time.
   </Accordion>
+
   <Accordion title="How do I make a project visible to only a few people?">
     Open the project's **Who has access?** panel, set the toggle to **Unavailable to everyone**, then add the right people under **Individually** or a tag under **By tags**. Only the people you add see the project in Beebole.
   </Accordion>
+
   <Accordion title="Can I grant access to a whole department at once?">
     Yes. Tag the department's people, then add that tag under **By tags** in the item's **Who has access?** panel. Anyone tagged later inherits the access automatically, including through descendant tags.
   </Accordion>
+
   <Accordion title="Where do I set what everyone sees by default?">
     In Beebole's **Account Settings**, under **Show or hide by default**. Each option — projects, secondary projects, time off, expenses, tasks, and custom fields — decides whether that kind of item is available to everyone or hidden until granted.
   </Accordion>
+
   <Accordion title="Do I need to save after changing access settings?">
     No. Beebole saves changes in **Who has access?**, **Show or Hide**, and **Show or hide by default** automatically as you add or remove people, tags, and options.
   </Accordion>
