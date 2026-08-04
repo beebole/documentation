@@ -24,13 +24,13 @@ This skill emits a structured list, not prose — it doesn't need voice/tone or 
 
 Read `.claude/context/features.md`.
 
-**Format guard:** if the catalog has fewer than 20 or more than 26 sections, or fewer than 100 bullets total, halt and warn the user — the catalog format has drifted and classification may be unreliable.
+**Format guard:** if the catalog has fewer than 20 or more than 32 sections, or fewer than 100 bullets total, halt and warn the user — the catalog format has drifted and classification may be unreliable.
 
 **Freshness check:** read the `**Last updated:** YYYY-MM-DD` line. If it is more than 90 days old, warn the user and suggest running `/sync-features` first. Continue anyway if the user accepts.
 
 ### 2. Classify each feature
 
-Extract every bullet from sections 1–24 of the catalog. Skip section 25 (Planned Features) and any Internal section.
+Extract every bullet from all catalog sections except **Planned Features** and **Internal (Non User-Facing)** — skip those two (sections are unnumbered; identify them by heading name).
 
 For each feature:
 
@@ -56,7 +56,7 @@ Catalog last updated: YYYY-MM-DD
 [For each gap, grouped by feature section. Format is fixed so `/write` can parse reliably.
 Each line starts with `- [ ] <Kind> | <path> | ` — pipe-delimited, stable anchors.]
 
-### Section N: <section name>
+### <section name>
 
 - [ ] Missing | `<path>` | <feature>
 - [ ] Partial | `<path>` | <feature> — needs: <what to add>
