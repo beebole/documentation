@@ -68,3 +68,15 @@ Use this table to map app change keywords to the documentation pages they likely
 | profile picture, avatar, crop tool | `help/documentation/account-settings.mdx` |
 | archive absence type, archive schedule, archive task, unarchive | `help/documentation/timeoff.mdx`, `help/documentation/work-schedule.mdx`, `help/documentation/planning.mdx` |
 | CSV import, bulk import, import tasks, import tags | `help/documentation/planning.mdx`, `help/documentation/tags.mdx` |
+| staffing, staffing view, booking, resource planning, capacity, allocation | `help/documentation/staffing.mdx` |
+| AI, Beebole AI, suggested entries, suggestion, natural language report, approval digest, AI privacy | `help/documentation/ai.mdx` |
+| MCP, Claude, ChatGPT, AI assistant, connected apps, assistant connection | `help/integrations/ai-assistants.mdx` |
+| desktop app, activity capture, automatic time tracking | `help/documentation/desktop-app.mdx` |
+| browser extension, Chrome extension, Firefox extension | `help/documentation/browser-extension.mdx` |
+| lock date, freeze records, locked period | `help/documentation/timesheetSettings.mdx` |
+| validity period, valid from, valid until, person start date, project end date | `help/documentation/people.mdx`, `help/documentation/projects.mdx` |
+| planned vs real, absence quota report, mobile reports | `help/documentation/reports.mdx` |
+| recurring task, recurrence, repeat task | `help/documentation/gantt.mdx` |
+| language, multi-language, localization, interface language | `help/documentation/account-settings.mdx` |
+| fallback mode, connection diagnostics, offline, blocked connection | `help/documentation/concepts.mdx` |
+| calendar view, day view, drag entries | `help/documentation/timesheets.mdx` |
