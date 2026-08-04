@@ -3,7 +3,7 @@
 Generated: 2026-06-11 (regenerated against the fully overhauled English content)
 Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
 
-**Summary:** ~132 screenshots needed across 50 pages (55 high, 52 medium, 23 low; +4 Asana shots already on disk).
+**Summary:** ~156 screenshots needed across 56 pages. Original 2026-06-11 inventory: ~132 (55 high, 52 medium, 23 low; +4 Asana shots on disk). 2026-08-04 additions: 24 more (9 high, 10 medium, 5 low) — see the dated section at the bottom.
 Capture is a deferred follow-on effort — run `/illustrate --capture` against this list once the app is available. All needs below were derived from the current, code-accurate page content.
 
 **Already on disk (do not re-capture):**
@@ -461,3 +461,68 @@ _Other API pages (introduction, queries, mutations, examples) are code reference
 7. reports/folders-and-reports.webp · custom-reports/matrix-view.webp · data-exports/export-submenu.webp
 8. roles/permission-grid.webp · authentication/sso-panel.webp · mobile/mobile-timesheet.webp
 9. integrations/settings-integrations-list.webp · integrations/google-calendar-pane.webp
+
+---
+
+# Additions 2026-08-04 — June–August feature batch
+
+New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebole AI, companion apps, troubleshooting, new reports, timesheet governance). Same capture spec as above. AI-page shots need an account with `aiEnabled`; the extension options shot needs the extension loaded manually.
+
+## help/documentation/staffing.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| planning/staffing-view.webp | Staffing view grouped by People: booking bars, capacity strips, today line | high |
+| planning/staffing-booking-editor.webp | Inline booking editor after dragging on the timeline — project picker and allocation % | high |
+| planning/staffing-capacity-tooltip.webp | Capacity cell hover showing used/remaining for the period | medium |
+| planning/staffing-managed-in-gantt.webp | "Managed in the Gantt" message on a locked booking | low |
+
+## help/documentation/ai.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| ai/assistant-page.webp | The full Assistant page: privacy line, Ask for a report, feature cards, connections | high |
+| ai/suggested-entries-tray.webp | Suggested entries tray above the timesheet with Accept / Accept all / Dismiss and Desktop/Kanban source badges | high |
+| ai/approval-review-digest.webp | Reviewing a submitted timesheet with digest flags (non-working day, overtime, unusual total) | high |
+| ai/nl-report-builder.webp | Ask for a report input with a typed request | medium |
+
+## help/integrations/ai-assistants.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| integrations/ai-assistants-connect.webp | Connect your AI tools card: Server URL, API key, Claude Code + JSON snippets | high |
+| integrations/ai-assistants-connected-apps.webp | Connected apps list with an app's name, connected-since date, and Disconnect | medium |
+
+## help/documentation/desktop-app.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| ai/desktop-download-links.webp | Desktop app section on the Assistant page with the four platform download links | medium |
+| ai/desktop-suggestion-why.webp | A Desktop-badged suggestion expanded with Why? evidence | medium |
+
+## help/documentation/browser-extension.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| ai/extension-section.webp | Browser extension section on the Assistant page: downloads, Server address, API key | medium |
+| ai/extension-options.webp | The extension's options page: server address, API key, allowed sites (manual — needs extension loaded) | medium |
+
+## help/documentation/troubleshooting.mdx
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| troubleshooting/diagnostics-page.webp | The /diagnostics page with health checks, latency, and snapshot buttons | high |
+| troubleshooting/compatibility-mode-indicator.webp | Sidebar indicator "Running in slower compatibility mode" (guided — needs WebSocket blocked) | medium |
+
+## Expanded sections on existing pages
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timesheets/calendar-view.webp | Timesheet calendar view with entries placed by hour and a ghost suggestion | high |
+| timesheets/clear-rows-button.webp | Section header hover revealing the Clear rows button | low |
+| timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium |
+| people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low |
+| roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium |
+| reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high |
+| reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high |
+| reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low |
