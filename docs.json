@@ -72,7 +72,8 @@
                 "pages": [
                   "help/index",
                   "help/documentation/quickstart",
-                  "help/documentation/concepts"
+                  "help/documentation/concepts",
+                  "help/documentation/troubleshooting"
                 ]
               },
               {
@@ -102,7 +103,8 @@
                     "pages": [
                       "help/documentation/planning",
                       "help/documentation/gantt",
-                      "help/documentation/kanban"
+                      "help/documentation/kanban",
+                      "help/documentation/staffing"
                     ]
                   },
                   {
@@ -136,6 +138,13 @@
                     ]
                   },
                   {
+                    "group": "AI",
+                    "expanded": false,
+                    "pages": [
+                      "help/documentation/ai"
+                    ]
+                  },
+                  {
                     "group": "Configuration",
                     "expanded": false,
                     "pages": [
@@ -165,10 +174,12 @@
                     ]
                   },
                   {
-                    "group": "Devices",
+                    "group": "Apps & Devices",
                     "expanded": false,
                     "pages": [
-                      "help/documentation/mobile"
+                      "help/documentation/mobile",
+                      "help/documentation/desktop-app",
+                      "help/documentation/browser-extension"
                     ]
                   }
                 ]
@@ -239,6 +250,7 @@
               {
                 "group": "Developer",
                 "pages": [
+                  "help/integrations/ai-assistants",
                   "help/integrations/webhooks"
                 ]
               }

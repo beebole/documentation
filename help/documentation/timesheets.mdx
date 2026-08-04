@@ -28,6 +28,8 @@ Use the date picker at the top of the page to move between periods or jump back 
 
 With a **Daily** timesheet period, the grid shows a single day and each row displays its full entry form — duration, times, and note — inline.
 
+The grid is one of two ways to see your timesheet: the toggle at the top of the page switches between **Grid view** and **Calendar view**. See [Calendar view](#calendar-view) below.
+
 ---
 
 ## Entering time
@@ -67,6 +69,20 @@ The **Non-billable** and **Work from home** checkboxes apply to work entries onl
 
 ---
 
+## Calendar view
+
+The calendar view lays your period out day by hour, so you place entries in time instead of typing durations. Switch to it with the **Calendar view** toggle at the top of the page — Beebole remembers which view you used last.
+
+- **Create an entry** — Click and drag across an empty time slot. A popup opens to pick the project, task, or absence type; the start and end times come from where you drew.
+- **Move an entry** — Drag it to another slot or day. Its duration is preserved.
+- **Resize an entry** — Drag its top or bottom edge to change the start or end time.
+- **Duplicate an entry** — Hold **⌘** (Ctrl on Windows/Linux) while dragging an entry to a new slot.
+- **Delete an entry** — Hover over it and click the delete button that appears.
+
+Entries created or adjusted here carry real start and end times, which can appear in reports. [Suggested time entries](/help/documentation/ai#suggested-time-entries) show up as ghost entries in the calendar — drag a suggestion to a time slot to schedule it, or accept it as-is.
+
+---
+
 ## Using the timer
 
 When your administrator has enabled the timer, each row shows a timer button for the current day.
@@ -98,7 +114,8 @@ Each row has a **⋯** action menu with:
 - **Pin to top** / **Unpin** — keep the row at the top of its section.
 - **Edit** — change the row's project, task, or absence type selection.
 - **Remove row** — take the row off your timesheet.
-- **Clear timesheet** — delete all time entries in the current period. This option is disabled once the period is submitted or approved.
+
+To clear a whole section at once, hover over the section's header and click the **Clear rows** button that appears — it removes that section's rows and their time entries for the current period. The button is hidden on locked periods and when reviewing someone else's timesheet.
 
 There is no confirmation dialog for these actions — press **⌘+Z** (Ctrl+Z on Windows/Linux) to undo.
 

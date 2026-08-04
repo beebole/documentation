@@ -1,0 +1,132 @@
+---
+title: "AI assistants: connect Claude, ChatGPT, and more"
+sidebarTitle: "AI Assistants"
+description: "Connect AI assistants like Claude and ChatGPT to Beebole through its MCP server — log time, read timesheets, and list projects with your permissions."
+keywords: ["beebole", "mcp", "ai assistant", "claude", "chatgpt", "connected apps", "mcp server"]
+"og:title": "Connecting Claude and ChatGPT to Beebole via MCP"
+"og:description": "Set up Beebole's MCP server in claude.ai, ChatGPT, Claude Code, or Cursor, and manage every connection from the Connected apps list."
+"og:type": "article"
+---
+
+Beebole exposes an MCP server so your own AI assistant can log time, read timesheets, and list projects — with exactly your permissions. Connect hosted assistants such as Claude and ChatGPT in a couple of clicks, or point developer tools like Claude Code and Cursor at the same server with your API key. Every connection is listed under **Connected apps**, where you can disconnect it anytime.
+
+<Info>
+  An assistant connected to Beebole acts as you: it sees only the data your role allows, and its actions are recorded like your own. This page is about connecting external assistants to your data — Beebole's built-in AI features are covered in [Beebole AI](/help/documentation/ai).
+</Info>
+
+---
+
+## What a connected assistant can do
+
+The MCP server gives the assistant a full working toolkit, always bounded by your permissions:
+
+| Capability | Tools |
+| --- | --- |
+| Read your data | `list` (projects, tasks, people, and more), `get_attributes`, `export`, `get_time_records`, `get_reports` |
+| Record time | `record_time` — adds entries to your own timesheet; timesheet rules like the lock date are enforced server-side |
+| Manage entities | `add`, `update_attributes`, `archive`, `unarchive`, `delete`, `invite_persons` |
+| Handle approvals | `list_pending_approvals`, `approve_timesheet`, `reject_timesheet` |
+| Run reports | `run_report` |
+
+So you can ask your assistant things like "log 2 hours on Website Redesign for today", "what did I track this week?", or — if you're an approver — "approve the timesheets waiting on me".
+
+---
+
+## Find your server URL and API key
+
+Everything you need is on the **Assistant** page — click **Assistant** in the sidebar:
+
+- **Server URL** — the address of your Beebole MCP server, with a **Copy** button.
+- **API key** — click **Show my API key** to reveal it, then **Copy**. Only needed for developer tools; hosted connectors sign in instead.
+
+---
+
+## Connect a hosted assistant (claude.ai, ChatGPT)
+
+<Steps>
+  <Step title="Copy the server URL">
+    On the **Assistant** page, copy the **Server URL**.
+  </Step>
+  <Step title="Add it as a custom connector">
+    In claude.ai or ChatGPT, add the URL as a custom connector.
+  </Step>
+  <Step title="Sign in and authorize">
+    You are asked to sign in to Beebole and authorize the access — no API key needed. Once authorized, the assistant appears under **Connected apps**.
+  </Step>
+</Steps>
+
+---
+
+## Connect a developer tool
+
+<Tabs>
+  <Tab title="Claude Code">
+    Run this command, replacing `YOUR_API_KEY` with your API key and the URL with your **Server URL**:
+
+    ```bash
+    claude mcp add --transport http beebole https://your-server/mcp --header "apikey: YOUR_API_KEY"
+    ```
+  </Tab>
+  <Tab title="Cursor / Claude Desktop">
+    Add this block to the tool's MCP configuration (JSON), replacing the URL and key with yours:
+
+    ```json
+    {
+      "mcpServers": {
+        "beebole": {
+          "url": "https://your-server/mcp",
+          "headers": { "apikey": "YOUR_API_KEY" }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+  Your API key gives full access to your Beebole account with your permissions. Keep it out of shared configuration and repositories. If a key leaks, click **Reset** on the **Assistant** page — the old key stops working immediately.
+</Warning>
+
+---
+
+## Review and disconnect connections
+
+Assistants you authorized through sign-in appear on the **Assistant** page under **Connected apps**, with the app's name and when it was connected. Click **Disconnect** to revoke a connection — the assistant loses access immediately and must be authorized again to reconnect.
+
+Tools connected with your API key are not listed there; they stop working when you **Reset** the key.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Beebole AI" icon="sparkles" href="/help/documentation/ai">
+    Beebole's built-in AI: suggested entries, report builder, and approval review.
+  </Card>
+  <Card title="Beebole API" icon="code" href="/help/api/introduction">
+    Query and mutate your Beebole data programmatically with GraphQL.
+  </Card>
+  <Card title="Roles & permissions" icon="lock" href="/help/documentation/roles-authorisations">
+    What your role allows — and therefore what a connected assistant can do as you.
+  </Card>
+  <Card title="Webhooks" icon="bolt" href="/help/integrations/webhooks">
+    Push Beebole events to external systems in real time.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Which AI assistants work with Beebole?">
+    Any assistant that supports the MCP standard. Hosted assistants like claude.ai and ChatGPT connect through a custom connector with a sign-in flow, while developer tools like Claude Code, Claude Desktop, and Cursor connect with your Beebole API key.
+  </Accordion>
+  <Accordion title="What data can a connected assistant access?">
+    Exactly what you can. The connection carries your permissions, so the assistant sees the projects, tasks, and timesheets your role allows — nothing more. It records time only to your own timesheet, and it can act on approvals only if you are an approver.
+  </Accordion>
+  <Accordion title="How do I revoke an assistant's access to Beebole?">
+    For hosted assistants, click **Disconnect** next to the app under **Connected apps** on the **Assistant** page. For tools connected with your API key, click **Reset** next to the key — every tool using the old key loses access immediately.
+  </Accordion>
+  <Accordion title="Do I need an API key to connect claude.ai or ChatGPT?">
+    No. Hosted connectors use a sign-in flow: add Beebole's server URL as a custom connector, sign in, and authorize the access. The API key is only for developer tools that can't open a sign-in window.
+  </Accordion>
+</AccordionGroup>

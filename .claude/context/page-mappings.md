@@ -78,5 +78,5 @@ Use this table to map app change keywords to the documentation pages they likely
 | planned vs real, absence quota report, mobile reports | `help/documentation/reports.mdx` |
 | recurring task, recurrence, repeat task | `help/documentation/gantt.mdx` |
 | language, multi-language, localization, interface language | `help/documentation/account-settings.mdx` |
-| fallback mode, connection diagnostics, offline, blocked connection | `help/documentation/concepts.mdx` |
+| fallback mode, connection diagnostics, offline, blocked connection, troubleshooting, not loading, slow | `help/documentation/troubleshooting.mdx` |
 | calendar view, day view, drag entries | `help/documentation/timesheets.mdx` |

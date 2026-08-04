@@ -1,0 +1,101 @@
+---
+title: "Troubleshooting: connection issues and diagnostics"
+sidebarTitle: "Troubleshooting"
+description: "Fix Beebole connection issues: what the compatibility-mode indicator means, how to run the built-in diagnostics page, and what to send to support."
+keywords: ["beebole", "troubleshooting", "connection issues", "diagnostics", "websocket blocked", "beebole not loading", "slow"]
+"og:title": "Troubleshooting Beebole Connection Issues and Diagnostics"
+"og:description": "What to do when Beebole won't load or feels slow: understand the connection indicators, run the diagnostics page, and share a snapshot with support."
+"og:type": "article"
+---
+
+Beebole runs on a secure real-time connection between your browser and its servers. When that connection is blocked or unstable — most often by a corporate firewall, VPN, or proxy — Beebole tells you what's happening and gives you the tools to pinpoint the cause. This page covers the two connection states you may see and the built-in diagnostics page that helps you (or your IT team) fix them.
+
+<Info>
+  First, rule out the basics: reload the page, and try a different network — for example your phone's mobile data. If Beebole works there, the issue is in the original network, not your account.
+</Info>
+
+---
+
+## "Can't establish a secure connection"
+
+If Beebole can't open its real-time connection at all, it stops with the message **Can't establish a secure connection**: Beebole needs a secure real-time (WebSocket) connection to load, and it couldn't be established. This is usually caused by a corporate firewall, VPN, or proxy blocking it.
+
+- Try a different network — for example your phone's mobile data — to confirm the block.
+- Ask your IT team to allow secure WebSocket connections (`wss`) to your Beebole site.
+- Click **Try again** once the network is fixed.
+
+---
+
+## "Running in slower compatibility mode"
+
+When the real-time connection is blocked but Beebole can still reach its servers another way, the app keeps working in a slower fallback mode and shows an indicator in the sidebar: **Running in slower compatibility mode**.
+
+Everything still functions — changes just take longer to appear, and live updates from teammates arrive with a delay. Click the indicator for the explanation: your network is blocking the real-time (WebSocket) connection, and your IT team can restore full speed by allowing secure WebSocket (`wss`) connections to your Beebole server.
+
+---
+
+## Run the diagnostics page
+
+For anything beyond the basics, Beebole ships a standalone **Connection Diagnostics** page. Open `/diagnostics` on your Beebole server address — for example `app.beebole.com/diagnostics`. It works even when the app itself won't load.
+
+The page runs automatically and shows:
+
+| Section | What it tells you |
+| --- | --- |
+| **Health checks** | Whether each part of the connection to Beebole works from this browser |
+| **Latency (ping)** | How fast your network reaches the Beebole server |
+| **Environment & storage** | Browser, network, and local storage details relevant to support |
+
+### Share the results with support
+
+Click **Download snapshot (.json)** or **Copy snapshot** and send the result to [support@beebole.com](mailto:support@beebole.com) — it contains exactly the technical context needed to diagnose your case quickly.
+
+### Reset the local app data
+
+The **Actions** section offers two cleanup buttons:
+
+- **Clear app cache** — wipes only the app's offline database. Beebole re-downloads your data on the next load; nothing on the server is touched.
+- **Clear ALL site data** — also removes local and session storage, service workers, and readable cookies, then reloads.
+
+<Warning>
+  Use the cleanup buttons only when support suggests it. They can't lose your timesheets — all records live on Beebole's servers — but any unsynced local state is discarded and the app reloads from scratch.
+</Warning>
+
+---
+
+## For IT teams
+
+To give Beebole full speed on a managed network, allow outbound secure WebSocket (`wss`) connections to your Beebole server's domain. Beebole's fallback mode exists precisely for networks where that isn't possible — but native real-time is faster and lighter for your users.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Key concepts" icon="lightbulb" href="/help/documentation/concepts">
+    How Beebole's real-time sync and local caching work in normal operation.
+  </Card>
+  <Card title="Mobile app (PWA)" icon="mobile" href="/help/documentation/mobile">
+    Install Beebole on your device — and what to check when the installed app misbehaves.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
+    Web push and email notifications, and their delivery settings.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Why is Beebole slow on my office network but fine at home?">
+    Your office firewall, VPN, or proxy is probably blocking Beebole's secure real-time (WebSocket) connection, so the app falls back to a slower compatibility mode — the sidebar shows **Running in slower compatibility mode** when this happens. Ask your IT team to allow secure WebSocket (wss) connections to your Beebole server.
+  </Accordion>
+  <Accordion title="How do I run a connection diagnostic for Beebole?">
+    Open `/diagnostics` on your Beebole server address — for example `app.beebole.com/diagnostics`. The page checks the connection, measures latency, and lists environment details, and it loads even when the app itself won't. Use **Download snapshot (.json)** to save the results.
+  </Accordion>
+  <Accordion title="Will clearing the app cache delete my time entries?">
+    No. All records live on Beebole's servers — **Clear app cache** only wipes the local offline copy, and Beebole re-downloads your data the next time it loads. Only unsynced local state is discarded, so use it when support suggests it.
+  </Accordion>
+  <Accordion title="What should I send to Beebole support about a connection problem?">
+    A diagnostics snapshot. Open `/diagnostics` on your server address, let the checks finish, click **Copy snapshot** or **Download snapshot (.json)**, and include it in your email to support@beebole.com along with what you were doing when the problem appeared.
+  </Accordion>
+</AccordionGroup>

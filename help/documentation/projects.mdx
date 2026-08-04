@@ -117,6 +117,10 @@ Clicking a project opens its detail panel, which is organized into settings pane
 
 Open the project's **Billing** or **Cost** panel and click **Add** to create a rate. Choose a method — **Hourly rate**, **Daily rate**, or **Fixed fee** — and optionally split it with **Split by persons**, **Split by projects**, or **Split by tags**. A rate set directly on a project overrides rates inherited from tags or the organization. See [Billing rates](/help/documentation/billing) for the full priority order and repeat options.
 
+### Valid period for time entry
+
+The **Valid period for time entry** panel bounds when time can be recorded on the project: set a **From** and/or **To** date, and entries outside that window are refused with a message naming the project that blocks them. Use it to close a finished project without archiving it, or to open a project for booking only from its actual start date. The window set on a project also applies to its subprojects; when several projects in the chain define one, the most specific project's window wins. People can carry the same setting — see [People](/help/documentation/people#valid-period-for-time-entry).
+
 ### Custom fields on a project
 
 The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** \> **Custom Field**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).

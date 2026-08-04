@@ -83,8 +83,8 @@
 - `tasks/gantt-keyboard` **Gantt keyboard navigation** — Navigate Gantt rows with arrow keys and expand or collapse groups without a mouse
 - `tasks/gantt-workload-heatmap` **Gantt workload heatmap** — Color-coded bars on Gantt group rows show each group's effort against available capacity per day or week, with a per-person breakdown on hover and a workload indicator under each date in the timeline header
 - `tasks/staffing` **Staffing view** — Long-horizon timeline of who works on what and when, alongside Gantt and Kanban: bars grouped by people or by project, drag on the timeline to create a booking, move or resize it, set the allocation percentage, and filter people/projects by tag
-- `tasks/staffing-bookings` **Bookings** — Assign a person to a project for a date range without naming a task; the booking's name is shown automatically from that person and project across Staffing, Gantt, and Kanban
-- `tasks/staffing-capacity` **Workload & capacity** — Each person's workload and remaining capacity at a glance in the Staffing view, with an overload indicator in the timeline header
+- `tasks/staffing-bookings` **Bookings** — Assign a person to a project for a date range without naming a task; the booking's name is shown automatically from that person and project across Staffing, Gantt, and Kanban, and a booking can be marked tentative while plans are still firming up
+- `tasks/staffing-capacity` **Workload & capacity** — Each person's workload and remaining capacity at a glance in the Staffing view, with an overload indicator in the timeline header; over-booking flags and a "who's free" search filter surface staffing problems directly on the timeline
 - `tasks/views` **Saved task views** — Create, rename, and switch between multiple named views of tasks, each with its own layout (Gantt, Kanban, or Staffing), column selection, and grouping preferences
 - `tasks/tag-filter` **Filter by tags** — Filter tasks, people, and projects by their assigned tags
 - `tasks/dependencies` **Task dependencies** — Link tasks as predecessors and successors to define execution order
@@ -93,7 +93,7 @@
 - `tasks/hierarchy` **Hierarchical tasks** — Tasks organized under categories with nesting
 - `tasks/statuses` **Task statuses** — Configurable status workflow (e.g., To Do → In Progress → Done)
 - `tasks/ownership` **Task ownership** — Assign people to tasks
-- `tasks/recurring` **Recurring tasks** — Repeat a task on a schedule via the Gantt recurrence dialog; occurrences appear across the planning views, and the dates of a recurring series are managed in the Gantt
+- `tasks/recurring` **Recurring tasks** — Repeat a task on a schedule; occurrence and series edits are handled by the Gantt recurrence dialog. _(status: hidden-flag — the recurrence editor in the task panel is still behind `SHOW_TASK_RECURRENCE = false`, so users cannot create recurring tasks in the UI; only management dialogs for existing series are live. Re-verified 2026-08-04 — do NOT document until creation ships)_
 - `tasks/custom-fields` **Task-level custom fields** — Custom attributes per task
 - `tasks/descriptions` **Task descriptions** — Add free-text descriptions to tasks
 - `tasks/move-category` **Move task between categories** — Reassign a root-level task and its subtasks to a different category via the context menu
@@ -117,7 +117,7 @@
 - `people/role-assignment` **Role assignment** — Assign roles with specific permissions to each person
 - `people/manager-assignment` **Manager assignment** — Define reporting relationships (who manages whom)
 - `people/schedule-assignment` **Schedule assignment** — Assign work schedules to people (directly or via tags)
-- `people/validity-period` **Person validity period** — Give a person a start and end date; combined with the matching time entry restriction, time cannot be logged outside that period
+- `people/validity-period` **Person validity period** — Give a person **From**/**To** dates (**Valid period for time entry**); time records outside the window are refused
 - `people/localisation` **Localization per person** — Timezone, date format, language preferences
 - `people/rates` **Billing & cost rates per person** — Hourly, daily, or fixed rates, with support for recurring patterns and effective date ranges
 - `people/absence-quotas` **Absence quotas per person** — Individual time-off allowances
@@ -135,7 +135,7 @@
 - `projects/categories` **Project categories** — Organize projects into custom categories
 - `projects/members` **Project members** — Assign people to projects with availability control
 - `projects/managers` **Project managers** — Designate project leads
-- `projects/validity-period` **Project validity period** — Give a project a start and end date; combined with the matching time entry restriction, time cannot be logged outside that period
+- `projects/validity-period` **Project validity period** — Give a project **From**/**To** dates (**Valid period for time entry**); time records outside the window are refused, and the window cascades to subprojects
 - `projects/billing-rates` **Billing rates per project** — Project-specific billing configuration
 - `projects/cost-rates` **Cost rates per project** — Project-specific cost tracking
 - `projects/budgets` **Budgets** — Set billing, cost, and quantity (hours) budgets per project
@@ -258,15 +258,15 @@
 
 > Grouped to mirror the in-app **Beebole AI** page. Keys stay function-first so entries can move back into their functional areas without breaking references.
 
-- `time-tracking/suggestions` **Suggested time entries** — Draft entries proposed automatically — mined from your recurring logging patterns, captured by the desktop app and browser extension, or created when Kanban cards move to a done column. They appear in a tray (and as ghost entries on the calendar view) where you accept, edit, or dismiss each one; suggestions stay private to you until accepted
-- `reports/nl-builder` **Natural-language report builder** — Describe the report you need in plain language on the reports page and it is created and run for you
-- `approval/digest` **Approval review digest** — When reviewing a submitted timesheet, anything unusual is flagged before you decide: non-working days, overtime, after-hours time, archived projects or tasks, entries near the lock date, over-planned tasks, and totals far from usual; approvers also receive an email digest of timesheets awaiting review
-- `integrations/ai-assistants` **AI assistant connections** — Connect AI assistants such as Claude or ChatGPT to your Beebole data (via Beebole's MCP server) with exactly your permissions — log time, read timesheets, list projects — and review or disconnect them anytime from the **Connected apps** list
-- `ai/privacy` **AI privacy stance** — AI features run on Beebole-operated servers; nothing is sent to third-party AI providers
+- `time-tracking/suggestions` **Suggested time entries** — Draft entries proposed automatically — mined from your recurring logging patterns, captured by the desktop app and browser extension, or created when Kanban cards move to a done column. They appear in a tray (and as ghost entries on the calendar view) where you accept, edit, or dismiss each one; suggestions stay private to you until accepted — managers only ever see records you explicitly accepted — and accepted entries go through the normal entry path: lock date, entry restrictions, and approvals all apply, and nothing is submitted automatically
+- `reports/nl-builder` **Natural-language report builder** — Describe the report you need in plain language on the reports page and it is created and run for you; only your question and the report structure are sent to the model — never timesheet data — and the numbers are computed by Beebole's reporting engine, not generated by the model
+- `approval/digest` **Approval review digest** — Rules-based, explainable anomaly detection when reviewing a submitted timesheet: non-working days, overtime, after-hours time, archived projects or tasks, entries near the lock date, over-planned tasks, and totals far from usual are flagged before you decide; approvers also receive an email digest of timesheets awaiting review. _(Deterministic rules by design, not a model — market as explainable anomaly detection, never as AI)_
+- `integrations/ai-assistants` **AI assistant connections** — Connect AI assistants such as Claude or ChatGPT to your Beebole data (via Beebole's MCP server, secured with OAuth 2.1) with exactly your permissions — log time, read timesheets, list projects — and review or disconnect them anytime from the **Connected apps** list; assistants act as the user, never above them
+- `ai/privacy` **AI privacy stance** — AI features run on self-hosted models on Beebole-operated, firewalled infrastructure; nothing is sent to third-party AI providers, and keys and data never touch a browser or an external AI API
 
 ## Companion Apps & Add-ins
 
-- `apps/desktop` **Desktop app** — Companion app for macOS, Windows, and Linux that drafts time entries from what you work on, capturing only site address, page title, and time spent; only entries you accept reach your timesheet. Download and install instructions live on the Connected apps page
+- `apps/desktop` **Desktop app** — Companion app for macOS, Windows, and Linux that drafts time entries from what you work on, capturing only site address, page title, and time spent; raw activity never leaves the device — it is stored in a local database and purged after 30 days, and only the day, project/task, and duration of entries you accept reach the server. Download and install instructions live on the Connected apps page
 - `apps/browser-extension` **Browser extension** — Chrome/Edge and Firefox extension that connects directly to your account with your API key and turns time spent on sites you choose into draft timesheet entries; per-site opt-in, and for sites you explicitly allow it can read the visible page text to match time to the right project or task (used only to classify, never stored)
 - `reports/excel-addin` **Excel add-in report loader** — Excel add-in that links any worksheet to a saved Beebole report and refreshes the data on demand or each time the file is opened
 - `reports/export` **Google Sheets add-in report loader** — Google Sheets add-on that links a sheet to a saved Beebole report and refreshes the data from within the spreadsheet, without re-exporting from Beebole

@@ -60,6 +60,16 @@ The **Timesheet period** defines the stretch of time a timesheet covers — the 
 
 **Auto-submit timesheets after X days** submits unsubmitted timesheets automatically once the configured number of days has passed since the period ended. The auto-submitted timesheet enters the [approval workflow](/help/documentation/approval) like a manual submission. Leave the value at 0 to disable auto-submit. It does not apply when the timesheet period is **Daily**.
 
+### Lock date
+
+The **Lock date** freezes every time record on or before the chosen day. Locked records can no longer be created, edited, moved, or deleted — by anyone, administrators included. Attempts are refused with the message **Timesheet settings prevent any change to the locked date**.
+
+Use it to close accounting periods: once payroll or invoicing for a month is done, set the lock date to the end of that month and the underlying data can't drift. The freeze applies everywhere time records change hands, including the [BambooHR time-off sync](/help/integrations/bamboohr).
+
+<Info>
+  To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set per person, team, or project — see [Different settings for different teams](#different-settings-for-different-teams).
+</Info>
+
 ### Restrictions
 
 The **Restrictions** list controls what time entries the timesheet accepts. By default there are none — the panel shows **No restrictions configured**. Pick a rule from the **Add restriction** menu to activate it; click the × on a restriction's chip to remove it.

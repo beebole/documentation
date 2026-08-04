@@ -82,6 +82,18 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
 
 ## Per-page
 
+### /help/documentation/desktop-app
+
+- **Direct download URLs are versionless and must match the app code.** The page links `https://app.beebole.com/downloads/desktop/beebole-desktop-{macos.dmg,windows.exe,linux.AppImage,linux.deb}` — the same paths the in-app Assistant page renders (`frontend/src/components/ai/index.ts`, `renderDesktopLinks`).
+  - **Why:** Filenames carry no version, so releases don't churn the docs — but if the app changes the paths (e.g. signed installers, renamed artifacts), the docs 404.
+  - **How to apply:** When reviewing this page, verify the URLs against `renderDesktopLinks` in the app code. Expect churn when installer signing ships (unsigned-installer warning section must go too).
+
+### /help/documentation/browser-extension
+
+- **Direct download URLs are versionless and must match the app code.** The page links `https://app.beebole.com/downloads/beebole-extension-{chrome,firefox}.zip` (`frontend/src/components/ai/index.ts`, `renderExtension`).
+  - **Why:** Same as desktop-app — stable per release, breaks only if the app changes paths.
+  - **How to apply:** Verify against `renderExtension` on review. Expect a full rewrite of the install steps when the extension reaches the Chrome Web Store / Firefox Add-ons (the manual load-unpacked flow and the zip links both go away).
+
 ### /help/documentation/roles-authorisations
 
 - **Organize this page by permission type.** Readers look up what a specific permission means; structure the body as one section per permission group (Approval events / Approval workflow, Billing rates / Costs, Custom Fields, Expenses, People details, Project details / Tasks / Budgets, Timesheet entries / Time off / Schedules, Journal feed, Reports, admin settings), each explaining that permission's meaning and its view/manage controls. Keep sections for creating and managing roles, assigning roles to people, and best practices. Permission names come from the `authorization` labels in `labels.json` (e.g. **Approval events**, **Billing rates**, **Define Custom Fields**, **Timesheet entries**, **Time off records**).

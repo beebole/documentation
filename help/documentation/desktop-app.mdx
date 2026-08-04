@@ -1,0 +1,93 @@
+---
+title: "Desktop app: draft time entries from your activity"
+sidebarTitle: "Desktop App"
+description: "Install the Beebole desktop app on macOS, Windows, or Linux and turn what you work on into draft time entries — private until you accept them."
+keywords: ["beebole", "desktop app", "automatic time tracking", "activity tracking", "time entry suggestions", "macos", "windows", "linux"]
+"og:title": "Automatic Time Entry Drafts with the Beebole Desktop App"
+"og:description": "The Beebole desktop app captures your activity locally and suggests timesheet entries. Install it on macOS, Windows, or Linux."
+"og:type": "article"
+---
+
+The Beebole desktop app is a companion application for macOS, Windows, and Linux that drafts time entries from what you work on. Your activity is captured and stored only on your machine — Beebole turns it into [suggested time entries](/help/documentation/ai#suggested-time-entries), and only the entries you accept reach your timesheet.
+
+<Info>
+  Activity data stays on the device, is never shared with anyone, and is deleted after a week. Suggestions are private to you until you accept them.
+</Info>
+
+---
+
+## Downloading and installing
+
+<Steps>
+  <Step title="Open the Assistant page">
+    Click **Assistant** in the sidebar and scroll to the **Desktop app** section.
+  </Step>
+  <Step title="Download the installer">
+    Pick your platform next to **Download**: **macOS** (`.dmg`), **Windows** (`.exe`), or **Linux** (`.AppImage` or `.deb`). You can also download the current build directly:
+
+    | Platform | Direct download |
+    | --- | --- |
+    | macOS | [beebole-desktop-macos.dmg](https://app.beebole.com/downloads/desktop/beebole-desktop-macos.dmg) |
+    | Windows | [beebole-desktop-windows.exe](https://app.beebole.com/downloads/desktop/beebole-desktop-windows.exe) |
+    | Linux (AppImage) | [beebole-desktop-linux.AppImage](https://app.beebole.com/downloads/desktop/beebole-desktop-linux.AppImage) |
+    | Linux (deb) | [beebole-desktop-linux.deb](https://app.beebole.com/downloads/desktop/beebole-desktop-linux.deb) |
+
+    The links always serve the latest version — the same files the **Assistant** page offers.
+  </Step>
+  <Step title="Install and launch">
+    Run the installer and open the app. Then return to the **Assistant** page in your browser — when Beebole detects the running app, it connects it to your account automatically by syncing your API key. Use **Open the desktop app** on the same page to bring it up anytime.
+  </Step>
+</Steps>
+
+<Info>
+  Beebole is registering the app with Apple and Microsoft, so installing will soon be seamless. Until then the installers are unsigned and your system warns you: on macOS, after the first blocked launch, allow the app under **System Settings** → **Privacy & Security**; on Windows, choose **More info** → **Run anyway**.
+</Info>
+
+---
+
+## How suggestions work
+
+Once the app runs, it watches what you actively work on and captures only the essentials — site address, page title, and time spent. Beebole groups that activity into draft time entries and shows them in the **Suggested entries** tray above your timesheet, badged **Desktop**.
+
+- **Accept**, **Accept all**, or **Dismiss** each suggestion — nothing is logged without your say-so.
+- Click **Why?** on a suggestion to see the activity behind it. The details live on the machine that captured them; on another device Beebole shows **These details aren't available on this device.**
+- In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions appear as ghost entries you can drag into a time slot.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Beebole AI" icon="sparkles" href="/help/documentation/ai">
+    All of Beebole's AI features, including where suggestions come from.
+  </Card>
+  <Card title="Browser extension" icon="puzzle-piece" href="/help/documentation/browser-extension">
+    Draft entries from the websites you choose — no desktop app required.
+  </Card>
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    Where suggested entries appear and get accepted.
+  </Card>
+  <Card title="Mobile app (PWA)" icon="mobile" href="/help/documentation/mobile">
+    Install Beebole on your phone or tablet from the browser.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What does the Beebole desktop app track?">
+    Only the site address, page title, and time spent of what you actively work on. The captured activity is stored on your machine, never shared with anyone, and deleted after a week. It exists solely to draft time entry suggestions for you.
+  </Accordion>
+  <Accordion title="Can my manager see my desktop activity?">
+    No. Activity stays on your device, and the suggestions built from it are private to you. Your manager only ever sees the time entries you explicitly accept onto your timesheet — the same as entries you type by hand.
+  </Accordion>
+  <Accordion title="Which platforms does the desktop app support?">
+    macOS (`.dmg`), Windows (`.exe`), and Linux (both `.AppImage` and `.deb` packages). Download the installer from the **Assistant** page in Beebole.
+  </Accordion>
+  <Accordion title="Why does my system warn me when installing the app?">
+    The installers are not yet signed with Apple and Microsoft while Beebole completes their registration processes. On macOS, allow the app under **System Settings** → **Privacy & Security** after the first blocked launch; on Windows, choose **More info** → **Run anyway**.
+  </Accordion>
+  <Accordion title="Do I need the desktop app to use the browser extension?">
+    No. The Beebole browser extension connects directly to your account with your API key and works on its own. Use the desktop app if you also want activity outside the browser turned into suggestions.
+  </Accordion>
+</AccordionGroup>

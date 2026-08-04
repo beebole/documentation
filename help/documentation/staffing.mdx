@@ -1,0 +1,148 @@
+---
+title: "Staffing: plan who works on what, and when"
+sidebarTitle: "Staffing"
+description: "Plan your team's workload on Beebole's Staffing timeline — drag to create bookings, set allocation percentages, and see each person's remaining capacity."
+keywords: ["beebole", "staffing", "resource planning", "capacity planning", "bookings", "workload", "allocation"]
+"og:title": "Resource Planning with the Staffing View in Beebole"
+"og:description": "Use Beebole's Staffing view to book people onto projects, balance allocation percentages, and spot overload before it happens."
+"og:type": "article"
+---
+
+Beebole's Staffing view is a long-horizon timeline of who works on what, and when. It is the third view of the **Tasks** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Kanban board](/help/documentation/kanban) — the bars you see are the same tasks, displayed per person instead of per task. Use it to book people onto projects, set how much of their time each booking takes, and see at a glance who still has capacity.
+
+<Info>
+  Staffing, Gantt, and Kanban display the same underlying tasks. A booking created in the Staffing view is a task like any other — it appears in the other views and in reports immediately.
+</Info>
+
+---
+
+## Opening a Staffing view
+
+<Steps>
+  <Step title="Open the Tasks page">
+    Click **Tasks** in the sidebar, and pick the task category you want at the top of the page.
+  </Step>
+  <Step title="Select or create a Staffing view">
+    Click a Staffing view tab above the task list. To create one, click **Add a view** and select **Staffing**. Like every saved view, it remembers its own settings and filters.
+  </Step>
+</Steps>
+
+---
+
+## Reading the timeline
+
+Each row is a person (or a project, depending on the grouping). Each bar is a booking: a task scheduled between two dates, shown in the task's color. The bar displays the task name — and, when there is room, its date range and the secondary project path.
+
+- A vertical line marks today; the **Today** button scrolls back to it.
+- The timeline extends into the past as well as the future — keep scrolling left to review earlier plans.
+- Bar edges snap to working days, so bookings line up with what people can actually work.
+
+### Grouping rows
+
+Open the **⋯** menu on the view tab and use **Group by** to choose what the rows represent:
+
+- **People** — One row per person, with their bookings and a capacity strip.
+- **A project category** — Pick a category and a level (or **All levels**); one row per project at that level, showing everyone booked on it.
+
+---
+
+## Creating a booking
+
+A booking doesn't need a task name — the fastest way to staff someone is to book them on a project for a date range. Beebole names the booking automatically from the person and the project.
+
+<Steps>
+  <Step title="Drag on the timeline">
+    In a person's row, click and drag across the dates you want to book. An editor opens in place of the bar.
+  </Step>
+  <Step title="Pick the project">
+    Select the project the person is booked on. When grouping by project, you pick the person here instead.
+  </Step>
+  <Step title="Set the allocation">
+    Enter the percentage of the person's working time the booking takes (100% by default), then press **Enter** to confirm.
+  </Step>
+</Steps>
+
+The new bar appears immediately. If your active filters would hide it, Beebole tells you: **Booking added, but it's hidden by the current filter**.
+
+<Tip>
+  Give the booking a name later only if you need one — open it and type a name, exactly as you would rename a task. Unnamed bookings keep showing the person + project automatically, in Staffing, Gantt, and Kanban alike.
+</Tip>
+
+---
+
+## Moving and resizing bookings
+
+- **Move** — Drag a bar left or right to shift its dates; the duration is preserved.
+- **Resize** — Drag the left or right edge to change the start or end date.
+- **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
+- **Reassign** — Click a bar to open its editor and change the project or the allocation percentage. Changes are saved automatically.
+
+### Bookings managed in the Gantt
+
+Some tasks have a schedule the Staffing view must not change. When you try to edit one, Beebole shows **Managed in the Gantt** with the reason:
+
+| Reason | Message |
+| --- | --- |
+| Recurring task | This is a recurring task, so its schedule is managed in the Gantt. |
+| Part of a recurring series | This task belongs to a recurring series, so its schedule is managed in the Gantt. |
+| Has subtasks | This task has subtasks, so its schedule is managed in the Gantt. |
+| Has dependencies | This task has dependencies, so its schedule is managed in the Gantt. |
+
+Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
+
+---
+
+## Workload and capacity
+
+Each person's row includes a capacity strip: one cell per period comparing their planned load to their available capacity. Capacity comes from the person's [work schedule](/help/documentation/work-schedule) minus their absences, and each booking counts for its allocation percentage.
+
+- **Hover a cell** to see the numbers — how much is **used** of the period's capacity and how much is **remaining**.
+- **Overload** — A full cell signals the person is booked beyond their capacity for that period; an indicator under the date in the timeline header flags overloaded periods for the whole view.
+- **Hours or days** — Open the **⋯** menu on the view tab and use **Unit** to switch every figure between hours and days.
+
+Use the free capacity to decide who takes the next booking — the gaps in the timeline are exactly the people and periods still available.
+
+---
+
+## Filtering
+
+Use **Filters** in the page header to narrow the view — by project, owner, or [tags](/help/documentation/tags) on people and projects. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Tasks" icon="list-check" href="/help/documentation/planning">
+    What tasks are in Beebole — creating, assigning, and tracking time on them.
+  </Card>
+  <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
+    Schedule tasks on a timeline, sequence them with dependencies, and manage recurring tasks.
+  </Card>
+  <Card title="Work schedules" icon="calendar" href="/help/documentation/work-schedule">
+    Define the working hours that determine each person's capacity.
+  </Card>
+  <Card title="Planned vs. real report" icon="chart-column" href="/help/documentation/reports#planned-vs-real">
+    Compare the time you planned in Staffing and Gantt with the hours actually logged.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What is the difference between the Staffing view and the Gantt chart?">
+    Both display the same tasks. The Gantt chart in Beebole is task-centric — one row per task, with dependencies and hierarchy. The Staffing view is person-centric — one row per person, with their bookings and remaining capacity. Use the Gantt to structure the work, and Staffing to balance who does it.
+  </Accordion>
+  <Accordion title="Does a booking need a task name?">
+    No. In Beebole you can book a person on a project for a date range without naming a task — the booking is named automatically from the person and the project. You can add a name later if the work becomes a concrete task.
+  </Accordion>
+  <Accordion title="How does Beebole calculate a person's capacity?">
+    Capacity comes from the person's work schedule minus their absences, per period. Each booking consumes capacity according to its allocation percentage — a 50% booking on a 40-hour week uses 20 hours.
+  </Accordion>
+  <Accordion title="Why can't I move a booking in the Staffing view?">
+    The task's schedule is managed in the Gantt. Recurring tasks, tasks in a recurring series, tasks with subtasks, and tasks with dependencies show a **Managed in the Gantt** message — open the Gantt chart to change their dates.
+  </Accordion>
+  <Accordion title="Can I plan further back than the visible timeline?">
+    Yes. The Staffing timeline scrolls into the past as well as the future, and dragging a bar to the edge of the screen auto-scrolls so you can drop it beyond the visible range. The **Today** button brings you back to the current date.
+  </Accordion>
+</AccordionGroup>

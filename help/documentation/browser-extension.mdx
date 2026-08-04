@@ -1,0 +1,82 @@
+---
+title: "Browser extension: turn browsing time into draft entries"
+sidebarTitle: "Browser Extension"
+description: "Install the Beebole browser extension for Chrome, Edge, or Firefox and turn time on the sites you choose into draft timesheet entries."
+keywords: ["beebole", "browser extension", "chrome extension", "firefox extension", "automatic time tracking", "time entry suggestions"]
+"og:title": "Drafting Time Entries with the Beebole Browser Extension"
+"og:description": "The Beebole extension watches only the sites you allow and suggests timesheet entries from the time you spend there."
+"og:type": "article"
+---
+
+The Beebole browser extension drafts time entries from the websites you choose. It works in Chrome, Edge, and Firefox, connects directly to your Beebole account with your API key, and sends only the site address, page title, and time spent. The result shows up as [suggested time entries](/help/documentation/ai#suggested-time-entries) — nothing reaches your timesheet until you accept it.
+
+<Info>
+  The extension only watches sites you explicitly pick. For sites you additionally allow, it can also read the visible page text to classify the work more precisely — that content is used only to classify and is never stored.
+</Info>
+
+---
+
+## Downloading and installing
+
+<Steps>
+  <Step title="Open the Assistant page">
+    Click **Assistant** in the sidebar and scroll to the **Browser extension** section.
+  </Step>
+  <Step title="Download the extension">
+    Next to **Download**, pick **Chrome / Edge** or **Firefox** — or download the current build directly: [Chrome / Edge](https://app.beebole.com/downloads/beebole-extension-chrome.zip) or [Firefox](https://app.beebole.com/downloads/beebole-extension-firefox.zip). Either way you get a `.zip` file, always the latest version.
+  </Step>
+  <Step title="Load it in your browser">
+    Until the extension reaches the browser stores, install it manually: unzip the download, then load it in your browser — Chrome / Edge: `chrome://extensions` → **Developer mode** → **Load unpacked**; Firefox: `about:debugging` → **This Firefox** → **Load Temporary Add-on**.
+  </Step>
+  <Step title="Connect it to your account">
+    In the extension's options, paste the **Server address** and your **API key** — both shown with copy buttons on the **Assistant** page (click **Show my API key** if the key is hidden).
+  </Step>
+  <Step title="Pick the sites it may watch">
+    Still in the options, choose the sites the extension is allowed to watch. Everything else is ignored.
+  </Step>
+</Steps>
+
+---
+
+## How it works
+
+While you browse a watched site, the extension measures the time you spend there and sends the site address, page title, and duration to your Beebole server. That activity becomes draft entries in the **Suggested entries** tray above your timesheet, where you **Accept**, **Accept all**, or **Dismiss** each one.
+
+On sites where you additionally allow it, the extension reads the visible page text to match your time to the right project or task more accurately. Page content is used only for that classification and is never stored.
+
+<Warning>
+  Your API key gives access to your Beebole account with your permissions. If you shared it by mistake, click **Reset** next to the key on the **Assistant** page — the old key stops working immediately, and you'll need to paste the new one into the extension.
+</Warning>
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Beebole AI" icon="sparkles" href="/help/documentation/ai">
+    All of Beebole's AI features, including how suggestions work.
+  </Card>
+  <Card title="Desktop app" icon="desktop" href="/help/documentation/desktop-app">
+    Capture activity beyond the browser on macOS, Windows, and Linux.
+  </Card>
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    Where suggested entries appear and get accepted.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Which browsers does the Beebole extension support?">
+    Chrome and Edge (one download) and Firefox (another). Both are downloaded from the **Assistant** page in Beebole and installed manually until the extension is published to the browser stores.
+  </Accordion>
+  <Accordion title="Does the extension see everything I browse?">
+    No. The Beebole extension only watches the sites you explicitly pick in its options. On those sites it records the address, page title, and time spent — and it reads page content only on sites you separately allow, purely to classify the work, without storing it.
+  </Accordion>
+  <Accordion title="Do I need the desktop app to use the extension?">
+    No. The extension connects directly to your Beebole account with your API key — the desktop app is not required. Install both only if you want activity outside the browser suggested too.
+  </Accordion>
+  <Accordion title="Why do my suggestions disappear after a while?">
+    Suggestions are drafts, not records. If you dismiss them — or never accept them — they simply don't become time entries. Accept a suggestion to turn it into a real entry on your Beebole timesheet.
+  </Accordion>
+</AccordionGroup>

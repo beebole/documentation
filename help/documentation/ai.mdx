@@ -1,0 +1,118 @@
+---
+title: "Beebole AI: suggestions, reports, and review assistance"
+sidebarTitle: "Beebole AI"
+description: "Beebole AI drafts time entries from your activity, builds reports from plain language, and flags unusual timesheets before you approve them."
+keywords: ["beebole", "ai", "beebole ai", "suggested time entries", "ai report builder", "approval review", "ai privacy"]
+"og:title": "Beebole AI: Automatic Time Entries, Reports, and Review"
+"og:description": "What Beebole AI does today: suggested time entries, a natural-language report builder, approval review flags, and a strict privacy model."
+"og:type": "article"
+---
+
+Beebole AI is the set of AI features built into your Beebole account: time entries suggested from your own activity, reports built from a plain-language question, and an extra pair of eyes when you review a submitted timesheet. Everything lives on the **Assistant** page — click **Assistant** in the sidebar when AI features are enabled for your account.
+
+<Info>
+  AI features run on Beebole-operated servers. Nothing is sent to third-party AI providers.
+</Info>
+
+---
+
+## Suggested time entries
+
+Beebole drafts time entries for you and shows them in a **Suggested entries** tray above your timesheet. Suggestions come from several sources:
+
+| Source | How it works |
+| --- | --- |
+| Your logging patterns | After a few weeks of regular use, entries are mined from your own recurring logging habits. |
+| The [desktop app](/help/documentation/desktop-app) | Time spent in applications and websites on your computer becomes draft entries, badged **Desktop**. |
+| The [browser extension](/help/documentation/browser-extension) | Time on websites you choose to watch becomes draft entries. |
+| The Kanban board | Moving a card to a done column can propose the matching entry, badged **Kanban**. |
+
+Suggestions are private — only you see them until you accept. For each one you can:
+
+- **Accept** it (or **Accept all**) — the entry lands on your timesheet.
+- **Dismiss** it.
+- Click **Why?** to see the activity behind a desktop suggestion. If you're on a different machine, Beebole tells you: **These details aren't available on this device.**
+
+In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions also appear as ghost entries: drag a suggestion to a time slot to schedule it, or accept it as-is.
+
+<Info>
+  Activity captured by the desktop app stays on that device, is never shared with anyone, and is deleted after a week. Only the entries you accept reach your timesheet.
+</Info>
+
+---
+
+## Report builder
+
+Describe the report you need in plain language and Beebole creates and runs it for you.
+
+- On the **Assistant** page, use **Ask for a report** — the report opens ready to run.
+- On the **Reports** page, type what you want to know in the report builder.
+
+The result is a regular saved report: refine its filters, move it to a folder, or delete it like any other. See [Reports](/help/documentation/reports). The report builder appears only for roles allowed to manage reports.
+
+---
+
+## Approval review
+
+When you review a submitted timesheet, anything unusual is flagged before you decide. The review digest checks the period for:
+
+- **Time on a non-working day**
+- **More time than scheduled**
+- **Time outside working hours**
+- **Time on an archived project** / **Time on an archived task**
+- **Entry right after the lock date**
+- **Task over its planned time**
+- **Period total far from usual**
+
+Approvers also receive an email digest summarizing the timesheets awaiting their review. See [Approval workflows](/help/documentation/approval).
+
+---
+
+## Already working for you
+
+Some AI touches need no setup at all: timesheet reminders mention how many suggested entries are waiting, and budget alerts include a projected overrun date based on the current burn rate (see the [Budget Status report](/help/documentation/reports#budget-status)).
+
+---
+
+## Connect your own AI tools
+
+Beebole also works with the AI assistant you already use. Connect Claude, ChatGPT, or another assistant to your Beebole data — with exactly your permissions — and manage every connection from the **Connected apps** list. See [AI assistant connections](/help/integrations/ai-assistants) for setup.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="AI assistant connections" icon="plug" href="/help/integrations/ai-assistants">
+    Connect Claude, ChatGPT, and other assistants to your Beebole data.
+  </Card>
+  <Card title="Desktop app" icon="desktop" href="/help/documentation/desktop-app">
+    Draft time entries automatically from what you work on.
+  </Card>
+  <Card title="Browser extension" icon="puzzle-piece" href="/help/documentation/browser-extension">
+    Turn time on the sites you choose into draft entries.
+  </Card>
+  <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
+    Where suggested entries appear and get accepted.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Does Beebole send my data to OpenAI, Anthropic, or other AI providers?">
+    No. Beebole's AI features run on Beebole-operated servers, and nothing is sent to third-party AI providers. Connecting your own assistant through Beebole's MCP server is the opposite direction — your assistant reads your Beebole data with your permissions, and only when you set that connection up yourself.
+  </Accordion>
+  <Accordion title="Who can see my suggested time entries?">
+    Only you. Suggested entries in Beebole are private to you until you accept them — teammates, managers, and admins never see your suggestions or the activity behind them.
+  </Accordion>
+  <Accordion title="Where do time entry suggestions come from?">
+    From your own recurring logging patterns, from the Beebole desktop app and browser extension if you install them, and from Kanban cards you move to a done column. Each suggestion shows its source, and you decide what to accept or dismiss.
+  </Accordion>
+  <Accordion title="How do I write a report with AI in Beebole?">
+    Describe what you want to know — on the **Assistant** page under **Ask for a report**, or directly on the **Reports** page. Beebole builds the report and runs it; the result is a normal saved report you can refine and reuse.
+  </Accordion>
+  <Accordion title="What does the approval review digest check?">
+    It flags time on non-working days, overtime beyond the schedule, time outside working hours, entries on archived projects or tasks, entries right after the lock date, tasks over their planned time, and period totals far from that person's usual — all before you approve or reject.
+  </Accordion>
+</AccordionGroup>
