@@ -61,12 +61,14 @@ Each type comes with its own options, all edited in the **Custom field details**
 
 | Type | Options |
 | --- | --- |
-| **Text** | **Minimum length**, **Maximum length**, **Validation pattern (regex)**, **Placeholder text**, **Default value**, and **Use predefined values** with a list of **Allowed values** |
-| **Number** | **Minimum value**, **Maximum value**, **Step size**, **Allow decimal numbers**, **Decimal places**, **Prefix**, **Suffix**, **Default value** |
-| **Date** | **Earliest date**, **Latest date**, **Default date** |
-| **Date & time** | **Earliest date & time**, **Latest date & time**, **Default date & time** |
-| **URL** | **Placeholder text**, **Default value** |
-| **Boolean** | **Label for 'Yes'**, **Label for 'No'**, **Default value** |
+| **Text** | **Minimum length**, **Maximum length**, **Validation pattern (regex)**, **Placeholder text**, and **Use predefined values** with a list of **Allowed values** |
+| **Number** | **Minimum value**, **Maximum value**, **Step size**, **Allow decimal numbers**, **Decimal places**, **Prefix**, **Suffix** |
+| **Date** | **Earliest date**, **Latest date** |
+| **Date & time** | **Earliest date & time**, **Latest date & time** |
+| **URL** | **Placeholder text** |
+| **Boolean** | **Label for 'Yes'**, **Label for 'No'** |
+
+Custom fields don't carry default values — a field starts empty (or shows its **Placeholder text**) until someone fills it in.
 
 Turn on **Use predefined values** to restrict a text field to a fixed list: add each entry under **Allowed values**, and users pick a value from that list instead of typing freely.
 
@@ -89,13 +91,10 @@ Turn on **Use predefined values** to restrict a text field to a fixed list: add 
     Select the appropriate type from the **Type** dropdown: **Text**, **Number**, **Date**, **Datetime**, **URL**, or **Boolean**.
   </Step>
   <Step title="Set the entity visibility">
-    Choose where this field appears: **Person**, **Project**, **Task**, or **Time entry**. A single field can apply to one or more entity types.
+    In the **Custom field visibility** panel, choose where the field appears — **Visible for People**, **Visible for Projects**, **Visible for Tasks**, **Visible for Time Records**, or **Visible for Absence types**. A single field can apply to several.
   </Step>
   <Step title="Configure optional settings">
-    Set a **Default value**, **Placeholder text**, or validation rules as needed (see sections below).
-  </Step>
-  <Step title="Save the field">
-    Click **Save**. The field now appears on the relevant entity forms.
+    Set a **Placeholder text** or validation rules as needed (see sections below). Every change is saved automatically — the field appears on the selected items right away.
   </Step>
 </Steps>
 
@@ -104,7 +103,8 @@ The **Custom field visibility** panel controls which items carry the field. Each
 - **Visible for People** — The field appears on every person's profile.
 - **Visible for Projects** — Turn it on, then use **Add a category** to choose the project categories where the field applies. Within each category you can tick the hierarchy levels — for example top-level projects only, or their subprojects too.
 - **Visible for Tasks** — Turn it on, then choose the task categories where the field applies.
-- **Visible for Time Records** — The field appears when filling in a time entry's details on the timesheet. Narrow it down with **Project categories** and **Task categories**, and turn on **Absences** to also show the field on time-off entries.
+- **Visible for Time Records** — The field appears when filling in a time entry's details on the timesheet. Narrow it down with **Project categories** and **Task categories**, and turn on **Absences** to also show the field on time-off entries. A field scoped to a task category applies to tasks at every level of that category.
+- **Visible for Absence types** — The field appears on each time off type's configuration, for structured data about the types themselves.
 
 ---
 
@@ -131,18 +131,6 @@ Archived fields disappear from the list. Click **Show Archived** to display them
 </Warning>
 
 ---
-
-<Steps>
-  <Step title="Open the custom field settings">
-    Go to **Settings** \> **Custom Fields** and click the field you want to configure.
-  </Step>
-  <Step title="Set category visibility">
-    In the **Visibility** section, select the specific project or task categories where this field should appear. Leave it blank to show the field on all categories.
-  </Step>
-  <Step title="Save">
-    Click **Save**. The field now only appears on entities within the selected categories.
-  </Step>
-</Steps>
 
 ## Related content
 

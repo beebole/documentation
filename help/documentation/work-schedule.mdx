@@ -65,6 +65,8 @@ You can assign work schedules at three levels. The most specific assignment wins
 
 In each **Work schedule** panel, use the **Select schedule** picker and type the name of a schedule to assign it. The assignment is saved automatically. On the schedule's own page in **Settings** > **Work Schedules**, the **Assigned to** panel shows where it is in use.
 
+Which schedules an entity may *use* is managed separately from which schedule *applies*: the **Show all schedules** default (with per-entity **Show schedules** overrides) controls availability, while the dated assignment timeline records which schedule takes effect from when. That's what makes schedule changes over time possible without losing history — see the next section.
+
 <Info>
   Configure exceptions only. Set the most common pattern on the organization, override it with tags for teams that differ, and override per person for individual cases.
 </Info>
@@ -92,6 +94,8 @@ Archived schedules disappear from the list. Click **Show Archived** to display t
 <Warning>
   **Delete** removes the work schedule entirely. If you might need it again — or want to keep its history visible — choose **Archive** instead.
 </Warning>
+
+A schedule that is still assigned to people or tags can't be deleted — Beebole refuses the deletion until you reassign or remove those assignments, so nobody silently loses their working pattern.
 
 ---
 

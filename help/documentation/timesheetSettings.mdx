@@ -79,11 +79,13 @@ The **Restrictions** list controls what time entries the timesheet accepts. By d
 | **No overtime beyond the schedule** | Blocks time beyond the hours in the person's [work schedule](/help/documentation/work-schedule). Available in a **daily** variant (per day) and a **period** variant (per timesheet period). |
 | **Require filling the whole schedule to submit** | The timesheet can only be submitted once all scheduled time is filled — per day (**daily**) or across the period (**period**). |
 | **Don't allow time entries in the future** | Blocks time entries on future dates. Future entries are limited to time off requests, so people can still plan vacation ahead. |
-| **Only allow time entries on working days** | Blocks entries on days with no scheduled working time. |
+| **Only allow time entries on scheduled working time** | Blocks entries on scheduled days off and public holidays — time off entries are exempt. When start and end times are enabled, an entry's times must also fall within the person's scheduled working hours. |
 | **An absence can't be longer than a day** | Caps a single time off entry at one day. |
 | **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. |
 
 Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both.
+
+Independently of any restriction, a submitted or approved period is always locked while it waits in the [approval workflow](/help/documentation/approval), and records on or before the [**Lock date**](#lock-date) can't change at all.
 
 ---
 

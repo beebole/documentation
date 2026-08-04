@@ -40,19 +40,10 @@ Each absence type can be configured with:
     Go to **Settings** \> **Time Off**.
   </Step>
   <Step title="Add a new absence type">
-    Click the **\[\+\]** button. Enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave").
-  </Step>
-  <Step title="Add a new absence type">
     Click **Add Time Off Type**, enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave"), and click **Add Time Off Type**.
   </Step>
   <Step title="Choose the unit">
-    Select whether this absence type is tracked in **Hours** or **Days**.
-  </Step>
-  <Step title="Choose the unit">
     In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. The change is saved automatically, and the new absence type is available for allowances and timesheet entry.
-  </Step>
-  <Step title="Save the absence type">
-    Click **Save**. The new absence type is now available for quota assignment and timesheet entry.
   </Step>
 </Steps>
 
@@ -78,38 +69,32 @@ To restore an archived type, click **Show Archived** in the list, open the archi
 An allowance (Beebole's term for a time-off quota) defines how much time off a person receives for a given absence type within a specific period. You can set allowances on the organization for everyone, on a tag for a group, or on an individual person.
 
 <Steps>
-  <Step title="Open the absence type">
-    Go to **Settings** \> **Time Off** and click the absence type you want to configure.
-  </Step>
   <Step title="Open the Absence allowances panel">
     For an organization-wide default, go to **Settings** \> **Account Settings**. For a group, click **Tags** in the sidebar and open the tag. For one person, click **People** in the sidebar and open their profile. Each shows an **Absence allowances** panel.
   </Step>
   <Step title="Add the allowance">
     Click **\+ Add new allowance** and select the absence type.
   </Step>
-  <Step title="Define the quota period">
-    Set the **Start date** and **End date** for the quota period (e.g., January 1 to December 31 for an annual allowance).
-  </Step>
   <Step title="Define the period">
-    Set the **Start - end** dates for the allowance period (e.g., January 1 to December 31 for an annual allowance).
-  </Step>
-  <Step title="Set the default allowance">
-    Enter the default number of hours or days each person receives for this period.
+    Set the start and end dates of the allowance period (e.g., January 1 to December 31 for an annual allowance).
   </Step>
   <Step title="Set the amount">
-    Enter the number of hours or days in the **Available** field. Every change is saved automatically.
-  </Step>
-  <Step title="Adjust individual quotas">
-    To give specific people a different allowance, go to their profile under **People** and adjust the quota for this absence type. Individual quotas override the default.
-  </Step>
-  <Step title="Save">
-    Click **Save** to apply the quota.
+    Enter the number of hours or days the allowance grants. Every change is saved automatically — there is no save button.
   </Step>
 </Steps>
 
 <Info>
   To give specific people a different allowance, add one on their profile under **People** — person-level allowances override tag-level ones, which override the organization default. See [People](/help/documentation/people).
 </Info>
+
+### Carrying unused time off forward
+
+Unused allowance can carry into the next period. Two fields on the allowance control it:
+
+- **Valid until** — How long the carried balance remains usable after the period ends.
+- **Carry forward limit** — The maximum amount that carries over. Leave it at 0 for no cap.
+
+The carried balance counts everywhere the allowance does: booking limits respect it, and the [Absence quotas report](/help/documentation/reports#absence-quotas) shows it per person, including the **Valid until** and **Carry forward limit** columns.
 
 ---
 

@@ -69,7 +69,7 @@ These columns carry the numbers. Each column type offers a choice of fields:
 
 | Column | Fields |
 | --- | --- |
-| **Time** | **Hours**, **Billing**, **Hourly billing**, **Daily billing**, **Cost**, **Hourly cost**, **Daily cost**, **Margin**, **Margin %**, **Markup %**, **Days**, **Overtime (daily)**, **Overtime (period)**, **Overtime balance**, **Business hours**, **Business hours remaining**, **Billable hours**, **Billable %**, **Billing ratio**, **Comment**, **ID** |
+| **Time** | **Hours**, **Billing**, **Hourly billing**, **Daily billing**, **Cost**, **Hourly cost**, **Daily cost**, **Margin**, **Margin %**, **Markup %**, **Days**, **Overtime (daily)**, **Overtime (period)**, **Overtime balance**, **Start time**, **End time**, **Business hours**, **Business hours remaining**, **Billable hours**, **Billable %**, **Billing ratio**, **Non-billable**, **Billed**, **Work from home**, **Comment**, **Status**, **ID** |
 | **Expense** | **Amount**, **Quantity**, **Expense billing** |
 | **Task** | **Planned** — the planned effort of tasks |
 | **Time & Expenses** | **Billing total**, **Cost total**, **Profit total** — cross-record totals combining time and expenses |
@@ -169,25 +169,13 @@ To download the grid, open the report's **⋯** action menu and choose **Export*
 
 ---
 
-<Steps>
-  <Step title="Configure your report">
-    Set up the dimension, grouping, columns, and filters as described above.
-  </Step>
-  <Step title="Save the report">
-    Click **Save** and give your report a descriptive name (e.g., "Monthly billing by project" or "Q1 team utilization").
-  </Step>
-  <Step title="Assign a folder (optional)">
-    Select or create a folder to organize your saved reports. Folders help you group related templates together.
-  </Step>
-</Steps>
-
 ## Organize reports in folders
 
 Folders group related reports in the Reports menu, and each folder's period and filters apply to every report inside — see [Reports](/help/documentation/reports) for those settings.
 
 - Click **New folder** at the bottom of the Reports menu to add a folder.
 - Each folder's **⋯** action menu offers **Duplicate**, **Rename**, **Filter**, **Share**, and **Delete**.
-- To copy a report into another folder, open the report's **⋯** action menu, click **Copy**, then click **Paste** in the target folder's menu. **Duplicate** copies a report within its own folder.
+- To copy a report into another folder, open the report's **⋯** action menu, click **Copy**, then click **Paste** in the target folder's menu. **Duplicate** copies a report within its own folder, and the action menu can also move a report straight to another folder.
 
 <Warning>
   Deleting a folder also deletes the reports inside it. Move reports you want to keep into another folder first using **Copy** and **Paste**.
