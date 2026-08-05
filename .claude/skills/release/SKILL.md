@@ -48,6 +48,7 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 | 5 | `/review` (session scope, auto-apply per overrides above) | `release: apply review fixes` |
 | 6 | `/illustrate --identify` | `release: screenshot needs` (only if it writes files) |
 | 7 | `/find-gaps` — verification pass | `release: coverage verification` |
+| 8 | `/mine-conversations` | `release: conversation gaps report` |
 
 **Step 4 detail:** run `/write` with no args to draft every **Missing** entry, then run `/write <path>` for each **Partial** entry using its `needs:` note from `.todo/gaps.md`. In a release run, Partial entries are not skipped.
 
@@ -56,6 +57,8 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 **Step 6 detail:** identify only — never attempt capture. Keep the needs list for the PR body.
 
 **Step 7 detail:** if the verification pass still reports Missing or Partial entries, run `/write` once more for those entries and re-run `/find-gaps`. If it is still not clean, stop retrying and list the leftovers in the PR body under "Remaining gaps" — never loop.
+
+**Step 8 detail:** report-only, by design — its candidates are **not** drafted in this run, and never feed them into `/write` or `.todo/gaps.md`. The report is committed so the PR carries the candidates for human review; approving entries and drafting them is a separate decision after the PR. If PostHog is unreachable, skip the step and note it in the PR body — never block the release on it.
 
 ### 4. Open the PR
 
@@ -88,6 +91,9 @@ PR body template:
 
 ### Remaining gaps
 <leftover Missing/Partial entries after retry, or "None — coverage verified.">
+
+### AI-conversation gap candidates (pending review)
+<entries added by /mine-conversations this run, or "None." — these are proposals only; approve in .todo/ai-conversation-gaps.md, then draft with /write>
 
 ### Decisions taken unattended
 <any safe-default choices made mid-run, or "None.">

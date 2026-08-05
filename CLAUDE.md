@@ -36,19 +36,20 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news`, `/triage`, and `/mine-conversations` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
 
-| Step             | Command           | What it does                                                                                                                            |
-| ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Sync features | `/sync-features`  | Refresh `features.md` by scanning `../reboot`. Default = full scan. `--incremental` only inspects commits since `Last updated:`.        |
-| 2. Find gaps     | `/find-gaps`      | Compare the catalog against `help/**` and write `.todo/gaps.md` with Missing/Partial entries.                                           |
-| 3. Write         | `/write`          | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.               |
-| 4. Review        | `/review`         | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
-| 5. Illustrate    | `/illustrate`     | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
-| 6. Translate     | `/translate`      | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
-| —                | `/news`           | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.            |
-| Orthogonal       | `/triage`         | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
-| All-in-one       | `/release`        | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.          |
+| Step             | Command               | What it does                                                                                                                                                                            |
+| ---------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Sync features | `/sync-features`      | Refresh `features.md` by scanning `../reboot`. Default = full scan. `--incremental` only inspects commits since `Last updated:`.                                                        |
+| 2. Find gaps     | `/find-gaps`          | Compare the catalog against `help/**` and write `.todo/gaps.md` with Missing/Partial entries.                                                                                           |
+| 3. Write         | `/write`              | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.                                                               |
+| 4. Review        | `/review`             | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site.                                                 |
+| 5. Illustrate    | `/illustrate`         | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                                                                             |
+| 6. Translate     | `/translate`          | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                                                                           |
+| —                | `/news`               | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                            |
+| Orthogonal       | `/triage`             | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                                                                |
+| Orthogonal       | `/mine-conversations` | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step. |
+| All-in-one       | `/release`            | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.                                                          |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
