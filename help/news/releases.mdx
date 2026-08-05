@@ -9,6 +9,87 @@ keywords: ["beebole", "product updates", "release notes", "changelog", "new feat
 "og:description": "New features, improvements, and changes to Beebole, updated monthly."
 "og:type": "website"
 ---
+<Update label="July 2026" tags={["Planning", "Timesheet", "AI", "Reports", "Integrations"]}>
+  July brings three new ways to plan and track your time: a drag-and-drop **Calendar view** for your timesheet, time entries suggested automatically from your activity, and a new **Staffing** view for resource planning. You can now also connect AI assistants like Claude and ChatGPT to your Beebole data.
+
+  ### Planning
+
+  - New [Staffing view](/help/documentation/staffing) for tasks, alongside the Gantt and Kanban: drag on a long-horizon timeline to book people onto projects, set each booking's allocation percentage, and see everyone's workload and remaining capacity at a glance — grouped by people or by project, filterable by tag.
+  - A booking no longer needs a name: assign a person to a project for a date range, and Beebole names it automatically from the two.
+  - Gantt and Staffing timelines can now scroll into the past, switch **Planned** figures between hours and days, and auto-scroll when you drag a bar to the edge of the screen.
+
+  ### Timesheets
+
+  - New [Calendar view](/help/documentation/timesheets) for your timesheet: a day-by-hour grid where you drag and resize entries to set start and end times. Hold ⌘ while dragging to duplicate an entry, or hover over one to delete it.
+  - Beebole now [suggests time entries automatically](/help/documentation/ai) — from your computer activity (via the new [desktop app](/help/documentation/desktop-app) and [browser extension](/help/documentation/browser-extension)), from Kanban cards moved to a done column, and from recurring patterns. Accept, edit, or dismiss each suggestion from a tray.
+  - Each timesheet section now has its own **Clear rows** button that removes just that section's rows for the current period — and you can undo it with Ctrl+Z.
+  - Public holidays no longer count toward required hours, so timesheets aren't flagged as under-time for them.
+  - New [time restriction](/help/documentation/timesheetSettings) for admins: only allow time entries within the working hours defined in the schedule.
+
+  ### Reports & budgets
+
+  - [Build a report from a plain-language question](/help/documentation/ai) — describe what you want and get the report back.
+  - A redesigned [reports experience on mobile](/help/documentation/mobile): pick a folder, change the period, and read each report from your phone.
+  - New drill-down detail sheets on the **Budget Status** and **Absence Quotas** reports — tap into a single project or person for the breakdown.
+  - [Budget alerts](/help/documentation/budgets) now include a burn-rate forecast that warns you when current spending is on track to exceed a budget.
+  - Reports and report folders with no saved period now default to the current month instead of pulling in every record ever logged.
+
+  ### Integrations & apps
+
+  - Connect AI assistants such as **Claude and ChatGPT** to your Beebole data through the new [MCP server](/help/integrations/mcp-server), and review or disconnect them anytime from the **Connected apps** list.
+  - Download the [desktop app](/help/documentation/desktop-app) (macOS, Windows, Linux) and [browser extension](/help/documentation/browser-extension) (Chrome/Edge, Firefox) directly from **Connected apps**, with step-by-step install instructions.
+  - The [Monday.com integration](/help/integrations/monday) is now available to everyone.
+  - The [import from a legacy Beebole account](/help/documentation/legacy-migration) is now granular: choose exactly which data to bring over — people, projects, tags, schedules, budgets, time records, and more — with live counts shown before you start.
+
+  ### Notifications
+
+  - Approvers now receive an approval digest summarizing timesheets awaiting their review, including a flag for days with significant after-hours time.
+  - Timesheet summary emails now show the full project and task path, making entries easier to identify.
+  - Notifications are only sent to people who actually belong to your organization — archived people and expired invitations no longer receive them.
+
+  {/* news-cursor: 2026-07-30 */}
+</Update>
+
+<Update label="June 2026" tags={["Languages", "Timesheet", "Time off", "Reports", "Security"]}>
+  Beebole is now available in ten languages, admins get precise control over how time is logged, and unused time off can carry forward into the next period.
+
+  ### Now in ten languages
+
+  - The app is fully available in nine more languages alongside English: Czech, German, Spanish, French, Hungarian, Italian, Dutch, Polish, and Portuguese.
+
+  ### Timesheets & approvals
+
+  - New organization-wide [time restrictions](/help/documentation/timesheetSettings) let admins govern how time is logged: keep entries within a project's or person's validity dates, block future-dated entries, require a comment on submission, cap or require hours against the schedule, allow time only on working days, limit time off to the available quota, and keep absences to a single day.
+  - Time records can now be locked by approval state and role — for example, preventing edits once a timesheet has been submitted or approved.
+  - New **Lock date** that freezes all time records on or before a chosen day — no one can create, edit, move, or delete them, admins included. Set it organization-wide or per person, team, or project.
+  - [Approval](/help/documentation/approval) improvements for managers: a sticky action bar with always-visible **Approve** and **Reject** buttons, accurate per-person and per-period totals, and drill-down into project and task breakdowns.
+
+  ### Time off
+
+  - Unused absence allowance now carries forward into the next period, limited by a cap you choose, and each allowance shows how much has been consumed — accurately, even when allowances overlap. See [Time off](/help/documentation/timeoff).
+  - Time off type pickers now show only the types each person is actually allowed to use — including when a manager logs time off on someone's behalf.
+  - [Public holiday](/help/documentation/public-holidays) calendars now cover past years as well as upcoming ones, can be loaded for a specific year, and keep your custom changes when reloading.
+
+  ### Reports
+
+  - Report columns can now be reordered, marked as subtotals, and hidden when empty — and subtotals stay correctly scoped within their group. See [Custom reports](/help/documentation/custom-reports).
+  - New columns and filters: hourly and daily billing and cost rates, markup percentage, time-entry comments as a column, and filtering by project or task category (including "is not" exclusions). Matrix reports can swap rows and columns.
+  - New [Excel add-in](/help/documentation/excel-addin): open Beebole reports directly in Excel and refresh the data with one click. Both the Excel and [Google Sheets](/help/documentation/gsheets-addon) add-ins now offer many more report columns and let you pick your data region (Europe or America).
+  - Report folders gain an "Absence / working time" scope that switches every report in the folder between working time and time off in one place.
+
+  ### Access & security
+
+  - You can now [sign in with a passkey](/help/documentation/authentication).
+  - [Authorizations](/help/documentation/roles-authorisations) now support separate view and edit permissions with a search box, plus new granular permissions controlling who can assign managers, tasks, schedules, time off, expenses, custom fields, and tags.
+  - The "People manager" role has been renamed to **Team lead**.
+
+  ### Other improvements
+
+  - Projects and people can now have a validity period (start and end dates).
+  - [Inviting people](/help/documentation/people) now sends invitations in bulk, with a clear summary of how many were sent, already in the organization, or missing an email address.
+  - The [QuickBooks export](/help/integrations/quickbooks) now sends each entry's billing rate and billable status, includes the comment as the description, and matches customers and items correctly at any level of the project hierarchy.
+</Update>
+
 <Update label="June 2026" tags={["Launch"]}>
   ## Welcome to the new Beebole
 

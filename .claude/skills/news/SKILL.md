@@ -1,114 +1,117 @@
 ---
 name: news
-description: 'Draft a release-notes entry in help/news/releases.mdx from recent app-repo commits. Default: use the most recent <Update label="Month YYYY"> block as the cursor, draft a new entry for commits since then. `--since <date|sha>` overrides the cursor explicitly. Uses .claude/scripts/detect-reboot-changes.sh to enumerate commits.'
+description: 'Draft monthly release-notes entries in help/news/releases.mdx from the pre-generated production release notes in ../reboot/frontend/public/release-notes/production/. Default: cover every production note newer than the news-cursor marker, grouped one <Update> block per month. `--month YYYY-MM` re-drafts a single month.'
 disable-model-invocation: true
 ---
 
 # News — Release Notes Author
 
-Prepend a new `<Update label="Month YYYY">` block to `help/news/releases.mdx` summarizing app-repo commits since the most recent published block. Autonomous by default — Yves reviews and publishes separately.
+Turn the app repo's auto-generated production release notes into monthly `<Update>` blocks in `help/news/releases.mdx`. The heavy lifting (diffing deploys, enumerating changes) is already done by the app's release pipeline — this skill's job is **curation**: pick what end users care about, group it by month, and write it in the docs voice. Autonomous by default — Yves reviews and publishes separately.
 
-## Context
+## Source of truth
 
-- `.claude/context/brand.md` — voice, tone, entity attribution rules
-- `.claude/context/documentation-structure.md` — page structure
-- `.claude/context/seo-geo.md` — SEO conventions (frontmatter is preserved unchanged on releases.mdx)
-- `.claude/context/product.md` — Beebole product overview
+Every push to production generates a markdown release note in the app repo:
 
-Inspect existing `<Update>` blocks in `help/news/releases.mdx` to match tone, length, and structure.
+```
+../reboot/frontend/public/release-notes/
+  _index.json        # [{file, date, environment}, ...] newest first
+  production/        # one YYYY-MM-DD.md per production deploy  ← the only input
+  qa/                # QA deploys — NEVER use these
+```
+
+Each production file has frontmatter (`date`, `environment`, `from`, `to` commit range) followed by `### Category` sections with bullets. These notes aim for **completeness** (every change in the deploy); the docs changelog aims for **relevance** — most of the curation work is deciding what to drop.
+
+**Do not scan git commits.** The old commit-based flow (`detect-reboot-changes.sh`) is retired. Do not switch the reboot checkout's branch — the `production/` folder is authoritative on any branch.
+
+**Fallback** if `../reboot` is missing: `gh api repos/beebole/reboot/contents/frontend/public/release-notes/production` and fetch each file. If both fail, report "cannot read release notes" and stop — never produce an empty entry.
 
 ## Interface
 
-- **Default (no args):** `/news` — read `help/news/releases.mdx`, parse the most recent `<Update label="Month YYYY">` value, use that month as the cursor, draft a new block for commits since then.
-- **`--since <date|sha>`:** explicit cursor. Use for re-drafting a window, covering a specific feature release, or backfilling.
+- **Default (no args):** `/news` — cover every production note newer than the cursor (see below), grouped into one `<Update>` block per calendar month.
+- **`--month YYYY-MM`:** re-draft that single month from scratch (replace its existing block if present). Use for corrections or backfills.
 
 ## Workflow
 
 ### 1. Determine the cursor
 
-**Default:**
-- Read `help/news/releases.mdx`.
-- Find the first `<Update label="..."` line — that's the most recent block.
-- Parse the label as `<Month> <YYYY>` (e.g., `March 2026`).
-- Convert to the first day of the month after that label so the new block covers everything published *since* the previous one. Examples: `March 2026` → `2026-04-01`, `December 2026` → `2027-01-01` (year rolls over). Always verify the rollover for December cursors before passing to the script.
+The newest generated block in `help/news/releases.mdx` carries an MDX comment marker as its last line:
 
-**`--since <date|sha>`:** use the explicit value verbatim (script accepts both formats).
-
-**First-ever run (no `<Update>` blocks exist):** default to 3 months ago. Print a warning.
-
-### 2. Detect changes
-
-Invoke the shared script:
-
-```bash
-.claude/scripts/detect-reboot-changes.sh --since <cursor>
+```mdx
+  {/* news-cursor: YYYY-MM-DD */}
 ```
 
-Parse the one-JSON-per-line output.
+- **Cursor found:** cover every `production/*.md` with `date` > cursor.
+- **No marker anywhere** (only hand-written blocks, e.g. the launch note): start from `2026-05-30` — the launch note covers everything up to and including the 2026-05-29 launch deploy.
+- New notes may land in a month you already published (deploy dates are unpredictable): if a covered note falls in the same month as the newest existing block, **merge** the new items into that block instead of creating a duplicate; months after it get fresh blocks.
 
-### 3. Group commits by category
+After drafting, move the marker: remove it from the previous block and place it (with the newest covered note date) as the last line inside the newest block.
 
-For each commit, classify by subject prefix + path analysis:
+### 2. Curate — the relevance filter
 
-- `feat:` → **New features**
-- `fix:` → **Fixes**
-- `perf:` / user-visible improvements → **Improvements**
-- `docs:` / `chore:` / `refactor:` / `test:` / dependency bumps → **skip** (unless the path suggests user-facing impact)
-- Other / no prefix → read the subject + top files; classify by hand.
+Go through every bullet of every covered note and keep only what an end user would care to read. Rough yield: **half or less** of the source bullets survive.
 
-### 4. Draft the new `<Update>` block
+**Keep:**
+- New features, views, and integrations
+- Behavior changes users will notice in their daily flow (defaults, renames, new restrictions admins can set)
+- Improvements to visible workflows (fewer clicks, clearer states, new columns/filters)
+- Fixes **only** when the broken behavior was prominent enough that users likely hit it
 
-The label is the *current* month (or the month explicitly being covered, if `--since` is given for a backfill).
+**Drop:**
+- Edge-case and cosmetic fixes ("tooltip no longer overlaps…", input-revert fixes, layout nits)
+- Internal plumbing: network/WebSocket fallbacks, diagnostics pages, performance/stability fixes, audit-of-internals
+- Subscription, trial, and paywall mechanics
+- Anything only meaningful pre-launch or to the dev team
+- Duplicates: the same feature often appears in consecutive deploys (shipped, then refined) — merge into one item in its strongest form
 
-Insert at the top of `help/news/releases.mdx`, *immediately after* the closing `---` of the frontmatter and any blank line, before the first existing `<Update>`:
+**Rewrite, don't copy.** The generated notes sometimes use the internal codename **"Reboot" — this must never appear**; it's always "Beebole". Same for any internal vocabulary (`entity`, `modules/`, category-as-plan internals). Verify feature names against `../reboot/shared/i18n/en/labels.json` and bold them.
+
+### 3. Draft one `<Update>` block per month
+
+Insert newest-first, immediately after the frontmatter's closing `---` (before the first existing `<Update>`):
 
 ```mdx
 <Update label="<Month YYYY>" tags={["<Tag1>", "<Tag2>", "<Tag3>"]}>
-  <One- to two-sentence highlight describing the most user-visible change.>
+  <1–2 sentence intro naming the month's headline feature(s).>
 
-  <Each subsequent paragraph: one user-visible change in 1-2 sentences. Skip Markdown bullets — match the existing format which uses bare paragraphs inside the Update component.>
+  ### <Theme>
 
-  <Continue for each grouped change…>
+  - <One bullet per user-visible change. Bold **UI labels**, link `/help/...` pages.>
+
+  {/* news-cursor: YYYY-MM-DD */}   ← newest block only
 </Update>
 ```
 
-Rules for writing inside the block:
+Writing rules:
 
-- **Match the existing style** — paragraphs (not bulleted lists), present tense, second person, no headings.
-- **Bold UI labels** from `../reboot/shared/i18n/en/labels.json` when introducing them.
-- **Group related commits** into a single paragraph if they describe one user-visible change.
-- **Skip the noise.** Refactors, dependency bumps, test-only, doc-only — don't include.
-- **Pick `tags` from the existing tag vocabulary** in the file (e.g., Integrations, Approvals, Reports, Notifications, Authentication, Timesheet, Planning). Add a new tag only if no existing one fits.
-- **Link to docs** when the feature has a dedicated page: write the feature name and let the user add the link in review (or include `[feature](/help/documentation/...)` if the page exists and is unambiguous).
+- **Structure like the launch note:** short intro, then `###` theme headings with bullets. A thin month (few surviving items) can skip headings and use a plain bullet list.
+- **Size:** ~15–25 bullets max per month, 3–6 themes. If you're over, cut deeper — this is a highlights reel, not the deploy log.
+- **Themes** are reader-facing groupings (e.g. "Timesheets & approvals", "Reports & budgets", "Planning", "Integrations & apps") — don't just mirror the source categories.
+- **Link to docs** whenever a page exists: check `help/documentation/`, `help/integrations/`, `help/guides/` for the feature's page and link it as `[feature](/help/...)`. Don't invent paths.
+- **Tags:** 3–5 per block, `tags={[...]}`. Reuse the existing vocabulary in the file before inventing a new tag. Current vocabulary: `Launch`, `Timesheet`, `Time off`, `Planning`, `Reports`, `Budgets`, `Integrations`, `AI`, `Languages`, `Settings`, `Security`, `Mobile`.
+- Active voice, second person, present tense, no jargon.
 
-### 5. Report
+### 4. Report
 
 ```
-## News entry drafted
+## News drafted
 
 **File:** help/news/releases.mdx
-**New block:** <Month YYYY>
-**Cursor:** <date or sha>
-**Commits covered:** N
-**Grouped into:**
-- New features: X paragraphs
-- Improvements: Y paragraphs
-- Fixes: Z paragraphs
-- Skipped (non-user-facing): W commits
+**Blocks:** <Month YYYY> (new|merged), …
+**Source notes covered:** production/<date>.md … (N deploys)
+**Cursor:** <old> → <new>
+**Kept / dropped:** X items kept, Y dropped as not user-relevant
+**Tags applied:** [...]
 
-**Tags applied:** [Tag1, Tag2, …]
-
-**Next step:** review the draft, then `/translate` to sync FR/ES (`help/fr/news/releases.mdx`, `help/es/news/releases.mdx`).
+**Dropped highlights worth a second opinion:** <1–3 borderline items you excluded, so Yves can rescue them>
 ```
 
 ## Rules
 
-- **Autonomous — no checkpoints.** Produce the full draft. User reviews after.
-- **Never push.** Write the file. Committing is Yves's decision.
-- **One Update block per run.** Don't backfill multiple months in a single run unless `--since` was used to scope a specific window.
-- **Match the file's existing format.** Paragraph style (not bullets), tag vocabulary, label format `Month YYYY`.
-- **Skip the noise.** Dependency bumps, refactors, test-only changes, doc-only changes — don't include.
-- **Graceful degradation.** If `../reboot` isn't accessible, fall back to `gh api` via the shared script. If both fail, report "cannot detect changes" and don't produce an empty release note.
-- **Never include internal jargon.** Keep the language user-facing (no `modules/`, no `entity`, no skill names).
-- **Don't touch frontmatter.** The `releases.mdx` frontmatter (`title`, `tag`, `rss`, `description`) stays as-is.
-- **Don't touch FR/ES.** `/translate` handles those.
+- **Autonomous — no checkpoints.** Produce the full draft. Yves reviews after.
+- **Never push.** Write the file; committing is Yves's decision.
+- **`production/` only.** QA notes describe unreleased work.
+- **Monthly grouping, always.** Never one block per deploy — deploy dates are unpredictable and not meaningful to readers.
+- **Don't touch frontmatter** of `releases.mdx` (`title`, `tag`, `rss`, description, SEO fields).
+- **Don't touch the launch note** (`June 2026` welcome block) — it's hand-written and permanent.
+- **English only.** There are no FR/ES translations to sync.
+- **Never include internal jargon or the "Reboot" codename** in user-facing output.

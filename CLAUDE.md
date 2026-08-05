@@ -46,7 +46,7 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 4. Review        | `/review`         | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site. |
 | 5. Illustrate    | `/illustrate`     | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                             |
 | 6. Translate     | `/translate`      | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
-| —                | `/news`           | Draft release notes from app-repo commits. Default cursor is the most recent `<Update>` block in `help/news/releases.mdx`.              |
+| —                | `/news`           | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.            |
 | Orthogonal       | `/triage`         | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
@@ -70,7 +70,7 @@ snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
-  scripts/             # Shell helpers (translate, optimize-images, detect-reboot-changes)
+  scripts/             # Shell helpers (translate, optimize-images)
 docs/                  # Internal working docs (NOT published by Mintlify)
   feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
