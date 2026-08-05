@@ -3,6 +3,7 @@
   "theme": "almond",
   "name": "Beebole Documentation",
   "redirects": [
+    { "source": "/help/integrations/ai-assistants", "destination": "/help/integrations/mcp-server" },
     { "source": "/help/settings", "destination": "/help/legacy/settings" },
     { "source": "/help/entities", "destination": "/help/legacy/entities" },
     { "source": "/help/learn-the-basics", "destination": "/help/legacy/learn-the-basics" },
@@ -246,18 +247,11 @@
                   "help/integrations/xero",
                   "help/integrations/bamboohr"
                 ]
-              },
-              {
-                "group": "Developer",
-                "pages": [
-                  "help/integrations/ai-assistants",
-                  "help/integrations/webhooks"
-                ]
               }
             ]
           },
           {
-            "tab": "API",
+            "tab": "Developers",
             "groups": [
               {
                 "group": "GraphQL API",
@@ -273,6 +267,13 @@
                 "pages": [
                   "help/api/examples/example-1",
                   "help/api/examples/example-2"
+                ]
+              },
+              {
+                "group": "MCP & Webhooks",
+                "pages": [
+                  "help/integrations/mcp-server",
+                  "help/integrations/webhooks"
                 ]
               },
               {

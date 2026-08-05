@@ -14,7 +14,7 @@ The main readers of the Documentation tab. Office managers, team leads, project 
 |----------|----------------|-----|
 | **Team leaders / Project managers** | Approving timesheets, running reports, managing their team | Guides |
 | **Employees** | Recording time, submitting timesheets, requesting time off | Guides |
-| **Developers** | API authentication, queries, mutations | API |
+| **Developers** | API authentication, queries, mutations, MCP, webhooks | Developers |
 | **Evaluators** (prospects landing from search or AI answers) | What Beebole does, whether it fits their use case | Documentation, Integrations |
 
 ## Reading-level and depth targets

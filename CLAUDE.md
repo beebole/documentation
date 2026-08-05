@@ -168,7 +168,7 @@ When a skill fails because a tool is missing, install it with the corresponding 
 
 - Pages are `.mdx` files using Mintlify components and frontmatter
 - 3 languages (EN, FR, ES) with the same structure and slugs — English is the master
-- 5 tabs per language: Documentation, Guides, Integrations, API, News (see `.claude/context/documentation-structure.md` for details)
+- 5 tabs per language: Documentation, Guides, Integrations, Developers, News (see `.claude/context/documentation-structure.md` for details)
 - Navigation is defined in `docs.json` under `navigation.languages`
 - **All internal links must start with `/help/`** (site is behind a reverse proxy)
 - **Internal repo vocabulary** (e.g. `modules/`, `entity`, "rule bucket") never appears in `help/**` user-facing content — use UI labels from `labels.json` and plain language there

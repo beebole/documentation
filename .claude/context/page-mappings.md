@@ -70,7 +70,7 @@ Use this table to map app change keywords to the documentation pages they likely
 | CSV import, bulk import, import tasks, import tags | `help/documentation/planning.mdx`, `help/documentation/tags.mdx` |
 | staffing, staffing view, booking, resource planning, capacity, allocation | `help/documentation/staffing.mdx` |
 | AI, Beebole AI, suggested entries, suggestion, natural language report, approval digest, AI privacy | `help/documentation/ai.mdx` |
-| MCP, Claude, ChatGPT, AI assistant, connected apps, assistant connection | `help/integrations/ai-assistants.mdx` |
+| MCP, MCP server, Claude, ChatGPT, AI assistant, connected apps, assistant connection | `help/integrations/mcp-server.mdx` |
 | desktop app, activity capture, automatic time tracking | `help/documentation/desktop-app.mdx` |
 | browser extension, Chrome extension, Firefox extension | `help/documentation/browser-extension.mdx` |
 | lock date, freeze records, locked period | `help/documentation/timesheetSettings.mdx` |
