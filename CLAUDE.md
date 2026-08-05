@@ -36,7 +36,7 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/triage` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
 
 | Step             | Command           | What it does                                                                                                                            |
 | ---------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -48,6 +48,7 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 6. Translate     | `/translate`      | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                           |
 | —                | `/news`           | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.            |
 | Orthogonal       | `/triage`         | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                |
+| All-in-one       | `/release`        | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.          |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
