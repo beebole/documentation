@@ -45,7 +45,7 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 3. Write         | `/write`              | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.                                                               |
 | 4. Review        | `/review`             | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site.                                                 |
 | 5. Illustrate    | `/illustrate`         | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                                                                             |
-| 6. Translate     | `/translate`          | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                                                                           |
+| 6. Translate     | `/translate`          | Sync FR/ES with EN master. Reads `translation-notes.md` only. **Deferred** — FR/ES are currently removed (see Key conventions).                                                         |
 | —                | `/news`               | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                            |
 | Orthogonal       | `/mine-conversations` | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step. |
 | All-in-one       | `/release`            | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.                                                          |
@@ -64,9 +64,11 @@ help/
   integrations/        # Integration docs (EN)
   api/                 # GraphQL API docs (EN)
   news/                # Release notes (EN)
+  legacy/              # Frozen archive of the previous Beebole system's docs (EN)
   images/              # Shared images
-  fr/                  # French translations (mirrors help/ structure)
-  es/                  # Spanish translations (mirrors help/ structure)
+  logo/                # Site logos
+  # fr/ and es/ were removed June 2026 (English-only while EN stabilizes);
+  # /translate rebuilds them from the EN master when relaunched.
 snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
@@ -167,8 +169,8 @@ When a skill fails because a tool is missing, install it with the corresponding 
 ## Key conventions
 
 - Pages are `.mdx` files using Mintlify components and frontmatter
-- 3 languages (EN, FR, ES) with the same structure and slugs — English is the master
-- 5 tabs per language: Documentation, Guides, Integrations, Developers, News (see `.claude/context/documentation-structure.md` for details)
+- English is the master language. The site is **currently English-only**: FR/ES were removed during the June 2026 overhaul and `/translate` rebuilds them (same structure and slugs) once English is signed off
+- 6 tabs: Documentation, Guides, Integrations, Developers, News, Legacy (see `.claude/context/documentation-structure.md` for details)
 - Navigation is defined in `docs.json` under `navigation.languages`
 - **All internal links must start with `/help/`** (site is behind a reverse proxy)
 - **Internal repo vocabulary** (e.g. `modules/`, `entity`, "rule bucket") never appears in `help/**` user-facing content — use UI labels from `labels.json` and plain language there
@@ -201,4 +203,4 @@ Full editorial guidelines are in `.claude/context/`:
 
 - **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/illustrate --optimize` before committing.
 - **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
-- **Translations:** English is the master language. FR/ES must stay in sync. Use correct localized UI labels from the i18n files.
+- **Translations:** English is the master language. FR/ES are currently removed (English-only); once rebuilt by `/translate`, they must stay in sync and use the localized UI labels from the i18n files.
