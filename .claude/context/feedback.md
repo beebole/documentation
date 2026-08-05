@@ -72,6 +72,10 @@ If a note is just wrong content with no rule that generalizes, fix the page dire
   - **Why:** Reviewer feedback (Miguel): loose "tasks" phrasing ("internal administrative tasks", "Sub-projects — Tasks or activities…") blurs the distinction between subprojects and the Task entity.
   - **How to apply:** For generic work, write "work", "activities", or "work items". Reserve "task" for the entity managed in Planning/Gantt/Kanban; note that time can be tracked on tasks as well as projects.
 
+- **Review/audit agents: verify label claims against the render path, not label-string existence.** A string existing in `labels.json` (or missing from it) proves nothing by itself — check the component that renders it and the served config before flagging or "fixing" a label or permission.
+  - **Why:** During the June 2026 overhaul, gate-review agents repeatedly over-flagged on label-string matching: **Add Schedule**/**Add Custom Field** were flagged as fabricated but ARE the real rendered labels (built via `entity.addEntity` + entity name), and "Time off records" was flagged as a missing permission row when it is NOT a served grid permission. Conversely, render-path-verified reviews caught real critical leaks (stray tool-call artifacts in two integration pages) — so keep running gate reviews, just ground them correctly.
+  - **How to apply:** Before reporting a label/permission mismatch as a finding, trace how the UI actually composes the string (component render code, `entity.addEntity` patterns, served config) — not just whether the literal string appears in `labels.json`.
+
 - **Use `<Info>`, never `<Note>`. Use the em-dash `—`, never `--`.**
   - **Why:** `<Info>`-only is a project rule (`documentation-structure.md:66`) for cross-site consistency. `--` renders inconsistently across browsers and is a typewriter stand-in, not real punctuation.
   - **How to apply:** No `<Note>` in any new draft. Type `—` or use Option-Shift-Hyphen on macOS.
