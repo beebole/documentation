@@ -10,7 +10,7 @@ This is **functional documentation** (not technical), except for the API section
 
 A curated **features reference** is maintained at `.claude/context/features.md`. Use it as a quick overview of what Beebole supports — it's faster than browsing the full source. Refresh it with `/sync-features` (or `/sync-features --incremental` for a faster scoped scan).
 
-**This is an automation engine.** Claude is the default author of English pages. The lifecycle — `/sync-features` → `/find-gaps` → `/write` → `/review` → `/illustrate` → `/translate` — runs with minimal human intervention. Humans are in the loop at two moments: `/review` (quality gate after writing) and `/triage` (filing accumulated editorial feedback). Every other step is autonomous by default. Interactive/co-author modes exist as opt-ins for cases where a human wants to drive a specific page.
+**This is an automation engine.** Claude is the default author of English pages. The lifecycle — `/sync-features` → `/find-gaps` → `/write` → `/review` → `/illustrate` → `/translate` — runs with minimal human intervention. Humans are in the loop at one moment: `/review` (quality gate after writing); editorial feedback given in conversation is filed directly into `.claude/context/feedback.md`. Every other step is autonomous by default. Interactive/co-author modes exist as opt-ins for cases where a human wants to drive a specific page.
 
 ## App repository access
 
@@ -36,7 +36,7 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news`, `/triage`, and `/mine-conversations` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/mine-conversations` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
 
 | Step             | Command               | What it does                                                                                                                                                                            |
 | ---------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,6 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 5. Illustrate    | `/illustrate`         | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                                                                             |
 | 6. Translate     | `/translate`          | Sync FR/ES with EN master. Reads `translation-notes.md` only.                                                                                                                           |
 | —                | `/news`               | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                            |
-| Orthogonal       | `/triage`             | Process marked-up feedback files in `docs/feedback/` and file each note into the right context location.                                                                                |
 | Orthogonal       | `/mine-conversations` | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step. |
 | All-in-one       | `/release`            | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.                                                          |
 
@@ -74,7 +73,6 @@ snippets/              # Reusable content fragments (currently empty)
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
   scripts/             # Shell helpers (translate, optimize-images)
 docs/                  # Internal working docs (NOT published by Mintlify)
-  feedback/            # Inbox for marked-up review files (processed by /triage)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
 
@@ -192,7 +190,7 @@ Full editorial guidelines are in `.claude/context/`:
 | `seo-geo.md`                 | SEO frontmatter, GEO patterns for LLM extraction                                                     |
 | `features.md`                | Canonical Beebole feature catalog — produced by `/sync-features`, consumed by `/find-gaps`           |
 | `page-mappings.md`           | Keyword → doc page routing (used by `/find-gaps`)                                                    |
-| `feedback.md`                | All rules filed by `/triage` — site-wide bullets and per-page bullets keyed by URL path              |
+| `feedback.md`                | Accumulated editorial rules — site-wide + per-page bullets; file new rules here from conversation    |
 | `translation-notes.md`       | FR/ES-specific translation feedback — read ONLY by `/translate`, never by content skills             |
 
 **Key rules:** Active voice, second person, present tense, bold UI labels from i18n, one idea per sentence, no jargon outside API docs. Lead sections with direct answers for GEO. Every page needs a FAQ section.
