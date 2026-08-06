@@ -189,7 +189,7 @@ After 5 failed attempts, Beebole stops retrying and abandons the delivery. There
     Beebole retries failed deliveries up to 5 times over approximately 95 seconds. If all retries fail, the delivery is abandoned. Events are not queued indefinitely. To avoid missing events during downtime, ensure your endpoint is highly available or implement a polling strategy with the Beebole API as a fallback.
   </Accordion>
 
-  <Accordion title="Can I use webhooks to react to changes made by integrations like Jira or Monday.com?">
+  <Accordion title="Can I use webhooks to react to changes made by integrations like Jira or monday.com?">
     Yes. Events triggered by any source — including integrations, the Beebole web app, and the API — will fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a Monday.com sync.
   </Accordion>
 </AccordionGroup>
