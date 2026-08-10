@@ -67,7 +67,7 @@ The **Lock date** freezes every time record on or before the chosen day. Locked 
 Use it to close accounting periods: once payroll or invoicing for a month is done, set the lock date to the end of that month and the underlying data can't drift. The freeze applies everywhere time records change hands, including the [BambooHR time-off sync](/help/integrations/bamboohr).
 
 <Info>
-  To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set per person, team, or project — see [Different settings for different teams](#different-settings-for-different-teams).
+  To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set on a [tag](/help/documentation/tags) or a person to override the account default — see [Different settings for different teams](#different-settings-for-different-teams). To close time entry on a single project instead, use its [**Valid period for time entry**](/help/documentation/projects#valid-period-for-time-entry) panel.
 </Info>
 
 ### Restrictions
@@ -179,6 +179,12 @@ Timesheet settings cascade. Values set on **Account Settings** apply to everyone
 - Set a value on a **person** to override both the tag and the account default for that one person.
 
 Next to each setting, an icon shows where its current value is inherited from. After overriding a value, you can reset it to fall back to the inherited one.
+
+<Info>
+  Editing **Account Settings** is admin-only. Overrides on a tag or a person's profile follow the editor's [role permissions](/help/documentation/roles-authorisations) for that tag or person, so a project manager can adjust them for the people and tags their role covers.
+</Info>
+
+Projects don't have their own **Timesheet settings** panel. To bound time entry on a single project — for example, to close a finished project or delay its start — use the [**Valid period for time entry**](/help/documentation/projects#valid-period-for-time-entry) panel on the project. The window set on a project also applies to its subprojects.
 
 ---
 
