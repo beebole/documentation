@@ -8,7 +8,7 @@ keywords: ["beebole", "staffing", "resource planning", "capacity planning", "boo
 "og:type": "article"
 ---
 
-Beebole's Staffing view is a long-horizon timeline of who works on what, and when. It is the third view of the **Tasks** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Kanban board](/help/documentation/kanban) — the bars you see are the same tasks, displayed per person instead of per task. Use it to book people onto projects, set how much of their time each booking takes, and see at a glance who still has capacity.
+Beebole's Staffing view is a long-horizon timeline of who works on what, and when. It is the third view of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Kanban board](/help/documentation/kanban) — the bars you see are the same tasks, displayed per person instead of per task. Use it to book people onto projects, set how much of their time each booking takes, and see at a glance who still has capacity.
 
 <Info>
   Staffing, Gantt, and Kanban display the same underlying tasks. A booking created in the Staffing view is a task like any other — it appears in the other views and in reports immediately.
@@ -19,8 +19,8 @@ Beebole's Staffing view is a long-horizon timeline of who works on what, and whe
 ## Opening a Staffing view
 
 <Steps>
-  <Step title="Open the Tasks page">
-    Click **Tasks** in the sidebar, and pick the task category you want at the top of the page.
+  <Step title="Open the Planning page">
+    Click **Planning** in the sidebar, and pick the planning you want at the top of the page.
   </Step>
   <Step title="Select or create a Staffing view">
     Click a Staffing view tab above the task list. To create one, click **Add a view** and select **Staffing**. Like every saved view, it remembers its own settings and filters.
@@ -52,17 +52,25 @@ A booking doesn't need a task name — the fastest way to staff someone is to bo
 
 <Steps>
   <Step title="Drag on the timeline">
-    In a person's row, click and drag across the dates you want to book. An editor opens in place of the bar.
+    In a person's row, click and drag across the dates you want to book — or just click an empty cell to create a booking spanning that one period. The booking editor opens right next to the bar.
   </Step>
   <Step title="Pick the project">
-    Select the project the person is booked on. When grouping by project, you pick the person here instead.
+    Select the project the person is booked on — the booking saves as soon as you pick it, with no confirmation step. When grouping by project, you pick the person here instead. The editor stays open on the new booking so you can adjust it right away, and you can change or remove the assigned person later from the same editor.
   </Step>
   <Step title="Set the allocation">
-    Enter the percentage of the person's working time the booking takes (100% by default), then press **Enter** to confirm.
+    Enter the allocation in whichever way you think about it — a **percentage of capacity**, **hours per working day**, or **planned hours over the whole booking** (100% by default). Press **Enter** to confirm.
   </Step>
 </Steps>
 
 The new bar appears immediately. If your active filters would hide it, Beebole tells you: **Booking added, but it's hidden by the current filter**.
+
+### Tentative bookings
+
+While plans are still firming up, mark a booking **Tentative** in its editor. A tentative booking is drawn with a hatched style and reserves the person's capacity, but stays out of reports until confirmed.
+
+### Splitting and duplicating
+
+From the booking's editor you can also **Split** it in two at a chosen date — useful when part of a booking moves — or **Duplicate** it.
 
 <Tip>
   Give the booking a name later only if you need one — open it and type a name, exactly as you would rename a task. Unnamed bookings keep showing the person + project automatically, in Staffing, Gantt, and Kanban alike.
@@ -72,10 +80,16 @@ The new bar appears immediately. If your active filters would hide it, Beebole t
 
 ## Moving and resizing bookings
 
-- **Move** — Drag a bar left or right to shift its dates; the duration is preserved.
+- **Move** — Drag a bar left or right to shift its dates; the duration is preserved and other bookings restack live as you drag.
 - **Resize** — Drag the left or right edge to change the start or end date.
+- **Move between rows** — Drag a bar vertically: drop it on another person's row to reassign the booking, on another project's row to move it to that project, or on the **Unassigned** row to clear its owner. A dashed ghost previews where the bar will land, and the whole move is one undo step. The booking's working time reflows over the destination person's own schedule and absences.
+- **Work on several bookings at once** — Select multiple bars and drag them together to reschedule the group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount — all undoable as a single step. ⌘-dragged copies land on the row you release them on.
 - **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
-- **Reassign** — Click a bar to open its editor and change the project or the allocation percentage. Changes are saved automatically.
+- **Reassign** — Click a bar to open its editor and change the project, person, or allocation. Changes are saved automatically.
+
+### Dependencies in the Staffing view
+
+Dependency links between bookings are drawn directly on the staffing timeline, color-matched to the tasks at each end, so you can see which bookings depend on which. Moving or resizing a booking cascades to its linked bookings live — dependent bars follow the drag on screen before you drop. If a linked task that moves isn't visible in your current view, a warning names it so you know what changed and can undo it. See [Task dependencies](/help/documentation/gantt#task-dependencies) for how links are created.
 
 ### Bookings managed in the Gantt
 
@@ -86,9 +100,45 @@ Some tasks have a schedule the Staffing view must not change. When you try to ed
 | Recurring task | This is a recurring task, so its schedule is managed in the Gantt. |
 | Part of a recurring series | This task belongs to a recurring series, so its schedule is managed in the Gantt. |
 | Has subtasks | This task has subtasks, so its schedule is managed in the Gantt. |
-| Has dependencies | This task has dependencies, so its schedule is managed in the Gantt. |
 
 Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
+
+---
+
+## The Unassigned row
+
+Planned work nobody has picked up yet sits in the **Unassigned** row. Drag a booking onto it to clear the owner, or drag one out of it onto a person to assign the work. The row can be collapsed out of the way, and ⌘-dragging an unassigned booking drops the copy straight onto the row you release it on.
+
+An account-wide reminder can warn everyone involved before an unassigned task starts — see [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+
+---
+
+## Locking the view to a period
+
+By default the timeline is infinite — it scrolls by day or week as far as you need. Open the **⋯** menu on the view tab and use **Period** to lock the view to a fixed **week**, **month**, **quarter**, or **year** instead: the chart fits that window to your screen and shows only the bookings that fall inside it.
+
+Bookings that start before or end after the locked period are drawn cut off, with a dashed edge and a chevron — click it to jump to the hidden start or end date. Cut edges can't be resized, since the date they would move isn't on screen.
+
+---
+
+## Copying the previous period
+
+With the view locked to a fixed period, **Copy the previous period** refills the current period from the one before it — with or without the people and project assignments. Recurring tasks are skipped, and anything that would spill outside the period is clipped. If there is nothing to copy, Beebole says so: **The previous period has no bookings to copy**.
+
+---
+
+## Finding who's free
+
+Click **Find capacity** to search for available people over a chosen period — including forward-looking ranges like **By year end** and **Next 12 months**:
+
+| Search | Who matches |
+| --- | --- |
+| **Has free time** | Anyone with unbooked capacity in the period |
+| **Free at least** | People with at least the number of hours you enter — typing in the hours field applies this search automatically |
+| **Nothing planned** | People with no bookings at all in the period |
+| **Overbooked** | People booked beyond their capacity |
+
+A count shows how many people match. You can also filter the people list by person custom-field values, and search people and projects by name. Capacity is only computed when grouping by people.
 
 ---
 
@@ -96,9 +146,10 @@ Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
 
 Each person's row includes a capacity strip: one cell per period comparing their planned load to their available capacity. Capacity comes from the person's [work schedule](/help/documentation/work-schedule) minus their absences, and each booking counts for its allocation percentage.
 
-- **Hover a cell** to see the numbers — how much is **used** of the period's capacity and how much is **remaining**.
-- **Overload** — A full cell signals the person is booked beyond their capacity for that period; an indicator under the date in the timeline header flags overloaded periods for the whole view.
-- **Hours or days** — Open the **⋯** menu on the view tab and use **Unit** to switch every figure between hours and days.
+- **Hover a cell** to see the numbers — how much is planned against how much is available for that period.
+- **Overload** — Load bars use a three-color scale: red while capacity remains, green when it is exactly met, and purple as soon as someone is booked beyond 100%. The headcount strip in the timeline header flags overloaded periods for the whole view.
+- **Step through the load** — Click a period's workload bar to step through the tasks driving that period's load, one by one.
+- **Hours or days** — Open the **⋯** menu on the view tab and use **Durations in** to switch every figure between hours and days.
 
 Use the free capacity to decide who takes the next booking — the gaps in the timeline are exactly the people and periods still available.
 
@@ -106,7 +157,7 @@ Use the free capacity to decide who takes the next booking — the gaps in the t
 
 ## Filtering
 
-Use **Filters** in the page header to narrow the view — by project, owner, or [tags](/help/documentation/tags) on people and projects. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible.
+Use the **Filters** button to narrow the view — by task, status, owner, assigned person, project, or [tags](/help/documentation/tags) on people, projects, and tasks, with the active filter count shown on the button. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible. The filters can be switched off and back on without losing them — the button toggles them rather than clearing them.
 
 ---
 
@@ -140,7 +191,7 @@ Use **Filters** in the page header to narrow the view — by project, owner, or 
     Capacity comes from the person's work schedule minus their absences, per period. Each booking consumes capacity according to its allocation percentage — a 50% booking on a 40-hour week uses 20 hours.
   </Accordion>
   <Accordion title="Why can't I move a booking in the Staffing view?">
-    The task's schedule is managed in the Gantt. Recurring tasks, tasks in a recurring series, tasks with subtasks, and tasks with dependencies show a **Managed in the Gantt** message — open the Gantt chart to change their dates.
+    The task's schedule is managed in the Gantt. Recurring tasks, tasks in a recurring series, and tasks with subtasks show a **Managed in the Gantt** message — open the Gantt chart to change their dates. Bookings with dependencies can be moved and resized directly in Staffing; their linked bookings follow along.
   </Accordion>
   <Accordion title="Can I plan further back than the visible timeline?">
     Yes. The Staffing timeline scrolls into the past as well as the future, and dragging a bar to the edge of the screen auto-scrolls so you can drop it beyond the visible range. The **Today** button brings you back to the current date.

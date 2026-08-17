@@ -8,7 +8,7 @@ keywords: ["beebole", "roles", "permissions", "access control", "person roles", 
 "og:type": "article"
 ---
 
-A role in Beebole is a named set of permissions that controls what its holders can see and do. Every person has exactly one role, and each permission in a role sets two levels — **View** and **Edit** — scoped to targets such as **Me**, **My team**, or **My projects**. This page explains how roles work and what every permission controls.
+A role in Beebole is a named set of permissions that controls what its holders can see and do. Every person has exactly one role, and each permission in a role sets two levels — **View** and **Edit** — scoped to targets such as **Me**, **Managed people**, or **Managed projects**. This page explains how roles work and what every permission controls.
 
 <Info>
   Roles control what a person's role lets them **do** — view or edit data. Which projects, time off types, and expense types are **available** to each person is a separate system, covered in [Assignments](/help/documentation/assignments).
@@ -62,21 +62,26 @@ For permissions with target selectors, the targets you pick under **Edit** and *
 
 | Target | Who or what it covers |
 | --- | --- |
+The targets separate what the person *manages* from their *colleagues* — and, for tasks, what they *own* from what they *manage*:
+
+| Target | Who or what it covers |
+| --- | --- |
 | **All** | No restriction — every target at once |
 | **Me** | The person's own data |
-| **My team** | People they manage, directly or through tags they manage |
+| **Managed people** | People they manage, directly or through tags they manage |
 | **Team colleagues** | People who share the same managers |
 | **Project colleagues** | People assigned to the same projects |
 | **Task colleagues** | People assigned to the same tasks |
-| **People working on my projects** | People assigned to the projects they manage |
-| **My projects** | Projects they manage, directly or through tags they manage |
-| **Project assigned** | Projects assigned to them |
-| **My tasks** | Tasks they own |
-| **Task assigned** | Tasks assigned to them |
-| **My tags** | Tags they manage, including descendant tags |
+| **Managed project members** | People assigned to the projects they manage |
+| **Managed projects** | Projects they manage, directly or through tags they manage |
+| **Assigned projects** | Projects assigned to them |
+| **Owned tasks** | Tasks they own |
+| **Managed tasks** | Tasks they manage |
+| **Assigned tasks** | Tasks assigned to them |
+| **Managed tags** | Tags they manage, including descendant tags |
 | **Global settings** | The organization-wide value of the setting |
 
-For example, a team leader role could have **Timesheet entries** set to **Edit: My team** and **View: My team, Project colleagues** — they can correct their own team's timesheets and see, but not change, entries from project colleagues.
+For example, a team leader role could have **Timesheet entries** set to **Edit: Managed people** and **View: Managed people, Project colleagues** — they can correct their own team's timesheets and see, but not change, entries from project colleagues.
 
 ## Timesheet, time off, and schedule permissions
 
@@ -85,7 +90,7 @@ These permissions control day-to-day time tracking data.
 | Permission | What it controls |
 | --- | --- |
 | **Timesheet entries** | Time entries on timesheets — scoped by people, projects, and tasks |
-| **Time settings** | The timesheet configuration panel on people and on the account |
+| **Timesheet and planning settings** | The timesheet and planning configuration panel on people and on the account |
 | **Valid period for time entry** | The setting that limits how far back or forward time can be entered |
 | **Define time off** | Creating and configuring time off types (on/off) |
 | **Time off balance** | People's time off allowances and balances |
@@ -136,7 +141,7 @@ Be deliberate with **User account** edit access: whoever holds it can change oth
 | --- | --- |
 | **Project details** | Projects — creating, editing, and archiving them |
 | **Secondary projects** | The secondary projects allowed on a project |
-| **Tasks** | Tasks in Planning — scoped to **My tasks** and **Task assigned** |
+| **Tasks** | Tasks in Planning — scoped to **Owned tasks**, **Managed tasks**, and **Assigned tasks** |
 | **Tags** | Creating and managing tags (on/off) |
 
 ## Assignment permissions
@@ -150,8 +155,8 @@ Assignment permissions separate *changing data* from *deciding who works on what
 | **Assign task managers** | Who manages a task |
 | **Assign tag managers** | Who manages a tag |
 | **Assign task owner** | Setting the owner of a task |
-| **Assign tasks** | Assigning tasks to people |
-| **Assign projects** | Assigning people to projects |
+| **Potential owners** | Assigning tasks to people |
+| **Who has access** | Assigning people to projects |
 | **Assign schedules** | Which work schedule is assigned to a person or tag |
 | **Assign time off** | Which time off types are available to a person |
 | **Assign expenses** | Which expense types are available to a person |
@@ -176,6 +181,8 @@ Assignment permissions separate *changing data* from *deciding who works on what
 | **Journal** | Journal messages on people, projects, and tasks |
 | **Journal feed** | The **Journal** page in the sidebar |
 | **Reports** | The **Reports** page, scoped by people and projects |
+| **Timesheet compliance** | The [Timesheet Compliance report](/help/documentation/reports#timesheet-compliance) — managers see the people they manage; admins see everyone |
+| **Billable utilization** | The [Utilization report](/help/documentation/reports#utilization) |
 
 ## Account and visibility permissions
 
@@ -215,7 +222,7 @@ The last four are the controls described in [Assignments](/help/documentation/as
 
 - **Grant the least access that works.** Start from **Not allowed** and add **View** before **Edit**, only for the targets each role really needs.
 - **Name roles after responsibilities.** Names like Project Lead or Finance make it obvious who should hold them.
-- **Prefer few roles over many.** Targets like **My team** and **My projects** adapt to each holder, so one Manager role can serve every manager.
+- **Prefer few roles over many.** Targets like **Managed people** and **Managed projects** adapt to each holder, so one Manager role can serve every manager.
 - **Review roles when your structure changes.** Targets follow manager and tag relationships — check that permissions still reach the right people after a reorganization.
 
 ## Related content

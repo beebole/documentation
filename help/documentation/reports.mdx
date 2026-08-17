@@ -2,7 +2,7 @@
 title: "Reports: analyze time, billing, and costs"
 sidebarTitle: "Reports"
 description: "Run reports in Beebole to analyze tracked time, billing, costs, and budgets — filter and group data, schedule email delivery, and export results."
-keywords: ["beebole", "time tracking reports", "project reports", "timesheet reports", "budget status report", "report scheduling", "report folders"]
+keywords: ["beebole", "time tracking reports", "project reports", "timesheet reports", "budget status report", "revenue at risk", "billable utilization", "timesheet compliance", "report folders"]
 "og:title": "Beebole Reports: Analyze Tracked Time and Spending"
 "og:description": "Run reports in Beebole to analyze time, billing, costs, and budgets — filter, group, schedule email delivery, and export results."
 "og:type": "article"
@@ -162,21 +162,76 @@ Beebole can also notify you automatically when a budget passes its alert thresho
 
 ## Planned vs. Real
 
-Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a chart comparing the work you planned with the hours actually logged, period by period.
+Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a chart comparing the work you planned with the time actually logged, period by period.
 
 <Steps>
-  <Step title="Pick a plan">
-    Choose the **Plan** — one of the task categories enabled for time tracking. Its tasks define the planned side.
+  <Step title="Pick your plans">
+    Under **Plans**, choose which plannings to chart. Click **Add plan** to chart several at once — each plan's tasks contribute to the planned side.
+  </Step>
+  <Step title="Choose the unit and view">
+    Pick the **Unit** the chart reads in: **Hours**, **Days**, **Billing**, **Cost**, or **Margin** — money is shown in your organization's currency. Under **View**, switch between **Cumulative** (the running total) and **Remaining** (a burndown toward zero).
   </Step>
   <Step title="Read the chart">
-    **Planned** is the tasks' planned effort, distributed across the scheduled days between their dates. **Real** is the timesheet time recorded on the projects those tasks belong to — the same scope the Budget Status report uses. A **Forecast** extends the trend, and a **Budget** line shows the budgeted hours where one is set.
+    **Planned** is the tasks' planned effort, distributed across the scheduled days between their dates. **Real** is the timesheet time recorded on the projects those tasks belong to — the same scope the Budget Status report uses. A **Forecast** carries the remaining planned effort forward from today's actuals, an **Ideal** line shows the steady pace that would land exactly on plan, and a **Budget** line appears where a budget is set. A headline states the pace at a glance: **Behind**, **On track**, or **Ahead**.
+  </Step>
+  <Step title="Check who is over or under">
+    The **Over/under plan per person** chart breaks the variance down by person, showing who is running over or under their planned time in the selected period.
   </Step>
   <Step title="Narrow and export">
     Use **Filters** to focus on specific people, projects, or tags, and **Export** to download the results.
   </Step>
 </Steps>
 
-Use it to catch plans drifting from reality early — a **Real** line running above **Planned** means the work costs more time than scheduled. Plan the work itself in the [Gantt](/help/documentation/gantt) and [Staffing](/help/documentation/staffing) views.
+Your chosen plans, unit, and view are remembered per user, so the report reopens the way you left it. Use it to catch plans drifting from reality early — a **Real** line running above **Planned** means the work costs more time than scheduled. Plan the work itself in the [Gantt](/help/documentation/gantt) and [Staffing](/help/documentation/staffing) views.
+
+---
+
+## Revenue at Risk
+
+The **Revenue at Risk** entry in the Reports menu answers one commercial question: which hourly or daily-billed projects will not consume their contracted hours before their end date? Unused budgeted hours on a time-and-materials contract are revenue that is lost when the contract ends — this report surfaces them while there is still time to act.
+
+For every project with a budget, a billing method of **Hourly** or **Daily**, and an end date, the report projects consumption to the end date and lists what will be left over:
+
+| Column | What it shows |
+|--------|---------------|
+| **Project**, **Manager** | The project and its manager |
+| **Billing**, **End date** | The billing method (**Hourly** or **Daily**) and the project's end date |
+| **Budget**, **Budget hours** | The budgeted amount and its equivalent in hours |
+| **Logged**, **Remaining** | Hours consumed so far and hours still available |
+| **Planned to end** | Hours planned on the project's tasks between today and the end date |
+| **Projected at end** | Hours expected to remain unconsumed at the end date — the hours at risk |
+| **Implied rate** | The budget divided by its hours, used to convert hours at risk into money |
+
+Totals at the top summarize the portfolio: **Total at risk**, **Projects at risk**, and **Share of portfolio**. Rows where nothing has been logged yet are flagged **Not started**. Projects the report cannot assess are counted separately below the table — those with no end date set, and those whose budgets mix currencies.
+
+The report appears when your subscription includes budgets, and it supports the standard **Filters** and **Export** controls.
+
+---
+
+## Utilization
+
+The **Utilization** entry in the Reports menu shows billable hours as a share of scheduled capacity, per person and month. Use it to see how much of each person's available time turns into billable work.
+
+- Each row is a person; each column is a month, showing their utilization percentage. **Billable hours** are the hours logged on billable work; **Capacity hours** are the person's scheduled working time, net of time off — so a 30-hour week or a vacation doesn't unfairly lower the score.
+- A **Projected** column estimates next month from the person's planned bookings on billable projects.
+- An **Average** summarizes each person across the period.
+- **Filters** and **Export** work as in other reports.
+
+The report appears when your subscription includes budgets and your role has the **Billable utilization** permission.
+
+---
+
+## Timesheet Compliance
+
+The **Timesheet Compliance** entry in the Reports menu shows whether each person submitted their timesheet on time, late, or not at all — per person and period, in a calendar-style grid. It is the detailed view behind the [timesheet score](/help/documentation/timesheets) shown on person records.
+
+- Each row is a person with their compliance **Score**; each column is a timesheet period, marked **On time**, **Late**, or **Not submitted**.
+- Hover a cell for the details: the period's **Deadline**, when it was **Submitted**, **Days late**, and **Rejections**.
+- Rows sort worst-first by default, so the people needing attention surface at the top.
+- Filter by person or person tag, and change the date range — the report defaults to the last six full months. **Export** downloads the grid.
+- People who have never recorded time are counted separately in a footnote — the timesheet process has not started for them, so they aren't shown as non-submitters.
+
+Access is a dedicated permission: your role needs **Timesheet compliance**, and managers see the people they manage — admins see everyone. See [Roles & authorizations](/help/documentation/roles-authorisations).
 
 ---
 
@@ -231,10 +286,10 @@ Building and reconfiguring report output remains a desktop task — for example,
   <Accordion title="Can I report on time off?">
     Yes. In Beebole, absences are time records, so any time-based report can include them. Add an **Absence type** column to break results down by leave type, or narrow a report to **Absences only** — the sample report **Absences by person** shows this setup.
   </Accordion>
-  <Accordion title="Why do I see different data than a colleague in the same report?">
-    Reports respect permissions. Each person only sees the projects and people their [role](/help/documentation/roles-authorisations) allows, so the same report can return different rows for different viewers.
-  </Accordion>
   <Accordion title="What formats can I export a report to?">
     Beebole exports report results as JSON, CSV, TSV, Excel (XLSX), or PDF, plus the chart as a PNG image and the matrix view in CSV, Excel, or PDF. For spreadsheets that refresh themselves, connect a saved report to the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon).
+  </Accordion>
+  <Accordion title="How does Beebole calculate revenue at risk?">
+    For each hourly or daily-billed project with a budget and an end date, Beebole projects how many budgeted hours will still be unconsumed at that date, then converts them to money using the budget's implied rate. The **Revenue at Risk** report totals this across your portfolio so you can rebalance staffing before contracted hours expire unused.
   </Accordion>
 </AccordionGroup>
