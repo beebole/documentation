@@ -1,6 +1,6 @@
 # Beebole Features
 
-**Last updated:** 2026-08-04
+**Last updated:** 2026-08-17
 
 **Conventions:**
 
@@ -15,7 +15,7 @@
 ## Time Tracking
 
 - `time-tracking/timesheet` **Timesheet** — Weekly/daily/... time entry grid for logging hours against projects, tasks, and absence types
-- `time-tracking/calendar-view` **Timesheet calendar view** — Day-by-hour calendar alongside the timesheet grid: drag and resize entries to set start and end times directly, duplicate an entry by holding ⌘ while dragging it, and delete from a hover button
+- `time-tracking/calendar-view` **Timesheet calendar view** — Day-by-hour calendar alongside the timesheet grid: drag and resize entries to set start and end times directly (the duration shows while you drag), duplicate an entry by holding ⌘ while dragging it, drag a pinned favorite onto the calendar to log it instantly, click an empty slot to insert an entry with the editor opening right away, and delete from a hover button
 - `time-tracking/timer` **Timer** — Start/stop timer for real-time tracking
 - `time-tracking/entry-modes` **Time entry modes** — Entry in hours (hh:mm), hours (decimals), days, or percentage of workday
 - `time-tracking/duration-or-start-end` **Duration or start/end** — Enter time as a duration or with start and end times
@@ -26,6 +26,7 @@
 - `time-tracking/copy-paste` **Copy/paste time entries** — Duplicate entries across days or weeks
 - `time-tracking/clear-rows` **Clear rows per section** — Hover-to-reveal button that clears one section's rows and its time entries for the current period (undoable); replaces the old all-or-nothing "Clear timesheet" action
 - `time-tracking/auto-submit` **Auto-submit** — Automatically submit timesheets after a configurable number of days
+- `time-tracking/auto-timesheet` **Auto Timesheet from Planning** — Optional setting (**Enable Auto Timesheet from planning** in **Timesheet and Planning Settings**) that fills timesheets automatically from what was planned for each person, so someone who did what was planned doesn't have to fill a timesheet; Kanban boards contribute entries as cards move (**Auto timesheet from tasks**)
 - `time-tracking/duplicate-and-start` **Duplicate and start** — Duplicate a time entry and start a new one based on it
 - `time-tracking/reminders` **Timesheet reminders** — Configurable reminders for unfilled timesheets
 - `time-tracking/entry-restrictions` **Time entry restrictions** — Organization-wide rules configured via an "Add restriction" interface with removable chips: keep entries within a project's or person's validity dates, block future-dated entries, require a comment on submission, cap or require hours against the daily/period schedule, allow entries only on scheduled working time (blocking days off and public holidays), limit time-off bookings to the available quota balance, and keep absences to a single day
@@ -49,7 +50,7 @@
 - `absence/approval` **Absence approval** — Integrated with the multi-stage approval workflow
 - `absence/notifications` **Absence notifications** — Alerts for negative balances, advance bookings
 - `absence/excess-occurrence-notifications` **Absence frequency alerts** — Send administrators an alert when a team member takes absence more than a configured number of times within a month or year, helping flag attendance patterns early
-- `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organization, tag, or person level; load the calendar for a specific year (recent past years included) and keep custom edits when reloading; once a calendar is configured, its country is locked to protect holidays in past years
+- `absence/public-holidays` **Public holidays** — Automatically populated country-specific public holiday calendars assignable at organization, tag, or person level; load the calendar for a specific year (recent past years included) and keep custom edits when reloading the same country; the calendar's country and region can be changed at any time, re-deriving every year's holidays — past years included — from the new country
 - `absence/custom-holidays` **Custom holidays** — Add or edit individual holiday entries manually
 - `absence/archive` **Archive/unarchive absence types** — Soft-delete absence types without losing historical data
 
@@ -74,6 +75,8 @@
 
 ## Planning, Tasks & Staffing
 
+> The app's sidebar labels this area **Planning**, and task categories are called **plannings** in the UI (e.g. "Add a planning"). Individual items are still called tasks.
+
 - `tasks/add` **Add task** — Create a task manually within a project category, or import multiple tasks at once from a CSV file
 - `tasks/kanban` **Kanban board view** — Drag-and-drop task cards by status
 - `tasks/kanban-wip-limits` **Kanban WIP limits** — Set a maximum number of concurrent tasks per status column on the Kanban board
@@ -82,7 +85,7 @@
 - `tasks/gantt-grouping` **Gantt row grouping** — Group Gantt rows by category level, task owner, or status for a structured overview
 - `tasks/gantt-keyboard` **Gantt keyboard navigation** — Navigate Gantt rows with arrow keys and expand or collapse groups without a mouse
 - `tasks/gantt-workload-heatmap` **Gantt workload heatmap** — Color-coded bars on Gantt group rows show each group's effort against available capacity per day or week, with a per-person breakdown on hover and a workload indicator under each date in the timeline header
-- `tasks/staffing` **Staffing view** — Long-horizon timeline of who works on what and when, alongside Gantt and Kanban: bars grouped by people or by project, drag on the timeline to create a booking, move or resize it, set the allocation percentage, and filter people/projects by tag
+- `tasks/staffing` **Staffing view** — Long-horizon timeline of who works on what and when, alongside Gantt and Kanban: bars grouped by people or by project, drag on the timeline to create a booking, move or resize it, set the allocation percentage, and filter people/projects by tag; bars can be linked with the same dependencies as the Gantt (linked bookings move together), and an Unassigned row holds planned work nobody has picked up yet
 - `tasks/staffing-bookings` **Bookings** — Assign a person to a project for a date range without naming a task; the booking's name is shown automatically from that person and project across Staffing, Gantt, and Kanban, and a booking can be marked tentative while plans are still firming up
 - `tasks/staffing-capacity` **Workload & capacity** — Each person's workload and remaining capacity at a glance in the Staffing view, with an overload indicator in the timeline header; over-booking flags and a "who's free" search filter surface staffing problems directly on the timeline
 - `tasks/views` **Saved task views** — Create, rename, and switch between multiple named views of tasks, each with its own layout (Gantt, Kanban, or Staffing), column selection, and grouping preferences
@@ -90,9 +93,10 @@
 - `tasks/dependencies` **Task dependencies** — Link tasks as predecessors and successors to define execution order
 - `tasks/end-date-lock` **Lock task end date** — Pin a task's end date so it stays fixed even when predecessor tasks shift, keeping hard deadlines in place regardless of dependency changes
 - `tasks/effort-occupancy` **Effort & occupancy tracking** — Allocate percentage of a person's time to specific tasks
-- `tasks/hierarchy` **Hierarchical tasks** — Tasks organized under categories with nesting
+- `tasks/hierarchy` **Hierarchical tasks** — Tasks organized under categories (plannings) with nesting
 - `tasks/statuses` **Task statuses** — Configurable status workflow (e.g., To Do → In Progress → Done)
 - `tasks/ownership` **Task ownership** — Assign people to tasks
+- `tasks/unassigned-warning` **Unassigned task warnings** — Notify everyone involved a configurable number of days before an unassigned task starts (**days before an unassigned task starts** in Timesheet and Planning Settings)
 - `tasks/recurring` **Recurring tasks** — Repeat a task on a schedule; occurrence and series edits are handled by the Gantt recurrence dialog. _(status: hidden-flag — the recurrence editor in the task panel is still behind `SHOW_TASK_RECURRENCE = false`, so users cannot create recurring tasks in the UI; only management dialogs for existing series are live. Re-verified 2026-08-04 — do NOT document until creation ships)_
 - `tasks/custom-fields` **Task-level custom fields** — Custom attributes per task
 - `tasks/descriptions` **Task descriptions** — Add free-text descriptions to tasks
@@ -224,7 +228,10 @@
 - `reports/folders` **Report folders** — Organize saved reports into folders; move a report into a folder from its menu, and switch every report in a folder between working time and time off with the "Absence / working time" scope
 - `reports/matrix` **Matrix report** — Grid visualization with entities or calendar periods on each axis, showing hours, billing, costs, or other metrics per cell, with an optional heat-map overlay and one-click row/column swap
 - `reports/budget-status` **Budget status report** — Progress-bar view of budget consumption across projects with actuals, a burn-rate forecast that warns when spending is on track to exceed a budget, hierarchy roll-up including sub-project budgets, drill-down detail sheets, and automatic alerts that link straight to the report when a budget passes its threshold or goes over
-- `reports/planning-vs-real` **Planned vs. real report** — Side-by-side comparison of planned task effort against actual timesheet data
+- `reports/planning-vs-real` **Planned vs. real report** — Compare planned effort against actual timesheet data, with multiple plans per report and figures in hours, days, billing, cost, or margin; cumulative or remaining burn views with an ideal line, a forecast carried forward from today's actuals, and a pace-status headline (behind, on track, ahead)
+- `reports/revenue-at-risk` **Revenue at Risk report** — Lists projects at risk of not consuming their budgeted hours before their end date, with the total revenue at risk and the projects behind it
+- `reports/utilization` **Billable utilization report** — Monthly per-person billable utilization (billable hours ÷ scheduled capacity) that respects each person's real schedule, public holidays, and absences, with a projection for the coming month
+- `reports/timesheet-compliance` **Timesheet compliance report** — Calendar-style grid of timesheet hits and misses per person per period — a detailed view of the timesheet score — filterable, with the period defaulting to the last six full months
 - `reports/absence-quotas` **Absence quota report** — Quota consumption per person shown as bars and a timeline, with drill-down detail sheets for a single person's breakdown
 - `reports/mobile` **Reports on mobile** — Consult-and-filter experience designed for phones: pick a folder, change the period, and read each report
 - `reports/schedule-email` **Scheduled report delivery** — Email a saved report to chosen recipients on a recurring schedule
@@ -266,7 +273,7 @@
 
 ## Companion Apps & Add-ins
 
-- `apps/desktop` **Desktop app** — Companion app for macOS, Windows, and Linux that drafts time entries from what you work on, capturing only site address, page title, and time spent; raw activity never leaves the device — it is stored in a local database and purged after 30 days, and only the day, project/task, and duration of entries you accept reach the server. Download and install instructions live on the Connected apps page
+- `apps/desktop` **Desktop app** — Companion app for macOS, Windows, and Linux that drafts time entries from what you work on, capturing only site address, page title, and time spent — and only after you explicitly turn tracking on; raw activity never leaves the device — it is stored in a local database and purged after 30 days, and only the day, project/task, and duration of entries you accept reach the server. Download and install instructions live on the Connected apps page
 - `apps/browser-extension` **Browser extension** — Chrome/Edge and Firefox extension that connects directly to your account with your API key and turns time spent on sites you choose into draft timesheet entries; per-site opt-in, and for sites you explicitly allow it can read the visible page text to match time to the right project or task (used only to classify, never stored)
 - `reports/excel-addin` **Excel add-in report loader** — Excel add-in that links any worksheet to a saved Beebole report and refreshes the data on demand or each time the file is opened
 - `reports/export` **Google Sheets add-in report loader** — Google Sheets add-on that links a sheet to a saved Beebole report and refreshes the data from within the spreadsheet, without re-exporting from Beebole
@@ -361,7 +368,8 @@
 - `org/configuration-export` **Configuration data export** — Bulk-export people, projects, tags, rates, budgets, and other account configuration as structured data
 - `org/gdpr-compliance` **GDPR compliance tools** — Dedicated settings area for data protection officer contact, employee data export, and person anonymization
 - `integrations/auto-sync` **Automatic daily integration sync** — Keep structure imported from integrations in sync automatically every day, without manual re-import
-- `reports/revenue-at-risk` **Delivery & revenue-at-risk reporting** — Staffing-based delivery reporting that highlights revenue at risk (remainder of the staffing & delivery feature request). _(status: partial — implementation exists on the `dev` branch only, not in production)_
+- `time-tracking/reply-by-email` **Reply-by-email timesheet commands** — Act on your timesheet by replying to Beebole notification emails with short commands
+- `time-tracking/suggestion-autopilot` **Timesheet suggestion autopilot** — One coherent behavior across all suggestion sources (browser extension, desktop app, Kanban, mined habits, planned tasks), resolved against each person's work schedule and connected to auto-submit so timesheets assemble and submit themselves
 
 ---
 
