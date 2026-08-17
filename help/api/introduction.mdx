@@ -36,21 +36,21 @@ apikey: YOUR_API_KEY
 ```
 
 <Steps>
-  <Step title="Open your API key">
-    In Beebole, click the button with your initials at the bottom of the left sidebar, then click **API Key**.
+  <Step title="Open your user menu">
+    In Beebole, click the button with your initials at the bottom of the left sidebar.
   </Step>
-  <Step title="Open API settings">
-    Go to **Settings** \> **API** in your Beebole account.
+  <Step title="Open the API Key panel">
+    Click **API Key**. Beebole creates your key automatically the first time you open this panel.
   </Step>
   <Step title="Copy your API key">
-    Your **API Key** is displayed on this page. Click **Copy** to copy it to the clipboard.
+    Click **Copy** to copy the full key to the clipboard. Click **Reset** to revoke the current key and generate a new one.
   </Step>
   <Step title="Include the key in every request">
     Add the `apikey` header to all HTTP requests you send to the endpoint.
   </Step>
 </Steps>
 
-The panel shows a single active API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions.
+The panel shows a single active API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions. To read time records, people, or projects, the key's owner needs matching **View** permissions on **Timesheet entries**, **People**, and **Reports**. See [Roles & permissions](/help/documentation/roles-authorisations) for the full list. If a request returns a `permissionsErrors` entry, the key's owner is missing the permission for that field. An administrator has to grant it, or you have to issue the key from a person whose role already includes it.
 
 <Warning>
   Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, open the **API Key** panel and click **Reset** to revoke the current key and generate a new one.
