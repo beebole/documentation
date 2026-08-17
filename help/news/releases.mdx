@@ -10,6 +10,46 @@ og:description: "New features, improvements, and changes to Beebole, updated mon
 og:type: "website"
 ---
 
+<Update label="August 2026" tags={["Reports","Planning","Timesheet","Settings"]}>
+  August adds three new reports — **Revenue at Risk**, **Utilization**, and **Timesheet Compliance** — turns your plans into automatic timesheet entries, and makes the Gantt and Staffing views sharper for day-to-day resource planning.
+
+  ### Reports
+
+  - New **Revenue at Risk** report: for hourly and daily-billed projects with an end date, see how many budgeted hours will still be unconsumed by that date — converted into a revenue amount, with totals for the amount at risk and the projects behind it. See [Reports](/help/documentation/reports).
+  - New **Utilization** report: billable hours as a share of each person's scheduled capacity per month, with capacity net of time off and a projection for next month based on planned bookings.
+  - New **Timesheet Compliance** report: a person-by-period grid showing who submitted on time, late, or not at all, with a per-person score, hover details, filtering, and export. Access is a dedicated permission — managers see the people they manage.
+  - The [Planned vs. Real](/help/documentation/reports) report grows up: read it in hours, days, billing, cost, or margin; chart several plans at once; flip between cumulative and remaining (burndown) views with an ideal-burn line and a **Behind / On track / Ahead** pace headline; and a new chart shows time over or under plan per person.
+  - The [AI report builder](/help/documentation/ai) now remembers the conversation — follow-up requests refine the report you just built.
+
+  ### Planning & staffing
+
+  - Gantt, Kanban, and Staffing views gain a **Filters** button — filter by task, status, owner, assigned person, project, or tags.
+  - New capacity finder on the people view: search who's available over a chosen period — including forward-looking ranges like "By year end" — with over-booking flagged directly on the [Staffing](/help/documentation/staffing) timeline.
+  - The booking editor now takes allocation as a percent, hours per working day, or total hours, and a booking can be marked **Tentative** — it reserves capacity but stays out of reports until confirmed. Split a booking in two or duplicate it in one click.
+  - Dependency links now work fully in Staffing: links are drawn between bars, linked bookings follow the drag live, and you can drag and resize dependent bookings directly.
+  - Multi-select on the [Gantt](/help/documentation/gantt) and Staffing timelines: drag several bars together, hold ⌘ to drop dated copies, or resize the whole selection at once — all undoable in a single step.
+  - Lock the Gantt or Staffing view to a fixed week, month, quarter, or year fitted to your screen, and refill a period from the previous one with the new **Copy previous period** action.
+  - Move a booking between rows by dragging it vertically — onto another person to reassign it, onto another project, or onto the unassigned row to clear the owner.
+  - Unassigned work is now visible and actionable: an unassigned row in Staffing holds it, and everyone involved gets an email before an unassigned task starts.
+
+  ### Timesheets
+
+  - New Favorites bar on the [calendar view](/help/documentation/timesheets): pin your usual projects, tasks, and time-off types and drop them straight onto the grid. Clicking one creates the entry immediately, using the start time and duration you usually log.
+  - New **Auto Timesheet from Planning** option: what was planned for a person becomes their timesheet entries automatically, and Kanban card moves now fill a day properly — splitting it between tasks finished the same day, with manual entries always winning.
+  - The [desktop app's](/help/documentation/desktop-app) activity tracking is now opt-in: nothing is observed until you explicitly turn it on, a plain-language card explains exactly what is read and what stays on your machine, and you can pause or stop tracking anytime from the menu bar icon.
+  - Work on several calendar entries as a group: shift-click a range or ⌘-click entries, then move, duplicate, resize, or delete them all in one undoable step.
+  - Each time entry now holds exactly one activity — a task, an absence, or projects — so switching an entry's activity replaces the previous one and nothing counts twice in reports.
+
+  ### Settings & permissions
+
+  - Role targets are reorganised: the old "my" scope is split into what you *manage* versus your *colleagues*, and task access separates tasks you own from tasks you manage. Existing roles migrate automatically. See [Roles](/help/documentation/roles-authorisations).
+  - Timesheet settings are now **Timesheet and Planning Settings**, and task categories are called **Plannings** throughout the app.
+  - A new [time restriction](/help/documentation/timesheetSettings) keeps start and end times inside the day's scheduled hours — as a warning or a hard block.
+  - A [public holiday](/help/documentation/public-holidays) calendar's country can now be changed freely — it is no longer locked once loaded.
+
+  {/* news-cursor: 2026-08-16 */}
+</Update>
+
 <Update label="July 2026" tags={["Planning","Timesheet","AI","Reports","Integrations"]}>
   July brings three new ways to plan and track your time: a drag-and-drop **Calendar view** for your timesheet, time entries suggested automatically from your activity, and a new **Staffing** view for resource planning. You can now also connect AI assistants like Claude and ChatGPT to your Beebole data.
 
@@ -47,8 +87,6 @@ og:type: "website"
   - Approvers now receive an approval digest summarizing timesheets awaiting their review, including a flag for days with significant after-hours time.
   - Timesheet summary emails now show the full project and task path, making entries easier to identify.
   - Notifications are only sent to people who actually belong to your organization — archived people and expired invitations no longer receive them.
-
-  {/* news-cursor: 2026-07-30 */}
 </Update>
 
 <Update label="June 2026" tags={["Languages","Timesheet","Time off","Reports","Security"]}>
