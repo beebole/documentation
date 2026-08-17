@@ -1,7 +1,6 @@
 ---
 name: news
-description: 'Draft monthly release-notes entries in help/news/releases.mdx from the pre-generated production release notes in ../reboot/frontend/public/release-notes/production/. Default: cover every production note newer than the news-cursor marker, grouped one <Update> block per month. `--month YYYY-MM` re-drafts a single month.'
-disable-model-invocation: true
+description: 'Draft monthly release-notes entries in help/news/releases.mdx from the pre-generated production release notes in ../reboot/frontend/public/release-notes/production/. Default: cover every production note newer than the news-cursor marker, grouped one <Update> block per month. `--month YYYY-MM` re-drafts a single month. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # News — Release Notes Author

@@ -1,7 +1,6 @@
 ---
 name: find-gaps
-description: 'Compare the Beebole feature catalog (`.claude/context/features.md`) against the documentation in `help/**` and write `.todo/gaps.md` listing every Missing or Partial page. The handoff is consumed by `/write` to draft pages in batch. Use when asked to find documentation gaps, check coverage, or prepare the next batch of pages to write.'
-disable-model-invocation: true
+description: 'Compare the Beebole feature catalog (`.claude/context/features.md`) against the documentation in `help/**` and write `.todo/gaps.md` listing every Missing or Partial page. The handoff is consumed by `/write` to draft pages in batch. Use when asked to find documentation gaps, check coverage, or prepare the next batch of pages to write. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Find Gaps — Detect Documentation Coverage Gaps
