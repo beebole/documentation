@@ -80,3 +80,9 @@ Use this table to map app change keywords to the documentation pages they likely
 | language, multi-language, localization, interface language | `help/documentation/account-settings.mdx` |
 | fallback mode, connection diagnostics, offline, blocked connection, troubleshooting, not loading, slow | `help/documentation/troubleshooting.mdx` |
 | calendar view, day view, drag entries | `help/documentation/timesheets.mdx` |
+| revenue at risk, unconsumed hours, budget hours at risk | `help/documentation/reports.mdx` |
+| utilization, billable utilization, scheduled capacity | `help/documentation/reports.mdx` |
+| timesheet compliance report, compliance grid, late submission | `help/documentation/reports.mdx` |
+| auto timesheet, automatic timesheet, autopilot, auto timesheet from planning | `help/documentation/timesheetSettings.mdx` |
+| unassigned task, untaken task, unassigned warning | `help/documentation/planning.mdx` |
+| favorites, favorites bar, pinned favorites | `help/documentation/timesheets.mdx` |

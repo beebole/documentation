@@ -8,15 +8,15 @@ keywords: ["beebole", "kanban board", "task statuses", "WIP limits", "drag and d
 "og:type": "article"
 ---
 
-Beebole's Kanban board displays your [tasks](/help/documentation/planning) as cards in columns — one column per status of the task category. Drag a card to another column to change its status as work progresses, for example from **Backlog** to **In progress** to **Done**. The Kanban board is one of the three views of the **Tasks** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
+Beebole's Kanban board displays your [tasks](/help/documentation/planning) as cards in columns — one column per status of the planning. Drag a card to another column to change its status as work progresses, for example from **Backlog** to **In progress** to **Done**. The Kanban board is one of the three views of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
 
 ---
 
 ## Opening a Kanban view
 
 <Steps>
-  <Step title="Open the Tasks page">
-    Click **Tasks** in the sidebar. Pick the task category you want at the top of the page.
+  <Step title="Open the Planning page">
+    Click **Planning** in the sidebar. Pick the planning you want at the top of the page.
   </Step>
   <Step title="Select a Kanban view">
     Click a Kanban view tab above the task list. To create another one, click **Add a view** and select **Kanban**.
@@ -27,21 +27,21 @@ Beebole's Kanban board displays your [tasks](/help/documentation/planning) as ca
 
 ## Board layout
 
-Each column is one status of the active task category, in the order defined in the **Task statuses** modal. A column header shows:
+Each column is one status of the active planning, in the order defined in the **Task statuses** modal. A column header shows:
 
 - A **+** button (**Add a task**) that opens the add form with this status preselected.
 - The number of tasks in the column — displayed as `current/max` when the status has a **Max tasks** limit.
 - The status name. Click it to open the **Task statuses** modal.
-- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move left** / **Move right** (reorder the column), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the category's only status).
+- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move left** / **Move right** (reorder the column), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the planning's only status).
 
 ---
 
 ## Setting up status columns
 
-Statuses belong to the task category — not to a project — so every category defines its own columns. Click any column's name (or the **Edit statuses** gear in a task's detail panel) to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
+Statuses belong to the planning — not to a project — so every planning defines its own columns. Click any column's name (or the **Edit statuses** gear in a task's detail panel) to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
 
 <Tip>
-  Keep the workflow short. New Beebole accounts start with the **Main plan** category and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
+  Keep the workflow short. New Beebole accounts start with one planning, **Main planning**, and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
 </Tip>
 
 ---
@@ -98,11 +98,11 @@ Edits are saved automatically. The description is part of the task, so the same 
 
 Hover over a card and click the clock button (**Add time**) to log time on that task for today, without leaving the board. Once time has been logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`) — click it to add more.
 
-The button only appears on tasks whose category is selected under **Record time on these task categories** in [Timesheet settings](/help/documentation/timesheetSettings).
+The button only appears on tasks whose planning is selected under **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 
 ### Auto Timesheet: statuses that drive time records
 
-With **Auto Timesheet**, the board itself can start and end time records. In the **Auto Timesheet** tab of [Timesheet settings](/help/documentation/timesheetSettings#auto-timesheet), check **Enable Auto Timesheet**, pick a task category, then choose the **Start** and **End** statuses — the statuses that trigger a time record to start and to end. Moving a card into those columns then drives the time record for the task.
+With **Auto Timesheet from Planning**, the board itself can start and end time records. In the [Auto Timesheet from Planning tab](/help/documentation/timesheetSettings#auto-timesheet-from-planning) of **Timesheet and Planning Settings**, check **Enable Auto Timesheet from planning**, pick a planning, then choose the **Start** and **End** statuses — the statuses that trigger a time record to start and to end. Moving a card into those columns then drives the time record for the task: cards created directly in a start status begin tracking immediately, moving a card back before its start column stops its clock, and finishing several tasks the same day splits the day between them — manual entries always win. Cards show a gray pill with the suggested, not-yet-accepted time alongside logged time.
 
 ---
 
@@ -115,8 +115,8 @@ With **Auto Timesheet**, the board itself can start and end time records. In the
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
     Schedule the same tasks on a timeline with dependencies and a workload heatmap.
   </Card>
-  <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
-    Choose which task categories accept time entries and configure Auto Timesheet.
+  <Card title="Timesheet and Planning Settings" icon="sliders" href="/help/documentation/timesheetSettings">
+    Choose which plannings accept time entries and configure Auto Timesheet from Planning.
   </Card>
 </CardGroup>
 
@@ -124,7 +124,7 @@ With **Auto Timesheet**, the board itself can start and end time records. In the
 
 <AccordionGroup>
   <Accordion title="Can I use the Kanban board without setting up statuses first?">
-    Yes. New Beebole accounts come with the **Main plan** task category and the statuses **Backlog**, **Queue**, **In progress**, and **Done**, so the board works immediately. You can rename, recolor, reorder, add, or remove statuses later in the **Task statuses** modal.
+    Yes. New Beebole accounts come with the default **Main planning** and the statuses **Backlog**, **Queue**, **In progress**, and **Done**, so the board works immediately. You can rename, recolor, reorder, add, or remove statuses later in the **Task statuses** modal.
   </Accordion>
   <Accordion title="What happens when a column reaches its WIP limit?">
     Beebole blocks the move. The column border turns red while you drag over it, and dropping shows an error saying the status is at its task limit. Raise the status's **Max tasks** value, set it to 0 for unlimited, or move other tasks out first.
@@ -133,7 +133,7 @@ With **Auto Timesheet**, the board itself can start and end time records. In the
     **⌘+Click** cards to build a selection (or **Shift+Click** for a range within a column), then drag any selected card — all selected cards move to the target column together, as long as the move stays within the column's WIP limit.
   </Accordion>
   <Accordion title="Do changes on the Kanban board affect the Gantt chart?">
-    Yes. The Kanban board and the Gantt chart display the same tasks from the same category. A status change, rename, or archive done on the board is immediately reflected in the Gantt view, and vice versa.
+    Yes. The Kanban board and the Gantt chart display the same tasks from the same planning. A status change, rename, or archive done on the board is immediately reflected in the Gantt view, and vice versa.
   </Accordion>
   <Accordion title="How do I archive every task in a column?">
     Open the column header's **⋯** menu and click **Archive**. The same menu offers **Unarchive** to restore the column's archived tasks — use **Show Archived** in the page header to see them.

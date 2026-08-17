@@ -2,16 +2,16 @@
 title: "Task planning: create, organize, and track tasks"
 sidebarTitle: "Task Planning"
 description: "Tasks in Beebole are independent planning entities. Create them one by one or from a spreadsheet, organize statuses and subtasks, assign owners, and track time."
-keywords: ["beebole", "tasks", "task management", "task planning", "task statuses", "subtasks", "task categories"]
+keywords: ["beebole", "tasks", "task management", "task planning", "plannings", "task statuses", "subtasks", "task categories"]
 og:title: "Creating, Organizing, and Tracking Tasks in Beebole"
 og:description: "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
 og:type: "article"
 ---
 
-Tasks in Beebole are independent planning entities — units of work that you schedule, assign, and track time on. A task is not a sub-element of a project: tasks live on their own **Tasks** page, and linking a task to a project is optional. Use tasks to plan the work to be done, and let your team track time directly on them.
+Tasks in Beebole are independent planning entities — units of work that you schedule, assign, and track time on. A task is not a sub-element of a project: tasks live on their own **Planning** page, and linking a task to a project is optional. Use tasks to plan the work to be done, and let your team track time directly on them.
 
 <Info>
-  To work with tasks, click **Tasks** in the sidebar. The same tasks can be displayed in three views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, and the [Staffing view](/help/documentation/staffing) for planning by person.
+  To work with tasks, click **Planning** in the sidebar. The same tasks can be displayed in three views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, and the [Staffing view](/help/documentation/staffing) for planning by person.
 </Info>
 
 <div style={{position: "relative", paddingBottom: "calc(71.0913% + 41px)", height: "0px", width: "100%"}}>
@@ -24,7 +24,7 @@ Tasks in Beebole are independent planning entities — units of work that you sc
 
 [Projects](/help/documentation/projects) describe what hours are logged _into_; tasks describe the work _to be done_. The two are connected but independent:
 
-- A task can exist without any project. You can plan, assign, and complete it entirely on the **Tasks** page.
+- A task can exist without any project. You can plan, assign, and complete it entirely on the **Planning** page.
 - A task can be linked to projects through its **Projects** attribute in the task detail panel.
 - Time can be tracked on tasks directly, in the **Tasks** section of the [timesheet](/help/documentation/timesheets).
 
@@ -32,22 +32,22 @@ For general work that isn't planned as a task, track time on projects and subpro
 
 ---
 
-## Task categories
+## Plannings
 
-Every task belongs to a task category — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one category named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
+Every task belongs to a planning — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one planning named **Main planning**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
 
-- **Switch categories** — Click the category name at the top of the **Tasks** page and pick another category from the menu.
-- **Create a category** — In the same menu, type a name in the **Name of a new plan** field and click **Add**.
+- **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
+- **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
 
-Statuses always belong to a task category, not to a project: each category defines its own workflow. See [Statuses](#task-statuses) below.
+Statuses always belong to a planning, not to a project: each planning defines its own workflow. See [Statuses](#task-statuses) below.
 
 ---
 
 ## Creating a task
 
 <Steps>
-  <Step title="Open the Tasks page">
-    Click **Tasks** in the sidebar, and check that the right category is selected at the top of the page.
+  <Step title="Open the Planning page">
+    Click **Planning** in the sidebar, and check that the right planning is selected at the top of the page.
   </Step>
   <Step title="Click Add Task">
     Click the **Add Task** button. A form opens in the side panel.
@@ -61,7 +61,7 @@ Statuses always belong to a task category, not to a project: each category defin
 </Steps>
 
 <Tip>
-  Press **⌘\+A** (Ctrl\+A on Windows) anywhere on the **Tasks** page to open the add form. If a task is currently open, the new task is created as its subtask.
+  Press **⌘\+A** (Ctrl\+A on Windows) anywhere on the **Planning** page to open the add form. If a task is currently open, the new task is created as its subtask.
 </Tip>
 
 ### Adding many tasks at once
@@ -106,7 +106,11 @@ In the modal you can:
 Beebole distinguishes the person responsible for a task from the people it is available to:
 
 - **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates.
-- **Potential owners** — People or [tags](/help/documentation/tags) the task is assigned to. In filters and on Kanban cards, these assigned people appear under the **Assignee** label.
+- **Potential owners** — People or [tags](/help/documentation/tags) the task is assigned to. In filters, these appear as **Potential owner** and **Potential owner tag**.
+
+<Info>
+  Beebole can warn everyone involved before a task with no owner starts: the task manager and the assigned people are notified — the admins when the task has no manager. Configure the number of days in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#reminders).
+</Info>
 
 ---
 
@@ -144,12 +148,12 @@ Time entries can be recorded directly against tasks:
 - **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project.
 - **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
 
-Which task categories accept time entries is controlled by the **Record time on these task categories** setting, in the **Categories** tab of [Timesheet settings](/help/documentation/timesheetSettings). Tasks in other categories don't show the time button.
+Which plannings accept time entries is controlled by the **Record time on these plannings** setting, in the **Categories** tab of [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Tasks in other plannings don't show the time button.
 
-You can also let task statuses drive time records automatically with **Auto Timesheet** — choose a **Start** and an **End** status per category, and moving a task into those statuses triggers a time record to start and end. Set it up in the [Auto Timesheet tab of Timesheet settings](/help/documentation/timesheetSettings#auto-timesheet).
+You can also let task statuses drive time records automatically with **Auto Timesheet from Planning** — choose a **Start** and an **End** status per planning, and moving a task into those statuses starts and ends its time records, as suggestions the person accepts or written directly into the timesheet. Set it up in the [Auto Timesheet from Planning tab](/help/documentation/timesheetSettings#auto-timesheet-from-planning).
 
 <Info>
-  From a person's or a project's action menu, **Go to tasks** jumps to the **Tasks** page filtered on that person or project.
+  From a person's or a project's action menu, **Go to tasks** jumps to the **Planning** page filtered on that person or project.
 </Info>
 
 ---
@@ -159,7 +163,7 @@ You can also let task statuses drive time records automatically with **Auto Time
 Beyond scheduling, each task carries:
 
 - **Description** — A rich-text panel for context, acceptance criteria, links, and file attachments, with @mentions to reference teammates. See [task descriptions](/help/documentation/kanban#task-descriptions) for the editor's features.
-- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** \> **Custom Fields** and make them visible for tasks — visibility can even be limited to specific task categories. See [Custom fields](/help/documentation/custom-fields).
+- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** \> **Custom Field** and make them visible for tasks — visibility can even be limited to specific plannings. See [Custom fields](/help/documentation/custom-fields).
 - **Tags** — Label tasks with [tags](/help/documentation/tags) to group and filter them across categories, and to report on them by team, client, or any dimension you define.
 
 ---
@@ -179,7 +183,7 @@ Each task has a **⋯** action menu — hover over its row in the Gantt view or 
 
 ## Viewing tasks your way
 
-The **Tasks** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Gantt chart**, **Kanban**, or **Staffing**; each view remembers its own settings (columns, grouping, scale, or card fields). Use **Filters** in the header to narrow any view by task, status, owner, assigned person, project, or tags.
+The **Planning** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Gantt chart**, **Kanban**, or **Staffing**; each view remembers its own settings (columns, grouping, period, or card fields). Use the **Filters** button to narrow any view by task, status, owner, potential owner, project, or tags — the button shows the active filter count, and toggling it off keeps the filters for later.
 
 <CardGroup cols={2}>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
@@ -204,8 +208,8 @@ The **Tasks** page shows your tasks through saved views — tabs above the task 
     How people log hours — including time tracked on tasks.
   </Card>
 
-  <Card title="Timesheet settings" icon="sliders" href="/help/documentation/timesheetSettings">
-    Control which task categories accept time entries and configure Auto Timesheet.
+  <Card title="Timesheet and Planning Settings" icon="sliders" href="/help/documentation/timesheetSettings">
+    Control which plannings accept time entries and configure Auto Timesheet from Planning.
   </Card>
 
   <Card title="Custom fields" icon="list-check" href="/help/documentation/custom-fields">
@@ -229,11 +233,11 @@ The **Tasks** page shows your tasks through saved views — tabs above the task 
   </Accordion>
 
   <Accordion title="Can people track time on any task?">
-    Only on tasks in the categories selected under **Record time on these task categories** in Beebole's Timesheet settings. Tasks in those categories appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards.
+    Only on tasks in the plannings selected under **Record time on these plannings** in Beebole's **Timesheet and Planning Settings**. Tasks in those plannings appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards.
   </Accordion>
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">
-    The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; they appear as **Assignee** in filters and on Kanban cards.
+    The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; in filters they appear as **Potential owner** and **Potential owner tag**.
   </Accordion>
 
   <Accordion title="Should I archive or delete a finished task?">

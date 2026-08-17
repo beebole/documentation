@@ -8,15 +8,15 @@ keywords: ["beebole", "gantt chart", "task timeline", "task scheduling", "task d
 "og:type": "article"
 ---
 
-Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bars on a timeline, so you can see start and end dates, sequence work with dependencies, and spot scheduling overload at a glance. It is one of the three views of the **Tasks** page, alongside the [Kanban board](/help/documentation/kanban) and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
+Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bars on a timeline, so you can see start and end dates, sequence work with dependencies, and spot scheduling overload at a glance. It is one of the three views of the **Planning** page, alongside the [Kanban board](/help/documentation/kanban) and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
 
 ---
 
 ## Opening a Gantt view
 
 <Steps>
-  <Step title="Open the Tasks page">
-    Click **Tasks** in the sidebar. Pick the task category you want at the top of the page.
+  <Step title="Open the Planning page">
+    Click **Planning** in the sidebar. Pick the planning you want at the top of the page.
   </Step>
   <Step title="Select a Gantt view">
     Click a Gantt view tab above the task list. To create another one, click **Add a view** and select **Gantt chart** — each view keeps its own columns, grouping, and scale.
@@ -27,9 +27,18 @@ Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bar
 
 ## Reading the timeline
 
-Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
+Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. Task names show their full project and task path, so tasks with similar names are easy to tell apart. A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
 
-The timeline has two scales. Open the **⋯** menu on the active view tab, hover over **Scale**, and choose **By day** or **By week**.
+Hover any bar for a rich tooltip: the full dates, the task name, its project with parents, the owner, the planned hours or days and allocation percentage, plus a hint about what **⌘** does on the chart.
+
+### Choosing the period
+
+Open the **⋯** menu on the active view tab and use **Period** to choose how the timeline runs:
+
+- **Infinite by day** or **Infinite by week** — the endless scrolling timeline, at day or week granularity.
+- A fixed **week**, **month**, **quarter**, or **year** — the chart fits that window to your screen and lists only the tasks that fall inside it (parents and recurring series are kept).
+
+With a fixed period, tasks that start before or end after the window are drawn cut off, with a dashed edge and a chevron — click it to jump to the hidden start or end date. Cut edges can't be resized, since the date they would move isn't on screen.
 
 <Info>
   Tasks without dates still appear as rows in the task list — they just have no bar yet. See below for how to schedule them directly on the timeline.
@@ -39,11 +48,12 @@ The timeline has two scales. Open the **⋯** menu on the active view tab, hover
 
 ## Scheduling tasks on the timeline
 
-- **Give a task dates** — In the row of a task that has no dates yet, click the timeline to create a short bar at that spot, or click and drag to draw the exact period you want.
+- **Give a task dates** — In the row of a task that has no dates yet, click the timeline to create a bar spanning that cell, or click and drag to draw the exact period you want. Dragging on the row of a task that already has dates scrolls to its bar and flashes it instead.
 - **Move a task** — Drag its bar left or right. The duration is preserved.
 - **Resize a task** — Drag the left or right edge of the bar to change the start or end date.
+- **Work on several tasks at once** — Select several bars, then drag them together to reschedule the whole group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount. Each batch is a single undo step.
 
-While you drag, Beebole shows the new dates live. Changes are saved automatically when you release the bar.
+While you drag, Beebole shows the new dates live — and tasks linked by [dependencies](#task-dependencies) follow the drag on screen before you drop. Changes are saved automatically when you release the bar.
 
 If the task's planned time no longer fits the new period, the task detail panel flags the overflow and offers one-click fixes — see [scheduling dates and planned time](/help/documentation/planning#scheduling-dates-and-planned-time).
 
@@ -51,7 +61,7 @@ If the task's planned time no longer fits the new period, the task detail panel 
 
 ## Task dependencies
 
-Dependencies sequence tasks: a dependent task is expected to follow the tasks it depends on. They are managed in the **Dependencies** column, which is shown by default.
+Dependencies sequence tasks: a dependent task is expected to follow the tasks it depends on. Dependency links are drawn between the bars on the timeline, color-matched to the tasks at each end, and they follow the bars live while you drag. Dependencies are managed in the **Dependencies** column — add it from the **Columns** menu if your view doesn't show it.
 
 ### Adding dependencies
 
@@ -71,7 +81,7 @@ To remove a dependency, edit the row numbers in the **Dependencies** field. A ta
 
 ### How dependent tasks move
 
-The button in the **Dependencies** column header opens the **Dependent tasks movement options** menu, which controls what happens to dependent tasks when you move a task they depend on:
+The **Dependent tasks movement options** setting — in the **⋯** menu on the active view tab — controls what happens to dependent tasks when you move a task they depend on:
 
 | Option | Behavior when the predecessor moves |
 |--------|--------------------------------------|
@@ -79,7 +89,7 @@ The button in the **Dependencies** column header opens the **Dependent tasks mov
 | **Pushing** | Dependent tasks are pushed later when the predecessor would overlap them |
 | **Together** | Dependent tasks move along with the predecessor, keeping their distance |
 
-The setting applies to the whole task category.
+The setting applies to the whole planning.
 
 ---
 
@@ -93,7 +103,7 @@ Planned time is what the [workload heatmap](#workload-heatmap) compares against 
 
 ## Workload heatmap
 
-When the chart is grouped — for example by **Owner** — each group header row displays workload bars: one bar per period (day or week, following the current **Scale**). Without grouping, a single summary row shows the same information for everyone.
+When the chart is grouped — for example by **Owner** — each group header row displays workload bars: one bar per period (day or week, following the current **Period** granularity). Without grouping, a single summary row shows the same information for everyone.
 
 - **Bar height and shade** — The fuller and darker the bar (in the app's accent color), the closer that group's planned time is to its available capacity for the period.
 - **Over capacity** — A full bar with a number on it signals overload: on a group row the number is the overflow (in hours or days, following the **Planned** unit); on the summary row it is the count of overloaded people.
@@ -105,7 +115,7 @@ Use the heatmap to spot the weeks where an owner is overbooked, then move bars o
 
 ## Columns
 
-The left panel of the Gantt chart is a configurable table. Open the **⋯** menu on the active view tab and hover over **Columns** to show or hide columns. **Row #** and **Task Name** are always visible; by default, **Dependencies** is also shown.
+The left panel of the Gantt chart is a configurable table. Open the **⋯** menu on the active view tab and hover over **Columns** to show or hide columns. **Row #** and **Task Name** are always visible — a new Gantt view starts with just those two.
 
 | Column | What it shows |
 |--------|--------------|
@@ -140,11 +150,21 @@ Select **None** to remove grouping. With a grouping active, **Show all groups** 
 
 ## Saved views
 
-The tabs above the task list are saved views. Each Gantt view stores its own **Scale**, **Columns**, and **Group by** settings, plus its filters.
+The tabs above the task list are saved views. Each Gantt view stores its own **Period**, **Columns**, and **Group by** settings, plus its filters.
 
 - **Create** — Click **Add a view**, then **Gantt chart**.
-- **Rename** — Double-click the tab and type the new name, or use **Rename** in the tab's **⋯** menu.
+- **Rename** — Double-click the tab (or long-press it on a touch screen) and type the new name, or use **Rename** in the tab's **⋯** menu.
 - **Duplicate or delete** — Use **Duplicate** and **Delete** in the **⋯** menu. The last remaining view cannot be deleted.
+
+---
+
+## Filtering
+
+Use the **Filters** button to narrow the chart — by task, status, owner, potential owner, project, or [tags](/help/documentation/tags) — with the active filter count shown on the button. Filters can be switched off and back on without losing them: the button toggles them rather than clearing them.
+
+<Tip>
+  From an open task's detail panel, the **Show in the chart** button in the top bar jumps straight to the task's position in the Gantt.
+</Tip>
 
 ---
 
@@ -186,7 +206,7 @@ With the Gantt chart focused, you can work without the mouse:
 
 <AccordionGroup>
   <Accordion title="Does Beebole's Gantt chart have a month view?">
-    No. The Gantt timeline offers two scales — **By day** and **By week** — selected from the **Scale** option in the view tab's menu. The **By week** scale is the one to use for a long-range overview.
+    No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed week, month, quarter, or year fitted to your screen.
   </Accordion>
   <Accordion title="How do I create a dependency between two tasks?">
     Click the **Dependencies** cell of the task that should come second, then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.

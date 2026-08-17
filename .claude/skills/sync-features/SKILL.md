@@ -1,7 +1,6 @@
 ---
 name: sync-features
-description: 'Refresh `.claude/context/features.md` — the canonical Beebole feature catalog — by scanning the `../reboot` codebase. Default is a full scan from scratch. Use `--incremental` to only inspect commits since the catalog''s `Last updated:` date. Output is a structured, non-technical catalogue grouped by functional area.'
-disable-model-invocation: true
+description: 'Refresh `.claude/context/features.md` — the canonical Beebole feature catalog — by scanning the `../reboot` codebase. Default is a full scan from scratch. Use `--incremental` to only inspect commits since the catalog''s `Last updated:` date. Output is a structured, non-technical catalogue grouped by functional area. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Sync Features — Refresh the Beebole Feature Catalog

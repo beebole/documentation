@@ -1,7 +1,6 @@
 ---
 name: mine-conversations
-description: 'Analyze the docs-assistant AI conversations stored in PostHog and produce a gap-candidates report in `.todo/ai-conversation-gaps.md` for human review. Report-only: candidates are proposals and are never fed to `/write` automatically. Runs as the last step of `/release`, or standalone when asked to mine AI conversations, analyze assistant chats, or find gaps from real user questions.'
-disable-model-invocation: true
+description: 'Analyze the docs-assistant AI conversations stored in PostHog and produce a gap-candidates report in `.todo/ai-conversation-gaps.md` for human review. Report-only: candidates are proposals and are never fed to `/write` automatically. Runs as the last step of `/release`, or standalone when asked to mine AI conversations, analyze assistant chats, or find gaps from real user questions. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Mine Conversations — Gap Candidates from AI Assistant Chats

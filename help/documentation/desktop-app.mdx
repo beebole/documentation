@@ -8,7 +8,7 @@ keywords: ["beebole", "desktop app", "automatic time tracking", "activity tracki
 "og:type": "article"
 ---
 
-The Beebole desktop app is a companion application for macOS, Windows, and Linux that drafts time entries from what you work on. Your activity is captured and stored only on your machine — Beebole turns it into [suggested time entries](/help/documentation/ai#suggested-time-entries), and only the entries you accept reach your timesheet.
+The Beebole desktop app is a companion application for macOS, Windows, and Linux that drafts time entries from what you work on. Activity tracking is opt-in — nothing is watched or recorded until you explicitly turn it on. When tracking is on, the app reads only application names and window titles — never your screen or audio — and stores them on your machine only. Beebole turns that activity into [suggested time entries](/help/documentation/ai#suggested-time-entries), and only the entries you accept reach your timesheet.
 
 <Info>
   Activity data stays on the device, is never shared with anyone, and is deleted after a week. Suggestions are private to you until you accept them.
@@ -45,9 +45,23 @@ The Beebole desktop app is a companion application for macOS, Windows, and Linux
 
 ---
 
+## Turning tracking on
+
+The app never starts watching on its own. After your first hour with the app, a card titled **Automatic timesheet suggestions** appears on your timesheet explaining what would be observed (which applications and windows you use), what stays on your computer, and what is sent to your account — only the resulting suggestions: project, task, and duration.
+
+- Click **Enable tracking** to turn it on. Suggestions start appearing after a few hours of activity.
+- Click **No thanks** to keep tracking off — nothing is recorded, and Beebole never asks again.
+- Turn tracking on, pause it, or switch it back off anytime from the Beebole icon in the menu bar (macOS) or system tray (Windows/Linux). The [Beebole AI](/help/documentation/ai) page also shows whether tracking is on or off and lets you switch it.
+
+<Info>
+  On macOS, Beebole asks for **Screen Recording** access so it can read window titles — it never records your screen or audio. If access was refused, suggestions are less precise; the Beebole AI page warns you and opens the right System Settings pane.
+</Info>
+
+---
+
 ## How suggestions work
 
-Once the app runs, it watches what you actively work on and captures only the essentials — site address, page title, and time spent. Beebole groups that activity into draft time entries and shows them in the **Suggested entries** tray above your timesheet, badged **Desktop**.
+With tracking on, the app watches which applications and windows you actively use and how long. Beebole groups that activity into draft time entries and shows them in the **Suggested entries** tray above your timesheet, badged **Desktop**.
 
 - **Accept**, **Accept all**, or **Dismiss** each suggestion — nothing is logged without your say-so.
 - Click **Why?** on a suggestion to see the activity behind it. The details live on the machine that captured them; on another device Beebole shows **These details aren't available on this device.**
@@ -76,7 +90,7 @@ Once the app runs, it watches what you actively work on and captures only the es
 
 <AccordionGroup>
   <Accordion title="What does the Beebole desktop app track?">
-    Only the site address, page title, and time spent of what you actively work on. The captured activity is stored on your machine, never shared with anyone, and deleted after a week. It exists solely to draft time entry suggestions for you.
+    Nothing until you enable tracking. Once on, it reads only application names and window titles — never your screen or audio. The captured activity is stored on your machine, never shared with anyone, and deleted after a week. It exists solely to draft time entry suggestions for you.
   </Accordion>
   <Accordion title="Can my manager see my desktop activity?">
     No. Activity stays on your device, and the suggestions built from it are private to you. Your manager only ever sees the time entries you explicitly accept onto your timesheet — the same as entries you type by hand.

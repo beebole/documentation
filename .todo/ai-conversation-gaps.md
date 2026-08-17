@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-08-05T18:45:00Z
+Mined through: 2026-08-17T14:05:00Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -97,3 +97,25 @@ This analysis is repeatable as a periodic pass (e.g. monthly, alongside `/news`)
 4. File entries here; feed HIGH items into `/write` / `/review` like `gaps.md` entries.
 
 Note: 13 conversations from Jul 1–6 (recovered from the Mintlify API during the 2026-08-05 backfill, after their `posthog.ai_events` content had already expired) were **not part of the analysis above** — worth folding into the next pass.
+
+---
+
+## Pending review (run 2026-08-17)
+
+**Window:** no `docs_assistant_conversation` events newer than the 2026-08-05 cursor (latest capture 2026-08-05 18:41 UTC). ⚠️ Zero assistant conversations captured in 12 days — verify the n8n workflow "PROD - Mintlify Assistant LLM Analytics" is still running before the next pass.
+
+This run instead folded in the **13+ recovered Jul 1–7 conversations** flagged as unanalyzed by the 2026-08-05 run (16 threads total, pulled from PostHog with `timestamp < 2026-07-08`).
+
+- [ ] MEDIUM | `help/documentation/timesheets.mdx` | FAQ: can the **Work from home** checkbox be hidden? — evidence: 1 conversation (2026-07-01, 6 messages), "How do I remove the work from home box"; verified in code: no setting exists to hide it, so the assistant correctly found nothing — a preemptive FAQ stating this would stop the search. Also a product signal worth passing to the app team.
+- [ ] MEDIUM | `help/api/queries.mdx` | Per-entity filter-field reference for queries — evidence: 1 conversation (2026-07-03, 9 messages, FR), user fought to discover `getProjects` filter params (`managedById`) and how to reproduce the Budget Status manager scope via the API; the fields are mentioned in one prose sentence but were not found — consider a compact per-entity filter table and a "projects I manage" example.
+
+**Not doc gaps (no entry):**
+
+- Custom-field filters in the Reports filter menu (2 threads, 2026-07-03, one unresolved) — verified: report filters offer person/project/task/tag/absence-type/expense-type only; person-custom-field filtering exists on the Planning route, not Reports. Product feature signal; the complaint itself concerned the legacy product's reporting page.
+- Spanish video request on the Quickstart (2026-07-07) — language-demand signal, not a page fix (site is EN-only by decision).
+- Legacy reporting "AND/OR conditions disappeared" and legacy `project.list` filter questions — legacy product/API; the legacy archive is frozen by policy.
+
+**Covered (no action):**
+
+- "How do I see what weeks have less than 40 submitted" (2026-07-06) — now directly answered by the new **Timesheet Compliance** report documented in this release.
+- Lock date, adding work schedules, schedule intervals, assigning roles, absence types per tag, restricting entry edits, deleting a mistaken task — all answered by the assistant from existing pages on first or second try.

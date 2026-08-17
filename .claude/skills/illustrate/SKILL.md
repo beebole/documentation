@@ -1,7 +1,6 @@
 ---
 name: illustrate
-description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet; `--commercial` to capture PNGs for the marketing website (no WebP, no docs placement). Replaces the /screenshot skill with the needs/capture split made explicit.'
-disable-model-invocation: true
+description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet; `--commercial` to capture PNGs for the marketing website (no WebP, no docs placement). Replaces the /screenshot skill with the needs/capture split made explicit. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Illustrate — Screenshot Identification, Capture, Optimize, Embed
