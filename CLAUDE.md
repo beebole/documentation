@@ -48,7 +48,7 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 6. Translate     | `/translate`          | Sync FR/ES with EN master. Reads `translation-notes.md` only. **Deferred** — FR/ES are currently removed (see Key conventions).                                                         |
 | —                | `/news`               | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                            |
 | Orthogonal       | `/mine-conversations` | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step. |
-| All-in-one       | `/release`            | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Runs on a branch, ends in a PR assigned to you.                                                          |
+| All-in-one       | `/release`            | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`).            |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 

@@ -1,6 +1,6 @@
 ---
 name: release
-description: 'Run the full post-deploy documentation pipeline in one shot: sync the feature catalog, draft the news entry, find gaps, write pages, review with auto-applied fixes, identify screenshot needs, verify coverage — all on a dedicated branch, ending in a PR assigned to the maintainer. Manual trigger only, after a production deploy of the app. One run = one branch = one PR.'
+description: 'Run the full post-deploy documentation pipeline in one shot: sync the feature catalog, draft the news entry, find gaps, write pages, review with auto-applied fixes, identify screenshot needs, verify coverage — all on a dedicated branch, ending in a PR assigned to the maintainer, then propagate the feature catalog to the sibling repos that keep snapshots of it. Manual trigger only, after a production deploy of the app. One run = one branch = one PR.'
 disable-model-invocation: true
 ---
 
@@ -95,6 +95,9 @@ PR body template:
 ### AI-conversation gap candidates (pending review)
 <entries added by /mine-conversations this run, or "None." — these are proposals only; approve in .todo/ai-conversation-gaps.md, then draft with /write>
 
+### Catalog propagation
+<per-repo result from step 5: synced / already in sync / skipped: reason>
+
 ### Decisions taken unattended
 <any safe-default choices made mid-run, or "None.">
 
@@ -103,7 +106,33 @@ PR body template:
 
 Print the PR URL as the final output, with a one-line reminder: review and merge; the branch deletes itself on merge, the PR remains as the release record.
 
-### 5. On failure
+### 5. Propagate the feature catalog
+
+Three sibling repos keep a snapshot of `.claude/context/features.md`. After the PR is open (and only then — a draft PR from the failure path never triggers this step), replicate the catalog as it stands on the release branch to each of them:
+
+| Target repo | File |
+|-------------|------|
+| `../ads` | `context/features.md` |
+| `../claude-plugins` | `plugins/growth/context/features.md` |
+| `../intranet` | `growth/features.md` |
+
+**Target file content** = the canonical file verbatim, with exactly one blockquote inserted between the `# Beebole Features` title and the `**Last updated:**` line (replacing any existing `> **Source:** …` blockquote there):
+
+```markdown
+> **Source:** Auto-synced from the canonical `features.md` in `beebole/documentation` by its `/release` pipeline. Do not edit this copy — local changes are overwritten on the next release.
+```
+
+**Per target, in order:**
+
+1. If the repo directory is missing, skip it and record `skipped: repo not available locally`.
+2. If the repo is not on `main`, or `git status --porcelain` shows changes to the target file, skip it and record the reason — never stash, switch branches, or overwrite uncommitted local edits.
+3. `git pull --ff-only`; on failure, skip and record.
+4. Write the target file. If the result is byte-identical to what was already there, record `already in sync` — no commit.
+5. Otherwise commit **only that file** with message `chore: sync features.md from documentation release YYYY-MM-DD`, then `git push`.
+
+Propagation problems never fail the release — the PR is already open. Record every per-repo outcome (synced / already in sync / skipped: reason) in the PR body's **Catalog propagation** section and in the final output.
+
+### 6. On failure
 
 If any step fails and can't be recovered:
 
@@ -113,7 +142,7 @@ If any step fails and can't be recovered:
 
 ## Rules
 
-- **Never push to `main`, never merge the PR.** Merging is the human's job.
+- **Never push to the docs repo's `main`, never merge the PR.** Merging is the human's job. The only direct-to-`main` pushes are the catalog syncs of step 5, each touching a single `features.md` file in a sibling repo.
 - **One run = one branch = one PR.** Don't reuse or amend a previous release branch; a same-day re-run gets a suffixed branch name.
 - **No translations.** The site is EN-only — never invoke `/translate`.
 - **No screenshot capture.** Identify only; capture is a separate, attended `/illustrate --capture` run.
