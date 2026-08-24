@@ -10,16 +10,24 @@ og:description: "New features, improvements, and changes to Beebole, updated mon
 og:type: "website"
 ---
 
-<Update label="August 2026" tags={["Reports","Planning","Timesheet","Settings"]}>
-  August adds three new reports — **Revenue at Risk**, **Utilization**, and **Timesheet Compliance** — turns your plans into automatic timesheet entries, and makes the Gantt and Staffing views sharper for day-to-day resource planning.
+<Update label="August 2026" tags={["Reports","Planning","Timesheet","Settings","AI"]}>
+  August adds three new reports — **Revenue at Risk**, **Utilization**, and **Timesheet Compliance** — teaches your timesheet to assemble and submit itself from suggestions, makes report folders personal and shareable, and sharpens the Gantt and Staffing views for day-to-day resource planning.
 
   ### Reports
 
   - New **Revenue at Risk** report: for hourly and daily-billed projects with an end date, see how many budgeted hours will still be unconsumed by that date — converted into a revenue amount, with totals for the amount at risk and the projects behind it. See [Reports](/help/documentation/reports).
   - New **Utilization** report: billable hours as a share of each person's scheduled capacity per month, with capacity net of time off and a projection for next month based on planned bookings.
   - New **Timesheet Compliance** report: a person-by-period grid showing who submitted on time, late, or not at all, with a per-person score, hover details, filtering, and export. Access is a dedicated permission — managers see the people they manage.
+  - [Report folders](/help/documentation/reports) are now personal: you see your own folders plus any shared with you, and you can **Share** a folder with specific people or with everyone under a tag. Shared folders are view-only for recipients — the owner keeps full control.
   - The [Planned vs. Real](/help/documentation/reports) report grows up: read it in hours, days, billing, cost, or margin; chart several plans at once; flip between cumulative and remaining (burndown) views with an ideal-burn line and a **Behind / On track / Ahead** pace headline; and a new chart shows time over or under plan per person.
-  - The [AI report builder](/help/documentation/ai) now remembers the conversation — follow-up requests refine the report you just built.
+  - Planned vs. Real is now a browsable list: pick a person or project level as the axis, step through entities with the arrows or keyboard, and filter with chips that stay in the URL so a filtered view can be shared — the time window and granularity are worked out automatically.
+  - The **Budget Status** report reads in the unit its budgets were stated in — hours or days — and its **Billing** and **Costs** views appear only for people allowed to see those amounts, on screen and in exports. **Revenue at Risk** now requires both budget and billing rights.
+  - The [AI report builder](/help/documentation/ai) now remembers the conversation — follow-up requests refine the report you just built — and understands chart requests: "show it as a pie", "make it bars", or "hide the graph" restyle the chart without touching the data.
+
+  ### Budgets
+
+  - [Budgets](/help/documentation/budgets) now carry a start date, so a project can hold several budgets over time — each applies from its own date onward.
+  - A budget's quantity can be stated in **days** instead of hours, measured against each person's schedule, and every budget can hold a free-text note (purchase order, customer agreement, …) shown on its card.
 
   ### Planning & staffing
 
@@ -31,6 +39,8 @@ og:type: "website"
   - Lock the Gantt or Staffing view to a fixed week, month, quarter, or year fitted to your screen, and refill a period from the previous one with the new **Copy previous period** action.
   - Move a booking between rows by dragging it vertically — onto another person to reassign it, onto another project, or onto the unassigned row to clear the owner.
   - Unassigned work is now visible and actionable: an unassigned row in Staffing holds it, and everyone involved gets an email before an unassigned task starts.
+  - New **Plan on non-working days** option in a task's date panel: weekends and holidays count as working days for that task, so it keeps the exact dates you give it — planned hours, the Gantt bar, dependency shifts, and the workload heatmap all follow the task's own calendar.
+  - Tags can now be assigned to tasks, and absence types, expense types, and custom fields can be assigned to tags.
 
   ### Timesheets
 
@@ -39,15 +49,27 @@ og:type: "website"
   - The [desktop app's](/help/documentation/desktop-app) activity tracking is now opt-in: nothing is observed until you explicitly turn it on, a plain-language card explains exactly what is read and what stays on your machine, and you can pause or stop tracking anytime from the menu bar icon.
   - Work on several calendar entries as a group: shift-click a range or ⌘-click entries, then move, duplicate, resize, or delete them all in one undoable step.
   - Each time entry now holds exactly one activity — a task, an absence, or projects — so switching an entry's activity replaces the previous one and nothing counts twice in reports.
+  - [Suggested time entries](/help/documentation/ai) now come from five sources — browser activity, desktop tracking, tasks planned for you, your recurring habits, and Kanban — with overlapping suggestions merged into a single card and reduced by what you already logged. The Kanban auto-timesheet always proposes suggestions now, never writing entries directly.
+  - Every suggestion explains itself: **Why?** shows the planned task's dates and share of your time, how often a habit was seen in recent weeks, or the sites and apps behind a tracked suggestion.
+  - Auto-submit now converts pending suggestions into real entries at the deadline and submits them through the normal approval flow — and timesheet reminders announce the deadline in advance ("without action, this timesheet will be submitted automatically in N days").
+  - Once a period is fully approved it stays approved: changing the approval workflow, managers, or tags no longer silently reopens it.
+  - The [calendar view](/help/documentation/timesheets) now works when start/end times are turned off — entries stack by duration — and your choice of calendar or grid view is remembered on your account.
+  - The favorites bar lets you remove any chip — and removals stick. Projects and tasks you used in the previous period carry forward as ready-to-fill rows.
+
+  ### Integrations & apps
+
+  - The [AI page](/help/documentation/ai) now walks you through connecting an assistant step by step — hosted assistants (claude.ai, ChatGPT) sign in directly with no API key; local ones (Claude Code, Claude Desktop, Cursor) use your API key — and lists everything a connected assistant can do. Assistants can also look up your organisation's own category names, so they speak your vocabulary.
+  - Signing in to the [desktop app](/help/documentation/desktop-app) now hands off to your browser and comes back signed in, so passkey and SSO logins work there.
 
   ### Settings & permissions
 
   - Role targets are reorganised: the old "my" scope is split into what you *manage* versus your *colleagues*, and task access separates tasks you own from tasks you manage. Existing roles migrate automatically. See [Roles](/help/documentation/roles-authorisations).
   - Timesheet settings are now **Timesheet and Planning Settings**, and task categories are called **Plannings** throughout the app.
   - A new [time restriction](/help/documentation/timesheetSettings) keeps start and end times inside the day's scheduled hours — as a warning or a hard block.
+  - New timesheet rule: **Only an admin can edit someone else's timesheet**.
   - A [public holiday](/help/documentation/public-holidays) calendar's country can now be changed freely — it is no longer locked once loaded.
 
-  {/* news-cursor: 2026-08-16 */}
+  {/* news-cursor: 2026-08-23 */}
 </Update>
 
 <Update label="July 2026" tags={["Planning","Timesheet","AI","Reports","Integrations"]}>
