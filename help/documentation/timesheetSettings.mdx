@@ -60,6 +60,10 @@ The **Timesheet period** defines the stretch of time a timesheet covers — the 
 
 **Auto-submit timesheets after X days** submits unsubmitted timesheets automatically once the configured number of days has passed since the period ended. The auto-submitted timesheet enters the [approval workflow](/help/documentation/approval) like a manual submission. Leave the value at 0 to disable auto-submit. It does not apply when the timesheet period is **Daily**.
 
+At the deadline, [suggested time entries](/help/documentation/ai) still pending on the period are converted into real entries before the submission, so a timesheet assembled from suggestions submits itself. Every entry still respects the entry rules — a suggestion a restriction refuses is skipped. [Timesheet reminders](#reminding-people-to-submit) announce the deadline in advance, so nobody is surprised by an automatic submission.
+
+If a period can't be processed, it stays a draft and is badged **Auto-submit failed** in the approval view — administrators are notified so they can review it by hand.
+
 ### Lock date
 
 The **Lock date** freezes every time record on or before the chosen day. Locked records can no longer be created, edited, moved, or deleted — by anyone, administrators included. Attempts are refused with the message **Timesheet and Planning Settings prevent any change to the locked date**.
@@ -83,6 +87,7 @@ The **Restrictions** list controls what time entries the timesheet accepts. By d
 | **Keep start/end times within the scheduled hours** | When start and end times are recorded, an entry's times must fall within the person's scheduled working hours. Available as a **warning** (the entry form warns but allows saving) or a **block** (the entry is refused, including when copying entries to other days). |
 | **An absence can't be longer than a day** | Caps a single time off entry at one day. |
 | **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. |
+| **Only an admin can edit someone else's timesheet** | Managers can still view their team's timesheets, but adding or editing entries on someone else's timesheet is reserved for admins. |
 
 Restrictions with variants — **daily** and **period**, or **warning** and **block** — show each active variant as a tag on the chip, and you can activate one or both.
 
@@ -181,12 +186,12 @@ The **Auto Timesheet from Planning** tab turns work planned on [tasks](/help/doc
   <Step title="Pick a planning">
     Add a planning with **Pick a planning**, then choose its **Start** and **End** statuses from the planning's [Kanban workflow](/help/documentation/kanban). Moving a task to the start status starts its clock; moving it to the end status generates the time entries. Remove a planning with the × on its row.
   </Step>
-  <Step title="Choose how entries land">
-    By default, generated entries arrive as [suggestions](/help/documentation/ai) the person reviews and accepts. Check **Fill timesheet directly** on a planning's row to write the records straight into the timesheet instead.
+  <Step title="Review the suggestions">
+    Generated entries always arrive as [suggestions](/help/documentation/ai) — badged **Kanban** — that the person reviews and accepts. Nothing is written into the timesheet without their say (or, if [auto-submit](#auto-submit) is enabled, until the deadline converts pending suggestions).
   </Step>
 </Steps>
 
-When several tasks finish the same day, the day is split between them. Entries the person logged manually are never touched — automatic entries rebalance around them.
+When several tasks finish the same day, the day is split between them. Entries the person logged manually are never touched — automatic entries rebalance around them, and each accepted entry records which source it came from.
 
 ---
 
@@ -239,7 +244,7 @@ Next to each setting, an icon shows where its current value is inherited from. A
   </Accordion>
 
   <Accordion title="What happens if someone forgets to submit their timesheet?">
-    Two Beebole settings cover this. **Remind to submit** emails anyone who hasn't submitted, at the hour you choose, with a link to submit directly from the email. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended.
+    Two Beebole settings cover this. **Remind to submit** emails anyone who hasn't submitted, at the hour you choose, with a link to submit directly from the email — announcing the auto-submit deadline when one is set. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended, converting any pending suggested entries into real entries first.
   </Accordion>
 
   <Accordion title="How do I change the first day of the week?">

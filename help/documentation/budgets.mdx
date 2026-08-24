@@ -26,11 +26,13 @@ Each budget on a project has three target fields:
 
 | Field | What it tracks | Example |
 | --- | --- | --- |
+| **Time** | Time allocation, in hours or days | "This project has a 500-hour cap" |
 | **Billing amount** | Revenue target | "This project should generate €50,000" |
 | **Cost amount** | Internal cost limit | "Don't spend more than €30,000 on this project" |
-| **Hours** | Time allocation | "This project has a 500-hour cap" |
 
-You can use any combination of these on the same budget.
+You can use any combination of these on the same budget — fields you leave empty simply aren't tracked.
+
+The **Time** target is stated in the unit you pick next to the field — **Hours** or **Days** — and your last choice becomes the default for the next budget. Days are measured against each person's [work schedule](/help/documentation/work-schedule), so a day always means one person's scheduled day.
 
 ---
 
@@ -47,9 +49,20 @@ You can use any combination of these on the same budget.
     Click **Add**. Beebole creates the budget and opens it for editing.
   </Step>
   <Step title="Define the targets">
-    Enter your targets in **Billing amount**, **Cost amount**, and **Hours**. Changes are saved automatically, and Beebole starts tracking progress against the budget immediately.
+    Enter your targets in **Time**, **Billing amount**, and **Cost amount**. Changes are saved automatically, and Beebole starts tracking progress against the budget immediately.
+  </Step>
+  <Step title="Set when it starts (optional)">
+    By default a budget counts **From the start** — everything ever logged on the project. Set a date in **From** to have the budget apply from that day onward instead.
   </Step>
 </Steps>
+
+Each budget can also hold free-text **Notes** — a purchase order number or the agreement with the customer, for example — shown on the budget's card.
+
+---
+
+## Several budgets over time
+
+A project can hold more than one budget: click **Add another budget** to create the next one. Each budget applies from its own **From** date onward, so successive budgets model renewals, yearly envelopes, or a re-negotiated scope — the list shows them in chronological order, and **Back to all budgets** returns to the list.
 
 ---
 
@@ -119,5 +132,9 @@ Both are controlled by the **Budget threshold alerts** setting — including its
 
   <Accordion title="Do expenses count toward project budgets?">
     Yes. Expense amounts contribute to a project's budget consumption alongside time-based costs — controlled per expense type by its **Impacts budget** setting. See [Expenses](/help/documentation/expenses).
+  </Accordion>
+
+  <Accordion title="Can I set a budget in days instead of hours?">
+    Yes. Each budget's **Time** target has a unit picker — choose **Hours** or **Days** per budget, and Beebole remembers your last choice for the next one. Days are measured against each person's work schedule, and the **Budget Status** report shows every budget in the unit it was stated in.
   </Accordion>
 </AccordionGroup>
