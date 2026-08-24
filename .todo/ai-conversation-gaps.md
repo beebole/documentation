@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-08-17T14:05:00Z
+Mined through: 2026-08-24T14:34:49Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -119,3 +119,19 @@ This run instead folded in the **13+ recovered Jul 1–7 conversations** flagged
 
 - "How do I see what weeks have less than 40 submitted" (2026-07-06) — now directly answered by the new **Timesheet Compliance** report documented in this release.
 - Lock date, adding work schedules, schedule intervals, assigning roles, absence types per tag, restricting entry edits, deleting a mistaken task — all answered by the assistant from existing pages on first or second try.
+
+---
+
+## Pending review (run 2026-08-24)
+
+**Window:** 2026-08-19 → 2026-08-24, 15 threads (the n8n workflow is capturing again — the 12-day silence flagged on 2026-08-17 has resolved; events resumed 2026-08-19).
+
+- [ ] HIGH | `help/documentation/approval.mdx` | FAQ + clarification: how to let someone edit an **approved** timesheet, and where the **Reject** button actually appears — evidence: 6 conversations (2026-08-20, incl. one 5-message session and one Spanish thread), "I am not able to reopen accepted timesheet as an admin" / "i went to timesheet, pending, opened their timesheet but the reject button does not appear". Verified: the answer exists (`approval.mdx` §Force approve and reject — an admin can reject an already-approved timesheet, unlocking it for the owner), but the page never says an *approved* timesheet must be opened via the **Team** pane (the **Pending** pane only lists submissions awaiting approval), which is exactly where the user got stuck. Covered-but-failed → add an FAQ "How do I reopen an approved timesheet so its owner can edit it?" and one sentence in §Force approve and reject naming the Team pane as the way in.
+- [ ] MEDIUM | `help/documentation/work-schedule.mdx` | Cross-link/FAQ: schedules display expected hours but don't fill timesheets — point to what does — evidence: 1 conversation (2026-08-20), "How do I build a schedule that populates people's timesheets". Verified: nothing on the page connects schedules to **Auto Timesheet from Planning** or suggested entries. Covered-but-failed → FAQ: "Can a work schedule fill in timesheets automatically?" answering no, and linking `timesheetSettings.mdx` §Auto Timesheet from Planning and `ai.mdx` suggestions.
+- [ ] MEDIUM | `help/documentation/people.mdx` | FAQ: why the **Invite by email** button is missing — evidence: 3 conversations (2026-08-24, Korean-language user who landed on `help/legacy/organizing-people`), "I opened the profile like the screenshot but can't find the invite button". Verified in code (`person-invite.ts`): the button renders only while the person has not joined; once they have an account it disappears, and **Invitation pending** shows while an invite is outstanding. The page documents sending invitations but never says the button goes away after the person joins → FAQ: "Why don't I see the Invite by email button on a profile?"
+
+**Not doc gaps (no entry):**
+
+- Language demand continues: one Spanish thread (approval flow) and three Korean threads this window — business signal, docs are EN-only by decision.
+- App-copy signal: the invite-link helper text still says "configure a password" (`labels.json` `user.invited`) although Beebole is passwordless — route to the app team.
+- Noise: "qb" (unanswered single token), "API" and "reject" (accidental/empty probes) — no theme.
