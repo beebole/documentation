@@ -1,41 +1,34 @@
 # Gaps report
 
-Generated: 2026-08-24 (release run, production deploy 2026-08-23)
+Generated: 2026-08-24 (verification pass, release run)
 Catalog last updated: 2026-08-24
 
 ---
 
 ## Coverage gaps → undocumented features
 
-Unchanged catalog entries were verified Covered in the 2026-08-17 release run and re-checked only where this deploy touched them; the entries below come from the 2026-08-24 catalog sync.
+_All features covered._
 
-### Time Tracking
+The 9 Partial entries from this run's earlier report (2026-08-23 production deploy) were all resolved in the same run:
 
-- [ ] Partial | `help/documentation/ai.mdx` | `time-tracking/suggestions` — needs: add the **Planned** source (tasks planned for you become suggestions) and the **Web** badge name to the sources table; describe merged/ranked suggestion cards (overlaps merge into one card, measured activity outranks assumptions, reduced by time already logged); per-source **Why?** evidence (planned dates and share, habit weeks seen, sites/apps behind tracked time); live refresh and the rule that suggestions never land on locked days, holidays, full-day absences, or submitted periods
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | `time-tracking/suggestion-autopilot` — needs: Auto-submit section must say the deadline now converts pending suggestions into real entries and submits through the normal approval flow; failed periods stay drafts badged "Auto-submit failed" with admins notified; reminders announce the auto-submit deadline. Cross-check `help/documentation/ai.mdx` for any "nothing is submitted automatically" claim and update it to reflect auto-submit
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | `time-tracking/auto-timesheet` — needs: Kanban auto-timesheet always proposes suggestions now — it never writes entries directly; accepted entries record their source
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | `time-tracking/entry-restrictions` — needs: new restriction **Only an admin can edit someone else's timesheet**
+- Five suggestion sources with badges, merged/ranked cards, per-source **Why?** evidence, refresh behavior — `ai.mdx`
+- Suggestion autopilot (auto-submit converts pending suggestions, **Auto-submit failed** badge, deadline reminders) — `timesheetSettings.mdx` + `ai.mdx`
+- Kanban auto-timesheet always suggesting (direct fill removed) — `timesheetSettings.mdx`
+- New restriction **Only an admin can edit someone else's timesheet** — `timesheetSettings.mdx`
+- Personal report folders + new **Share a report folder** section — `reports.mdx`
+- Compliance footnote expandable people list — `reports.mdx`
+- Budget start dates, hours/days unit, notes, empty targets, several budgets over time — `budgets.mdx`
+- Desktop app browser-handoff sign-in (passkeys/SSO) — `authentication.mdx` + `desktop-app.mdx`
 
-### Reporting
-
-- [ ] Partial | `help/documentation/reports.mdx` | `reports/folders` — needs: folders are personal — you see your own folders plus folders shared with you
-- [ ] Partial | `help/documentation/reports.mdx` | `reports/folder-sharing` — needs: new section on sharing a folder (**Share** action) with specific people or tags (a tag includes its sub-tags); shared folders are view-only for recipients, owner keeps control
-- [ ] Partial | `help/documentation/reports.mdx` | `reports/timesheet-compliance` — needs: the "no time record yet" footnote expands to list the people who haven't started tracking time
-
-### Project Management
-
-- [ ] Partial | `help/documentation/budgets.mdx` | `projects/budgets` — needs: budgets carry a start date (a project can hold several budgets over time, each applying from its date; "From the start" is the default); quantity can be stated in hours or days (days measured against each person's schedule); free-text note per budget shown on its card; quantity/billing/cost fields can be left empty
-
-### Authentication & Security
-
-- [ ] Partial | `help/documentation/authentication.mdx` | `auth/passkeys` — needs: signing in to the desktop app hands off to the browser, so passkeys and SSO work there (mention on `help/documentation/desktop-app.mdx` too)
+The review pass additionally corrected pre-existing drift found against prod code (sample report folders, report filters, Budget Status **Time** label, Planned vs. Real single-plan selector, passkey once-per-account, API-key label, email-code expiry, approval email description, budget **From** default).
 
 **Intentionally undocumented (status-flagged in the catalog — not gaps):**
 
 - `tasks/recurring` — _(status: hidden-flag)_ recurrence creation still behind `SHOW_TASK_RECURRENCE = false`.
 - `org/gdpr` — _(status: placeholder-ui)_ inert menu entries; deliberately not documented.
 - `absence/accrual` — _(status: partial)_ documented hedged on `accruals.mdx`.
-- `reports/money-authorisations` — Planned-section entry _(status: partial — frontend guard only)_; do not document until the all-channel enforcement ships.
+- `reports/money-authorisations` — Planned-section entry _(status: partial — frontend guard only)_.
+- `reports/schedule-email` — _(status: hidden-flag, flagged 2026-08-24)_ the **Schedule** action is gated off in production; the reports.mdx section documenting it was removed this run. Re-document when the gate lifts.
 
 **Skipped sections:** Planned Features (7 entries), Internal (11 entries) — per skill rules.
 
@@ -43,11 +36,10 @@ Unchanged catalog entries were verified Covered in the 2026-08-17 release run an
 
 ## Proposed page-mappings additions
 
-- Keywords: `report folder sharing, share folder, shared folder, folder share` → proposed page: `help/documentation/reports.mdx`
-- Keywords: `plan on non-working days, non-working days, task calendar` → proposed page: `help/documentation/gantt.mdx`
+_No new mappings needed._ (Two rows were added earlier in this run for report folder sharing and plan-on-non-working-days.)
 
 ---
 
 ## Handoff to /write
 
-Next step: run `/write <path>` for each **Partial** entry above with its `needs:` note (release run: Partial entries are not skipped). No **Missing** entries this run.
+Nothing to draft. Next `/sync-features --incremental` after the next prod deploy will surface new work; re-run `/find-gaps` after it.
