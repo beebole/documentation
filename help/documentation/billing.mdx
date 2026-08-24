@@ -83,6 +83,8 @@ When several billing rates could apply to the same time entry, the most specific
 
 Rates inherited from tags or from the organization count as the rate of the project or person they cascade to, so a company-wide default still applies through this same lookup. Billing rates cannot be set directly on a task; time tracked on a task is billed through the project and person rates above.
 
+The **From** date is evaluated at each level independently. A project rate only applies to entries dated on or after its own **From** date — earlier entries fall back to the next level in the cascade, even when a project rate exists. If an organization rate appears to override a more specific project or person rate, check that the specific rate's **From** date is on or before the time entry's date.
+
 ---
 
 ## Rate splits
@@ -158,5 +160,9 @@ Tracked time is multiplied by the resolved rate and shown in [reports](/help/doc
 
   <Accordion title="How do I mark work as non-billable?">
     Choose the **Non-billable** billing method on the relevant project, person, or tag, or tick the **Non-billable** checkbox next to a person or project inside a rate split. Beebole then calculates no billing amount for that time.
+  </Accordion>
+
+  <Accordion title="Why is my organization rate overriding my project or person rate?">
+    Beebole always prefers a more specific rate — project first, then person — over an organization or tag rate. If an organization rate appears to win instead, the specific rate's **From** date is likely later than the time entry's date, so the specific rate does not apply to that entry and the lookup continues up to the organization level. Add a project or person rate with a **From** date on or before the entry's date to make it apply.
   </Accordion>
 </AccordionGroup>
