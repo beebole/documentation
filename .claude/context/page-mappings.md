@@ -86,3 +86,5 @@ Use this table to map app change keywords to the documentation pages they likely
 | auto timesheet, automatic timesheet, autopilot, auto timesheet from planning | `help/documentation/timesheetSettings.mdx` |
 | unassigned task, untaken task, unassigned warning | `help/documentation/planning.mdx` |
 | favorites, favorites bar, pinned favorites | `help/documentation/timesheets.mdx` |
+| report folder sharing, share folder, shared folder, folder share | `help/documentation/reports.mdx` |
+| plan on non-working days, non-working days, task calendar | `help/documentation/gantt.mdx` |
