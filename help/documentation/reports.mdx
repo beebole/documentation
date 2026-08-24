@@ -1,10 +1,10 @@
 ---
 title: "Reports: analyze time, billing, and costs"
 sidebarTitle: "Reports"
-description: "Run reports in Beebole to analyze tracked time, billing, costs, and budgets — filter and group data, schedule email delivery, and export results."
+description: "Run reports in Beebole to analyze tracked time, billing, costs, and budgets — filter and group data, share folders with your team, and export results."
 keywords: ["beebole", "time tracking reports", "project reports", "timesheet reports", "budget status report", "revenue at risk", "billable utilization", "timesheet compliance", "report folders"]
 "og:title": "Beebole Reports: Analyze Tracked Time and Spending"
-"og:description": "Run reports in Beebole to analyze time, billing, costs, and budgets — filter, group, schedule email delivery, and export results."
+"og:description": "Run reports in Beebole to analyze time, billing, costs, and budgets — filter, group, share folders, and export results."
 "og:type": "article"
 ---
 
@@ -46,12 +46,12 @@ Only you and the people you share a folder with can see it and its reports. Shar
 
 ## Sample reports in a new account
 
-The first time you open **Reports** in a new Beebole account, Beebole creates two sample folders with ready-made reports inside:
+A new Beebole account starts with two sample folders with ready-made reports inside:
 
 | Folder | Reports |
 |--------|---------|
-| **Monthly Timesheets** | **Hours by person & project**, **Absences by person** |
-| **Monthly Billing** | **Billing by person & project**, **Absence billing by person** |
+| **Current Month** | **Hours by Person**, **Team Calendar**, **Profit by Project** |
+| **Current Year** | **Margin by Client per Month**, **Absences by person** |
 
 Sample reports are regular reports — open them to see how columns and grouping work, then edit, duplicate, or delete them like any report you create yourself.
 
@@ -100,7 +100,7 @@ Add filters with the folder's **Filters** button, or per report via the **⋯** 
 | **Person**, **Project**, **Task** | Specific people, projects, or tasks |
 | **Owner**, **Status** | Tasks by their owner or status |
 | **Person tag**, **Project tag**, **Task tag** | Entities carrying a given [tag](/help/documentation/tags) |
-| **Project category**, **Planning** | Projects under a chosen category, or tasks under a chosen planning |
+| **Billability**, **Marked non-billable** | Time entries by whether they are **Billable** or **Non-billable**, or marked non-billable |
 | **Work location** | **Work from home** or **On-site** time entries |
 | **Absence/working time** | **Absence time only**, **Working time only**, or **Both** |
 
@@ -117,54 +117,27 @@ Every report has a **⋯** action menu with its management actions:
 | **Duplicate** | Creates a copy of the report in the same folder |
 | **Filter** | Adds a filter condition to this report |
 | **Period** | Sets a period override for this report |
-| **Schedule** | Opens the **Schedule report** dialog for email delivery |
 | **Export** | Downloads the results as **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF**, **Chart (PNG)**, **Matrix (CSV)**, **Matrix (Excel)**, or **Matrix (PDF)** |
 | **Copy** | Copies the report so you can **Paste** it into another folder's menu |
-| **Share** | Sharing entry for this report |
 | **Reset period** | Removes the report's period override (shown only when one is set) |
 | **Delete** | Deletes the report |
 
-The action menu can also move the report straight into another folder — pick the destination from the move entry's submenu instead of copying and pasting.
+The action menu can also move the report straight into another folder — pick the destination from the **Move to** entry's submenu (shown when you own another folder) instead of copying and pasting.
 
 For recurring spreadsheet workflows, see [Data exports](/help/documentation/data-exports) and the [Excel add-in](/help/documentation/excel-addin) and [Google Sheets add-on](/help/documentation/gsheets-addon), which refresh saved report data from inside your spreadsheet.
 
 ---
 
-## Email a report on a schedule
-
-Beebole can run a report on a recurring schedule and email the results.
-
-<Steps>
-  <Step title="Open the schedule dialog">
-    Open the report's **⋯** action menu and click **Schedule**. The **Schedule report** dialog opens.
-  </Step>
-  <Step title="Enable the schedule">
-    Switch the toggle from **Disabled** to **Enabled** to reveal the schedule settings.
-  </Step>
-  <Step title="Choose the report period">
-    Under **Report period**, pick what each delivery covers: **Current** or **Previous** combined with **Day**, **Week**, **Bi-week**, **Semi-month**, **Month**, or **Quarter** — or **Year to date** / **Last 12 months**.
-  </Step>
-  <Step title="Set the send timing">
-    Under **Send timing**, choose **Before end of period**, **After end of period**, or **Day of month**, plus an offset — for example, 2 days after the end of each month. Under **Send at**, pick the hour of delivery.
-  </Step>
-  <Step title="Add recipients">
-    Under **Send to**, type an email address and click **Add**. Repeat for each recipient.
-  </Step>
-</Steps>
-
-On schedule, Beebole runs the report and emails each recipient a link to the results. Every setting in the dialog is saved automatically as you change it.
-
----
 
 ## Budget Status
 
-When your subscription includes budgets, a **Budget Status** entry appears at the top of the Reports menu. It shows every project that has a [budget](/help/documentation/budgets) as a progress bar: the solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Budgets set on subprojects roll up into their parent project's bar.
+When your subscription includes budgets and your role can view budgets, a **Budget Status** entry appears at the top of the Reports menu. It shows every project that has a [budget](/help/documentation/budgets) as a progress bar: the solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Budgets set on subprojects roll up into their parent project's bar.
 
 Controls at the top of the page:
 
 | Control | Options |
 |---------|---------|
-| View | **Hours**, **Billing**, **Costs** — toggle any combination |
+| View | **Time**, **Billing**, **Costs** — toggle any combination |
 | Status filter | **All**, **> 80%** (at risk), **Over budget** |
 | **Sort:** | **% consumed**, **Name**, **Remaining** |
 | **Filters** | Narrow by project or project tag |
@@ -182,8 +155,8 @@ Beebole can also notify you automatically when a budget passes its alert thresho
 Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a chart comparing the work you planned with the time actually logged, period by period.
 
 <Steps>
-  <Step title="Pick your plans">
-    Under **Plans**, choose which plannings to chart. Click **Add plan** to chart several at once — each plan's tasks contribute to the planned side.
+  <Step title="Pick the plan">
+    Pick the plan to chart with the **Plan** dropdown — shown when your account has more than one planning. The plan's tasks form the planned side.
   </Step>
   <Step title="Choose the unit and view">
     Pick the **Unit** the chart reads in: **Hours**, **Days**, **Billing**, **Cost**, or **Margin** — money is shown in your organization's currency. Under **View**, switch between **Cumulative** (the running total) and **Remaining** (a burndown toward zero).
@@ -199,7 +172,7 @@ Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a ch
   </Step>
 </Steps>
 
-Your chosen plans, unit, and view are remembered per user, so the report reopens the way you left it. Use it to catch plans drifting from reality early — a **Real** line running above **Planned** means the work costs more time than scheduled. Plan the work itself in the [Gantt](/help/documentation/gantt) and [Staffing](/help/documentation/staffing) views.
+Your chosen plan, unit, and view are remembered per user, so the report reopens the way you left it. Use it to catch plans drifting from reality early — a **Real** line running above **Planned** means the work costs more time than scheduled. Plan the work itself in the [Gantt](/help/documentation/gantt) and [Staffing](/help/documentation/staffing) views.
 
 ---
 
@@ -221,7 +194,7 @@ For every project with a budget, a billing method of **Hourly** or **Daily**, an
 
 Totals at the top summarize the portfolio: **Total at risk**, **Projects at risk**, and **Share of portfolio**. Rows where nothing has been logged yet are flagged **Not started**. Projects the report cannot assess are counted separately below the table — those with no end date set, and those whose budgets mix currencies.
 
-The report appears when your subscription includes budgets, and it supports the standard **Filters** and **Export** controls.
+The report appears when your subscription includes budgets and your role can view budgets and billing rates, and it supports the standard **Filters** and **Export** controls.
 
 ---
 
@@ -246,7 +219,7 @@ The **Timesheet Compliance** entry in the Reports menu shows whether each person
 - Hover a cell for the details: the period's **Deadline**, when it was **Submitted**, **Days late**, and **Rejections**.
 - Rows sort worst-first by default, so the people needing attention surface at the top.
 - Filter by person or person tag, and change the date range — the report defaults to the last six full months. **Export** downloads the grid.
-- People who have never recorded time are counted separately in a footnote — the timesheet process has not started for them, so they aren't shown as non-submitters. Click the footnote to expand the list of exactly who hasn't started tracking time.
+- People who have never recorded time are counted separately in a footnote — the timesheet process has not started for them, so they aren't shown as non-submitters. Click the people count in the footnote to expand the list of exactly who hasn't started tracking time.
 
 Access is a dedicated permission: your role needs **Timesheet compliance**, and managers see the people they manage — admins see everyone. See [Roles & authorizations](/help/documentation/roles-authorisations).
 
@@ -260,7 +233,7 @@ The **Absence quotas** entry in the Reports menu gives managers one consolidated
 - **Drill down** — Open a row for the detailed breakdown behind its numbers.
 - **Columns**, **Filters**, **Show archived**, **Export** — Choose the visible columns, narrow by person or tag, include archived people, and download the results.
 
-The report appears when your subscription includes absence quotas and your role can view both quotas and time records. Balances follow the same rules as the allowances themselves — see [Time off](/help/documentation/timeoff).
+The report appears when your subscription includes absence quotas and your role can view absence quotas. Balances follow the same rules as the allowances themselves — see [Time off](/help/documentation/timeoff).
 
 ---
 
@@ -295,10 +268,7 @@ Building and reconfiguring report output remains a desktop task — for example,
 
 <AccordionGroup>
   <Accordion title="Does Beebole include ready-made reports?">
-    Yes. A new Beebole account starts with two sample folders — **Monthly Timesheets** and **Monthly Billing** — containing four ready-made reports, including **Hours by person & project**. They are regular reports you can run, edit, or delete, and they double as examples for building your own.
-  </Accordion>
-  <Accordion title="Can Beebole email me a report automatically?">
-    Yes. Open the report's **⋯** action menu and click **Schedule**. In the **Schedule report** dialog you choose the period each delivery covers, when to send it, and who receives it. Beebole then runs the report on schedule and emails each recipient a link to the results.
+    Yes. A new Beebole account starts with two sample folders — **Current Month** and **Current Year** — containing five ready-made reports, including **Hours by Person** and **Profit by Project**. They are regular reports you can run, edit, or delete, and they double as examples for building your own.
   </Accordion>
   <Accordion title="Can I report on time off?">
     Yes. In Beebole, absences are time records, so any time-based report can include them. Add an **Absence type** column to break results down by leave type, or narrow a report to **Absences only** — the sample report **Absences by person** shows this setup.

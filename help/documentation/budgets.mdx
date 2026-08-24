@@ -3,9 +3,9 @@ title: "Project budgets: billing, cost, and hours targets"
 sidebarTitle: "Budgets"
 description: "Set and track budgets on projects and subprojects in Beebole to monitor hours, costs, and billing against your targets and catch overruns early."
 keywords: ["beebole", "project budgets", "budget tracking", "project overruns", "client budgets", "hours budget", "how to set budgets", "budget alerts"]
-og:title: "Project Budgets in Beebole: Billing, Costs, and Hours"
-og:description: "Learn how to set and track budgets across clients and projects in Beebole."
-og:type: "article"
+"og:title": "Project Budgets in Beebole: Billing, Costs, and Hours"
+"og:description": "Learn how to set and track budgets across clients and projects in Beebole."
+"og:type": "article"
 ---
 
 Beebole's budgets let you set targets for billing, costs, or hours on your projects and subprojects, and track progress against those targets in real time. Budgets help you spot overruns before they become problems.
@@ -14,9 +14,15 @@ Beebole's budgets let you set targets for billing, costs, or hours on your proje
   Budgets are not included in every Beebole plan. Review your plan and add-ons on the [Subscription](/help/documentation/subscription) page.
 </Info>
 
-<div style={{position: "relative", paddingBottom: "calc(57.2751% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/q0H0Unl1TPtvZdf4MRwH?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Assign Project Budgets" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Assigning a budget to a project in Beebole">
+  <iframe
+    src="https://app.arcade.software/share/q0H0Unl1TPtvZdf4MRwH"
+    title="Assign project budgets in Beebole"
+    loading="lazy"
+    allowFullScreen
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+  />
+</Frame>
 
 ---
 
@@ -52,7 +58,7 @@ The **Time** target is stated in the unit you pick next to the field — **Hours
     Enter your targets in **Time**, **Billing amount**, and **Cost amount**. Changes are saved automatically, and Beebole starts tracking progress against the budget immediately.
   </Step>
   <Step title="Set when it starts (optional)">
-    By default a budget counts **From the start** — everything ever logged on the project. Set a date in **From** to have the budget apply from that day onward instead.
+    A new budget starts counting from the day you create it — its **From** date is set to today. Change **From** to apply the budget from another day. A budget with no From date counts **From the start** — everything ever logged on the project.
   </Step>
 </Steps>
 
@@ -62,7 +68,7 @@ Each budget can also hold free-text **Notes** — a purchase order number or the
 
 ## Several budgets over time
 
-A project can hold more than one budget: click **Add another budget** to create the next one. Each budget applies from its own **From** date onward, so successive budgets model renewals, yearly envelopes, or a re-negotiated scope — the list shows them in chronological order, and **Back to all budgets** returns to the list.
+A project can hold more than one budget: click **Add** again to create the next one. Each budget applies from its own **From** date onward, so successive budgets model renewals, yearly envelopes, or a re-negotiated scope — the panel lists them in chronological order.
 
 ---
 
@@ -70,7 +76,7 @@ A project can hold more than one budget: click **Add another budget** to create 
 
 For more detailed tracking, you can split a budget using its **Type** field:
 
-- **Split by person** — Allocate a portion of the budget to each team member, with its own billing amount, cost amount, and hours.
+- **Split by person** — Allocate a portion of the budget to each team member, with its own time, billing amount, and cost amount.
 - **Split by project** — Distribute the budget across projects from another category — for example, splitting a client's budget across activities.
 - **No split** — One set of targets applies to the whole project.
 
@@ -87,11 +93,11 @@ Beebole also alerts you as a budget fills up:
 - When consumption passes the alert threshold (80% by default), Beebole sends a notification and shows an alert badge on the budget's card in the **Budgets** panel.
 - When consumption reaches 100%, you get another notification and an **Over budget** badge.
 
-Both are controlled by the **Budget threshold alerts** setting — including its **When over budget** option — in the **Notifications** panel. See [Notifications](/help/documentation/notifications). To clear a triggered badge, click its **×** (**Reset alert**).
+To clear a triggered badge, click its **×** (**Reset alert**).
 
-<Warning>
+<Info>
   Beebole tracks budget consumption in real time, but does not block time entries when a budget is exceeded. Use reports to monitor progress and take action proactively.
-</Warning>
+</Info>
 
 ---
 
@@ -123,11 +129,11 @@ Both are controlled by the **Budget threshold alerts** setting — including its
   </Accordion>
 
   <Accordion title="Does Beebole alert me when a budget is exceeded?">
-    Yes. Beebole sends a notification when a budget passes its alert threshold (80% by default) and another when it goes over budget — enable them with the **Budget threshold alerts** and **When over budget** options in your notification settings. Alert badges also appear on the budget itself, and the **Budget Status** report flags at-risk and over-budget projects.
+    Yes. Beebole alerts you when a budget passes its alert threshold (80% by default) and again when it goes over budget. Alert badges appear on the budget itself, and the **Budget Status** report flags at-risk and over-budget projects.
   </Accordion>
 
   <Accordion title="Can I change a budget after it's been set?">
-    Yes. You can update budget amounts at any time. Historical tracking is preserved — the report will reflect the current target.
+    Yes. You can update a budget's targets at any time — changes are saved automatically, and the **Budget Status** report immediately measures all consumption against the new target.
   </Accordion>
 
   <Accordion title="Do expenses count toward project budgets?">

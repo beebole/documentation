@@ -3,7 +3,7 @@ title: "Sign-in, passkeys, SSO, and API keys"
 sidebarTitle: "Authentication"
 description: "How signing in to Beebole works: one-time email codes, passkeys, Google and Microsoft sign-in, single sign-on (SSO), API keys, and admin sign-in as."
 keywords: ["beebole", "authentication", "sign-in", "single sign-on", "SSO", "passkey", "OpenID Connect", "API key"]
-"og:title": "Authentication & Sign-In in Beebole"
+"og:title": "Beebole Authentication: Passwordless Sign-In, Passkeys & SSO"
 "og:description": "Sign in to Beebole with a one-time email code, a passkey, Google or Microsoft, or your organization's SSO provider — no passwords."
 "og:type": "article"
 ---
@@ -11,7 +11,7 @@ keywords: ["beebole", "authentication", "sign-in", "single sign-on", "SSO", "pas
 Beebole signs everyone in without passwords. Instead, you confirm your identity with a one-time code emailed to you, a passkey, your Google or Microsoft account, or your organization's single sign-on (SSO) provider. Because there is no password to create, forget, or reset, there is nothing for an attacker to steal or reuse.
 
 <Info>
-  Every sign-in method matches against the email address on a person's Beebole profile. To sign in, that email must already belong to an active person in your Beebole account.
+  Every sign-in method matches against the email address on a person's Beebole profile. To sign in, that email must already belong to an active person in your Beebole account — unless your organization enables automatic user creation for SSO.
 </Info>
 
 ## Sign-in methods
@@ -23,13 +23,13 @@ Every method also works for the [desktop app](/help/documentation/desktop-app): 
 | Method | How it works | Setup needed |
 | --- | --- | --- |
 | Email code | Beebole emails a one-time 6-digit code; you enter it to sign in | None — available by default |
-| Passkey | Your device unlocks sign-in with a fingerprint, face, or hardware key | Enable once per device |
+| Passkey | Your device unlocks sign-in with a fingerprint, face, or hardware key | Enable once from your user menu |
 | Google or Microsoft | You sign in through your existing Google or Microsoft account | None for the person; for Google, an admin can link the domain for SSO enforcement |
 | SSO | You sign in through your organization's identity provider | An admin configures it on **Account Settings** |
 
 ### Email code
 
-The email code is the default method. Enter your email address on the Beebole sign-in page, and Beebole sends a one-time 6-digit code to your inbox. Enter the code to finish signing in. The code is single-use and expires after a short time — request a new one if it does not arrive, and check your spam folder.
+The email code is the default method. Enter your email address on the Beebole sign-in page, and Beebole sends a one-time 6-digit code to your inbox. Enter the code to finish signing in. The code is single-use and expires after 5 minutes — request a new one if it does not arrive, and check your spam folder.
 
 ### Passkey
 
@@ -116,8 +116,8 @@ Each person has one API key for Beebole's [GraphQL API](/help/api/introduction).
   <Step title="Open the user menu">
     Click the button with your initials at the bottom of the sidebar.
   </Step>
-  <Step title="Open API Key">
-    Click **API Key**. Your key is shown, partly masked.
+  <Step title="Open Your API key">
+    Click **Your API key**. Your key is shown, partly masked.
   </Step>
   <Step title="Copy or reset the key">
     Click **Copy** to copy the full key to your clipboard. Click **Reset** to revoke the current key and generate a new one.
