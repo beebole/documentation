@@ -1,6 +1,6 @@
 # Beebole Features
 
-**Last updated:** 2026-08-17
+**Last updated:** 2026-08-24
 
 **Conventions:**
 
@@ -26,10 +26,10 @@
 - `time-tracking/copy-paste` **Copy/paste time entries** — Duplicate entries across days or weeks
 - `time-tracking/clear-rows` **Clear rows per section** — Hover-to-reveal button that clears one section's rows and its time entries for the current period (undoable); replaces the old all-or-nothing "Clear timesheet" action
 - `time-tracking/auto-submit` **Auto-submit** — Automatically submit timesheets after a configurable number of days
-- `time-tracking/auto-timesheet` **Auto Timesheet from Planning** — Optional setting (**Enable Auto Timesheet from planning** in **Timesheet and Planning Settings**) that fills timesheets automatically from what was planned for each person, so someone who did what was planned doesn't have to fill a timesheet; Kanban boards contribute entries as cards move (**Auto timesheet from tasks**)
+- `time-tracking/auto-timesheet` **Auto Timesheet from Planning** — Optional setting (**Enable Auto Timesheet from planning** in **Timesheet and Planning Settings**) that fills timesheets automatically from what was planned for each person, so someone who did what was planned doesn't have to fill a timesheet; Kanban boards contribute suggestions as cards move (**Auto timesheet from tasks**) — cards always suggest rather than writing entries directly
 - `time-tracking/duplicate-and-start` **Duplicate and start** — Duplicate a time entry and start a new one based on it
 - `time-tracking/reminders` **Timesheet reminders** — Configurable reminders for unfilled timesheets
-- `time-tracking/entry-restrictions` **Time entry restrictions** — Organization-wide rules configured via an "Add restriction" interface with removable chips: keep entries within a project's or person's validity dates, block future-dated entries, require a comment on submission, cap or require hours against the daily/period schedule, allow entries only on scheduled working time (blocking days off and public holidays), keep start and end times inside the day's scheduled hours (as a warning or a hard block), limit time-off bookings to the available quota balance, and keep absences to a single day
+- `time-tracking/entry-restrictions` **Time entry restrictions** — Organization-wide rules configured via an "Add restriction" interface with removable chips: keep entries within a project's or person's validity dates, block future-dated entries, require a comment on submission, cap or require hours against the daily/period schedule, allow entries only on scheduled working time (blocking days off and public holidays), keep start and end times inside the day's scheduled hours (as a warning or a hard block), limit time-off bookings to the available quota balance, keep absences to a single day, and allow only admins to edit someone else's timesheet
 - `time-tracking/lock-date` **Lock date** — Freeze all time records on or before a chosen day — no creating, editing, moving, or deleting for anyone, admins included; set organization-wide or per person, team, or project, and applied everywhere including the BambooHR time-off sync
 - `time-tracking/record-locking` **Record locking by state and role** — Restrict who can change time records by approval state and role, e.g. owner/admin-only edits, or preventing edits once a timesheet has been submitted or approved
 - `time-tracking/mobile` **Mobile timesheet** — Mobile-optimized layout for phones and small tablets, with infinite scroll, swipe-to-delete, and bottom-sheet editors for adding and editing entries
@@ -142,7 +142,7 @@
 - `projects/validity-period` **Project validity period** — Give a project **From**/**To** dates (**Valid period for time entry**); time records outside the window are refused, and the window cascades to subprojects
 - `projects/billing-rates` **Billing rates per project** — Project-specific billing configuration
 - `projects/cost-rates` **Cost rates per project** — Project-specific cost tracking
-- `projects/budgets` **Budgets** — Set billing, cost, and quantity (hours) budgets per project
+- `projects/budgets` **Budgets** — Set billing, cost, and quantity budgets per project, with quantity stated in hours or days; each budget covers the project's whole life ("From the start") or an explicit start–end period
 - `projects/budget-splits` **Budget splits** — Break budgets down by person or sub-project
 - `projects/expense-types` **Expense types per project** — Control which expense types apply
 - `projects/custom-fields` **Custom fields on projects** — Extend project data with custom attributes
@@ -225,13 +225,14 @@
 - `reports/filters` **Report filters** — Filter by person, project, task, tag, date range, project category, or task category, including "is not" exclusions
 - `reports/billing-cost` **Billing & cost attributes** — Include billing amounts, cost rates, and profitability in reports, broken out as hourly and daily rates with markup and margin percentages; further columns cover overtime (daily, period, balance), business hours, billable hours and percentage, work-from-home share, activity, comments (rows split per distinct comment), and recorded start/end times
 - `reports/charts` **Chart visualizations** — Visualize report data with 11 chart types: bar, line, pie, area, stacked bar, stacked area, horizontal bar, scatter, radar, treemap, and waterfall; toggle between table and chart view, configure chart height
-- `reports/folders` **Report folders** — Organize saved reports into folders; move a report into a folder from its menu, and switch every report in a folder between working time and time off with the "Absence / working time" scope
+- `reports/folders` **Report folders** — Organize saved reports into folders that are personal by default — only you see your folders and their reports; move a report into a folder from its menu, and switch every report in a folder between working time and time off with the "Absence / working time" scope
+- `reports/folder-sharing` **Report folder sharing** — Share a report folder with specific people or tags (sharing with a tag includes everyone tagged by it or its sub-tags); folders shared with you appear alongside your own in the reports menu
 - `reports/matrix` **Matrix report** — Grid visualization with entities or calendar periods on each axis, showing hours, billing, costs, or other metrics per cell, with an optional heat-map overlay and one-click row/column swap
 - `reports/budget-status` **Budget status report** — Progress-bar view of budget consumption across projects with actuals, a burn-rate forecast that warns when spending is on track to exceed a budget, hierarchy roll-up including sub-project budgets, drill-down detail sheets, and automatic alerts that link straight to the report when a budget passes its threshold or goes over
 - `reports/planning-vs-real` **Planned vs. real report** — Compare planned effort against actual timesheet data, with multiple plans per report and figures in hours, days, billing, cost, or margin; cumulative or remaining burn views with an ideal line, a forecast carried forward from today's actuals, and a pace-status headline (behind, on track, ahead)
 - `reports/revenue-at-risk` **Revenue at Risk report** — Lists projects at risk of not consuming their budgeted hours before their end date, with the total revenue at risk and the projects behind it
 - `reports/utilization` **Billable utilization report** — Monthly per-person billable utilization (billable hours ÷ scheduled capacity) that respects each person's real schedule, public holidays, and absences, with a projection for the coming month
-- `reports/timesheet-compliance` **Timesheet compliance report** — Calendar-style grid of timesheet hits and misses per person per period — a detailed view of the timesheet score — filterable, with the period defaulting to the last six full months
+- `reports/timesheet-compliance` **Timesheet compliance report** — Calendar-style grid of timesheet hits and misses per person per period — a detailed view of the timesheet score — filterable, surfacing the people currently out of compliance, with the period defaulting to the last six full months
 - `reports/absence-quotas` **Absence quota report** — Quota consumption per person shown as bars and a timeline, with drill-down detail sheets for a single person's breakdown
 - `reports/mobile` **Reports on mobile** — Consult-and-filter experience designed for phones: pick a folder, change the period, and read each report
 - `reports/schedule-email` **Scheduled report delivery** — Email a saved report to chosen recipients on a recurring schedule
@@ -265,7 +266,8 @@
 
 > Grouped to mirror the in-app **Beebole AI** page. Keys stay function-first so entries can move back into their functional areas without breaking references.
 
-- `time-tracking/suggestions` **Suggested time entries** — Draft entries proposed automatically — mined from your recurring logging patterns, captured by the desktop app and browser extension, or created when Kanban cards move to a done column. They appear in a tray (and as ghost entries on the calendar view) where you accept, edit, or dismiss each one; suggestions stay private to you until accepted — managers only ever see records you explicitly accepted — and accepted entries go through the normal entry path: lock date, entry restrictions, and approvals all apply, and nothing is submitted automatically
+- `time-tracking/suggestions` **Suggested time entries** — Draft entries proposed automatically from five sources — your recurring logging patterns (Habit), the desktop app, the browser extension (Web), Kanban card moves, and what was planned for you (Planned) — each carrying a source badge and a "Why?" panel explaining the evidence behind it. They appear in a tray (and as ghost entries on the calendar view) where you accept, edit, or dismiss each one, refreshing live as new signals arrive; suggestions stay private to you until accepted — managers only ever see records you explicitly accepted — and accepted entries go through the normal entry path: lock date, entry restrictions, and approvals all apply
+- `time-tracking/suggestion-autopilot` **Timesheet suggestion autopilot** — All suggestion sources (browser extension, desktop app, Kanban, mined habits, planned tasks) resolve into one coherent timeline against each person's work schedule, so the same hour is never proposed twice; when auto-submit is enabled, remaining suggestions are accepted at the deadline and the timesheet submits itself, with reminder emails announcing the auto-submit deadline in advance
 - `reports/nl-builder` **Natural-language report builder** — Describe the report you need in plain language on the reports page and it is created and run for you; only your question and the report structure are sent to the model — never timesheet data — and the numbers are computed by Beebole's reporting engine, not generated by the model
 - `approval/digest` **Approval review digest** — Rules-based, explainable anomaly detection when reviewing a submitted timesheet: non-working days, overtime, after-hours time, archived projects or tasks, entries near the lock date, over-planned tasks, and totals far from usual are flagged before you decide; approvers also receive an email digest of timesheets awaiting review. _(Deterministic rules by design, not a model — market as explainable anomaly detection, never as AI)_
 - `integrations/ai-assistants` **AI assistant connections** — Connect AI assistants such as Claude or ChatGPT to your Beebole data (via Beebole's MCP server, secured with OAuth 2.1) with exactly your permissions — log time, read timesheets, list projects — and review or disconnect them anytime from the **Connected apps** list; assistants act as the user, never above them
@@ -303,7 +305,7 @@
 - `auth/oauth` **OAuth sign-in** — Google and Microsoft SSO
 - `auth/custom-sso` **Custom enterprise SSO** — Sign in using an enterprise identity provider (e.g. Okta, Microsoft Entra, OneLogin) via OpenID Connect, configured by administrators in account settings
 - `auth/sso-only-enforcement` **SSO-only enforcement** — Require all users in the organization to sign in through a specific SSO provider, disabling interactive sign-in
-- `auth/passkeys` **Passkey support** — Passwordless sign-in with fingerprint or face recognition, works across all your devices
+- `auth/passkeys` **Passkey support** — Passwordless sign-in with fingerprint or face recognition, works across all your devices including the desktop app
 - `auth/passwordless-email` **Passwordless email login** — Sign in via a one-time verification code sent to your inbox
 - `auth/api-keys` **API keys** — Each user has one auto-created API key (**API Key** in the user menu) with copy and reset actions; no expiration setting
 - `auth/account-deletion` **Account deletion** — Permanently delete your account and all associated data
@@ -369,7 +371,7 @@
 - `org/gdpr-compliance` **GDPR compliance tools** — Dedicated settings area for data protection officer contact, employee data export, and person anonymization
 - `integrations/auto-sync` **Automatic daily integration sync** — Keep structure imported from integrations in sync automatically every day, without manual re-import
 - `time-tracking/reply-by-email` **Reply-by-email timesheet commands** — Act on your timesheet by replying to Beebole notification emails with short commands
-- `time-tracking/suggestion-autopilot` **Timesheet suggestion autopilot** — One coherent behavior across all suggestion sources (browser extension, desktop app, Kanban, mined habits, planned tasks), resolved against each person's work schedule and connected to auto-submit so timesheets assemble and submit themselves
+- `reports/money-authorisations` **Report billing/cost rights enforcement** — Billing and cost figures in reports (Budget Status, Planned vs. Real, Revenue at Risk, custom reports) withheld — never zeroed — according to each person's billing and cost read rights, enforced identically on screen, in exports, scheduled emails, the API, and MCP. _(status: partial — today only a frontend guard hides unauthorized reports from the reports menu; the per-figure, all-channel enforcement is not implemented)_
 
 ---
 
