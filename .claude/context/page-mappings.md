@@ -88,3 +88,6 @@ Use this table to map app change keywords to the documentation pages they likely
 | favorites, favorites bar, pinned favorites | `help/documentation/timesheets.mdx` |
 | report folder sharing, share folder, shared folder, folder share | `help/documentation/reports.mdx` |
 | plan on non-working days, non-working days, task calendar | `help/documentation/gantt.mdx` |
+| task hours, task start time, task end time, all day task, timed task | `help/documentation/gantt.mdx` |
+| calendar timer, play button, start timer from calendar, favourite timer | `help/documentation/timesheets.mdx` |
+| forecast card, planned forecast, undo suggestion, retarget suggestion | `help/documentation/ai.mdx` |
