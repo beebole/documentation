@@ -143,8 +143,10 @@ Submitting locks a timesheet for its owner, but it doesn't have to be rejected t
 
 To edit on someone's behalf, open the **Pending** or **Team** pane and click the edit button (**Edit timesheet**) on the person's row. Their grid unlocks for you; the override switches off when you move to another person. Administrator edits never restart the workflow.
 
+The edit button is not limited to administrators — managers and approvers see it too, on the rows they are allowed to correct. Beebole decides row by row, following the table above: a timesheet that is already **Approved** stays locked for everyone but an administrator, a **Submitted** one opens only for an approver of the current stage, and the two restrictions below can take the button away entirely.
+
 <Info>
-  The restriction **Only the owner or an admin can edit entries** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings) removes the approver column above — only the owner and administrators can then change entries.
+  Two settings in [Timesheet and Planning Settings](/help/documentation/timesheetSettings) narrow this further. **Only the owner or an admin can edit entries** removes the approver column above, so only the owner and administrators can change entries. **Only an admin can edit someone else's timesheet** leaves the owner's own editing untouched but reserves every edit on another person's timesheet for administrators.
 </Info>
 
 ### Force approve and reject <Badge>Admin only</Badge>

@@ -36,7 +36,9 @@ Hover any bar for a rich tooltip: the full dates, the task name, its project wit
 Open the **⋯** menu on the active view tab and use **Period** to choose how the timeline runs:
 
 - **Infinite by day** or **Infinite by week** — the endless scrolling timeline, at day or week granularity.
-- A fixed **week**, **month**, **quarter**, or **year** — the chart fits that window to your screen and lists only the tasks that fall inside it (parents and recurring series are kept).
+- **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks** — the chart fits that many weeks to your screen and lists only the tasks that fall inside the window (parents and recurring series are kept).
+
+With a fixed window, the view pages one period at a time: swipe or scroll sideways and it snaps cleanly onto the next or previous window, and the period containing today is always reachable.
 
 With a fixed period, tasks that start before or end after the window are drawn cut off, with a dashed edge and a chevron — click it to jump to the hidden start or end date. Cut edges can't be resized, since the date they would move isn't on screen.
 
@@ -51,11 +53,34 @@ With a fixed period, tasks that start before or end after the window are drawn c
 - **Give a task dates** — In the row of a task that has no dates yet, click the timeline to create a bar spanning that cell, or click and drag to draw the exact period you want. Dragging on the row of a task that already has dates scrolls to its bar and flashes it instead.
 - **Move a task** — Drag its bar left or right. The duration is preserved.
 - **Resize a task** — Drag the left or right edge of the bar to change the start or end date.
-- **Work on several tasks at once** — Select several bars, then drag them together to reschedule the whole group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount. Each batch is a single undo step.
+- **Work on several tasks at once** — Select several bars, then drag them together to reschedule the whole group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount. Press **Delete** (or **Backspace**) to remove the whole selection at once. Each batch is a single undo step.
 
 While you drag, Beebole shows the new dates live — and tasks linked by [dependencies](#task-dependencies) follow the drag on screen before you drop. Changes are saved automatically when you release the bar.
 
 If the task's planned time no longer fits the new period, the task detail panel flags the overflow and offers one-click fixes — see [scheduling dates and planned time](/help/documentation/planning#scheduling-dates-and-planned-time).
+
+---
+
+## Giving a task hours
+
+A task normally runs over whole days. To pin it to exact times instead, open the task's **Dates** panel and uncheck **All day** — the hint on the checkbox says it plainly: *The task runs over whole days. Uncheck to set the hours it starts and ends.*
+
+**Start time** and **End time** fields appear, pre-filled from the owner's own working hours, and the task now stretches on the clock rather than by whole days:
+
+- Dragging, resizing, splitting, and copying the task keep its hours.
+- Typing a figure in **Planned** reflows the task to the exact minute the owner's calendar can hold that work — skipping their scheduled breaks, days off, public holidays, and time off — and rolls to the next working day only when the current one runs out of hours.
+- The capacity a timed task consumes is measured on the hours it actually spans, so a two-hour task no longer counts as a whole day against its owner's [workload](#workload-heatmap).
+- On the [Staffing](/help/documentation/staffing) timeline, the bar is drawn at its real position inside the day column, with non-working stretches hatched behind it.
+
+Times that fall outside the owner's working hours are highlighted in the **Dates** panel, with a tooltip naming the reason — **Owner's schedule starts at …**, **Owner's schedule ends at …**, **Owner's schedule pauses from … to …**, or **Owner's schedule has no working hours that day**. When a day simply cannot hold the planned work, Beebole says **Not enough working hours on …**.
+
+<Info>
+  Moving the anchored edge of a period slides the whole period instead of collapsing it — a task set to run 08:00–12:00 and moved to start at 18:00 becomes 18:00–22:00.
+</Info>
+
+<Tip>
+  A parent task has no dates panel of its own — its dates are the span of its subtasks. Set hours on the subtasks instead.
+</Tip>
 
 ---
 
@@ -206,7 +231,7 @@ With the Gantt chart focused, you can work without the mouse:
 
 <AccordionGroup>
   <Accordion title="Does Beebole's Gantt chart have a month view?">
-    No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed week, month, quarter, or year fitted to your screen.
+    No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed window of **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks**, fitted to your screen and paged one period at a time.
   </Accordion>
   <Accordion title="How do I create a dependency between two tasks?">
     Click the **Dependencies** cell of the task that should come second, then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.

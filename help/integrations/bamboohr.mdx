@@ -37,7 +37,7 @@ Beebole's BambooHR integration connects your BambooHR account to Beebole so that
     BambooHR time-off types are matched to Beebole absence types by name (case-insensitive). If a matching absence type exists in Beebole, the integration links to it. If no match is found, a new absence type is created automatically. Time-off types measured in hours are configured with an hourly unit in Beebole.
 
     <Warning>
-      BambooHR's paid/unpaid setting is not carried over — all imported absences are created as paid in Beebole, even if the time-off type is unpaid in BambooHR. After the import, edit the created absence type in Beebole and adjust **Is paid (included in people costs)** to replicate the unpaid setting manually.
+      BambooHR's paid/unpaid setting is not carried over. Every imported absence type counts toward people costs in Beebole, even if the time-off type is unpaid in BambooHR — see [Time off in people costs](/help/documentation/costs#time-off-in-people-costs).
     </Warning>
   </Accordion>
 
@@ -144,7 +144,7 @@ To disconnect your BambooHR account entirely, click **Reset connection**. This r
   </Accordion>
 
   <Accordion title="Are unpaid BambooHR time-off types imported as unpaid in Beebole?">
-    No. All absences imported from BambooHR are created as paid in Beebole, regardless of how they are defined in BambooHR. To treat a type as unpaid, edit the corresponding absence type in Beebole after it has been created by the import and turn off **Is paid (included in people costs)**.
+    No. BambooHR's paid/unpaid distinction isn't carried over, and Beebole treats every time off type the same way in cost calculations — imported leave counts toward people costs like any other absence.
   </Accordion>
 
   <Accordion title="What happens if a time-off request is canceled or modified in BambooHR?">

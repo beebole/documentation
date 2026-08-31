@@ -49,7 +49,13 @@ You can import your Asana structure into Beebole's **Projects and activities** f
   <Accordion title="Items managed in Beebole">
     Timesheet entries, approval workflows, billing rates, budgets, and expenses remain in Beebole and are not affected by the integration.
   </Accordion>
+
+  <Accordion title="Deletions and moves">
+    Deleting an Asana project or task that already has time logged against it in Beebole archives the Beebole record instead of removing it, so the tracked history is preserved. Tasks moved between projects in Asana keep syncing to their new parent.
+  </Accordion>
 </AccordionGroup>
+
+Beebole recognizes repeated or retried deliveries from Asana and processes each change once, so a retry never creates duplicate projects or tasks. When Asana rate-limits a request, Beebole backs off and retries rather than failing the sync, and any error Asana returns is reported with its actual reason instead of a generic failure.
 
 ---
 
@@ -113,7 +119,7 @@ You can import your Asana structure into Beebole's **Projects and activities** f
   If you disable the integration, any future changes made in Asana will no longer sync to Beebole. Previously imported data remains in Beebole as local records.
 </Warning>
 
-To disable the integration, go to **Settings** \> **Integrations** \> **Asana** and toggle the integration off. You can re-enable it at any time to resume syncing.
+To disable the integration, go to **Settings** \> **Integrations** \> **Asana** and toggle the integration off. You can re-enable it at any time to resume syncing. If the change can't be applied, the toggle reverts to its previous state and Beebole reports the error — it never stays stuck mid-update.
 
 To disconnect your Asana account entirely, click **Reset connection**.
 

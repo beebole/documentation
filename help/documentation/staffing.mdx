@@ -37,6 +37,12 @@ Each row is a person (or a project, depending on the grouping). Each bar is a bo
 - The timeline extends into the past as well as the future — keep scrolling left to review earlier plans.
 - Bar edges snap to working days, so bookings line up with what people can actually work.
 
+### Bookings with hours
+
+A task that carries [start and end times](/help/documentation/gantt#giving-a-task-hours) is drawn at its real position inside the day column rather than filling the whole day, so a booking from 14:00 to 17:00 sits in the afternoon third of its cell. The stretches the owner does not work — before their day starts, their scheduled breaks, and after their day ends — are hatched behind the bar, which makes a booking placed outside working hours obvious at a glance. Bookings that run past midnight start late in one day's cell and end early in the next.
+
+Dropping a booking onto a day its owner doesn't work is refused rather than silently accepted. Days that define a length but no working hours show the booked hours in proportion, with any overrun hatched.
+
 ### Grouping rows
 
 Open the **⋯** menu on the view tab and use **Group by** to choose what the rows represent:
@@ -83,7 +89,7 @@ From the booking's editor you can also **Split** it in two at a chosen date — 
 - **Move** — Drag a bar left or right to shift its dates; the duration is preserved and other bookings restack live as you drag.
 - **Resize** — Drag the left or right edge to change the start or end date.
 - **Move between rows** — Drag a bar vertically: drop it on another person's row to reassign the booking, on another project's row to move it to that project, or on the **Unassigned** row to clear its owner. A dashed ghost previews where the bar will land, and the whole move is one undo step. The booking's working time reflows over the destination person's own schedule and absences.
-- **Work on several bookings at once** — Select multiple bars and drag them together to reschedule the group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount — all undoable as a single step. ⌘-dragged copies land on the row you release them on.
+- **Work on several bookings at once** — Select multiple bars and drag them together to reschedule the group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount — all undoable as a single step. ⌘-dragged copies land on the row you release them on, each on its own row rather than stacked on the row you dropped on. Press **Delete** (or **Backspace**) to remove every selected booking at once: one confirmation, and one undo for the whole batch.
 - **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
 - **Reassign** — Click a bar to open its editor and change the project, person, or allocation. Changes are saved automatically.
 
@@ -115,7 +121,12 @@ An account-wide reminder can warn everyone involved before an unassigned task st
 
 ## Locking the view to a period
 
-By default the timeline is infinite — it scrolls by day or week as far as you need. Open the **⋯** menu on the view tab and use **Period** to lock the view to a fixed **week**, **month**, **quarter**, or **year** instead: the chart fits that window to your screen and shows only the bookings that fall inside it.
+By default the timeline is infinite — it scrolls by day or week as far as you need. Open the **⋯** menu on the view tab and use **Period** to lock the view to a fixed window instead:
+
+- **Infinite by day** or **Infinite by week** — the endless scrolling timeline, at day or week granularity.
+- **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks** — the chart fits that many weeks to your screen and shows only the bookings that fall inside the window.
+
+With a fixed window, the view pages one period at a time: swipe or scroll sideways and it snaps cleanly onto the next or previous window, and the period containing today is always reachable.
 
 Bookings that start before or end after the locked period are drawn cut off, with a dashed edge and a chevron — click it to jump to the hidden start or end date. Cut edges can't be resized, since the date they would move isn't on screen.
 
@@ -123,7 +134,9 @@ Bookings that start before or end after the locked period are drawn cut off, wit
 
 ## Copying the previous period
 
-With the view locked to a fixed period, **Copy the previous period** refills the current period from the one before it — with or without the people and project assignments. Recurring tasks are skipped, and anything that would spill outside the period is clipped. If there is nothing to copy, Beebole says so: **The previous period has no bookings to copy**.
+With the view locked to a fixed period, **Copy the previous period** refills the current period from the one before it — with or without the people and project assignments. Choose **With people** or **Without people**, and **With projects** or **Without projects**, to decide how much of the booking is carried over.
+
+Beebole looks back to the last period that actually holds bookings, not just the one immediately before, and fills every empty period between it and the one you are looking at — so a run of unstaffed weeks is refilled in a single action. Recurring tasks are skipped, and anything that would spill outside the period is clipped. If there is nothing to copy, Beebole says so: **No earlier bookings to copy**.
 
 ---
 
