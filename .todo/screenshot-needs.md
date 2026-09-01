@@ -542,3 +542,24 @@ Identified by `/illustrate --identify` on the pages this release changed. No mis
 | timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low |
 
 `authentication.mdx` / `desktop-app.mdx` (desktop sign-in handoff) need no shot — the flow is browser-mediated and transient.
+
+---
+
+## Additions 2026-08-31 (release run, prod deploy 2026-08-30)
+
+Identified by `/illustrate --identify` on the pages this release changed. No broken image references and no `[SCREENSHOT:]` markers anywhere in `help/**` — every entry below is an optional shot for newly documented UI.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| gantt/task-period-timed.webp | A task's **Dates** panel with **All day** unchecked, showing the **Start time** and **End time** fields and a time highlighted as outside the owner's working hours (element capture) | high |
+| staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high |
+| timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high |
+| ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high |
+| timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium |
+| ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium |
+| gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium |
+| timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium |
+| reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low |
+| approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low |
+
+Master data review is deliberately excluded — the Settings entry is suppressed on production hosts, so there is nothing a user can be shown.

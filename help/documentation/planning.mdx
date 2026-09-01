@@ -64,6 +64,8 @@ Statuses always belong to a planning, not to a project: each planning defines it
   Press **⌘\+A** (Ctrl\+A on Windows) anywhere on the **Planning** page to open the add form. If a task is currently open, the new task is created as its subtask.
 </Tip>
 
+A new task doesn't get a color of its own. It takes the color of its project, its owner, or its parent task, and shows that same color everywhere it appears — badges, dots, timesheet section headers, timers, and mentions. Pick a color on the task itself only when you want it to stand apart from the work it belongs to.
+
 ### Adding many tasks at once
 
 You can import a whole task list by pasting it from a spreadsheet — there is no file upload involved.
@@ -131,7 +133,7 @@ A parent task rolls up its children: it shows the period spanned by its subtasks
 
 Open a task's detail panel to set its schedule:
 
-- **Dates** — Pick the start and end dates with the date-range picker.
+- **Dates** — Pick the start and end dates with the date-range picker. A task runs over whole days by default; uncheck **All day** to give it exact start and end times instead — see [giving a task hours](/help/documentation/gantt#giving-a-task-hours).
 - **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, Beebole shows the maximum the owner's schedule allows between the task's dates (**Max value per schedule**).
 - **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the _unlocked_ edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, a warning pill offers two one-click fixes: **Click to extend the unlocked date to fit planned time** or **Click to reduce planned time to capacity**.
 
@@ -145,7 +147,8 @@ To sequence tasks — making one start after another ends — use [dependencies 
 
 Time entries can be recorded directly against tasks:
 
-- **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project.
+- **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project. Tasks someone owns are listed first in the add-task picker, so their own work is quickest to reach.
+- **From a suggestion** — A dated task assigned to someone reaches them as a [suggested entry](/help/documentation/ai#suggested-time-entries) rather than being added to their timesheet as a row automatically. Accepting the suggestion creates the entry and pins the row.
 - **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
 
 Which plannings accept time entries is controlled by the **Record time on these plannings** setting, in the **Categories** tab of [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Tasks in other plannings don't show the time button.

@@ -11,14 +11,14 @@ og:type: "website"
 ---
 
 <Update label="August 2026" tags={["Reports","Budgets","Planning","Timesheet","Integrations","Settings","AI"]}>
-  August adds three new reports — **Revenue at Risk**, **Utilization**, and **Timesheet Compliance** — teaches your timesheet to assemble and submit itself from suggestions, makes report folders personal and shareable, and sharpens the Gantt and Staffing views for day-to-day resource planning.
+  August adds three new reports — **Revenue at Risk**, **Utilization**, and **Timesheet Compliance** — teaches your timesheet to assemble and submit itself from suggestions, makes report folders personal and shareable, gives tasks real start and end times, and turns the calendar into the default timesheet view with a timer you can start from any entry.
 
   ### Reports
 
   - New **Revenue at Risk** report: for hourly and daily-billed projects with an end date, see how many budgeted hours will still be unconsumed by that date — converted into a revenue amount, with totals for the amount at risk and the projects behind it. See [Reports](/help/documentation/reports).
   - New **Utilization** report: billable hours as a share of each person's scheduled capacity per month, with capacity net of time off and a projection for next month based on planned bookings.
   - New **Timesheet Compliance** report: a person-by-period grid showing who submitted on time, late, or not at all, with a per-person score, hover details, filtering, and export. Access is a dedicated permission — managers see the people they manage.
-  - [Report folders](/help/documentation/reports) are now personal: you see your own folders plus any shared with you, and you can **Share** a folder with specific people or with everyone under a tag. Shared folders are view-only for recipients — the owner keeps full control.
+  - [Report folders](/help/documentation/reports) are now personal: you see your own folders plus any shared with you, and you can **Share** a folder with specific people or with everyone under a tag. Shared folders are view-only for recipients — the owner keeps full control. A folder also carries its own filters, period, and working-time/time-off scope, applied to every report inside it.
   - The [Planned vs. Real](/help/documentation/reports) report grows up: read it in hours, days, billing, cost, or margin; chart several plans at once; flip between cumulative and remaining (burndown) views with an ideal-burn line and a **Behind / On track / Ahead** pace headline; and a new chart shows time over or under plan per person.
   - Planned vs. Real is now a browsable list: pick a person or project level as the axis, step through people or projects with the arrows or keyboard, and filter with chips that stay in the URL so a filtered view can be shared — the time window and granularity are worked out automatically.
   - The **Budget Status** report reads in the unit its budgets were stated in — hours or days — and its **Billing** and **Costs** views appear only for people allowed to see those amounts, on screen and in exports. **Revenue at Risk** now requires both budget and billing rights.
@@ -26,8 +26,8 @@ og:type: "website"
 
   ### Budgets
 
-  - [Budgets](/help/documentation/budgets) now carry a start date, so a project can hold several budgets over time — each applies from its own date onward.
-  - A budget's quantity can be stated in **days** instead of hours, measured against each person's schedule, and every budget can hold a free-text note (purchase order, customer agreement, …) shown on its card.
+  - [Budgets](/help/documentation/budgets) now carry a start date, so a project can hold several budgets over time — each applies from its own date onward. Clear the date and the budget counts from the very beginning of the project, shown as **From the start**.
+  - A budget's quantity can be stated in **days** instead of hours, measured against each person's schedule, and can be switched between hours and days after it was created. Every budget can hold a free-text note (purchase order, customer agreement, …) shown on its card.
 
   ### Planning & staffing
 
@@ -35,10 +35,14 @@ og:type: "website"
   - New capacity finder on the people view: search who's available over a chosen period — including forward-looking ranges like "By year end" — with over-booking flagged directly on the [Staffing](/help/documentation/staffing) timeline.
   - The booking editor now takes allocation as a percent, hours per working day, or total hours, and a booking can be marked **Tentative** — it reserves capacity but stays out of reports until confirmed. Split a booking in two or duplicate it in one click.
   - Dependency links now work fully in Staffing: links are drawn between bars, linked bookings follow the drag live, and you can drag and resize dependent bookings directly.
-  - Multi-select on the [Gantt](/help/documentation/gantt) and Staffing timelines: drag several bars together, hold ⌘/Alt to drop dated copies, or resize the whole selection at once — all undoable in a single step.
-  - Lock the Gantt or Staffing view to a fixed week, month, quarter, or year fitted to your screen, and refill a period from the previous one with the new **Copy the previous period** action.
+  - Multi-select on the [Gantt](/help/documentation/gantt) and Staffing timelines: drag several bars together, hold ⌘/Alt to drop dated copies, resize the whole selection at once, or press Delete to remove every selected booking — all undoable in a single step.
+  - Lock the Gantt or Staffing view to a fixed window — **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks**, alongside the endless **Infinite by day** and **Infinite by week** — and page through it one period at a time, swiping or scrolling sideways to snap onto the next. **Copy the previous period** now looks back to the last period that actually holds bookings and fills every empty period in between, so a run of unstaffed weeks is filled in one action.
   - Move a booking between rows by dragging it vertically — onto another person to reassign it, onto another project, or onto the unassigned row to clear the owner.
   - Unassigned work is now visible and actionable: an unassigned row in Staffing holds it, and everyone involved gets an email before an unassigned task starts.
+  - Tasks can now carry start and end hours, not just dates: uncheck **All day** in a task's date panel to set the exact times, pre-filled from the owner's working hours. Dragging, resizing, splitting, and copying keep the hours, and typing a figure in **Planned in hours** reflows the task to the exact minute the owner's calendar can hold — skipping breaks, days off, and time off, and rolling to the next working day only when the current one runs out.
+  - Times that fall outside the owner's working hours are highlighted in the date panel with the reason — the schedule starts later, ends earlier, pauses for a break, or has no hours that day. On [Staffing](/help/documentation/staffing), bars for timed tasks are drawn at their real position inside the day, with non-working stretches hatched behind them, so a booking placed outside working hours is obvious at a glance.
+  - A task no longer gets an arbitrary color of its own: it takes the color of its project, owner, or parent task, and shows that same color everywhere — badges, dots, timesheet headers, timers, and mentions.
+  - Tasks you own with dates are no longer added to your timesheet as rows automatically. They reach you as suggestion cards instead, and stay listed first when you add a task by hand.
   - New **Plan on non-working days** option in a task's date panel: weekends and holidays count as working days for that task, so it keeps the exact dates you give it — planned hours, the Gantt bar, dependency shifts, and the workload heatmap all follow the task's own calendar.
   - Tags can now be assigned to tasks, and absence types, expense types, and custom fields can be assigned to tags.
 
@@ -55,11 +59,23 @@ og:type: "website"
   - Once a period is fully approved it stays approved: changing the approval workflow, managers, or tags no longer silently reopens it.
   - The [calendar view](/help/documentation/timesheets) now works when start/end times are turned off — entries stack by duration — and your choice of calendar or grid view is remembered on your account.
   - The favorites bar lets you remove any chip — and removals stick. Projects and tasks you used in the previous period carry forward as ready-to-fill rows.
+  - The [calendar view](/help/documentation/timesheets) is now the default timesheet view for everyone, with a taller day grid so short entries stay readable and a day that fills its column exactly to the end of your schedule.
+  - Start and pause a timer without leaving what you're doing: hover an entry on today's calendar for a play/pause button, or use the one on any favorite chip. A pulsing red dot marks the entry being recorded and its duration ticks up live in place.
+  - A play button on today's [suggestions](/help/documentation/ai) — in the side pane, on the calendar ghosts, and in the suggestion popup — accepts the suggestion and keeps the clock running on it in a single, undoable gesture.
+  - What you're planned to work on now shows up on future days as read-only forecast cards — a muted, dashed preview that becomes fully actionable once the day arrives. Reopening a past week that's still draft or rejected regenerates its planned suggestions, so staffing added after the fact still appears.
+  - Suggestion cards now show the project or task they're about, with its picture and color instead of a generic icon, and calendar entries carry a small ring comparing time logged on a task against its planned hours. Drop a favorite straight onto a suggestion to retarget it to that project or task and accept it in one move.
+  - Accepting, editing, or dismissing a suggestion can now be undone — undoing an accept also removes the entries it created.
+  - Picking a parent item in a project, task, or tag selector no longer needs ⌘+click: a plain click selects it, and once selected its whole branch is hidden from the list so you can't pick overlapping entries.
+
+  ### Time off
+
+  - Every [time-off allowance](/help/documentation/timeoff) field — available, accrued, carry-forward limit, and consumed — now states its own unit, days or hours, in the input and in the card summary, so hour-based and day-based allowances can no longer be confused. **Available**, **Consumed**, and **Accrued** sit at the top of the card, right after the time-off type.
 
   ### Integrations & apps
 
   - The [AI page](/help/documentation/ai) now walks you through connecting an assistant step by step — hosted assistants (claude.ai, ChatGPT) sign in directly with no API key; local ones (Claude Code, Claude Desktop, Cursor) use your API key — and lists everything a connected assistant can do. Assistants can also look up your organization's own category names, so they speak your vocabulary.
   - Signing in to the [desktop app](/help/documentation/desktop-app) now hands off to your browser and comes back signed in, so passkey and SSO logins work there.
+  - [Asana](/help/integrations/asana) sync is steadier: deleting a project or task that already has time logged archives it instead of failing, repeated deliveries no longer create duplicate projects and tasks, tasks moved between projects keep syncing, rate limits are retried rather than breaking the sync, and turning the integration on or off no longer leaves the switch stuck on "updating".
 
   ### Settings & permissions
 
@@ -67,9 +83,10 @@ og:type: "website"
   - Timesheet settings are now **Timesheet and Planning Settings**, and task categories are called **Plannings** throughout the app.
   - A new [time restriction](/help/documentation/timesheetSettings) keeps start and end times inside the day's scheduled hours — as a warning or a hard block.
   - New timesheet rule: **Only an admin can edit someone else's timesheet**.
+  - Managers and approvers can now open and edit a team member's timesheet directly from the **Approval** and **Team** panes — the edit pencil is no longer admin-only. Who may edit at each approval stage still applies: a timesheet locks once approved, and the rule above still wins when it is switched on.
   - A [public holiday](/help/documentation/public-holidays) calendar's country can now be changed freely — it is no longer locked once loaded.
 
-  {/* news-cursor: 2026-08-23 */}
+  {/* news-cursor: 2026-08-30 */}
 </Update>
 
 <Update label="July 2026" tags={["Planning","Timesheet","AI","Reports","Integrations"]}>

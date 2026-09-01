@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-08-24T14:34:49Z
+Mined through: 2026-08-31T00:00:00Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -135,3 +135,27 @@ This run instead folded in the **13+ recovered Jul 1–7 conversations** flagged
 - Language demand continues: one Spanish thread (approval flow) and three Korean threads this window — business signal, docs are EN-only by decision.
 - App-copy signal: the invite-link helper text still says "configure a password" (`labels.json` `user.invited`) although Beebole is passwordless — route to the app team.
 - Noise: "qb" (unanswered single token), "API" and "reject" (accidental/empty probes) — no theme.
+
+
+---
+
+## Pending review (run 2026-08-31)
+
+**Window:** 2026-08-24T14:34:49Z → 2026-08-31 (release run, prod deploy 2026-08-30).
+**Volume:** 19 threads, 19 user messages — every thread a single message, all marked `answered` by Mintlify, all `high` match confidence. No multi-turn struggle sessions this window, so the signal is thematic (repeat questions across sessions) rather than per-session friction.
+**Method:** latest transcript per `trace_id` from `docs_assistant_conversation`; each candidate verified against `help/**` and the app code in `../reboot` before classifying.
+
+### Real gaps — content missing or insufficient
+
+- [ ] MEDIUM | `help/documentation/troubleshooting.mdx` | No answer for "my timesheet shows no projects to pick" — evidence: 1 conversation (2026-08-28), user reports the project list is empty when adding a row and only absences appear. The mechanism is documented (project availability lives in [Assignments](/help/documentation/assignments), separate from roles), but nothing routes a person from the symptom to that page. Proposed fix: a troubleshooting entry, or an FAQ item on `timesheets.mdx`, naming the two causes — no projects assigned to the person, and the section's category not accepting time entries.
+
+### Covered but failed — docs answer it, the reader couldn't get there
+
+- [ ] MEDIUM | `help/documentation/timesheets.mdx` | Timesheet period switching is hard to find from the timesheet itself — evidence: 3 conversations from one reader inside 17 minutes (2026-08-27): "day week month disapaird", "day week month missing", "where is the timesheet settings? day month missing". The periodicity options (**Daily**, **Weekly**, **Bi-weekly**, **Semi-monthly**, **Monthly**) are fully documented under **Period & submission** on `timesheetSettings.mdx`, but `timesheets.mdx` never says where the period is set or that it is an account-level setting an admin controls. Proposed fix: a cross-link from the timesheet page plus an FAQ entry. **Also worth an app-team look:** the wording "disappeared" suggests the reader saw a period control and then stopped seeing it — confirm nothing hides it for non-admins or in calendar view.
+- [ ] LOW | `help/documentation/authentication.mdx` | Password questions don't surface the passwordless page — evidence: 2 conversations (2026-08-25): "pass word", "how to see my pass word". The page opens by stating Beebole has no passwords and has a matching FAQ, but the word "password" is absent from its `keywords`. Proposed fix: add "password", "forgot password", "reset password" to the keyword list so the assistant and search route these straight there.
+
+### Not a doc gap
+
+- Non-English questions (2 FR, 1 PT, 2026-08-25) — readers asking in French and Portuguese about their own report data ("extraire les données concernant la ligne formation", a BRL/USD rate conversion). Language-demand signal for the FR/ES relaunch, not a page fix. The BRL/USD one is a product question about rate currency conversion, best answered by support.
+- "create project", "api", "Beebole's REST API for developers", "how to delete a report ?", "how to show audit trail of a time entry", "how i change the default currency in beebole", "re submitt time sheet with correct hours?" — all verified as covered: `projects.mdx`, `api/legacy-api.mdx` and `api/introduction.mdx`, `reports.mdx` (the report **⋯** menu's **Delete**), `audit-trail.mdx` ("See the change history on a record"), `account-settings.mdx` (**Localization** → **Currency**), and `timesheets.mdx` (**Resubmit** after rejection). No action.
+- "Timesheet view" ×2, "send the form again" — fragments from the same sessions as the entries above; no independent signal.

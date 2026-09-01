@@ -30,13 +30,24 @@ Beebole drafts time entries for you and shows them in a **Suggested entries** tr
 
 The sources work together instead of competing. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge, ranked so measured activity wins over assumptions. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the tray always reflects your current plans.
 
+Each card shows the project or task it is about, with that entity's picture and color rather than a generic icon, so you can tell at a glance what is being proposed.
+
 Suggestions are private — only you see them until you accept. For each one you can:
 
 - **Accept** it (or **Accept all**) — the entry lands on your timesheet.
 - **Dismiss** it. If a dismissed suggestion was hiding an overlapping one, the runner-up reappears.
+- Start it — the play button on today's suggestions accepts the suggestion and keeps a [timer](/help/documentation/timesheets#using-the-timer) running on it, in one gesture. It is available in the tray, on the calendar ghosts, and in the suggestion popup.
 - Click **Why?** to see the evidence: the applications and sites behind a **Desktop** or **Web** suggestion, the planned dates and share of your time behind a **Planned** one, or how many recent weeks a **Habit** was seen. Activity details are only readable where they were captured — elsewhere, Beebole tells you the details are only available in the desktop app or browser that tracked the activity.
 
-In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions also appear as ghost entries: drag a suggestion to a time slot to schedule it, or accept it as-is.
+Accepting, editing, and dismissing are all undoable with **⌘\+Z** (Ctrl\+Z on Windows and Linux). Undoing an accept also removes the entries it created — or shrinks the entry it grew.
+
+In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions also appear as ghost entries: drag a suggestion to a time slot to schedule it, or accept it as-is. Drop one of your [favorites](/help/documentation/timesheets#favorites) onto a ghost and the suggestion is retargeted to that project or task and accepted in a single move — the ghost highlights as you hover it.
+
+### Planned work on future days
+
+**Planned** suggestions also reach beyond today. On days still in the future they appear as read-only forecast cards — a muted, dashed preview of what you are planned to work on — so you can see the shape of your week ahead. A forecast card becomes fully actionable, with accept, edit, and dismiss, once its day arrives.
+
+Reopening a past week that is still open — draft or rejected — regenerates its planned suggestions, so staffing added after the fact still shows up when you go back to that week.
 
 <Info>
   Activity captured by the desktop app stays on that device, is never shared with anyone, and is deleted after a week. Only the entries you accept reach your timesheet.

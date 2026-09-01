@@ -1,7 +1,7 @@
 # Gaps report
 
-Generated: 2026-08-24 (verification pass, release run)
-Catalog last updated: 2026-08-24
+Generated: 2026-08-31 (verification pass, release run)
+Catalog last updated: 2026-08-31
 
 ---
 
@@ -9,37 +9,48 @@ Catalog last updated: 2026-08-24
 
 _All features covered._
 
-The 9 Partial entries from this run's earlier report (2026-08-23 production deploy) were all resolved in the same run:
+The 13 Partial entries from this run's earlier report (2026-08-30 production deploy) were all resolved in the same run:
 
-- Five suggestion sources with badges, merged/ranked cards, per-source **Why?** evidence, refresh behavior — `ai.mdx`
-- Suggestion autopilot (auto-submit converts pending suggestions, **Auto-submit failed** badge, deadline reminders) — `timesheetSettings.mdx` + `ai.mdx`
-- Kanban auto-timesheet always suggesting (direct fill removed) — `timesheetSettings.mdx`
-- New restriction **Only an admin can edit someone else's timesheet** — `timesheetSettings.mdx`
-- Personal report folders + new **Share a report folder** section — `reports.mdx`
-- Compliance footnote expandable people list — `reports.mdx`
-- Budget start dates, hours/days unit, notes, empty targets, several budgets over time — `budgets.mdx`
-- Desktop app browser-handoff sign-in (passkeys/SSO) — `authentication.mdx` + `desktop-app.mdx`
+- Task start and end times — new **Giving a task hours** section on `gantt.mdx`, cross-referenced from `planning.mdx` and `staffing.mdx`
+- Staffing bars for timed tasks drawn on the real clock with non-working stretches hatched — `staffing.mdx`
+- Timeline window of 1/2/3/4/6 weeks with period paging — `gantt.mdx` + `staffing.mdx`
+- **Copy the previous period** filling every empty period back to the last with bookings — `staffing.mdx`
+- Multi-select delete of bookings and tasks — `staffing.mdx` + `gantt.mdx`
+- Task color inherited from project, owner, or parent task — `planning.mdx`
+- Owned dated tasks arriving as suggestions instead of auto-added rows — `planning.mdx`
+- Calendar as the default timesheet view — `timesheets.mdx`
+- Timer started from a calendar entry, a favorite chip, or a suggestion — `timesheets.mdx` + `ai.mdx`
+- Planned forecast cards on future days, entity-aware suggestion cards, favorite-drop retargeting, undoable accept/edit/dismiss — `ai.mdx`
+- Force-edit no longer admin-only, with both restrictions spelled out — `approval.mdx`
+- Allowance fields stating their unit; **Available**/**Consumed**/**Accrued** at the top of the card — `timeoff.mdx`
+- Report folder record scope (**Absence/working time**) — `reports.mdx`
+- Asana sync robustness (archive-on-delete, deduplicated deliveries, rate-limit retry, real error messages, toggle no longer stuck) — `asana.mdx`
 
-The review pass additionally corrected pre-existing drift found against prod code (sample report folders, report filters, Budget Status **Time** label, Planned vs. Real single-plan selector, passkey once-per-account, API-key label, email-code expiry, approval email description, budget **From** default).
+Corrections applied in the same run, found against prod code rather than reported as gaps:
+
+- **Period lock options were wrong** on both `gantt.mdx` and `staffing.mdx` (documented as week/month/quarter/year; the app offers **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks**). Fixed in the body and in the Gantt FAQ.
+- **Stale toast label** on `staffing.mdx`: "The previous period has no bookings to copy" → **No earlier bookings to copy**.
+- **Paid vs. unpaid absences removed** from `timeoff.mdx`, `costs.mdx`, and `bamboohr.mdx` — the **Is paid (included in people costs)** checkbox is suppressed on production hosts, so the documented steps could not be followed. Replaced with an accurate description of how time off is valued in people costs.
+- Two broken in-page anchors on `custom-reports.mdx` (`#report-dimensions`, `#filtering-your-report`) repointed to the headings that exist.
 
 **Intentionally undocumented (status-flagged in the catalog — not gaps):**
 
+- `org/configuration-export` **Master data review** — _(status: hidden-flag)_ Settings entry suppressed on production hosts, despite appearing in the 2026-08-30 production note.
+- `absence/cost-tracking` — _(status: hidden-flag)_ the per-type cost checkbox is suppressed in production; the resulting behavior is documented, the control is not.
 - `tasks/recurring` — _(status: hidden-flag)_ recurrence creation still behind `SHOW_TASK_RECURRENCE = false`.
-- `org/gdpr` — _(status: placeholder-ui)_ inert menu entries; deliberately not documented.
+- `org/gdpr` — _(status: placeholder-ui)_ inert menu entries.
 - `absence/accrual` — _(status: partial)_ documented hedged on `accruals.mdx`.
+- `reports/schedule-email` — _(status: hidden-flag)_ **Schedule** action gated off in production builds.
 - `reports/money-authorisations` — Planned-section entry _(status: partial — frontend guard only)_.
-- `reports/schedule-email` — _(status: hidden-flag, flagged 2026-08-24)_ the **Schedule** action is gated off in production; the reports.mdx section documenting it was removed this run. Re-document when the gate lifts.
-
-**Skipped sections:** Planned Features (7 entries), Internal (11 entries) — per skill rules.
 
 ---
 
 ## Proposed page-mappings additions
 
-_No new mappings needed._ (Two rows were added earlier in this run for report folder sharing and plan-on-non-working-days.)
+_No new mappings needed — the three proposed this run were applied to `page-mappings.md`._
 
 ---
 
 ## Handoff to /write
 
-Nothing to draft. Next `/sync-features --incremental` after the next prod deploy will surface new work; re-run `/find-gaps` after it.
+Next step: run `/write` (no args) to draft all **Missing** entries (one per line). Partial entries need curator judgment and are skipped in batch mode — use `/write <path>` with explicit notes for each.
