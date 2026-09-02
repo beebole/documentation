@@ -49,6 +49,7 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 | 6 | `/illustrate --identify` | `release: screenshot needs` (only if it writes files) |
 | 7 | `/find-gaps` — verification pass | `release: coverage verification` |
 | 8 | `/mine-conversations` | `release: conversation gaps report` |
+| 9 | `/check-help-snippets` | `release: help snippet audit` |
 
 **Step 4 detail:** run `/write` with no args to draft every **Missing** entry, then run `/write <path>` for each **Partial** entry using its `needs:` note from `.todo/gaps.md`. In a release run, Partial entries are not skipped.
 
@@ -59,6 +60,8 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 **Step 7 detail:** if the verification pass still reports Missing or Partial entries, run `/write` once more for those entries and re-run `/find-gaps`. If it is still not clean, stop retrying and list the leftovers in the PR body under "Remaining gaps" — never loop.
 
 **Step 8 detail:** report-only, by design — its candidates are **not** drafted in this run, and never feed them into `/write` or `.todo/gaps.md`. The report is committed so the PR carries the candidates for human review; approving entries and drafting them is a separate decision after the PR. If PostHog is unreachable, skip the step and note it in the PR body — never block the release on it.
+
+**Step 9 detail:** report-only — audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews. Fixing gaps means writing in `../md` and `../reboot`, which this pipeline never does; the report is committed so the PR body carries the findings. If `../md` is unreachable, skip and note it — never block the release on it.
 
 ### 4. Open the PR
 
@@ -94,6 +97,9 @@ PR body template:
 
 ### AI-conversation gap candidates (pending review)
 <entries added by /mine-conversations this run, or "None." — these are proposals only; approve in .todo/ai-conversation-gaps.md, then draft with /write>
+
+### In-app help snippet audit
+<findings from /check-help-snippets this run, or "All clear." — fixes happen in ../md and ../reboot, outside this PR>
 
 ### Catalog propagation
 <per-repo result from step 5: synced / already in sync / skipped: reason>
