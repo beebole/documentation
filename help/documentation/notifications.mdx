@@ -74,6 +74,16 @@ Budget threshold alerts let you know when a project's spending approaches or exc
 - You set the percentage of the budget that triggers the alert — for example, 50%, 80%, or 100%.
 - Tick **When over budget** to also be alerted once a project passes 100% of its budget.
 
+### When many alerts fire at once
+
+**Instant** never floods your inbox. When more than three notifications of the same kind are waiting for you at the same moment — a whole team submitting their timesheets, for example — Beebole collapses them into one summary instead of one email or push notification each. The summary uses the same layout as a digest: it lists the first eight items of each kind, then a count of the rest, with a link to open Beebole.
+
+If another burst of the same kind follows within the next 15 minutes, it is held and delivered as one further summary once that window closes, so a long-running import or a busy afternoon never turns into a stream of near-identical emails.
+
+<Info>
+  Summaries are built from the **Digest** email template, so any wording you customize there also applies to these bursts.
+</Info>
+
 ## Timesheet reminders
 
 Reminders are configured by administrators in **Timesheet and Planning Settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work.
@@ -141,7 +151,7 @@ Emails only go to people who actually belong to the organization — an active a
     Yes. In your **Notifications** preferences in Beebole, turn off both **Email** and **Push notifications**, or set every event to **None**. Either way you stop receiving notifications for those events.
   </Accordion>
   <Accordion title="What is the difference between instant and digest notifications?">
-    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed.
+    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed. Even with **Instant**, a burst of more than three alerts of the same kind arrives as one summary rather than one message each.
   </Accordion>
   <Accordion title="Who sets up timesheet reminders?">
     Administrators set timesheet reminders in Beebole's **Timesheet settings**, on the **Reminders** tab. Reminders prompt people to submit timesheets and chase approvers about pending work, and they cascade from the organization down through tags and people.

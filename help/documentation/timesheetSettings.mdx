@@ -68,6 +68,8 @@ The **Timesheet period** defines the stretch of time a timesheet covers — the 
 
 At the deadline, [suggested time entries](/help/documentation/ai) still pending on the period are converted into real entries before the submission, so a timesheet assembled from suggestions submits itself. Every entry still respects the entry rules — a suggestion a restriction refuses is trimmed to fit the day's remaining scheduled time, or skipped if it still doesn't fit. [Timesheet reminders](#reminding-people-to-submit) announce the deadline in advance, so nobody is surprised by an automatic submission.
 
+Auto-submit only ever acts on one period per person: the most recent one whose deadline has passed. Older periods are never revisited, so switching the setting on doesn't submit months of history at once. A period that already has a status — submitted, approved, or rejected — is left alone, and an empty period is never submitted: if it holds no time entries and no suggestion could be converted, nothing is sent to approvers.
+
 If a period can't be processed, it stays a draft and is badged **Auto-submit failed** in the approval view — administrators are notified so they can review it by hand.
 
 ### Lock date
@@ -75,6 +77,10 @@ If a period can't be processed, it stays a draft and is badged **Auto-submit fai
 The **Lock date** freezes every time record on or before the chosen day. Time records on or before that day can no longer be created, edited, moved, or deleted — by anyone, administrators included. Attempts are refused with the message **Timesheet and Planning Settings prevent any change to the locked date**.
 
 Use it to close accounting periods: once payroll or invoicing for a month is done, set the lock date to the end of that month and the underlying data can't drift. The freeze applies everywhere time records change hands, including the [BambooHR time-off sync](/help/integrations/bamboohr).
+
+The lock also closes the period to submission. A period whose last day is on or before the lock date can no longer be submitted for approval — Beebole answers **This period is locked and cannot be submitted for approval.** — and auto-submit skips it. A period that straddles the lock date stays submittable, since its unlocked days are still the person's to account for.
+
+When several entries are deleted at once — clearing a section, or deleting a selection in the calendar — Beebole checks every entry before removing any of them. If one of them falls on or before the lock date, nothing is deleted.
 
 <Info>
   To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set per person, team, or project — see [Different settings for different teams](#different-settings-for-different-teams).
@@ -98,6 +104,13 @@ The **Restrictions** list controls what time entries the timesheet accepts. New 
 Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both. The **warning** and **block** variants are exclusive — activating one replaces the other.
 
 Independently of any restriction, a submitted or approved period is locked for its owner while it waits in the [approval workflow](/help/documentation/approval), and records on or before the [**Lock date**](#lock-date) can't change at all.
+
+### Rules set elsewhere
+
+Two more rules apply to every time entry without appearing in the **Restrictions** list, because they are configured on the entities they protect:
+
+- **Valid period for time entry** — This panel, available on a project, a person, and a tag, sets a **From** and **To** date between which time can be logged. An entry outside the window is refused with **This time record falls outside the validity period of:** followed by the project or person it comes from. When several windows could apply, the most specific one wins: the entry's project first (its deepest level first), then the person, and a person or project inherits a window set on its tags.
+- **Time off allowances** — A time off entry can't push the person past the balance of the [allowance](/help/documentation/timeoff) that covers that day. Beebole refuses it with **This booking exceeds the available quota for:** followed by the absence type. An allowance with **Allow negative balance** checked lifts the limit for the days it covers, and an absence type with no allowance is never limited.
 
 ---
 
