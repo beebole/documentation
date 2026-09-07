@@ -38,7 +38,7 @@ Where one month ends and the next begins, the timeline draws a vertical line acr
 Open the **⋯** menu on the active view tab and use **Period** to choose how the timeline runs:
 
 - **Infinite by day** or **Infinite by week** — the endless scrolling timeline, at day or week granularity.
-- **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks** — the chart fits that many weeks to your screen and lists only the tasks that fall inside the window (parents and recurring series are kept).
+- **Day**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks** — the chart fits that window to your screen and lists only the tasks that fall inside it (parents and recurring series are kept).
 
 With a fixed window, the view pages one period at a time: swipe or scroll sideways and it snaps cleanly onto the next or previous window, and the period containing today is always reachable.
 
@@ -149,11 +149,12 @@ Planned time is what the [workload heatmap](#workload-heatmap) compares against 
 
 ## Workload heatmap
 
-When the chart is grouped — for example by **Owner** — each group header row displays workload bars: one bar per period (day or week, following the current **Period** granularity). Without grouping, a single summary row shows the same information for everyone.
+When the chart is grouped, each group header row carries one cell per period (day or week, following the current **Period** granularity). What the cell draws depends on what you grouped by.
 
-- **Bar height and shade** — The fuller and darker the bar (in the app's accent color), the closer that group's planned time is to its available capacity for the period.
-- **Over capacity** — A full bar with a number on it signals overload: on a group row the number is the overflow (in hours or days, following the **Planned** unit); on the summary row it is the count of overloaded people.
-- **Hover for details** — A tooltip shows the period's planned effort against capacity (for example `Effort: 32h / Capacity: 40h (80%)`) and lists each overloaded person with their own numbers.
+- **Grouped by Owner** — Each owner's row shows a load bar comparing that person's planned time to their capacity for the period. The bar fills red while capacity remains, turns green when the capacity is met exactly, and turns purple as soon as the person is booked beyond it, with the overload share in a darker purple.
+- **Grouped by anything else** — For project categories, tag categories, statuses, and the "no owner" bucket of a grouping by owner, the cell shows the group's total planned time as a figure above a bar scaled to the busiest period on that row. A capacity ratio has no meaning for a group of people, so none is drawn. Planned time that has no owner yet appears as a small red badge in the corner of the cell.
+- **Without grouping** — A single load bar sits under each day or week number in the timeline header, rolling up everyone. Click it to step the scroll through the rows driving that period's load.
+- **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32h / Capacity: 40h (80%)`), and adds a line per overloaded person with their own figures.
 
 Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.
 
@@ -282,7 +283,7 @@ With the Gantt chart focused, you can work without the mouse:
 
 <AccordionGroup>
   <Accordion title="Does Beebole's Gantt chart have a month view?">
-    No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed window of **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks**, fitted to your screen and paged one period at a time.
+    No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed window of **Day**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks**, fitted to your screen and paged one period at a time.
   </Accordion>
   <Accordion title="How do I create a dependency between two tasks?">
     Either drag the chain-link handle from the end of one bar onto another task, or click the **Dependencies** cell of the task that should come second and then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.
@@ -294,6 +295,6 @@ With the Gantt chart focused, you can work without the mouse:
     Yes. Click **Add a view** and select **Gantt chart**. Each saved view in Beebole keeps its own columns — which ones, in what order, at what width — plus its sort, grouping, scale, and filters, so you can switch between setups without reconfiguring anything.
   </Accordion>
   <Accordion title="Do changes in the Gantt chart affect the Kanban board?">
-    Yes. Both views display the same tasks from the same category. Dates set on the Gantt timeline, status changes, and renames are immediately visible on the Kanban board, and vice versa.
+    Yes. Both views display the same tasks from the same planning. Dates set on the Gantt timeline, status changes, and renames are immediately visible on the Kanban board, and vice versa.
   </Accordion>
 </AccordionGroup>

@@ -3,9 +3,9 @@ title: "Assignments: control who has access to what"
 sidebarTitle: "Assignments"
 description: "Control which projects, time off types, and expense types each person can use in Beebole — set account-wide defaults and who has access to each item."
 keywords: ["beebole", "assignments", "project access", "who has access", "show or hide", "availability"]
-og:title: "Managing Assignments and Access to Items in Beebole"
-og:description: "Learn how to control which projects, time off types, expense types, and custom fields are available to each person in Beebole."
-og:type: "article"
+"og:title": "Managing Assignments and Access to Items in Beebole"
+"og:description": "Learn how to control which projects, time off types, expense types, and custom fields are available to each person in Beebole."
+"og:type": "article"
 ---
 
 Assignments in Beebole control which items each person can use: the projects they can log time against, the time off types and expense types they can pick, and the custom fields they see. Use them to keep timesheets short and relevant — each person only sees what applies to them.
@@ -22,7 +22,7 @@ Beebole resolves access from three places:
 | --- | --- | --- |
 | Account-wide defaults | **Show or hide by default** in **Account Settings** | Decides whether each kind of item is available to everyone by default |
 | Item-side access | **Who has access?** on a project, time off type, expense type, or custom field | Adds people and tags to a hidden item, or excludes them from a visible one |
-| Person-side access | **Show or Hide** on a person, tag, or project | The same relationships, edited from the other direction |
+| Person-side access | **Show or hide** on a person, tag, or project | The same relationships, edited from the other direction |
 
 The item-side and person-side panels edit the same underlying links — pick whichever direction is more convenient. All of these settings are saved automatically.
 
@@ -45,11 +45,12 @@ The item-side and person-side panels edit the same underlying links — pick whi
 | **Show all projects** | Whether every project is available to everyone by default |
 | **Show all secondary projects** | Whether secondary projects are available by default |
 | **Show all time off** | Whether every time off type is available to everyone by default |
+| **Show all schedules** | Whether every work schedule is available to everyone by default |
 | **Show all expenses** | Whether every expense type is available to everyone by default |
 | **Show all tasks** | Whether every task is available to everyone by default |
 | **Show all custom fields** | Whether every custom field is available to everyone by default |
 
-When an option is disabled here, items of that kind are hidden from everyone until you grant access individually — per item under **Who has access?**, or per person or tag under **Show or Hide**.
+When an option is disabled here, items of that kind are hidden from everyone until you grant access individually — per item under **Who has access?**, or per person or tag under **Show or hide**.
 
 For secondary projects, the account default can also be overridden per entity: on a specific project, person, or tag, choose **All secondary projects available** or **No secondary projects available** instead of following the default, or show and hide individual secondary projects one by one.
 
@@ -65,8 +66,8 @@ Each project, time off type, expense type, and custom field has a **Who has acce
 | --- | --- |
 | Project | Click **Projects** in the sidebar, select the project, and open **Who has access?** |
 | Time off type | Go to **Settings** \> **Time Off**, select the type, and open **Who has access?** |
-| Expense type | Go to **Settings** \> **Expense Type**, select the type, and open **Who has access?** |
-| Custom field | Go to **Settings** \> **Custom Field**, select the field, and open **Who has access?** |
+| Expense type | Go to **Settings** \> **Expense Types**, select the type, and open **Who has access?** |
+| Custom field | Go to **Settings** \> **Custom Fields**, select the field, and open **Who has access?** |
 | Work schedule | Go to **Settings** \> **Work Schedules**, select the schedule, and open **Assigned to** |
 | Task | Click **Planning** in the sidebar, select the task, and open **Potential owners** |
 
@@ -83,11 +84,11 @@ On a project, the panel also starts with a toggle that overrides the account def
   Time off types, expense types, and custom fields don't carry their own default toggle — their default comes from the **Show or hide by default** options above. Projects are the exception, with the per-project toggle.
 </Info>
 
-## Edit access from the person or tag side with Show or Hide
+## Edit access from the person or tag side with Show or hide
 
-The same links can be managed from the people side. Click **People** (or **Tags**) in the sidebar, select a person or tag, and open the **Show or Hide** panel. For a person or tag it covers five kinds of items — time off, expenses, tasks, projects, and custom fields. A project's **Show or Hide** panel covers expenses and custom fields.
+The same links can be managed from the people side. Click **People** (or **Tags**) in the sidebar, select a person or tag, and open the **Show or hide** panel. For a person or tag it covers time off, expenses, work schedules, tasks, projects, secondary projects, and custom fields. A project's **Show or hide** panel covers secondary projects, expenses, and custom fields.
 
-Each section follows the account default, just like the item-side panel: **Show projects** lists the projects added for this person, while **Hide projects** lists exclusions when all projects are visible by default. The same pattern applies to **Show time off** / **Hide time off**, **Show expenses** / **Hide expenses**, **Show tasks** / **Hide tasks**, and custom fields.
+Each section follows the account default, just like the item-side panel: **Show projects** lists the projects added for this person, while **Hide projects** lists exclusions when all projects are visible by default. The same pattern applies to **Show time off** / **Hide time off**, **Show expenses** / **Hide expenses**, **Show schedules** / **Hide schedules**, **Show tasks** / **Hide tasks**, and custom fields.
 
 Use this direction when onboarding one person onto several projects at once; use **Who has access?** when staffing one project with several people.
 
@@ -158,10 +159,10 @@ Only those five now see the project when they log time. Everyone else's project 
   </Accordion>
 
   <Accordion title="Where do I set what everyone sees by default?">
-    In Beebole's **Account Settings**, under **Show or hide by default**. Each option — projects, secondary projects, time off, expenses, tasks, and custom fields — decides whether that kind of item is available to everyone or hidden until granted.
+    In Beebole's **Account Settings**, under **Show or hide by default**. Each option — projects, secondary projects, time off, expenses, work schedules, tasks, and custom fields — decides whether that kind of item is available to everyone or hidden until granted.
   </Accordion>
 
   <Accordion title="Do I need to save after changing access settings?">
-    No. Beebole saves changes in **Who has access?**, **Show or Hide**, and **Show or hide by default** automatically as you add or remove people, tags, and options.
+    No. Beebole saves changes in **Who has access?**, **Show or hide**, and **Show or hide by default** automatically as you add or remove people, tags, and options.
   </Accordion>
 </AccordionGroup>

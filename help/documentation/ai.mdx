@@ -11,14 +11,14 @@ keywords: ["beebole", "ai", "beebole ai", "suggested time entries", "ai report b
 Beebole AI is the set of AI features built into your Beebole account: time entries suggested from your own activity, reports built from a plain-language question, and an extra pair of eyes when you review a submitted timesheet. Everything lives on the **Assistant** page — click **Assistant** in the sidebar when AI features are enabled for your account.
 
 <Info>
-  Beebole AI runs on Beebole's own AI models, self-hosted on Beebole-operated servers in the same region as your data. Those servers have no public address — only Beebole's backend reaches them, behind a firewall — and nothing is sent to a third-party AI provider.
+  Beebole AI runs on Beebole's own AI models, self-hosted on Beebole-operated servers in the same region as your data. Nothing is sent to a third-party AI provider.
 </Info>
 
 ---
 
 ## Suggested time entries
 
-Beebole drafts time entries for you and shows them in a **Suggested entries** tray above your timesheet. Each suggestion carries a badge naming its source:
+Beebole drafts time entries for you and shows them in the **Suggested entries** pane next to your timesheet — open it with the ✨ button in the timesheet's top-right corner. Each suggestion carries a badge naming its source:
 
 | Badge | Source | How it works |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ Beebole drafts time entries for you and shows them in a **Suggested entries** tr
 | **Planned** | Your planned work | Work planned for you — dates and share of your time set in [Planning](/help/documentation/planning) — becomes suggestions on the scheduled days. |
 | **Kanban** | The Kanban board | Moving a card to its done column proposes the matching entry — when [Auto Timesheet from Planning](/help/documentation/timesheetSettings#auto-timesheet-from-planning) is enabled. |
 
-The sources work together instead of competing. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge, ranked so measured activity wins over assumptions. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the tray always reflects your current plans.
+The sources work together instead of competing. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge, ranked so measured activity wins over assumptions. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the pane always reflects your current plans.
 
 Each card shows the project or task it is about, with that entity's picture and color rather than a generic icon, so you can tell at a glance what is being proposed.
 
@@ -36,7 +36,7 @@ Suggestions are private — only you see them until you accept. For each one you
 
 - **Accept** it (or **Accept all**) — the entry lands on your timesheet.
 - **Dismiss** it. If a dismissed suggestion was hiding an overlapping one, the runner-up reappears.
-- Start it — the play button on today's suggestions accepts the suggestion and keeps a [timer](/help/documentation/timesheets#using-the-timer) running on it, in one gesture. It is available in the tray, on the calendar ghosts, and in the suggestion popup.
+- Start it — the play button on today's suggestions accepts the suggestion and keeps a [timer](/help/documentation/timesheets#using-the-timer) running on it, in one gesture. It is available in the pane, on the calendar ghosts, and in the suggestion popup.
 - Click **Why?** to see the evidence: the applications and sites behind a **Desktop** or **Web** suggestion, the planned dates and share of your time behind a **Planned** one, or how many recent weeks a **Habit** was seen. Activity details are only readable where they were captured — elsewhere, Beebole tells you the details are only available in the desktop app or browser that tracked the activity.
 
 Accepting, editing, and dismissing are all undoable with **⌘\+Z** (Ctrl\+Z on Windows and Linux). Undoing an accept also removes the entries it created — or shrinks the entry it grew.
@@ -106,7 +106,7 @@ Approvers are emailed when a timesheet needs their review, with a summary of the
 
 ## Already working for you
 
-Some AI touches need no setup at all: timesheet reminders mention how many suggested entries are waiting — and when auto-submit is on, they announce the deadline in advance — and budget alerts, where they are switched on, include a projected overrun date based on the current burn rate (see the [Budget Status report](/help/documentation/reports#budget-status)).
+Some AI touches need no setup at all: timesheet reminders mention how many suggested entries are waiting, and how many hours they add up to — and when auto-submit is on, they announce the deadline in advance, so you know how long you have to review them.
 
 ---
 
@@ -137,7 +137,7 @@ Beebole also works with the AI assistant you already use. Connect Claude, ChatGP
 
 <AccordionGroup>
   <Accordion title="Does using Beebole AI send my data to OpenAI, Anthropic, or another AI provider?">
-    No. Beebole runs its own AI models, self-hosted on Beebole-operated servers in the same region as your data. Those servers are firewalled and have no public address, so only Beebole's backend can reach them, and nothing is sent to a third-party AI provider.
+    No. Beebole runs its own AI models, self-hosted on Beebole-operated servers in the same region as your data, and nothing is sent to a third-party AI provider.
 
     What the model sees is also deliberately small. For the report builder it is only definitions — your question, the structure of the report you have open, and the names of your categories and custom fields — never your time entries, their amounts, or your project, person, and task names.
 

@@ -32,7 +32,7 @@ Each column is one status of the active planning, in the order defined in the **
 - A **+** button (**Add a task**) that opens the add form with this status preselected.
 - The number of tasks in the column — displayed as `current/max` when the status has a **Max tasks** limit.
 - The status name. Click it to open the **Task statuses** modal.
-- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move left** / **Move right** (reorder the column), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the planning's only status).
+- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move entries to left** / **Move entries to right** (move the column's tasks into the neighboring status), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the planning's only status).
 
 ---
 
@@ -41,7 +41,7 @@ Each column is one status of the active planning, in the order defined in the **
 Statuses belong to the planning — not to a project — so every planning defines its own columns. Click any column's name (or the **Edit statuses** gear in a task's detail panel) to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
 
 <Tip>
-  Keep the workflow short. New Beebole accounts start with one planning, **Main planning**, and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
+  Keep the workflow short. New Beebole accounts start with one planning, **Main plan**, and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
 </Tip>
 
 ---
@@ -64,7 +64,7 @@ Open the **⋯** menu on the active view tab and hover over **Show** to toggle t
 - Drag any selected card to move all selected cards together to the target column.
 - Press **Esc** to clear the selection.
 
-For bulk archiving, use the column's **⋯** menu instead — **Archive** and **Unarchive** act on the entire column at once.
+For bulk archiving, use the column's **⋯** menu instead. **Archive** and **Unarchive** act on the whole column, or on just the selected cards when a selection reaches into that column.
 
 ---
 
@@ -127,7 +127,7 @@ With **Auto Timesheet from Planning**, the board itself can start and end time r
 
 <AccordionGroup>
   <Accordion title="Can I use the Kanban board without setting up statuses first?">
-    Yes. New Beebole accounts come with the default **Main planning** and the statuses **Backlog**, **Queue**, **In progress**, and **Done**, so the board works immediately. You can rename, recolor, reorder, add, or remove statuses later in the **Task statuses** modal.
+    Yes. New Beebole accounts come with the default **Main plan** and the statuses **Backlog**, **Queue**, **In progress**, and **Done**, so the board works immediately. You can rename, recolor, reorder, add, or remove statuses later in the **Task statuses** modal.
   </Accordion>
   <Accordion title="What happens when a column reaches its WIP limit?">
     Beebole blocks the move. The column border turns red while you drag over it, and dropping shows an error saying the status is at its task limit. Raise the status's **Max tasks** value, set it to 0 for unlimited, or move other tasks out first.

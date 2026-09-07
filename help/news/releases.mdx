@@ -27,7 +27,7 @@ og:type: "website"
   - Run several timers at once: ⌘/Ctrl-click any play button to start a timer without stopping the ones already running. The floating timer is now a shelf with one line per activity, a live counter for running ones, a play button to resume paused ones, and a pause-all action. The browser tab shows the elapsed time, or the number of timers when several run.
   - In the [calendar view](/help/documentation/timesheets), clicking an empty slot prefills exactly the time still missing from the day's schedule, holding ⌘ while dragging an entry's edge snaps to whole hours, and an untimed entry dropped on the calendar lands at the time you release it.
   - [Suggestions](/help/documentation/ai) for tasks you're not allowed to book time on are no longer hidden: they appear with the planned task for context, and accepting one asks you to pick the project to record against — the link to the planned task is kept for Planned vs. Real. **Accept all** skips these so you can handle them individually.
-  - Time can no longer be logged on a project that has sub-projects: parent projects aggregate their children and only the lowest level accepts entries, the same rule that already applied to parent tasks.
+  - Time can no longer be logged on a project that has subprojects: parent projects aggregate their children and only the lowest level accepts entries, the same rule that already applied to parent tasks.
   - A period whose last day falls on or before the [lock date](/help/documentation/timesheetSettings) can no longer be submitted for approval, with a clear "This period is locked" message.
   - Automatic submission now submits only the single period whose deadline has passed, and never an empty one — so approvers stop receiving blank weeks.
 
@@ -35,13 +35,13 @@ og:type: "website"
 
   - Approve or reject a timesheet by replying to the [approval](/help/documentation/approval) email: reply "approve", or "reject" followed by a reason. Beebole checks that the reply came from you, applies the decision, and emails back a confirmation. The **Approve** and **Reject** buttons in emails now drop you straight onto the timesheet they acted on.
   - In the **Team** pane, **Approve**, **Reject**, and **Remind** on a mixed selection act only on the people they apply to, and strictly on the period on screen.
-  - Alerts that fire in bulk — a mass timesheet submit, an import, an automated catch-up — now arrive as a single summary email or push instead of one message per event. Summary emails list the first few items per category and close with a count of the rest.
+  - Alerts that fire in bulk — a mass timesheet submit, an import, an automated catch-up — now arrive as a single summary email instead of one message per event. Summary emails list the first few items per category and close with a count of the rest.
   - Changing your approval periodicity no longer re-opens periods that were already approved, so completed timesheets stay approved.
 
   ### Reports & budgets
 
-  - The **Budget Status** report now filters, sorts, and toggles archived items instantly, project and tag filters apply to the whole hierarchy, the sort you choose applies at every level, split-by-project lines show real actuals for each sub-project, and a [budget](/help/documentation/budgets) consumed exactly to 100% counts as on budget. Budget alert notifications are now off by default.
-  - The [AI report builder](/help/documentation/ai) speaks your organization's vocabulary: ask for hours "by client" or "per cost centre" and it groups on exactly that level of your project or task hierarchy. Custom field values work as a grouping too, and a request it can't map — such as grouping by a tag-based structure — comes back as a question instead of a wrong report.
+  - The **Budget Status** report now filters, sorts, and toggles archived items instantly, project and tag filters apply to the whole hierarchy, the sort you choose applies at every level, split-by-project lines show real actuals for each subproject, and a [budget](/help/documentation/budgets) consumed exactly to 100% counts as on budget.
+  - The [AI report builder](/help/documentation/ai) speaks your organization's vocabulary: ask for hours "by client" or "per cost center" and it groups on exactly that level of your project or task hierarchy. Custom field values work as a grouping too, and a request it can't map — such as grouping by a tag-based structure — comes back as a question instead of a wrong report.
   - Project filters (by project, project tag, or project category) now include time logged on tasks linked to those projects, so a project-scoped report no longer misses task time.
   - [Exports](/help/documentation/data-exports) are more robust: PDFs render accented, Cyrillic, Greek, and currency characters correctly, wide tables split across pages with the first column repeated, and Excel column widths fit every row.
 

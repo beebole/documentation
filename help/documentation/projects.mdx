@@ -3,9 +3,9 @@ title: "Managing projects and project categories"
 sidebarTitle: "Projects"
 description: "Create projects and subprojects in Beebole, organize them into categories, add many at once from a spreadsheet, and control rates, budgets, and access."
 keywords: ["beebole", "projects", "project hierarchy", "subprojects", "project categories", "create project", "project time tracking"]
-og:title: "Creating and Managing Project Hierarchies in Beebole"
-og:description: "Learn how to create projects and subprojects in Beebole, organize them into categories, and configure rates, budgets, and access."
-og:type: "article"
+"og:title": "Creating and Managing Project Hierarchies in Beebole"
+"og:description": "Learn how to create projects and subprojects in Beebole, organize them into categories, and configure rates, budgets, and access."
+"og:type": "article"
 ---
 
 Projects in Beebole are what your team logs time against. Every report, budget, and billing calculation builds on your project structure, so organizing it well pays off across the whole account. Projects live in categories you define and can be nested into subprojects as deep as you need.
@@ -16,9 +16,9 @@ Projects in Beebole are what your team logs time against. Every report, budget, 
 
 Beebole uses a flexible hierarchy with three building blocks:
 
-- **Categories** — The broadest grouping. A new account starts with **Clients**, **Internal**, and **Activities**. Each project belongs to exactly one category.
+- **Categories** — The broadest grouping. A new account starts with **Client**, **Internal**, and **Activity**. Each project belongs to exactly one category.
 - **Projects** — The engagements or work streams inside a category, such as a client account or an internal initiative.
-- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit, and each category names its own levels (for example, the **Clients** category starts with the levels **Project** and **Job**).
+- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit, and each category names its own levels (for example, the **Client** category starts with the levels **Project** and **Subproject**).
 
 Projects describe _what_ your team works on. To group projects and people across other dimensions — departments, locations, service lines — use [tags](/help/documentation/tags) instead of deepening the project hierarchy.
 
@@ -36,9 +36,15 @@ Time is always recorded at the bottom of a branch. A project that has active sub
 
 ## Creating a project
 
-<div style={{position: "relative", paddingBottom: "calc(57.9752% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/jqdjgwnaKL449N1i7l9l?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Create a Project in Beebole" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Creating a project in Beebole">
+  <iframe
+    src="https://demo.arcade.software/jqdjgwnaKL449N1i7l9l?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Create a Project in Beebole"
+    loading="lazy"
+    allowFullScreen
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+  />
+</Frame>
 
 <Steps>
   <Step title="Open the Projects page">
@@ -48,10 +54,10 @@ Time is always recorded at the bottom of a branch. A project that has active sub
     Click the category name next to the **Projects:** heading and select the category the project belongs in. To create a new category, type its name in the field at the bottom of that menu and click **Add**.
   </Step>
   <Step title="Add the project">
-    Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Clients**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
+    Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Client**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
   </Step>
   <Step title="Add subprojects (optional)">
-    In the project list, expand the parent project, then click the **\+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Job**).
+    In the project list, expand the parent project, then click the **\+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Subproject**).
   </Step>
 </Steps>
 
@@ -106,7 +112,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 
 | Panel | What it controls |
 | --- | --- |
-| **Manager** | The people who manage this project. |
+| **Managed by** | The people who manage this project. |
 | **Tags** | The [tags](/help/documentation/tags) applied to the project. Subprojects inherit tags from their parent project. |
 | **Billing** | Project-level [billing rates](/help/documentation/billing). |
 | **Cost** | Project-level [cost rates](/help/documentation/costs) for profitability tracking. |
@@ -115,7 +121,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 | **Custom fields** | Values for the custom fields defined for projects. See [Custom fields](/help/documentation/custom-fields). |
 | **Who has access?** | Who can use the project — see below. |
 | **Secondary projects allowed** | Whether people can log time to a secondary project alongside this one. |
-| **Show or Hide** | Which expense types and custom fields are available on this project. |
+| **Show or hide** | Which secondary projects, expense types, and custom fields are available on this project. |
 | **Valid period for time entry** | **From** and **To** dates limiting when time can be recorded on the project. |
 | **Description** | Free-form notes about the project. |
 
@@ -129,7 +135,7 @@ The **Valid period for time entry** panel bounds when time can be recorded on th
 
 ### Custom fields on a project
 
-The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** \> **Custom Field**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).
+The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** \> **Custom Fields**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).
 
 ---
 
