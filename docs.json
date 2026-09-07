@@ -105,7 +105,8 @@
                       "help/documentation/planning",
                       "help/documentation/gantt",
                       "help/documentation/kanban",
-                      "help/documentation/staffing"
+                      "help/documentation/staffing",
+                      "help/documentation/task-list"
                     ]
                   },
                   {
@@ -152,7 +153,8 @@
                       "help/documentation/work-schedule",
                       "help/documentation/custom-fields",
                       "help/documentation/roles-authorisations",
-                      "help/documentation/assignments"
+                      "help/documentation/assignments",
+                      "help/documentation/master-data"
                     ]
                   },
                   {

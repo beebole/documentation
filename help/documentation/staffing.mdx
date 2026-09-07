@@ -8,10 +8,10 @@ keywords: ["beebole", "staffing", "resource planning", "capacity planning", "boo
 "og:type": "article"
 ---
 
-Beebole's Staffing view is a long-horizon timeline of who works on what, and when. It is the third view of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt) and the [Kanban board](/help/documentation/kanban) — the bars you see are the same tasks, displayed per person instead of per task. Use it to book people onto projects, set how much of their time each booking takes, and see at a glance who still has capacity.
+Beebole's Staffing view is a long-horizon timeline of who works on what, and when. It is one of the four views of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt), the [Kanban board](/help/documentation/kanban), and the [List view](/help/documentation/task-list) — the bars you see are the same tasks, displayed per person instead of per task. Use it to book people onto projects, set how much of their time each booking takes, and see at a glance who still has capacity.
 
 <Info>
-  Staffing, Gantt, and Kanban display the same underlying tasks. A booking created in the Staffing view is a task like any other — it appears in the other views and in reports immediately.
+  Staffing, Gantt, Kanban, and List display the same underlying tasks. A booking created in the Staffing view is a task like any other — it appears in the other views and in reports immediately.
 </Info>
 
 ---
@@ -45,10 +45,12 @@ Dropping a booking onto a day its owner doesn't work is refused rather than sile
 
 ### Grouping rows
 
-Open the **⋯** menu on the view tab and use **Group by** to choose what the rows represent:
+Open the **⋯** menu on the view tab and use **Staffing by** to choose what the rows represent:
 
 - **People** — One row per person, with their bookings and a capacity strip.
-- **A project category** — Pick a category and a level (or **All levels**); one row per project at that level, showing everyone booked on it.
+- **A project category** — Pick a category, then a level or **Lowest level**; one row per project at that choice, showing everyone booked on it.
+
+**Lowest level** keeps only the projects that have nothing below them, so you never see a parent row duplicating the work of its children. With a project grouping, an owned booking that has no row to sit on — the task is linked to no project of that category, or only to a parent — falls into the row at the top of the view, labeled **No** followed by the grouping name.
 
 ---
 
@@ -93,6 +95,12 @@ From the booking's editor you can also **Split** it in two at a chosen date — 
 - **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
 - **Reassign** — Click a bar to open its editor and change the project, person, or allocation. Changes are saved automatically.
 
+### Moving a booking inside its day
+
+A booking that runs for part of a single day is dragged on the clock its cell draws. While the pointer stays in that cell the booking follows it hour by hour, snapping to the quarter hour, as on the timesheet calendar — and it lands on hours the owner works, reaching over a lunch break rather than sitting on it. The moment the pointer leaves the cell, the booking moves by whole days instead, keeping the hours it already had, so it never arrives on another day at hours nobody chose.
+
+⌘-dragging a copy and dropping it in the cell it came from puts the copy right after its source: the first free minute of that day, holding as much of the day as the source holds. When there is no room left after it — an all-day booking, one spanning several days, or a day already full — the copy simply lands on its source, as it does elsewhere on the timeline.
+
 ### Dependencies in the Staffing view
 
 Dependency links between bookings are drawn directly on the staffing timeline, color-matched to the tasks at each end, so you can see which bookings depend on which. Moving or resizing a booking cascades to its linked bookings live — dependent bars follow the drag on screen before you drop. If a linked task that moves isn't visible in your current view, a warning names it so you know what changed and can undo it. See [Task dependencies](/help/documentation/gantt#task-dependencies) for how links are created.
@@ -113,7 +121,9 @@ Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
 
 ## The Unassigned row
 
-Planned work nobody has picked up yet sits in the **Unassigned** row. Drag a booking onto it to clear the owner, or drag one out of it onto a person to assign the work. The row can be collapsed out of the way, and ⌘-dragging an unassigned booking drops the copy straight onto the row you release it on.
+Planned work nobody has picked up yet sits in the **Unassigned** row. Drag a booking onto it to clear the owner, or drag one out of it onto a person to assign the work. The row can be collapsed out of the way — its tooltip reads **Show these bookings** or **Hide these bookings** — and ⌘-dragging an unassigned booking drops the copy straight onto the row you release it on.
+
+The number next to the row label counts the unassigned bookings that fall inside the period you are looking at, not every unassigned booking on record — so it tells you how much work still needs an owner right now.
 
 An account-wide reminder can warn everyone involved before an unassigned task starts — see [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 
@@ -182,6 +192,9 @@ Use the **Filters** button to narrow the view — by task, status, owner, assign
   </Card>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
     Schedule tasks on a timeline, sequence them with dependencies, and manage recurring tasks.
+  </Card>
+  <Card title="List view" icon="table-list" href="/help/documentation/task-list">
+    The same tasks as a sortable table, with in-place editing and mass edits.
   </Card>
   <Card title="Work schedules" icon="calendar" href="/help/documentation/work-schedule">
     Define the working hours that determine each person's capacity.

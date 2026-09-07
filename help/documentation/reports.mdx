@@ -103,11 +103,14 @@ Add filters with the folder's **Filters** button, or per report via the **⋯** 
 | **Person**, **Project**, **Task** | Specific people, projects, or tasks |
 | **Owner**, **Status** | Tasks by their owner or status |
 | **Person tag**, **Project tag**, **Task tag** | Entities carrying a given [tag](/help/documentation/tags) |
+| **Project category**, **Planning** | Everything in a whole project category, or in a whole planning (task category) |
 | **Billability**, **Marked non-billable** | Time entries by whether they are **Billable** or **Non-billable**, or marked non-billable |
 | **Work location** | **Work from home** or **On-site** time entries |
 | **Absence/working time** | **Absence time only**, **Working time only**, or **Both** |
 
 Filters combine, and each condition can include (**is**) or exclude (**is not**). Filter and period changes are saved automatically and the open report re-runs.
+
+To filter on a whole category, ⌘-click (Ctrl-click on Windows and Linux) the category itself in the **Project** or **Task** list instead of picking one entity — Beebole turns it into a **Project category** or **Planning** condition. What each filter actually covers is described in [Custom reports](/help/documentation/custom-reports#filter-and-scope-the-data).
 
 ---
 
@@ -147,9 +150,15 @@ Controls at the top of the page:
 | **Show archived** | Include archived projects |
 | **Export** | **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF** |
 
-Click a project's bar to open its detail sheet with the numbers behind the bar — consumption, forecast, and remaining amounts.
+These controls all work on data the page already has, so the list re-orders and re-filters as you click — nothing is reloaded. The **Filters** cover the whole project hierarchy: filter on a client or a parent project and every project underneath it is included, and a project-tag filter also matches tags below the one you picked, plus every project under a tagged parent. Each condition can include (**is**) or exclude (**is not**).
 
-Beebole can also notify you automatically when a budget passes its alert threshold or goes over budget, with a burn-rate forecast of when the budget would run out and a link straight to this report — see the [Budgets](/help/documentation/budgets) page for how budget alerts work.
+The chosen **Sort** applies at every level of the list — top-level rows, nested subprojects, and the per-person or per-project lines inside a split — and the project name breaks ties, so rows that read the same (all the untouched budgets at 0%, for example) keep a stable order.
+
+A budget consumed to exactly 100% counts as **on budget**: only a project projected above 100% is reported as over budget, and the bar colors use the same boundary.
+
+Click a project's bar to open its detail sheet with the numbers behind the bar — consumption, forecast, and remaining amounts. On a budget [split by person or by project](/help/documentation/budgets#budget-splits), each line compares its own allocation with the time and money really logged against it — a split-by-project line also counts everything logged on that project's own subprojects. A project carrying several budgets appears as a single row: the targets add up, and its actual consumption is counted once.
+
+This report is where budget trouble surfaces: it always flags projects approaching or over their budget, with a burn-rate forecast of when a budget would run out, and there is no setting to switch on. See the [Budgets](/help/documentation/budgets) page for how budgets and their thresholds are set.
 
 ---
 

@@ -1,134 +1,87 @@
 ---
-title: "Legacy Migration — Import Your Old Data into Beebole"
+title: "Migrating a legacy Beebole account"
 sidebarTitle: "Legacy Migration"
-description: "Import your existing Beebole data — people, projects, time records, and settings — into the current platform with the one-time Legacy Migration tool."
+description: "How Beebole support imports your legacy account — people, projects, tags, rates, budgets, and time records — into the new platform, and what to expect afterwards."
 keywords: ["beebole", "legacy migration", "migrate data", "import data", "beebole migration", "data import", "account migration"]
 "og:title": "Migrating Your Legacy Beebole Account to the New App"
-"og:description": "Use the Legacy Migration tool to bring all your existing Beebole data into the current platform in a single operation."
+"og:description": "What Beebole's support team migrates from a legacy account, how to request it, and how imported history behaves once it lands."
 "og:type": "article"
 ---
 
-The **Legacy Migration** tool lets you import data from a previous Beebole account into your new Beebole workspace. It is a one-time, guided process that preserves your historical time records, people, projects, tasks, activities, absence types, schedules, custom fields, and more.
+Beebole can import a legacy Beebole account — people, projects, tags, rates, budgets, settings, and historical time records — into a new Beebole account. The import is run by Beebole's support team on request, so there is nothing to install or configure yourself. It is a one-time operation per account: once an account has been migrated, it cannot be migrated again.
 
 <Info>
-  The migration can only be performed once per account and is restricted to administrators. If migration has already been completed, the tool displays a confirmation message and prevents a second run.
+  To request a migration, email [support@beebole.com](mailto:support@beebole.com). Tell us which legacy account to import, which account it should land in, and how far back you want time records. There is no self-service migration screen in the app.
 </Info>
 
 ---
 
 ## What gets migrated
 
-The migration imports the following data from your legacy account:
+| Data | How it lands in the new account |
+| --- | --- |
+| **People** | Active and archived people, with their roles, email addresses, and external IDs |
+| **Companies, projects, subprojects** | One project category — **Companies** by default — with the legacy company \> project \> subproject hierarchy kept as is |
+| **Activities** | Legacy activities (jobs) become projects in a second category, **Tasks (Legacy)** by default, offered as a secondary column in the timesheet |
+| **Groups and branches** | Two tag categories, **Groups** and **Branches** by default, with each person's assignments over time |
+| **Time off types** | Absence types and their allowances |
+| **Work schedules** | Schedule definitions and the assignments of people to them |
+| **Billing and cost rates** | The full dated rate history, including rates split per person and per subproject |
+| **Budgets** | Project budgets, with subproject budgets inheriting the parent's type and currency |
+| **Custom fields** | Field definitions and the values on your records |
+| **Managers** | Who manages whom, and who manages which project |
+| **Project membership** | Who has access to which project, including exclusive-membership settings |
+| **Time records** | Historical entries with their hours, billability, and clock-in and clock-out times when legacy stored them |
+| **"Specific tasks" lists** | Legacy per-project activity restrictions, applied as an "only these" restriction on that project's secondary projects |
 
-| Data type | Notes |
-|-----------|-------|
-| **People** | Active and archived team members, including schedule assignments and billing/cost rates |
-| **Companies** | Top-level project containers, mapped to the new project category structure |
-| **Projects** | Full project hierarchy including subprojects |
-| **Tasks** | Task definitions, statuses, and category assignments |
-| **Activities** | Job types (legacy activities) carried over as tasks |
-| **Groups** | Reporting groups mapped to the new structure |
-| **Branches** | Branch data migrated as tags |
-| **Absence types** | Leave categories and quotas |
-| **Schedules** | Work schedule definitions and person assignments |
-| **Custom fields** | Field definitions and their values |
-| **Time records** | Historical time entries, including billability and project assignments |
-| **External IDs** | Preserved for any records that had external identifiers |
+A few details worth knowing about the conversion:
+
+- **Rate currency.** A legacy rate that carries no currency of its own — split rates and unbillable rates never do — falls back to the migrated account's own currency, taken from the main company, rather than to a default like US dollars.
+- **Clock times.** An entry with a complete, same-day start and end time keeps both. Anything else — no times, only one of the two, an end at or before the start — becomes a whole-day entry. Either way the entry's duration stays exactly what legacy reported, so report totals never move because times were imported.
+- **Custom field history.** A legacy field that held a history of values collapses to a single value in the new account, and the most recent one wins.
+- **"No task" projects.** A legacy project set to offer no activity at all keeps that behavior: its task picker offers nothing.
+
+<Info>
+  Data can only be migrated **as is**. You can choose which data sets to bring over — for example people and projects but no time records — and how far back time records go, but not to restructure the account on the way in. If you want a different structure, see [Review your structure before you switch](/help/guides/migration#review-your-structure-before-you-switch).
+</Info>
 
 <Tip>
-  If you choose to include only active records, archived people and projects are skipped. Archived records referenced by time records are still created to maintain data integrity.
+  You can ask for only active records, which skips archived people and projects. Archived records that historical time entries point at are still created, so no entry loses its project or person.
 </Tip>
 
 ---
 
-## Before you start
+## What to expect after the migration
 
-Before running the migration, confirm the following:
+The imported history is treated as closed business, so nobody has to re-submit years of timesheets:
 
-- You are an administrator of the new Beebole account.
-- You have your **Legacy API Key** from your previous Beebole account. You can find it in your legacy account's API settings, or contact [support@beebole.com](mailto:support@beebole.com) if you are unsure where to look.
-- You have decided whether to migrate all records or only active ones.
-- You have decided how far back to import time records (or whether to import them at all).
+- **Everything up to the cut-over is approved.** Each person gets a single approval covering their whole imported history, so no migrated period shows up as a draft, nothing reaches an approver's queue, and no approval email is ever sent for it.
+- **The timesheet lock date is set to the last imported day.** Migrated records are frozen from the start — admins included — and a period the lock date covers cannot be submitted, so imported history can't be pushed back into the approval flow by hand.
+- **Timesheet scores ignore pre-import periods.** A person's [timesheet score](/help/documentation/approval) is computed only from periods after the cut-over, so periods they never worked in the new app don't read as missed submissions.
+- **Imported entries keep the amounts legacy reported.** Billing and cost figures on migrated entries come from the legacy account, so report totals reconcile with what you saw before the move.
+- **Nobody is notified.** Migrating people creates their records without sending invitations. Invite them from the **People** page in the sidebar when you are ready.
 
----
+<Warning>
+  A migration is additive and can only run once per account. Because it never wipes the target account, anything you already configured there — your approval workflow in particular — survives the run untouched, and the imported data lands alongside it. Ask support for an empty account if you want a clean result.
+</Warning>
 
-## Running the migration
-
-<Steps>
-  <Step title="Open the migration tool">
-    In your Beebole account, go to **Settings** > **Legacy Migration**.
-  </Step>
-  <Step title="Enter your Legacy API Key">
-    Paste your **Legacy API Key** into the field provided. This key authenticates your request against your previous account and allows the migration tool to read your data.
-  </Step>
-  <Step title="Configure migration options">
-    Set the following options before running the audit:
-
-    - **Only active entities** — Enable this to skip archived people and projects. Leave it off to import everything, including archived records.
-    - **Include time records from** — Choose a start date if you only want to bring over time entries from a certain point. Leave blank to import all historical data.
-  </Step>
-  <Step title="Run the audit">
-    Click **Start Audit**. Beebole connects to your legacy account and counts everything that will be migrated — people, companies, projects, tasks, activities, absence types, schedules, custom fields, quotas, and time records. The audit does not modify any data.
-
-    <Info>The audit may take a few seconds depending on your data volume.</Info>
-  </Step>
-  <Step title="Review the audit results and choose what to migrate">
-    The **Audit Results** screen shows a breakdown of records found in your legacy account, with a live count per data type. Under **What to migrate** and **Data that links them**, untick anything you don't want to bring over — people, projects, tags, schedules, budgets, time records, the manager structure, and more are individually selectable. Review the counts and the time record date range before proceeding.
-  </Step>
-  <Step title="Start the migration">
-    Click **Start Migration**. The migration runs in the background and a progress bar shows each phase as it completes.
-
-    <Warning>Do not close or refresh the page while the migration is running. The process may take several minutes depending on your data volume.</Warning>
-  </Step>
-  <Step title="Review the migration report">
-    When finished, Beebole displays a summary report showing how many records were created, skipped, or failed for each phase. If there are warnings or failures, review them and contact [support@beebole.com](mailto:support@beebole.com) if you need help resolving them.
-  </Step>
-</Steps>
-
----
-
-## Migration phases
-
-The migration runs through the following phases in order:
-
-1. **Projects** — Creates project structure from legacy companies
-2. **Activities** — Migrates job/activity types as tasks
-3. **Absence Types** — Creates absence categories
-4. **Schedules** — Imports work schedule definitions
-5. **Groups** — Migrates reporting groups
-6. **Branch Tags** — Converts branch data to tags
-7. **People** — Creates team members
-8. **Tag Assignments** — Links tags to records
-9. **Team Members** — Assigns people to projects
-10. **Project Assignments** — Applies exclusive project membership settings
-11. **Schedule Assignments** — Links people to their work schedules
-12. **Billing & Costs** — Imports billing and cost rates
-13. **Custom Fields** — Creates custom field definitions
-14. **Custom Field Values** — Attaches custom field data to records
-15. **Absence Quotas** — Migrates leave quota balances
-16. **External IDs** — Preserves any external system identifiers
-17. **Time Records** — Imports historical time entries (if selected)
-18. **Backfill** — Completes any cross-reference data
-19. **Done** — Migration complete
-
----
-
-## What to expect after migration
-
-- All migrated data is immediately available in your Beebole account.
-- People receive no automatic notifications — you can invite them manually from the **People** page in the sidebar when you are ready.
-- Review your project categories and task statuses to ensure the structure meets your needs.
-- Check a sample of time records in [Reports](/help/documentation/reports) to confirm data accuracy.
+After the migration, it is worth checking a sample of time records in [Reports](/help/documentation/reports), reviewing the project categories and their level names, and confirming that rates and budgets landed where you expect. [Master data review](/help/documentation/master-data) is the fastest way to check a whole entity at once.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Account Settings" icon="gear" href="/help/documentation/account-settings">
-    Manage your organization profile and account-level configuration.
+  <Card title="Migration guide" icon="arrow-right" href="/help/guides/migration">
+    How the legacy and new systems coexist, and what has changed between them.
   </Card>
-  <Card title="Data Exports" icon="download" href="/help/documentation/data-exports">
+  <Card title="Master data review" icon="table" href="/help/documentation/master-data">
+    Check the imported configuration entity by entity, and fix it in bulk.
+  </Card>
+  <Card title="Account settings" icon="gear" href="/help/documentation/account-settings">
+    Review the organization profile and account-level settings after the import.
+  </Card>
+  <Card title="Data exports" icon="download" href="/help/documentation/data-exports">
     Export your Beebole data for backup or external analysis.
   </Card>
 </CardGroup>
@@ -136,19 +89,23 @@ The migration runs through the following phases in order:
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I run the migration more than once?">
-    No. The migration is a one-time operation. Once it has been completed, the tool is locked and displays a confirmation message. If you need to re-migrate data, contact [support@beebole.com](mailto:support@beebole.com).
+  <Accordion title="How do I migrate my legacy Beebole account?">
+    Email [support@beebole.com](mailto:support@beebole.com) and we run the import for you. Beebole has no self-service migration screen: tell us which legacy account to import, which new account it should land in, which data sets you want, and how far back time records should go.
   </Accordion>
-  <Accordion title="Can I migrate only part of my data?">
-    Yes. You can choose to migrate only active records (skipping archived people and projects) and set a start date to limit how far back time records are imported. You can also choose not to include time records at all if you only need to bring over the account structure.
+
+  <Accordion title="Can a Beebole account be migrated more than once?">
+    No. The migration is additive and runs once per account — a second run would duplicate everything, so Beebole refuses it. If something needs to be corrected afterwards, contact support and we will look at it with you.
   </Accordion>
-  <Accordion title="What happens if some records fail to migrate?">
-    The migration completes even if individual records fail. The final report shows which phases had failures and how many records were affected. Most failures are caused by data inconsistencies in the legacy account. Review the warnings and contact support if you need help.
+
+  <Accordion title="Can I migrate only part of my legacy data?">
+    Yes. You can leave out whole data sets — for example bring over people and projects but no time records — and set a start date so only recent entries are imported. What you cannot do is change the structure on the way in: the hierarchy, rates, and settings arrive as they were.
   </Accordion>
+
+  <Accordion title="Will migrated timesheets need to be submitted and approved again?">
+    No. Beebole marks every imported period as approved and sets the timesheet lock date to the last imported day, so migrated history is frozen and closed. Approvers see nothing new in their queue, and per-person timesheet scores start from the periods after the migration.
+  </Accordion>
+
   <Accordion title="Will migrated people receive an invitation email?">
-    No. Migrating people creates their records in Beebole but does not send invitation emails. You can invite them from the **People** page in the sidebar whenever you are ready for them to log in.
-  </Accordion>
-  <Accordion title="Can two accounts migrate at the same time?">
-    No. The migration process runs one account at a time. If another account's migration is already in progress, you will see a message letting you know that Beebole will be ready for yours shortly.
+    No. Migrating people creates their records in Beebole without sending anything. Invite them from the **People** page in the sidebar whenever you are ready for them to sign in.
   </Accordion>
 </AccordionGroup>

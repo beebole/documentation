@@ -8,7 +8,7 @@ keywords: ["beebole", "gantt chart", "task timeline", "task scheduling", "task d
 "og:type": "article"
 ---
 
-Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bars on a timeline, so you can see start and end dates, sequence work with dependencies, and spot scheduling overload at a glance. It is one of the three views of the **Planning** page, alongside the [Kanban board](/help/documentation/kanban) and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
+Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bars on a timeline, so you can see start and end dates, sequence work with dependencies, and spot scheduling overload at a glance. It is one of the four views of the **Planning** page, alongside the [Kanban board](/help/documentation/kanban), the [Staffing view](/help/documentation/staffing), and the [List view](/help/documentation/task-list) — all show the same tasks, so a change in one view appears instantly in the others.
 
 ---
 
@@ -31,6 +31,8 @@ Each task with dates appears as a horizontal bar running from its start date to 
 
 Hover any bar for a rich tooltip: the full dates, the task name, its project with parents, the owner, the planned hours or days and allocation percentage, plus a hint about what **⌘** does on the chart.
 
+Where one month ends and the next begins, the timeline draws a vertical line across the chart and a pill above it with the month and year, so you keep your bearings while scrolling a long stretch of days or weeks.
+
 ### Choosing the period
 
 Open the **⋯** menu on the active view tab and use **Period** to choose how the timeline runs:
@@ -45,6 +47,12 @@ With a fixed period, tasks that start before or end after the window are drawn c
 <Info>
   Tasks without dates still appear as rows in the task list — they just have no bar yet. See below for how to schedule them directly on the timeline.
 </Info>
+
+### Zooming in and out
+
+Click a cell in the timeline header to zoom one level into that period: from the endless timeline down to the multi-week window you last chose (when it is longer than a week), then to a single week, then to a single day. Hovering the cell first previews the stretch of timeline the click will fill.
+
+To go the other way, use the zoom-out button next to the view tabs — it names the level it will take you back to (**Day**, **Week**, **2 weeks** and so on, or ∞ for the endless timeline).
 
 ---
 
@@ -86,9 +94,20 @@ Times that fall outside the owner's working hours are highlighted in the **Dates
 
 ## Task dependencies
 
-Dependencies sequence tasks: a dependent task is expected to follow the tasks it depends on. Dependency links are drawn between the bars on the timeline, color-matched to the tasks at each end, and they follow the bars live while you drag. Dependencies are managed in the **Dependencies** column — add it from the **Columns** menu if your view doesn't show it.
+Dependencies sequence tasks: a dependent task is expected to follow the tasks it depends on. Dependency links are drawn between the bars on the timeline, color-matched to the tasks at each end, and they follow the bars live while you drag. The lines route around the bars they pass and around group header rows, so a link stays readable in a crowded chart instead of running straight through a bar.
 
-### Adding dependencies
+### Drawing a link on the timeline
+
+Hover a bar and a chain-link handle appears on the half of the bar you are pointing at — the start or the end. Both work the same way, in opposite directions, and the handle's tooltip says which one you have: **Link the end of this task**, then *Drag onto a task, or click the tasks that start after it (hold ⌘ for several)*.
+
+- **Drag** the handle onto another task and release to create the link.
+- **Hold ⌘ as you release** to keep the handle armed, so you can chain several tasks one after another without grabbing it again.
+- **Release the handle where it is** and it stays armed instead: click tasks in the list to link them, and click again to finish.
+- While a handle is armed, tasks already linked to it wear a broken-chain mark — click one to remove that link.
+
+### Adding dependencies from the column
+
+Dependencies are also managed in the **Dependencies** column — add it from the **Columns** menu if your view doesn't show it.
 
 <Steps>
   <Step title="Click the task's Dependencies field">
@@ -106,7 +125,7 @@ To remove a dependency, edit the row numbers in the **Dependencies** field. A ta
 
 ### How dependent tasks move
 
-The **Dependent tasks movement options** setting — in the **⋯** menu on the active view tab — controls what happens to dependent tasks when you move a task they depend on:
+Open the **⋯** menu on the active view tab and hover over **Dependent tasks** to choose what happens to dependent tasks when you move a task they depend on. The submenu is titled **Dependent tasks movement options**, and each option animates on hover so you can see the behavior before picking it:
 
 | Option | Behavior when the predecessor moves |
 |--------|--------------------------------------|
@@ -114,7 +133,9 @@ The **Dependent tasks movement options** setting — in the **⋯** menu on the 
 | **Pushing** | Dependent tasks are pushed later when the predecessor would overlap them |
 | **Together** | Dependent tasks move along with the predecessor, keeping their distance |
 
-The setting applies to the whole planning.
+The setting belongs to the planning, not to the view, so it applies to every Gantt and Staffing view of that planning. The same submenu is available from a [Staffing view](/help/documentation/staffing) tab.
+
+Whichever option is active, a task that gets rescheduled lands on dates its own owner actually works: its start rolls forward (or back) to the next working day on that person's [work schedule](/help/documentation/work-schedule), and its end shifts by the same amount. Moving a task never changes its planned hours — the period is refitted to hold the same working time at its new position.
 
 ---
 
@@ -151,12 +172,39 @@ The left panel of the Gantt chart is a configurable table. Open the **⋯** menu
 | **Owner** | The task's owner |
 | **Potential owners** | The people or tags the task is assigned to |
 | **Planned** | Planned time, in hours or days |
-| **Billing** | Billing amount indicator for the task |
-| **Cost** | Cost amount indicator for the task |
+| **Occupation** | The share of the owner's capacity the task takes, as a percentage |
 | **Status** | The task's current status |
 | **Tags** | Tags applied to the task |
 
 In addition, one column per [project category](/help/documentation/projects) is available, showing the projects from that category linked to each task.
+
+### Reordering, resizing, and sorting columns
+
+- **Reorder** — Drag a column header sideways and drop it where you want it. **Row #** and **Task Name** stay first and can't be moved.
+- **Resize** — Drag the right edge of any column header. Widths are saved with the view.
+- **Sort** — Click a column header to sort the rows by that column, click again to reverse the direction, and a third time to return to the manual order. An arrow on the header shows which column is sorted and which way. The header's own menu names the same actions: **Sort ascending**, **Sort descending**, and **Hide column**.
+
+Sorting and grouping work together: with a grouping active, the sort applies inside each group, and subtasks always stay under their parent. While a sort is active, the **Row #** column shows plain sequence numbers instead of the handles used to drag rows into a manual order — click the **Row #** header, or **Manual order** in its menu, to get them back.
+
+<Tip>
+  For long lists, the [List view](/help/documentation/task-list) shows these same columns as a full-width sortable table, without the timeline taking up half the screen.
+</Tip>
+
+### Editing in the columns
+
+The value cells are controls, so most task fields can be set without opening the task:
+
+- **Status** — Step to the previous or next status with the chevrons, or click the status name to pick any of them.
+- **Owner** — Remove the current owner from its badge, or use the person button on an empty cell to pick someone (**Select the owner**).
+- **Dates** — Click the cell to open the task's period editor.
+- **Planned** and **Occupation** — Type the figure straight into the cell.
+- **Potential owners**, **Tags**, and each project category column — Click the **+** button for a small editor with the current badges, removable, and a picker to add more.
+
+To change several tasks in one go, **⌘+Click** (Ctrl+Click on Windows) rows to build a selection, or **Shift+Click** for a range, then change a value on any row inside the selection: every selected task gets it, as a single undo step. **Esc** clears the selection and **Delete** removes every selected task.
+
+<Tip>
+  When a task's bar sits outside the visible timeline, hovering its **Dates** cell shows an arrow pointing left or right — click it (**Show in the chart**) to scroll straight to the bar.
+</Tip>
 
 ---
 
@@ -175,7 +223,7 @@ Select **None** to remove grouping. With a grouping active, **Show all groups** 
 
 ## Saved views
 
-The tabs above the task list are saved views. Each Gantt view stores its own **Period**, **Columns**, and **Group by** settings, plus its filters.
+The tabs above the task list are saved views. Each Gantt view stores its own **Period**, **Columns** (which ones, in what order, at what width), sort, and **Group by** settings, plus its filters.
 
 - **Create** — Click **Add a view**, then **Gantt chart**.
 - **Rename** — Double-click the tab (or long-press it on a touch screen) and type the new name, or use **Rename** in the tab's **⋯** menu.
@@ -222,6 +270,9 @@ With the Gantt chart focused, you can work without the mouse:
   <Card title="Kanban board" icon="square-kanban" href="/help/documentation/kanban">
     Move the same tasks through status columns with drag and drop.
   </Card>
+  <Card title="List view" icon="table-list" href="/help/documentation/task-list">
+    The same columns as a sortable, full-width table, with mass edits across selected rows.
+  </Card>
   <Card title="Work schedules" icon="calendar" href="/help/documentation/work-schedule">
     Define the working hours that determine each person's capacity in the heatmap.
   </Card>
@@ -234,13 +285,13 @@ With the Gantt chart focused, you can work without the mouse:
     No. The Gantt timeline runs **Infinite by day** or **Infinite by week**, selected under **Period** in the view tab's menu — the week granularity is the one to use for a long-range overview. The same menu can also lock the view to a fixed window of **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks**, fitted to your screen and paged one period at a time.
   </Accordion>
   <Accordion title="How do I create a dependency between two tasks?">
-    Click the **Dependencies** cell of the task that should come second, then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.
+    Either drag the chain-link handle from the end of one bar onto another task, or click the **Dependencies** cell of the task that should come second and then click the task it depends on (hold **⌘** to pick several) or type its row number. Press **Esc** to finish. Beebole draws an arrow between the bars.
   </Accordion>
   <Accordion title="What happens to dependent tasks when I move their predecessor?">
-    It depends on the category's **Dependent tasks movement options**, set from the **Dependencies** column header: **Free** leaves dependents in place, **Pushing** pushes them later when the predecessor would overlap them, and **Together** moves them along with it.
+    It depends on the option chosen under **Dependent tasks** in the view tab's **⋯** menu: **Free** leaves dependents in place, **Pushing** pushes them later when the predecessor would overlap them, and **Together** moves them along with it. The choice belongs to the planning, so it applies to every Gantt and Staffing view of that planning.
   </Accordion>
   <Accordion title="Can I have several Gantt views with different columns?">
-    Yes. Click **Add a view** and select **Gantt chart**. Each saved view in Beebole keeps its own column selection, grouping, scale, and filters, so you can switch between setups without reconfiguring anything.
+    Yes. Click **Add a view** and select **Gantt chart**. Each saved view in Beebole keeps its own columns — which ones, in what order, at what width — plus its sort, grouping, scale, and filters, so you can switch between setups without reconfiguring anything.
   </Accordion>
   <Accordion title="Do changes in the Gantt chart affect the Kanban board?">
     Yes. Both views display the same tasks from the same category. Dates set on the Gantt timeline, status changes, and renames are immediately visible on the Kanban board, and vice versa.

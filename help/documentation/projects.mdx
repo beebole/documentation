@@ -22,6 +22,12 @@ Beebole uses a flexible hierarchy with three building blocks:
 
 Projects describe _what_ your team works on. To group projects and people across other dimensions — departments, locations, service lines — use [tags](/help/documentation/tags) instead of deepening the project hierarchy.
 
+### Only the lowest level accepts time
+
+Time is always recorded at the bottom of a branch. A project that has active subprojects aggregates their time in reports and cannot be recorded against: the project pickers only offer the lowest level, and an entry that still reaches a parent is refused with _You cannot record time on a project that has sub-projects._ Archived subprojects don't count, so archiving the last subproject of a project hands the parent back as a bookable one.
+
+[Tasks](/help/documentation/planning) follow the same rule — a task with subtasks aggregates its children and cannot carry time either.
+
 <Info>
   Which project categories your team can record time on is controlled by the **Record time on these project categories** setting, in the **Categories** tab of the **Timesheet and Planning Settings** panel. Open it from **Settings** \> **Account Settings**.
 </Info>
@@ -183,7 +189,7 @@ Archived projects are hidden from the list — click **Show Archived** at the to
 
 <AccordionGroup>
   <Accordion title="How deep can the project hierarchy go in Beebole?">
-    Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. In practice, structures stay easiest to navigate and report on at four levels or fewer.
+    Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. In practice, structures stay easiest to navigate and report on at four levels or fewer. Keep in mind that only the lowest level of each branch accepts time entries; the projects above it aggregate their subprojects' time in reports.
   </Accordion>
 
   <Accordion title="Can I move a project to a different category?">

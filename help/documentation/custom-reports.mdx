@@ -104,7 +104,13 @@ Multi-level grouping is just multiple grouping columns: for example, a tag colum
 
 ## Filter and scope the data
 
-Filters and periods work the same on every report and are covered on the [Reports](/help/documentation/reports) page: set a date range per folder or per report, and filter by people, projects, tasks, tags, work location, or owner and status for tasks.
+Filters and periods work the same on every report and are covered on the [Reports](/help/documentation/reports) page: set a date range per folder or per report, and filter by people, projects, tasks, tags, project categories or plannings, work location, or owner and status for tasks. Every condition can include (**is**) or exclude (**is not**).
+
+What a filter covers is wider than the entity you name, so a report answers the question you meant:
+
+- **Project**, **Project tag**, and **Project category** filters include the project's whole subtree, and also the time logged on [tasks](/help/documentation/planning) linked to those projects. Time your team booked on a task of the Acme project shows up when you filter on Acme, without adding a task filter.
+- **Tag** filters follow the tag hierarchy: a filter on a parent tag also matches the tags below it. And when a tag sits on a parent project, everything under that project is covered too.
+- **Task** and **Planning** filters follow the task, even when the time was recorded as project time. If a suggested entry had to be logged on a project because your timesheet does not accept time on that planning, the entry still counts as that task's time here — and an **is not** condition still excludes it.
 
 One scope is specific to time data: a report over time records can cover working time and absences together, or narrow to **Absences only** or **Working time only** — shown as a chip above the results that you can clear at any time.
 

@@ -11,7 +11,7 @@ keywords: ["beebole", "ai", "beebole ai", "suggested time entries", "ai report b
 Beebole AI is the set of AI features built into your Beebole account: time entries suggested from your own activity, reports built from a plain-language question, and an extra pair of eyes when you review a submitted timesheet. Everything lives on the **Assistant** page — click **Assistant** in the sidebar when AI features are enabled for your account.
 
 <Info>
-  Beebole AI runs on Beebole-operated servers in your data region. Using these features does not send your data to an outside AI provider.
+  Beebole AI runs on Beebole's own AI models, self-hosted on Beebole-operated servers in the same region as your data. Those servers have no public address — only Beebole's backend reaches them, behind a firewall — and nothing is sent to a third-party AI provider.
 </Info>
 
 ---
@@ -43,6 +43,12 @@ Accepting, editing, and dismissing are all undoable with **⌘\+Z** (Ctrl\+Z on 
 
 In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions also appear as ghost entries: drag a suggestion to a time slot to schedule it, or accept it as-is. Drop one of your [favorites](/help/documentation/timesheets#favorites) onto a ghost and the suggestion is retargeted to that project or task and accepted in a single move — the ghost highlights as you hover it.
 
+### Suggestions for a task you cannot book
+
+A suggestion can name a planned task your timesheet does not accept time on — a task in a planning left out of **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Beebole keeps the suggestion instead of dropping it, and leaves the task on the card so you still see what the proposal is about.
+
+To accept one, pick where the time should land: the card shows **Log this time as** with the note **Choose a project to accept it.**, and the entry is created on the project chain you choose. The link to the planned task is kept behind the entry, so the time still counts toward that task — in the [Planned vs. Real](/help/documentation/reports#planned-vs-real) report and in the approval check that flags a task over its planned time. **Accept all** skips these suggestions — each one needs your choice — and leaves them in the list for you to handle one by one.
+
 ### Planned work on future days
 
 **Planned** suggestions also reach beyond today. On days still in the future they appear as read-only forecast cards — a muted, dashed preview of what you are planned to work on — so you can see the shape of your week ahead. A forecast card becomes fully actionable, with accept, edit, and dismiss, once its day arrives.
@@ -64,7 +70,21 @@ Describe the report you need in plain language and Beebole creates and runs it f
 - On the **Assistant** page, use **Ask for a report** — the report opens ready to run.
 - On the **Reports** page, type what you want to know in the report builder.
 
-The result is a regular saved report: refine its filters, move it to a folder, or delete it like any other. See [Reports](/help/documentation/reports). The report builder appears only for roles allowed to manage reports.
+The result is a regular saved report, created in a folder named **AI**: refine its filters, move it to another folder, or delete it like any other. See [Reports](/help/documentation/reports). The report builder appears only for roles allowed to manage reports.
+
+### It speaks your organization's vocabulary
+
+You do not have to describe your account's structure — the builder already knows it. It reads the names you gave your project and task categories and each of their levels, along with your custom fields, so a request like "hours by client last month" or "hours per cost center" groups the rows on that level of your hierarchy, or on the values of that custom field. Ask for "people and their Seniority year to date" and each axis becomes a column, in the order you named them. Names you mention are matched against the projects, people, tasks, and tags you are allowed to see; when one cannot be matched, Beebole tells you what it could not find instead of running the wrong report.
+
+With a report already open, the input sits under its title and your request changes that report: add a billing column, group by month, or turn the chart into a pie, and everything you did not mention stays as it is. Ask for a new or separate report and Beebole creates one instead. The button reads **Build** for a new report and **Update** when you are changing one.
+
+### When Beebole asks instead of guessing
+
+Some requests cannot be expressed with the options a report has. Rather than return a plausible-looking wrong answer, Beebole replies with one short question. The most common case is grouping by a tag category: tags filter a report but are not a grouping axis, so "hours by department" comes back as a question about how you want the rows grouped.
+
+### What reaches the model
+
+Only definitions are sent: your question, the structure of the report you have open, and the names of your categories, their levels, and your custom fields. Your time entries, the amounts in them, and the names of your projects, people, and tasks are not part of the request. The model only writes the report definition — every figure is computed by Beebole's own reporting engine, with your permissions applied, exactly as for a report you build by hand.
 
 ---
 
@@ -86,7 +106,7 @@ Approvers are emailed when a timesheet needs their review, with a summary of the
 
 ## Already working for you
 
-Some AI touches need no setup at all: timesheet reminders mention how many suggested entries are waiting — and when auto-submit is on, they announce the deadline in advance — and budget alerts include a projected overrun date based on the current burn rate (see the [Budget Status report](/help/documentation/reports#budget-status)).
+Some AI touches need no setup at all: timesheet reminders mention how many suggested entries are waiting — and when auto-submit is on, they announce the deadline in advance — and budget alerts, where they are switched on, include a projected overrun date based on the current burn rate (see the [Budget Status report](/help/documentation/reports#budget-status)).
 
 ---
 
@@ -117,7 +137,9 @@ Beebole also works with the AI assistant you already use. Connect Claude, ChatGP
 
 <AccordionGroup>
   <Accordion title="Does using Beebole AI send my data to OpenAI, Anthropic, or another AI provider?">
-    No. The AI features inside Beebole run on Beebole-operated servers in your data region, so using suggested time entries, the report builder, or the review assistant does not send your data to an outside AI provider.
+    No. Beebole runs its own AI models, self-hosted on Beebole-operated servers in the same region as your data. Those servers are firewalled and have no public address, so only Beebole's backend can reach them, and nothing is sent to a third-party AI provider.
+
+    What the model sees is also deliberately small. For the report builder it is only definitions — your question, the structure of the report you have open, and the names of your categories and custom fields — never your time entries, their amounts, or your project, person, and task names.
 
     Connecting your own assistant through Beebole's MCP server works the other way around. That assistant reads your Beebole data with your permissions, and only when you set the connection up yourself.
   </Accordion>
@@ -128,7 +150,9 @@ Beebole also works with the AI assistant you already use. Connect Claude, ChatGP
     From five sources: your own recurring logging patterns, the Beebole desktop app and browser extension if you install them, work planned for you in Planning, and Kanban cards you move to a done column. Each suggestion shows its source badge and a **Why?** explanation, overlapping suggestions merge into one card, and you decide what to accept or dismiss.
   </Accordion>
   <Accordion title="How do I write a report with AI in Beebole?">
-    Describe what you want to know — on the **Assistant** page under **Ask for a report**, or directly on the **Reports** page. Beebole builds the report and runs it; the result is a normal saved report you can refine and reuse.
+    Describe what you want to know — on the **Assistant** page under **Ask for a report**, or directly on the **Reports** page. Beebole builds the report and runs it; the result is a normal saved report in a folder named **AI** that you can refine and reuse. Use the words your organization uses: the builder knows your category names and levels and your custom fields, so "by client" or "per cost center" groups on that level or field. With a report open, the same input changes that report instead of creating a new one.
+
+    If a request cannot be expressed with the options a report has, Beebole replies with one short question rather than guessing — grouping rows by a tag category is the usual case, since tags filter a report but are not a grouping axis. Answer in the same input and the report is built.
   </Accordion>
   <Accordion title="What does the approval review digest check?">
     It flags time on non-working days, overtime beyond the schedule, time outside working hours, entries on archived projects or tasks, entries right after the lock date, tasks over their planned time, and period totals far from that person's usual — all before you approve or reject.

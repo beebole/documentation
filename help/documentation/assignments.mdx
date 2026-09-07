@@ -100,6 +100,18 @@ Tasks are independent planning items, separate from projects, and carry their ow
 
 To set either one, click **Planning** in the sidebar, select the task, and open the **Owner** or **Potential owners** panel. See [Task Planning](/help/documentation/planning) for how owners and dates drive the Gantt and Kanban views.
 
+## Which plannings a person can book
+
+Alongside the item-by-item assignments above, one setting decides which whole plannings a person may record time on: **Record time on these plannings**, in the **Categories** tab of the **Timesheet and Planning Settings** panel. Add a planning to the list with **Pick a planning**. See [Timesheet and planning settings](/help/documentation/timesheetSettings#plannings) for the setting itself.
+
+The list cascades like every other timesheet setting. The value on **Account Settings** applies to everyone, a value on a tag overrides it for everyone under that tag, and a value on a person overrides both for that one person — so you can let one team book time on a planning that stays out of everyone else's timesheet.
+
+Beebole enforces the list when an entry is saved, not only in the timesheet's pickers. Creating an entry on a task, or moving an existing entry to another task, checks the task's planning against the list of the person the entry belongs to — not the person doing the typing. An entry that breaks the rule is refused with _Your timesheet settings do not allow recording time on this task._
+
+<Info>
+  Because the check follows the timesheet's owner, a manager or admin recording time for someone else is held to that person's own list. Entries saved before you changed the list stay as they are and remain editable in every other way.
+</Info>
+
 ## Example: a client project for a five-person team
 
 Suppose the **Website Redesign** project for **Acme Corp** should only appear on five people's timesheets:
