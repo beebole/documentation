@@ -1,84 +1,110 @@
 # Gaps report
 
-Generated: 2026-09-07 (release run)
+Generated: 2026-09-07 (verification pass — 2026-09-07 release run)
 Catalog last updated: 2026-09-07
 
-Scope note: the previous verification pass (2026-08-31) found every catalog entry covered, and no `help/**` page changed since except a wording tweak on `ai.mdx`. This pass therefore classified the entries the 2026-09-07 catalog sync added or changed (production deploys 2026-09-01 and 2026-09-06) against their mapped pages; unchanged entries keep their Covered status.
+Scope note: this is the **verification pass** of the 2026-09-07 release run. It re-opened every entry listed in the earlier report of this run (2 Missing, 24 Partial) and checked the mapped page text for the capability named in its `needs:` note. Catalog format guard passed (27 sections, 286 bullets); catalog freshness 0 days. Entries carrying a `_(status: …)_` suffix, plus everything under **Planned Features** and **Internal (Non User-Facing)**, were excluded from classification.
+
+Result: **26 of 26 previous entries Resolved. 0 previous entries still open.** Two new factual defects were found on pages that were not previous-run entries; both are listed below.
+
+---
+
+## Verification of the previous run's entries
+
+### Time Tracking
+
+- Resolved | `help/documentation/timesheets.mdx` | Timer — multiple timers via ⌘/Ctrl-click, floating shelf with per-activity lines and **Pause all**, browser tab title, and the "only one timer" contradiction removed.
+- Resolved | `help/documentation/timesheets.mdx` | Timesheet calendar view — one-click empty slot pre-filled with the day's missing time, ⌘ whole-hour snap, untimed entry adopting the drop time, shared day headers with schedule totals and progress bars.
+- Resolved | `help/documentation/timesheetSettings.mdx` | Lock date — locked period cannot be submitted, with the exact message.
+- Resolved | `help/documentation/timesheetSettings.mdx` | Auto-submit — single most-recent overdue period only; empty periods never submitted.
+- Resolved | `help/documentation/timesheetSettings.mdx` | Time entry restrictions — validity dates, time-off quota balance, all-or-nothing bulk delete validation.
+
+### Approval Workflows
+
+- Resolved | `help/documentation/approval.mdx` | Email actions — reply with approve / reject + reason, sender and mail-server verification, receipt in thread, buttons landing on the acted-on timesheet.
+- Resolved | `help/documentation/approval.mdx` | Team approval overview — bulk **Approve** / **Reject** / **Remind** scoped to applicable people and strictly to the period on screen.
+- Resolved | `help/documentation/approval.mdx` | Force-edit a team member's timesheet — highlight tint across grid, calendar, and pickers, tied to one person.
+
+### Planning, Tasks & Staffing
+
+- Resolved | `help/documentation/task-list.mdx` | Task list view — new 219-line page covering sorting, column reorder/resize, in-place editing, ⌘/Shift multi-row single-undo mass edits; in `docs.json` under **Tasks & Planning**.
+- Resolved | `help/documentation/gantt.mdx` | Gantt chart view — in-place column editing, ⌘/Shift selection mass edits, header-cell zoom, month boundary line and pill, off-screen **Show in the chart** arrow.
+- Resolved | `help/documentation/gantt.mdx` | Gantt column customization — reorder, resize, three-state header sort, sort-plus-grouping with sequence numbers replacing drag handles.
+- Resolved | `help/documentation/gantt.mdx` | Task dependencies — handle drag, ⌘-chaining, line routing around bars and group headers, rescheduling onto the owner's working calendar with planned hours preserved. The duplicate **Dependent tasks movement options** location is gone; it now lives only under "How dependent tasks move".
+- Resolved | `help/documentation/staffing.mdx` | Staffing view — part-day clock drag with quarter-hour snap over breaks, whole-day movement once the pointer leaves the cell, ⌘-drag copy landing after its source, **Lowest level** project grouping, period-scoped Unassigned count.
+
+### Project Management
+
+- Resolved | `help/documentation/projects.mdx` | Hierarchical projects — "Only the lowest level accepts time" section, with the refusal message and the same rule stated for tasks.
+
+### Roles & Permissions
+
+- Resolved | `help/documentation/assignments.mdx` | Availability controls — **Record time on these plannings** documented on `assignments.mdx` with save-time enforcement following the timesheet's owner, and linked from `roles-authorisations.mdx`.
+
+### Custom Fields
+
+- Resolved | `help/documentation/custom-fields.mdx` | Entity visibility — **Visible for Absence types** added to the creation Steps and correctly described as applying to absences of that type; time-record fields follow the timesheet's owner across every link.
+
+### Organization Settings
+
+- Resolved | `help/documentation/master-data.mdx` | Master data review — new 214-line page covering entity picker, column building with nested search and sibling picker, custom field columns, filters/archived/period, saved personal reviews, inherited-value origin, struck-through subtractions, entity badges, JSON/CSV/TSV/Excel/PDF export, plain-language build, update mode with before/after preview, skipped rows with reasons, single undo; in `docs.json` under **Configuration**.
+
+### Reporting
+
+- Resolved | `help/documentation/reports.mdx` | Budget status report — instant filter/sort/archived, hierarchy-wide project and tag filters, sort at every level, exactly-100% counts as on budget, split-by-project actuals without double-counting, and "no setting to switch on". `budgets.mdx` now states plainly that budget notifications are not available.
+- Resolved | `help/documentation/custom-reports.mdx` | Report filters — project/tag/category filters covering subtrees and task-linked time, tag hierarchy and tagged-parent subtree, project category and planning filter types, **is not** exclusions.
+- Resolved | `help/documentation/data-exports.mdx` | Report downloads — Excel widths measured from every row, PDF embedded font coverage, landscape + first-column repeat across pages, explicit failure message.
+
+### Billing & Cost Tracking
+
+- Resolved | `help/documentation/costs.mdx` | Rate splits — the split type and its badges are shown in the rate card summary.
+
+### AI
+
+- Resolved | `help/documentation/ai.mdx` | Suggested time entries — "Suggestions for a task you cannot book" section, **Log this time as**, the kept link to the planned task for Planned vs. Real, and **Accept all** skipping them.
+- Resolved | `help/documentation/ai.mdx` | Natural-language report builder — organization vocabulary, custom field grouping, clarifying question instead of guessing, definitions-only request.
+- Resolved | `help/documentation/ai.mdx` | AI privacy stance — self-hosted Beebole models in your data region, nothing to a third-party provider, figures computed by Beebole's engine.
+- Resolved | `help/integrations/mcp-server.mdx` | AI assistant connections — full grouped tool table, "covers the main ones rather than every tool" replacing the completeness implication, OAuth 2.1 named.
+
+### Legacy Migration
+
+- Resolved | `help/documentation/legacy-migration.mdx` | Legacy account migration — rewritten around the support-run import: no in-app Steps, no phases list, no API-key prerequisites, no tool FAQ. Adds rate splits and currency fallback, clock times, "Specific tasks", custom field history, approved-and-locked history, lock date at the last imported day, scores ignoring pre-import periods. `help/guides/migration.mdx` now says migrations are run by support, "not by a tool in the app", in both the transition list and the FAQ.
+
+---
+
+## Release-specific confirmations
+
+| Check | Result |
+| --- | --- |
+| `task-list.mdx` and `master-data.mdx` exist, substantial, in `docs.json` | Pass — 219 and 214 lines; `docs.json:109` (Tasks & Planning) and `docs.json:157` (Configuration) |
+| **List** view in every Planning-views enumeration | Pass — `planning.mdx`, `gantt.mdx`, `staffing.mdx`, `kanban.mdx` all read "four views" and link `/help/documentation/task-list`; `planning.mdx` **Add a view** list and the Related-content cards include it |
+| No self-service migration tool, Legacy API Key, or "coming soon" tool | Pass — no match anywhere in `help/**` outside the frozen `help/legacy/` archive. The two remaining "coming soon" strings in `migration.mdx` (~126, ~162) are about accruals and expense budget impact, not migration |
+| No configurable budget threshold alerts / push notifications / **Is paid** absence checkbox | Mostly pass — no page offers a budget-alert or push-notification setting, and `timeoff.mdx` states explicitly there is no per-type cost switch. Two residual defects below |
 
 ---
 
 ## Coverage gaps → undocumented features
 
-### Time Tracking
-
-- [ ] Partial | `help/documentation/timesheets.mdx` | Timer — needs: several timers at once via ⌘/Ctrl-click on any play button; floating timer as a shelf with one line per activity, live counter, play to resume a paused one, pause-all; browser tab title shows elapsed time or timer count. Fix contradiction at line ~121 ("Only one timer runs at a time").
-- [ ] Partial | `help/documentation/timesheets.mdx` | Timesheet calendar view — needs: click an empty slot inserts an entry pre-filled with the day's remaining scheduled time; ⌘ while dragging an edge snaps to whole hours; dropping an untimed entry adopts the clock time where released; calendar shares the grid's day headers, schedule totals, and progress bars.
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | Lock date — needs: a period whose last day is on or before the lock date can no longer be submitted ("This period is locked").
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | Auto-submit — needs: only the single period whose deadline has passed is submitted; empty periods are never auto-submitted.
-- [ ] Partial | `help/documentation/timesheetSettings.mdx` | Time entry restrictions — needs: keep entries within a project's or person's validity dates; limit time-off bookings to the available quota balance; deleting several entries validates every entry first (one locked/invalid entry stops the whole deletion).
-
-### Approval Workflows
-
-- [ ] Partial | `help/documentation/approval.mdx` | Email actions — needs: reply to the approval email with "approve" or "reject <reason>", sender verification, confirmation email back; email buttons land on the timesheet they acted on.
-- [ ] Partial | `help/documentation/approval.mdx` | Team approval overview — needs: bulk **Approve** / **Reject** / **Remind** in the **Team** pane acting only on the people they apply to (locked people never reminded) and strictly on the period on screen.
-- [ ] Partial | `help/documentation/approval.mdx` | Force-edit a team member's timesheet — needs: consistent highlight tint across grid, calendar, and pickers while in override mode, tied to the chosen person.
-
-### Planning, Tasks & Staffing
-
-- [ ] Missing | `help/documentation/task-list.mdx` | Task list view — sortable, spreadsheet-like table sharing the Gantt's rows, columns, grouping, and expansion; click a header to sort (row numbers return to manual order); drag to reorder and resize columns; in-place editing of owner, status, dates, Planned, occupation, potential owners, tags, and each project category; ⌘/Ctrl-click or Shift-click multi-row selection for single-undo mass edits. Also add **List** to every "three views" enumeration: `planning.mdx` (~14, ~189, ~191-203), `gantt.mdx` (~11, ~22, ~218-228), `staffing.mdx` (~11, ~14, ~179-192), `kanban.mdx` (~11, ~22); add the page to `docs.json` next to Gantt/Kanban/Staffing.
-- [ ] Partial | `help/documentation/gantt.mdx` | Gantt chart view — needs: in-place editable task cells (Planned, occupation, status, owner, period, projects, tags, access); ⌘/Ctrl-click and Shift-click row/range selection for mass edits as one undo step; click a timeline header cell to zoom one level into that period; month boundary line and label; arrow next to an off-screen task's dates that jumps to its bar.
-- [ ] Partial | `help/documentation/gantt.mdx` | Gantt column customization — needs: drag to reorder columns; resize every column; click a header to sort ascending / descending / back to manual order; sorting and grouping work together (rows show sequence numbers instead of drag handles while sorted).
-- [ ] Partial | `help/documentation/gantt.mdx` | Task dependencies — needs: draw a link by dragging the handle on a task bar onto another task (⌘ on drop to chain several); lines route around bars and group headers; dependants rescheduled against their owners' working calendars; a drag the owner's calendar cannot absorb leaves the task in place and keeps Planned hours. Reconcile the two locations given for **Dependent tasks movement options** (~109 vs ~240).
-- [ ] Partial | `help/documentation/staffing.mdx` | Staffing view — needs: part-day booking dragged within its day follows the pointer on that day's clock (quarter-hour snap, steps over breaks) and moves by whole days once the pointer leaves the cell; ⌘-drag copy inside the same cell drops right after its source; project grouping shows leaf projects only; Unassigned row counts only bookings visible in the period.
-
-### Project Management
-
-- [ ] Partial | `help/documentation/projects.mdx` | Hierarchical projects — needs: only leaf projects accept time entries; a parent project aggregates its children and cannot be recorded against (same rule as parent tasks).
-
-### Roles & Permissions
-
-- [ ] Partial | `help/documentation/roles-authorisations.mdx` | Availability controls — needs: per-person **Record time on these plannings** restriction and its enforcement on save, not only in the pickers (place on `assignments.mdx` if that is where availability lives, and link from roles).
-
-### Custom Fields
-
-- [ ] Partial | `help/documentation/custom-fields.mdx` | Entity visibility — needs: a field assigned to an absence type is asked only on absences of that type (fix ~108, which describes them as data about the types themselves); time-record fields follow the person the timesheet belongs to and honour assignments made through people, tags, projects, tasks, and absence types; the first creation Steps block (~21-37) omits **Visible for Absence types**.
-
-### Organization Settings
-
-- [ ] Missing | `help/documentation/master-data.mdx` | Master data review — Settings screen (now live in production): pick an entity (people, projects, tasks, tags, time off types, expense types, custom fields, roles, work schedules); build columns by walking fields and relations, with nested search showing match paths and "Other … column" to pick a sibling field; custom field values as columns (only applicable fields offered); filters, archived records, period; saved personal reviews; inherited-value origin with source link; readable labels (durations, colours, units, formats, days, authorisations), struck-through subtracted values; clickable entity badges; live re-run; download as JSON, CSV, TSV, Excel, PDF; plain-language build/refine; update mode (set or clear a value or custom field, add text around existing values) with before/after preview, skipped rows with reasons, single undo. Add to `docs.json` under Documentation near account-settings.
-
-### Reporting
-
-- [ ] Partial | `help/documentation/reports.mdx` | Budget status report — needs: filter, sort, and archived toggle apply instantly; project and tag filters cover the whole hierarchy; sort applies at every level; a budget consumed exactly to 100% counts as on budget; split-by-project lines show real actuals for descendant projects without double-counting; alerts are off by default. Fix `budgets.mdx` (~91-96, FAQ ~131-133), which presents alerts as active out of the box.
-- [ ] Partial | `help/documentation/custom-reports.mdx` | Report filters — needs: project / project-tag / project-category filters also include time logged on tasks linked to those projects; tag filters cover descendant tags and the subtree of a tagged parent project; project category and task category filter types; "is not" exclusions.
-- [ ] Partial | `help/documentation/data-exports.mdx` | Report downloads — needs: Excel column widths sized from every row; PDF renders accented, Cyrillic, Greek, and currency characters; wide PDF tables split across pages with the first column repeated; clear message when an export cannot be produced.
-
 ### Billing & Cost Tracking
 
-- [ ] Partial | `help/documentation/costs.mdx` | Rate splits — needs: the split (person or project) is shown directly in the rate card summary.
+- [ ] Partial | `help/documentation/costs.mdx` | Time off in people costs — needs: the **Time Off** related-content card (~126) reads "Configure absence types, including whether paid leave counts toward people costs", which offers a setting that is suppressed on production hosts (`absence/cost-tracking`, hidden-flag) and contradicts `timeoff.mdx` (~131). Reword to point at time off types without implying a paid/unpaid cost switch.
 
-### AI
+### News
 
-- [ ] Partial | `help/documentation/ai.mdx` | Suggested time entries — needs: a suggestion for a task you may not book stays visible with the planned task for context; accepting it asks you to pick the project while keeping the link to the planned task for Planned vs. Real; **Accept all** skips these.
-- [ ] Partial | `help/documentation/ai.mdx` | Natural-language report builder — needs: understands your vocabulary ("by client", "per cost centre" group on that hierarchy level); group by a custom field's values; asks a clarifying question instead of guessing (e.g. tag-based grouping); only the question, report structure, and category/custom field names reach the model, numbers come from Beebole's engine.
-- [ ] Partial | `help/documentation/ai.mdx` | AI privacy stance — needs: only definitions are sent (question, report or review structure, category and custom field names), never time records, values, or entity names; self-hosted models on firewalled Beebole infrastructure in your data region; keys and data never touch a browser or an external AI API.
-- [ ] Partial | `help/integrations/mcp-server.mdx` | AI assistant connections — needs: the expanded toolset — organisation context (vocabulary, periodicity, rules), read/set rates, set custom field values, assign/unassign, update/copy/move/delete time entries, timesheet days and status, submit, absence balances, expenses, team timesheets and reminders, approve/reject and approval history, planning tasks, suggestions, budget status, audit trail, plain-language reports; soften "a full working toolkit" (~21) which implies the five-row table is complete; name OAuth 2.1.
+- [ ] Partial | `help/news/releases.mdx` | Budget status report — needs: the entry at ~158 ("[Budget alerts](/help/documentation/budgets) now include a burn-rate forecast that warns you when current spending is on track to exceed a budget") presents budget alerts as a live feature, while `reports/budget-status` records the alert notifications as hidden-flag and both `budgets.mdx` and `reports.mdx` now say there is nothing to switch on. Recast the entry around the Budget Status report's forecast bar.
 
-### Legacy Migration
+**Intentionally undocumented (status-flagged in the catalog — not gaps):** `absence/cost-tracking` (hidden-flag — **Involve costs** suppressed in production), `absence/accrual` (partial — awarding engine not implemented; hedged on `accruals.mdx`), `tasks/recurring` (hidden-flag), `org/gdpr` (placeholder-ui), `reports/schedule-email` (hidden-flag), `notifications/web-push` (hidden-flag — **Push notifications** channel suppressed in production, flagged 2026-09-07), budget threshold alert notifications inside `reports/budget-status` (hidden-flag, flagged 2026-09-07 — the report itself is fully live and documented), `reports/money-authorisations` (Planned, partial).
 
-- [ ] Partial | `help/documentation/legacy-migration.mdx` | Legacy account migration — needs: rewrite around support-run migration (the self-service **Legacy Migration** tool was removed from Settings in September 2026): remove the in-app Steps (~55-86), phases list (~90-112), API-key prerequisites (~44-53) and tool-based FAQ (~138-154); add what is migrated (rates with per-subproject splits, currency fallback to the account's currency, clock-in/out times, "Specific tasks" as per-project activity restrictions, custom field history), history approved and locked at cut-over, lock date set to the last imported day, timesheet scores ignoring pre-import periods. Also update `help/guides/migration.mdx` (~32-34, ~41, ~48, ~231-233, ~240), which still announces the self-service tool as "coming soon".
-
-**Intentionally undocumented (status-flagged in the catalog — not gaps):** `absence/cost-tracking` (hidden-flag), `tasks/recurring` (hidden-flag), `org/gdpr` (placeholder-ui), `absence/accrual` (partial, hedged on `accruals.mdx`), `reports/schedule-email` (hidden-flag), `reports/money-authorisations` (Planned, partial).
+**Excluded by the skill (Planned Features / Internal):** `time-tracking/attendance`, `auth/ms365-provisioning`, `integrations/quickbooks-export-precheck`, `internal/server-maintenance`, `internal/worktree-switcher`. These are new in the 2026-09-07 catalog but sit in the two skipped sections — do not treat their absence from `help/**` as a gap.
 
 ---
 
 ## Proposed page-mappings additions
 
-- Keywords: `list view, task list, table view, sortable tasks, spreadsheet view` → proposed page: `help/documentation/task-list.mdx`
-- Keywords: `master data, master data review, bulk update, configuration review, review master data` → proposed page: `help/documentation/master-data.mdx`
+_No new mappings needed._ Both rows proposed by the earlier pass of this run are now present in `.claude/context/page-mappings.md` (lines 94-95): the List view row and the Master data review row.
 
 ---
 
 ## Handoff to /write
 
-Next step: run `/write` (no args) to draft all **Missing** entries (one per line). Partial entries need curator judgment and are skipped in batch mode — use `/write <path>` with explicit notes for each.
+No **Missing** entries remain, so `/write` with no arguments has nothing to draft. The two **Partial** entries above are single-sentence factual corrections rather than content gaps — hand each to `/write <path>` with the note as written, or fold them into the next release's review step.
