@@ -91,3 +91,5 @@ Use this table to map app change keywords to the documentation pages they likely
 | task hours, task start time, task end time, all day task, timed task | `help/documentation/gantt.mdx` |
 | calendar timer, play button, start timer from calendar, favourite timer | `help/documentation/timesheets.mdx` |
 | forecast card, planned forecast, undo suggestion, retarget suggestion | `help/documentation/ai.mdx` |
+| list view, task list, table view, sortable tasks, spreadsheet view | `help/documentation/task-list.mdx` |
+| master data, master data review, bulk update, configuration review, review master data | `help/documentation/master-data.mdx` |
