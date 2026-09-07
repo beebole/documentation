@@ -246,6 +246,9 @@ In the team panes, a colored ring around each person's avatar shows their **Time
   <Accordion title="How do I copy my timesheet from the previous period?">
     Open the period you want to copy, click the copy button at the top-left corner of the grid, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
   </Accordion>
+  <Accordion title="Can I import time entries from a file or spreadsheet?">
+    No. Beebole has no CSV or file upload for time entries. Time is entered directly in the timesheet grid or calendar view, with the timer, or by [importing calendar events](#importing-calendar-events) from Google or Microsoft. Pasting from a spreadsheet works for adding [people](/help/documentation/people), [projects](/help/documentation/projects), and [tags](/help/documentation/tags) in bulk, not time entries. To create time entries programmatically, use the `addTimeRecord` mutation in the [GraphQL API](/help/api/mutations). To bring time records over from an older Beebole account, use the [Legacy Migration](/help/documentation/legacy-migration) tool.
+  </Accordion>
   <Accordion title="Why can't I add time to a certain day?">
     Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings** — for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
   </Accordion>
