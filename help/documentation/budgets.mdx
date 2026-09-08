@@ -88,15 +88,10 @@ Budget splits let you see not just whether the overall project is on track, but 
 
 Click **Reports** in the sidebar, then **Budget Status**, to track every budget in one place. The report shows a progress bar per project comparing the hours, billing, and cost actually logged against your targets, rolls subproject activity up the hierarchy, and flags budgets that are at risk or over budget. See [Reports](/help/documentation/reports) for the report's filters and export options.
 
-Beebole also alerts you as a budget fills up:
-
-- When consumption passes the alert threshold (80% by default), Beebole sends a notification and shows an alert badge on the budget's card in the **Budgets** panel.
-- When consumption reaches 100%, you get another notification and an **Over budget** badge.
-
-To clear a triggered badge, click its **×** (**Reset alert**).
+The report is also where a budget in trouble surfaces on its own: the status filter narrows the list to projects above the at-risk threshold (**> 80%**) or **Over budget**, and the striped forecast bar shows the planned effort still to come, so an overrun is visible before the actuals get there. Beebole tracks consumption in real time, but never blocks a time entry because a budget is exceeded — watching the report is how you catch an overrun in time to act.
 
 <Info>
-  Beebole tracks budget consumption in real time, but does not block time entries when a budget is exceeded. Use reports to monitor progress and take action proactively.
+  Budget notifications are not available yet: there is no setting in the app to switch them on, so nobody is alerted by email when a budget passes a threshold. Watch the [Budget Status report](/help/documentation/reports#budget-status) instead — it always flags projects that are approaching or over their budget, with nothing to configure.
 </Info>
 
 ---
@@ -112,14 +107,16 @@ To clear a triggered badge, click its **×** (**Reset alert**).
     Define cost rates that feed into cost budget calculations.
   </Card>
 
-  <Card title="Reports" icon="gear" href="/help/documentation/reports">
-    View detailed budget progress, consumption, and variance in custom reports.
+  <Card title="Reports" icon="chart-simple" href="/help/documentation/reports">
+    Read the Budget Status report, and filter, sort, or export budget progress.
   </Card>
 
   <Card title="Billing rates" icon="tag" href="/help/documentation/billing">
     Configure billing rates used in billing budget tracking.
   </Card>
 </CardGroup>
+
+---
 
 ## Frequently asked questions
 
@@ -129,7 +126,7 @@ To clear a triggered badge, click its **×** (**Reset alert**).
   </Accordion>
 
   <Accordion title="Does Beebole alert me when a budget is exceeded?">
-    Yes. Beebole alerts you when a budget passes its alert threshold (80% by default) and again when it goes over budget. Alert badges appear on the budget itself, and the **Budget Status** report flags at-risk and over-budget projects.
+    Not by email today — there is no setting in the app to turn budget alert emails on. The [Budget Status report](/help/documentation/reports#budget-status) is where at-risk and over-budget projects are flagged, and it always shows them with no setting to configure.
   </Accordion>
 
   <Accordion title="Can I change a budget after it's been set?">

@@ -17,7 +17,7 @@ Capture is a deferred follow-on effort — run `/illustrate --capture` against t
 - **WebP:** `cwebp -q 80` → must be under 200 KB → drop to `-q 60` if over.
 - **One DPR + one viewport-set for all shots** — consistency is the priority. Mintlify renders images in a ~700px column, so 1440@2x downscales crisp everywhere; DPR 3 just bloats files.
 - **Hide app chrome before each shot:** inject a DOM-only style (no code change) hiding the Intercom launcher and the `<beta-badge>` — `[class*="intercom" i],[id*="intercom" i],iframe[name*="intercom" i],beta-badge{display:none!important}`. Re-apply after any hard reload (it's wiped on full reload but survives in-app SPA navigation). Full snippet in the `/illustrate` skill.
-- **Seed data:** capture against a seeded account so examples match the prose (**Acme Corp**, **Clients/Internal/Activities**, a budget over threshold, a pending approval, etc.).
+- **Seed data:** capture against a seeded account so examples match the prose (**Acme Corp**, the **Client**/**Internal**/**Activity** categories, the **Main plan** planning, a pending approval, etc.). The names are singular — read `../reboot/shared/i18n/config.json`, not the stale plural copy under `backend/dist/`. Corrected 2026-09-07.
 - **Best run as a guided session** (app running locally with seed data; Playwright drives navigation/framing; operator confirms state on complex shots).
 
 ---
@@ -563,3 +563,24 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 | approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low |
 
 Master data review is deliberately excluded — the Settings entry is suppressed on production hosts, so there is nothing a user can be shown.
+
+---
+
+## Additions 2026-09-07 (release run, prod deploys 2026-09-01 and 2026-09-06)
+
+Identified by `/illustrate --identify` across `help/**`. Two entries are **broken image references** — the only ones on the site — because this release created two new pages with placeholders. Everything else below is an optional shot for newly documented UI.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high |
+| settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high |
+| timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high |
+| planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
+| planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium |
+| planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium |
+| staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium |
+| approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium |
+| settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium |
+| reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low |
+
+Not requested, deliberately: budget threshold alerts and the push-notification channel (both stripped from notification preferences on production hosts, so there is no UI to photograph), and the legacy migration tool (removed from Settings in September 2026).

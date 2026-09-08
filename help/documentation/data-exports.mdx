@@ -1,5 +1,5 @@
 ---
-title: "Exporting Report Data to CSV, Excel, and PDF"
+title: "Data exports: CSV, Excel, PDF, and JSON"
 sidebarTitle: "Data Exports"
 description: "Export Beebole report data as Excel, CSV, PDF, JSON, and more for offline analysis, payroll processing, or sharing with clients and stakeholders."
 keywords: ["Beebole data export", "export CSV", "export Excel", "export PDF", "download report", "export time data", "reporting export", "beebole"]
@@ -27,6 +27,14 @@ Beebole exports report data in the following formats, all available from the rep
 | **Matrix (CSV)**, **Matrix (Excel)**, **Matrix (PDF)** | Exporting the report's matrix view |
 
 Table exports include the report's columns and respect the filters applied to the report.
+
+### Excel and PDF specifics
+
+- **Excel (XLSX)** files open with every column already sized to its contents. Beebole measures each cell of every row, not just the headers, so long project names, comments, and custom field values are readable straight away — with a cap so one very long value cannot push the rest of the sheet off screen.
+- **PDF** files carry their own embedded font, so accented Latin characters, Cyrillic and Greek alphabets, currency symbols, arrows, and mathematical signs all print correctly instead of coming out as empty boxes. A character outside that range prints as a question mark.
+- A report with more than six columns is laid out in landscape, and a table still too wide for one page continues on the following pages with the first column repeated — so every row stays identifiable across the split.
+
+If an export cannot be produced, Beebole says so instead of downloading a broken file. A PDF that is too wide to lay out reports **PDF export failed. Try fewer columns or another format.**
 
 ---
 
@@ -135,6 +143,9 @@ During the grace period, Beebole displays a banner showing who scheduled the del
   </Accordion>
   <Accordion title="Can I export expense data?">
     Yes. Create a report, add an **Expense** column (such as **Amount** or **Quantity**), and export it. Expense data supports the same export formats as time data.
+  </Accordion>
+  <Accordion title="Why do some characters print as question marks in a PDF export?">
+    Beebole's PDF exports embed a font covering the Latin, Greek, and Cyrillic alphabets, plus currency, arrow, and mathematical symbols. Anything outside that set — for example Chinese, Japanese, or Arabic text in a project name or comment — prints as a question mark. Export those reports as **Excel (XLSX)** or **CSV** instead, which carry any character.
   </Accordion>
   <Accordion title="Do exports include budget information?">
     Yes. Open the **Budget Status** report and use its **Export** button — budget progress data exports in the same formats as other reports.

@@ -1,14 +1,14 @@
 ---
-title: "Notifications: Email & Push Alerts and Reminders"
+title: "Notifications: email alerts and reminders"
 sidebarTitle: "Notifications"
-description: "Set up email and push notifications in Beebole for mentions, approval updates, budget threshold alerts, and timesheet reminders — instant, daily, or weekly."
-keywords: ["beebole notifications", "email notifications", "push notifications", "timesheet reminders", "approval updates", "budget threshold alerts", "email templates"]
-"og:title": "Notifications & Reminders in Beebole: Email & Push Alerts"
-"og:description": "Configure email and push notifications in Beebole for mentions, approval updates, budget alerts, and timesheet reminders."
+description: "Set up Beebole email notifications for mentions and approval updates, choose instant, daily, or weekly delivery, and configure account-wide timesheet reminders."
+keywords: ["beebole notifications", "email notifications", "timesheet reminders", "approval updates", "notification frequency", "email templates"]
+"og:title": "Beebole Email Notifications, Digests, and Reminders"
+"og:description": "Configure Beebole email notifications for mentions, approval updates, and timesheet reminders, and customize the emails your team receives."
 "og:type": "article"
 ---
 
-Beebole's notifications keep you informed about mentions, approval updates, and budget thresholds through email and push notifications. Each person chooses which events to receive and how often — **Instant**, **Daily**, **Weekly**, or **None**. Administrators configure account-wide timesheet reminders and the email content people receive.
+Beebole's notifications keep you informed about mentions and approval updates by email. Each person chooses which events to receive and how often — **Instant**, **Daily**, **Weekly**, or **None**. Administrators configure account-wide timesheet reminders and the email content people receive.
 
 <Info>
   Notification preferences are personal. You set yours from your own profile, and they cascade down through tags the same way other settings do — so a default can be set once on the organization or a tag and inherited by everyone beneath it.
@@ -24,22 +24,18 @@ Beebole sends notifications for a fixed set of events. You control each one inde
 | **Items you manage are mentioned** | A project, person, or other item you manage is mentioned. |
 | **Items assigned to you are mentioned** | An item assigned to you is mentioned. |
 | **Approval updates** | A timesheet you submitted is approved or rejected, or one is submitted for your approval. |
-| **Budget threshold alerts** | A project reaches a chosen percentage of its budget, or goes **When over budget**. |
 
-## Notification channels
+## How notifications reach you
 
-Beebole delivers notifications through two channels, which you turn on or off independently.
-
-- **Email** — Notifications arrive in your inbox. Approval emails include action buttons so you can approve or reject without opening Beebole, and you can reply to a Journal message straight from the email.
-- **Push notifications** — Your browser shows desktop alerts in real time, even when Beebole is not the active tab. Turning this on prompts your browser for permission.
+Beebole delivers notifications by **Email**: they arrive in your inbox, approval emails include action buttons so you can approve or reject without opening Beebole, and you can reply to a Journal message straight from the email.
 
 <Info>
-  You need at least one channel enabled to receive notifications. If you turn both **Email** and **Push notifications** off, per-event preferences are hidden because there is nowhere to deliver them.
+  **Email** must be on to receive notifications. Turn it off and the per-event preferences are hidden, because there is nowhere to deliver them.
 </Info>
 
 ## Choosing how often you're notified
 
-For each event, you pick a frequency per the channels you have enabled:
+For each event, you pick how often Beebole emails you:
 
 | Frequency | What it does |
 |-----------|--------------|
@@ -54,8 +50,8 @@ Daily and weekly digests reduce inbox volume by grouping events into one message
   <Step title="Open your Notifications preferences">
     Open your own profile, then open the **Notifications** panel.
   </Step>
-  <Step title="Enable a channel">
-    Tick **Email**, **Push notifications**, or both. At least one must be on to configure events.
+  <Step title="Enable email">
+    Tick **Email**. It must be on to configure events.
   </Step>
   <Step title="Set a frequency per event">
     For each event, choose **Instant**, **Daily**, **Weekly**, or **None**. For **Daily** and **Weekly** you also pick the delivery hour, and for **Weekly** the day of the week.
@@ -66,13 +62,15 @@ Daily and weekly digests reduce inbox volume by grouping events into one message
   Your preferences save automatically as you select them — there is no separate save step. To apply the same frequency to every event at once, hold the meta key (⌘ or Ctrl) while clicking a frequency.
 </Info>
 
-### Budget threshold alerts
+### When many alerts fire at once
 
-Budget threshold alerts let you know when a project's spending approaches or exceeds its [budget](/help/documentation/projects). This alert behaves slightly differently from the others:
+**Instant** never floods your inbox. When more than three notifications of the same kind are waiting for you at the same moment — a whole team submitting their timesheets, for example — Beebole collapses them into one summary instead of one email each. The summary uses the same layout as a digest: it lists the first eight items of each kind, then a count of the rest, with a link to open Beebole.
 
-- It supports **Daily** and **Weekly** delivery (and **None**), but not **Instant**.
-- You set the percentage of the budget that triggers the alert — for example, 50%, 80%, or 100%.
-- Tick **When over budget** to also be alerted once a project passes 100% of its budget.
+If another burst of the same kind follows within the next 15 minutes, it is held and delivered as one further summary once that window closes, so a long-running import or a busy afternoon never turns into a stream of near-identical emails.
+
+<Info>
+  Summaries are built from the **Digest** email template, so any wording you customize there also applies to these bursts.
+</Info>
 
 ## Timesheet reminders
 
@@ -96,7 +94,7 @@ Reminders are configured by administrators in **Timesheet and Planning Settings*
 
 ## Email templates
 
-Administrators can customize the wording of the emails Beebole sends. Email templates live in the **Email templates** panel, where each email type has its own tab: **Sign Up**, **Sign In**, **Invite**, **Mention**, **Timesheet Submitted**, **Reminder**, **Approval Reminder**, and **Digest**.
+Administrators can customize the wording of the emails Beebole sends. Email templates live in the **Email templates** panel, where each email type has its own tab, including **Sign Up**, **Sign In**, **Invite**, **Mention**, **Timesheet Submitted**, **Reminder**, **Approval Reminder**, and **Digest**.
 
 <Steps>
   <Step title="Open Email templates">
@@ -129,8 +127,8 @@ Emails only go to people who actually belong to the organization — an active a
   <Card title="Approval" icon="circle-check" href="/help/documentation/approval">
     Approval updates and approver reminders are tied to the timesheet approval workflow.
   </Card>
-  <Card title="Projects" icon="folder-tree" href="/help/documentation/projects">
-    Budget threshold alerts watch the budgets you set on projects.
+  <Card title="Budget Status report" icon="chart-simple" href="/help/documentation/reports#budget-status">
+    Where projects approaching or over their budget are flagged, with no setting to switch on.
   </Card>
 </CardGroup>
 
@@ -138,18 +136,15 @@ Emails only go to people who actually belong to the organization — an active a
 
 <AccordionGroup>
   <Accordion title="Can I turn off all notifications?">
-    Yes. In your **Notifications** preferences in Beebole, turn off both **Email** and **Push notifications**, or set every event to **None**. Either way you stop receiving notifications for those events.
+    Yes. In your **Notifications** preferences in Beebole, turn **Email** off, or set every event to **None**. Either way you stop receiving notifications for those events.
   </Accordion>
   <Accordion title="What is the difference between instant and digest notifications?">
-    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed.
+    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed. Even with **Instant**, a burst of more than three alerts of the same kind arrives as one summary rather than one message each.
   </Accordion>
   <Accordion title="Who sets up timesheet reminders?">
-    Administrators set timesheet reminders in Beebole's **Timesheet settings**, on the **Reminders** tab. Reminders prompt people to submit timesheets and chase approvers about pending work, and they cascade from the organization down through tags and people.
+    Administrators set timesheet reminders in Beebole's **Timesheet and Planning Settings** panel, on the **Reminders** tab. Reminders prompt people to submit timesheets and chase approvers about pending work, and they cascade from the organization down through tags and people.
   </Accordion>
   <Accordion title="Can I respond to a notification by email?">
-    Yes. Beebole's approval emails include buttons to approve or reject a timesheet without opening the app. You can also reply to a Journal message email directly, and Beebole adds your reply to the right thread.
-  </Accordion>
-  <Accordion title="When do budget threshold alerts fire?">
-    Budget threshold alerts in Beebole fire when a project reaches the percentage of its budget you choose — such as 80% or 100%. Tick **When over budget** to also be alerted once a project passes its budget. These alerts are delivered as a **Daily** or **Weekly** digest.
+    Yes. Beebole's approval emails include buttons to approve or reject a timesheet without opening Beebole. You can also reply to a Journal message email directly, and Beebole adds your reply to the right thread.
   </Accordion>
 </AccordionGroup>

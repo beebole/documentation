@@ -22,7 +22,7 @@ Roles live in **Settings** > **Person Roles** — click the button with your ini
 - **Edit** — the targets whose data the role can create, change, or delete.
 - **View** — the targets whose data the role can see.
 
-A permission with nothing selected shows **Not allowed**: people with that role don't see that area at all. Some permissions — mostly account-wide definitions like **Define time off** or **Tags** — are simple on/off checkboxes instead of target selectors.
+A permission with nothing selected shows **Not allowed**: people with that role don't see that area at all. Two permissions — **Timesheet entries** and **Reports** — are simple on/off checkboxes instead of target selectors.
 
 Edit access always includes view access. When you add a target under **Edit**, Beebole adds it to **View** automatically; when you remove a target from **View**, it is removed from **Edit** too.
 
@@ -54,14 +54,12 @@ To manage an existing role, open its **⋯** action menu in the roles list: **Du
   Start from a role that is close to what you need and use **Duplicate**, then adjust the copy. It is faster than building a role from scratch and you are less likely to miss a permission.
 </Tip>
 
-Every new Beebole account starts with three roles: **Admin** (full access), **Manager**, and **Employee**. You can edit them, duplicate them, or add your own.
+Every new Beebole account starts with four roles: **Admin** (full access), **Employee**, **People manager**, and **Project manager**. You can edit them, duplicate them, or add your own.
 
 ## Permission scopes
 
 For permissions with target selectors, the targets you pick under **Edit** and **View** define whose data the permission covers. Each permission only offers the targets that make sense for it.
 
-| Target | Who or what it covers |
-| --- | --- |
 The targets separate what the person *manages* from their *colleagues* — and, for tasks, what they *own* from what they *manage*:
 
 | Target | Who or what it covers |
@@ -81,7 +79,7 @@ The targets separate what the person *manages* from their *colleagues* — and, 
 | **Managed tags** | Tags they manage, including descendant tags |
 | **Global settings** | The organization-wide value of the setting |
 
-For example, a team leader role could have **Timesheet entries** set to **Edit: Managed people** and **View: Managed people, Project colleagues** — they can correct their own team's timesheets and see, but not change, entries from project colleagues.
+For example, a team leader role could have **People details** set to **Edit: Managed people** and **View: Managed people, Project colleagues** — they can maintain their own team's profiles and see, but not change, the profiles of project colleagues.
 
 ## Timesheet, time off, and schedule permissions
 
@@ -89,23 +87,22 @@ These permissions control day-to-day time tracking data.
 
 | Permission | What it controls |
 | --- | --- |
-| **Timesheet entries** | Time entries on timesheets — scoped by people, projects, and tasks |
+| **Timesheet entries** | Time entries on timesheets (on/off) |
 | **Timesheet and planning settings** | The timesheet and planning configuration panel on people and on the account |
 | **Valid period for time entry** | The setting that limits how far back or forward time can be entered |
-| **Define time off** | Creating and configuring time off types (on/off) |
 | **Time off balance** | People's time off allowances and balances |
-| **Holidays** | Public holiday calendars assigned to people |
+| **Public Holidays** | Public holiday calendars assigned to people |
 | **Schedule assignment** | Which work schedule is assigned to a person, tag, or the account |
-| **Define schedules** | Creating and editing work schedules (on/off) |
+
+**Timesheet and planning settings** governs who may change that panel, not what it contains. Which plannings a person may record time on is one of its settings — **Record time on these plannings** — and it applies per person rather than per role. See [Which plannings a person can book](/help/documentation/assignments#which-plannings-a-person-can-book).
 
 ## Approval permissions
 
 | Permission | What it controls |
 | --- | --- |
 | **Approval workflow** | The approval stages configured on the account and on people |
-| **Approval events** | Approval activity — submissions, approvals, and rejections — scoped by people and projects |
 
-A manager who approves timesheets needs **Approval events** edit access for their team; only admins who design the flow need **Approval workflow**.
+Only the people who design the sign-off process need **Approval workflow**. Approving and rejecting timesheets isn't a separate permission — it follows the stages of the [approval workflow](/help/documentation/approval) itself, so whoever a stage resolves as an approver can act, and administrators can always step in.
 
 ## Billing, cost, and budget permissions
 
@@ -121,7 +118,6 @@ Financial data is hidden from anyone whose role has these set to **Not allowed**
 
 | Permission | What it controls |
 | --- | --- |
-| **Define Expenses** | Creating and configuring expense types (on/off) |
 | **Expense records** | Expense entries, scoped by people and projects |
 
 ## People permissions
@@ -130,19 +126,16 @@ Financial data is hidden from anyone whose role has these set to **Not allowed**
 | --- | --- |
 | **People details** | People's profiles — names, pictures, and profile data |
 | **User account** | The **Email & role** panel — a person's email, invitation, and role |
-| **Manager** | Seeing and changing who a person manages |
-| **Managed people** | Seeing and changing who manages a person |
 
-Be deliberate with **User account** edit access: whoever holds it can change other people's roles.
+Be deliberate with **User account** edit access: whoever holds it can change other people's roles. Who manages whom is a separate permission, **Assign people managers**, in the assignment permissions below.
 
-## Project, task, and tag permissions
+## Project and task permissions
 
 | Permission | What it controls |
 | --- | --- |
 | **Project details** | Projects — creating, editing, and archiving them |
 | **Secondary projects** | The secondary projects allowed on a project |
 | **Tasks** | Tasks in Planning — scoped to **Owned tasks**, **Managed tasks**, and **Assigned tasks** |
-| **Tags** | Creating and managing tags (on/off) |
 
 ## Assignment permissions
 
@@ -171,16 +164,14 @@ Assignment permissions separate *changing data* from *deciding who works on what
 
 | Permission | What it controls |
 | --- | --- |
-| **Define Custom Fields** | Creating and configuring custom fields (on/off) |
 | **Custom fields values** | The values filled in on people and projects |
 
 ## Journal and report permissions
 
 | Permission | What it controls |
 | --- | --- |
-| **Journal** | Journal messages on people, projects, and tasks |
-| **Journal feed** | The **Journal** page in the sidebar |
-| **Reports** | The **Reports** page, scoped by people and projects |
+| **Journal** | Journal messages on people, projects, and tasks — this permission also gates the **Journal** page in the sidebar |
+| **Reports** | The **Reports** page (on/off) |
 | **Timesheet compliance** | The [Timesheet Compliance report](/help/documentation/reports#timesheet-compliance) — managers see the people they manage; admins see everyone |
 | **Billable utilization** | The [Utilization report](/help/documentation/reports#utilization) |
 
@@ -190,19 +181,17 @@ These permissions cover account configuration and the access-control settings th
 
 | Permission | What it controls |
 | --- | --- |
-| **Global settings** | The organization's account settings (on/off) |
 | **Localization** | Language, time zone, and format settings on people and the account |
-| **Single sign-on (SSO)** | The SSO configuration on the account |
 | **Templates for emails** | The email templates Beebole sends |
 | **Notification settings** | Notification preferences on people and the account |
-| **Notification history** | The list of notifications already sent (on/off) |
-| **Push notifications** | Browser push notification subscriptions (on/off) |
-| **Show or hide** | The **Show or Hide** panels on people, tags, and projects |
 | **Show or hide by default** | The account-wide **Show or hide by default** settings |
-| **Related items** | The **Who has access?** panels on projects, time off types, expense types, and other items |
 | **Description** | The description panel on people, projects, tasks, and the account |
 
-The last four are the controls described in [Assignments](/help/documentation/assignments) — a role needs them to manage who has access to what.
+**Show or hide by default** sets the account-wide defaults described in [Assignments](/help/documentation/assignments). The per-item **Who has access?** panels and the per-person **Show or hide** panels follow the assignment permissions above instead — a role needs the matching **Assign …** permission to change who has access to what.
+
+<Info>
+  Some account-wide definitions are not role-configurable and so have no row in the grid — creating time off types, expense types, custom fields, and work schedules, for example, along with the tag and single sign-on configuration, which are reserved for administrators.
+</Info>
 
 ## Assigning a role to a person
 
@@ -255,7 +244,7 @@ The last four are the controls described in [Assignments](/help/documentation/as
     For each permission, **View** lets the role see the data and **Edit** lets it create, change, or delete it, each scoped to the targets you select. A permission with no targets selected shows **Not allowed**, and that area of Beebole is hidden from the role entirely.
   </Accordion>
   <Accordion title="Which roles does a new Beebole account include?">
-    Every new account starts with **Admin**, **Manager**, and **Employee**. The Admin role has the **Admin role (full access)** box checked, which grants every permission. You can edit these roles or add your own.
+    Every new account starts with **Admin**, **Employee**, **People manager**, and **Project manager**. The Admin role has the **Admin role (full access)** box checked, which grants every permission. You can edit these roles or add your own.
   </Accordion>
   <Accordion title="Do I need to save after changing a role?">
     No. Beebole saves every change to a role automatically — adding a target, unchecking a permission, or renaming the role. There is no Save button on the roles page.

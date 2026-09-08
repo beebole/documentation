@@ -3,14 +3,16 @@ title: "Moving to the New Beebole Platform"
 sidebarTitle: "Migration Guide"
 description: "A guide for existing Beebole customers moving to the new platform: how the two systems coexist, how to test the new app, and what has changed."
 keywords: ["beebole", "migration guide", "new beebole platform", "free trial", "what's changed", "legacy account"]
-og:title: "Moving to the New Beebole Platform — Migration Guide"
-og:description: "How existing Beebole customers can trial the new platform while their legacy account keeps running, plan a smooth switch, and learn what has changed."
-og:type: "article"
+"og:title": "Moving to the New Beebole Platform — Migration Guide"
+"og:description": "How existing Beebole customers can trial the new platform while their legacy account keeps running, plan a smooth switch, and learn what has changed."
+"og:type": "article"
 ---
 
 This migration guide covers everything you need to know to move your account to the new Beebole platform, available at [app.beebole.com](https://app.beebole.com). You'll learn how the new and Legacy systems coexist during the transition, what's new and different, and how the updated API and architecture might affect your planning.
 
-Note that this guide is for existing customers. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is a better place to start.<br /><br />The new Beebole is significantly different from Legacy, so the [Quickstart](/help/documentation/quickstart) is worth a read even if you've been using Beebole for years. It covers how the new system is structured and will help you get oriented before diving in.
+Note that this guide is for existing customers. If you are starting fresh with no prior Beebole account, the [Quickstart](/help/documentation/quickstart) is a better place to start.
+
+The new Beebole is significantly different from Legacy, so the [Quickstart](/help/documentation/quickstart) is worth a read even if you've been using Beebole for years. It covers how the new system is structured and will help you get oriented before diving in.
 
 <Warning>
   The new Beebole is currently in **beta**. You may encounter occasional bugs or rough edges as we continue to improve the platform. We're committed to fixing issues quickly and releasing improvements regularly — and your feedback is a meaningful part of that process. If you notice anything, reach out via the in-app chat or email us at [support@beebole.com](mailto:support@beebole.com).
@@ -28,24 +30,21 @@ Note that this guide is for existing customers. If you are starting fresh with n
 - Request a copy of your Legacy data in your trial account, to see how the new Beebole feels with your own data in it.
 - Review your current structure and think about how the new features could improve it.
 - Talk to us about the best setup for your team. Reach out via the in-app chat or at [support@beebole.com](mailto:support@beebole.com).
-
-**Coming soon:**
-
-- A self-service migration tool will become available in the app, letting you choose which data to migrate — for example, only your people, or only your projects or absence types.
+- Ask us to migrate your Legacy account when you are ready to switch. Migrations are run by Beebole's support team, and you choose which data comes over — see [Legacy migration](/help/documentation/legacy-migration).
 
 ## How the transition works
 
 There's no deadline to switch yet, and we'll give you plenty of notice before anything changes. In the meantime, starting to explore the new platform now means an easier switch later.
 
 - Your Legacy data stays safe and untouched. You can keep using your Legacy account while you test the new platform and plan your transition.
-- Official migrations will start later this summer, when a self-service migration tool becomes available. The tool will let you choose which data to migrate — for example, only your people, or only your projects or absence types.
-- In the meantime, we can add a copy of your Legacy data to your free trial account, so you can see how the new Beebole feels with your own data in it. There is no commitment to keep that setup. Contact us at [support@beebole.com](mailto:support@beebole.com) to request a copy.
+- Migrations are performed by Beebole's support team on request, not by a tool in the app. Email [support@beebole.com](mailto:support@beebole.com) when you want one, and tell us which data to bring over — for example your people and projects but no time records, or history only from a given date. See [Legacy migration](/help/documentation/legacy-migration) for what is imported and how the imported history behaves.
+- Before committing, we can add a copy of your Legacy data to your free trial account, so you can see how the new Beebole feels with your own data in it. There is no commitment to keep that setup. Contact us at [support@beebole.com](mailto:support@beebole.com) to request a copy.
 - You can have open accounts in both systems simultaneously, at no extra cost. When you're ready to switch officially, you can start fresh with a clean account, so nothing you try now locks you in.
-- Sign in for the Legacy system can still be done via the login button at [beebole.com](http://beebole.com), or at [beebole-apps.com/signin](http://beebole-apps.com/signin/). Login for the new system is at [app.beebole.com](https://app.beebole.com/signin).
+- You can still sign in to the Legacy system from the login button at [beebole.com](http://beebole.com), or at [beebole-apps.com/signin](http://beebole-apps.com/signin/). You sign in to the new system at [app.beebole.com](https://app.beebole.com/signin).
 - If you use Beebole's API, your integrations need to be updated for the new [GraphQL API](/help/api/introduction). We're here to help. Your Legacy integrations will continue working in your Legacy account in the meantime.
 
 <Warning>
-  Data from the Legacy system can only be migrated into the new Beebole **as is**. You'll be able to choose _which_ data to migrate, but not to change its configuration. For example, migrated projects keep the same _client \> project \> sub-project_ hierarchy they had in the Legacy system. If you want a different structure in the new platform, we recommend exporting and saving your historical data and starting fresh. See [Review your structure before you switch](#review-your-structure-before-you-switch).
+  Data from the Legacy system can only be migrated into the new Beebole **as is**. You choose _which_ data to migrate, but not to change its configuration on the way in. For example, migrated projects keep the same _client \> project \> subproject_ hierarchy they had in the Legacy system. If you want a different structure in the new platform, we recommend exporting and saving your historical data and starting fresh. See [Review your structure before you switch](#review-your-structure-before-you-switch).
 </Warning>
 
 ## Try out the new platform first
@@ -71,9 +70,9 @@ You can create a free account on the new platform without affecting your Legacy 
 
 The new and Legacy systems have separate sign-in pages.
 
-- Legacy login is still done at [beebole-apps.com/signin](http://beebole-apps.com/signin/), or via the login button at [beebole.com](http://beebole.com). In that sense, nothing changes for your employees still using Legacy.
-- Login for the new system is done at [app.beebole.com](https://app.beebole.com/signin).
-- Login in the new system is passwordless: you confirm your identity with a one-time 6-digit code emailed to you, a passkey, your Google or Microsoft account, or your organization's SSO provider. See [Authentication](/help/documentation/authentication) for details.
+- You still sign in to Legacy at [beebole-apps.com/signin](http://beebole-apps.com/signin/), or from the login button at [beebole.com](http://beebole.com). Nothing changes for your employees still using Legacy.
+- You sign in to the new system at [app.beebole.com](https://app.beebole.com/signin).
+- Signing in to the new system is passwordless: you confirm your identity with a one-time 6-digit code emailed to you, a passkey, your Google or Microsoft account, or your organization's SSO provider. See [Authentication](/help/documentation/authentication) for details.
 
 ## Review your structure before you switch
 
@@ -229,7 +228,7 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 
 <AccordionGroup>
   <Accordion title="Do I have to migrate to the new Beebole platform right away?">
-    No. There's no deadline yet, and we'll give you plenty of notice before anything changes. Official migrations will start later this summer, when a self-service migration tool becomes available. In the meantime, we recommend testing the new platform — and if you'd like to test it with your own data, contact [support@beebole.com](mailto:support@beebole.com) and we'll add a copy of your Legacy data to your trial account.
+    No. There's no deadline yet, and we'll give you plenty of notice before anything changes. When you are ready, email [support@beebole.com](mailto:support@beebole.com) and our team runs the migration for you — there is no migration tool to find in the app. In the meantime we recommend testing the new platform, and if you'd like to test it with your own data, ask us and we'll add a copy of your Legacy data to your trial account.
   </Accordion>
 
   <Accordion title="Will I lose my historical data when I migrate?">
@@ -237,7 +236,7 @@ The tables below summarize the main changes from the Legacy system. Most will fe
   </Accordion>
 
   <Accordion title="Can I migrate my Legacy data into a new configuration or project hierarchy?">
-    No. Data from the Legacy system can only be migrated into the new Beebole as is. You'll be able to choose which data to migrate — for example, only your people, or only your projects — but not to change its configuration. For example, migrated projects keep the same hierarchy they had in Legacy. If you want a different structure, we recommend exporting and saving your historical data and starting fresh in the new platform.
+    No. Data from the Legacy system can only be migrated into the new Beebole as is. You tell support which data to migrate — for example only your people, or only your projects — but not how to reshape it. Migrated projects keep the hierarchy they had in Legacy. If you want a different structure, we recommend exporting and saving your historical data and starting fresh in the new platform.
   </Accordion>
 
   <Accordion title="Will my pricing change when I switch to the new platform?">

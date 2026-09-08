@@ -40,7 +40,7 @@ Timesheet settings control how everyone in your Beebole account records time: th
   </Step>
 </Steps>
 
-Settings made here apply account-wide. The same panel also exists on each person's profile, on tags, and on projects, so you can override any setting for one team, one person, or the entries logged on one project — see [Different settings for different teams](#different-settings-for-different-teams).
+Settings made here apply account-wide. The same panel also exists on every tag and on each person's profile, so you can override any setting for one team or one person — see [Different settings for different teams](#different-settings-for-different-teams).
 
 ---
 
@@ -68,6 +68,8 @@ The **Timesheet period** defines the stretch of time a timesheet covers — the 
 
 At the deadline, [suggested time entries](/help/documentation/ai) still pending on the period are converted into real entries before the submission, so a timesheet assembled from suggestions submits itself. Every entry still respects the entry rules — a suggestion a restriction refuses is trimmed to fit the day's remaining scheduled time, or skipped if it still doesn't fit. [Timesheet reminders](#reminding-people-to-submit) announce the deadline in advance, so nobody is surprised by an automatic submission.
 
+Auto-submit only ever acts on one period per person: the most recent one whose deadline has passed. Older periods are never revisited, so switching the setting on doesn't submit months of history at once. A period that already has a status — submitted, approved, or rejected — is left alone, and an empty period is never submitted: if it holds no time entries and no suggestion could be converted, nothing is sent to approvers.
+
 If a period can't be processed, it stays a draft and is badged **Auto-submit failed** in the approval view — administrators are notified so they can review it by hand.
 
 ### Lock date
@@ -76,8 +78,12 @@ The **Lock date** freezes every time record on or before the chosen day. Time re
 
 Use it to close accounting periods: once payroll or invoicing for a month is done, set the lock date to the end of that month and the underlying data can't drift. The freeze applies everywhere time records change hands, including the [BambooHR time-off sync](/help/integrations/bamboohr).
 
+The lock also closes the period to submission. A period whose last day is on or before the lock date can no longer be submitted for approval — Beebole answers **This period is locked and cannot be submitted for approval.** A period that straddles the lock date stays submittable by hand, since its unlocked days are still the person's to account for, but auto-submit leaves it alone: it skips any period that starts on or before the lock date.
+
+When several entries are deleted at once — clearing a section, or deleting a selection in the calendar — Beebole checks every entry before removing any of them. If one of them falls on or before the lock date, nothing is deleted.
+
 <Info>
-  To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set per person, team, or project — see [Different settings for different teams](#different-settings-for-different-teams).
+  To correct data in a locked period, move the **Lock date** back first, make the fix, then restore it. Like every timesheet setting, the lock date can also be set per person or per team — see [Different settings for different teams](#different-settings-for-different-teams).
 </Info>
 
 ### Restrictions
@@ -98,6 +104,13 @@ The **Restrictions** list controls what time entries the timesheet accepts. New 
 Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both. The **warning** and **block** variants are exclusive — activating one replaces the other.
 
 Independently of any restriction, a submitted or approved period is locked for its owner while it waits in the [approval workflow](/help/documentation/approval), and records on or before the [**Lock date**](#lock-date) can't change at all.
+
+### Rules set elsewhere
+
+Two more rules apply to every time entry without appearing in the **Restrictions** list, because they are configured on the entities they protect:
+
+- **Valid period for time entry** — This panel, available on a project, a person, and a tag, sets a **From** and **To** date between which time can be logged. An entry outside the window is refused with **This time record falls outside the validity period of:** followed by the project or person it comes from. When several windows could apply, the most specific one wins: the entry's project first (its deepest level first), then the person, and a person or project inherits a window set on its tags.
+- **Time off allowances** — A time off entry can't push the person past the balance of the [allowance](/help/documentation/timeoff) that covers that day. Beebole refuses it with **This booking exceeds the available quota for:** followed by the absence type. An allowance with **Allow negative balance** checked lifts the limit for the days it covers, and an absence type with no allowance is never limited.
 
 ---
 
@@ -140,8 +153,8 @@ The **Categories** tab decides what people can track time on. Each choice become
 
 **Record time on these project categories** lists the [project](/help/documentation/projects) categories available in the timesheet. Each row of the list is one timesheet section:
 
-- A row with a single category — for example **Clients** — lets people pick one project from that category per timesheet row.
-- A row with chained categories — **First** **Clients**, **then** **Activities** — makes people pick one entry for each level: first a client project, then an activity.
+- A row with a single category — for example **Client** — lets people pick one project from that category per timesheet row.
+- A row with chained categories — **First** **Client**, **then** **Activity** — makes people pick one entry for each level: first a client project, then an activity.
 - Click **Add a row** to offer an alternative section, and pick its categories with **Pick a category**.
 
 ### Plannings
@@ -164,7 +177,7 @@ The **Reminders** tab configures two kinds of follow-up.
 
 ### Reminding people to submit
 
-**Remind to submit** sends a reminder — by email or push notification, following each person's [notification settings](/help/documentation/notifications) — to anyone who hasn't submitted their timesheet. Choose when it goes out:
+**Remind to submit** sends a reminder by email, following each person's [notification settings](/help/documentation/notifications), to anyone who hasn't submitted their timesheet. Choose when it goes out:
 
 - **Start of next period** — on the first day of the new period, about the period that just ended.
 - **End of current period** — on the last day of the period being filled.
@@ -203,11 +216,10 @@ When several tasks finish the same day, the day is split between them. Entries t
 
 ## Different settings for different teams
 
-Timesheet settings cascade. Values set on **Account Settings** apply to everyone, but the same **Timesheet and Planning Settings** panel appears on every [tag](/help/documentation/tags), on every person's profile, and on every [project](/help/documentation/projects):
+Timesheet settings cascade. Values set on **Account Settings** apply to everyone, but the same **Timesheet and Planning Settings** panel also appears on every [tag](/help/documentation/tags) and on every person's profile:
 
 - Set a value on a **tag** to override the account default for everyone under that tag — for example, a monthly **Timesheet period** for one department.
 - Set a value on a **person** to override both the tag and the account default for that one person.
-- Set a value on a **project** to apply it to the entries logged on that project — for example, requiring comments on that project's entries.
 
 Next to each setting, an icon shows where its current value is inherited from. After overriding a value, you can reset it to fall back to the inherited one.
 
@@ -251,7 +263,7 @@ Next to each setting, an icon shows where its current value is inherited from. A
   </Accordion>
 
   <Accordion title="What happens if someone forgets to submit their timesheet?">
-    Two Beebole settings cover this. **Remind to submit** notifies anyone who hasn't submitted — by email or push — at the hour you choose, with a link to submit directly from the email, announcing the auto-submit deadline when one is set. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended, converting any pending suggested entries into real entries first.
+    Two Beebole settings cover this. **Remind to submit** emails anyone who hasn't submitted, at the hour you choose, with a link to submit directly from the email, announcing the auto-submit deadline when one is set. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended, converting any pending suggested entries into real entries first.
   </Accordion>
 
   <Accordion title="How do I change the first day of the week?">

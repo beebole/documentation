@@ -18,17 +18,25 @@ Beebole exposes an MCP server so your own AI assistant can log time, read timesh
 
 ## What a connected assistant can do
 
-The MCP server gives the assistant a full working toolkit, always bounded by your permissions:
+The server exposes a set of tools grouped around the things people actually do in Beebole, always bounded by your permissions. The list below covers the main ones rather than every tool:
 
-| Capability | Tools |
+| What you want to do | Tools the assistant uses |
 | --- | --- |
-| Read your data | `list` (projects, tasks, people, and more), `get_attributes`, `export`, `get_time_records`, `get_reports` |
-| Record time | `record_time` — adds entries to your own timesheet; timesheet rules like the lock date are enforced server-side |
-| Manage entities | `add`, `update_attributes`, `archive`, `unarchive`, `delete`, `invite_persons` |
-| Handle approvals | `list_pending_approvals`, `approve_timesheet`, `reject_timesheet` |
-| Run reports | `run_report` |
+| Understand your account first | `get_context` — who you are, how your organization names its structure (category names and the name of each level, custom fields and the entities they live on), and how its timesheet works: periodicity and current period, the project levels an entry needs, which plannings accept time, the lock date, the entry rules, and the approval workflow |
+| Look things up | `list` (projects, tasks, tags, people, roles, time off types, expense types, work schedules, custom fields, categories), `list_sub_projects`, `get_attributes` and `export` for an entity's settings — including each inherited value and where it comes from |
+| Track time | `record_time` (one entry or many), `update_time_record`, `copy_time_records` for "same as last week", `delete_time_records`, plus `get_time_records` and `get_timesheet_days` for what is logged and what is missing day by day |
+| Check time off | `get_absence_balance` — the balance per quota, including carry-forward, and the time off types you may book |
+| Submit and approve | `get_timesheet_status`, `submit_timesheet`, `get_team_timesheets` and `send_timesheet_reminder` for the people you review, `list_pending_approvals`, `get_approval_digest`, `approve_timesheet`, `reject_timesheet`, `get_approval_history` |
+| Propose entries instead of writing them | `push_suggestions`, `get_suggestions`, `accept_suggestions`, `dismiss_suggestions` — drafts you confirm yourself in the app, like Beebole's own [suggested entries](/help/documentation/ai#suggested-time-entries) |
+| Handle expenses | `get_expense_records`, `record_expense`, `update_expense_record`, `delete_expense_records` |
+| Get figures out | `get_reports` and `run_report` — a saved report, an exact report configuration, or a plain-language question — and `get_budget_status` for budget consumption, with the same per-person and per-project splits as the [Budget Status report](/help/documentation/reports#budget-status) |
+| Work with planning | `get_tasks` and `update_tasks` — what is planned, and changing dates, planned time, owner, or status |
+| Set things up | `add`, `update_attributes`, `set_custom_field_value`, `assign` and `unassign` for links between entities (project access, managers, tags, schedules, task owners), `get_rates`, `set_rate` and `delete_rate` for the dated billing and cost rate history, `archive`, `unarchive`, `delete`, `invite_persons` |
+| See who changed what | `get_audit_trail`, when your subscription includes the [audit trail](/help/documentation/audit-trail) |
 
-So you can ask your assistant things like "log 2 hours on Website Redesign for today", "what did I track this week?", or — if you're an approver — "approve the timesheets waiting on me".
+So you can ask your assistant things like "log 2 hours on Website Redesign for today", "what did I track this week?", "how much of the Acme budget is left?", or — if you're an approver — "approve the timesheets waiting on me".
+
+Each tool tells your assistant whether it only reads data or changes it, and which changes are destructive, so a well-behaved assistant asks before deleting anything. Everything runs through the same rules as the app: the lock date, entry restrictions, approval status, and your role all apply, and a refusal comes back to the assistant as the reason Beebole gives.
 
 ---
 
@@ -51,7 +59,7 @@ Everything you need is on the **Assistant** page — click **Assistant** in the 
     In claude.ai or ChatGPT, add the URL as a custom connector.
   </Step>
   <Step title="Sign in and authorize">
-    You are asked to sign in to Beebole and authorize the access — no API key needed. Once authorized, the assistant appears under **Connected apps**.
+    You are asked to sign in to Beebole and authorize the access — no API key needed. This is a standard OAuth 2.1 sign-in, so the assistant never sees your credentials and receives an access token it has to refresh. Once authorized, the assistant appears under **Connected apps**.
   </Step>
 </Steps>
 
@@ -121,7 +129,7 @@ Tools connected with your API key are not listed there; they stop working when y
     Any assistant that supports the MCP standard. Hosted assistants like claude.ai and ChatGPT connect through a custom connector with a sign-in flow, while developer tools like Claude Code, Claude Desktop, and Cursor connect with your Beebole API key.
   </Accordion>
   <Accordion title="What data can a connected assistant access?">
-    Exactly what you can. The connection carries your permissions, so the assistant sees the projects, tasks, and timesheets your role allows — nothing more. It records time only to your own timesheet, and it can act on approvals only if you are an approver.
+    Exactly what you can. The connection carries your permissions, so the assistant sees the projects, tasks, and timesheets your role allows — nothing more. It records time on your own timesheet by default, and on someone else's only where your role already lets you do that; it can act on approvals only if you are an approver. There is no separate permission layer for the assistant: Beebole refuses whatever you could not do yourself, and the assistant gets the refusal.
   </Accordion>
   <Accordion title="How do I revoke an assistant's access to Beebole?">
     For hosted assistants, click **Disconnect** next to the app under **Connected apps** on the **Assistant** page. For tools connected with your API key, click **Reset** next to the key — every tool using the old key loses access immediately.

@@ -94,6 +94,13 @@ Managers and administrators see an approval button (**Approval**) in the cluster
 
 The neighboring team button (**Team**) opens the **Team** pane, which lists your team members with their status for the period. People who haven't submitted yet have a **Remind** button (**Send reminder**) that emails them on the spot.
 
+Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. Every button acts only on the people it can act on, so a mixed selection is safe:
+
+- **Approve** and **Reject** act on the selected timesheets submitted for the period on screen and waiting for you — as an administrator, on any submitted one.
+- **Remind** goes to the selected people who haven't submitted — their period is a draft, rejected, or empty. People whose timesheet is approved, or submitted and waiting for someone else, are never reminded. Once the reminders are sent, those people are deselected and the submitted ones stay selected for approval.
+
+The bar acts strictly on the period displayed: a person's submission from another period is never approved or rejected from here.
+
 <Tip>
   In the **Team** pane, hold **⌘** while clicking the select-all checkbox to alternate between selecting everyone to remind and everyone to approve.
 </Tip>
@@ -112,7 +119,14 @@ Click **Journal** in the left sidebar. Approvers see a banner at the top of the 
 
 ### From your email
 
-Approval notification emails include a summary of the submitted timesheet and approve and reject links that work straight from your inbox, without signing in. Timesheet reminder emails likewise include a **Submit now** link, so your team can submit a completed period directly from the reminder.
+Approval notification emails include a summary of the submitted timesheet and **Approve** and **Reject** links that work straight from your inbox, without signing in. **Approve** applies the approval and opens the timesheet it acted on; **Reject** opens the same timesheet with the rejection dialog ready, since a reason is always required. Timesheet reminder emails likewise include a **Submit now** link when the period already holds entries, so your team can submit a completed period directly from the reminder.
+
+You can also decide by replying to the email — the approval email and the approval reminder both end with a note about it:
+
+- Reply with **approve** alone on the first line to approve.
+- Reply with **reject** followed by your reason — on the same line or the lines below — to reject. A **reject** with no reason changes nothing.
+
+Beebole reads the first word of your reply and also understands **accept**, **ok**, **yes**, **refuse**, and **decline**, in any of its languages. Before applying the decision, Beebole checks that the reply comes from the approver's own email address and that the sending mail server authenticated it. Whatever the outcome, a receipt lands in the same email thread: **Approved**, **Rejected**, or **Nothing changed** — the latter when the reason was missing, the sender couldn't be verified, or the timesheet is no longer pending your approval. A reply that doesn't start with a decision word is treated as a Journal message instead.
 
 ---
 
@@ -143,6 +157,8 @@ Submitting locks a timesheet for its owner, but it doesn't have to be rejected t
 
 To edit on someone's behalf, open the **Pending** or **Team** pane and click the edit button (**Edit timesheet**) on the person's row. Their grid unlocks for you; the override switches off when you move to another person. Administrator edits never restart the workflow.
 
+While you are editing, the timesheet makes it impossible to forget whose entries you are touching: the grid or calendar and every row picker are washed in the same highlight tint, the edit button on the person's row fills with that color (**Stop editing this timesheet**), and an **Editing** badge appears next to the person's name at the top of the page. Click the badge or the edit button again to stop editing. The override is tied to that one person — opening another person's timesheet drops the tint and the badge along with it.
+
 The edit button is not limited to administrators — managers and approvers see it too, on the rows they are allowed to correct. Beebole decides row by row, following the table above: a timesheet that is already **Approved** stays locked for everyone but an administrator, a **Submitted** one opens only for an approver of the current stage, and the two restrictions below can take the button away entirely.
 
 <Info>
@@ -159,7 +175,7 @@ Administrators can unblock the pipeline without reconfiguring it: they can **App
 
 - **Remind approvers after** a number of **days if not yet approved** — found in the **Reminders** tab of the **Timesheet and Planning Settings** panel — automatically follows up on submissions still waiting for review. Set it account-wide in **Account Settings**, or override it on a tag or a person, just like the approval workflow itself.
 - The **Remind** button in the **Team** pane sends a one-off reminder to anyone who hasn't submitted.
-- Each person controls how they receive **Approval updates** — by email or push notification, instantly or as a digest — in their notification settings. See [Notifications](/help/documentation/notifications).
+- Each person controls how they receive **Approval updates** — instantly or as a digest — in their notification settings. See [Notifications](/help/documentation/notifications).
 
 ---
 

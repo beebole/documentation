@@ -73,9 +73,13 @@ The **Non-billable** and **Work from home** checkboxes apply to work entries onl
 
 The calendar view lays your period out day by hour, so you place entries in time instead of typing durations. It is the view you land on the first time you open your timesheet; switch between the two with the **Calendar view** and **Grid view** toggle at the top of the page, and Beebole remembers which one you used last. The day grid is tall enough for short entries to stay readable, and a full day fills its column exactly to the end of your schedule — only a genuinely over-booked day is drawn as overflowing.
 
+The day headers are the same as in the grid view — each one shows the time reported so far against the day's scheduled hours, with its progress bar — so the two views always agree on where a day stands.
+
 - **Create an entry** — Click and drag across an empty time slot; the selection shows the total duration alongside the start and end times as you draw. The entry popup opens with the activity picker built in — the entry is created as soon as you pick the project, task, or absence type, and you can still drag the new block to another time or day, or resize it from either edge, before you're done.
+- **Create an entry with one click** — Click an empty slot without dragging. When your account doesn't record start and end times, the new entry is pre-filled with the time still missing from that day's schedule — the same figure the day header shows — so the last entry of the day always completes it. On a full, overrun, or unscheduled day, and whenever start and end times are on, the click places a one-hour entry instead.
 - **Move an entry** — Drag it to another slot or day. Its duration is preserved.
-- **Resize an entry** — Drag its top or bottom edge to change the start or end time.
+- **Resize an entry** — Drag its top or bottom edge to change the start or end time. Edges snap to 15-minute steps; hold **⌘** (Ctrl on Windows/Linux) while dragging an edge to snap to whole hours instead.
+- **Give an entry a time** — When start and end times are recorded, an entry that has none yet — typed in the grid, for example — sits stacked at the top of its day. Drag it to a slot and it takes the clock time where you release it.
 - **Duplicate an entry** — Hold **⌘** (Ctrl on Windows/Linux) while dragging an entry to a new slot.
 - **Delete an entry** — Hover over it and click the delete button that appears.
 - **Work on several entries at once** — Shift-click to select a range, or **⌘**-click (Ctrl on Windows/Linux) to pick individual entries, then move, duplicate, resize, or delete the whole selection — one undo step reverses the batch.
@@ -111,18 +115,34 @@ When your administrator has enabled the timer, each row shows a timer button for
     Click the timer button (**Start timer**) on the row you are working on. The elapsed time starts counting.
   </Step>
   <Step title="Keep working">
-    The timer keeps running while you use other parts of Beebole. A floating timer stays on screen so you can check or pause it from any page.
+    The timer keeps running while you use other parts of Beebole. A floating timer stays on screen so you can check or pause it from any page — see [The floating timer](#the-floating-timer) below.
   </Step>
   <Step title="Pause it when you stop">
-    Click the timer button again (**Pause timer**). Beebole saves the elapsed time to the entry — one minute at minimum.
+    Click the timer button again (**Pause timer**). Beebole saves the elapsed time to the entry, rounded up to the **Minimum time interval accepted** set by your administrator.
   </Step>
 </Steps>
 
-Only one timer runs at a time, wherever you start it from. Starting a timer on another row, entry, or favorite pauses the current one and saves its time first.
+A plain click on any play button switches timers: whatever was running is paused and its time saved, then the activity you clicked starts. To run several timers at once, hold **⌘** (Ctrl on Windows/Linux) while clicking a play button — the tooltip reads **⌘+Click to start it without stopping the others** whenever a timer is already running. Each timer counts its own time in full, so two timers running for an hour log two hours. The gesture is the same on every play button: timesheet rows, calendar entries, favorites, suggestions, and the floating timer itself.
 
 <Info>
   When start and end times are enabled and a record for today is already finished, the row's timer button shows **Duplicate and start** — it creates a new entry on the same row and starts timing it. Administrators can also make the timer mandatory, in which case durations can only be recorded by timer.
 </Info>
+
+### The floating timer
+
+On desktop, a floating panel appears as soon as a timer runs, and you can drag it anywhere on the page. It lists the activities you timed today, one line each:
+
+- A **running** line shows a pulsing dot, its name, a live counter, and a **Pause timer** button.
+- A **paused** line stays listed with the time saved on its entry. Its play button resumes it — a plain click pauses the others first, **⌘**-click (Ctrl-click) adds it to the ones running — and the **×** (**Remove from the timer list**) takes it off the panel. A running line has no **×**: pause it first, so time is never discarded while it is still counting.
+- When more than one timer is running, a **Pause all** button appears under the lines and stops them all at once, saving each entry's own time.
+
+Click the chevron on the first line to collapse the panel to dots and counters; hover a dot for the activity's name. The panel only tracks today's activities, and when several entries exist for a day, one line stands for each activity.
+
+If a restriction refuses the time a pause would save — for example **No overtime beyond the schedule** — the timer keeps running and an error explains why, so no time is lost while you fix the day.
+
+<Tip>
+  Your browser tab keeps you posted: its title shows the elapsed time while one timer runs, and switches to a count — **2 timers running** — when several do.
+</Tip>
 
 ---
 
@@ -134,7 +154,7 @@ Each row has a **⋯** action menu with:
 - **Edit** — change the row's project, task, or absence type selection.
 - **Remove row** — take the row off your timesheet.
 
-To clear a whole section at once, hover over the section's header and click the **Clear rows** button that appears — it removes that section's rows and their time entries for the current period. The button is hidden on locked periods and when reviewing someone else's timesheet.
+To clear a whole section at once, hover over the section's header and click the trash button (**Clear all rows in this section**) that appears — it removes that section's rows and their time entries for the current period. The button is hidden on locked periods and when reviewing someone else's timesheet.
 
 There is no confirmation dialog for these actions — press **⌘+Z** (Ctrl+Z on Windows/Linux) to undo.
 

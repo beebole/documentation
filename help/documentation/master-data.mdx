@@ -1,0 +1,210 @@
+---
+title: "Master data review: check, export, and bulk-edit your setup"
+sidebarTitle: "Master Data"
+description: "Review, export, and bulk-edit your Beebole configuration data — people, projects, tags, rates, schedules, and custom field values — from one admin table."
+keywords: ["beebole", "master data", "master data review", "bulk update", "configuration export", "admin settings"]
+"og:title": "Reviewing and Bulk-Editing Master Data in Beebole"
+"og:description": "Build a table of your Beebole configuration data, download it in five formats, and change it across many records at once."
+"og:type": "article"
+---
+
+Master data review in Beebole is an admin table over your organization's configuration data: the definitions your account is built on, not the time your team logs. Pick an entity, build the columns you want from its own fields and relations, and you get a live table you can filter, download, or edit in bulk. Use it to audit a setup before a cutover, hand a colleague a spreadsheet of your rates, or fix the same field on two hundred people in one pass.
+
+<Info>
+  Master data review is restricted to administrators. Open it from the button with your initials at the bottom of the sidebar, then **Master data review**.
+</Info>
+
+---
+
+## What you can review
+
+A review always starts from one entity. Beebole offers nine:
+
+| Entity | What it holds |
+| --- | --- |
+| **People** | Everyone in the account, with their roles, rates, schedules, and settings |
+| **Projects** | The project hierarchy, with rates, budgets, and access |
+| **Tasks** | Planning items, with owners, dates, and planned time |
+| **Tags** | Your tag trees and the configuration they carry |
+| **Time off types** | Absence types and their allowances |
+| **Expense types** | Expense types and their units and markups |
+| **Custom fields** | The field definitions themselves, with their types and visibility |
+| **Roles** | Roles and their permissions |
+| **Work schedules** | Schedule definitions and their days |
+
+For **Projects**, **Tasks**, and **Tags** you can also narrow the review to one category, and inside it to one hierarchy level — pick **All categories**, a category, then **All levels**, **Lowest level**, or a named level.
+
+<Info>
+  Master data review covers definitions only. Time entries, expense records, and absences are records, not master data — report on those with [custom reports](/help/documentation/custom-reports) and [data exports](/help/documentation/data-exports).
+</Info>
+
+---
+
+## Building a review
+
+<Steps>
+  <Step title="Open Master data review">
+    Click the button with your initials at the bottom of the sidebar, then **Master data review**.
+  </Step>
+  <Step title="Add an export">
+    Click **Add an export**. Beebole creates one named **New export** and puts the name in edit mode — type a name and press Enter.
+  </Step>
+  <Step title="Pick the entity">
+    In the table's first column header, click the entity button — it shows the entity currently reviewed — and choose another from the menu. The first column always holds that entity's name.
+  </Step>
+  <Step title="Add the columns you need">
+    Click **Add a column…** and walk into the entity's fields. Each pick appends a column; the table re-runs on its own.
+  </Step>
+</Steps>
+
+Every review you save is personal to you, and the list of your saved exports is the page itself — click one to open it, click it again to close it.
+
+### Adding columns
+
+The column picker walks the entity's own fields and its relations, with no depth limit. A field becomes a column; an attribute or a relation opens as a branch you step into, so a person's tags lead to the tag's own fields, and a tag's rates lead to the rate's amount.
+
+- Type in **Search a field…** to search several levels down at once. Each match shows the path it sits on, so a hit reading _Tags: Name_ is clearly the name of a tag, not the name of the person.
+- Press Backspace on an empty search box to step back up one level, or click a step of the path to jump back to it.
+- One column can hold several values — a person with three tags shows all three, stacked in the cell.
+
+A column header carries its own menu:
+
+| Menu entry | What it does |
+| --- | --- |
+| **Filter on this column** | Adds a filter chip for that column |
+| **Other _Tags_ column** | Names the path the column sits on, and opens the picker there so you can add a sibling field next to it |
+| **Add a column…** | Inserts a new column right after this one |
+| **Remove column** | Drops the column from the review |
+
+You can also drag a header sideways to reorder the columns.
+
+### Custom field values as columns
+
+When a [custom field](/help/documentation/custom-fields) applies to the entity you are reviewing, a **Custom field values** branch appears in the picker with those definitions in it. Pick one and its values become a plain column, one value per row, blank where a record holds none. Only the definitions that actually apply to the entity are offered.
+
+---
+
+## Narrowing what the table shows
+
+**Filters** are chips under the command row. Each chip names a column, an operator, and a value:
+
+| Operator | Matches |
+| --- | --- |
+| **contains** / **doesn't contain** | Part of the cell's text |
+| **is** / **is not** | The whole value |
+| **is empty** / **is not empty** | Rows with or without a value |
+| **is more than** / **is less than** | Numbers above or below a threshold |
+
+**Show Archived** next to the review's name brings archived records into the table; click **Hide Archived** to leave them out again. Archived rows are shown dimmed.
+
+**A period selector** appears whenever the review holds a dated column — rates, costs, budgets, allowances, work schedule assignments, tag assignments. It decides which of those records the table lists: a record counts for the period when its validity overlaps it, so a rate that started in 2025 still shows for 2025 as long as its replacement starts after the period begins. The default period runs from today onwards, which lists the records in force now.
+
+---
+
+## Reading the table
+
+- **Inherited values name their origin.** When a value comes from the organization, a tag, or a parent record rather than the row itself, the cell shows the source next to the value, with the same clickable link the attribute panels use. A value set on the row itself shows nothing.
+- **Stored codes read as words.** Durations, work-schedule day times, colors, absence units, duration formats, weekdays, and permission names render the way the interface shows them, not as raw codes. A rate renders like its panel: the amount on the first line, then its method and start date beneath it — **120,00 EUR**, then **Hourly rate · 1 Jan 2026** — with its split lines below that.
+- **Records are badges.** A cell holding another record shows it as a clickable badge — click it to open that record's panel and edit it in place.
+- **A subtracted value is struck through.** When a rule removes an inherited item instead of adding one, the cell shows it struck through in red, the same way the rest of Beebole marks an exclusion.
+- **The table re-runs live.** When anything on screen changes — your own edit in a panel, or a colleague's — the review re-runs and rows that no longer match fade out.
+
+---
+
+## Downloading a review
+
+Hover the review in the list, click the **⋯** action menu, choose **Export**, then a format: **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, or **PDF**. The file carries the columns and rows on screen, plus a header noting the entity, whether archived records were included, and the period when the review has one.
+
+---
+
+## Building a review in plain language
+
+When AI features are enabled for your account, a text box sits above the table. Describe the table you want — for example _people with their hourly rate and their tags_ — and click **Build**. Beebole picks the entity, the columns, and the filters, and runs it.
+
+With a review open, the same box refines it: **Update** adds a column, changes a filter, or swaps the entity. Asking about a different entity creates a new review instead of overwriting the one you built. If a request is ambiguous, Beebole asks a question rather than guessing.
+
+---
+
+## Changing data in bulk
+
+Click **Modify this data…** to switch the review into update mode. Then describe the change and click **Preview**.
+
+The change applies to every row the table currently lists, so filter the table first — a command that names a narrower subset comes back with a request to filter instead. What you can ask for:
+
+- Set or clear a value, including a custom field value.
+- Put text around the value each row holds today, such as _prefix their external ID with ext-_.
+- Add or clear a billing rate, a cost rate, a time off allowance, or a public holiday — including a percentage change on the rate each row holds.
+- Link or unlink a related record, such as a work schedule, a tag, or a role.
+- Archive, unarchive, or delete the listed records, or create one new record.
+
+<Steps>
+  <Step title="Preview the change">
+    Beebole replaces the table with a before/after view: the changed column shows **old → new**, records to be created appear as new rows, and records to be deleted are struck through. A one-line summary and the number of changes sit next to the buttons.
+  </Step>
+  <Step title="Check what was left out">
+    Rows Beebole will not touch are listed after **Left out:** with a reason — _inherited from_ a tag or the organization, _nothing to remove_, _no current value to change_, or _the field does not apply_.
+  </Step>
+  <Step title="Refine or apply">
+    Type another sentence and click **Update preview** to adjust, **Cancel** to drop the whole thing, or **Apply** to run it. Rows tick off one by one as they go through, and a row that fails shows its error without stopping the rest.
+  </Step>
+</Steps>
+
+<Warning>
+  **Undo the last change** reverses the bulk action you just applied, and only that one. It is held in memory, so reloading the page loses it, and deleted records cannot be brought back at all — recreating one gives it a new identity and no reference to the old one survives.
+</Warning>
+
+<Info>
+  A row whose value is inherited from a tag or from the organization is deliberately skipped: writing on the row would break the inheritance for its whole history. To raise rates on people who inherit them, run the change on the tag instead.
+</Info>
+
+---
+
+## What reaches the AI model
+
+The plain-language builder and update mode follow the same privacy stance as the rest of [Beebole AI](/help/documentation/ai#what-reaches-the-model): only definitions reach the model. It receives your sentence, the entity being reviewed, and the vocabulary of that entity — the labels and paths of its fields, plus the allowed values of a field that has a closed set. It never sees a value from your table and never names one of your records: Beebole turns the sentence into an abstract instruction, and your browser computes the actual before and after values.
+
+---
+
+## Related content
+
+<CardGroup cols={2}>
+  <Card title="Custom fields" icon="tag" href="/help/documentation/custom-fields">
+    Define the fields whose values become columns in a review.
+  </Card>
+
+  <Card title="Data exports" icon="download" href="/help/documentation/data-exports">
+    Export the time and expense records a review deliberately leaves out.
+  </Card>
+
+  <Card title="Beebole AI" icon="sparkles" href="/help/documentation/ai">
+    How Beebole's AI features work and what data they see.
+  </Card>
+
+  <Card title="Account settings" icon="gear" href="/help/documentation/account-settings">
+    The organization-wide settings a review lets you check across records.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Who can use Master data review in Beebole?">
+    Administrators only. The **Master data review** entry sits in the Settings menu, opened from the button with your initials at the bottom of the sidebar, and the page itself is closed to anyone whose role does not have **Admin role (full access)** checked. See [Roles & permissions](/help/documentation/roles-authorisations).
+  </Accordion>
+
+  <Accordion title="Which entities can I review?">
+    Nine: **People**, **Projects**, **Tasks**, **Tags**, **Time off types**, **Expense types**, **Custom fields**, **Roles**, and **Work schedules**. For projects, tasks, and tags you can narrow the review to one category and one hierarchy level.
+  </Accordion>
+
+  <Accordion title="Can I export my time entries from here?">
+    No. Master data review covers your configuration data — the definitions — not the records your team logs. For time entries, expenses, and absences, build a [custom report](/help/documentation/custom-reports) and download it as described in [Data exports](/help/documentation/data-exports).
+  </Accordion>
+
+  <Accordion title="Can I undo a bulk change?">
+    Yes, but only the last one, and only while the page stays open — **Undo the last change** is held in memory and a reload drops it. Records deleted by a bulk change cannot be restored at all, so check the before/after preview before clicking **Apply**.
+  </Accordion>
+
+  <Accordion title="Why did some rows get left out of my bulk change?">
+    Beebole lists them after **Left out:** with the reason. The common ones are a value inherited from a tag or the organization (change it on the tag instead), a row that already holds the value you asked for, a row with nothing to remove, and a custom field that does not apply to that record.
+  </Accordion>
+</AccordionGroup>

@@ -3,15 +3,15 @@ title: "Custom fields: capture extra data on your work"
 sidebarTitle: "Custom Fields"
 description: "Create custom fields in Beebole to capture extra data on people, projects, tasks, and time records — six field types with validation and visibility rules."
 keywords: ["beebole", "custom fields", "field types", "field validation", "time record fields", "project custom fields"]
-og:title: "Capturing Extra Data with Custom Fields in Beebole"
-og:description: "Learn how to create custom fields in Beebole, configure field types and validation, and choose where each field appears."
-og:type: "article"
+"og:title": "Capturing Extra Data with Custom Fields in Beebole"
+"og:description": "Learn how to create custom fields in Beebole, configure field types and validation, and choose where each field appears."
+"og:type": "article"
 ---
 
 Custom fields in Beebole add your own data fields to people, projects, tasks, and time records. Use them to capture what Beebole's built-in attributes don't cover — an employee ID on every person, a client reference on each project, or a ticket number on every time entry — and reuse those values as columns in your reports.
 
 <Info>
-  Custom fields are available on higher-tier plans. If your subscription doesn't include them, the **Custom Field** entry in Settings shows an upgrade button instead of opening the page.
+  Custom fields come with the **Advanced** plan, and can be added to the **Essential** plan as an add-on. If your subscription doesn't include them, the **Custom Fields** entry in Settings shows an upgrade button instead of opening the page.
 </Info>
 
 ---
@@ -20,7 +20,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
 
 <Steps>
   <Step title="Open the Custom Fields settings">
-    Click the button with your initials at the bottom of the sidebar, then go to **Settings** \> **Custom Field**.
+    Click the button with your initials at the bottom of the sidebar, then go to **Settings** \> **Custom Fields**.
   </Step>
   <Step title="Add the field">
     Click **Add Custom Field**, type a name — for example "Employee ID" or "Cost center" — and click **Add Custom Field** to confirm.
@@ -32,7 +32,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
     The options for the selected type appear below it — defaults, limits, validation. Every change is saved automatically.
   </Step>
   <Step title="Choose where the field appears">
-    In the **Custom field visibility** panel, turn on **Visible for People**, **Visible for Time Records**, **Visible for Projects**, or **Visible for Tasks**. The field then appears on the matching records.
+    In the **Custom field visibility** panel, turn on **Visible for People**, **Visible for Absence types**, **Visible for Time Records**, **Visible for Projects**, or **Visible for Tasks**. A single field can apply to several. The field then appears on the matching records — see [Choosing where a field appears](#choosing-where-a-field-appears).
   </Step>
 </Steps>
 
@@ -80,31 +80,19 @@ Turn on **Use predefined values** to restrict a text field to a fixed list: add 
 
 ## Choosing where a field appears
 
-<Steps>
-  <Step title="Open the Custom Fields page">
-    Go to **Settings** \> **Custom Fields**.
-  </Step>
-  <Step title="Add a new field">
-    Click the **\[\+\]** button. Enter a **Name** for the field (e.g., "Employee ID", "Cost Center").
-  </Step>
-  <Step title="Choose the field type">
-    Select the appropriate type from the **Type** dropdown: **Text**, **Number**, **Date**, **Datetime**, **URL**, or **Boolean**.
-  </Step>
-  <Step title="Set the entity visibility">
-    In the **Custom field visibility** panel, choose where the field appears — **Visible for People**, **Visible for Projects**, **Visible for Tasks**, **Visible for Time Records**, or **Visible for Absence types**. A single field can apply to several.
-  </Step>
-  <Step title="Configure optional settings">
-    Set a **Placeholder text** or validation rules as needed (see sections below). Every change is saved automatically — the field appears on the selected items right away.
-  </Step>
-</Steps>
-
-The **Custom field visibility** panel controls which items carry the field. Each toggle is saved automatically:
+The **Custom field visibility** panel controls which items carry the field. A single field can apply to several, and each toggle is saved automatically:
 
 - **Visible for People** — The field appears on every person's profile.
 - **Visible for Projects** — Turn it on, then use **Add a category** to choose the project categories where the field applies. Within each category you can tick the hierarchy levels — for example top-level projects only, or their subprojects too.
 - **Visible for Tasks** — Turn it on, then choose the task categories where the field applies.
 - **Visible for Time Records** — The field appears when filling in a time entry's details on the timesheet. Narrow it down with **Project categories** and **Plannings**, and turn on **Absences** to also show the field on time-off entries. A field scoped to a planning applies to tasks at every level of that planning.
-- **Visible for Absence types** — The field appears on each time off type's configuration, for structured data about the types themselves.
+- **Visible for Absence types** — The field applies to your time off types. It appears in the **Custom fields** panel of each type, and it becomes a column you can review and fill in for time off types in [Master data review](/help/documentation/master-data).
+
+### Who a field is asked of
+
+Visibility decides which _kind_ of record can carry the field. The field's **Who has access?** panel then decides _which_ records actually get it, with sections for people, tags, projects, tasks, and time off types. When **Show all custom fields** is on in **Show or hide by default**, those sections flip into exclusion lists instead. See [Assignments](/help/documentation/assignments) for how the two directions work together.
+
+On a time record, the field follows the person the timesheet belongs to — not whoever types the entry — and Beebole checks every link the entry offers: the person and their tags, the projects on the entry and their parents, its task, and, on a time-off row, the time off type it is booked against. A match on any one of them brings the field in, which is what makes an assignment to a time off type show the field on absences of that type.
 
 ---
 
@@ -122,12 +110,12 @@ Custom field values flow into reporting. When you build a [custom report](/help/
 
 ## Managing custom fields
 
-To manage an existing field, open it in **Settings** \> **Custom Field** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+To manage an existing field, open it in **Settings** \> **Custom Fields** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
 Archived fields disappear from the list. Click **Show Archived** to display them, then use the **⋯** action menu and **Unarchive** to restore one.
 
 <Warning>
-  **Delete** removes the custom field entirely, including the values stored on your people, projects, and tasks. Choose **Archive** instead if you may need the field or its data again.
+  **Delete** only works on a field that holds no values. As long as a value is stored on any person, project, task, or time entry, Beebole refuses the deletion and names what still references the field. Clear those values first, or choose **Archive** to take the field out of use while keeping its data.
 </Warning>
 
 ---
@@ -162,7 +150,7 @@ Archived fields disappear from the list. Click **Show Archived** to display them
   </Accordion>
 
   <Accordion title="Do custom fields appear on the timesheet?">
-    Yes. Turn on **Visible for Time Records** and the field appears when filling in a time entry's details on the timesheet. You can limit it to specific project or task categories, and the **Absences** toggle also shows it on time-off entries.
+    Yes. Turn on **Visible for Time Records** and the field appears when filling in a time entry's details on the timesheet. You can limit it to specific **Project categories** and **Plannings**, and the **Absences** toggle also shows it on time-off entries. On a time record the field follows the person the timesheet belongs to, so an assignment made through that person, one of their tags, the entry's projects or task, or its time off type all bring the field in.
   </Accordion>
 
   <Accordion title="Can I restrict a custom field to a list of allowed values?">
@@ -174,6 +162,6 @@ Archived fields disappear from the list. Click **Show Archived** to display them
   </Accordion>
 
   <Accordion title="Can I change a custom field's type after creating it?">
-    Yes. Open the field in **Settings** \> **Custom Field** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching.
+    Yes. Open the field in **Settings** \> **Custom Fields** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching.
   </Accordion>
 </AccordionGroup>

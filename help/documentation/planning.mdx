@@ -3,15 +3,15 @@ title: "Task planning: create, organize, and track tasks"
 sidebarTitle: "Task Planning"
 description: "Tasks in Beebole are independent planning entities. Create them one by one or from a spreadsheet, organize statuses and subtasks, assign owners, and track time."
 keywords: ["beebole", "tasks", "task management", "task planning", "plannings", "task statuses", "subtasks", "task categories"]
-og:title: "Creating, Organizing, and Tracking Tasks in Beebole"
-og:description: "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
-og:type: "article"
+"og:title": "Creating, Organizing, and Tracking Tasks in Beebole"
+"og:description": "Learn how Beebole tasks work: create and import tasks, set up statuses, build subtask hierarchies, assign owners, and track time on tasks."
+"og:type": "article"
 ---
 
 Tasks in Beebole are independent planning entities — units of work that you schedule, assign, and track time on. A task is not a sub-element of a project: tasks live on their own **Planning** page, and linking a task to a project is optional. Use tasks to plan the work to be done, and let your team track time directly on them.
 
 <Info>
-  To work with tasks, click **Planning** in the sidebar. The same tasks can be displayed in three views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, and the [Staffing view](/help/documentation/staffing) for planning by person.
+  To work with tasks, click **Planning** in the sidebar. The same tasks can be displayed in four views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, the [Staffing view](/help/documentation/staffing) for planning by person, and the [List view](/help/documentation/task-list) for working the list as a sortable table.
 </Info>
 
 <div style={{position: "relative", paddingBottom: "calc(71.0913% + 41px)", height: "0px", width: "100%"}}>
@@ -34,7 +34,7 @@ For general work that isn't planned as a task, track time on projects and subpro
 
 ## Plannings
 
-Every task belongs to a planning — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one planning named **Main planning**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
+Every task belongs to a planning — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one planning named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
 
 - **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
 - **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
@@ -88,7 +88,7 @@ Imported tasks get the status selected in the add form. After the import you can
 
 ## Task statuses
 
-Statuses are the steps of a category's workflow — the same statuses that form the columns of the [Kanban board](/help/documentation/kanban). To edit them, open the **Task statuses** modal:
+Statuses are the steps of a planning's workflow — the same statuses that form the columns of the [Kanban board](/help/documentation/kanban). To edit them, open the **Task statuses** modal:
 
 - On the Kanban board, click a column's name.
 - In the task detail panel, click the gear button next to the status (tooltip: **Edit statuses**).
@@ -99,7 +99,7 @@ In the modal you can:
 - **Rename or recolor a status** — Click a status to edit its name or pick a new color.
 - **Reorder statuses** — Drag a status up or down. The order defines the column order on the Kanban board.
 - **Limit a status** — Set **Max tasks** to cap how many tasks the status can hold. See [WIP limits](/help/documentation/kanban#wip-limits-are-hard-limits).
-- **Delete a status** — Only possible when the status holds no tasks (including archived ones). Every category must keep at least one status.
+- **Delete a status** — Only possible when the status holds no tasks (including archived ones). Every planning must keep at least one status.
 
 ---
 
@@ -122,7 +122,7 @@ Tasks nest into subtasks, as deep as your plan requires. The hierarchy is shared
 
 - **Create a subtask** — Hover over a task name in the Gantt task list and click the **\+** button that appears, or select the task and press **⌘\+A**.
 - **Indent or outdent with the keyboard** — In the Gantt view, select a task and press **Tab** to make it a subtask of the task above it, or **Shift\+Tab** to move it up one level.
-- **Move a task under a different parent** — Hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same category.
+- **Move a task under a different parent** — Hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same planning.
 - **Expand and collapse** — Click the chevron next to a parent task. **⌘\+Click** the chevron to expand or collapse all.
 
 A parent task rolls up its children: it shows the period spanned by its subtasks and their total **Planned in hours**, read-only.
@@ -134,8 +134,8 @@ A parent task rolls up its children: it shows the period spanned by its subtasks
 Open a task's detail panel to set its schedule:
 
 - **Dates** — Pick the start and end dates with the date-range picker. A task runs over whole days by default; uncheck **All day** to give it exact start and end times instead — see [giving a task hours](/help/documentation/gantt#giving-a-task-hours).
-- **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, Beebole shows the maximum the owner's schedule allows between the task's dates (**Max value per schedule**).
-- **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the _unlocked_ edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, a warning pill offers two one-click fixes: **Click to extend the unlocked date to fit planned time** or **Click to reduce planned time to capacity**.
+- **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, a pill shows the capacity the owner's schedule leaves between the task's dates; hover it to read the planned time against that capacity.
+- **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the _unlocked_ edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, the pill turns red and grows two arrows: the down arrow cuts the planned time to what the period holds (its tooltip names both figures, as in **Reduce 12h to 8h**), and the up arrow moves the unlocked edge out to fit the planned time (its tooltip names the new date, as in **Change end date to 12 Mar 2026**).
 
 If the owner already has another task with planned time in the same period, the panel shows an **Overlapping tasks causing overload** warning so you can rebalance.
 
@@ -166,7 +166,7 @@ You can also let task statuses drive time records automatically with **Auto Time
 Beyond scheduling, each task carries:
 
 - **Description** — A rich-text panel for context, acceptance criteria, links, and file attachments, with @mentions to reference teammates. See [task descriptions](/help/documentation/kanban#task-descriptions) for the editor's features.
-- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** \> **Custom Field** and make them visible for tasks — visibility can even be limited to specific plannings. See [Custom fields](/help/documentation/custom-fields).
+- **Custom fields** — Organization-defined fields (text, numbers, dates, URLs, booleans) that appear in the task detail panel. Define them in **Settings** \> **Custom Fields** and make them visible for tasks — visibility can even be limited to specific plannings. See [Custom fields](/help/documentation/custom-fields).
 - **Tags** — Label tasks with [tags](/help/documentation/tags) to group and filter them across categories, and to report on them by team, client, or any dimension you define.
 
 ---
@@ -186,7 +186,7 @@ Each task has a **⋯** action menu — hover over its row in the Gantt view or 
 
 ## Viewing tasks your way
 
-The **Planning** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Gantt chart**, **Kanban**, or **Staffing**; each view remembers its own settings (columns, grouping, period, or card fields). Use the **Filters** button to narrow any view by task, status, owner, potential owner, project, or tags — the button shows the active filter count, and toggling it off keeps the filters for later.
+The **Planning** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Gantt chart**, **Kanban**, **Staffing**, or **List**; each view remembers its own settings (columns, grouping, period, sort, or card fields). Use the **Filters** button to narrow any view by task, status, owner, potential owner, project, or tags — the button shows the active filter count, and toggling it off keeps the filters for later.
 
 <CardGroup cols={2}>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
@@ -199,6 +199,10 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
 
   <Card title="Staffing" icon="users" href="/help/documentation/staffing">
     Book people onto projects on a per-person timeline and balance workload against capacity.
+  </Card>
+
+  <Card title="List view" icon="table-list" href="/help/documentation/task-list">
+    Sort the same tasks as a table, edit their fields in place, and change many at once.
   </Card>
 </CardGroup>
 
