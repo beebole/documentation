@@ -62,8 +62,8 @@ A booking doesn't need a task name — the fastest way to staff someone is to bo
   <Step title="Drag on the timeline">
     In a person's row, click and drag across the dates you want to book — or just click an empty cell to create a booking spanning that one period. The booking editor opens right next to the bar.
   </Step>
-  <Step title="Pick the project">
-    Select the project the person is booked on — the booking saves as soon as you pick it, with no confirmation step. When grouping by project, you pick the person here instead. The editor stays open on the new booking so you can adjust it right away, and you can change or remove the assigned person later from the same editor.
+  <Step title="Pick the person and the project">
+    The editor shows both sides of the booking: the person (**Select the owner**) and the project. The row you dragged in fills one side for you — a person's row prefills the person, a project row prefills the project — and the booking saves as soon as you pick the other, with no confirmation step. The editor then stays open on the new booking and every further change applies immediately: remove the person or project badge to pick another one, whatever the rows are grouped by.
   </Step>
   <Step title="Set the allocation">
     Enter the allocation in whichever way you think about it: **%** for a percentage of capacity, **h/day** for hours per working day, or **Total** for planned hours over the whole booking (100% by default). Press **Enter** to confirm.
@@ -88,12 +88,12 @@ From the booking's editor you can also **Split** it in two at a chosen date — 
 
 ## Moving and resizing bookings
 
-- **Move** — Drag a bar left or right to shift its dates; the duration is preserved and other bookings restack live as you drag.
+- **Move** — Drag a bar left or right to shift its dates. The bar moves by whole days — or by whole weeks when the timeline is set to **Infinite by week** — so it keeps its exact length and the weekday it starts on instead of snapping to the grid; other bookings restack live as you drag.
 - **Resize** — Drag the left or right edge to change the start or end date.
 - **Move between rows** — Drag a bar vertically: drop it on another person's row to reassign the booking, on another project's row to move it to that project, or on the **Unassigned** row to clear its owner. A dashed ghost previews where the bar will land, and the whole move is one undo step. The booking's working time reflows over the destination person's own schedule and absences.
 - **Work on several bookings at once** — Select multiple bars and drag them together to reschedule the group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount — all undoable as a single step. ⌘-dragged copies land on the row you release them on, each on its own row rather than stacked on the row you dropped on. Press **Delete** (or **Backspace**) to remove every selected booking at once: one confirmation, and one undo for the whole batch.
 - **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
-- **Reassign** — Click a bar to open its editor and change the project, person, or allocation. Changes are saved automatically.
+- **Reassign** — Click a bar to open its editor and change the person, the project, or the allocation. Both the person and the project can be changed on any booking, whether the rows are people or projects. Changes are saved automatically.
 
 ### Moving a booking inside its day
 
@@ -122,6 +122,8 @@ Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
 ## The Unassigned row
 
 Planned work nobody has picked up yet sits in the **Unassigned** row. Drag a booking onto it to clear the owner, or drag one out of it onto a person to assign the work. The row can be collapsed out of the way — its tooltip reads **Show these bookings** or **Hide these bookings** — and ⌘-dragging an unassigned booking drops the copy straight onto the row you release it on.
+
+Click the pin icon on the row to keep it under the timeline header while you scroll — its tooltip reads **Keep this row under the header** — so its bars stay within reach when the person you want to drop them on sits further down the list. Click it again (**Stop keeping this row under the header**) to let the row scroll with the others. Like the collapsed state, the pin is remembered per view.
 
 The number next to the row label counts the unassigned bookings that fall inside the period you are looking at, not every unassigned booking on record — so it tells you how much work still needs an owner right now.
 
@@ -181,6 +183,24 @@ Use the free capacity to decide who takes the next booking — the gaps in the t
 ## Filtering
 
 Use the **Filters** button to narrow the view — by task, status, owner, assigned person, project, or [tags](/help/documentation/tags) on people, projects, and tasks, with the active filter count shown on the button. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible. The filters can be switched off and back on without losing them — the button toggles them rather than clearing them.
+
+---
+
+## Keyboard navigation
+
+The Staffing view has a keyboard cursor that moves from bar to bar, so you can review and open bookings without the mouse:
+
+- **Arrow Down** / **Arrow Up** — Move to the closest bar in the lane below or above within the same row, then on to the next or previous row. Rows without bookings, and the **Unassigned** row while it is collapsed, are skipped.
+- **Arrow Right** / **Arrow Left** — Move to the next or previous bar in the same lane; when the lane has none, to the nearest bar that lies entirely after (or before) the current one in any lane of the row.
+- **Enter** — Open the task panel for the bar under the cursor; press it again on the same bar to close it. While the panel is open, it follows the cursor as you move.
+- **Shift+arrow** — Select the bars in the lane between the cursor and the bar you land on, like Shift+Click.
+- **⌘+arrow** (Ctrl on Windows/Linux) — Add the bar you land on to the selection, or remove it, like ⌘+Click.
+
+With no bar selected yet, the first arrow key lands on the first row's bar closest to today, and the timeline scrolls to keep the cursor in sight. A selection built with the keyboard behaves like any other: drag it, ⌘-drag it, or press **Delete** to act on every selected booking at once. The Gantt and List views add tree keys for expanding, collapsing, and indenting tasks — see [Keyboard navigation in the Gantt chart](/help/documentation/gantt#keyboard-navigation).
+
+<Info>
+  **Enter** is left to any field that has focus. If the keys do not respond, click an empty spot on the timeline first.
+</Info>
 
 ---
 

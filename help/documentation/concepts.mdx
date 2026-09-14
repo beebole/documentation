@@ -146,6 +146,30 @@ Beebole lets you undo and redo most changes. Press **⌘\+Z** (Ctrl\+Z on Window
 
 Bulk changes are grouped into a single operation, so one undo reverts the whole change rather than one piece at a time.
 
+### Delete protection
+
+Beebole refuses to delete an item that something else still depends on. Instead of deleting it, Beebole shows a notification that explains what blocks the deletion and, in most cases, names the blocking item. Click the name to jump straight to the panel where the reference lives, remove it there, and try the deletion again.
+
+| You try to delete | Blocked when | Clicking the name opens |
+| --- | --- | --- |
+| A project, task, person, or time off type | Time records are logged against it | The person's timesheet, on the date of one of those records |
+| A time off type | Time-off allowances still use it | The **Absence allowances** panel of the record that holds the allowance |
+| An expense type | Expense records use it | The **Expenses** panel of the person who logged them |
+| A project | A task is linked to it | The task's **Projects** panel |
+| A person | They own tasks | The task's **Owner** panel |
+| A person | They manage other people | The panel of a person they manage, where the manager is set |
+| A person | Approval events are recorded for them | The person's panel |
+| A work schedule | It is assigned to a person, tag, or the organization | That record's **Work schedule** panel |
+| A project or task category | It is selected in timesheet and planning settings | The **Timesheet and Planning Settings** panel of the person, tag, project, or organization using it |
+| A project or task category | It still contains items | One of those items |
+| A task status | Tasks still use it | The task's **Task details** panel |
+
+Some refusals show a message only, because the fix is in the item itself rather than somewhere else in the account. A custom field that already holds values shows **This custom field cannot be deleted because values have been entered for it. Archive it instead.** A report folder that still contains reports shows **This folder cannot be deleted because it still contains reports. Move or delete them first.** The same applies to a tag that is still assigned, a role that is still assigned to people, a project that still has subprojects, and the last remaining task category or status.
+
+<Info>
+  When an item has history you want to keep, archive it instead of deleting it. Archived items disappear from the active lists, but every record and reference that points to them stays intact.
+</Info>
+
 ### Duplication
 
 Most records in Beebole support a **Duplicate** action that creates a copy with the same configuration as the original. Use it to bootstrap a new project from a template or set up a person record similar to an existing one.
@@ -180,6 +204,14 @@ The basic flow:
 <Info>
   You can only copy values set directly on a record. Inherited values can't be copied — copy from the record where the value is actually defined.
 </Info>
+
+### Attribute links
+
+When you open a person, project, tag, or task, the detail panel lists its attributes — billing rates, work schedule, custom fields, and so on. The URL follows the attribute you are reading: as you scroll, the address updates to the attribute whose header sits at the top of the panel, and clicking inside an attribute selects it too. Copy the URL at any moment and the link opens the same record with that attribute at the top of the panel.
+
+- **Switch records without losing your place.** When you select another person, project, tag, or task while an attribute is in the URL, the panel opens the same attribute and scrolls it into view, so you can compare one setting across several records.
+- **Links stay put while the panel loads.** An attribute opened from a link is held at the top of the panel while the rest of the content finishes loading, so sections that load later cannot push it out of view. It moves only once you scroll, click, or type inside the panel.
+- **Collapsing an attribute clears it from the URL.** The link then opens the record without a specific attribute selected.
 
 ### Color coding
 
@@ -216,23 +248,6 @@ When a new version of Beebole is deployed, a banner labeled **Update available**
     Track time on your projects and submit timesheets.
   </Card>
 </CardGroup>
-
----
-
-<Steps>
-  <Step title="Open the source entity">
-    Open the entity whose configuration you want to copy (for example, a project with the right billing rate setup).
-  </Step>
-  <Step title="Copy the attribute">
-    Open the source's action menu and select **Copy**. Beebole stores the attribute configuration on the clipboard until you paste it.
-  </Step>
-  <Step title="Open the target entity">
-    Open the destination entity (a different project, person, or tag — whichever supports the same attribute).
-  </Step>
-  <Step title="Paste the attribute">
-    Open the target's action menu and select **Paste**. The attribute configuration is applied to the target without affecting any other settings.
-  </Step>
-</Steps>
 
 ## Frequently asked questions
 

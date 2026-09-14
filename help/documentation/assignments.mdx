@@ -47,7 +47,7 @@ The item-side and person-side panels edit the same underlying links — pick whi
 | **Show all time off** | Whether every time off type is available to everyone by default |
 | **Show all schedules** | Whether every work schedule is available to everyone by default |
 | **Show all expenses** | Whether every expense type is available to everyone by default |
-| **Show all tasks** | Whether every task is available to everyone by default |
+| **Show all tasks** | Checked, every task is visible to anyone whose role covers **Assigned tasks**. Unchecked, people see only the tasks assigned to them, owned by them, or managed by them. Assigning a task always grants it, in both modes |
 | **Show all custom fields** | Whether every custom field is available to everyone by default |
 
 When an option is disabled here, items of that kind are hidden from everyone until you grant access individually — per item under **Who has access?**, or per person or tag under **Show or hide**.
@@ -88,9 +88,19 @@ On a project, the panel also starts with a toggle that overrides the account def
 
 The same links can be managed from the people side. Click **People** (or **Tags**) in the sidebar, select a person or tag, and open the **Show or hide** panel. For a person or tag it covers time off, expenses, work schedules, tasks, projects, secondary projects, and custom fields. A project's **Show or hide** panel covers secondary projects, expenses, and custom fields.
 
-Each section follows the account default, just like the item-side panel: **Show projects** lists the projects added for this person, while **Hide projects** lists exclusions when all projects are visible by default. The same pattern applies to **Show time off** / **Hide time off**, **Show expenses** / **Hide expenses**, **Show schedules** / **Hide schedules**, **Show tasks** / **Hide tasks**, and custom fields.
+Each section follows the account default, just like the item-side panel: **Show projects** lists the projects added for this person, while **Hide projects** lists exclusions when all projects are visible by default. The same pattern applies to **Show time off** / **Hide time off**, **Show expenses** / **Hide expenses**, **Show schedules** / **Hide schedules**, and custom fields. Tasks are the exception: because assigning a task always grants it, the section is always **Show tasks**, whether or not **Show all tasks** is checked.
 
 Use this direction when onboarding one person onto several projects at once; use **Who has access?** when staffing one project with several people.
+
+### Grant a whole category at once
+
+In the **Show tasks**, **Show projects**, and **Show secondary project** sections of a person or tag, the selector lists each category as a row of its own. Click the category row to grant the whole category in one go; the chevron next to it still expands the category when you want a single item instead. A project's **Show or hide** panel offers the same for secondary projects.
+
+A category granted as a whole stands for every task, project, or secondary project inside it, including anything you add to that category later. It appears as one badge in the category's color, and its members disappear from the selector since they are already covered. Remove the badge to take the whole category back.
+
+For example, pick the **Client** category under **Show projects** to put every client project on a person's timesheet without listing them one by one, or pick a planning under **Show tasks** to make all of its tasks available to that person.
+
+The same one-click pick works in a person's **Manages** panel: adding a project category, a planning, or a tag category such as **Department** makes the person manager of everything inside it, now and in the future. See [People](/help/documentation/people) for the panel itself. Categories are created and renamed from the category menu, described in [Projects](/help/documentation/projects#managing-categories-and-level-names).
 
 ## Task assignment
 
@@ -162,7 +172,7 @@ Only those five now see the project when they log time. Everyone else's project 
     In Beebole's **Account Settings**, under **Show or hide by default**. Each option — projects, secondary projects, time off, expenses, work schedules, tasks, and custom fields — decides whether that kind of item is available to everyone or hidden until granted.
   </Accordion>
 
-  <Accordion title="Do I need to save after changing access settings?">
-    No. Beebole saves changes in **Who has access?**, **Show or hide**, and **Show or hide by default** automatically as you add or remove people, tags, and options.
+  <Accordion title="Can I give someone access to a whole category of projects or tasks?">
+    Yes. In the person's or tag's **Show or hide** panel, open the **Show projects** or **Show tasks** selector and click the category row itself, for example **Client**, instead of a single item. Everything in that category is granted, including projects or tasks added later, and the category shows as one badge you can remove at any time.
   </Accordion>
 </AccordionGroup>

@@ -53,12 +53,16 @@ To export, you simply select a period: Beebole takes all time entries for that p
     Go to **Settings** \> **Integrations** and select **QuickBooks** from the list.
   </Step>
   <Step title="Select a period and export">
-    Under **Select period to export**, choose the period you want to export and click **Export** — that's the only input needed. Beebole fetches the time entries for that period and automatically creates the corresponding time activities in QuickBooks.
+    Under **Select period to export**, choose the period you want to export and click **Export** — that's the only input needed. Before sending anything, Beebole syncs your QuickBooks structure (customers, items, and employees) so that entries are matched against up-to-date data. It then fetches the time entries for that period and automatically creates the corresponding time activities in QuickBooks.
   </Step>
   <Step title="Check the result">
     Beebole shows an **Entries successfully exported** count, and an expandable **Entries not exported** list if any entry failed. To confirm the export, you can also open QuickBooks and verify the time activities were created.
   </Step>
 </Steps>
+
+<Info>
+  If the structure sync that runs before the export reports errors, the export does not start. Beebole shows **Export stopped: QuickBooks sync had errors** with the hint **Resolve the sync errors below, then try exporting again**, and lists the failing items under **Entries not synced**. Fix those items, then click **Export** again.
+</Info>
 
 <Tip>
   Export after the approval cycle is complete for a given period, so the hours sent to QuickBooks are final.
@@ -70,19 +74,23 @@ To export, you simply select a period: Beebole takes all time entries for that p
 
 | Direction | Data | Result |
 | --- | --- | --- |
-| QuickBooks → Beebole (at setup) | **Customers** and **Items** | Created as projects in Beebole |
-| QuickBooks → Beebole (at setup) | **Employees** | Created as Beebole people with the default role you select |
+| QuickBooks → Beebole (at setup, then in real time and on each sync) | **Customers** and **Items** | Created as projects in Beebole; later additions and renames in QuickBooks are reflected automatically |
+| QuickBooks → Beebole (at setup, then on each sync) | **Employees** | Matched to an existing Beebole person by email address, or created as a new person with the **Default role for imported employees**. Employees without an email address in QuickBooks are skipped |
 | Beebole → QuickBooks (on export) | **Time entries** | Created as time activities in QuickBooks, carrying the entry's billing rate, billable or non-billable status, and its comment as the activity's description |
 
 <Info>
-  Because Beebole imports the QuickBooks customers, items, and employees at setup, exported time activities stay linked to the right customers, items, and employees automatically — even when the matching customer or item sits at a different level of your Beebole project hierarchy. Expenses are not synced in either direction — they are handled in Beebole only.
+  Because Beebole imports the QuickBooks customers, items, and employees at setup and refreshes them on every sync, exported time activities stay linked to the right customers, items, and employees automatically — even when the matching customer or item sits at a different level of your Beebole project hierarchy. Expenses are not synced in either direction — they are handled in Beebole only.
 </Info>
 
 ---
 
-## Keeping customers and items in sync
+## Keeping customers, items, and employees in sync
 
-While the integration is enabled, customers and items created or renamed in QuickBooks are reflected in Beebole automatically. To pull the latest changes on demand, go to **Settings** \> **Integrations** \> **QuickBooks** and click **Manual sync** under **Manually sync QuickBooks customers and items**.
+While the integration is enabled, customers and items created or renamed in QuickBooks are reflected in Beebole automatically. To pull the latest changes on demand, go to **Settings** \> **Integrations** \> **QuickBooks** and click **Manual sync** under **Manually sync QuickBooks customers and items**. The same sync also runs automatically each time you click **Export**, right before the time entries are sent.
+
+Each sync also imports employees added in QuickBooks since the integration was enabled. For every new QuickBooks employee with an email address, Beebole looks for an existing person with that same email and links the two. If no one matches, Beebole creates a new person with the employee's name and email and assigns the **Default role for imported employees** you selected during setup. Employees without an email address in QuickBooks are not imported, and if no default role is set, the sync reports **No default role configured to import new employees** and skips the employee import.
+
+After a sync, Beebole shows the counts of items **Created**, **Archived**, **Unarchived**, **Deleted**, and **Renamed**. Anything that could not be synced appears under **Entries not synced**, for example a **Failed to sync employee** message naming the person who could not be created.
 
 ---
 
@@ -120,7 +128,7 @@ Disconnecting from the QuickBooks side works too: if you remove Beebole from you
 
 <AccordionGroup>
   <Accordion title="Is the QuickBooks integration real-time?">
-    Customers and services are synced automatically and kept up to date in real time. Time activities are exported manually — you choose the period and trigger the export when ready, giving you full control over what gets sent to QuickBooks.
+    Customers and services are synced automatically and kept up to date in real time. Employees added in QuickBooks are imported when a sync runs — when you click **Manual sync**, or automatically before each export — not in real time. Time activities are exported manually — you choose the period and trigger the export when ready, giving you full control over what gets sent to QuickBooks.
   </Accordion>
 
   <Accordion title="Can I export the same date range twice?">
@@ -132,7 +140,7 @@ Disconnecting from the QuickBooks side works too: if you remove Beebole from you
   </Accordion>
 
   <Accordion title="How do I know if an export succeeded?">
-    After an export, Beebole shows an **Entries successfully exported** count. If any entry failed, an **Entries not exported** list appears that you can expand to see the details. You can also open QuickBooks to verify the time activities were created.
+    After an export, Beebole shows an **Entries successfully exported** count. If any entry failed, an **Entries not exported** list appears that you can expand to see the details. You can also open QuickBooks to verify the time activities were created. If you see **Export stopped: QuickBooks sync had errors** instead, nothing was exported: the structure sync that runs first found problems, listed under **Entries not synced**. Resolve them and export again.
   </Accordion>
 
   <Accordion title="Are expenses exported to QuickBooks?">

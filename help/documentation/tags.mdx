@@ -87,15 +87,23 @@ You can assign tags from either side of the relationship.
 
 <Tabs>
   <Tab title="From the person, project, or task">
-    Open the person's, project's, or task's details — for example, click **People** in the sidebar, then click the person. Click the **Tags** panel to open it, then pick a tag in the **Add a tag here** field. To remove a tag, hover over its badge and click **Remove tag**. Hovering over a tag badge also reveals a calendar button (**Pick a start date**) to set the date the assignment takes effect.
+    Open the person's, project's, or task's details — for example, click **People** in the sidebar, then click the person. Click the **Tags** panel to open it, then pick a tag in the **Add a tag here** field. To remove a tag, hover over its badge and click the **Unassign** button that appears on it. Hovering over a tag badge also reveals a calendar button (**Pick a start date**) to set the date the assignment takes effect.
   </Tab>
   <Tab title="From the tag">
     Open the tag's details and click the **Who or what has been tagged?** panel. It has **People**, **Projects**, and **Tasks** sections — use the **Select person**, **Select project**, and **Select task** fields to add entries, and remove them from the same lists.
   </Tab>
 </Tabs>
 
+### Inherited tags and exclusions
+
+A tag applied to a parent project or task is inherited by every item below it. In the **Tags** panel of a subproject or subtask, an inherited tag shows an indicator next to its badge that points to the item where the tag is defined. It has no calendar button, because the start date belongs to the parent's assignment.
+
+You can take an inherited tag off one specific item without touching the parent. Hover over the badge and click **Unassign**. Beebole records an exclusion on that item and keeps the badge in place with a red hatched background, so you can see that the tag is off here while the parent still carries it. The same excluded badge appears everywhere the item's tags are listed, including the **Who or what has been tagged?** panel on the tag's side.
+
+To give the tag back, hover over the excluded badge and click **Unassign** again. This removes the exclusion and the item inherits the tag as before.
+
 <Info>
-  Tags applied to a parent project are inherited by its subprojects. An inherited tag shows where it was defined and can only be removed on the parent.
+  An excluded tag does not count as assigned. Kanban cards, Gantt rows, the task detail sheet, and custom-field matching all ignore it.
 </Info>
 
 ---
@@ -175,8 +183,9 @@ Archived tags are hidden from the list — click **Show Archived** at the top of
     No. Your team can track time in Beebole without any tags. Tags become valuable when you want group-level configuration — schedules, rates, approvals — or reporting by department, team, or location.
   </Accordion>
 
-  <Accordion title="Can I move a tag to a different category?">
-    The **Change parent** control in Beebole moves a tag anywhere within its own category, together with its sub-tags. To use a tag in another category, create it there and re-assign the tagged people or projects.
+
+  <Accordion title="Can I remove an inherited tag from just one subproject or subtask?">
+    Yes. Open the item's **Tags** panel, hover over the inherited tag's badge, and click **Unassign**. Beebole stores an exclusion on that item and shows the badge with a red hatched background; the parent and its other children keep the tag. Click **Unassign** on the excluded badge to give the tag back.
   </Accordion>
 
   <Accordion title="How do I create many tags at once?">
