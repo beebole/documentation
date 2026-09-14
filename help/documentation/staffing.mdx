@@ -107,13 +107,7 @@ Dependency links between bookings are drawn directly on the staffing timeline, c
 
 ### Bookings managed in the Gantt
 
-Some tasks have a schedule the Staffing view must not change. When you try to edit one, Beebole shows **Managed in the Gantt** with the reason:
-
-| Reason | Message |
-| --- | --- |
-| Recurring task | This is a recurring task, so its schedule is managed in the Gantt. |
-| Part of a recurring series | This task belongs to a recurring series, so its schedule is managed in the Gantt. |
-| Has subtasks | This task has subtasks, so its schedule is managed in the Gantt. |
+A task that has subtasks has a schedule the Staffing view must not change: its dates come from its subtasks. When you try to edit one, Beebole shows **Managed in the Gantt** with the message "This task has subtasks, so its schedule is managed in the Gantt."
 
 Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
 
@@ -193,8 +187,8 @@ The Staffing view has a keyboard cursor that moves from bar to bar, so you can r
 - **Arrow Down** / **Arrow Up** — Move to the closest bar in the lane below or above within the same row, then on to the next or previous row. Rows without bookings, and the **Unassigned** row while it is collapsed, are skipped.
 - **Arrow Right** / **Arrow Left** — Move to the next or previous bar in the same lane; when the lane has none, to the nearest bar that lies entirely after (or before) the current one in any lane of the row.
 - **Enter** — Open the task panel for the bar under the cursor; press it again on the same bar to close it. While the panel is open, it follows the cursor as you move.
-- **Shift+arrow** — Select the bars in the lane between the cursor and the bar you land on, like Shift+Click.
-- **⌘+arrow** (Ctrl on Windows/Linux) — Add the bar you land on to the selection, or remove it, like ⌘+Click.
+- **Shift+Arrow** — Select the bars in the lane between the cursor and the bar you land on, like **Shift+Click**.
+- **⌘+Arrow** (Ctrl on Windows and Linux) — Add the bar you land on to the selection, or remove it, like **⌘+Click**.
 
 With no bar selected yet, the first arrow key lands on the first row's bar closest to today, and the timeline scrolls to keep the cursor in sight. A selection built with the keyboard behaves like any other: drag it, ⌘-drag it, or press **Delete** to act on every selected booking at once. The Gantt and List views add tree keys for expanding, collapsing, and indenting tasks — see [Keyboard navigation in the Gantt chart](/help/documentation/gantt#keyboard-navigation).
 
@@ -211,7 +205,7 @@ With no bar selected yet, the first arrow key lands on the first row's bar close
     What tasks are in Beebole — creating, assigning, and tracking time on them.
   </Card>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
-    Schedule tasks on a timeline, sequence them with dependencies, and manage recurring tasks.
+    Schedule tasks on a timeline, sequence them with dependencies, and edit every task field in place.
   </Card>
   <Card title="List view" icon="table-list" href="/help/documentation/task-list">
     The same tasks as a sortable table, with in-place editing and mass edits.
@@ -237,7 +231,7 @@ With no bar selected yet, the first arrow key lands on the first row's bar close
     Capacity comes from the person's work schedule minus their absences, per period. Each booking consumes capacity according to its allocation percentage — a 50% booking on a 40-hour week uses 20 hours.
   </Accordion>
   <Accordion title="Why can't I move a booking in the Staffing view?">
-    The task's schedule is managed in the Gantt. Recurring tasks, tasks in a recurring series, and tasks with subtasks show a **Managed in the Gantt** message — open the Gantt chart to change their dates. Bookings with dependencies can be moved and resized directly in Staffing; their linked bookings follow along.
+    The task's schedule is managed in the Gantt. Tasks with subtasks show a **Managed in the Gantt** message — open the Gantt chart to change their dates. Bookings with dependencies can be moved and resized directly in Staffing; their linked bookings follow along.
   </Accordion>
   <Accordion title="Can I plan further back than the visible timeline?">
     Yes. The Staffing timeline scrolls into the past as well as the future, and dragging a bar to the edge of the screen auto-scrolls so you can drop it beyond the visible range. The **Today** button brings you back to the current date.
