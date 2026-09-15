@@ -24,7 +24,7 @@ Projects describe _what_ your team works on. To group projects and people across
 
 ### Only the lowest level accepts time
 
-Time is always recorded at the bottom of a branch. A project that has active subprojects aggregates their time in reports and cannot be recorded against: the project pickers only offer the lowest level, and an entry that still reaches a parent is refused with _You cannot record time on a project that has sub-projects._ Archived subprojects don't count, so archiving the last subproject of a project hands the parent back as a bookable one.
+Time is always recorded at the bottom of a branch. A project that has active subprojects aggregates their time in reports and cannot be recorded against: the project pickers only offer the lowest level, and an entry that still reaches a parent is refused with _You cannot record time on a project that has subprojects._ Archived subprojects don't count, so archiving the last subproject of a project hands the parent back as a bookable one.
 
 [Tasks](/help/documentation/planning) follow the same rule — a task with subtasks aggregates its children and cannot carry time either.
 
@@ -78,9 +78,18 @@ Click the category name next to the **Projects:** heading to open the category m
 - Switch to another category by clicking its name.
 - Add a category — type a name in the field and click **Add**.
 - Rename a category — hover over it, click the pencil icon, edit the name, and click **Ok**.
+- Change a category's color — click the colored ball in front of its name and pick a color from the palette.
 - Delete a category — hover over it and click the trash icon.
 
 To rename a hierarchy level, expand a project in the list and click the level name shown above its children — the tooltip reads **Click to edit the level name for the whole category**. The new name applies to that level across the whole category.
+
+### Category colors
+
+Every project category has a color of its own. Beebole assigns one automatically when you add a category (existing categories received one too), and shows it as a colored ball in front of the category name in the category menu, on category rows in project selectors, and on the chip of a filter by project category. To change it, open the category menu, click the ball in front of the category, and pick another color from the palette. Task and tag categories work the same way.
+
+### Picking a whole category
+
+Where projects are picked one by one for a person or tag — the **Manages** panel, or the **Show projects** section of the **Show or hide** panel — the selector also offers the category rows themselves. Click a category row to pick the whole category in one click; the chevron next to it still expands the category if you want a single project instead. Once picked, the category appears as a badge in its own color and its projects are no longer offered separately. A category stands for everything inside it, including projects added later: a person given the **Client** category in the **Projects** section of their **Manages** panel manages every client project, now and in the future. Task and tag categories can be picked the same way. For giving access through a category, see [Assignments](/help/documentation/assignments).
 
 ---
 
@@ -147,6 +156,8 @@ The **Who has access?** panel decides who can use the project:
 - **Individually** — add specific people with the **Select person** field.
 - **By tags** — make the project available to everyone in a tag with the **Select tag** field.
 
+What you set here covers the project and every subproject below it. Switching **Acme Corp** to **Unavailable to everyone** applies to all of its subprojects as well, and a person or tag you add to **Acme Corp** can use every subproject under it — you don't need to repeat the setting on each subproject.
+
 See [Assignments](/help/documentation/assignments) for how availability defaults and exceptions work together, and [Roles & permissions](/help/documentation/roles-authorisations) for what each person can see and do.
 
 You can also restrict an expense type to specific projects from the expense type's own **Who has access?** panel — see [Expenses](/help/documentation/expenses).
@@ -203,7 +214,7 @@ Archived projects are hidden from the list — click **Show Archived** at the to
   </Accordion>
 
   <Accordion title="Can I restrict which people track time on a project?">
-    Yes. Open the project's **Who has access?** panel in Beebole to make it unavailable to everyone and then grant access individually or by tags. See [Assignments](/help/documentation/assignments) for the full availability model.
+    Yes. Open the project's **Who has access?** panel in Beebole to make it unavailable to everyone and then grant access individually or by tags. The setting covers the project's subprojects too. See [Assignments](/help/documentation/assignments) for the full availability model.
   </Accordion>
 
   <Accordion title="Can different people have different billing rates on the same project?">

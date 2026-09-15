@@ -78,6 +78,8 @@ A column header carries its own menu:
 
 You can also drag a header sideways to reorder the columns.
 
+If the server refuses to run the review — a column that walks too many levels deep, or a request too heavy to serve — the table keeps the rows it was showing, a message says why, and the refused column is rolled back instead of being saved. The same goes for a refused **Show Archived**, category, or period change.
+
 ### Custom field values as columns
 
 When a [custom field](/help/documentation/custom-fields) applies to the entity you are reviewing, a **Custom field values** branch appears in the picker with those definitions in it. Pick one and its values become a plain column, one value per row, blank where a record holds none. Only the definitions that actually apply to the entity are offered.
@@ -103,7 +105,9 @@ When a [custom field](/help/documentation/custom-fields) applies to the entity y
 
 ## Reading the table
 
-- **Inherited values name their origin.** When a value comes from the organization, a tag, or a parent record rather than the row itself, the cell shows the source next to the value, with the same clickable link the attribute panels use. A value set on the row itself shows nothing.
+- **Rows line up item by item.** When several columns walk the same list — an authorization's name and its targets, for example — the row splits into one line per item, so the third authorization's targets sit beside the third authorization's name however long either wraps. Columns that walk another list, or none, span the whole row and stack their own values as before.
+- **Every other row is banded.** Rows alternate a light background, and the band covers every line of a row that has split.
+- **Inherited values name their origin.** When a value comes from the organization, a tag, or a parent record rather than the row itself, the cell shows the source on its own line right under that value, with the same clickable link the attribute panels use. A value set on the row itself shows nothing.
 - **Stored codes read as words.** Durations, work-schedule day times, colors, absence units, duration formats, weekdays, and permission names render the way the interface shows them, not as raw codes. A rate renders like its panel: the amount on the first line, then its method and start date beneath it — **120,00 EUR**, then **Hourly rate · 1 Jan 2026** — with its split lines below that.
 - **Records are badges.** A cell holding another record shows it as a clickable badge — click it to open that record's panel and edit it in place.
 - **A subtracted value is struck through.** When a rule removes an inherited item instead of adding one, the cell shows it struck through in red, the same way the rest of Beebole marks an exclusion.
@@ -113,7 +117,7 @@ When a [custom field](/help/documentation/custom-fields) applies to the entity y
 
 ## Downloading a review
 
-Hover the review in the list, click the **⋯** action menu, choose **Export**, then a format: **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, or **PDF**. The file carries the columns and rows on screen, plus a header noting the entity, whether archived records were included, and the period when the review has one.
+Hover the review in the list, click the **⋯** action menu, choose **Export**, then a format: **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, or **PDF**. The file carries the columns and rows on screen, plus a header noting the entity, whether archived records were included, and the period when the review has one. A file has no link to carry the origin of an inherited value, so the file spells it out instead: the value is followed by _(inherited from …)_ and the name of its source.
 
 ---
 
@@ -121,36 +125,39 @@ Hover the review in the list, click the **⋯** action menu, choose **Export**, 
 
 When AI features are enabled for your account, a text box sits above the table. Describe the table you want — for example _people with their hourly rate and their tags_ — and click **Build**. Beebole picks the entity, the columns, and the filters, and runs it.
 
-With a review open, the same box refines it: **Update** adds a column, changes a filter, or swaps the entity. Asking about a different entity creates a new review instead of overwriting the one you built. If a request is ambiguous, Beebole asks a question rather than guessing.
+With a review open, the same box refines it: **Update** adds a column, changes a filter, or swaps the entity. Asking about a different entity creates a new review instead of overwriting the one you built.
+
+When you ask for a value no column can hold — _people and their external ID_ on an account with no such field — Beebole builds nothing and tells you in one sentence which value has no column for this entity and, for people, projects, tasks, tags, and time off types, that a [custom field](/help/documentation/custom-fields) could hold it. It never asks which entity or which value you meant. A request that leaves the review exactly as it is reports **Nothing changed.**
 
 ---
 
 ## Changing data in bulk
 
-Click **Modify this data…** to switch the review into update mode. Then describe the change and click **Preview**.
+An open review is in one of two modes, picked with the tabs above the table: **Read your data** for columns, filters, and download, and **Change your data** for a bulk change. Click **Change your data**, describe the change, and click **Preview**.
 
-The change applies to every row the table currently lists, so filter the table first — a command that names a narrower subset comes back with a request to filter instead. What you can ask for:
+The change applies to every row the table currently lists, unless your sentence names the rows it is about: _set Bob Wilson's external ID to abc_ or _archive Alice Martin and Bob Wilson_ reaches those rows alone. A name matches a listed row exactly first, then the first listed name that contains it; a name no row carries stops the preview with **Nothing here is called** followed by the name. A description such as _the German ones_ is not a filter and Beebole never guesses one, so filter the table first, then run the change. What you can ask for:
 
 - Set or clear a value, including a custom field value.
 - Put text around the value each row holds today, such as _prefix their external ID with ext-_.
+- Number the rows with a counter, such as _their external ID as ext-3, then ext-4, and so on_. Beebole writes the prefix, the number, and the suffix to each row in the order the table shows them, one number per row; a row that already holds the number it would get keeps it and the next row gets the next number. Add _for those without one_ to fill only the rows whose field is still empty — the rows already holding a value stay out of the change and are not listed as left out. Prefixes, suffixes, and counters work on free-text fields only.
 - Add or clear a billing rate, a cost rate, a time off allowance, or a public holiday — including a percentage change on the rate each row holds.
 - Link or unlink a related record, such as a work schedule, a tag, or a role.
 - Archive, unarchive, or delete the listed records, or create one new record.
 
 <Steps>
   <Step title="Preview the change">
-    Beebole replaces the table with a before/after view: the changed column shows **old → new**, records to be created appear as new rows, and records to be deleted are struck through. A one-line summary and the number of changes sit next to the buttons.
+    Beebole replaces the table with a before/after view: the changed column shows **old → new**, records to be created appear as new rows, and records to be deleted are struck through. A one-line summary and the number of changes sit next to the buttons. A sentence that no listed field can carry gets an explanation instead, or **That change cannot be made on this list.**; one that leaves every row as it is reads **Nothing would change.**
   </Step>
   <Step title="Check what was left out">
     Rows Beebole will not touch are listed after **Left out:** with a reason — _inherited from_ a tag or the organization, _nothing to remove_, _no current value to change_, or _the field does not apply_.
   </Step>
   <Step title="Refine or apply">
-    Type another sentence and click **Update preview** to adjust, **Cancel** to drop the whole thing, or **Apply** to run it. Rows tick off one by one as they go through, and a row that fails shows its error without stopping the rest.
+    Type another sentence and click **Update preview** to adjust, **Cancel** or **Read your data** to drop the whole thing, or **Apply** to run it. Rows tick off one by one as they go through, and a row that fails shows its error without stopping the rest.
   </Step>
 </Steps>
 
 <Warning>
-  **Undo the last change** reverses the bulk action you just applied, and only that one. It is held in memory, so reloading the page loses it, and deleted records cannot be brought back at all — recreating one gives it a new identity and no reference to the old one survives.
+  **Undo the last change**, at the end of the mode tabs while you read the data, reverses the bulk action you just applied, and only that one. It is held in memory, so reloading the page loses it, and deleted records cannot be brought back at all — recreating one gives it a new identity and no reference to the old one survives.
 </Warning>
 
 <Info>
@@ -161,7 +168,7 @@ The change applies to every row the table currently lists, so filter the table f
 
 ## What reaches the AI model
 
-The plain-language builder and update mode follow the same privacy stance as the rest of [Beebole AI](/help/documentation/ai#what-reaches-the-model): only definitions reach the model. It receives your sentence, the entity being reviewed, and the vocabulary of that entity — the labels and paths of its fields, plus the allowed values of a field that has a closed set. It never sees a value from your table and never names one of your records: Beebole turns the sentence into an abstract instruction, and your browser computes the actual before and after values.
+The plain-language builder and **Change your data** follow the same privacy stance as the rest of [Beebole AI](/help/documentation/ai#what-reaches-the-model): only definitions reach the model. It receives your sentence, the entity being reviewed, and the vocabulary of that entity — the labels and paths of its fields, plus the allowed values of a field that has a closed set. It never sees a value from your table: Beebole turns the sentence into an abstract instruction, and your browser computes the actual before and after values. The one thing about your records it learns is what you typed yourself — when your sentence contains the name of a listed row, Beebole confirms to the model that this name is one of the listed records, so it does not doubt it. Nothing you did not type reaches it.
 
 ---
 
@@ -205,6 +212,6 @@ The plain-language builder and update mode follow the same privacy stance as the
   </Accordion>
 
   <Accordion title="Why did some rows get left out of my bulk change?">
-    Beebole lists them after **Left out:** with the reason. The common ones are a value inherited from a tag or the organization (change it on the tag instead), a row that already holds the value you asked for, a row with nothing to remove, and a custom field that does not apply to that record.
+    Beebole lists them after **Left out:** with the reason. The common ones are a value inherited from a tag or the organization (change it on the tag instead), a row that already holds the value you asked for, a row with nothing to remove, and a custom field that does not apply to that record. Rows your sentence did not name, or rows already holding a value when you asked for _those without one_, are simply out of the change and are not listed.
   </Accordion>
 </AccordionGroup>

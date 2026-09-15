@@ -93,3 +93,5 @@ Use this table to map app change keywords to the documentation pages they likely
 | forecast card, planned forecast, undo suggestion, retarget suggestion | `help/documentation/ai.mdx` |
 | list view, task list, table view, sortable tasks, spreadsheet view | `help/documentation/task-list.mdx` |
 | master data, master data review, bulk update, configuration review, review master data | `help/documentation/master-data.mdx` |
+| delete blocked, cannot be deleted, still in use, referenced, delete protection | `help/documentation/concepts.mdx` |
+| attribute link, deep link, panel URL, URL follows, share a link to an attribute | `help/documentation/concepts.mdx` |

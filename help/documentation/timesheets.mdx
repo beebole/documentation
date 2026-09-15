@@ -61,7 +61,7 @@ Hover over a cell and click the info icon that appears in its corner to open the
 | **Time spent** | The entry's duration. |
 | **Start time** and **End time** | When you started and stopped, if your administrator enabled start and end times. The duration is calculated for you. |
 | **Add a note to your time entry** | A free-text note, visible to approvers and in reports. A small text icon marks cells that carry a note. |
-| **Non-billable** | Marks this entry as non-billable, regardless of the project's [billing rates](/help/documentation/billing). |
+| **Non-billable** | Marks this entry as non-billable, regardless of the project's [billing rates](/help/documentation/billing). An administrator can remove this checkbox with the **Hide the non-billable option** restriction in [Timesheet settings](/help/documentation/timesheetSettings#restrictions). |
 | **Work from home** | Flags the entry as remote work. |
 | Custom fields | Any [custom fields](/help/documentation/custom-fields) your administrator defined for time entries. |
 
@@ -108,7 +108,7 @@ When your administrator has enabled the timer, each row shows a timer button for
 
 - **On a calendar entry** — Hover an entry on today for a play/pause button. The entry being recorded is marked with a pulsing red dot and its duration ticks up live, in place.
 - **On a favorite chip** — Each chip in the [favorites bar](#favorites) carries its own play/pause button, so a frequent project or task starts tracking in one click.
-- **On a suggestion** — The play button on today's [suggested entries](/help/documentation/ai#suggested-time-entries) accepts the suggestion and keeps the clock running on it, in a single undoable step.
+- **On a suggestion** — The play button on today's [suggested entries](/help/documentation/ai#suggested-time-entries) starts the clock on the suggested project or task. Without start and end times, it also accepts the suggestion in the same undoable step; when **Record start and end times** is on, the tracked time is the entry and the suggestion shrinks as that time covers it.
 
 <Steps>
   <Step title="Start the timer">

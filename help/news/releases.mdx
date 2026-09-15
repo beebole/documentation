@@ -10,8 +10,8 @@ og:description: "New features, improvements, and changes to Beebole, updated mon
 og:type: "website"
 ---
 
-<Update label="September 2026" tags={["Planning","Timesheet","Reports","Settings","AI"]}>
-  September adds a **List** view for tasks, lets you run several timers at once, approves a timesheet from a plain email reply, and opens the **Master data review** screen to every administrator.
+<Update label="September 2026" tags={["Planning","Timesheet","Reports","Settings","Integrations","AI"]}>
+  September adds a **List** view for tasks, drives every task view from the keyboard, lets you run several timers at once, approves a timesheet from a plain email reply, opens the **Master data review** screen to every administrator, and lets managers and assignments cover a whole category at once.
 
   ### Planning & staffing
 
@@ -21,6 +21,10 @@ og:type: "website"
   - Moving a task that has dependants reschedules them against their owners' real working calendars, and dragging a task keeps its **Planned** hours intact — if the owner's calendar can't absorb the move, the task stays put instead of jumping to a far-off date.
   - Month boundaries are marked with a line and a label across the Gantt and Staffing timelines, and clicking a timeline header cell zooms one level into that period.
   - On [Staffing](/help/documentation/staffing), a booking that covers part of a day is dragged on that day's clock: the hours follow the pointer, snap to the quarter hour, and step over breaks. Once the pointer leaves the cell, the booking moves by whole days.
+  - Drive every task view from the keyboard: arrow keys move a cursor through the [Gantt](/help/documentation/gantt), [List](/help/documentation/task-list), [Kanban](/help/documentation/kanban), and [Staffing](/help/documentation/staffing) views, **Enter** opens or closes the task panel (which follows the cursor), Shift or ⌘ with an arrow extends a selection, and in the tree views Right and Left expand and collapse while Tab and Shift+Tab indent and outdent the task.
+  - On [Staffing](/help/documentation/staffing), pin the **Unassigned** row under the header so its bars stay within reach while you scroll down to the right person. The booking editor now lets you set both the person and the activity on any booking, and dragging a bar sideways keeps its exact length and starting weekday (whole weeks at week precision).
+  - The **Potential owners** column in the Gantt has separate buttons to add a person or a tag, and you can remove a person, tag, or project straight from a task row by hovering its badge and clicking the X, without opening the edit popup.
+  - **Planned** figures convert to days using each person's own working calendar, so planned hours, bars, tooltips, the workload heatmap, and Staffing capacity all agree instead of assuming an 8-hour day.
 
   ### Timesheets
 
@@ -30,6 +34,8 @@ og:type: "website"
   - Time can no longer be logged on a project that has subprojects: parent projects aggregate their children and only the lowest level accepts entries, the same rule that already applied to parent tasks.
   - A period whose last day falls on or before the [lock date](/help/documentation/timesheetSettings) can no longer be submitted for approval, with a clear "This period is locked" message.
   - Automatic submission now submits only the single period whose deadline has passed, and never an empty one — so approvers stop receiving blank weeks.
+  - [Suggestions](/help/documentation/ai) on future days are now actionable when your settings allow logging ahead: accept, edit, or dismiss a forecast card instead of only looking at it, and the quick lines in the add-time popup look 30 days ahead too. In start/end mode, the play button on a suggestion now simply starts and stops the timer on that task or project, and the draft shrinks as the tracked time covers it.
+  - "Today" is now identified correctly for people in time zones west of UTC: the timesheet header, the calendar "now" line, and the Gantt today line all land on the right day.
 
   ### Approvals & notifications
 
@@ -44,15 +50,25 @@ og:type: "website"
   - The [AI report builder](/help/documentation/ai) speaks your organization's vocabulary: ask for hours "by client" or "per cost center" and it groups on exactly that level of your project or task hierarchy. Custom field values work as a grouping too, and a request it can't map — such as grouping by a tag-based structure — comes back as a question instead of a wrong report.
   - Project filters (by project, project tag, or project category) now include time logged on tasks linked to those projects, so a project-scoped report no longer misses task time.
   - [Exports](/help/documentation/data-exports) are more robust: PDFs render accented, Cyrillic, Greek, and currency characters correctly, wide tables split across pages with the first column repeated, and Excel column widths fit every row.
+  - The **Billing ratio** column has been retired from time reports: it computed the same figure as **Billable %**. Saved reports and Excel or Google Sheets exports that used it now show **Billable %** instead, with no change to the numbers.
 
   ### Settings & administration
 
-  - The **Master data review** screen is now available to every administrator from the Settings menu: pick people, projects, tasks, tags, or any other configuration entity, build columns by walking into its fields and relations — custom field values included — filter, download, and describe bulk changes in plain language with a before/after preview and undo. Updates can now also add text around existing values ("prefix their external ID with ext-").
+  - The **Master data review** screen is now available to every administrator from the Settings menu: pick people, projects, tasks, tags, or any other configuration item, build columns by walking into its fields and relations — custom field values included — filter, download, and describe bulk changes in plain language with a before/after preview and undo. Updates can now also add text around existing values ("prefix their external ID with ext-"). The screen now has explicit **Read your data** and **Change your data** tabs, and a change can target named rows only ("set the external ID of Anna to abc") or fill a field with a running counter ("ext-3, then ext-4, …"), optionally only where the field is still empty. See [Master data](/help/documentation/master-data).
+  - Managers and [assignments](/help/documentation/assignments) can now cover a whole project, task, or tag category instead of picking items one by one: one click on the category row selects it, a manager of a category manages everything inside it (including anything added later), and the same applies when assigning projects, secondary projects, and tasks to people and to tags. Every category now has a color of its own, assigned automatically and changeable from the category menu, shown in selectors and on filter chips.
+  - The **Show all tasks** organization setting now genuinely grants every task; unchecked, people see only the tasks assigned to, owned, or managed by them. A project's **Who has access?** setting now applies to its whole subtree, so subprojects follow the parent. See [Roles and authorizations](/help/documentation/roles-authorisations).
+  - New **Hide the non-billable option** setting in [Timesheet settings](/help/documentation/timesheetSettings): the non-billable checkbox disappears from the entry form, records can no longer be marked non-billable, and cloned entries come across without the flag.
+  - When a delete is refused because something still uses the item, the message is now readable instead of technical. For a time-off or expense type with allowances or records, or a person or project referenced by time settings, task status, schedules, managers, or task owners, it names the blocking item and links straight to the panel where you can remove the reference. See [Delete protection](/help/documentation/concepts#delete-protection).
+  - A [tag](/help/documentation/tags) removed from an item that inherits it now shows as an exclusion badge you can click to give the tag back, on tasks, projects, and people alike. Excluded tags no longer count as assigned in Kanban cards, Gantt rows, task sheets, or custom-field matching.
   - [Custom fields](/help/documentation/custom-fields) can now be assigned to time-off types, so a time-off entry only asks for the fields that belong to it.
   - Connected [AI assistants](/help/integrations/mcp-server) can do far more: read and set rates and custom field values, manage assignments, record expenses, review the team's timesheets and send reminders, approve or reject submissions, update planning tasks, check budget status, and read the audit trail — always with exactly your permissions.
   - The legacy [migration](/help/guides/migration) tool has left the Settings menu; migrations are now handled by Beebole support on request, and imported history arrives approved and locked at the cut-over date so nothing shows up as pending work.
 
-  {/* news-cursor: 2026-09-06 */}
+  ### Integrations & apps
+
+  - [QuickBooks](/help/integrations/quickbooks) structure sync now also brings across employees added in QuickBooks after the integration was set up, creating them as people matched by email with the configured default role. Exporting time runs a structure sync first and stops with an explanation if that sync reports errors, so entries are never exported against stale structure.
+
+  {/* news-cursor: 2026-09-10 */}
 </Update>
 
 <Update label="August 2026" tags={["Reports","Budgets","Planning","Timesheet","Integrations","Settings","AI"]}>

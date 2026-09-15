@@ -30,14 +30,18 @@ Beebole drafts time entries for you and shows them in the **Suggested entries** 
 
 The sources work together instead of competing. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge, ranked so measured activity wins over assumptions. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the pane always reflects your current plans.
 
-Each card shows the project or task it is about, with that entity's picture and color rather than a generic icon, so you can tell at a glance what is being proposed.
+Each card shows the project or task it is about, with its picture and color rather than a generic icon, so you can tell at a glance what is being proposed.
 
 Suggestions are private — only you see them until you accept. For each one you can:
 
 - **Accept** it (or **Accept all**) — the entry lands on your timesheet.
 - **Dismiss** it. If a dismissed suggestion was hiding an overlapping one, the runner-up reappears.
-- Start it — the play button on today's suggestions accepts the suggestion and keeps a [timer](/help/documentation/timesheets#using-the-timer) running on it, in one gesture. It is available in the pane, on the calendar ghosts, and in the suggestion popup.
+- Start it — the play button on today's suggestions starts a [timer](/help/documentation/timesheets#using-the-timer) on the suggested project or task. It is available in the pane, on the calendar ghosts, and in the suggestion popup, and what it does depends on how your account records time:
+  - When start and end times are off, play accepts the suggestion and keeps the timer running on the entry it became, in one gesture.
+  - When **Record start and end times** is on, play only starts the timer — the tracked time is the entry, so no separate entry is created. The suggestion shrinks as the tracked time covers it and disappears once it is fully covered. While the timer runs, the button switches to a pause button (**Pause timer**), and a second click pauses it.
 - Click **Why?** to see the evidence: the applications and sites behind a **Desktop** or **Web** suggestion, the planned dates and share of your time behind a **Planned** one, or how many recent weeks a **Habit** was seen. Activity details are only readable where they were captured — elsewhere, Beebole tells you the details are only available in the desktop app or browser that tracked the activity.
+
+You can also change the project or task a suggestion is about before accepting it. If you remove the task or the project without picking a replacement, **Accept** and the play button stop with the message **Choose a task or project to log this time on first.**, and **Accept all** leaves that suggestion in the list until you choose where its time should land.
 
 Accepting, editing, and dismissing are all undoable with **⌘\+Z** (Ctrl\+Z on Windows and Linux). Undoing an accept also removes the entries it created — or shrinks the entry it grew.
 
@@ -51,7 +55,10 @@ To accept one, pick where the time should land: the card shows **Log this time a
 
 ### Planned work on future days
 
-**Planned** suggestions also reach beyond today. On days still in the future they appear as read-only forecast cards — a muted, dashed preview of what you are planned to work on — so you can see the shape of your week ahead. A forecast card becomes fully actionable, with accept, edit, and dismiss, once its day arrives.
+**Planned** suggestions also reach beyond today. Whether you can act on them ahead of time follows the same rule as typing a future entry: the **Only time off can be recorded in the future** restriction in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#restrictions).
+
+- When the restriction is active, future-day suggestions appear as read-only forecast cards — a muted, dashed preview of what you are planned to work on — so you can see the shape of your week ahead. A forecast card becomes fully actionable, with accept, edit, and dismiss, once its day arrives.
+- When your account allows logging time ahead, a future-day card keeps its controls: accept, edit, or dismiss it like any other. The quick accept and dismiss lines in the entry popup of a task follow the same rule and show that day's suggestion up to 30 days ahead.
 
 Reopening a past week that is still open — draft or rejected — regenerates its planned suggestions, so staffing added after the fact still shows up when you go back to that week.
 

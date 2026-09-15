@@ -98,16 +98,19 @@ The **Restrictions** list controls what time entries the timesheet accepts. New 
 | **Only allow time entries on scheduled working time** | Blocks entries on scheduled days off and public holidays — time off entries are exempt. |
 | **Keep start/end times within the scheduled hours** | When start and end times are recorded, an entry's times must fall within the person's scheduled working hours. Available as a **warning** (the entry form warns but allows saving) or a **block** (the entry is refused, including when copying entries to other days). |
 | **An absence can't be longer than a day** | Caps a single time off entry at one day. |
+| **Hide the non-billable option** | Removes the **Non-billable** checkbox from the entry details, so nobody can mark a time entry as non-billable. |
 | **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. |
 | **Only an admin can edit someone else's timesheet** | Managers can still view their team's timesheets, but adding or editing entries on someone else's timesheet is reserved for admins. |
 
 Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both. The **warning** and **block** variants are exclusive — activating one replaces the other.
 
+**Hide the non-billable option** also protects the data behind the form. Any attempt to mark an entry as non-billable — from the timesheet or through the API — is refused with **Your timesheet settings do not offer the non-billable option.** Entries marked before you activated the restriction keep their flag, and clearing it stays allowed. When entries are copied to another period, the copies arrive without the non-billable flag, even if the originals carried it. The setting follows the timesheet owner: like every restriction, it is resolved through the account, the person's tags, and the person, so a rule set on a tag applies to everyone under it.
+
 Independently of any restriction, a submitted or approved period is locked for its owner while it waits in the [approval workflow](/help/documentation/approval), and records on or before the [**Lock date**](#lock-date) can't change at all.
 
 ### Rules set elsewhere
 
-Two more rules apply to every time entry without appearing in the **Restrictions** list, because they are configured on the entities they protect:
+Two more rules apply to every time entry without appearing in the **Restrictions** list, because they are configured on the items they protect:
 
 - **Valid period for time entry** — This panel, available on a project, a person, and a tag, sets a **From** and **To** date between which time can be logged. An entry outside the window is refused with **This time record falls outside the validity period of:** followed by the project or person it comes from. When several windows could apply, the most specific one wins: the entry's project first (its deepest level first), then the person, and a person or project inherits a window set on its tags.
 - **Time off allowances** — A time off entry can't push the person past the balance of the [allowance](/help/documentation/timeoff) that covers that day. Beebole refuses it with **This booking exceeds the available quota for:** followed by the absence type. An allowance with **Allow negative balance** checked lifts the limit for the days it covers, and an absence type with no allowance is never limited.

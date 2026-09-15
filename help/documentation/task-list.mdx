@@ -30,7 +30,7 @@ Beebole's List view shows your [tasks](/help/documentation/planning) as a plain 
 Every task you can see is one row. The header row stays visible while you scroll down, and the table scrolls sideways inside its own area when the columns are wider than the screen — the page itself never scrolls horizontally.
 
 - **Row #** and **Task Name** are always shown, in that order. A new List view starts with just those two.
-- Anything that is an entity — the owner, the potential owners, the tags, the dependencies, the projects of each category — is drawn as a badge with its ancestors, not as bare text. Click a badge to open that entity, or **Shift**+click it to add it as a filter.
+- Anything that is a linked item — the owner, the potential owners, the tags, the dependencies, the projects of each category — is drawn as a badge with its ancestors, not as bare text. Click a badge to open it, or **Shift**+click it to add it as a filter.
 - A task with subtasks shows a chevron in its **Task Name** cell. Click it to reveal the subtasks indented underneath, or hold **⌘** while clicking to expand or collapse every task at the same level at once (the chevron's tooltip says **⌘+Click for all**).
 - Subtasks always stay under their parent. Sorting and grouping never separate a child from its parent.
 
@@ -147,7 +147,7 @@ A mass change is a single undo step, however many tasks it touched: **⌘Z** bri
 
 Use the **Filters** button to narrow the table — by task, status, owner, potential owner, project, or [tags](/help/documentation/tags) — with the active filter count shown on the button. Filters are saved with the view and can be switched off and back on without losing them: the button toggles them rather than clearing them.
 
-To search by name, use the task filter's **contains** or **starts with** condition. **Shift**+clicking any badge in the table adds that entity as a filter, which is the fastest way to narrow down to one client, one owner, or one tag.
+To search by name, use the task filter's **contains** or **starts with** condition. **Shift**+clicking any badge in the table adds that item as a filter, which is the fastest way to narrow down to one client, one owner, or one tag.
 
 ---
 
@@ -157,10 +157,12 @@ The List responds to the same keys as the Gantt chart:
 
 | Key | Action |
 |-----|--------|
-| **Arrow Down** / **Arrow Up** | Move the selection to the next or previous row |
+| **Arrow Down** / **Arrow Up** | Move the cursor to the next or previous row |
 | **Arrow Right** | Expand the selected task and move into its first child |
 | **Arrow Left** | Collapse the selected task, or move up to its parent |
-| **Enter** | Open or close the detail panel of the selected task |
+| **Shift+Arrow** | Extend the selection as a range up to the task you land on, like **Shift+Click** |
+| **⌘+Arrow** | Add the task you land on to the selection, or drop it, like **⌘+Click** (Ctrl on Windows and Linux) |
+| **Enter** | Open or close the detail panel of the selected task. While the panel is open, it follows the cursor as you move, except while you are building a selection |
 | **Tab** | Make the selected task a subtask of the task above it |
 | **Shift+Tab** | Move the selected subtask up one level |
 | **⌘+A** | Add a new task — a subtask if a task is open |
