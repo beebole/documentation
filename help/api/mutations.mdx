@@ -1,7 +1,7 @@
 ---
 title: "GraphQL Mutations to Create and Update"
 sidebarTitle: "Mutations"
-description: "Reference for Beebole GraphQL mutations: log time and expenses, submit and approve timesheets, and manage people, projects, tasks, and organization settings."
+description: "Reference for Beebole GraphQL mutations: log time and expenses, submit and approve timesheets, manage people, projects, tasks, and custom field values."
 keywords: ["beebole", "GraphQL mutations", "API mutations", "log time record", "submit timesheet", "beebole api"]
 "og:title": "Beebole API Mutations Reference"
 "og:description": "Write to your Beebole account over GraphQL — log time and expenses, run the approval workflow, and manage people, projects, and tasks."
@@ -305,6 +305,43 @@ mutation {
   }
 }
 ```
+
+---
+
+## Custom fields
+
+Custom field definitions and the values stored on records have separate mutations. Definitions are managed with `addCustomField`, `duplicateCustomField`, `archiveCustomField` / `unarchiveCustomField` (and their plural forms), `deleteCustomField`, `editCustomFieldName`, `editCustomFieldType`, a family of `editCustomField…Option…` mutations for each type's options, and the `editCustomFieldVisibility…` mutations that decide where a field appears. Values are written with:
+
+| Mutation | Key arguments |
+|----------|---------------|
+| `addCustomFieldValue` | `customFieldId`, `entityType`, `entityId`, and one of `textValue`, `numberValue`, `dateValue`, `dateTimeValue`, `urlValue`, `booleanValue` |
+| `editCustomFieldValueText` | `id`, `textValue` |
+| `editCustomFieldValueNumber` | `id`, `numberValue` |
+| `editCustomFieldValueDate` | `id`, `dateValue` |
+| `editCustomFieldValueDateTime` | `id`, `dateTimeValue` |
+| `editCustomFieldValueUrl` | `id`, `urlValue` |
+| `editCustomFieldValueBoolean` | `id`, `booleanValue` |
+| `deleteCustomFieldValue` | `id` |
+
+`entityType` is one of `Person`, `Project`, `Task`, `Tag`, `TimeRecord`, or `AbsenceType`; `dateValue` and `dateTimeValue` are UTC timestamps. As in Beebole, `deleteCustomField` is refused while any value is stored on the field — delete or clear the values first, or archive the field.
+
+### Store an external identifier on a person
+
+```graphql
+mutation {
+  addCustomFieldValue(
+    customFieldId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    entityType: "Person"
+    entityId: "64a1b2c3d4e5f6a7b8c9d0e2"
+    textValue: "HR-00421"
+  ) {
+    id
+    textValue
+  }
+}
+```
+
+To find the record that carries a given identifier, read the field's values with `getCustomFieldValues` — see [Custom fields](/help/api/queries#custom-fields) on the Queries page.
 
 ---
 

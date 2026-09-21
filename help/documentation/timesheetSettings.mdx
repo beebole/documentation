@@ -42,6 +42,10 @@ Timesheet settings control how everyone in your Beebole account records time: th
 
 Settings made here apply account-wide. The same panel also exists on every tag and on each person's profile, so you can override any setting for one team or one person — see [Different settings for different teams](#different-settings-for-different-teams).
 
+<Info>
+  No button with your initials at the bottom of the sidebar? Then you are signed in to the Legacy platform (beebole-apps.com), where these settings live in the *Timesheet Settings* module of the Settings screen — see the [legacy settings page](/help/legacy/settings#timesheet-settings-module). [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using) explains how to tell the two apart.
+</Info>
+
 ---
 
 ## Period & submission
@@ -271,5 +275,13 @@ Next to each setting, an icon shows where its current value is inherited from. A
 
   <Accordion title="How do I change the first day of the week?">
     The first day of the week is a regional setting, not a timesheet setting. In **Account Settings**, open the **Localization** panel and set **First day of the week**. Weekly and bi-weekly timesheet periods in Beebole start on that day.
+  </Accordion>
+
+  <Accordion title="Can I lock time entries for a single project?">
+    Not with the **Lock date** — it freezes a person's whole timesheet up to a day, account-wide or for one tag or person, never per project. To stop time being added to one project after a date, open that project and set the **To** date of its **Valid period for time entry**: Beebole refuses entries on that project after that day while other projects stay open. To close a whole week for everyone, set the account-wide **Lock date** to the week's last day once approvals are done.
+  </Accordion>
+
+  <Accordion title="Who can set the lock date — project managers or only admins?">
+    Administrators always can. Otherwise it takes a role with **Edit** access on the **Timesheet and planning settings** permission in Beebole, which then covers the people its targets reach — give a role **Edit: Managed people** there and its holders can set the lock date on their own team's profiles. None of the built-in roles other than **Admin** include it, since the lock is a timesheet setting rather than a project or team setting.
   </Accordion>
 </AccordionGroup>

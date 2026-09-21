@@ -2,7 +2,7 @@
 title: "Cost rates: track labor costs and margins"
 sidebarTitle: "Cost Rates"
 description: "Define cost rates in Beebole for your organization, tags, projects, and people to track labor costs and measure project margins in reports."
-keywords: ["beebole", "cost rates", "labor costs", "project costs", "project profitability", "margin tracking", "how to track costs"]
+keywords: ["beebole", "cost rates", "labor costs", "project costs", "project profitability", "margin tracking", "how to track costs", "multi-currency costs"]
 "og:title": "Tracking Labor Costs and Project Margins in Beebole"
 "og:description": "Learn how to define cost rates in Beebole and measure what projects really cost."
 "og:type": "article"
@@ -150,5 +150,9 @@ When both billing and cost rates are configured, [custom reports](/help/document
 
   <Accordion title="How do I record a salary change without rewriting history?">
     Add a new cost rate on the person with a **From** date set to when the change takes effect. Beebole applies each rate only to time entries dated on or after its From date, so earlier entries keep the old cost.
+  </Accordion>
+
+  <Accordion title="Can cost rates be in different currencies?">
+    Yes. Each cost rate — and each billing rate — carries its own currency, so a contractor paid in dollars and a team costed in euros can coexist. Reports convert every amount into the report's currency at the exchange rate of the entry's date, using daily rates Beebole retrieves from an exchange-rate service, and the stored rates are never changed. See [Amounts in several currencies](/help/documentation/custom-reports#amounts-in-several-currencies).
   </Accordion>
 </AccordionGroup>

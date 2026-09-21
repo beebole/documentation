@@ -2,7 +2,7 @@
 title: "Timesheet and time off approval workflows"
 sidebarTitle: "Approval Workflows"
 description: "Set up multi-stage timesheet approval in Beebole: configure approval stages and quorum, approve or reject submissions, and follow up with reminders."
-keywords: ["beebole", "timesheet approval", "approval workflow", "multi-stage approval", "approve timesheets", "reject timesheet", "time off approval"]
+keywords: ["beebole", "timesheet approval", "approval workflow", "multi-stage approval", "approve timesheets", "reject timesheet", "reopen approved timesheet", "approve on mobile", "time off approval"]
 "og:title": "Timesheet and Time Off Approval Workflows in Beebole"
 "og:description": "Learn how to configure Beebole's multi-stage approval workflow, review and approve your team's timesheets, and handle rejections and reminders."
 "og:type": "article"
@@ -82,7 +82,7 @@ Every change in the panel is saved automatically — there is no save button.
 
 ## Reviewing and approving your team's timesheets
 
-Approvers can act from three places: the **Timesheet** page, the **Journal**, or directly from email.
+Approvers can act from four places: the **Timesheet** page, the **Journal**, directly from email, or from a phone.
 
 ### From the Timesheet page
 
@@ -128,6 +128,10 @@ You can also decide by replying to the email — the approval email and the appr
 
 Beebole reads the first word of your reply and also understands **accept**, **ok**, **yes**, **refuse**, and **decline**, in any of its languages. Before applying the decision, Beebole checks that the reply comes from the approver's own email address and that the sending mail server authenticated it. Whatever the outcome, a receipt lands in the same email thread: **Approved**, **Rejected**, or **Nothing changed** — the latter when the reason was missing, the sender couldn't be verified, or the timesheet is no longer pending your approval. A reply that doesn't start with a decision word is treated as a Journal message instead.
 
+### From a phone
+
+On a phone, the approval panes become a bottom sheet. Managers and administrators see a team icon in the header with a badge counting pending approvals; tapping it opens the same **Pending** and **Team** tabs, and **Approve** and **Reject** sit in the header of the timesheet you open, with bulk actions for several at once. The team icon only appears for people who can approve or review timesheets — if all you see are your own tracking controls, your role has no one to review. See [Approving team timesheets on mobile](/help/documentation/mobile#approving-team-timesheets-on-mobile).
+
 ---
 
 ## Rejecting a timesheet
@@ -168,6 +172,8 @@ The edit button is not limited to administrators — managers and approvers see 
 ### Force approve and reject <Badge>Admin only</Badge>
 
 Administrators can unblock the pipeline without reconfiguring it: they can **Approve** or **Reject** any submitted timesheet, even when they are not approvers for the current stage. An already-approved timesheet can also be rejected — by an administrator, or by someone who was an approver on its last stage — which sends it back to its owner.
+
+To reach an approved timesheet, open it from the **Team** pane, not the **Pending** pane: **Pending** only lists submissions still waiting for a decision, so an approved period is never there. Pick the person in **Team**, navigate to the approved period, and **Reject** appears at the top of their timesheet. Rejecting unlocks the period for its owner, who corrects the entries and clicks **Resubmit**. To fix an entry without sending the whole period back, use the edit button (**Edit timesheet**) described above instead.
 
 ---
 
@@ -221,5 +227,14 @@ Every approval action is logged in the person's [Journal](/help/documentation/jo
   </Accordion>
   <Accordion title="Does time off go through the same approval as work time?">
     Yes. Absences recorded on the timesheet are submitted and approved together with the rest of the period, through the same approval stages. The time off counts against the person's allowance as soon as it is recorded, even before it is approved.
+  </Accordion>
+  <Accordion title="How do I reopen an approved timesheet so its owner can edit it?">
+    Reject it. In Beebole an administrator — or an approver of the timesheet's last stage — can reject an already-approved period, which unlocks it for its owner. Open the person from the **Team** pane of the timesheet (the **Pending** pane only shows submissions still awaiting approval), go to the approved period, click **Reject**, and enter the reason. If you only need to correct an entry yourself, click the edit button (**Edit timesheet**) on the person's row instead — administrator edits don't reopen the workflow.
+  </Accordion>
+  <Accordion title="Can I approve timesheets from my phone?">
+    Yes. On a phone, Beebole shows approvers a team icon in the header with the number of pending submissions. It opens a sheet with the **Pending** and **Team** tabs, and **Approve** and **Reject** appear in the header of the timesheet you open. The icon is absent for people who have nobody to review. See [Mobile and tablet](/help/documentation/mobile#approving-team-timesheets-on-mobile).
+  </Accordion>
+  <Accordion title="Can I reject a single time entry instead of the whole timesheet?">
+    No. Beebole's approval acts on the timesheet period as a whole: **Reject** sends the entire submitted period back to its owner with your reason, and they resubmit once corrected. To change one entry without rejecting, approvers of the current stage and administrators can edit the entry directly with the edit button (**Edit timesheet**) on the person's row — see [Editing a submitted or approved timesheet](#editing-a-submitted-or-approved-timesheet).
   </Accordion>
 </AccordionGroup>

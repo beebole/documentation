@@ -13,6 +13,10 @@ Beebole exposes a [GraphQL](https://graphql.org/) API that gives you full progra
 
 For a guided overview of what you can build with the API, see [Custom Integrations](/help/integrations/custom-integrations).
 
+<Info>
+  This API belongs to the new Beebole platform at app.beebole.com. If you sign in at beebole-apps.com, you are on the Legacy platform: its API token is not accepted by `/graphql`, and the [Legacy API documentation](/help/legacy/api) applies instead. Not sure which one you use? See [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using).
+</Info>
+
 ---
 
 ## Endpoint
@@ -37,13 +41,10 @@ apikey: YOUR_API_KEY
 
 <Steps>
   <Step title="Open your API key">
-    In Beebole, click the button with your initials at the bottom of the left sidebar, then click **API Key**.
-  </Step>
-  <Step title="Open API settings">
-    Go to **Settings** \> **API** in your Beebole account.
+    In Beebole, click the button with your initials at the bottom of the left sidebar, then click **Your API key**.
   </Step>
   <Step title="Copy your API key">
-    Your **API Key** is displayed on this page. Click **Copy** to copy it to the clipboard.
+    Your key is displayed, partly masked. Click **Copy** to copy the full key to the clipboard.
   </Step>
   <Step title="Include the key in every request">
     Add the `apikey` header to all HTTP requests you send to the endpoint.
@@ -53,7 +54,7 @@ apikey: YOUR_API_KEY
 The panel shows a single active API key, and it does not expire. The key authenticates as the person it belongs to, so requests inherit that person's role and permissions.
 
 <Warning>
-  Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, open the **API Key** panel and click **Reset** to revoke the current key and generate a new one.
+  Keep your API key secure. Do not include it in client-side code or commit it to public repositories. Store it in an environment variable or a secrets manager. If a key is compromised, open **Your API key** again and click **Reset** to revoke the current key and generate a new one.
 </Warning>
 
 ---
@@ -138,6 +139,26 @@ When an account's subscription is inactive, API-key requests are blocked with HT
 
 ---
 
+## Troubleshooting
+
+### Empty `data` and `permissionsErrors` on every field
+
+An invalid or revoked key does not fail the request outright. Beebole runs the query with no permissions at all, so `data` comes back empty, `permissionsErrors` lists every path you asked for, and the `errors` array names the real cause — `APIKeyError:InvalidKey` or one of the other authentication messages above. Read `errors` first: an `APIKeyError` there means the key is the problem, not the linked person's role. A `permissionsErrors` array **without** an `APIKeyError` means the key works and the role does not cover those fields.
+
+### Send the key exactly as shown
+
+The `apikey` header takes the key as Beebole displays it. Don't base64-encode it and don't wrap it in HTTP basic authentication the way the Legacy API required — an encoded key is not recognized and returns `APIKeyError:InvalidKey`. The `Authorization: Bearer` header is reserved for the tokens of the [MCP server](/help/integrations/mcp-server).
+
+### The key comes from a Legacy account
+
+Tokens issued by the Legacy platform (beebole-apps.com) are not recognized by `https://app.beebole.com/graphql` and return `APIKeyError:InvalidKey` with an empty `data`. A Legacy account keeps using the [Legacy API](/help/legacy/api); the GraphQL API becomes available once the account is [migrated to the new platform](/help/documentation/legacy-migration).
+
+### `402 Payment Required` with `AccountIsInactive`
+
+The account's subscription is canceled or its trial has expired, and API keys have no way to reactivate it. An administrator restores access by renewing the subscription from the browser. The **Free** plan is not affected — see the FAQ below.
+
+---
+
 ## Rate limits
 
 Beebole does not apply a general rate limit to GraphQL API traffic. Rate limiting is reserved for a small set of sensitive operations — such as sign-in, sign-up, inviting people, and loading public holidays — which are not part of a typical integration workflow. For very high request volumes, batch related operations into fewer requests where possible, and contact [support@beebole.com](mailto:support@beebole.com) if you have specific throughput needs.
@@ -181,5 +202,13 @@ Beebole does not apply a general rate limit to GraphQL API traffic. Rate limitin
 
   <Accordion title="How do I explore the API schema?">
     The Beebole API supports GraphQL introspection, so any standard GraphQL client can fetch the full schema — types, queries, mutations, and their arguments. See the [Schema explorer](/help/api/schema-explorer) page for how to connect a GraphQL client.
+  </Accordion>
+
+  <Accordion title="Does the API work on the Free plan?">
+    Yes. Beebole does not gate API access by plan: an API key from a **Free** account works like any other, with the permissions of the person it belongs to. The only subscriptions blocked from the API are canceled ones and expired trials, which answer `402 Payment Required` with `AccountIsInactive`. Fields that belong to features outside your plan — billing rates on the Free plan, for example — come back in `permissionsErrors` rather than in `data`.
+  </Accordion>
+
+  <Accordion title="How do I find timesheets that are still drafts or awaiting approval?">
+    Not by filtering time records — a time record carries no approval status, because the status belongs to the timesheet period. Use `getPendingApprovals` for every submission waiting for approval, and `getApprovalState` or `getTeamApprovalStates` to read a period's status (`d` draft, `s` submitted, `a` approved, `r` rejected). See [Timesheets and approvals](/help/api/queries#timesheets-and-approvals) on the Queries page.
   </Accordion>
 </AccordionGroup>

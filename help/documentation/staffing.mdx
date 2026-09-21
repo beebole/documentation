@@ -144,7 +144,7 @@ Bookings that start before or end after the locked period are drawn cut off, wit
 
 With the view locked to a fixed period, **Copy the previous period** refills the current period from the one before it — with or without the people and project assignments. Choose **With people** or **Without people**, and **With projects** or **Without projects**, to decide how much of the booking is carried over.
 
-Beebole looks back to the last period that actually holds bookings, not just the one immediately before, and fills every empty period between it and the one you are looking at — so a run of unstaffed weeks is refilled in a single action. Recurring tasks are skipped, and anything that would spill outside the period is clipped. If there is nothing to copy, Beebole says so: **No earlier bookings to copy**.
+Beebole looks back to the last period that actually holds bookings, not just the one immediately before, and fills every empty period between it and the one you are looking at — so a run of unstaffed weeks is refilled in a single action. Anything that would spill outside the period is clipped. If there is nothing to copy, Beebole says so: **No earlier bookings to copy**.
 
 ---
 
@@ -237,5 +237,8 @@ With no bar selected yet, the first arrow key lands on the first row's bar close
   </Accordion>
   <Accordion title="Can I plan further back than the visible timeline?">
     Yes. The Staffing timeline scrolls into the past as well as the future, and dragging a bar to the edge of the screen auto-scrolls so you can drop it beyond the visible range. The **Today** button brings you back to the current date.
+  </Accordion>
+  <Accordion title="Can I make a booking or task repeat every week?">
+    Not yet. Beebole has no recurring bookings or tasks: each booking is a single task between two dates. To carry a weekly pattern forward, lock the view to a period and use **Copy the previous period**, which refills empty periods from the last one that holds bookings, or ⌘-drag a selection of bars to drop dated copies.
   </Accordion>
 </AccordionGroup>
