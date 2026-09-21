@@ -1,14 +1,14 @@
 ---
-title: "Troubleshooting: connection issues and diagnostics"
+title: "Troubleshooting: connection and timesheet issues"
 sidebarTitle: "Troubleshooting"
-description: "Fix Beebole connection issues: what the compatibility-mode indicator means, how to run the built-in diagnostics page, and what to send to support."
-keywords: ["beebole", "troubleshooting", "connection issues", "diagnostics", "websocket blocked", "beebole not loading", "slow"]
-"og:title": "Troubleshooting Beebole Connection Issues and Diagnostics"
-"og:description": "What to do when Beebole won't load or feels slow: understand the connection indicators, run the diagnostics page, and share a snapshot with support."
+description: "Fix Beebole connection issues with the built-in diagnostics page, and sort out timesheets with no project to pick or a task missing for one person."
+keywords: ["beebole", "troubleshooting", "connection issues", "diagnostics", "websocket blocked", "beebole not loading", "slow", "no projects in timesheet", "task missing from timesheet"]
+"og:title": "Troubleshooting Beebole: Connection and Timesheet Issues"
+"og:description": "What to do when Beebole won't load or feels slow, and how to fix a timesheet that offers no project or hides a task from one person."
 "og:type": "article"
 ---
 
-Beebole runs on a secure real-time connection between your browser and its servers. When that connection is blocked or unstable — most often by a corporate firewall, VPN, or proxy — Beebole tells you what's happening and gives you the tools to pinpoint the cause. This page covers the two connection states you may see and the built-in diagnostics page that helps you (or your IT team) fix them.
+Beebole runs on a secure real-time connection between your browser and its servers. When that connection is blocked or unstable — most often by a corporate firewall, VPN, or proxy — Beebole tells you what's happening and gives you the tools to pinpoint the cause. This page covers the two connection states you may see and the built-in diagnostics page that helps you (or your IT team) fix them, followed by the timesheet situations that most often look like a bug but come down to a setting.
 
 <Info>
   First, rule out the basics: reload the page, and try a different network — for example your phone's mobile data. If Beebole works there, the issue is in the original network, not your account.
@@ -63,6 +63,27 @@ The **Actions** section offers two cleanup buttons:
 
 ---
 
+## Timesheet issues
+
+### No projects to pick when adding a row
+
+If the **Select a project** list is empty when you add a row — or the timesheet only offers time off — nothing is broken: no project has been made available to you yet. Two settings decide what the list holds:
+
+- **Project access.** A project appears only if it is available to you: either **Show all projects** is on in the account's **Show or hide by default**, or the project — or its whole category — was granted to you or to one of your tags. An administrator or your manager adds it under **Who has access?** on the project, or under **Show projects** on your profile. See [Assignments](/help/documentation/assignments).
+- **Timesheet categories.** A row can only be added for the project categories listed under **Record time on these project categories** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#project-categories). A category left out there never appears, whatever your access.
+
+### A task is missing from one person's timesheet
+
+A task assigned to a tag — the tag is one of its **Potential owners** — is available to everyone in that tag. Being a potential owner does grant the task; it is not just a display. When the task still shows for some tagged people and not for one of them, check that person, in this order:
+
+1. **Are they really in the tag?** Open their profile and look at the **Tags** panel — a person tagged with a sibling tag rather than the one on the task is the usual cause.
+2. **Does their timesheet accept the task's planning?** **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#plannings) is resolved per person: the account value, overridden by their tags, overridden by their own profile. A planning missing from their list hides every task in it, even assigned ones.
+3. **Does their role cover assigned tasks?** The **Tasks** permission of their [role](/help/documentation/roles-authorisations) must include **Assigned tasks** under **View**. The built-in roles do; a custom role may not.
+
+Once the three checks pass, the task appears in the person's task section the next time they add a row.
+
+---
+
 ## For IT teams
 
 To give Beebole full speed on a managed network, allow outbound secure WebSocket (`wss`) connections to your Beebole server's domain. Beebole's fallback mode exists precisely for networks where that isn't possible — but native real-time is faster and lighter for your users.
@@ -97,5 +118,8 @@ To give Beebole full speed on a managed network, allow outbound secure WebSocket
   </Accordion>
   <Accordion title="What should I send to Beebole support about a connection problem?">
     A diagnostics snapshot. Open `/diagnostics` on your server address, let the checks finish, click **Copy snapshot** or **Download snapshot (.json)**, and include it in your email to support@beebole.com along with what you were doing when the problem appeared.
+  </Accordion>
+  <Accordion title="Why does my timesheet show no projects, only time off?">
+    Because no project is available to you yet, or the project's category isn't offered in the timesheet. In Beebole a project has to be granted — under **Who has access?** on the project or **Show projects** on your profile, unless **Show all projects** is on for the account — and its category must be listed under **Record time on these project categories** in Timesheet and Planning Settings. Ask an administrator to check both.
   </Accordion>
 </AccordionGroup>

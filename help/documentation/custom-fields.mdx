@@ -108,6 +108,12 @@ Custom field values flow into reporting. When you build a [custom report](/help/
 
 ---
 
+## Custom fields in the API
+
+Definitions and values are both exposed in Beebole's GraphQL API: read them with `getCustomFields` and `getCustomFieldValues`, write values with `addCustomFieldValue` and its edit mutations. This is how an identifier from another system — an HR or payroll ID kept in a text field, or the **External ID** field a [legacy migration](/help/documentation/legacy-migration) creates — is looked up or filled in from a script. See [Custom fields](/help/api/queries#custom-fields) on the Queries page and [Custom fields](/help/api/mutations#custom-fields) on the Mutations page.
+
+---
+
 ## Managing custom fields
 
 To manage an existing field, open it in **Settings** \> **Custom Fields** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
