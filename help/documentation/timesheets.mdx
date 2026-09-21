@@ -217,13 +217,14 @@ You can bring your Google or Microsoft calendar events into the timesheet instea
 
 ---
 
-## Importing time entries from a file
+## Importing time entries in bulk
 
-Beebole has no import of time entries from a CSV file or a spreadsheet. Pasting rows from a spreadsheet exists for adding people, projects, tags, and tasks in bulk, not for hours. To bring in time that was recorded elsewhere, use one of these routes:
+The timesheet itself has no import button for a CSV file or a spreadsheet — pasting rows from a spreadsheet exists for adding people, projects, tags, and tasks in bulk, not for hours. Bulk import of time entries is done outside the timesheet, through Beebole's API or its MCP server, or by one of the in-app shortcuts:
 
+- **The MCP server** — connect Claude, ChatGPT, or another AI assistant to Beebole and hand it the spreadsheet: its `record_time` tool creates one entry or many at once, for you or for other people. See [MCP server](/help/integrations/mcp-server).
+- **The API** — create entries for any number of people with `addTimeRecord`, from a script that reads your file; see [Mutations](/help/api/mutations#time-records) and the [worked example](/help/api/examples/example-2).
 - **Copy a period** — reuse a person's own rows and entries from another period; see [Copying a period](#copying-a-period).
 - **Import calendar events** — turn Google or Microsoft calendar events into entries; see [Importing calendar events](#importing-calendar-events).
-- **The API** — create entries for any number of people with `addTimeRecord`, from a script that reads your spreadsheet; see [Mutations](/help/api/mutations#time-records) and the [worked example](/help/api/examples/example-2).
 - **A legacy migration** — historical time from a legacy Beebole account is imported by Beebole's support team; see [Legacy migration](/help/documentation/legacy-migration).
 
 People who belong to your Beebole account enter time directly in their own timesheet, and it is part of your data the moment they save it — there is nothing to import between people in the same organization.
@@ -290,8 +291,8 @@ In the team panes, a colored ring around each person's avatar shows their **Time
   <Accordion title="Who decides whether I enter time in hours or days?">
     Your administrator. The unit for time entry — hours, days, or a percentage of your schedule — is set in Beebole's **Timesheet and Planning Settings**, along with the duration format and the timesheet period. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
   </Accordion>
-  <Accordion title="Can I import time entries from a file or spreadsheet?">
-    No. Beebole has no CSV or spreadsheet import for time entries — only people, projects, tags, and tasks can be pasted in bulk. To bring time in, copy a period, import calendar events, create entries through the API with `addTimeRecord`, or ask support for a legacy migration. See [Importing time entries from a file](#importing-time-entries-from-a-file).
+  <Accordion title="Can I bulk import time entries from a file or spreadsheet?">
+    Yes, but not from a button in the timesheet. Beebole imports time in bulk through its [MCP server](/help/integrations/mcp-server) — an AI assistant connected to your account records one entry or many from a spreadsheet you give it — or through the API's `addTimeRecord` mutation from a script. Inside the app, only people, projects, tags, and tasks can be pasted in bulk; for time, copy a period or import calendar events. See [Importing time entries in bulk](#importing-time-entries-in-bulk).
   </Accordion>
   <Accordion title="What are the ways to record time in Beebole?">
     Type durations in the grid, draw entries in the calendar view, run the timer on a row or from the floating timer, click a favorite, drag calendar events onto a row, or accept the suggested entries the Assistant proposes. Beebole also records time from your phone through the mobile layout, from the desktop app, and from the browser extension. There is no clock-in by badge or face recognition — face or fingerprint unlock only exists as a passkey for signing in.
