@@ -32,7 +32,7 @@ A review always starts from one entity. Beebole offers nine:
 | **Roles** | Roles and their permissions |
 | **Work schedules** | Schedule definitions and their days |
 
-For **Projects**, **Tasks**, and **Tags** you can also narrow the review to one category, and inside it to one hierarchy level — pick **All categories**, a category, then **All levels**, **Lowest level**, or a named level.
+For **Projects**, **Tasks**, and **Tags** you can also narrow the review to one category, and inside it to one hierarchy level — pick **All categories**, a category, then **Lowest level** or a named level. A review lists the lowest level by default, so parent rows never pad the table or the export; pick a named level when that is the one you want to read.
 
 <Info>
   Master data review covers definitions only. Time entries, expense records, and absences are records, not master data — report on those with [custom reports](/help/documentation/custom-reports) and [data exports](/help/documentation/data-exports).
@@ -50,7 +50,7 @@ For **Projects**, **Tasks**, and **Tags** you can also narrow the review to one 
     Click **Add an export**. Beebole creates one named **New export** and puts the name in edit mode — type a name and press Enter.
   </Step>
   <Step title="Pick the entity">
-    In the table's first column header, click the entity button — it shows the entity currently reviewed — and choose another from the menu. The first column always holds that entity's name.
+    The table's first column is a column header like any other: it carries the entity currently reviewed, and its menu holds **Filter on this column** and **Add a column…** alongside the list of entities. Open it and pick another entity — or, for projects, tasks, and tags, walk into a category and a level. The first column always holds that entity's name.
   </Step>
   <Step title="Add the columns you need">
     Click **Add a column…** and walk into the entity's fields. Each pick appends a column; the table re-runs on its own.
@@ -127,6 +127,10 @@ When AI features are enabled for your account, a text box sits above the table. 
 
 With a review open, the same box refines it: **Update** adds a column, changes a filter, or swaps the entity. Asking about a different entity creates a new review instead of overwriting the one you built.
 
+The box keeps the whole conversation, so you can see how you got where you are: your last question and its answer stay on screen, and the turns before them open behind **Whole conversation** (**Latest only** folds them back). It is the same box the [report builder](/help/documentation/ai#report-builder) uses, with **Read your data** and **Change your data** as its tabs, **Apply** and **Cancel** next to the sentence, and the undo of your last change always within reach.
+
+Plain language works on every list, the tag and project lists included. Naming a person in your question reads as a filter rather than as text to look up: ask _who does Anna manage?_ and the review keeps the rows Anna manages and adds the column that shows it.
+
 When you ask for a value no column can hold — _people and their external ID_ on an account with no such field — Beebole builds nothing and tells you in one sentence which value has no column for this entity and, for people, projects, tasks, tags, and time off types, that a [custom field](/help/documentation/custom-fields) could hold it. It never asks which entity or which value you meant. A request that leaves the review exactly as it is reports **Nothing changed.**
 
 ---
@@ -200,7 +204,7 @@ The plain-language builder and **Change your data** follow the same privacy stan
   </Accordion>
 
   <Accordion title="Which entities can I review?">
-    Nine: **People**, **Projects**, **Tasks**, **Tags**, **Time off types**, **Expense types**, **Custom fields**, **Roles**, and **Work schedules**. For projects, tasks, and tags you can narrow the review to one category and one hierarchy level.
+    Nine: **People**, **Projects**, **Tasks**, **Tags**, **Time off types**, **Expense types**, **Custom fields**, **Roles**, and **Work schedules**. For projects, tasks, and tags you can narrow the review to one category and one hierarchy level, from the first column's menu — the lowest level is what you get by default.
   </Accordion>
 
   <Accordion title="Can I export my time entries from here?">

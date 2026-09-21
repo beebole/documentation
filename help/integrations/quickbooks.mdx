@@ -64,6 +64,10 @@ To export, you simply select a period: Beebole takes all time entries for that p
   If the structure sync that runs before the export reports errors, the export does not start. Beebole shows **Export stopped: QuickBooks sync had errors** with the hint **Resolve the sync errors below, then try exporting again**, and lists the failing items under **Entries not synced**. Fix those items, then click **Export** again.
 </Info>
 
+<Info>
+  Only one export runs at a time. Click **Export** again while one is still going — a double-click, or a second browser tab — and Beebole refuses the second run with **An export to QuickBooks is already in progress. Please wait for it to finish before starting another.**, so the same entries are never sent twice.
+</Info>
+
 <Tip>
   Export after the approval cycle is complete for a given period, so the hours sent to QuickBooks are final.
 </Tip>
@@ -76,7 +80,7 @@ To export, you simply select a period: Beebole takes all time entries for that p
 | --- | --- | --- |
 | QuickBooks → Beebole (at setup, then in real time and on each sync) | **Customers** and **Items** | Created as projects in Beebole; later additions and renames in QuickBooks are reflected automatically |
 | QuickBooks → Beebole (at setup, then on each sync) | **Employees** | Matched to an existing Beebole person by email address, or created as a new person with the **Default role for imported employees**. Employees without an email address in QuickBooks are skipped |
-| Beebole → QuickBooks (on export) | **Time entries** | Created as time activities in QuickBooks, carrying the entry's billing rate, billable or non-billable status, and its comment as the activity's description |
+| Beebole → QuickBooks (on export) | **Time entries** | Created as time activities in QuickBooks, carrying the entry's billing rate, billable or non-billable status, and its comment as the activity's description. Durations are sent as whole hours and minutes, so each activity lands on the exact time tracked rather than a rounded decimal |
 
 <Info>
   Because Beebole imports the QuickBooks customers, items, and employees at setup and refreshes them on every sync, exported time activities stay linked to the right customers, items, and employees automatically — even when the matching customer or item sits at a different level of your Beebole project hierarchy. Expenses are not synced in either direction — they are handled in Beebole only.

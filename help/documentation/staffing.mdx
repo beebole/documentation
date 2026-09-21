@@ -50,7 +50,7 @@ Open the **⋯** menu on the view tab and use **Staffing by** to choose what the
 - **People** — One row per person, with their bookings and a capacity strip.
 - **A project category** — Pick a category, then a level or **Lowest level**; one row per project at that choice, showing everyone booked on it.
 
-**Lowest level** keeps only the projects that have nothing below them, so you never see a parent row duplicating the work of its children. With a project grouping, an owned booking that has no row to sit on — the task is linked to no project of that category, or only to a parent — falls into the row at the top of the view, labeled **No** followed by the grouping name.
+**Lowest level** keeps only the projects that have nothing below them, so you never see a parent row duplicating the work of its children. When a level you picked shows a project that still has sub-projects, its row stands out in the accent color with the note **Not at the lowest level: move its bookings to one of its sub-projects** — bookings belong on the projects at the bottom of the hierarchy, where time is logged. With a project grouping, an owned booking that has no row to sit on — the task is linked to no project of that category, or only to a parent — falls into the row at the top of the view, labeled **No** followed by the grouping name.
 
 ---
 
@@ -118,6 +118,8 @@ Open the [Gantt chart](/help/documentation/gantt) to adjust these tasks.
 Planned work nobody has picked up yet sits in the **Unassigned** row. Drag a booking onto it to clear the owner, or drag one out of it onto a person to assign the work. The row can be collapsed out of the way — its tooltip reads **Show these bookings** or **Hide these bookings** — and ⌘-dragging an unassigned booking drops the copy straight onto the row you release it on.
 
 Click the pin icon on the row to keep it under the timeline header while you scroll — its tooltip reads **Keep this row under the header** — so its bars stay within reach when the person you want to drop them on sits further down the list. Click it again (**Stop keeping this row under the header**) to let the row scroll with the others. Like the collapsed state, the pin is remembered per view.
+
+You can also draw a booking straight on the row. Nothing is saved until you pick the person or the task it is for, so an editor you open and then abandon leaves no stray booking behind — the same as on any other row.
 
 The number next to the row label counts the unassigned bookings that fall inside the period you are looking at, not every unassigned booking on record — so it tells you how much work still needs an owner right now.
 

@@ -43,15 +43,22 @@ Suggestions are private — only you see them until you accept. For each one you
 
 You can also change the project or task a suggestion is about before accepting it. If you remove the task or the project without picking a replacement, **Accept** and the play button stop with the message **Choose a task or project to log this time on first.**, and **Accept all** leaves that suggestion in the list until you choose where its time should land.
 
+When your account records start and end times, a suggestion carries them too, and you can edit them before accepting. Empty either field and the suggestion turns back into a duration-only draft, which Beebole places on the day for you.
+
 Accepting, editing, and dismissing are all undoable with **⌘\+Z** (Ctrl\+Z on Windows and Linux). Undoing an accept also removes the entries it created — or shrinks the entry it grew.
 
 In the timesheet's [calendar view](/help/documentation/timesheets#calendar-view), suggestions also appear as ghost entries: drag a suggestion to a time slot to schedule it, or accept it as-is. Drop one of your [favorites](/help/documentation/timesheets#favorites) onto a ghost and the suggestion is retargeted to that project or task and accepted in a single move — the ghost highlights as you hover it.
 
-### Suggestions for a task you cannot book
+### Suggestions that need a project first
 
-A suggestion can name a planned task your timesheet does not accept time on — a task in a planning left out of **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Beebole keeps the suggestion instead of dropping it, and leaves the task on the card so you still see what the proposal is about.
+Some suggestions cannot be logged as they stand and need you to say where the time should land:
 
-To accept one, pick where the time should land: the card shows **Log this time as** with the note **Choose a project to accept it.**, and the entry is created on the project chain you choose. The link to the planned task is kept behind the entry, so the time still counts toward that task — in the [Planned vs. Real](/help/documentation/reports#planned-vs-real) report and in the approval check that flags a task over its planned time. **Accept all** skips these suggestions — each one needs your choice — and leaves them in the list for you to handle one by one.
+- **A task your timesheet does not accept time on** — a task in a planning left out of **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+- **A staffing booking** — a booking is planned work, not an activity you log against, so it never carries a loggable task of its own.
+
+In both cases Beebole keeps the suggestion instead of dropping it, and leaves the planned work on the card so you still see what the proposal is about.
+
+To accept one, pick where the time should land: the card shows **Log this time as** with the note **Choose a project to accept it.**, and the entry is created on the project chain you choose. Tapping accept on one of these takes you to that picker rather than doing nothing, and says why — **This time must be logged on a project — complete the choice, then accept.** The link to the planned task is kept behind the entry, so the time still counts toward that task — in the [Planned vs. Real](/help/documentation/reports#planned-vs-real) report and in the approval check that flags a task over its planned time. **Accept all** skips these suggestions — each one needs your choice — and leaves them in the list for you to handle one by one.
 
 ### Planned work on future days
 
@@ -76,6 +83,8 @@ Describe the report you need in plain language and Beebole creates and runs it f
 
 - On the **Assistant** page, use **Ask for a report** — the report opens ready to run.
 - On the **Reports** page, type what you want to know in the report builder.
+
+You ask through the same sentence box the [master data review](/help/documentation/master-data) uses, and it keeps the whole conversation: each question and its answer stay on screen as you refine, and the earlier turns are available behind **Whole conversation**.
 
 The result is a regular saved report, created in a folder named **AI**: refine its filters, move it to another folder, or delete it like any other. See [Reports](/help/documentation/reports). The report builder appears only for roles allowed to manage reports.
 
