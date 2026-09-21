@@ -25,6 +25,8 @@ og:type: "website"
   - On [Staffing](/help/documentation/staffing), pin the **Unassigned** row under the header so its bars stay within reach while you scroll down to the right person. The booking editor now lets you set both the person and the activity on any booking, and dragging a bar sideways keeps its exact length and starting weekday (whole weeks at week precision).
   - The **Potential owners** column in the Gantt has separate buttons to add a person or a tag, and you can remove a person, tag, or project straight from a task row by hovering its badge and clicking the X, without opening the edit popup.
   - **Planned** figures convert to days using each person's own working calendar, so planned hours, bars, tooltips, the workload heatmap, and Staffing capacity all agree instead of assuming an 8-hour day.
+  - Creating a booking on the **Unassigned** row of [Staffing](/help/documentation/staffing) now behaves like any other row: nothing is saved until you pick the person or task, so an editor you abandon leaves no stray booking behind.
+  - A project row above the lowest level stands out in the accent color in [Staffing](/help/documentation/staffing), with a note explaining that its bookings belong further down the hierarchy.
 
   ### Timesheets
 
@@ -36,6 +38,8 @@ og:type: "website"
   - Automatic submission now submits only the single period whose deadline has passed, and never an empty one — so approvers stop receiving blank weeks.
   - [Suggestions](/help/documentation/ai) on future days are now actionable when your settings allow logging ahead: accept, edit, or dismiss a forecast card instead of only looking at it, and the quick lines in the add-time popup look 30 days ahead too. In start/end mode, the play button on a suggestion now simply starts and stops the timer on that task or project, and the draft shrinks as the tracked time covers it.
   - "Today" is now identified correctly for people in time zones west of UTC: the timesheet header, the calendar "now" line, and the Gantt today line all land on the right day.
+  - [Suggestions](/help/documentation/ai) reach the [mobile timesheet](/help/documentation/mobile): they appear as ghost rows inside each day, next to your real entries. Accept one with a single tap, or open it to change the duration, the start and end times, point it at another task or working activity, start a timer on it, or dismiss it.
+  - Emptying either the start or the end time of a suggestion turns it back into a duration-only draft. And a suggestion that sits on a staffing booking, or on a task your settings don't let you log to, now always asks you to pick a project first and tells you why the accept button took you to the picker.
 
   ### Approvals & notifications
 
@@ -43,6 +47,7 @@ og:type: "website"
   - In the **Team** pane, **Approve**, **Reject**, and **Remind** on a mixed selection act only on the people they apply to, and strictly on the period on screen.
   - Alerts that fire in bulk — a mass timesheet submit, an import, an automated catch-up — now arrive as a single summary email instead of one message per event. Summary emails list the first few items per category and close with a count of the rest.
   - Changing your approval periodicity no longer re-opens periods that were already approved, so completed timesheets stay approved.
+  - An [approval](/help/documentation/approval) request for time logged on a subproject now also reaches the managers of its parent projects, including when an existing request is re-routed.
 
   ### Reports & budgets
 
@@ -63,12 +68,20 @@ og:type: "website"
   - [Custom fields](/help/documentation/custom-fields) can now be assigned to time-off types, so a time-off entry only asks for the fields that belong to it.
   - Connected [AI assistants](/help/integrations/mcp-server) can do far more: read and set rates and custom field values, manage assignments, record expenses, review the team's timesheets and send reminders, approve or reject submissions, update planning tasks, check budget status, and read the audit trail — always with exactly your permissions.
   - The legacy [migration](/help/guides/migration) tool has left the Settings menu; migrations are now handled by Beebole support on request, and imported history arrives approved and locked at the cut-over date so nothing shows up as pending work.
+  - The first column of a [Master data](/help/documentation/master-data) table is now a normal column header: filter on it, and switch to another list (people, projects, tags…) or another category straight from its menu. Tables also show only the lowest level of a hierarchy by default, so parent rows no longer pad your export — pick a specific level from the scope menu when you want one.
+  - Asking for your data in plain English now works on the tag and project lists too, and a person's name in your question is read as a filter: ask "who does Anna manage?" and the matching column is added to the table.
+  - [Master data](/help/documentation/master-data) reviews and the report builders now share one sentence box that keeps the whole conversation: each question and its answer stay on screen, with earlier turns available behind **Whole conversation**. Reading your data and changing it are two tabs on that box, with **Apply** and **Cancel** next to the sentence and the undo of your last change always in reach.
+  - Project, task, and tag badges spell out the full parent path whenever it fits the space available, falling back to initials only when the label would be clipped, and their tooltips always show the complete path.
 
   ### Integrations & apps
 
   - [QuickBooks](/help/integrations/quickbooks) structure sync now also brings across employees added in QuickBooks after the integration was set up, creating them as people matched by email with the configured default role. Exporting time runs a structure sync first and stops with an explanation if that sync reports errors, so entries are never exported against stale structure.
+  - Time exported to [QuickBooks](/help/integrations/quickbooks) now carries whole hours and minutes instead of a decimal hour value, so entries land on the exact duration tracked. A second export is refused with a clear message while one is already running, so a double-click or a second tab can no longer export the same entries twice.
+  - Connections to [QuickBooks](/help/integrations/quickbooks), [Xero](/help/integrations/xero), [Asana](/help/integrations/asana), and [Jira](/help/integrations/jira) no longer drop out and need reconnecting when several requests refresh the connection at once.
+  - The [Excel](/help/documentation/excel-addin) and [Google Sheets](/help/documentation/gsheets-addon) add-ins fill in the **Activity** column again instead of leaving it blank.
+  - The [browser extension](/help/documentation/browser-extension) no longer reads page content at all: only the site address, the page title, and the duration leave your browser. And if your API key is rejected, it stops tracking and says so instead of retrying silently.
 
-  {/* news-cursor: 2026-09-10 */}
+  {/* news-cursor: 2026-09-17 */}
 </Update>
 
 <Update label="August 2026" tags={["Reports","Budgets","Planning","Timesheet","Integrations","Settings","AI"]}>
