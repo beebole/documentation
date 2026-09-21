@@ -1,14 +1,14 @@
 ---
 title: "Querying time records, projects, and people"
 sidebarTitle: "Queries"
-description: "Reference for Beebole GraphQL queries — read organizations, people, projects, tasks, tags, time records, and expenses, with typed filter inputs."
-keywords: ["beebole", "GraphQL queries", "API queries", "time records api", "beebole api"]
+description: "Reference for Beebole GraphQL queries — read people, projects, tasks, tags, time records, expenses, approval status, and custom fields, with typed filters."
+keywords: ["beebole", "GraphQL queries", "API queries", "time records api", "approval status api", "custom field values api", "beebole api"]
 "og:title": "Beebole API Queries — GraphQL Read Operations"
 "og:description": "Runnable Beebole GraphQL query examples with real names, arguments, fields, and the typed filter input."
 "og:type": "article"
 ---
 
-Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organization, people, projects, tasks, tags, time records, and expenses — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
+Beebole queries are the read operations of the [Beebole GraphQL API](/help/api/introduction). They return data from your account — your organization, people, projects, tasks, tags, time records, expenses, timesheet approvals, and custom fields — without modifying anything. Every query is sent as a `POST` request to `https://app.beebole.com/graphql` with your API key in the `apikey` HTTP header.
 
 <Info>
   Queries never change data. To create, update, archive, or delete records, use [Mutations](/help/api/mutations) instead. For authentication setup, see the [API introduction](/help/api/introduction#authentication).
@@ -288,6 +288,71 @@ query {
 
 ---
 
+## Timesheets and approvals
+
+A timesheet is one person's time records over one timesheet period, and its approval status — draft, submitted, approved, or rejected — belongs to the period, not to the individual records. Time records carry no status field, so `getTimeRecords` has no status filter. Read approval data with these queries instead:
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getApprovalState` | `personId`, `startTime`, `endTime` | The current status of one person's period, with its stage breakdown |
+| `getPendingApprovals` | `showAll` | Submitted timesheets waiting for the key's owner — or every pending submission they may see, with `showAll: true` |
+| `getTeamApprovalStates` | `personIds`, `startTime`, `endTime` | The status of several people's timesheets for one period |
+| `getTimesheetTeam` | `startTime`, `endTime` | The people whose timesheets the key's owner may review for a period |
+| `getApprovalEvents` | `personId`, `startTime`, `endTime` | Every approval event — submissions, approvals, rejections — on one person's period |
+| `getPersonApprovalEvents` | `personId` | All of a person's approval events, in chronological order |
+| `getApprovalEventById` | `id` | A single approval event |
+| `getApprovalDigest` | `personId`, `startTime`, `endTime` | Rule-based anomalies in the period, for an approver to review before deciding |
+| `getTimesheetScore` | `personId`, `periods` | The person's timesheet score over recent periods (12 by default) |
+| `canApproveTimesheets` | none | Whether the key's owner may use the approval and team panes |
+
+The `status` field on approval states and events uses one-letter codes: `d` (draft), `s` (submitted), `a` (approved), and `r` (rejected).
+
+### List timesheets awaiting approval
+
+```graphql
+query {
+  getPendingApprovals(showAll: true) {
+    person {
+      id
+      name
+    }
+    startTime {
+      ts
+      iso
+    }
+    endTime {
+      ts
+      iso
+    }
+    status
+    currentStage
+    totalDuration
+    submitId
+  }
+}
+```
+
+### Check whether a period is still a draft
+
+```graphql
+query {
+  getApprovalState(
+    personId: "64a1b2c3d4e5f6a7b8c9d0e1"
+    startTime: 1717200000000
+    endTime: 1719791999999
+  ) {
+    status
+    currentStage
+    currentStageType
+    submitId
+  }
+}
+```
+
+A period nobody has submitted yet returns `status: "d"`. To find every draft in a team, call `getTeamApprovalStates` with the team's `personIds` and keep the entries whose `status` is `d`. The `submitId` of a submitted period is what `approveTimesheet` and `rejectTimesheet` expect — see [Mutations](/help/api/mutations#timesheets-and-approvals).
+
+---
+
 ## Expense records
 
 An expense record is an expense logged by a person against a project and an expense type. Read them with `getExpenseRecord` and `getExpenseRecords`.
@@ -349,6 +414,59 @@ query {
 
 ---
 
+## Custom fields
+
+Custom field definitions and the values stored on records are separate entities. Read definitions with `getCustomField`, `getCustomFields`, and `countCustomFields`; read values with `getCustomFieldValue`, `getCustomFieldValues`, and `countCustomFieldValues`.
+
+| Query | Arguments | Returns |
+| --- | --- | --- |
+| `getCustomField` | `id` | A single custom field definition |
+| `getCustomFields` | `filter`, `archived` | All custom field definitions |
+| `countCustomFields` | `filter` | The number of matching definitions |
+| `getCustomFieldValue` | `id` | A single stored value |
+| `getCustomFieldValues` | `filter` | Stored values, optionally filtered by field, entity type, or entity |
+| `countCustomFieldValues` | `filter` | The number of matching values |
+
+A value's `entityType` is one of `Person`, `Project`, `Task`, `Tag`, `TimeRecord`, or `AbsenceType`, and `entityId` is the record it sits on. The value itself lives in the field matching the definition's `fieldType`: `textValue`, `numberValue`, `dateValue`, `dateTimeValue`, `urlValue`, or `booleanValue`. The `person`, `project`, `task`, `tag`, `timeRecord`, and `absenceType` fields resolve the owning record inline — only the one matching `entityType` is set.
+
+```graphql
+query {
+  getCustomFields {
+    id
+    name
+    fieldType
+    archived
+  }
+}
+```
+
+### Look up records by an external identifier
+
+Beebole has no built-in external ID attribute: an identifier from another system lives in a text custom field (a [migrated legacy account](/help/documentation/legacy-migration) gets one named **External ID**). The value filter matches on `customFieldId`, `entityType`, and `entityId` — not on the value itself — so fetch the field's values once and match them on your side:
+
+```graphql
+query {
+  getCustomFieldValues(
+    filter: [
+      { customFieldId: "64a1b2c3d4e5f6a7b8c9d0e1", following: AND }
+      { entityType: "Person" }
+    ]
+  ) {
+    entityId
+    textValue
+    person {
+      id
+      name
+      email
+    }
+  }
+}
+```
+
+Pick the row whose `textValue` equals your identifier; its `entityId` — and the resolved `person` — is the Beebole record. To read the values on one known record instead, filter by `entityType` and `entityId`. Writing values is covered under [Custom fields](/help/api/mutations#custom-fields) on the Mutations page.
+
+---
+
 ## Filtering results
 
 The `filter` argument is **a list of typed input objects** — not a list of `field`/`value` pairs. Each entity has its own filter input type, such as `BeeboleTimeRecordFilter`, `BeebolePersonFilter`, or `BeeboleProjectFilter`. You set the named fields you want to match directly on each object.
@@ -401,7 +519,32 @@ query {
 | `isAbsence` | Boolean | Whether the record is an absence |
 | `following` | `AND` / `OR` | Logical operator chaining this condition to the next |
 
-Other entities expose filter types tuned to their own fields — for example `BeebolePersonFilter` supports `roleId`, `tagIds`, and `name` (a case-insensitive match), while `BeeboleProjectFilter` supports `categoryId`, `managedById`, and `subProjectId`. Browse every filter type and its fields in the [Schema explorer](/help/api/schema-explorer).
+### Other filter types
+
+Every other entity exposes a filter input tuned to its own fields. All fields are optional, `name` is a case-insensitive match, and `following` chains conditions the same way.
+
+| Filter input | Fields |
+| --- | --- |
+| `BeebolePersonFilter` | `id`, `notId`, `name`, `archived`, `roleId`, `tagIds`, `notTagIds`, `scheduleTypeId` |
+| `BeeboleProjectFilter` | `id`, `notId`, `name`, `level`, `archived`, `categoryId`, `tagIds`, `notTagIds`, `assignedPersonId`, `managedById`, `subProjectId` |
+| `BeeboleTaskFilter` | `id`, `notId`, `name`, `level`, `archived`, `categoryId`, `statusId`, `notStatusId`, `ownerId`, `ownerIds`, `notOwnerId`, `ownerTagId`, `notOwnerTagId`, `assignedPersonId`, `notAssignedPersonId`, `assignedTagId`, `notAssignedTagId`, `projectId`, `projectIds`, `notProjectId`, `assignedProjectId`, `childrenOfId`, `startsBefore`, `endsAfter`, `tagIds`, `notTagIds`, `taskTagIds`, `notTaskTagIds`, `personTagIds`, `notPersonTagIds`, `projectTagIds`, `notProjectTagIds`, `projectCategoryIds`, `notProjectCategoryIds`, `taskCategoryIds`, `notTaskCategoryIds` |
+| `BeeboleTagFilter` | `id`, `notId`, `name`, `level`, `archived`, `categoryId`, `scheduleId`, `taggedPersonId`, `taggedProjectId`, `taggedTaskId` |
+| `BeeboleExpenseRecordFilter` | `id`, `notId`, `personId`, `notPersonId`, `projectId`, `notProjectId`, `projectTagIds`, `projectNotTagIds`, `personTagIds`, `personNotTagIds` |
+| `BeeboleCustomFieldFilter` | `id`, `name`, `archived` |
+| `BeeboleCustomFieldValueFilter` | `id`, `customFieldId`, `entityType`, `entityId` |
+
+For example, the projects a person manages — the same scope a manager sees in the [Budget Status](/help/documentation/reports#budget-status) report:
+
+```graphql
+query {
+  getProjects(filter: [{ managedById: "64a1b2c3d4e5f6a7b8c9d0e1" }]) {
+    id
+    name
+  }
+}
+```
+
+Browse every filter type and its fields in the [Schema explorer](/help/api/schema-explorer).
 
 ---
 
@@ -409,7 +552,7 @@ Other entities expose filter types tuned to their own fields — for example `Be
 
 For each major entity, alongside the full `get…` query you also get a counterpart that returns just a count, and (for people, projects, tasks, and tags) one that returns only matching IDs.
 
-- **`count…`** queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`) return an integer. Use them to size a result set before fetching it.
+- **`count…`** queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`, `countCustomFields`, `countCustomFieldValues`) return an integer. Use them to size a result set before fetching it.
 - **`filter…Ids`** queries (`filterPersonIds`, `filterProjectIds`, `filterTaskIds`, `filterTagIds`) return an array of IDs instead of full objects, which is lighter when you only need identifiers.
 
 ```graphql

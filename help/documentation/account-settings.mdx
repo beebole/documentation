@@ -2,7 +2,7 @@
 title: "Account settings for your organization"
 sidebarTitle: "Account Settings"
 description: "Configure your Beebole organization's defaults from Account Settings: localization, billing, cost, public holidays, work schedule, SSO, and more."
-keywords: ["beebole", "account settings", "organization settings", "localization", "currency", "timezone", "single sign-on"]
+keywords: ["beebole", "account settings", "organization settings", "localization", "currency", "timezone", "single sign-on", "delete account", "gdpr", "personal data"]
 "og:title": "Configure Your Organization in Beebole Account Settings"
 "og:description": "Set your Beebole organization's defaults from Account Settings — localization, billing, cost, public holidays, work schedule, SSO, and account deletion."
 "og:type": "article"
@@ -100,7 +100,9 @@ The **Timesheet and Planning Settings** panel controls the timesheet experience 
 
 ## Delete your account <Badge>Admin only</Badge>
 
-You can schedule your Beebole organization for deletion from the **Delete Account** menu item. Beebole does not delete everything instantly — it gives you a grace period so you can change your mind.
+You can schedule your Beebole organization for deletion from the **Delete Account** menu item. Beebole does not delete everything instantly — it gives you a grace period so you can change your mind. This is also how you honor a right-to-erasure request that covers the whole organization — see [GDPR and personal data](/help/documentation/data-exports#gdpr-and-personal-data) for individual requests.
+
+The menu item exists only for administrators: the whole settings menu behind the initials button stays empty for other roles, so a person who cannot find **Delete Account** either needs an administrator to do it, or is still on the Legacy platform, where the account is deleted from the *Account* module — see the [legacy FAQ](/help/legacy/faq).
 
 <Warning>
   Scheduling deletion removes your entire organization — people, projects, time entries, reports, and configuration — after the grace period passes. Export any data you need first.
@@ -152,5 +154,8 @@ You can schedule your Beebole organization for deletion from the **Delete Accoun
   </Accordion>
   <Accordion title="Can I change the currency after I have started tracking costs?">
     Yes. You can change the currency in the **Localization** panel at any time. Beebole does not convert existing values, so review your financial data after switching.
+  </Accordion>
+  <Accordion title="Why don't I see Delete Account in my menu?">
+    Two possible reasons. Either you are not an administrator — in Beebole the settings menu behind the initials button, **Delete Account** included, only appears for the Admin role, so ask an administrator to schedule the deletion. Or you are signed in to the Legacy platform at beebole-apps.com, which has no initials button at all; there, deletion is in the *Account* module of the Settings screen. See [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using).
   </Accordion>
 </AccordionGroup>

@@ -2,7 +2,7 @@
 title: "Migrating a legacy Beebole account"
 sidebarTitle: "Legacy Migration"
 description: "How Beebole support imports your legacy account — people, projects, tags, rates, budgets, and time records — into the new platform, and what to expect afterwards."
-keywords: ["beebole", "legacy migration", "migrate data", "import data", "beebole migration", "data import", "account migration"]
+keywords: ["beebole", "legacy migration", "migrate data", "import data", "beebole migration", "data import", "account migration", "legacy roles", "external id"]
 "og:title": "Migrating Your Legacy Beebole Account to the New App"
 "og:description": "What Beebole's support team migrates from a legacy account, how to request it, and how imported history behaves once it lands."
 "og:type": "article"
@@ -20,7 +20,7 @@ Beebole can import a legacy Beebole account — people, projects, tags, rates, b
 
 | Data | How it lands in the new account |
 | --- | --- |
-| **People** | Active and archived people, with their roles, email addresses, and external IDs |
+| **People** | Active and archived people, with their email addresses, a role mapped from their legacy user group (see below), and their external IDs stored in a custom field named **External ID** |
 | **Companies, projects, subprojects** | One project category — **Companies** by default — with the legacy company \> project \> subproject hierarchy kept as is |
 | **Activities** | Legacy activities (jobs) become projects in a second category, **Tasks (Legacy)** by default, offered as a secondary column in the timesheet |
 | **Groups and branches** | Two tag categories, **Groups** and **Branches** by default, with each person's assignments over time |
@@ -40,6 +40,20 @@ A few details worth knowing about the conversion:
 - **Clock times.** An entry with a complete, same-day start and end time keeps both. Anything else — no times, only one of the two, an end at or before the start — becomes a whole-day entry. Either way the entry's duration stays exactly what legacy reported, so report totals never move because times were imported.
 - **Custom field history.** A legacy field that held a history of values collapses to a single value in the new account, and the most recent one wins.
 - **"No task" projects.** A legacy project set to offer no activity at all keeps that behavior: its task picker offers nothing.
+- **External IDs.** Every legacy external ID becomes the value of a text [custom field](/help/documentation/custom-fields) named **External ID**, visible on people and on the migrated project categories. Integrations that matched records on that ID read it back through the [API](/help/api/queries#custom-fields), where custom field values are exposed like any other data.
+
+### Role mapping
+
+Legacy user groups become the built-in roles of the new platform. Per-user permission settings from Legacy are not carried over, so review the [role grid](/help/documentation/roles-authorisations) after the import — in particular if contractors need less access than employees, since both land in the same role.
+
+| Legacy user group | Role in the new account |
+| --- | --- |
+| Administrator | **Admin** |
+| Employee | **Employee** |
+| Contractor | **Employee** |
+| Team leader (manager) | **People manager** |
+| Project manager | **Project manager** |
+| Anything else | **Employee** |
 
 <Info>
   Data can only be migrated **as is**. You can choose which data sets to bring over — for example people and projects but no time records — and how far back time records go, but not to restructure the account on the way in. If you want a different structure, see [Review your structure before you switch](/help/guides/migration#review-your-structure-before-you-switch).
@@ -107,5 +121,13 @@ After the migration, it is worth checking a sample of time records in [Reports](
 
   <Accordion title="Will migrated people receive an invitation email?">
     No. Migrating people creates their records in Beebole without sending anything. Invite them from the **People** page in the sidebar whenever you are ready for them to sign in.
+  </Accordion>
+
+  <Accordion title="How do legacy user groups map to roles in the new Beebole?">
+    Administrators become **Admin**, employees and contractors both become **Employee**, team leaders become **People manager**, and project managers become **Project manager**; any unrecognized group falls back to **Employee**. Legacy per-user permission tweaks are not migrated, so adjust the roles — or duplicate one for contractors — once the import is done.
+  </Accordion>
+
+  <Accordion title="Where do the legacy external IDs end up?">
+    In a text custom field named **External ID**, created by the migration and visible on people and on the migrated project categories. You can read and edit it like any custom field, and scripts reach it through the API's custom field queries and mutations.
   </Accordion>
 </AccordionGroup>

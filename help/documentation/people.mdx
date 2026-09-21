@@ -2,7 +2,7 @@
 title: "People: add, invite, and manage your team"
 sidebarTitle: "People"
 description: "Add, invite, and manage your team members in Beebole. Configure profiles, assign roles, and set up schedules and rates for each person."
-keywords: ["Beebole people", "add team members", "invite users", "user management", "employee profiles", "how to add people"]
+keywords: ["Beebole people", "add team members", "invite users", "user management", "employee profiles", "how to add people", "duplicate person", "invite button missing"]
 og:title: "Adding, Inviting, and Managing Your Team in Beebole"
 og:description: "Learn how to add, invite, and manage your team members in Beebole."
 og:type: "article"
@@ -11,7 +11,7 @@ og:type: "article"
 In Beebole, **People** represents every user or team member in your account — anyone who tracks time, manages projects, or views reports. Each person has a profile that combines their user account with configuration data like rates, schedules, and permissions.
 
 <Info>
-  Every person is assigned a role that determines what they can see and do. Beebole includes default roles (Admin, Employee, Manager), and you can create custom roles to match your organization's structure. See [Roles & permissions](/help/documentation/roles-authorisations).
+  Every person is assigned a role that determines what they can see and do. Beebole includes four default roles — **Admin**, **Employee**, **People manager**, and **Project manager** — and you can create custom roles to match your organization's structure. See [Roles & permissions](/help/documentation/roles-authorisations).
 </Info>
 
 ---
@@ -45,6 +45,10 @@ In Beebole, **People** represents every user or team member in your account — 
   If your subscription has no available seats, Beebole creates the new person as archived automatically. You see a warning message confirming this. Unarchive them once you have a free seat, or upgrade your plan first.
 </Warning>
 
+### Duplicating a person
+
+To set up a new person like an existing one, duplicate the existing profile instead of configuring the new one from scratch. Open the person's profile, click the **⋯** action menu next to their name, and choose **Duplicate**. Enter the new person's name — Beebole proposes an email address on the same domain, which you can change — pick a **Role** if it differs from the original's, and click **Duplicate**. The copy carries over the original's settings and links, such as tags, managers, and project access; the profile picture and the tasks the original owns are not copied. The new person is created without an invitation, so send one when they are ready to sign in.
+
 ---
 
 ## Sending invitations
@@ -64,6 +68,10 @@ In Beebole, **People** represents every user or team member in your account — 
 <Tip>
   You can resend invitations at any time from the person's profile if they missed the initial email.
 </Tip>
+
+<Info>
+  **Invite by email** is shown only while the person has not joined yet. Once they sign in for the first time, the button and the **Invitation pending** status disappear from their profile — there is nothing left to invite them to. A profile without the button belongs to someone who already has access.
+</Info>
 
 ### Bulk invitation
 
@@ -170,8 +178,8 @@ Select multiple people from the list using the checkboxes to perform actions in 
     Archive their profile instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription.
   </Accordion>
 
-  <Accordion title="Can I create custom roles beyond Admin, Manager, and Employee?">
-    Yes. Go to **Settings** \> **Person Roles** to create custom roles with granular permissions. See [Roles & permissions](/help/documentation/roles-authorisations).
+  <Accordion title="Can I create custom roles beyond the four built-in ones?">
+    Yes. Go to **Settings** \> **Person Roles** to create custom roles with granular permissions, or duplicate **Admin**, **Employee**, **People manager**, or **Project manager** and adjust the copy. See [Roles & permissions](/help/documentation/roles-authorisations).
   </Accordion>
 
   <Accordion title="Can I add multiple people at once?">
@@ -184,5 +192,13 @@ Select multiple people from the list using the checkboxes to perform actions in 
 
   <Accordion title="Can I sign in as another user for troubleshooting?">
     Yes. Administrators can use the **Sign in as…** <Badge>Admin only</Badge> action to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
+  </Accordion>
+
+  <Accordion title="How do I copy an existing person's setup to a new person?">
+    Open the existing person's profile in Beebole, click the **⋯** action menu next to their name, and choose **Duplicate**. Give the copy a name, an email address, and a role, and Beebole creates the new person with the original's settings and links — tags, managers, project access — minus the picture and the tasks they own. Invite the new person afterwards.
+  </Accordion>
+
+  <Accordion title="Why don't I see the Invite by email button on a profile?">
+    Because that person has already joined. Beebole shows **Invite by email** and the **Invitation pending** status only until someone signs in for the first time; after that the profile has nothing to invite them to. If they can't sign in anyway, check that they use the exact email address on their profile — see [Authentication](/help/documentation/authentication).
   </Accordion>
 </AccordionGroup>

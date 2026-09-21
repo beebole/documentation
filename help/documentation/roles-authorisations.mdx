@@ -24,6 +24,10 @@ Roles live in **Settings** > **Person Roles** — click the button with your ini
 
 A permission with nothing selected shows **Not allowed**: people with that role don't see that area at all. Two permissions — **Timesheet entries** and **Reports** — are simple on/off checkboxes instead of target selectors.
 
+<Info>
+  Custom roles exist on the new Beebole platform only. If your Settings screen has no **Person Roles** entry and you sign in at beebole-apps.com, you are on the Legacy platform, where user groups are fixed — see [organizing people in the legacy documentation](/help/legacy/organizing-people). [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using) explains how to tell the two apart.
+</Info>
+
 Edit access always includes view access. When you add a target under **Edit**, Beebole adds it to **View** automatically; when you remove a target from **View**, it is removed from **Edit** too.
 
 At the top of the grid, the **Admin role (full access)** checkbox grants everything at once. Checking it replaces all individual permissions with full access; unchecking it clears the role so you can build it permission by permission.
@@ -207,6 +211,22 @@ These permissions cover account configuration and the access-control settings th
   </Step>
 </Steps>
 
+## Common setups
+
+The built-in roles cover the situations most teams ask about. Which time entries a role sees follows the people and projects it can view: **Timesheet entries** and **Reports** switch the features on, and the targets on **People details** and **Project details** decide whose time, on which projects, shows up.
+
+### Project managers see every hour logged on their projects
+
+Give project managers the built-in **Project manager** role, or a copy of it. It is scoped to their projects rather than to a team: **Project details** at **View: Managed projects, Assigned projects**, **People details** at **View: Me, Managed project members**, with **Timesheet entries** and **Reports** switched on. Whoever logs time on a project they manage — employee or freelancer — appears in their reports and in the **Team** pane of the timesheet, and time on other projects stays out of sight. Then make them manager of the projects, or of a whole project category at once, in the **Manages** panel of their profile — see [Assignments](/help/documentation/assignments).
+
+### Freelancers and contractors see only their own time
+
+Give them the built-in **Employee** role, or a copy of it: **People details** at **View: Me**, **Project details** at **View: Assigned projects**, and **Timesheet entries** on. They see their own timesheet and the projects assigned to them, and nothing about colleagues. If they must not see billing or cost figures either, keep **Billing rates** and **Costs** at **Not allowed** — the default on **Employee**.
+
+### Both at once
+
+The two setups combine without a third role: project managers hold **Project manager**, everyone else holds **Employee**. A freelancer sees only their own time, while the manager of the project they work on sees the freelancer's hours next to the staff's. A separate role is only needed when a group wants something different — a finance role with **View: All** on **Billing rates** and **Costs**, for example, built by duplicating **Project manager**.
+
 ## Best practices
 
 - **Grant the least access that works.** Start from **Not allowed** and add **View** before **Edit**, only for the targets each role really needs.
@@ -248,5 +268,8 @@ These permissions cover account configuration and the access-control settings th
   </Accordion>
   <Accordion title="Do I need to save after changing a role?">
     No. Beebole saves every change to a role automatically — adding a target, unchecking a permission, or renaming the role. There is no Save button on the roles page.
+  </Accordion>
+  <Accordion title="Why can't a project manager see all the hours on their project?">
+    Two things must both be true in Beebole: their role must reach the people who logged the time — **People details** at **View: Managed project members**, as on the built-in **Project manager** role — and they must actually be set as the project's manager, in the **Manages** panel of their profile. A manager set only on a subproject sees that subproject; set them on the parent to cover everything beneath it.
   </Accordion>
 </AccordionGroup>

@@ -2,7 +2,7 @@
 title: "Work schedules: define and assign work patterns"
 sidebarTitle: "Work Schedules"
 description: "Define work schedules in Beebole — weekly or longer cycles — and assign them at the organization, tag, or person level, each from its own start date."
-keywords: ["beebole", "work schedules", "working hours", "schedule assignment", "rotating schedule", "scheduled hours"]
+keywords: ["beebole", "work schedules", "working hours", "schedule assignment", "rotating schedule", "scheduled hours", "overtime"]
 "og:title": "Defining and Assigning Team Work Schedules in Beebole"
 "og:description": "Learn how to create work schedules in Beebole, assign them to your organization, tags, or people, and change them over time with start dates."
 "og:type": "article"
@@ -144,5 +144,11 @@ A schedule that is still assigned to people or tags can't be deleted — Beebole
   </Accordion>
   <Accordion title="How do I set up a part-time schedule in Beebole?">
     Create a new work schedule and enter **Hours** only on the days the person works — for example 4 hours from Monday to Friday, or full days from Monday to Wednesday. Then assign it to the person.
+  </Accordion>
+  <Accordion title="Can a work schedule fill in timesheets automatically?">
+    No. A work schedule tells Beebole how many hours are expected each day — it shows on the timesheet as scheduled hours and drives overtime and capacity — but it never creates time entries. To have timesheets filled for people, use **Auto Timesheet from Planning** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#auto-timesheet-from-planning), which turns finished planned tasks into suggested entries, or the [suggested time entries](/help/documentation/ai) the Assistant proposes from calendars, habits, and planned work.
+  </Accordion>
+  <Accordion title="How do I report overtime in Beebole?">
+    Two steps. First assign a work schedule so Beebole knows each person's expected hours — on the organization, a tag, or the person. Then build a [custom report](/help/documentation/custom-reports) with a **Time** column set to **Overtime (daily)** (hours beyond the schedule, day by day), **Overtime (period)** (beyond the schedule over the report period), or **Overtime balance**, grouped by person and period. To prevent overtime instead of reporting it, add the **No overtime beyond the schedule** restriction in Timesheet and Planning Settings.
   </Accordion>
 </AccordionGroup>

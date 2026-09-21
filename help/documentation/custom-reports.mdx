@@ -2,7 +2,7 @@
 title: "Custom reports: columns, charts, and matrix"
 sidebarTitle: "Custom Reports"
 description: "Build custom reports in Beebole — add columns for time, billing, and costs, group and filter data, and view results as a table, chart, or matrix."
-keywords: ["beebole", "custom reports", "report builder", "report columns", "matrix report", "chart visualizations", "report folders"]
+keywords: ["beebole", "custom reports", "report builder", "report columns", "matrix report", "chart visualizations", "report folders", "currency conversion", "overtime report"]
 "og:title": "Building Custom Reports in Beebole: Columns to Charts"
 "og:description": "Define report columns, group and filter your data, and visualize results as tables, charts, or a heat-map matrix in Beebole."
 "og:type": "article"
@@ -72,9 +72,14 @@ Person, project, and task columns also offer your [tag](/help/documentation/tags
 - **Click a badge** to change its field, level, or category, or to **Remove** it.
 - **Subtotal** — toggle subtotal rows for a grouping column; groups can collapse and expand in the table.
 - **Hide empty values** — hide rows where the column is empty.
-- Selecting a currency-based field adds a currency picker that applies to the whole report.
 
 Multi-level grouping is just multiple grouping columns: for example, a tag column, then a project column, then a **Period: Month** column shows each team's projects month by month.
+
+### Amounts in several currencies
+
+Rates and expenses can be entered in different currencies, so a report that carries billing, cost, or expense amounts also carries a currency picker: the first currency-based column adds it to the column's badge, preset to your default currency. Beebole converts every amount into that currency before totaling. Each time entry or expense is converted at the exchange rate of its own date, using the daily rates Beebole fetches from an exchange-rate service — so a euro rate on a January entry and a dollar rate on a June entry both land in the report's currency at the rates that applied on those days. Pick another currency in the badge and the whole report is recalculated.
+
+The stored data never moves: a rate stays in the currency you entered it in, and changing your organization's currency in **Account Settings** converts nothing either — it only changes the default the picker starts from.
 
 ---
 
@@ -208,5 +213,13 @@ Folders group related reports in the Reports menu, and each folder's period and 
 
   <Accordion title="Is the chart or matrix saved with the report?">
     Yes. Beebole stores which views are open, the chart type, axis settings, and height, and the matrix rows, columns, metric, and heat-map choice with each report — everything is restored the next time you open it.
+  </Accordion>
+
+  <Accordion title="How does Beebole handle rates in different currencies in a report?">
+    Every billing, cost, and expense amount is converted into the report's currency — the one shown on the currency badge, preset to your default — at the exchange rate of the entry's date, using daily rates Beebole retrieves from an exchange-rate service. Totals therefore add up in one currency even when people and projects carry rates in several. Change the badge's currency to recalculate the report.
+  </Accordion>
+
+  <Accordion title="How do I report overtime?">
+    Add a **Time** column and pick **Overtime (daily)**, **Overtime (period)**, or **Overtime balance**, then group by person and, if useful, by **Period**. Overtime is measured against each person's [work schedule](/help/documentation/work-schedule), so assign schedules first — without one, Beebole assumes a 24/7 schedule and reports no overtime.
   </Accordion>
 </AccordionGroup>

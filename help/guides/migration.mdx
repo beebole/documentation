@@ -2,7 +2,7 @@
 title: "Moving to the New Beebole Platform"
 sidebarTitle: "Migration Guide"
 description: "A guide for existing Beebole customers moving to the new platform: how the two systems coexist, how to test the new app, and what has changed."
-keywords: ["beebole", "migration guide", "new beebole platform", "free trial", "what's changed", "legacy account"]
+keywords: ["beebole", "migration guide", "new beebole platform", "free trial", "what's changed", "legacy account", "which version of beebole", "dcaa", "sox"]
 "og:title": "Moving to the New Beebole Platform — Migration Guide"
 "og:description": "How existing Beebole customers can trial the new platform while their legacy account keeps running, plan a smooth switch, and learn what has changed."
 "og:type": "article"
@@ -73,6 +73,21 @@ The new and Legacy systems have separate sign-in pages.
 - You still sign in to Legacy at [beebole-apps.com/signin](http://beebole-apps.com/signin/), or from the login button at [beebole.com](http://beebole.com). Nothing changes for your employees still using Legacy.
 - You sign in to the new system at [app.beebole.com](https://app.beebole.com/signin).
 - Signing in to the new system is passwordless: you confirm your identity with a one-time 6-digit code emailed to you, a passkey, your Google or Microsoft account, or your organization's SSO provider. See [Authentication](/help/documentation/authentication) for details.
+
+## Which Beebole am I using?
+
+The two platforms look different, and the pages in the other tabs of this site only describe the new one. Before following an instruction, check which app you are signed in to:
+
+| | New Beebole | Legacy Beebole |
+| :-- | :-- | :-- |
+| **Address** | app.beebole.com | beebole-apps.com, or the login button on beebole.com |
+| **Layout** | A left sidebar with **Timesheet**, **Planning**, **Reports**, **People**, and **Projects**, and a button with your initials at the bottom | A home screen and a Settings screen made of *modules* — Timesheet, Account, Timesheet Settings, API Token, and so on |
+| **Sign-in** | Passwordless: a one-time email code, a passkey, Google or Microsoft, or SSO | Email and password |
+| **Settings** | The button with your initials opens **Account Settings**, **Person Roles**, **Work Schedules**, and the other settings screens | "Settings" in the top right corner opens the Settings screen |
+| **Roles** | Custom roles under **Person Roles** | Fixed user groups: administrator, employee, contractor, project manager, team leader |
+| **API** | The [GraphQL API](/help/api/introduction) at `app.beebole.com/graphql`, with the key from **Your API key** | The [Legacy API](/help/legacy/api), with the token from the *API Token* module |
+
+If the Legacy column is what you see, use the [Legacy documentation](/help/legacy/index) for now: the current pages describe controls your app does not have, such as **Person Roles** or the initials button. Screenshots pasted into the docs assistant from the Legacy app lead to the same dead end.
 
 ## Review your structure before you switch
 
@@ -146,7 +161,6 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | **Effort allocation** | Assign a percentage of a person's time to a task and spot over- or under-allocation. |
 | **Timesheet integration** | Tasks assigned to you can appear in your timesheet, ready to confirm. |
 | **Custom fields on tasks** | Add structured information to tasks beyond the description. |
-| **Recurring tasks** | Set up tasks that repeat on a schedule (e.g., every Friday). |
 
 <Info>
   Tasks are independent planning items in the new platform — they live on their own **Planning** page and are not sub-elements of projects, although they can be linked to existing projects. See [Task planning](/help/documentation/planning).
@@ -189,6 +203,13 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | **Budget status reports** | Easily check the budget status and planned budget on any project for costs, billing, and time in reports. |
 | **Saved reports** | Create, save, and organize [reports](/help/documentation/reports) into folders, and toggle between table, chart, and matrix views. |
 | **Spreadsheet add-ins** | Link a saved report to [Excel](/help/documentation/excel-addin) or [Google Sheets](/help/documentation/gsheets-addon) and refresh the data on demand. |
+
+### Compliance and audit
+
+| Topic | What's new |
+| :-- | :-- |
+| **Audit trail** | Every change is recorded in the [Audit Trail](/help/documentation/audit-trail) without a setting to switch on, unlike the Legacy checkbox. |
+| **DCAA ownership and SOX reports** | The Legacy *Timesheet Settings* toggles no longer exist under those names. The controls they stood for are the **Only the owner or an admin can edit entries** restriction in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#restrictions), which keeps managers from changing other people's hours; the [approval history](/help/documentation/approval#approval-history) kept on every timesheet; the [Lock date](/help/documentation/timesheetSettings#lock-date) that freezes closed periods; and the [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) report, which shows submissions period by period. If your auditor needs a specific extract, [support@beebole.com](mailto:support@beebole.com) can help you build the report. |
 
 ### Communication and platform
 
@@ -253,5 +274,13 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 
   <Accordion title="Do my API integrations carry over automatically?">
     No. The new platform uses a GraphQL API, so Legacy integrations need to be updated. Your existing integrations keep working in your Legacy account.
+  </Accordion>
+
+  <Accordion title="How do I know whether I am on the new Beebole or on Legacy?">
+    Look at the address bar and the layout. The new Beebole runs at app.beebole.com, has a left sidebar, and signs you in without a password. Legacy runs at beebole-apps.com, is organized in modules on a home screen and a Settings screen, and uses a password. See [Which Beebole am I using?](#which-beebole-am-i-using) for the full comparison.
+  </Accordion>
+
+  <Accordion title="Does the new Beebole have DCAA ownership and SOX reports like Legacy?">
+    Not as named toggles. The new platform records every change in the audit trail without a setting, keeps the approval history of each timesheet, and lets you stop managers from editing other people's hours with the **Only the owner or an admin can edit entries** restriction — the rule Legacy called DCAA ownership. Submission compliance per period is in the Timesheet Compliance report. Whether that covers your audit requirements is for your compliance team to confirm; support can walk you through the controls.
   </Accordion>
 </AccordionGroup>
