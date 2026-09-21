@@ -266,6 +266,12 @@ In the team panes, a colored ring around each person's avatar shows their **Time
   <Accordion title="How do I copy my timesheet from the previous period?">
     Open the period you want to copy, click the copy button at the top-left corner of the grid, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
   </Accordion>
+  <Accordion title="Can I unsubmit or recall my timesheet after clicking Submit?">
+    Not on your own. Once submitted, the timesheet is locked and waiting in the [approval workflow](/help/documentation/approval). To reopen it for editing, ask a current-stage approver or an administrator to **Reject** it. Rejection returns the timesheet to you as **Rejected** so you can correct the entries and click **Resubmit**. An administrator can also reject an already-approved period to send it back.
+  </Accordion>
+  <Accordion title="Can I bulk import time entries from a spreadsheet or CSV?">
+    The timesheet has no CSV upload for time entries. The paste-from-spreadsheet flows in Beebole cover master data — people, projects, tasks, tags — not the hours logged against them. To load time entries in bulk, either [import calendar events](#importing-calendar-events) from a connected Google or Microsoft calendar, or create records programmatically with the [GraphQL API](/help/api/introduction) (see [API examples](/help/api/examples/example-2)).
+  </Accordion>
   <Accordion title="Why can't I add time to a certain day?">
     Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings** — for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
   </Accordion>
