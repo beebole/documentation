@@ -68,8 +68,7 @@ help/
   legacy/              # Frozen archive of the previous Beebole system's docs (EN)
   images/              # Shared images
   logo/                # Site logos
-  # fr/ and es/ were removed June 2026 (English-only while EN stabilizes);
-  # /translate rebuilds them from the EN master when relaunched.
+  # fr/ and es/ were removed June 2026 — see Key conventions.
 snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
@@ -204,4 +203,4 @@ Full editorial guidelines are in `.claude/context/`:
 
 - **Images:** WebP format, under 200 KB. Kebab-case naming with feature context. Organize by section (e.g., `/images/timesheets/`, `/images/billing/`). Run `/illustrate --optimize` before committing.
 - **FAQs:** Every content page needs a FAQ section (`<AccordionGroup>` with `<Accordion>` items) at the bottom with 3-5 Q&A pairs. Do not invent features. API pages are exempt.
-- **Translations:** English is the master language. FR/ES are currently removed (English-only); once rebuilt by `/translate`, they must stay in sync and use the localized UI labels from the i18n files.
+- **Translations:** once FR/ES are rebuilt by `/translate`, they must stay in sync with the EN master and use the localized UI labels from the i18n files.
