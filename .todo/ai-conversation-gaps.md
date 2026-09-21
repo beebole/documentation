@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-09-14T15:31:08Z
+Mined through: 2026-09-21T00:00:00Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -216,3 +216,17 @@ This run instead folded in the **13+ recovered Jul 1–7 conversations** flagged
 - "field" (2026-09-08, `match_confidence: none`) — empty probe, no theme.
 - Verified as covered, answered on the first try: project access does not cascade to task potential owners and tags are the scalable route (`assignments.mdx`, `planning.mdx`; 2 threads 2026-09-07); custom fields only show on the project categories you pick (`custom-fields.mdx`); mileage via a quantity-only expense type (`expenses.mdx`); how employees see others' tasks and which role setting governs it (`roles-authorisations.mdx` **Tasks** scope, 2 threads 2026-09-10); cost and billing columns in custom reports (`custom-reports.mdx`). No action.
 - Support-team signal: the reply pasted on 2026-09-08 (see the troubleshooting entry) told a customer that **Potential owners** has no effect on who can log time. Code and docs both say the opposite. Worth a note to whoever answered, since the docs assistant is now contradicting support in front of customers.
+
+## Pending review (run 2026-09-21)
+
+Mined 9 threads captured between 2026-09-14T15:31Z and 2026-09-21. All nine were single-exchange threads that Mintlify marked `answered`, so the signal here is thematic repetition rather than users fighting a long session. Three candidates survived verification against `help/**` and `../reboot`; the rest were either already covered and correctly answered ("set up company", "how to add subproject to an existing project") or product questions with no documentation fix.
+
+- [ ] HIGH | `help/documentation/timesheets.mdx` | No answer anywhere in `help/**` to "can I bulk import time entries?" — the only hit is `help/legacy/settings.mdx`, which describes the old platform. The assistant had to assemble a partial answer from three unrelated pages on each attempt. Needs a short, findable section (or FAQ pair) stating plainly that Beebole has no CSV import for time records in the UI, and naming the real routes: copying a period, the calendar import pane, the GraphQL API, and a support-run [legacy migration](/help/guides/migration) for accounts moving from the old platform — evidence: 3 conversations (2026-09-16, 2026-09-17, 2026-09-18), "How do I bulk import time entries for three employees", "how do I bulk import time e". One of the three reports that a Beebole support agent told the user bulk import was possible — worth checking with support what is being promised, since that is a product/support signal rather than a docs fix.
+- [ ] MEDIUM | `help/documentation/people.mdx` | Duplicating a person is real (`entityAction/duplicate`, plus a dedicated person modal asking for a new name and email — `personDuplicateModal` in `labels.json`) and is described generically under **Duplicate** on `concepts.mdx:175`, but `people.mdx` never mentions it, so the assistant answered that the feature "isn't described in the documentation". Covered-but-not-found: needs a line on the People page pointing at the **⋯** > **Duplicate** action and noting that a duplicated person is created with a new name and email — evidence: 1 conversation (2026-09-17), "how do I copy a profile for a new person".
+- [ ] LOW | `help/documentation/approval.mdx` | Users expect to reject an individual entry; approval works on a whole submitted timesheet. Correctly answered, but only after the assistant searched three places for a concept that does not exist. An FAQ pair ("Can I reject a single time entry?") would answer it in one hop and state what to do instead — evidence: 1 conversation (2026-09-17), "How can we reject single entries for tasks under employees?".
+
+Not a doc gap this run:
+
+- API access on a free or inactive account (2026-09-15) — the assistant answered correctly from the `402` / `AccountIsInactive` behaviour on the API introduction page; the residual question is commercial, not documentary.
+- "Can employees enter time into their own account and import into mine" (2026-09-16) — a misunderstanding of the single-organization model, answered correctly on the spot.
+
