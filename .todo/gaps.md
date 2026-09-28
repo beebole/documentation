@@ -1,54 +1,57 @@
 # Gaps report
 
-Generated: 2026-09-21 (2026-09-21 release run)
-Catalog last updated: 2026-09-21
+Generated: 2026-09-28 (2026-09-28 release run)
+Catalog last updated: 2026-09-28
 
-Scope note: the 2026-09-14 release run closed with a verification pass that found every classified catalog entry covered. This run's `/sync-features --incremental` touched 11 entries (1 new, 10 reworded) for the 2026-09-17 production deploy, so this pass classifies those entries against their mapped pages and treats the rest of the catalog as still covered by the 2026-09-14 verification. Catalog format guard passed (27 sections, 290 bullets); catalog freshness 0 days. Entries under **Planned Features** and **Internal (Non User-Facing)** were excluded.
+Scope note: the 2026-09-21 release run closed with a verification pass that found every classified catalog entry covered. This run's `/sync-features --incremental` touched 12 entries (3 new, 9 reworded) for the 2026-09-28 production deploy, so this pass classifies those entries against their mapped pages and treats the rest of the catalog as still covered by the 2026-09-21 verification. Catalog format guard passed (27 sections, 293 bullets); catalog freshness 0 days. Entries under **Planned Features** and **Internal (Non User-Facing)** were excluded (`auth/ms365-provisioning` was reworded but stays Planned — no code; `internal/request-entity-cache` is internal).
 
-Excluded from classification: `reports/schedule-email` (scheduled report delivery, the shared report-result link, **Send now**, and the shared-page export). The 2026-09-17 production note describes all of it, but the **Schedule** action and the envelope badge are both gated off in production builds (`isProduction()` in `components/reports/index.ts`), and the shared result page is only reachable from a scheduled email — so none of it is live for users. Re-verified 2026-09-21; do not document until the gate is removed.
+Excluded as bug fixes with no documented behaviour to correct: date pickers landing a day early west of UTC, and menus/popups opening slightly off during their animation.
 
-Also excluded as bug fixes with no documented behaviour to correct: the Excel and Google Sheets add-ins filling the **Activity** column again, and the QuickBooks/Xero/Asana/Jira connections no longer dropping out on concurrent refreshes.
-
-Result of the first pass: **0 Missing, 8 Partial** across 6 sections. **Verification pass (2026-09-21):** every one of the 8 Partial entries was re-opened after `/write` and `/review`; the capability named in each `needs:` note is now present on the mapped page, and the two stale claims flagged for removal (the extension reading page text, the **All levels** scope option) are gone. **8 of 8 Resolved, 0 still open.** One code check during writing corrected a draft: on the mobile timesheet the suggestion row carries only the accept control — dismiss, the timer, and accept all live in the sheet the row opens (`timesheet/mobile/suggestion-row.ts` vs `suggestion-sheet.ts`), so the page describes them there. One touched entry was already covered: `notifications/triggers` (approval requests reaching parent-project managers) is stated on `help/documentation/approval.mdx:71`.
+Result of the first pass: **0 Missing, 9 Partial** across 6 sections.
 
 ---
 
-## Coverage gaps → undocumented features (verification: all resolved)
-
-### Time Tracking
-
-- [x] Resolved | `help/documentation/mobile.mdx` | Mobile timesheet — needs: suggestions now reach the mobile timesheet as ghost rows inside each day, next to real entries. Accept one with a single tap, or open it to change the duration, the start and end times, retarget it to another task or working activity, start a timer on it, or dismiss it. The page currently says nothing about suggestions on mobile.
-- [x] Resolved | `help/documentation/ai.mdx` | Suggested time entries — needs: (1) emptying either the start or the end time of a suggestion turns it back into a duration-only draft; (2) a suggestion sitting on a staffing booking, or on a task your timesheet settings don't let you log to, always asks you to pick a project first and explains why **Accept** took you to the picker. The page covers the not-allowed-task case but not the staffing-booking one, and says nothing about clearing the times.
+## Coverage gaps → undocumented features
 
 ### Planning, Tasks & Staffing
 
-- [x] Resolved | `help/documentation/staffing.mdx` | Staffing view — needs: (1) a booking created on the **Unassigned** row saves nothing until you pick the person or task, so an abandoned editor leaves no stray booking (the "The Unassigned row" section describes dragging into and out of the row, not creating there); (2) a project row above the lowest level is drawn in the accent color with a note explaining that its bookings should be moved down — line 53's "No <grouping>" fallback describes the neighbouring case only.
+- [ ] Partial | `help/documentation/planning.mdx` | Planning mode: Tasks or Bookings — needs: a section on the planning mode. Each planning holds either **Tasks** (a to-do list, issues, tickets: items with a name and a status) or **Bookings** (people on projects: person, project, start date, duration, allocation), chosen under **What this planning holds** in the planning's settings (labels `task.planningMode`, `modeTasks`/`modeTasksHint`, `modeBookings`/`modeBookingsHint`, `planningModeNote`). The mode decides what the add button opens (**Add Task** vs **Add Booking**) and whether items carry their own name; Gantt, Kanban, List and Staffing stay available on every planning. Switching keeps every stored name: a booking shows its project and person instead, and its own name comes back if the planning returns to Tasks. Adding from a project group in the Gantt creates the right kind of item for the mode. Verify in `../reboot/frontend/src/components/task/planning-mode.ts`, `planning-mode-picker.ts`, `booking-add-form.ts`, `task-add-form.ts`.
+- [ ] Partial | `help/documentation/staffing.mdx` | Bookings — needs: (1) **accuracy fix** — line 84 says you can name a booking later "exactly as you would rename a task"; in a Bookings planning a booking is always named after its project and person and cannot be renamed (`cantNameTaskInBookingsPlanning`, `bookingNameFixed`), and a stored name only comes back if the planning switches back to Tasks; (2) the last start date and duration you used are remembered for the next booking; (3) dragging on the Staffing timeline in a **Tasks** planning opens the add form with the dates and person already filled in, instead of creating an unnamed row. Link the planning-mode section on `planning.mdx`.
+- [ ] Partial | `help/documentation/gantt.mdx` | Gantt chart view (locate a task) — needs: locating a task from anywhere (the **Show in the chart** button, line 245, and the off-screen arrow) moves the timeline onto the period holding the task and scrolls smoothly instead of jumping, even when the task lies outside the period currently shown (including with a fixed period window). Verify in `frontend/src/components/task/gantt/gantt-fit.ts` and `scroll-cycler.ts`.
 
-### Organization Settings
+### Project Management
 
-- [x] Resolved | `help/documentation/master-data.mdx` | Master data review — needs: (1) **accuracy fix** — the level picker no longer offers **All levels** (removed); tables list only the lowest level of a hierarchy by default, with the scope menu to pick a named level instead. Lines 35 and 203 both still list **All levels**. (2) The first column is now a normal column header: it can be filtered, and switching to another root list *or another category* happens from its menu (line 53 describes only the entity switch). (3) Plain-language requests now also work on the tag and project lists, and a person's name in the question is read as a filter ("who does Anna manage?"), adding the matching column to the table. (4) Reading and changing your data are two tabs on one shared sentence box, with **Apply** and **Cancel** next to the sentence and the undo of the last change always in reach.
+- [ ] Partial | `help/documentation/projects.mdx` | Tasks and bookings on a project — needs: the new **Tasks and bookings** attribute on a project's panel (label `task.project-tasks`): lists every active task and booking linked to the project, grouped by planning, with an add button per planning (a Bookings planning asks for a person and a period, a Tasks planning for a name) and a remove action on each item. Verify in `frontend/src/components/attributes/project-tasks.ts`. Also: level names are no longer edited inline — line 84 ("click the level name shown above its children — the tooltip reads **Click to edit the level name for the whole category**") is stale; they are edited from the category's settings dialog (**\[category] settings** in the category menu, label `categorySettings`) in a **Level names** list (`categoryLevels.levelNames`, placeholder **Add new level**) that lists every level, lets you add a level and remove the deepest one; every row in the list has an add-child button. Verify in `frontend/src/components/entity/category-levels-modal.ts` and `category-entity-header.ts`.
+
+### Tags & Organizational Structure
+
+- [ ] Partial | `help/documentation/tags.mdx` | Custom hierarchy labels — needs: **accuracy fix** — line 58 still describes inline editing of a level name with the **Click to edit the level name for the whole category** tooltip; replace with the **Level names** list in the category's settings dialog (same behaviour as on `projects.mdx`). Check `planning.mdx` line 37 area for any similar inline-edit claim and fix it the same way.
 
 ### Reporting
 
-- [x] Resolved | `help/documentation/ai.mdx` | Natural-language report builder — needs: the report builder and the master data review now ask through one shared sentence box that keeps the whole conversation — each question and its answer stay on screen, earlier turns available behind **Whole conversation**. The "Report builder" section describes a single-shot input.
-
-### Integrations
-
-- [x] Resolved | `help/integrations/quickbooks.mdx` | QuickBooks — needs: (1) exported time carries whole hours and minutes rather than a decimal hour value, so entries land on the exact duration tracked; (2) a second export is refused with a clear message while one is already running, so a double-click or a second tab cannot export the same entries twice. Relevant to the existing FAQ "Can I export the same date range twice?" (line 134).
+- [ ] Partial | `help/documentation/reports.mdx` | Budget status report — needs: the new table layout: one row per project with each measure (hours, billing, costs) in its own column (**One column per measure**), or **Stack the measures in one column** to read them top to bottom; bars scale against their parent so a project and its sub-projects can be compared at a glance; **No projects with budgets found.** empty state. Verify in `frontend/src/components/reports/budget-status-table.ts` and `budget-status-report.ts` (how the layout toggle is exposed).
 
 ### Companion Apps & Add-ins
 
-- [x] Resolved | `help/documentation/browser-extension.mdx` | Browser extension — needs: **accuracy fix, privacy claim.** The extension no longer reads page content at all — only the site address, the page title, and the duration leave the browser. Three passages still say the opposite and must go: the intro Note (line 14), the "reads the visible page text" paragraph (line 45), and the FAQ answer "Does the extension see everything I browse?" (line 74). Also add: if your API key is rejected, the extension stops tracking and says so instead of retrying silently.
+- [ ] Partial | `help/documentation/excel-addin.mdx` | Excel add-in — needs: the add-in detects which Beebole region (Europe or America) your API key belongs to automatically; no manual region choice; the region in use is shown in the add-in's settings, and a key no server accepts is reported clearly. Remove any step asking to pick a region or server if present. Verify in `../reboot/excel-addin/src/api.ts`, `taskpane.ts`, `taskpane.html`.
+- [ ] Partial | `help/documentation/gsheets-addon.mdx` | Google Sheets add-on — needs: same region auto-detection as the Excel add-in (region shown in settings, clear error for a key no server accepts). Verify in `../reboot/gsheets-addin/src/server/api.ts`, `src/client/main.ts`, `taskpane.html`.
+
+### AI
+
+- [ ] Partial | `help/integrations/mcp-server.mdx` | AI assistant connections — needs: (1) `set_schedule` — create or rewrite a work schedule: a weekly cycle keyed by weekday with hours, time pairs and work-from-home per day, or a rotating cycle of any length; the whole cycle is replaced on each call; creating one puts nobody on it (assign with `assign`, relation `schedule_to_person`); (2) `archive`, `unarchive` and `delete` now also cover roles, time off types, expense types, work schedules and custom fields (line 34 lists the tools but not the wider scope); (3) a delete refused because the item is still in use — time entries, expenses, quotas, custom field values, or people assigned to a role or schedule — comes back with the reason and a suggestion to archive instead. Verify in `../reboot/backend/src/server/mcp/schedule.ts` and `entities.ts`.
 
 ### UI & User Experience
 
-- [x] Resolved | `help/documentation/concepts.mdx` | Entity badges — needs: project, task, and tag badges spell out the full parent path whenever it fits the space available, falling back to initials only when the label would be clipped, and badge tooltips always show the complete path (wider room is given to badges in relation and tag lists).
+- [ ] Partial | `help/documentation/concepts.mdx` | Version update notifications — needs: line 234 — the **Update available** banner now appears only when a new build really is live, and can be dismissed with **Escape** instead of forcing an immediate reload (the prompt returns on the next reconnect or tab focus if the tab is still stale). Verify in `frontend/src/utils/versionchecker.ts`.
 
 ---
 
 ## Proposed page-mappings additions
 
-_No new mappings needed._
+Applied unattended (release run) — three rows appended to `page-mappings.md`:
+- Keywords: `planning mode, tasks or bookings, what this planning holds, bookings planning, tasks planning` → `help/documentation/planning.mdx`, `help/documentation/staffing.mdx`
+- Keywords: `level names, hierarchy levels, category settings, rename level` → `help/documentation/projects.mdx`, `help/documentation/tags.mdx`, `help/documentation/planning.mdx`
+- Keywords: `version update, update available, new version prompt, reload prompt` → `help/documentation/concepts.mdx`
 
 ---
 
