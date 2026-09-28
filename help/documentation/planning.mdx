@@ -14,9 +14,15 @@ Tasks in Beebole are independent planning entities — units of work that you sc
   To work with tasks, click **Planning** in the sidebar. The same tasks can be displayed in four views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, the [Staffing view](/help/documentation/staffing) for planning by person, and the [List view](/help/documentation/task-list) for working the list as a sortable table.
 </Info>
 
-<div style={{position: "relative", paddingBottom: "calc(71.0913% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/wYu0Rgx0fNwE0dw68iC3?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Create and Plan Tasks" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Creating and planning tasks in Beebole">
+  <iframe
+    src="https://demo.arcade.software/wYu0Rgx0fNwE0dw68iC3?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Create and Plan Tasks"
+    loading="lazy"
+    allowFullScreen
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+  />
+</Frame>
 
 ---
 
@@ -38,7 +44,7 @@ Every task belongs to a planning — a separate board with its own statuses, its
 
 - **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
 - **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
-- **Open a planning's settings** — Click the settings button next to the planning name (its tooltip reads **Main plan settings** for the **Main plan** planning). The dialog holds the planning's mode and its [statuses](#task-statuses). The button only appears if you are allowed to manage plannings.
+- **Open a planning's settings** — Click the settings button next to the planning name (its tooltip reads **Main plan settings** for the **Main plan** planning). The dialog holds the planning's mode and its [statuses](#task-statuses). The button only appears if you are allowed to manage tasks.
 
 Statuses always belong to a planning, not to a project: each planning defines its own workflow. See [Statuses](#task-statuses) below.
 
@@ -59,7 +65,7 @@ Every planning starts as **Tasks**, including plannings created before this sett
 
 - **The add button** — In a Tasks planning it reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning it reads **Add Booking** and asks for the person (**Select the owner**) and the project — one of the two is enough — plus a start date, a duration in days, and the allocation (**%**, **h/day**, or **Total**). The new booking opens in the side panel right away. The start date and duration you used are proposed again for the next booking; a start date that has passed falls back to today.
 - **Names** — A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either — it goes on the project instead. In a Tasks planning, you name each task yourself.
-- **Adding from a group** — With the Gantt grouped by a project category, the add button on a project's group header prefills that project: it creates a booking on that project in a Bookings planning, and a task named after the project in a Tasks planning. Owner and status groups prefill the owner or the status in both modes.
+- **Adding from a group** — With the Gantt grouped by a project category, the add button on a project's group header opens the planning's add form with that project already filled in: the booking form in a Bookings planning, and the task form in a Tasks planning, where the task takes the project's name unless you type another. Owner and status groups prefill the owner or the status in both modes.
 - **Dragging on the Staffing timeline** — In a Bookings planning, a drag creates a booking on the spot. In a Tasks planning, it opens the add form with the dates and the person already filled in. See the [Staffing view](/help/documentation/staffing#creating-a-booking).
 
 <Info>
@@ -277,9 +283,5 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">
     The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; in filters they appear as **Potential owner** and **Potential owner tag**.
-  </Accordion>
-
-  <Accordion title="Should I archive or delete a finished task?">
-    Archive it. Archiving hides the task from active views while keeping its time records for reporting, and you can unarchive it anytime. Deleting is permanent, and Beebole blocks the deletion entirely if time records exist against the task.
   </Accordion>
 </AccordionGroup>

@@ -3,16 +3,22 @@ title: "Tags: organize people, projects, and tasks"
 sidebarTitle: "Tags"
 description: "Group people, projects, and tasks in Beebole with hierarchical tags — departments, teams, locations — and cascade schedules, rates, and approvals through them."
 keywords: ["beebole", "tags", "tag categories", "departments", "teams", "organize people", "tag hierarchy"]
-og:title: "Organizing People, Projects, and Tasks with Beebole Tags"
-og:description: "Use Beebole tags to group people, projects, and tasks into departments, teams, or locations, and cascade configuration through them."
-og:type: "article"
+"og:title": "Organizing People, Projects, and Tasks with Beebole Tags"
+"og:description": "Use Beebole tags to group people, projects, and tasks into departments, teams, or locations, and cascade configuration through them."
+"og:type": "article"
 ---
 
 Tags in Beebole are hierarchical labels you apply to people, projects, and tasks. While [projects](/help/documentation/projects) describe _what_ your team works on, tags describe how that work is organized — by department, team, location, cost center, or any dimension that matters to you. Tags also carry configuration: schedules, rates, approval workflows, and more cascade from a tag to everyone and everything in it.
 
-<div style={{position: "relative", paddingBottom: "calc(57.9752% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/NWN6EXBycRSBruSKIWn0?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Define Tags in Beebole" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Defining tags in Beebole">
+  <iframe
+    src="https://demo.arcade.software/NWN6EXBycRSBruSKIWn0?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Define Tags in Beebole"
+    loading="lazy"
+    allowFullScreen
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+  />
+</Frame>
 
 ---
 
@@ -20,11 +26,11 @@ Tags in Beebole are hierarchical labels you apply to people, projects, and tasks
 
 Tags use the same structure as projects:
 
-- **Categories** — Each category captures one dimension of your organization. A new account starts with **Department** and **Location**.
+- **Categories** — Each category captures one dimension of your organization. A new account starts with **Department**; add a category for every other dimension you need, such as location or cost center.
 - **Tags** — The labels inside a category, such as a department name or a country.
-- **Sub-tags** — Nested tags for finer grouping. Each category names its own levels — the **Department** category starts with the levels **Division** and **Team**, and **Location** with **State** and **City**.
+- **Sub-tags** — Nested tags for finer grouping. Each category names its own levels — the **Department** category starts with the levels **Division** and **Team**.
 
-A person, project, or task can hold tags from several categories at once — someone can be in a **Department** tag and a **Location** tag at the same time, and each tag cascades its configuration independently.
+A person, project, or task can hold tags from several categories at once — someone can be in a **Department** tag and a location tag at the same time, and each tag cascades its configuration independently.
 
 ---
 
@@ -188,7 +194,6 @@ Archived tags are hidden from the list — click **Show Archived** at the top of
   <Accordion title="Are tags required for time tracking?">
     No. Your team can track time in Beebole without any tags. Tags become valuable when you want group-level configuration — schedules, rates, approvals — or reporting by department, team, or location.
   </Accordion>
-
 
   <Accordion title="Can I remove an inherited tag from just one subproject or subtask?">
     Yes. Open the item's **Tags** panel, hover over the inherited tag's badge, and click **Unassign**. Beebole stores an exclusion on that item and shows the badge with a red hatched background; the parent and its other children keep the tag. Click **Unassign** on the excluded badge to give the tag back.
