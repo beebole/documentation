@@ -584,3 +584,16 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low |
 
 Not requested, deliberately: budget threshold alerts and the push-notification channel (both stripped from notification preferences on production hosts, so there is no UI to photograph), and the legacy migration tool (removed from Settings in September 2026).
+
+## Additions 2026-09-28 (release run, prod deploy 2026-09-28)
+
+No placeholder references or `[SCREENSHOT]` markers were added by this release; the pages below gained new sections that would read better with a shot. Capture against a seeded account (**Main plan**, **Acme Corp**, **Website Redesign**).
+
+| File | Description | Priority |
+|------|-------------|----------|
+| planning/planning-mode-picker.webp | The planning's settings dialog (gear next to **Main plan** → **Main plan settings**) with the **What this planning holds** switch showing **Tasks** and **Bookings** and their hints, the switching note beneath, and the **Task statuses** list below (element capture, ~1024 wide) | high |
+| staffing/booking-add-form.webp | The **Add Booking** form of a Bookings planning open in the side panel: **Select the owner**, the project picker, start date, duration in days, and the allocation unit switch (**%**, **h/day**, **Total**) (element capture) | high |
+| projects/project-tasks-bookings.webp | The **Tasks and bookings** attribute on **Acme Corp**'s panel: two planning sections, each with its **Add to …** button and a couple of task/booking badges, one hovered to show **Unassign** (element capture) | high |
+| projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium |
+| reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium |
+| integrations/excel-addin-data-server.webp | The Excel add-in settings screen showing **Data Server** with the detected region (**Europe** with its flag) under **Update API** (element capture; the Google Sheets sidebar shows the same section and can share the shot) | low |
