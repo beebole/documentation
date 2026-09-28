@@ -57,7 +57,7 @@ Time is always recorded at the bottom of a branch. A project that has active sub
     Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Client**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
   </Step>
   <Step title="Add subprojects (optional)">
-    In the project list, expand the parent project, then click the **\+** button next to the level name below it (its tooltip reads **Add** followed by the level name, for example **Add Subproject**).
+    In the project list, hover over the parent project's row and click the **\+** button that appears next to its **⋯** action menu (its tooltip reads **Add** followed by the level name, for example **Add Subproject**). The parent expands so the new subproject shows right below it.
   </Step>
 </Steps>
 
@@ -81,7 +81,15 @@ Click the category name next to the **Projects:** heading to open the category m
 - Change a category's color — click the colored ball in front of its name and pick a color from the palette.
 - Delete a category — hover over it and click the trash icon.
 
-To rename a hierarchy level, expand a project in the list and click the level name shown above its children — the tooltip reads **Click to edit the level name for the whole category**. The new name applies to that level across the whole category.
+### Level names
+
+Each category names its own hierarchy levels, and you edit them from the category's settings. Next to the category name in the **Projects:** heading, click the gear button — its tooltip is the category name followed by **settings**, for example **Client settings**. The button is only shown to people who can manage projects.
+
+The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Project** and **Subproject**. From there you can:
+
+- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Renaming row 1 renames the category. The new name applies to that level across the whole category.
+- Add a level — type its name in the **Add new level** field and press **Enter**. Until you name a deeper level, Beebole labels it after the level above with a **Sub-** prefix, for example **Sub-Subproject**.
+- Remove a level — only the deepest level can be removed: click the **×** at the end of the last row.
 
 ### Category colors
 
@@ -123,6 +131,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 | --- | --- |
 | **Managed by** | The people who manage this project. |
 | **Tags** | The [tags](/help/documentation/tags) applied to the project. Subprojects inherit tags from their parent project. |
+| **Tasks and bookings** | The tasks and bookings linked to the project, grouped by planning — see below. |
 | **Billing** | Project-level [billing rates](/help/documentation/billing). |
 | **Cost** | Project-level [cost rates](/help/documentation/costs) for profitability tracking. |
 | **Budgets** | Spending or effort ceilings for the project. See [Budgets](/help/documentation/budgets). |
@@ -145,6 +154,13 @@ The **Valid period for time entry** panel bounds when time can be recorded on th
 ### Custom fields on a project
 
 The fields shown in the **Custom fields** panel come from the field definitions in your account — you fill in values there, but you create and scope the fields themselves in **Settings** \> **Custom Fields**. Custom field values appear as dimensions and filters in [reports](/help/documentation/reports).
+
+### Tasks and bookings on a project
+
+The **Tasks and bookings** panel lists every active task and booking linked to the project, grouped by [planning](/help/documentation/planning). A planning holds either tasks or bookings, depending on its mode: a task is a unit of work with a name and a status, while a booking is a person planned on a project for a period and is named after that project and person. Archived tasks and bookings are not listed. The panel is available to people who can view tasks; adding and removing require the permission to manage them.
+
+- Add one — each planning has a **\+** button (its tooltip reads **Add to** followed by the planning name, for example **Add to Main plan**). It opens the add form of that planning on the **Planning** page with the project already filled in: a Bookings planning asks for a person, a start date, and a number of days, then **Add Booking**; a Tasks planning asks for a name, then **Add Task**.
+- Remove one — hover over its badge and click **Unassign**. This only unlinks the task or booking from the project; it still exists in its planning.
 
 ---
 

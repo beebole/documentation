@@ -136,7 +136,7 @@ For recurring spreadsheet workflows, see [Data exports](/help/documentation/data
 
 ## Budget Status
 
-When your subscription includes budgets and your role can view budgets, a **Budget Status** entry appears at the top of the Reports menu. It shows every project that has a [budget](/help/documentation/budgets) as a progress bar: the solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Budgets set on subprojects roll up into their parent project's bar.
+When your subscription includes budgets and your role can view budgets, a **Budget Status** entry appears at the top of the Reports menu. It lists every project that has a [budget](/help/documentation/budgets) as a table — one row per project, with a progress bar for each measure you display. The solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Time logged on subprojects counts toward the parent project's bars, and budgeted subprojects nest under their parent's row — when two or more budgeted subprojects share a parent that has no budget of its own, Beebole adds a grouping row for the parent that sums their budgets.
 
 Controls at the top of the page:
 
@@ -149,13 +149,29 @@ Controls at the top of the page:
 | **Show archived** | Include archived projects |
 | **Export** | **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF** |
 
-These controls all work on data the page already has, so the list re-orders and re-filters as you click — nothing is reloaded. The **Filters** cover the whole project hierarchy: filter on a client or a parent project and every project underneath it is included, and a project-tag filter also matches tags below the one you picked, plus every project under a tagged parent. Each condition can include (**is**) or exclude (**is not**).
+These controls all work on data the page already has, so the table re-orders and re-filters as you click — nothing is reloaded. The **Filters** cover the whole project hierarchy: filter on a client or a parent project and every project underneath it is included, and a project-tag filter also matches tags below the one you picked, plus every project under a tagged parent. Each condition can include (**is**) or exclude (**is not**).
 
-The chosen **Sort** applies at every level of the list — top-level rows, nested subprojects, and the per-person or per-project lines inside a split — and the project name breaks ties, so rows that read the same (all the untouched budgets at 0%, for example) keep a stable order.
+The chosen **Sort** applies at every level of the table — top-level rows, nested subprojects, and the per-person or per-project lines inside a split — and the project name breaks ties, so rows that read the same (all the untouched budgets at 0%, for example) keep a stable order.
 
 A budget consumed to exactly 100% counts as **on budget**: only a project projected above 100% is reported as over budget, and the bar colors use the same boundary.
 
-Click a project's bar to open its detail sheet with the numbers behind the bar — consumption, forecast, and remaining amounts. On a budget [split by person or by project](/help/documentation/budgets#budget-splits), each line compares its own allocation with the time and money really logged against it — a split-by-project line also counts everything logged on that project's own subprojects. A project carrying several budgets appears as a single row: the targets add up, and its actual consumption is counted once.
+### Read the table
+
+Each measure you turn on — **Time**, **Billing**, **Costs** — gets its own column, headed by its name, so a column reads top to bottom across projects. To read a project's measures as one block instead, click the layout button in the table header, just before the first measure column — its tooltip reads **Stack the measures in one column**. The bars then sit one under the other in a single column. Click it again (**One column per measure**) to go back. Beebole remembers your choice, so the report reopens in the layout you left it in.
+
+The numbers sit in the row itself:
+
+- Inside each bar, the amount consumed against the budget — for example **120 / 200h** for time, or the logged and budgeted amounts in your currency for billing and costs.
+- To the right of each bar, what is projected to remain once the planned effort still to come is spent, as an amount and as a percentage of the budget.
+- Hover a bar to see the name of its measure and the **Planned** effort behind its striped forecast.
+
+Bars are scaled so that related rows can be compared at a glance: a subproject's bar, or a line inside a split, uses the same scale as its parent row, so a shorter bar really means a smaller budget. When **Billing** and **Costs** are both shown, the two money bars share one scale as well, while **Time** keeps its own.
+
+A chevron marks a row that has budgeted subprojects or a [split](/help/documentation/budgets#budget-splits) — click the row to expand it. Choosing the **> 80%** or **Over budget** filter expands every parent holding a matching row automatically, so a project in trouble is never hidden under a collapsed parent. Archived projects appear with a hatched background when **Show archived** is on. When no project carries a budget, or your filters exclude every budgeted project, the table reads **No projects with budgets found.**
+
+On a budget [split by person or by project](/help/documentation/budgets#budget-splits), each line compares its own allocation with the time and money really logged against it — a split-by-project line also counts everything logged on that project's own subprojects. A project carrying several budgets appears as a single row: the targets add up, and its actual consumption is counted once.
+
+On a phone, the report keeps the status filter and shows one card per project, with a colored edge for the project's overall status. Tap a card to open the numbers behind its bars.
 
 This report is where budget trouble surfaces: it always flags projects approaching or over their budget, and there is no setting to switch on. The striped forecast bar carries the planned effort still to come, so a budget heading for an overrun shows it before the actuals get there. See the [Budgets](/help/documentation/budgets) page for how budgets are set.
 
@@ -286,6 +302,9 @@ Building and reconfiguring report output remains a desktop task — for example,
   </Accordion>
   <Accordion title="What formats can I export a report to?">
     Beebole exports report results as JSON, CSV, TSV, Excel (XLSX), or PDF, plus the chart as a PNG image and the matrix view in CSV, Excel, or PDF. For spreadsheets that refresh themselves, connect a saved report to the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon).
+  </Accordion>
+  <Accordion title="Can I see hours, billing, and costs side by side in the Budget Status report?">
+    Yes. Beebole's **Budget Status** report is a table with one row per project and a column for each measure you turn on — **Time**, **Billing**, and **Costs**. Click the layout button in the table header to stack the measures in one column instead, so each project's bars read as a block. Beebole remembers the layout you pick.
   </Accordion>
   <Accordion title="How does Beebole calculate revenue at risk?">
     For each hourly or daily-billed project with a budget and an end date, Beebole projects how many budgeted hours will still be unconsumed at that date, then converts them to money using the budget's implied rate. The **Revenue at Risk** report totals this across your portfolio so you can rebalance staffing before contracted hours expire unused.

@@ -31,12 +31,17 @@ The server exposes a set of tools grouped around the things people actually do i
 | Handle expenses | `get_expense_records`, `record_expense`, `update_expense_record`, `delete_expense_records` |
 | Get figures out | `get_reports` and `run_report` — a saved report, an exact report configuration, or a plain-language question — and `get_budget_status` for budget consumption, with the same per-person and per-project splits as the [Budget Status report](/help/documentation/reports#budget-status) |
 | Work with planning | `get_tasks` and `update_tasks` — what is planned, and changing dates, planned time, owner, or status |
-| Set things up | `add`, `update_attributes`, `set_custom_field_value`, `assign` and `unassign` for links between entities (project access, managers, tags, schedules, task owners), `get_rates`, `set_rate` and `delete_rate` for the dated billing and cost rate history, `archive`, `unarchive`, `delete`, `invite_persons` |
+| Set things up | `add`, `update_attributes`, `set_custom_field_value`, `assign` and `unassign` for links between entities (project access, managers, tags, schedules, task owners), `get_rates`, `set_rate` and `delete_rate` for the dated billing and cost rate history, `invite_persons`, and `archive`, `unarchive` and `delete` for projects, tasks, tags, people, roles, time off types, expense types, work schedules, and custom fields |
+| Manage work schedules | `set_schedule` — create a work schedule or rewrite an existing one: the repeating cycle of hours per day, with time pairs and work-from-home days, weekly or a rotating cycle of any length — then `assign` (relation `schedule_to_person`) to put a person on it from a date; `list` reads each schedule weekday by weekday |
 | See who changed what | `get_audit_trail`, when your subscription includes the [audit trail](/help/documentation/audit-trail) |
 
-So you can ask your assistant things like "log 2 hours on Website Redesign for today", "what did I track this week?", "how much of the Acme budget is left?", or — if you're an approver — "approve the timesheets waiting on me".
+So you can ask your assistant things like "log 2 hours on Website Redesign for today", "what did I track this week?", "how much of the Acme budget is left?", "set up a 4-day week schedule and put Alice Martin on it from October 1", or — if you're an approver — "approve the timesheets waiting on me".
 
 Each tool tells your assistant whether it only reads data or changes it, and which changes are destructive, so a well-behaved assistant asks before deleting anything. Everything runs through the same rules as the app: the lock date, entry restrictions, approval status, and your role all apply, and a refusal comes back to the assistant as the reason Beebole gives.
+
+For work schedules, `set_schedule` takes the whole cycle at once. For a weekly schedule, each weekday gets a number of hours, a list of time pairs such as 09:00 to 12:30 and 13:30 to 17:00, or both together with a work-from-home flag; a weekday left out is a non-working day. Every call replaces the full cycle rather than merging into it, so the assistant reads the current schedule with `list` first and sends it back complete with the change. It passes `schedule_id` to rewrite an existing schedule (and a `name` to rename it at the same time) or a name alone to create one, and describes a rotating roster that is not a week by listing its days in cycle order with `cycle_days`. A new schedule has nobody on it until the assistant assigns people to it from a start date — the same rules as in [Work schedules](/help/documentation/work-schedule).
+
+Deleting is for undoing a batch that was just created. Beebole refuses to delete anything still in use — a project or person with time entries, an expense type with expense entries, a time off type with allowances, a custom field that already holds values, or a role or work schedule people are still assigned to — and the assistant receives the reason together with the suggestion to archive instead. Archiving keeps the item's history in reports but takes it out of timesheets and of every picker, and `unarchive` brings it back.
 
 ---
 
@@ -136,5 +141,8 @@ Tools connected with your API key are not listed there; they stop working when y
   </Accordion>
   <Accordion title="Do I need an API key to connect claude.ai or ChatGPT?">
     No. Hosted connectors use a sign-in flow: add Beebole's server URL as a custom connector, sign in, and authorize the access. The API key is only for developer tools that can't open a sign-in window.
+  </Accordion>
+  <Accordion title="Can a connected assistant delete things in my Beebole account?">
+    Only what your role allows, and only what is not in use. The `delete` tool is flagged as destructive, so a well-behaved assistant asks before using it, and Beebole refuses to delete a project, person, role, time off type, expense type, work schedule, or custom field that still has time entries, expense entries, allowances, custom field values, or people assigned to it. The refusal reaches the assistant with the reason and the suggestion to archive instead, which keeps the history in reports and is reversible with `unarchive`.
   </Accordion>
 </AccordionGroup>
