@@ -14,9 +14,15 @@ Tasks in Beebole are independent planning entities — units of work that you sc
   To work with tasks, click **Planning** in the sidebar. The same tasks can be displayed in four views: the [Gantt chart](/help/documentation/gantt) for timelines, the [Kanban board](/help/documentation/kanban) for status columns, the [Staffing view](/help/documentation/staffing) for planning by person, and the [List view](/help/documentation/task-list) for working the list as a sortable table.
 </Info>
 
-<div style={{position: "relative", paddingBottom: "calc(71.0913% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/wYu0Rgx0fNwE0dw68iC3?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Create and Plan Tasks" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Creating and planning tasks in Beebole">
+  <iframe
+    src="https://demo.arcade.software/wYu0Rgx0fNwE0dw68iC3?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Create and Plan Tasks"
+    loading="lazy"
+    allowFullScreen
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none' }}
+  />
+</Frame>
 
 ---
 
@@ -34,12 +40,37 @@ For general work that isn't planned as a task, track time on projects and subpro
 
 ## Plannings
 
-Every task belongs to a planning — a separate board with its own statuses and its own level names for the hierarchy. New Beebole accounts start with one planning named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
+Every task belongs to a planning — a separate board with its own statuses, its own level names for the hierarchy, and its own mode: [tasks or bookings](#tasks-or-bookings). New Beebole accounts start with one planning named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
 
 - **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
 - **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
+- **Open a planning's settings** — Click the settings button next to the planning name (its tooltip reads **Main plan settings** for the **Main plan** planning). The dialog holds the planning's mode and its [statuses](#task-statuses). The button only appears if you are allowed to manage tasks.
 
 Statuses always belong to a planning, not to a project: each planning defines its own workflow. See [Statuses](#task-statuses) below.
+
+---
+
+## Tasks or bookings
+
+Each planning in Beebole holds one kind of item. A **Tasks** planning is a list of things to do — a to-do list, issues, tickets — where every item has a name of its own and a status. A **Bookings** planning puts people on projects: each item is a person booked on a project from a start date, for a duration, at an allocation. The choice belongs to the planning, not to the view: Gantt, Kanban, List, and Staffing stay available on every planning, so you can look at the same data either way.
+
+To choose, open the planning's settings and pick a mode under **What this planning holds**:
+
+| Mode | What each item is | Hint shown in the dialog |
+|------|-------------------|--------------------------|
+| **Tasks** | A named item with a status | A to-do list, a to-do on a calendar, issues, tickets |
+| **Bookings** | A person on a project, with dates and an allocation | Who is on what project, a vacant position, someone expected present |
+
+Every planning starts as **Tasks**, including plannings created before this setting existed. The mode decides what the add button opens and whether items carry a name of their own:
+
+- **The add button** — In a Tasks planning it reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning it reads **Add Booking** and asks for the person (**Select the owner**) and the project — one of the two is enough — plus a start date, a duration in days, and the allocation (**%**, **h/day**, or **Total**). The new booking opens in the side panel right away. The start date and duration you used are proposed again for the next booking; a start date that has passed falls back to today.
+- **Names** — A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either — it goes on the project instead. In a Tasks planning, you name each task yourself.
+- **Adding from a group** — With the Gantt grouped by a project category, the add button on a project's group header opens the planning's add form with that project already filled in: the booking form in a Bookings planning, and the task form in a Tasks planning, where the task takes the project's name unless you type another. Owner and status groups prefill the owner or the status in both modes.
+- **Dragging on the Staffing timeline** — In a Bookings planning, a drag creates a booking on the spot. In a Tasks planning, it opens the add form with the dates and the person already filled in. See the [Staffing view](/help/documentation/staffing#creating-a-booking).
+
+<Info>
+  Switching keeps every name already stored: a booking shows its project and person instead, and its own name comes back if the planning returns to **Tasks**.
+</Info>
 
 ---
 
@@ -84,12 +115,15 @@ You can import a whole task list by pasting it from a spreadsheet — there is n
 
 Imported tasks get the status selected in the add form. After the import you can click **Undo** to remove everything you just added, or **New import** to paste another batch.
 
+In a planning set to **Bookings**, the button reads **Add Booking** and opens the booking form instead of the name-and-status form — see [Tasks or bookings](#tasks-or-bookings).
+
 ---
 
 ## Task statuses
 
-Statuses are the steps of a planning's workflow — the same statuses that form the columns of the [Kanban board](/help/documentation/kanban). To edit them, open the **Task statuses** modal:
+Statuses are the steps of a planning's workflow — the same statuses that form the columns of the [Kanban board](/help/documentation/kanban). To edit them, open the planning's settings dialog, which lists them under **Task statuses**:
 
+- At the top of the **Planning** page, click the settings button next to the planning name.
 - On the Kanban board, click a column's name.
 - In the task detail panel, click the gear button next to the status (tooltip: **Edit statuses**).
 
@@ -240,14 +274,14 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
   </Accordion>
 
   <Accordion title="Can people track time on any task?">
-    Only on tasks in the plannings selected under **Record time on these plannings** in Beebole's **Timesheet and Planning Settings**. Tasks in those plannings appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards.
+    Only on tasks in the plannings selected under **Record time on these plannings** in Beebole's **Timesheet and Planning Settings**. Tasks in those plannings appear in the **Tasks** section of the timesheet and show the **Add time** button on their Kanban cards. Bookings are the exception: time is recorded on the booking's project, not on the booking itself.
+  </Accordion>
+
+  <Accordion title="What is the difference between a Tasks planning and a Bookings planning?">
+    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. Every Beebole planning starts as Tasks, all four views stay available in both modes, and switching keeps any stored names.
   </Accordion>
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">
     The **Owner** is the single person doing the task — Beebole uses the owner's work schedule and **% FTE** to fit planned time between the task's dates, and a task can only have one owner. **Potential owners** are the people or tags the task is assigned to; in filters they appear as **Potential owner** and **Potential owner tag**.
-  </Accordion>
-
-  <Accordion title="Should I archive or delete a finished task?">
-    Archive it. Archiving hides the task from active views while keeping its time records for reporting, and you can unarchive it anytime. Deleting is permanent, and Beebole blocks the deletion entirely if time records exist against the task.
   </Accordion>
 </AccordionGroup>

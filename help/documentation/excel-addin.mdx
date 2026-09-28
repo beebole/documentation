@@ -22,6 +22,8 @@ Each worksheet links to one saved Beebole report. When you refresh, the add-in r
 
 The add-in connects with your Beebole API key — you never enter a password. The key is stored privately on your device and is never saved inside the Excel file.
 
+Beebole accounts are hosted in one of two regions, Europe or America, and an API key only works in the region that holds its account. The add-in finds that region for you: when you connect, it tries your key on each region and keeps the one that accepts it. There is no region or server to choose.
+
 ---
 
 ## Installing the add-in
@@ -49,9 +51,11 @@ The first time you open the task pane, the add-in asks for your Beebole API key.
     In Beebole, click the button with your initials at the bottom of the sidebar, then **API Key**. Click **Copy**.
   </Step>
   <Step title="Paste the key into the add-in">
-    In the task pane, paste the key into the **API Key** field and click **Connect**.
+    In the task pane, paste the key into the **API Key** field and click **Connect**. The add-in checks which Beebole region accepts the key, Europe or America, and connects to it. You do not pick a region yourself.
   </Step>
 </Steps>
+
+If neither region accepts the key, the add-in stays on the setup screen and shows "No Beebole server accepted this API key. Check the key and try again." Copy the key again from Beebole and make sure you paste the whole value — a key that was reset in Beebole no longer works anywhere.
 
 <Info>
   The API key gives the add-in the same access as your Beebole account: you only see the saved reports — and the data — that your [role and authorizations](/help/documentation/roles-authorisations) allow. The **Reset** button next to your API key in Beebole revokes the current key and generates a new one.
@@ -99,9 +103,13 @@ If a linked report no longer exists in Beebole, the add-in writes an error messa
 
 ## Updating or removing your API key
 
-Click **Update API** at the top of the task pane to open the key settings:
+Click **Update API** at the top of the task pane to open the key settings.
 
-- Paste a new key into **New API Key** and click **Update API Key** to switch accounts or replace a reset key.
+The **Data Server** section shows the region your reports are loaded from, **Europe** or **America** with its flag — the server that accepted your API key. It is shown for information only: the region follows the key, so there is nothing to change here.
+
+Under **API Key**:
+
+- Paste a new key into **New API Key** and click **Update API Key** to switch accounts or replace a reset key. The add-in runs the same region check on the new key, so a key from the other region works too, and the **Data Server** section updates to match. If no region accepts the new key, the add-in shows "No Beebole server accepted this API key. Check the key and try again." and keeps your previous key.
 - Click **Remove API Key** to delete the saved key from your device. You will need to enter a key again to use the add-in.
 
 ---
@@ -137,5 +145,8 @@ Click **Update API** at the top of the task pane to open the key settings:
   </Accordion>
   <Accordion title="What happens if the linked report is deleted in Beebole?">
     The add-in writes an error message to the sheet telling you the linked report no longer exists. Remove the link and create a new one pointing to another saved Beebole report.
+  </Accordion>
+  <Accordion title="Do I need to choose between the Europe and America servers?">
+    No. Beebole accounts are hosted in one of two regions, and the Excel add-in detects the right one from your API key when you click **Connect** — it tries the key on each region and keeps the one that accepts it. To see which region is in use, click **Update API** and look at the **Data Server** section. If you see "No Beebole server accepted this API key", the key itself is wrong or has been reset: copy it again from Beebole.
   </Accordion>
 </AccordionGroup>

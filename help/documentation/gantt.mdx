@@ -27,7 +27,7 @@ Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bar
 
 ## Reading the timeline
 
-Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. Task names show their full project and task path, so tasks with similar names are easy to tell apart. A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
+Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. Task names show their full project and task path, so tasks with similar names are easy to tell apart. In a planning set to **Bookings**, each bar is a booking named after its project and person — see [Tasks or bookings](/help/documentation/planning#tasks-or-bookings). A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
 
 Hover any bar for a rich tooltip: the full dates, the task name, its project with parents, the owner, the planned hours or days and allocation percentage, plus a hint about what **⌘** does on the chart.
 
@@ -42,7 +42,7 @@ Open the **⋯** menu on the active view tab and use **Period** to choose how th
 
 With a fixed window, the view pages one period at a time: swipe or scroll sideways and it snaps cleanly onto the next or previous window, and the period containing today is always reachable.
 
-With a fixed period, tasks that start before or end after the window are drawn cut off, with a dashed edge and a chevron — click it to jump to the hidden start or end date. Cut edges can't be resized, since the date they would move isn't on screen.
+With a fixed period, tasks that start before or end after the window are drawn cut off, with a dashed edge and a chevron — click it and the window moves onto the hidden start or end date, scrolling smoothly to the bar. Cut edges can't be resized, since the date they would move isn't on screen.
 
 <Info>
   Tasks without dates still appear as rows in the task list — they just have no bar yet. See below for how to schedule them directly on the timeline.
@@ -209,7 +209,7 @@ You don't need an editor to take a person, tag, or project off a task: hover its
 To change several tasks in one go, **⌘+Click** (Ctrl+Click on Windows) rows to build a selection, or **Shift+Click** for a range, then change a value on any row inside the selection: every selected task gets it, as a single undo step. **Esc** clears the selection and **Delete** removes every selected task.
 
 <Tip>
-  When a task's bar sits outside the visible timeline, hovering its **Dates** cell shows an arrow pointing left or right — click it (**Show in the chart**) to scroll straight to the bar.
+  When a task's bar sits outside the visible timeline, hovering its **Dates** cell shows an arrow pointing left or right — click it (**Show in the chart**) to scroll straight to the bar. This works even when the task lies outside a fixed period: the window moves onto the period holding the task first, keeping the period length you chose.
 </Tip>
 
 ---
@@ -242,7 +242,7 @@ The tabs above the task list are saved views. Each Gantt view stores its own **P
 Use the **Filters** button to narrow the chart — by task, status, owner, potential owner, project, or [tags](/help/documentation/tags) — with the active filter count shown on the button. Filters can be switched off and back on without losing them: the button toggles them rather than clearing them.
 
 <Tip>
-  From an open task's detail panel, the **Show in the chart** button in the top bar jumps straight to the task's position in the Gantt.
+  From an open task's detail panel, the **Show in the chart** button in the top bar brings the task into view: the chart scrolls smoothly to its row and its bar instead of jumping, and with a fixed period the window first moves onto the period holding the task — so it works even for a task outside the period currently shown.
 </Tip>
 
 ---

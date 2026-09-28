@@ -95,3 +95,6 @@ Use this table to map app change keywords to the documentation pages they likely
 | master data, master data review, bulk update, configuration review, review master data | `help/documentation/master-data.mdx` |
 | delete blocked, cannot be deleted, still in use, referenced, delete protection | `help/documentation/concepts.mdx` |
 | attribute link, deep link, panel URL, URL follows, share a link to an attribute | `help/documentation/concepts.mdx` |
+| planning mode, tasks or bookings, what this planning holds, bookings planning, tasks planning | `help/documentation/planning.mdx`, `help/documentation/staffing.mdx` |
+| level names, hierarchy levels, category settings, rename level | `help/documentation/projects.mdx`, `help/documentation/tags.mdx`, `help/documentation/planning.mdx` |
+| version update, update available, new version prompt, reload prompt | `help/documentation/concepts.mdx` |

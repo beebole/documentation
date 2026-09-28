@@ -22,6 +22,8 @@ Each sheet links to one saved Beebole report. When you refresh, the add-on runs 
 
 The add-on connects with your Beebole API key — you never enter a password. The key is stored privately for your Google account and is never saved inside the spreadsheet.
 
+Beebole accounts are hosted in one of two regions, Europe or America, and an API key only works in the region that holds its account. The add-on finds that region for you: when you connect, it tries your key on each region and keeps the one that accepts it. There is no region or server to choose.
+
 ---
 
 ## Installing the add-on
@@ -34,7 +36,7 @@ The add-on connects with your Beebole API key — you never enter a password. Th
     Search for **Beebole**, open the add-on, and click **Install**. Grant the requested permissions when prompted.
   </Step>
   <Step title="Open the sidebar">
-    In the **Extensions** menu, open the Beebole add-on and click **Open Beebole Reports**. Once installed, the sidebar also opens automatically when you open the spreadsheet.
+    In the **Extensions** menu, open the Beebole add-on and click **Define linked reports**. Once installed, the sidebar also opens automatically when you open the spreadsheet, and the menu gains a **Refresh reports** entry once a key is saved and at least one sheet is linked.
   </Step>
 </Steps>
 
@@ -49,9 +51,11 @@ The first time you open the sidebar, the add-on asks for your Beebole API key.
     In Beebole, click the button with your initials at the bottom of the sidebar, then **API Key**. Click **Copy**.
   </Step>
   <Step title="Paste the key into the add-on">
-    In the sidebar, paste the key into the **API Key** field and click **Connect**.
+    In the sidebar, paste the key into the **API Key** field and click **Connect**. The add-on checks which Beebole region accepts the key, Europe or America, and connects to it. You do not pick a region yourself.
   </Step>
 </Steps>
+
+If neither region accepts the key, the add-on stays on the setup screen and shows "No Beebole server accepted this API key. Check the key and try again." Copy the key again from Beebole and make sure you paste the whole value — a key that was reset in Beebole no longer works anywhere.
 
 <Info>
   The API key gives the add-on the same access as your Beebole account: you only see the saved reports — and the data — that your [role and authorizations](/help/documentation/roles-authorisations) allow. The **Reset** button next to your API key in Beebole revokes the current key and generates a new one.
@@ -99,9 +103,13 @@ If a linked report no longer exists in Beebole, the add-on writes an error messa
 
 ## Updating or removing your API key
 
-Click **Update API** at the top of the sidebar to open the key settings:
+Click **Update API** at the top of the sidebar to open the key settings.
 
-- Paste a new key into **New API Key** and click **Update API Key**. Switching to a different key clears the spreadsheet's existing report links, since they belonged to the previous account's reports.
+The **Data Server** section shows the region your reports are loaded from, **Europe** or **America** with its flag — the server that accepted your API key. It is shown for information only: the region follows the key, so there is nothing to change here.
+
+Under **API Key**:
+
+- Paste a new key into **New API Key** and click **Update API Key**. The add-on runs the same region check on the new key, so a key from the other region works too, and the **Data Server** section updates to match. If no region accepts the new key, the add-on shows "No Beebole server accepted this API key. Check the key and try again." and keeps your previous key. Switching to a different key clears the spreadsheet's existing report links, since they belonged to the previous account's reports.
 - Click **Remove API Key** to delete your saved key. You will need to enter a key again to use the add-on.
 
 ---
@@ -137,5 +145,8 @@ Click **Update API** at the top of the sidebar to open the key settings:
   </Accordion>
   <Accordion title="Can I refresh the data automatically?">
     The Beebole add-on refreshes every linked sheet automatically when you open the spreadsheet. For anything in between, use **Refresh This Sheet** or **Refresh All** in the sidebar.
+  </Accordion>
+  <Accordion title="Do I need to choose between the Europe and America servers?">
+    No. Beebole accounts are hosted in one of two regions, and the Google Sheets add-on detects the right one from your API key when you click **Connect** — it tries the key on each region and keeps the one that accepts it. To see which region is in use, click **Update API** and look at the **Data Server** section. If you see "No Beebole server accepted this API key", the key itself is wrong or has been reset: copy it again from Beebole.
   </Accordion>
 </AccordionGroup>
