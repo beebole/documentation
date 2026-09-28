@@ -1,23 +1,18 @@
 # In-app help snippet audit
 
-Checked: 2026-09-21 against ../reboot @ 0917e9846 (prod, clean tree) and ../md @ aa674e3 (clean tree, unchanged since the 2026-09-14 audit)
+Checked: 2026-09-28 against ../reboot @ 17703a17a (prod, clean tree) and ../md @ aa674e3 (clean tree, unchanged since the 2026-09-14 audit)
 
-Standalone run requested by Yves after the 2026-09-21 release (the `/release` run had to skip this step). Report-only: nothing in `../md` or `../reboot` was modified.
+Run as step 9 of the 2026-09-28 `/release` pipeline. Report-only: nothing in `../md` or `../reboot` was modified.
 
-Scope measured: 36 attributes declared by `getAllEntityAttributes()` (34 rendered in production; `absence-type-accrual` and `absence-type-notification` sit behind the `isProduction()` guard), 60 `MD_PATH_DICTIONARY` entries (37 help + 23 preview), 600 snippet files in `../md` (370 help + 230 preview).
+Scope measured: 37 attributes declared by `getAllEntityAttributes()` (one more than on 2026-09-21: `project-tasks`, added by the 2026-09-28 deploy), 60 `MD_PATH_DICTIONARY` entries (37 help + 23 preview, unchanged), 600 snippet files in `../md` (370 help + 230 preview, unchanged).
 
 ## Missing help snippets
 
-All clear. Every one of the 34 attributes rendered in production resolves to a `help-<value>-en` dictionary entry, and so do the 2 dev-only accrual attributes. `Preview` is the pseudo-attribute for upgrade cards and is correctly excluded.
+- `project-tasks` — shown on **projects** (the new **Tasks and bookings** attribute, `services/entity/attributes.ts:625`, rendered by `entity-attributes.ts:436` as `<project-tasks-attribute>`); needs `help/help-project-tasks-{en,cs,de,es,fr,hu,it,nl,pl,pt}.md` + a `'help-project-tasks-en': 'help/help-project-tasks-en.md'` dictionary entry in `frontend/src/i18n/md.ts`. Until then the **?** on that attribute header renders **[help-project-tasks-en] content not found** in production (`fetchLocalisedContent` returns the missing label when the key is absent from the dictionary). Suggested EN text, following the sibling convention (2–4 sentences + `---` + "Read more in the documentation →" link to `beebole.com/help/documentation/projects`): "Tasks and bookings lists every active task and booking linked to this project, grouped by planning. Add one straight from here — a Bookings planning asks for a person and a period, a Tasks planning for a name — or remove a link without deleting the task. Time on a booking is recorded on the project; time on a task stays on the task."
 
 ## Missing preview snippets
 
-All clear. Covered and verified against the dictionary:
-
-- The 11 attributes for which `getRequiredFeature()` returns a feature (`expense-records`, `expense-type-details`, `absence-type-accrual`, `absence-type-quota`, `approval-stages`, `billing`, `budget`, `cost`, `custom-field-details`, `custom-field-values`, `custom-field-visibility`).
-- The 14 attributes available on the **tag** entity other than `Tagged`, all gated by `tagsAdvanced` (`absence-type-quota`, `approval-stages`, `billing`, `cost`, `description`, `email-templates`, `localisation`, `managed-by`, `notification`, `options`, `public-holidays`, `schedule-type-relations`, `time-settings`, `validity-period`).
-- Both `previewKey` values in `builtin-reports.ts` (`absence-type-quota`, `budget`).
-- The only non-null `featurePreviewKey` assignment, `EntityType.customField` (`settings-menu.ts`, `connected-person-sheet.ts`) → `preview-CustomField-en`.
+All clear. `project-tasks` is not feature-gated (`getRequiredFeature()` returns nothing for it and it is not a tag attribute), so it needs no preview. The set verified on 2026-09-21 is unchanged: `entity-attributes.ts` changed only by the two-line `ProjectTasks` render case, `builtin-reports.ts` and the `featurePreviewKey` assignments (`settings-menu.ts`, `connected-person-sheet.ts`) are untouched since `0917e9846`.
 
 ## Broken dictionary paths
 
@@ -33,12 +28,12 @@ All clear.
 
 ## Notes (not errors, no action required for coverage)
 
-- No new `AttributeName` value, dictionary entry, preview key, or `md.ts` change since the 2026-09-14 audit (`e0f50fece..0917e9846`). The only changes in the audited files are the help-box reveal behaviour in `entity-attributes.ts` (scroll into view, kept off the popup stack) and type comments in `types.ts`; neither adds or renames an attribute.
-- The two spare entries flagged last time still stand: `help-projects-allowed-en` (matches the `projectsAllowed` authorisation, no current call site) and `preview-ExpenseType-en` (no code path passes `EntityType.expenseType` to the preview fetch).
+- The two spare entries flagged on earlier runs still stand: `help-projects-allowed-en` (matches the `projectsAllowed` authorisation, no current call site) and `preview-ExpenseType-en` (no code path passes `EntityType.expenseType` to the preview fetch).
 
 ## Content follow-up (stale wording, outside this check's scope)
 
-Coverage is complete, but two snippets no longer describe the panel they sit on. Fixing them means editing 10 files each in `../md`; drafts follow the sibling-file conventions if you want them written.
+Carried over from 2026-09-21, still open (no `../md` commit since):
 
-- `help-time-settings-*` — says the options include "which day the week starts on" (that setting lives in **Localization**, not here) and never mentions the panel's four tabs (**Period & submission**, **Categories**, **Time entry**, **Reminders**) nor its main controls: **Lock date**, **Auto-submit timesheets after X days**, the **Restrictions** list (including the new **Hide the non-billable option**), **Record time on these project categories** / **Record time on these plannings**, and **Auto Timesheet from Planning**. Suggested EN text: "Timesheet and Planning Settings control how time is recorded and submitted: the timesheet period and auto-submit, the lock date, entry restrictions, the unit and format for durations, the timer and start/end times, the project categories and plannings people can track time on, and reminder emails. Settings are inherited from the organization and can be overridden per tag or per person."
-- `help-manager-*` — describes people, projects, tasks, and tags but not that a whole project, task, or tag **category** can be picked, which makes the person manager of everything inside it now and in the future (`manager.ts`, `managerOfCategoryMutation`). One added sentence covers it.
+- `help-time-settings-*` — still says the options include "which day the week starts on" (that setting lives in **Localization**) and never mentions the panel's four tabs nor its main controls (**Lock date**, **Auto-submit timesheets after X days**, the **Restrictions** list, **Record time on these plannings**, **Auto Timesheet from Planning**).
+- `help-manager-*` — does not mention that a whole project, task, or tag **category** can be picked as the managed scope.
+- New this run: `help-levels-*` / any snippet describing level names as edited inline under an expanded row would now be stale — the 2026-09-28 deploy moved level names into the category's settings dialog (**Level names** list). No dictionary key mentions levels today, so nothing to fix; noted in case a snippet is added.
