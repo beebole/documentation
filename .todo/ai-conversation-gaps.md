@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-09-21T14:37:23Z
+Mined through: 2026-09-28T13:30:00Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -262,3 +262,23 @@ Every open entry above — the original GAP/DISC findings and the ticked run ent
 - **09-07** — `custom-fields.mdx` delete warning was already corrected in a previous release; added a "Custom fields in the API" cross-link. Role-mapping table and FAQ on `legacy-migration.mdx`; "Compliance and audit" rows (audit trail, DCAA/SOX equivalents) and FAQ on `guides/migration.mdx` — written as a mapping of controls, not a compliance claim; GDPR keywords on `data-exports.mdx` and `account-settings.mdx` with a cross-link; mobile as a fourth approval place plus FAQ on `approval.mdx`.
 - **09-14** — Remaining recurrence leak removed from `staffing.mdx` (and the "Recurring tasks" row from `guides/migration.mdx`), with a "not yet" FAQ; "Custom fields" sections on `api/queries.mdx` and `api/mutations.mdx` with the external-identifier lookup; External ID row and FAQ on `legacy-migration.mdx`; "A task is missing from one person's timesheet" checklist on `troubleshooting.mdx` (dropped the proposed **Hide tasks** step — `assignments.mdx` documents that tasks have no hide list); Delete Account FAQ on `account-settings.mdx`.
 - Bundled accuracy fix: `people.mdx` named the default roles as "Admin, Employee, Manager"; corrected to the four seeded roles.
+
+---
+
+## Pending review (run 2026-09-28)
+
+**Window:** threads captured after 2026-09-21T14:37:23Z (conversation starts 2026-09-22 → 2026-09-27). **Volume:** 18 threads, all single-message (`message_count` = 1), 17 `answered`, 1 `unanswered`; 2 answered with `match_confidence: none` (bare keywords "settings", "xero"). No FR/ES questions. Every candidate below was verified against `help/**` and the `prod` code before classification.
+
+**Real gaps:** none. **Covered but failed:** 2. **Not a doc gap:** 3 (listed after the entries).
+
+- [ ] LOW | `help/documentation/timeoff.mdx` | Nothing says what happens when a person has *no* allowance for an absence type — evidence: 2 threads from one reader 2 minutes apart (2026-09-25, both landing on `help/legacy/entities`): "how to apply define sick leave", then "i have sickeness type in absence section, when i select the sickness type in timesheet and enter 8 hrs, it show no quota available please add". The assistant told them to create an allowance. Verified in code (`backend/src/lib/timeRecordRules.ts:525`, rule A8: "No owning quota ⇒ no limit"): on the new platform a time-off entry with no allowance in the person's inheritance chain is simply accepted and no message appears — the "no quota available" wording the reader quoted is not in `labels.json` and belongs to the legacy platform (see the not-a-gap note below). The page's FAQ "What happens when someone exceeds their time-off balance?" assumes an allowance exists. Proposed fix: one FAQ "Does a person need a time-off allowance before recording an absence?" answering no — without an allowance there is no limit and no balance to track; add one under **Time off** when you want the entry capped or the balance shown.
+- [ ] LOW | `help/documentation/planning.mdx` | "Can I export the planning view?" is answered only on the List page — evidence: 1 conversation (2026-09-25, from `/help`), "can i export the planning view?"; the assistant answered correctly (no export from Gantt/Kanban/Staffing/List; build a report and download it) but the only place that says so is the FAQ on `task-list.mdx:214`. Verified: `planning.mdx`, `gantt.mdx` and `staffing.mdx` contain no occurrence of "export", "download" or "print". Proposed fix: move or duplicate that FAQ onto `planning.mdx` ("Can I export or print a planning?") linking [Reports](/help/documentation/reports) and [Data exports](/help/documentation/data-exports).
+
+Not a doc gap (recorded for the product and support teams):
+
+- **Legacy-platform readers, again (GAP-1 evidence, 3 threads).** 2026-09-23 on `integrations/custom-integrations`: "where is the settings in beebole account login i cant see it" (the assistant correctly pointed to the initials button and, if absent, to the legacy check in the migration guide); 2026-09-25, the two sick-leave threads above came from `help/legacy/entities` and quote a legacy-only message. The GAP-1 routing entry from the first run remains the fix; nothing new to write.
+- **"does it link with sequooia"** (2026-09-25, `unanswered`, from `integrations/introduction`): no Sequoia integration exists; the assistant listed the real ones. Product signal only.
+- **ChatGPT-generated setup instructions pasted in** (2026-09-27, two threads 14 seconds apart, "mcp" then a pasted plan saying "look under Settings → Integrations → MCP / AI / API"): the assistant corrected it to the **Assistant** page, which `mcp-server.mdx:48` documents ("Find your server URL and API key"). Covered; no change.
+
+Everything else in the window was answered from existing pages with nothing to add: editing a submitted entry to sick time and amending a timesheet entry (`approval.mdx` §Editing a submitted or approved timesheet), Google Calendar connection and drag-and-drop (`integrations/google-calendar.mdx`), time off approved with the period (`timeoff.mdx` §Absence approval), legacy import on request (`legacy-migration.mdx`), rejections in the Timesheet Compliance report (`reports.mdx`), and the Xero overview.
+
