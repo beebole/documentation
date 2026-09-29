@@ -30,6 +30,10 @@ Tags use the same structure as projects:
 - **Tags** — The labels inside a category, such as a department name or a country.
 - **Sub-tags** — Nested tags for finer grouping. Each category names its own levels — the **Department** category starts with the levels **Division** and **Team**.
 
+<Frame caption="The Department category with three divisions and their teams, and the Engineering tag's settings panels">
+  ![Beebole Tags page showing the Department category with Design, Engineering, and Sales divisions expanded into teams, and the Engineering tag detail panel open](/help/images/tags/tags-list.webp)
+</Frame>
+
 A person, project, or task can hold tags from several categories at once — someone can be in a **Department** tag and a location tag at the same time, and each tag cascades its configuration independently.
 
 ---
@@ -64,6 +68,10 @@ To create a whole tag tree in one go, use the **Or add multiple entries** area i
 Each category stores its own level names, so the interface can speak your organization's vocabulary. You edit them from the category's settings: next to the category name in the **Tags:** heading, click the gear button — its tooltip is the category name followed by **settings**, for example **Department settings**. The button is only shown to people who can manage tags.
 
 The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Division** and **Team**. From there you can:
+
+<Frame caption="Level names for the Department category">
+  ![Beebole Level names dialog listing Department, Division, and Team, with the Add new level field](/help/images/tags/tags-level-names-dialog.webp)
+</Frame>
 
 - Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Renaming row 1 renames the category. The new name applies to that level across the whole category.
 - Add a level — type its name in the **Add new level** field and press **Enter**. Until you name a deeper level, Beebole labels it after the level above with a **Sub-** prefix, for example **Sub-Team**.
@@ -100,6 +108,10 @@ You can assign tags from either side of the relationship.
 <Tabs>
   <Tab title="From the person, project, or task">
     Open the person's, project's, or task's details — for example, click **People** in the sidebar, then click the person. Click the **Tags** panel to open it, then pick a tag in the **Add a tag here** field. To remove a tag, hover over its badge and click the **Unassign** button that appears on it. Hovering over a tag badge also reveals a calendar button (**Pick a start date**) to set the date the assignment takes effect.
+
+    <Frame caption="A person tagged with a location, a team, and a contract type">
+      ![Beebole person Tags panel showing the Brussels, Engineering: Frontend, and Internal tags and the Add a tag here field](/help/images/tags/tags-person-panel.webp)
+    </Frame>
   </Tab>
   <Tab title="From the tag">
     Open the tag's details and click the **Who or what has been tagged?** panel. It has **People**, **Projects**, and **Tasks** sections — use the **Select person**, **Select project**, and **Select task** fields to add entries, and remove them from the same lists.
