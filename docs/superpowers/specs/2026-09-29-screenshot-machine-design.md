@@ -80,7 +80,7 @@ Tokens are spent only on judgment: writing a new scene, repairing a broken one, 
   - `where-used <image>`: the pages referencing an image, found by searching `help/`.
   - `list`: every scene and shot with its capture date.
 - **Separate browser:** the runner launches its own headless Chromium (its own profile), so it never clashes with the Playwright MCP browser. It runs up to 4 scenes in parallel.
-- **Comparison:** both images are decoded with `sharp`; a size change means `changed`; otherwise `pixelmatch` with threshold 0.1 counts differing pixels and reports `changed` above 0.5 %. The new capture is encoded to WebP with the same settings before comparing, so both sides carry the same compression noise.
+- **Comparison:** both images are decoded with `sharp`; a size change means `changed`; otherwise `pixelmatch` with threshold 0.1 counts differing pixels and reports `changed` above 100 device pixels. The new capture is encoded to WebP with the same settings before comparing, so both sides carry the same compression noise. (Measured on the Tags pilot: replays of runner-made captures differ by 0 pixels, and a one-word label rename by about 1,000, which a 0.5 % share of a full frame, about 26,000 pixels, would have missed.)
 
 ## 4. Step 1: batches
 

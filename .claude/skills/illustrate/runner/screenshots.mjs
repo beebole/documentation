@@ -103,7 +103,7 @@ async function replay(target, jsonPath) {
 				encodeWebp(png, candidate)
 				const diffPath = png.replace(/\.png$/, '.diff.png')
 				const r = await compareImages(published, candidate, { diffPath })
-				row.shots.push({ file, status: r.status, ratio: Number(r.ratio.toFixed(4)), reason: r.reason, candidate: png, diff: r.diffPixels ? diffPath : undefined, usedOn: whereUsed(file) })
+				row.shots.push({ file, status: r.status, ratio: Number(r.ratio.toFixed(4)), diffPixels: r.diffPixels, reason: r.reason, candidate: png, diff: r.diffPixels ? diffPath : undefined, usedOn: whereUsed(file) })
 			}
 			row.status = row.shots.some((s) => s.status !== 'same') ? 'changed' : 'same'
 		} catch (e) {
@@ -119,7 +119,7 @@ async function replay(target, jsonPath) {
 	writeFileSync(path, JSON.stringify(report, null, 2))
 	for (const r of rows) {
 		if (r.status === 'broken') console.log(`broken   ${r.id}: ${r.error}`)
-		else for (const s of r.shots) console.log(`${s.status.padEnd(8)} ${s.file}${s.ratio ? ` (${(s.ratio * 100).toFixed(2)} %)` : ''}`)
+		else for (const s of r.shots) console.log(`${s.status.padEnd(8)} ${s.file}${s.diffPixels ? ` (${s.diffPixels} px, ${(s.ratio * 100).toFixed(2)} %)` : ''}`)
 	}
 	console.log(`report: ${path}`)
 }

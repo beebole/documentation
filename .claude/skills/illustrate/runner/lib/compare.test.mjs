@@ -39,7 +39,7 @@ test('a moved button is a change', async () => {
 	const b = await card(join(dir, 'b.png'), { box: { left: 220, top: 40 } })
 	const r = await compareImages(a, b, { diffPath: join(dir, 'diff.png') })
 	assert.equal(r.status, 'changed')
-	assert.ok(r.ratio > 0.005)
+	assert.ok(r.diffPixels > 100)
 })
 
 test('a missing label line is a change', async () => {
@@ -63,4 +63,15 @@ test('large images are encoded under 200 KB', async () => {
 	await sharp(raw, { raw: { width: 1440, height: 900, channels: 3 } }).png().toFile(noisy)
 	const out = encodeWebp(noisy, join(dir, 'noisy.webp'))
 	assert.ok([80, 60].includes(out.quality))
+})
+
+test('a one-word label change on a full-size shot is a change', async () => {
+	// 2880×1800 like a 1440×900 capture at DPR 2; a 60×16 device-pixel word is ~0.02 % of it.
+	const base = { create: { width: 2880, height: 1800, channels: 4, background: '#ffffff' } }
+	const word = { input: { create: { width: 60, height: 16, channels: 4, background: '#364153' } }, left: 400, top: 300 }
+	const a = join(dir, 'full-a.png')
+	const b = join(dir, 'full-b.png')
+	await sharp(base).png().toFile(a)
+	await sharp(base).composite([word]).png().toFile(b)
+	assert.equal((await compareImages(a, b)).status, 'changed')
 })
