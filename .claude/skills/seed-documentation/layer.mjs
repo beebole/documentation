@@ -5,7 +5,9 @@
 // Location category, and colours chosen by the rules in claude-plugins' entity-colors.md.
 //
 // Idempotent: creates what is missing, re-applies colours and memberships, never deletes data.
-// Usage: BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY=... node layer.mjs
+// Usage: node layer.mjs (key from BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY in the environment)
+
+import { assertDocumentationOrg } from './guards.mjs'
 
 const ENDPOINT = 'https://qa.beebole.com/graphql'
 const KEY = process.env.BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY
@@ -155,6 +157,8 @@ async function removeMembers(state, tag, names, label) {
 }
 
 export async function applyLayer() {
+	// Refuse before any write: run on its own, this script must not touch another organisation.
+	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
 	const state = await readState()
 	console.log(`Organisation: ${state.org.name}`)
 	if (state.org.name !== ORGANISATION_NAME) {

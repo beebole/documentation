@@ -5,16 +5,16 @@
 //   topup   add time records from the last recorded day up to yesterday, then the layer
 //   approve submit/approve history (one-way: the account can no longer be wiped afterwards)
 import { applyLayer } from './layer.mjs'
+import { assertDocumentationOrg, assertNoApprovals } from './guards.mjs'
 
 const API_URL = 'https://qa.beebole.com/graphql'
-const ORG_ID = '6abb86369d045d1d6a183151'
 const API_KEY = process.env.BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY
 const args = process.argv.slice(2)
 const flags = args.filter((a) => a.startsWith('--'))
 const modeArg = args.find((a) => !a.startsWith('--')) || ''
 const MODES = { full: 'full', topup: 'append', approve: 'approve' }
 if (!API_KEY || !MODES[modeArg]) {
-	console.error('Usage: BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY=... node seed.mjs <full|topup|approve> [--dry-run]')
+	console.error('Usage: node seed.mjs <full|topup|approve> [--dry-run]  (key from BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY in the environment)')
 	process.exit(1)
 }
 const MODE = MODES[modeArg]
@@ -2606,20 +2606,12 @@ async function approveMain() {
 async function main() {
 	const t0 = Date.now()
 	console.log(`Mode: ${MODE}${DRY_RUN ? ' (dry-run)' : ''} · target: ${target}`)
-	const org = await gql('{ currentOrganisation { id name } }')
-	if (org?.currentOrganisation?.id !== ORG_ID) {
-		console.error(`Refusing: this key reaches ${org?.currentOrganisation?.name ?? 'an unknown organisation'}, not the documentation account.`)
+	try {
+		await assertDocumentationOrg(gql)
+		if (MODE === 'full') await assertNoApprovals(gql)
+	} catch (e) {
+		console.error(e.message)
 		process.exit(1)
-	}
-	if (MODE === 'full') {
-		const persons = (await gql('{ getPersons { id } }'))?.getPersons || []
-		for (const p of persons) {
-			const ev = await gql('query($id: BeeboleId!) { getPersonApprovalEvents(personId: $id) { id } }', { id: p.id })
-			if (ev?.getPersonApprovalEvents?.length) {
-				console.error('Refusing full: approvals exist, so people cannot be deleted. See README "Full reset".')
-				process.exit(1)
-			}
-		}
 	}
 	if (MODE === 'append') {
 		await appendMain()

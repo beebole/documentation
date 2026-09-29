@@ -25,7 +25,7 @@
 
 Once approvals exist, `full` refuses. A reset then means:
 1. Create a new QA organisation through the API (`requestSignup` returns `debugPin` on QA, then `signup`).
-2. Create an API key for its admin, store it as `BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY`, update `ORG_ID` in `seed.mjs`, `layer.mjs` and `../illustrate/runner/lib/session.mjs`.
+2. Create an API key for its admin, store it as `BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY`, update `ORG_ID` in `guards.mjs` and `../illustrate/runner/lib/session.mjs`.
 3. `seed.mjs full`, then recapture every scene (`screenshots.mjs capture all`).
 
 ## History
