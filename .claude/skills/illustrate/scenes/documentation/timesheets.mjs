@@ -199,7 +199,25 @@ export const scenes = [
 			await page.mouse.up()
 			await h.settle(page, 800)
 		},
-		shots: [{ file: 'timesheets/timer-running.webp', frame: { type: 'full' } }],
+		// Lens on the row's timer button (the text says "click the timer button on the row"),
+		// with the floating timer visible at the bottom of the full screen.
+		shots: [
+			{
+				file: 'timesheets/timer-running.webp',
+				frame: {
+					type: 'lens',
+					// The row's timer control is a clickable span around the avatar and its play/pause
+					// badge, not a button (see missing-labels.md).
+					target: (page) =>
+						page
+							.getByText('Quantum Logistics: Fleet Tracker', { exact: true })
+							.first()
+							.locator('xpath=ancestor::*[.//span[contains(@class, "timer-icon")]][1]')
+							.locator('span[class*="timer-icon"]')
+							.first(),
+				},
+			},
+		],
 	},
 	{
 		id: 'timesheets-team-pane',

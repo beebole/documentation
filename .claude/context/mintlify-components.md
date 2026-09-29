@@ -68,6 +68,16 @@ Use for overview pages linking to sub-topics.
 
 Add `caption="..."` when context isn't clear from surrounding prose; it appears below the image and helps SEO/accessibility. Alt text describes the image; caption explains its purpose.
 
+**Partial screenshots keep their real size.** Mintlify stretches a markdown image to the column width, so a popover, menu, dialog or panel (captured at 2x like every docs screenshot) would appear larger than in the app. For those, and only those, use an `<img>` with its real width (half its pixel width, printed by `node .claude/skills/illustrate/runner/screenshots.mjs size <image>`):
+
+```mdx
+<Frame caption="Caption text">
+	<img src="/help/images/timesheets/entry-details.webp" alt="Descriptive alt text" width="432" />
+</Frame>
+```
+
+Use the plain `width` attribute, not a Tailwind class such as `w-[432px]`: arbitrary Tailwind values are not generated, checked in the local preview on 2026-09-29. The site's `img { max-width: 100% }` still lets the image shrink on phones. Full screens (and lens shots over a full screen) stay as markdown images: they are wider than the column and scale down on their own.
+
 For video embeds:
 
 ```mdx

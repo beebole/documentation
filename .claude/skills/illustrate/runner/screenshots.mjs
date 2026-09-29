@@ -4,6 +4,7 @@
 //   capture <all|scene-id|page> [--preview]
 //   replay [all|scene-id|page] [--json <path>]
 //   where-used <image path under help/images>
+//   size <image path under help/images>   real on-screen width (for partial shots' <img width="N">)
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, writeFileSync, copyFileSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
@@ -13,6 +14,7 @@ import { shootScene } from './lib/shoot.mjs'
 import { encodeWebp } from './lib/webp.mjs'
 import { compareImages } from './lib/compare.mjs'
 import { partition } from './lib/fixtures.mjs'
+import { displayWidth } from './lib/size.mjs'
 import { IMAGES_DIR, HELP_DIR, REPO_ROOT, TMP_DIR } from './lib/paths.mjs'
 
 const [cmd, ...rest] = process.argv.slice(2)
@@ -149,9 +151,10 @@ const commands = {
 	capture: () => capture(positional[0] ?? 'all', flag('--preview')),
 	replay: () => replay(positional[0] ?? 'all', option('--json')),
 	'where-used': () => console.log(whereUsed(positional[0]).join('\n') || '(not used)'),
+	size: async () => console.log(await displayWidth(join(IMAGES_DIR, positional[0]))),
 }
 if (!commands[cmd]) {
-	console.error('Usage: screenshots.mjs list | capture <target> [--preview] | replay [target] [--json path] | where-used <image>')
+	console.error('Usage: screenshots.mjs list | capture <target> [--preview] | replay [target] [--json path] | where-used <image> | size <image>')
 	process.exit(1)
 }
 await commands[cmd]()

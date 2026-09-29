@@ -12,3 +12,4 @@ Controls without an accessible name force scenes onto structural anchors. Each l
 | Timesheet | − / + stepper buttons inside a time cell | never clicked: they change the entry |
 | Timesheet | Top-left cluster buttons (Approval, Team, Import your calendar events, Copy) | tooltip only: `h.byTooltip` hovers each and matches the tooltip |
 | Timesheet | Row ⋯ action button | `.bb-btn-action`, visible on row hover |
+| Timesheet | Row timer control (avatar with play/pause badge) | a clickable `span` (`group/timer-icon`), not a button, no accessible name |
