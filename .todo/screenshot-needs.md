@@ -4,7 +4,9 @@ Generated: 2026-06-11 (regenerated against the fully overhauled English content)
 Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
 
 **Summary:** ~156 screenshots needed across 56 pages. Original 2026-06-11 inventory: ~132 (55 high, 52 medium, 23 low; +4 Asana shots on disk). 2026-08-04 additions: 24 more (9 high, 10 medium, 5 low) — see the dated section at the bottom.
-Capture is a deferred follow-on effort — run `/illustrate --capture` against this list once the app is available. All needs below were derived from the current, code-accurate page content.
+Capture runs in batches with `/illustrate --batch` (about 15 shots per batch: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. All needs below were derived from the current, code-accurate page content.
+
+**Traffic (90-day `/help/*` pageviews, PostHog PROD 39108, measured 2026-09-29; refresh when older than 30 days).** Pages with open needs, most visited first: mobile 658 · timesheets 187 · quickstart 171 · integrations/introduction 223 · reports 116 · projects 103 · account-settings 92 · timesheetSettings 92 · roles-authorisations 81 · planning 80 · people 78 · approval 77 · authentication 75 · billing 74 · api/schema-explorer 71 · custom-reports 70 · work-schedule 67 · timeoff 66 · concepts 64 · budgets 61 · tags 54 · costs 50 · public-holidays 46 · integrations/quickbooks 44 · journal 43 · integrations/microsoft-calendar 43 · data-exports 42 · custom-fields 42 · integrations/custom-integrations 40 · notifications 39 · subscription 38 · integrations/jira 38 · integrations/webhooks 38 · excel-addin 38 · assignments 38 · ai 36 · gsheets-addon 35. Pages not listed had fewer than 35 views.
 
 **Already on disk (do not re-capture):**
 - `help/images/index-beebole-documentation.webp` (landing hero)
@@ -80,9 +82,11 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high |
+| tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high — done as `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
 | tags/who-or-what-tagged-panel.webp | A tag's "Who or what has been tagged?" panel with People/Projects/Tasks sections | medium |
-| tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium |
+| tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium — done within `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
+| tags/tags-level-names-dialog.webp | The Level names dialog of the Department category | done (scene `tags-level-names-dialog`, 2026-09-29) |
+| tags/tags-person-panel.webp | A person's Tags panel with a team, a contract type and an office | done (scene `tags-person-panel`, 2026-09-29) |
 
 ## help/documentation/timesheets.mdx
 
