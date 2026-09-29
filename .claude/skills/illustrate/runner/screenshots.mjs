@@ -83,12 +83,30 @@ async function capture(target, preview) {
 	process.exitCode = failed ? 1 : 0
 }
 
+function writeReport(path, report) {
+	mkdirSync(dirname(path), { recursive: true })
+	writeFileSync(path, JSON.stringify(report, null, 2))
+}
+
 async function replay(target, jsonPath) {
-	const entries = (await loadScenes(target)).filter((e) => e.scene.mode === 'auto')
-	const outDir = join(TMP_DIR, 'replay')
-	const browser = await launchBrowser()
-	await ensureSession(browser)
+	const path = jsonPath ?? join(TMP_DIR, 'replay-report.json')
 	const report = { date: today(), scenes: [] }
+	// Replace any previous report first, so a caller never reads last run's results as today's.
+	writeReport(path, { ...report, error: 'replay in progress' })
+	let browser
+	let entries
+	try {
+		entries = (await loadScenes(target)).filter((e) => e.scene.mode === 'auto')
+		browser = await launchBrowser()
+		await ensureSession(browser)
+	} catch (e) {
+		await browser?.close()
+		writeReport(path, { ...report, error: e.message })
+		console.error(`replay could not start: ${e.message}`)
+		process.exitCode = 2
+		return
+	}
+	const outDir = join(TMP_DIR, 'replay')
 	const rows = await pool(entries, 4, async (entry) => {
 		const row = { id: entry.scene.id, page: entry.page, capturedAt: entry.scene.capturedAt, datesMatter: entry.scene.datesMatter, shots: [] }
 		try {
@@ -114,9 +132,7 @@ async function replay(target, jsonPath) {
 	})
 	report.scenes = rows
 	await browser.close()
-	const path = jsonPath ?? join(TMP_DIR, 'replay-report.json')
-	mkdirSync(dirname(path), { recursive: true })
-	writeFileSync(path, JSON.stringify(report, null, 2))
+	writeReport(path, report)
 	for (const r of rows) {
 		if (r.status === 'broken') console.log(`broken   ${r.id}: ${r.error}`)
 		else for (const s of r.shots) console.log(`${s.status.padEnd(8)} ${s.file}${s.diffPixels ? ` (${s.diffPixels} px, ${(s.ratio * 100).toFixed(2)} %)` : ''}`)

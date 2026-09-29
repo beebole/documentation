@@ -38,7 +38,7 @@ Every docs screenshot is produced by a **scene**: a small script that brings the
 - **Where:** one file per docs page, `.claude/skills/illustrate/scenes/<tab>/<page>.mjs` (for example `scenes/documentation/tags.mjs`), exporting `page` (the `.mdx` path) and `scenes`.
 - **Fields:** `id` (kebab-case, unique), `capturedAt` (YYYY-MM-DD, on the line right after `id`; the runner rewrites it), `datesMatter` (true when the screen shows dates or totals to date), `mode` (`auto`, or `guided` when the API cannot create the state), `setup(page, h)`, optional `teardown(page, h)`, and `shots`: a list of `{ file, frame }` with `file` relative to `help/images/` and `frame` one of `{ type: 'full' }`, `{ type: 'element', locate: (page) => locator, pad }`, `{ type: 'box', box: async (page, h) => rect, pad }`, `{ type: 'clip', x, y, width, height }`.
 - **Helpers (`h`):** `goto(page, path)`, `settle(page)`, `listRow(page, name)`, `expandRow(page, name, childName)` (idempotent), `surfaceAround(page, text)` (box of the dialog or popup around a text). Framing, Intercom/Beta/toast hiding, mouse parking, DPR 2, `animations: 'disabled'` and `caret: 'hide'` are applied by the runner, not by scenes.
-- **Rules:** find elements by label, role, text or component tag, never by coordinates; make every opening step idempotent (the app remembers expanded trees and open panels); leave no trace (no saved setting changed, or restore it in `teardown`); add any data a scene needs to `../seed-documentation/layer.mjs`, never by clicking in the app; unnamed controls go in `runner/missing-labels.md`.
+- **Rules:** find elements by label, role, text or component tag, never by coordinates; make every opening step idempotent (the app remembers expanded trees and open panels); leave no trace: the runner answers every GraphQL mutation itself, so nothing a scene clicks reaches the server (screen-settings saves are dropped silently; any other mutation makes the scene `broken` with the mutation's name). Scenes still restore what they change in the page, in `teardown`, for the next steps of the same run; add any data a scene needs to `../seed-documentation/layer.mjs`, never by clicking in the app; unnamed controls go in `runner/missing-labels.md`.
 - **One screen, several shots:** take the full view and the panel crops from the same scene. An image used on several pages is captured once and linked from each (`where-used` lists them).
 
 Runner commands (from the repo root):
@@ -48,7 +48,7 @@ Runner commands (from the repo root):
     node .claude/skills/illustrate/runner/screenshots.mjs replay [page|scene-id] [--json <path>]
     node .claude/skills/illustrate/runner/screenshots.mjs where-used <image under help/images>
 
-**Authoring loop:** explore the screen (Playwright MCP when free, or `capture --preview`, which writes PNGs to a temp folder and changes nothing), write the scene, `capture --preview`, look at the PNG, adjust, then `capture` (writes the WebP into `help/images/` and sets `capturedAt`). Before a date-dependent capture, run `/seed-documentation topup`. Finish with `replay <page>`: every shot must come back `same`.
+**Authoring loop:** explore the screen with `capture --preview` (always, when unattended: the Playwright MCP browser has no write guard, and one exploratory click there changed an entry on 2026-09-29; attended, the MCP browser is fine for looking, not for clicking unknown controls). `capture --preview` writes PNGs to a temp folder and changes nothing. Then write the scene, `capture --preview`, look at the PNG, adjust, then `capture` (writes the WebP into `help/images/` and sets `capturedAt`). Before a date-dependent capture, run `/seed-documentation topup`. Finish with `replay <page>`: every shot must come back `same`.
 
 **Replay** freezes the browser clock at each scene's `capturedAt` (noon, New York) and compares with the published WebP: `same`, `changed` (more than 100 differing device pixels; a diff PNG is written next to the candidate), `missing` (no published image yet) or `broken` (the step that failed). The JSON report lists, for each shot, the pages that use it.
 
@@ -262,7 +262,7 @@ Run `replay` (all scenes, or the page given), then summarise the report: shots `
 
 Called by `/release` step 6, unattended. The replay was started in the background at the beginning of the release and writes `.todo/replay-report.json`.
 
-1. Wait for the report. If the runner could not start (QA down, sign-in failed), skip the step and record why for the PR body.
+1. Wait for the replay to finish, then read the report. Use it only if its `date` is today and it has no `error` field (the runner replaces the file at start and writes `error` when it cannot start: QA down, sign-in failed, browser missing). Otherwise skip the step and record the error for the PR body.
 2. If any `changed` scene has `datesMatter`, run `/seed-documentation topup` once. If it fails, skip those scenes and list them.
 3. `capture` each scene with a `changed` shot. Compare the new image with the old one yourself: above about 20 % of pixels changed, note "page text may need review".
 4. For each `broken` scene, one repair attempt (read the failing step, fix the scene, `capture --preview`, then `capture`). If it still fails, list it under "Scenes to fix".

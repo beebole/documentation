@@ -9,11 +9,13 @@ const EMAIL = 'yves@beebole.com'
 const STATE = join(CACHE_DIR, 'storage-state.json')
 export const VIEWPORT = { width: 1440, height: 900 }
 
+// Playwright's own Chromium, pinned by the playwright version in package.json. Not the system
+// Chrome: it auto-updates, and a new rendering engine would flag every screenshot as changed.
 export async function launchBrowser() {
 	try {
-		return await chromium.launch({ channel: 'chrome', headless: true })
-	} catch {
-		return await chromium.launch({ headless: true })
+		return await chromium.launch({ channel: 'chromium', headless: true })
+	} catch (e) {
+		throw new Error(`Cannot start the pinned Chromium (run \`npx --prefix .claude/skills/illustrate/runner playwright install chromium\`): ${e.message.split('\n')[0]}`)
 	}
 }
 
