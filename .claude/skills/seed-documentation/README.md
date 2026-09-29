@@ -9,6 +9,11 @@
 1. `seed.mjs full`: people, clients and projects, tasks, tags, rates, schedules, a year of time, absences, expenses, budgets. Adapted from reboot's `seed-demo.mjs` on 2026-09-29: key from the environment, organisation guard, approval guard, account-management time logged on each client's main engagement, the organisation schedule assigned through the renamed timeline mutations (`resetOrganisationScheduleTimelineRelations`, `assignScheduleTimelineToOrganisation`), absences kept off public holidays, and the wipe deleting only rates defined on each project. A `full` run ends with zero GraphQL errors; keep it that way.
 2. `layer.mjs`: organisation name, Department teams, Location offices, memberships, colours (rules from `claude-plugins/plugins/growth/skills/generate-dummy-data/references/entity-colors.md`).
 
+## App state the scenes rely on
+
+- Jordan Reed's timesheet opens in **Grid view** (the Timesheets scenes switch to it; a Calendar view scene must switch back in its `teardown`).
+- Elena Rossi's person panel may remember the Tags panel as open; scenes open panels idempotently.
+
 ## Data rules
 
 - Only add. Top-ups add time after the last recorded day; nothing is edited or deleted.
