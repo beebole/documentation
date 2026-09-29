@@ -14,6 +14,8 @@ export function validateScene(s, file) {
 	if (typeof s.setup !== 'function') throw new Error(`${where}: setup must be a function`)
 	if (s.prepare !== undefined && typeof s.prepare !== 'function') throw new Error(`${where}: prepare must be a function (api, { date }) that adds permanent data at capture time`)
 	if (s.fixture && (typeof s.fixture.up !== 'function' || typeof s.fixture.down !== 'function')) throw new Error(`${where}: a fixture needs both up and down functions`)
+	if (s.viewport !== undefined && ![s.viewport?.width, s.viewport?.height].every((n) => Number.isInteger(n) && n > 0)) throw new Error(`${where}: viewport must be { width, height } in positive whole pixels`)
+	if (s.signedOut !== undefined && typeof s.signedOut !== 'boolean') throw new Error(`${where}: signedOut must be true or false`)
 	if (!Array.isArray(s.shots) || s.shots.length === 0) throw new Error(`${where}: shots must be a non-empty list`)
 	for (const shot of s.shots) {
 		if (!/^[a-z0-9-]+(\/[a-z0-9-]+)*\.webp$/.test(shot.file ?? '')) throw new Error(`${where}: shot file must be a relative .webp path under help/images`)

@@ -13,3 +13,6 @@ Controls without an accessible name force scenes onto structural anchors. Each l
 | Timesheet | Top-left cluster buttons (Approval, Team, Import your calendar events, Copy) | tooltip only: `h.byTooltip` hovers each and matches the tooltip |
 | Timesheet | Row ⋯ action button | `.bb-btn-action`, visible on row hover |
 | Timesheet | Row timer control (avatar with play/pause badge) | a clickable `span` (`group/timer-icon`), not a button, no accessible name |
+| Planning | Planning settings gear next to the planning name | `h.byTooltip` on the heading container, tooltip "Main plan settings" |
+| Planning (Kanban) | Column and card titles | editable fields, not text: scenes wait on a card's project line |
+| Side panel | Resize handle on the panel's left edge | dragged by position (866, 101) in the roles scene |

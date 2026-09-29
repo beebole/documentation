@@ -2,7 +2,7 @@
 // before the capture date (the current week is only partly filled on a capture day).
 export const page = 'help/documentation/timesheets.mdx'
 
-async function openLastFullWeek(page, h) {
+export async function openLastFullWeek(page, h) {
 	// Opening /timesheet directly lands on People, so go through the sidebar link.
 	await h.goto(page, '/persons')
 	await page.getByRole('link', { name: 'Timesheet' }).click()
@@ -53,7 +53,7 @@ async function cell(page, rowLabel, weekday) {
 	return el
 }
 
-const cornerButton = (page, h, tooltip) => h.byTooltip(page, page.locator('timesheet-corner'), tooltip)
+export const cornerButton = (page, h, tooltip) => h.byTooltip(page, page.locator('timesheet-corner'), tooltip)
 
 // A running timer is a record of today with a start time, its end set to the start of the day
 // (UTC midnight) and no duration. Start times are stored as wall-clock time in the

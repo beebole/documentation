@@ -36,3 +36,10 @@ test('a screen-settings save gets a fake success echoing the settings, so the pa
 	assert.equal(body.errors, undefined)
 	assert.equal(body.data.editPersonScreenSettings.screenSettings, '{"a":1}')
 })
+
+test('task and journal view preferences are answered silently too, echoed under their own field', () => {
+	assert.equal(isSilent('editPersonTaskSettings'), true)
+	assert.equal(isSilent('editPersonJournalSettings'), true)
+	const raw = JSON.stringify({ data: JSON.stringify({ query: 'mutation($id: BeeboleId!, $settings: String) { editPersonTaskSettings(id: $id, settings: $settings) { name } }', variables: { id: 'p1', settings: '{"v":2}' } }), type: '__request', id: 9 })
+	assert.equal(JSON.parse(JSON.parse(silentReply(raw)).data).data.editPersonTaskSettings.taskSettings, '{"v":2}')
+})
