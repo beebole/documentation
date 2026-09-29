@@ -26,7 +26,7 @@ Make sure every page has the screenshots it needs. Identify placeholders or expl
 
 ## Prerequisites
 
-- **For docs captures:** nothing to run locally. Scenes run against the AnyCompany documentation account on `qa.beebole.com` (see `../seed-documentation/README.md`). The runner needs its dependencies once: `npm install --prefix .claude/skills/illustrate/runner`. The runner signs in by itself and keeps its session in `~/.cache/beebole-docs-screenshots/`.
+- **For docs captures:** nothing to run locally. Scenes run against the AnyCompany documentation account on `qa.beebole.com` (see `../seed-documentation/README.md`). The runner needs its dependencies and its pinned Chromium once: `npm install --prefix .claude/skills/illustrate/runner` then `npx --prefix .claude/skills/illustrate/runner playwright install chromium`. The runner signs in by itself and keeps its session in `~/.cache/beebole-docs-screenshots/`.
 - **For `--commercial` captures:** the Playwright MCP browser, against the account the user names (the marketing account is separate from the documentation account).
 - **For optimization:** `cwebp` installed (`brew install webp`).
 - **For Arcade embeds:** the user provides an Arcade share URL.

@@ -25,7 +25,7 @@ Check, in order — halt with a clear message on the first failure:
 1. `../reboot` is reachable (this skill has no GitHub-API fallback — the pipeline is too long to run degraded).
 2. The docs repo is on `main` with a clean working tree. Run `git pull --ff-only`.
 3. `gh auth status` succeeds.
-4. **Screenshot runner (soft check):** `npm ls --prefix .claude/skills/illustrate/runner` exits 0 (run `npm install --prefix .claude/skills/illustrate/runner` once if not). A failure here never halts the release; it only disables step 6, and the PR body says why.
+4. **Screenshot runner (soft check):** `npm ls --prefix .claude/skills/illustrate/runner` exits 0 (if not, run `npm install --prefix .claude/skills/illustrate/runner` and `npx --prefix .claude/skills/illustrate/runner playwright install chromium` once). A failure here never halts the release; it only disables step 6, and the PR body says why.
 5. **There is something to release:** at least one note in `../reboot/frontend/public/release-notes/production/` with a `date` newer than the `news-cursor` marker in `help/news/releases.mdx`, or newer than the `Last updated:` date in `.claude/context/features.md`. If neither, print "Nothing to release — no production notes newer than the last covered date." and stop. Never open an empty PR.
 
 ### 2. Create the release branch
