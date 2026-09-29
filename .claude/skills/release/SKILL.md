@@ -38,7 +38,7 @@ Use today's date. If the branch already exists (second run the same day), suffix
 
 ### 3. Run the pipeline
 
-**Before step 1, start the screenshot replay in the background** (no tokens, a few minutes): `node .claude/skills/illustrate/runner/screenshots.mjs replay --json .todo/replay-report.json`. Step 6 reads its report.
+**Before step 1, start the screenshot replay in the background** (no tokens, a few minutes): `set -a && source ~/.config/beebole/.env && set +a && node .claude/skills/illustrate/runner/screenshots.mjs replay --json .todo/replay-report.json` (the key is needed by scenes with fixtures, such as the running timer). Step 6 reads its report.
 
 Invoke each skill via the Skill tool, in this order. **After each step, commit its changes** on the release branch with the message shown — one commit per step so the PR reads stage by stage. A step that changes nothing produces no commit; note it and continue.
 

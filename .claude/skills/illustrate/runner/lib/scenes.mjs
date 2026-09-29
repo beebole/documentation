@@ -12,6 +12,7 @@ export function validateScene(s, file) {
 	if (typeof s.datesMatter !== 'boolean') throw new Error(`${where}: datesMatter must be true or false`)
 	if (!['auto', 'guided'].includes(s.mode)) throw new Error(`${where}: mode must be auto or guided`)
 	if (typeof s.setup !== 'function') throw new Error(`${where}: setup must be a function`)
+	if (s.prepare !== undefined && typeof s.prepare !== 'function') throw new Error(`${where}: prepare must be a function (api, { date }) that adds permanent data at capture time`)
 	if (s.fixture && (typeof s.fixture.up !== 'function' || typeof s.fixture.down !== 'function')) throw new Error(`${where}: a fixture needs both up and down functions`)
 	if (!Array.isArray(s.shots) || s.shots.length === 0) throw new Error(`${where}: shots must be a non-empty list`)
 	for (const shot of s.shots) {

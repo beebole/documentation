@@ -65,7 +65,7 @@ async function capture(target, preview) {
 	let failed = 0
 	for (const entry of entries) {
 		try {
-			const shots = await shootScene(browser, entry, { date, outDir })
+			const shots = await shootScene(browser, entry, { date, outDir, capturing: true })
 			for (const { file, png } of shots) {
 				if (preview) {
 					console.log(`preview ${entry.scene.id}: ${png}`)
@@ -112,7 +112,7 @@ async function replay(target, jsonPath) {
 	const outDir = join(TMP_DIR, 'replay')
 	// Fixture scenes change data while they run, so they go one at a time after the others.
 	const { parallel, serial } = partition(entries)
-	const replayOne = async (entry) => {
+	const attempt = async (entry) => {
 		const row = { id: entry.scene.id, page: entry.page, capturedAt: entry.scene.capturedAt, datesMatter: entry.scene.datesMatter, shots: [] }
 		try {
 			const shots = await shootScene(browser, entry, { date: entry.scene.capturedAt, outDir })
@@ -134,6 +134,13 @@ async function replay(target, jsonPath) {
 			row.error = e.message
 		}
 		return row
+	}
+	// A scene that comes out broken or changed is run once more and the second result stands:
+	// QA sometimes drops a connection or renders a layout a few pixels off, and neither should
+	// cost an unattended /release a repair or a recapture. A real change shows up both times.
+	const replayOne = async (entry) => {
+		const first = await attempt(entry)
+		return first.status === 'same' || first.shots.some((s) => s.status === 'missing') ? first : attempt(entry)
 	}
 	const rows = [...(await pool(parallel, 4, replayOne)), ...(await pool(serial, 1, replayOne))]
 	report.scenes = rows

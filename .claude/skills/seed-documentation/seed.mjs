@@ -26,12 +26,20 @@ console.log(`Seeding to: ${API_URL}`)
 // 4.1 GraphQL helper
 // ────────────────────────────────────────────────────────────
 
+// QA sometimes drops connections for a few seconds: retry network failures (not GraphQL errors).
+async function post(body) {
+	for (let attempt = 1; ; attempt++) {
+		try {
+			return await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: API_KEY }, body })
+		} catch (e) {
+			if (attempt >= 3) throw e
+			await new Promise((r) => setTimeout(r, 5000 * attempt))
+		}
+	}
+}
+
 async function gql(query, variables) {
-	const res = await fetch(API_URL, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json', apikey: API_KEY },
-		body: JSON.stringify({ query, variables }),
-	})
+	const res = await post(JSON.stringify({ query, variables }))
 	const json = await res.json()
 	if (json.errors) {
 		console.error('GraphQL error:', JSON.stringify(json.errors, null, 2))
@@ -2351,10 +2359,13 @@ async function approveHistory(personMap, personStart) {
 	const work = []
 	let submitted = 0
 	let approved = 0
+	// Periods follow the organisation's first day of the week (Sunday for this US-localised
+	// account; seed-demo assumed Monday, which submits ranges matching no timesheet period).
+	const loc = await gql('{ currentOrganisation { localisation { firstDayOfWeek { value } } } }')
+	const firstDay = loc?.currentOrganisation?.localisation?.firstDayOfWeek?.value ?? 1
 	const weekStartOf = (ts) => {
 		const d = new Date(ts)
-		const dow = d.getUTCDay()
-		const back = dow === 0 ? 6 : dow - 1 // Monday-based
+		const back = (d.getUTCDay() - firstDay + 7) % 7
 		return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - back, 0, 0, 0)
 	}
 	for (const p of PEOPLE) {
@@ -2364,7 +2375,9 @@ async function approveHistory(personMap, personStart) {
 		const lastFull = weekStartOf(yesterday) // exclude the current (partial) week
 		const recentCutoff = weekStartOf(threeWeeksAgo)
 		for (let wk = weekStartOf(empStart); wk < lastFull; wk += 7 * 86400000) {
-			const wkEnd = wk + 7 * 86400000
+			// The app's period ends at 23:59:59.999 on its last day (timesheetService.getTimesheetPeriod);
+			// a submission ending at the next midnight is a different period the app never shows.
+			const wkEnd = wk + 7 * 86400000 - 1
 			const recent = wk >= recentCutoff
 			const doApprove = !recent || hashString(p.name + wk) % 2 === 0
 			work.push(

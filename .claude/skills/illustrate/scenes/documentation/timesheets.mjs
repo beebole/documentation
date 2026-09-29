@@ -10,7 +10,22 @@ async function openLastFullWeek(page, h) {
 	// Unnamed Grid/Calendar toggle: first button next to the "Timesheet" heading
 	// (see missing-labels.md). Grid is the account's baseline, so this leaves no trace.
 	await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
-	await page.getByRole('button', { name: 'Previous' }).click()
+	// Go back exactly one week. The date range is an input's value ("Sep 27 → Oct 3, 2026"); a
+	// click that lands before the timesheet has loaded is lost, so confirm the value changed
+	// (one retry), then wait until the grid's first day matches it (the label moves first).
+	const readRange = () =>
+		page.evaluate(() => [...document.querySelectorAll('input')].find((i) => i.value.includes('→') && i.getBoundingClientRect().width > 0)?.value ?? '')
+	await h.settle(page)
+	const before = await readRange()
+	if (!before) throw new Error('timesheet date range not found')
+	for (let i = 0; i < 2 && (await readRange()) === before; i++) {
+		await page.getByRole('button', { name: 'Previous' }).click()
+		await page.waitForFunction((b) => [...document.querySelectorAll('input')].some((x) => x.value.includes('→') && x.value !== b), before, { timeout: 8000 }).catch(() => {})
+	}
+	const after = await readRange()
+	if (after === before) throw new Error('could not go back to the previous week')
+	const firstDay = after.match(/\d+/)[0]
+	await page.waitForFunction((d) => document.querySelector('.ts-head-day')?.textContent.replace(/\D+/g, ' ').trim().split(' ')[0] === d, firstDay, { timeout: 15000 })
 	await page.getByText('Acme Corp: Website Redesign', { exact: true }).first().waitFor()
 	await h.settle(page)
 }
@@ -151,7 +166,11 @@ export const scenes = [
 			const label = page.getByText('Acme Corp: Website Redesign', { exact: true }).first()
 			await label.hover()
 			// The row's ⋯ button appears on hover (bb-btn-action, unnamed: see missing-labels.md).
-			await page.locator('.bb-btn-action').filter({ visible: true }).first().click()
+			// The ⋯ button slides in on hover and the menu anchors to where it is at click time:
+			// wait until it has settled.
+			const dots = page.locator('.bb-btn-action').filter({ visible: true }).first()
+			await h.stableBox(page, dots)
+			await dots.click()
 			await page.getByText('Pin to top', { exact: true }).waitFor()
 			await h.settle(page)
 		},
@@ -166,9 +185,9 @@ export const scenes = [
 				file: 'timesheets/row-menu.webp',
 				frame: {
 					type: 'box',
-					box: async (page) => {
+					box: async (page, h) => {
 						const header = await page.getByText('Client', { exact: true }).first().boundingBox()
-						const menu = await page.getByText('Pin to top', { exact: true }).locator('xpath=ancestor::*[contains(@class, "bb-popup")][1]').boundingBox()
+						const menu = await h.stableBox(page, page.getByText('Pin to top', { exact: true }).locator('xpath=ancestor::*[contains(@class, "bb-popup")][1]'))
 						const x = 100
 						const y = header.y - 16
 						return { x, y, width: menu.x + menu.width + 48 - x, height: menu.y + menu.height + 24 - y }
@@ -227,7 +246,13 @@ export const scenes = [
 		async setup(page, h) {
 			await openLastFullWeek(page, h)
 			await (await cornerButton(page, h, 'Team')).click()
-			await h.settle(page, 1500)
+			// Score rings arrive after the pane (over the app's WebSocket, which network idle does
+			// not track): wait until every member shows one.
+			await page.waitForFunction(() => {
+				const scores = document.querySelectorAll('bb-timesheet-score')
+				return scores.length > 0 && document.querySelectorAll('bb-timesheet-score svg').length === scores.length
+			})
+			await h.settle(page, 1000)
 		},
 		shots: [{ file: 'timesheets/team-pane.webp', frame: { type: 'full' } }],
 	},

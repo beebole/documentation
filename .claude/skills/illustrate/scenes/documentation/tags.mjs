@@ -44,10 +44,15 @@ export const scenes = [
 		async setup(page, h) {
 			await h.goto(page, '/persons')
 			await page.getByText('Elena Rossi', { exact: true }).first().click()
-			// The app remembers which panel was open: open Tags only when it is still closed.
+			// The open panel is part of the address (/persons/<id>/tags). Clicking its title depends
+			// on the panel state the app remembers, so open it through the address when needed.
 			const field = page.getByPlaceholder('Add a tag here')
+			await page.waitForURL(/\/persons\/[0-9a-f]+/)
 			await page.waitForTimeout(800)
-			if (!(await field.isVisible())) await page.getByText('Tags', { exact: true }).filter({ visible: true }).last().click()
+			if (!(await field.isVisible())) {
+				const person = page.url().match(/\/persons\/[0-9a-f]+/)[0]
+				await h.goto(page, `${person}/tags`)
+			}
 			await field.waitFor()
 			await h.settle(page)
 		},

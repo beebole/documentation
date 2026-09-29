@@ -34,3 +34,8 @@ test('a fixture needs both up and down', () => {
 	assert.throws(() => validateScene({ ...ok, fixture: { up: async () => {} } }, 'f.mjs'), /fixture/)
 	assert.doesNotThrow(() => validateScene({ ...ok, fixture: { up: async () => {}, down: async () => {} } }, 'f.mjs'))
 })
+
+test('prepare must be a function when present', () => {
+	assert.throws(() => validateScene({ ...ok, prepare: 'x' }, 'f.mjs'), /prepare/)
+	assert.doesNotThrow(() => validateScene({ ...ok, prepare: async () => {} }, 'f.mjs'))
+})

@@ -1,7 +1,9 @@
 // Scenes must never change app data. The runner answers every GraphQL mutation itself, over
 // the app's WebSocket and over HTTP, so nothing a scene clicks can reach the server.
 // Screen-settings saves (last route, open panels, grid/calendar view) happen on every
-// navigation and are dropped silently; any other mutation marks the scene broken.
+// navigation: they get a fake success echoing the settings, so the page behaves as if saved
+// (an error would make it revert the panel it just opened); any other mutation gets an error
+// and marks the scene broken.
 const SILENT = new Set(['editPersonScreenSettings'])
 
 export function isSilent(name) {
@@ -26,6 +28,16 @@ export function mutationIn(raw) {
 	}
 }
 
+// A success response for a screen-settings save, echoing what the page sent.
+export function silentReply(raw) {
+	const msg = JSON.parse(raw)
+	const payload = typeof msg.data === 'string' ? JSON.parse(msg.data) : msg
+	const name = mutationIn(raw).name
+	const v = payload.variables ?? {}
+	const data = { [name]: { id: v.id ?? null, name: '', screenSettings: v.settings ?? '{}' } }
+	return JSON.stringify({ type: '__response', id: msg.id ?? null, data: JSON.stringify({ data }) })
+}
+
 export function blockedReply(id, name) {
 	return JSON.stringify({ type: '__response', id, data: JSON.stringify({ errors: [{ message: `Blocked by the screenshot runner: ${name}` }] }) })
 }
@@ -42,14 +54,16 @@ export async function guardWrites(page) {
 			const m = typeof message === 'string' ? mutationIn(message) : null
 			if (!m) return server.send(message)
 			note(m.name)
-			ws.send(blockedReply(m.id, m.name))
+			ws.send(isSilent(m.name) ? silentReply(message) : blockedReply(m.id, m.name))
 		})
 	})
 	await page.route('**/graphql', (route) => {
-		const m = mutationIn(route.request().postData() ?? '')
+		const raw = route.request().postData() ?? ''
+		const m = mutationIn(raw)
 		if (!m) return route.continue()
 		note(m.name)
-		return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.parse(blockedReply(m.id, m.name)).data })
+		const reply = isSilent(m.name) ? silentReply(raw) : blockedReply(m.id, m.name)
+		return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.parse(reply).data })
 	})
 	return blocked
 }

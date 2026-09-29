@@ -54,6 +54,20 @@ export function makeHelpers() {
 			}
 			throw new Error(`no button with tooltip "${text}"`)
 		},
+		// The box of an element once it stops moving (menus and popups open with a short
+		// transition): three identical reads 100 ms apart.
+		async stableBox(page, locator) {
+			let last = null
+			for (let same = 0, i = 0; i < 40; i++) {
+				const b = await locator.boundingBox()
+				const key = b && [b.x, b.y, b.width, b.height].map(Math.round).join()
+				same = key && key === last ? same + 1 : 0
+				if (same >= 2) return b
+				last = key
+				await page.waitForTimeout(100)
+			}
+			throw new Error('element never stopped moving')
+		},
 		async boxOf(locator) {
 			return locator.boundingBox()
 		},

@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { mutationIn, blockedReply, isSilent } from './guard.mjs'
+import { mutationIn, blockedReply, isSilent, silentReply } from './guard.mjs'
 
 const ws = (query, id = 7) => JSON.stringify({ data: JSON.stringify({ query, variables: {} }), type: '__request', id, __is_request: true })
 
@@ -25,4 +25,14 @@ test('the reply is an error response the app matches by id', () => {
 test('screen settings writes are blocked silently, data writes are not', () => {
 	assert.equal(isSilent('editPersonScreenSettings'), true)
 	assert.equal(isSilent('editTimeRecordDuration'), false)
+})
+
+test('a screen-settings save gets a fake success echoing the settings, so the page keeps working', () => {
+	const raw = JSON.stringify({ data: JSON.stringify({ query: 'mutation($id: BeeboleId!, $settings: String) { editPersonScreenSettings(id: $id, settings: $settings) { name screenSettings } }', variables: { id: 'p1', settings: '{"a":1}' } }), type: '__request', id: 5 })
+	const env = JSON.parse(silentReply(raw))
+	assert.equal(env.type, '__response')
+	assert.equal(env.id, 5)
+	const body = JSON.parse(env.data)
+	assert.equal(body.errors, undefined)
+	assert.equal(body.data.editPersonScreenSettings.screenSettings, '{"a":1}')
 })

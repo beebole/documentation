@@ -38,7 +38,9 @@ async function clipFor(page, h, frame) {
 
 // The clock is frozen at noon New York time on `date`, for captures and replays alike, so a
 // replay renders the same "today" as the original capture.
-export async function shootScene(browser, { scene }, { date, outDir }) {
+// `prepare` (permanent data a capture needs, e.g. approving the week it shows) runs when
+// capturing or previewing, never when replaying: a replay must see the data as the capture left it.
+export async function shootScene(browser, { scene }, { date, outDir, capturing = false }) {
 	mkdirSync(outDir, { recursive: true })
 	// A scene with a lens is captured once at 4x: the magnifier needs the extra pixels, and its
 	// other shots are scaled back to 2x so every published image keeps the same scale.
@@ -50,9 +52,14 @@ export async function shootScene(browser, { scene }, { date, outDir }) {
 	let api = null
 	let fixtureState
 	try {
+		if (capturing && scene.prepare) {
+			step = 'prepare'
+			api = api ?? (await apiClient())
+			await scene.prepare(api, { date })
+		}
 		if (scene.fixture) {
 			step = 'fixture up'
-			api = await apiClient()
+			api = api ?? (await apiClient())
 			fixtureState = await scene.fixture.up(api, { date })
 		}
 		step = 'guard'
@@ -94,7 +101,7 @@ export async function shootScene(browser, { scene }, { date, outDir }) {
 		throw new SceneError(scene.id, step, summarizeError(e.message))
 	} finally {
 		if (scene.teardown) await scene.teardown(page, h).catch(() => {})
-		if (api) await scene.fixture.down(api, fixtureState).catch((e) => console.error(`fixture down failed for ${scene.id}: ${e.message}`))
+		if (api && scene.fixture) await scene.fixture.down(api, fixtureState).catch((e) => console.error(`fixture down failed for ${scene.id}: ${e.message}`))
 		await context.close()
 	}
 }
