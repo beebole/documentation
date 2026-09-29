@@ -1,3 +1,5 @@
+> **Superseded on 2026-09-29** by `docs/superpowers/specs/2026-09-29-screenshot-machine-design.md` (decided by Yves). Kept for the record; not implemented.
+
 # Sustainable Screenshots — Design (brainstorm + critical analysis)
 
 **Date:** 2026-08-18
