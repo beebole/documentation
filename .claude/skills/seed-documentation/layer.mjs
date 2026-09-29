@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Screenshot layer for the QA illustrate account, applied on top of reboot's seed-demo.
-// seed-demo gives a realistic company (18 people, clients, a year of time); this adds what
-// the docs pages describe but seed-demo leaves out: a tag hierarchy (Division → Team), a
+// Documentation layer, applied by seed.mjs after `full` and `topup` (or run on its own).
+// seed.mjs gives a realistic company (18 people, clients, a year of time); this adds what the
+// docs pages describe on top: the organisation name, a tag hierarchy (Division → Team), a
 // Location category, and colours chosen by the rules in claude-plugins' entity-colors.md.
 //
 // Idempotent: creates what is missing, re-applies colours and memberships, never deletes data.
-// Usage: BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY=... node screenshot-layer.mjs
+// Usage: node layer.mjs (key from BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY in the environment)
+
+import { assertDocumentationOrg } from './guards.mjs'
 
 const ENDPOINT = 'https://qa.beebole.com/graphql'
 const KEY = process.env.BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY
@@ -44,7 +46,7 @@ const DEPARTMENT = {
 const LOCATION = {
 	levelNames: ['Office'],
 	offices: {
-		Brussels: {
+		'New York': {
 			color: 15, // sky
 			people: [
 				'Jordan Reed',
@@ -66,9 +68,9 @@ const LOCATION = {
 
 const CONTRACT_COLORS = { Internal: 51, Contractor: 56 } // gray, stone: recede
 
-// Invented company name (a digital agency with offices in Brussels, London and Lisbon), shown
-// wherever the app displays the organisation.
-const ORGANISATION_NAME = 'Halvora'
+// Obviously fictional placeholder, shown wherever the app displays the organisation. Not
+// "Acme": the docs already use Acme Corp as the example client (see .claude/context/feedback.md).
+const ORGANISATION_NAME = 'AnyCompany'
 
 async function gql(query, variables = {}) {
 	const res = await fetch(ENDPOINT, {
@@ -154,7 +156,9 @@ async function removeMembers(state, tag, names, label) {
 	}
 }
 
-async function main() {
+export async function applyLayer() {
+	// Refuse before any write: run on its own, this script must not touch another organisation.
+	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
 	const state = await readState()
 	console.log(`Organisation: ${state.org.name}`)
 	if (state.org.name !== ORGANISATION_NAME) {
@@ -192,7 +196,9 @@ async function main() {
 	console.log('Screenshot layer applied.')
 }
 
-main().catch((e) => {
-	console.error(e.message)
-	process.exit(1)
-})
+if (import.meta.url === `file://${process.argv[1]}`) {
+	applyLayer().catch((e) => {
+		console.error(e.message)
+		process.exit(1)
+	})
+}

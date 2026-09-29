@@ -46,3 +46,6 @@ nohup.out
 CLAUDE.local.md
 .claude/settings.local.json
 .claude/settings.json
+
+# Screenshot replay report written by /release (regenerated each run)
+.todo/replay-report.json

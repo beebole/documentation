@@ -98,9 +98,9 @@ Mintlify automatically hosts three machine-readable endpoints at the site root, 
 
 **Banned patterns — use Mintlify equivalents instead:**
 
-- `<img>` tags → use markdown `![alt](src)` inside `<Frame>` (add `caption="..."` when helpful)
+- `<img>` tags → use markdown `![alt](src)` inside `<Frame>` (add `caption="..."` when helpful). Exception (decided by Yves, 2026-09-29): a **partial screenshot** (a popover, menu, dialog or panel, not a full screen) uses `<img src="..." alt="..." width="N" />` inside the `<Frame>`, where N is its real on-screen width (`node .claude/skills/illustrate/runner/screenshots.mjs size <image>`), so it shows at the app's size instead of being stretched to the column — see `.claude/context/mintlify-components.md`.
 - `<br/>` tags → use blank lines for paragraph breaks
-- `className=`, `style=` attributes → no inline styles for layout; use Mintlify components instead. Exception: third-party iframes (e.g., Arcade) may use inline `style` for responsive sizing — see `.claude/context/mintlify-components.md`.
+- `className=`, `style=` attributes → no inline styles for layout; use Mintlify components instead. Exceptions: third-party iframes (e.g., Arcade) may use inline `style` for responsive sizing, and partial screenshots use the `width` attribute above (not a `className`: the Tailwind build does not generate arbitrary widths) — see `.claude/context/mintlify-components.md`.
 - Raw `<iframe>` → wrap in `<Frame>`
 - Any raw HTML (`<div>`, `<span>`, `<table>`, `<ul>`, etc.) → use markdown or Mintlify components
 

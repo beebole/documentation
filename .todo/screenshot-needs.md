@@ -4,7 +4,9 @@ Generated: 2026-06-11 (regenerated against the fully overhauled English content)
 Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
 
 **Summary:** ~156 screenshots needed across 56 pages. Original 2026-06-11 inventory: ~132 (55 high, 52 medium, 23 low; +4 Asana shots on disk). 2026-08-04 additions: 24 more (9 high, 10 medium, 5 low) — see the dated section at the bottom.
-Capture is a deferred follow-on effort — run `/illustrate --capture` against this list once the app is available. All needs below were derived from the current, code-accurate page content.
+Capture runs in batches with `/illustrate --batch` (about 15 shots per batch: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. All needs below were derived from the current, code-accurate page content.
+
+**Traffic (90-day `/help/*` pageviews, PostHog PROD 39108, measured 2026-09-29; refresh when older than 30 days).** Pages with open needs, most visited first: mobile 658 · integrations/introduction 223 · timesheets 187 · quickstart 171 · reports 116 · projects 103 · account-settings 92 · timesheetSettings 92 · roles-authorisations 81 · planning 80 · people 78 · approval 77 · authentication 75 · billing 74 · api/schema-explorer 71 · custom-reports 70 · work-schedule 67 · timeoff 66 · concepts 64 · budgets 61 · tags 54 · costs 50 · public-holidays 46 · integrations/quickbooks 44 · journal 43 · integrations/microsoft-calendar 43 · data-exports 42 · custom-fields 42 · integrations/custom-integrations 40 · notifications 39 · subscription 38 · integrations/jira 38 · integrations/webhooks 38 · excel-addin 38 · assignments 38 · ai 36 · gsheets-addon 35. Pages not listed had fewer than 35 views.
 
 **Already on disk (do not re-capture):**
 - `help/images/index-beebole-documentation.webp` (landing hero)
@@ -80,20 +82,25 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high |
+| tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high — done as `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
 | tags/who-or-what-tagged-panel.webp | A tag's "Who or what has been tagged?" panel with People/Projects/Tasks sections | medium |
-| tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium |
+| tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium — done within `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
+| tags/tags-level-names-dialog.webp | The Level names dialog of the Department category | done (scene `tags-level-names-dialog`, 2026-09-29) |
+| tags/tags-person-panel.webp | A person's Tags panel with a team, a contract type and an office | done (scene `tags-person-panel`, 2026-09-29) |
 
 ## help/documentation/timesheets.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| timesheets/weekly-grid.webp | The weekly timesheet grid with sections, rows, day columns, and the day-header scheduled-hours indicators | high |
-| timesheets/entry-details.webp | An entry's detail popover showing Time spent, Start/End time, note, Non-billable and Work from home | medium |
-| timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium |
-| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium |
-| timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium |
-| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low |
+| timesheets/weekly-grid.webp | The weekly timesheet grid with sections, rows, day columns, and the day-header scheduled-hours indicators | high — done (scene `timesheets-weekly-grid`, 2026-09-29) |
+| timesheets/entry-details.webp | An entry's detail popover showing Time spent, Start/End time, note, Non-billable and Work from home | medium — done (scene `timesheets-entry-details`, 2026-09-29) |
+| timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium — done (scene `timesheets-timer`, fixture: a running entry created and removed around the capture, 2026-09-29) |
+| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt is still open |
+| timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
+| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — on hold: approvals exist since 2026-09-29, but every score is low because the history was submitted in one day (see `seed-documentation/README.md`) |
+| timesheets/calendar-view.webp | The calendar view with the favorites bar | done (scene `timesheets-calendar-view`, 2026-09-29; found from the page, not in the June inventory) |
+| timesheets/row-menu.webp | A row's ⋯ action menu (Pin to top, Edit, Remove row) | done (scene `timesheets-row-menu`, 2026-09-29; found from the page) |
+| timesheets/team-pane.webp | The Team pane with members and their reported time | done (scene `timesheets-team-pane`, 2026-09-29; found from the page) |
 
 ## help/documentation/timesheetSettings.mdx
 
