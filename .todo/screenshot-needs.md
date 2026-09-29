@@ -94,10 +94,13 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | timesheets/weekly-grid.webp | The weekly timesheet grid with sections, rows, day columns, and the day-header scheduled-hours indicators | high — done (scene `timesheets-weekly-grid`, 2026-09-29) |
 | timesheets/entry-details.webp | An entry's detail popover showing Time spent, Start/End time, note, Non-billable and Work from home | medium — done (scene `timesheets-entry-details`, 2026-09-29) |
-| timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium |
-| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium |
-| timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium |
-| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low |
+| timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium — done (scene `timesheets-timer`, fixture: a running entry created and removed around the capture, 2026-09-29) |
+| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt is still open |
+| timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
+| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — blocked: scores need submitted and approved history (`/seed-documentation approve`, one-way) |
+| timesheets/calendar-view.webp | The calendar view with the favorites bar | done (scene `timesheets-calendar-view`, 2026-09-29; found from the page, not in the June inventory) |
+| timesheets/row-menu.webp | A row's ⋯ action menu (Pin to top, Edit, Remove row) | done (scene `timesheets-row-menu`, 2026-09-29; found from the page) |
+| timesheets/team-pane.webp | The Team pane with members and their reported time | done (scene `timesheets-team-pane`, 2026-09-29; found from the page) |
 
 ## help/documentation/timesheetSettings.mdx
 

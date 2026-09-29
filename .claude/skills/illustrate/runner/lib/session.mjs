@@ -19,10 +19,10 @@ export async function launchBrowser() {
 	}
 }
 
-export async function newContext(browser) {
+export async function newContext(browser, { scale = 2 } = {}) {
 	return browser.newContext({
 		viewport: VIEWPORT,
-		deviceScaleFactor: 2,
+		deviceScaleFactor: scale,
 		locale: 'en-US',
 		timezoneId: 'America/New_York',
 		storageState: existsSync(STATE) ? STATE : undefined,

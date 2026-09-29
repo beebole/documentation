@@ -12,6 +12,7 @@ import { launchBrowser, ensureSession } from './lib/session.mjs'
 import { shootScene } from './lib/shoot.mjs'
 import { encodeWebp } from './lib/webp.mjs'
 import { compareImages } from './lib/compare.mjs'
+import { partition } from './lib/fixtures.mjs'
 import { IMAGES_DIR, HELP_DIR, REPO_ROOT, TMP_DIR } from './lib/paths.mjs'
 
 const [cmd, ...rest] = process.argv.slice(2)
@@ -107,7 +108,9 @@ async function replay(target, jsonPath) {
 		return
 	}
 	const outDir = join(TMP_DIR, 'replay')
-	const rows = await pool(entries, 4, async (entry) => {
+	// Fixture scenes change data while they run, so they go one at a time after the others.
+	const { parallel, serial } = partition(entries)
+	const replayOne = async (entry) => {
 		const row = { id: entry.scene.id, page: entry.page, capturedAt: entry.scene.capturedAt, datesMatter: entry.scene.datesMatter, shots: [] }
 		try {
 			const shots = await shootScene(browser, entry, { date: entry.scene.capturedAt, outDir })
@@ -129,7 +132,8 @@ async function replay(target, jsonPath) {
 			row.error = e.message
 		}
 		return row
-	})
+	}
+	const rows = [...(await pool(parallel, 4, replayOne)), ...(await pool(serial, 1, replayOne))]
 	report.scenes = rows
 	await browser.close()
 	writeReport(path, report)

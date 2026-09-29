@@ -41,6 +41,19 @@ export function makeHelpers() {
 				return { x: r.x, y: r.y, width: r.width, height: r.height }
 			}, text)
 		},
+		// Unnamed icon buttons often carry only a hover tooltip: find the button in `scope` whose
+		// tooltip contains `text` (see missing-labels.md).
+		async byTooltip(page, scope, text) {
+			const buttons = scope.getByRole('button')
+			for (let i = 0; i < (await buttons.count()); i++) {
+				const b = buttons.nth(i)
+				if (!(await b.isVisible())) continue
+				await b.hover()
+				await page.waitForTimeout(600)
+				if (await page.getByText(text).filter({ visible: true }).count()) return b
+			}
+			throw new Error(`no button with tooltip "${text}"`)
+		},
 		async boxOf(locator) {
 			return locator.boundingBox()
 		},

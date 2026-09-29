@@ -24,3 +24,13 @@ test('setCapturedAt rewrites only the matching scene', () => {
 	assert.match(t, /id: 'b',\n\t\tcapturedAt: '2026-09-29'/)
 	assert.throws(() => setCapturedAt(f, 'zz', '2026-09-29'), /zz/)
 })
+
+test('a lens frame needs a target function', () => {
+	assert.throws(() => validateScene({ ...ok, shots: [{ file: 'x/y.webp', frame: { type: 'lens' } }] }, 'f.mjs'), /target/)
+	assert.doesNotThrow(() => validateScene({ ...ok, shots: [{ file: 'x/y.webp', frame: { type: 'lens', target: () => null } }] }, 'f.mjs'))
+})
+
+test('a fixture needs both up and down', () => {
+	assert.throws(() => validateScene({ ...ok, fixture: { up: async () => {} } }, 'f.mjs'), /fixture/)
+	assert.doesNotThrow(() => validateScene({ ...ok, fixture: { up: async () => {}, down: async () => {} } }, 'f.mjs'))
+})

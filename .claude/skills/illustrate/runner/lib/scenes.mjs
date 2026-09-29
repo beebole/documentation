@@ -3,7 +3,7 @@ import { join, relative } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SCENES_DIR, REPO_ROOT } from './paths.mjs'
 
-const FRAMES = ['full', 'element', 'box', 'clip']
+const FRAMES = ['full', 'element', 'box', 'clip', 'lens']
 
 export function validateScene(s, file) {
 	const where = `${relative(REPO_ROOT, file)} → ${s?.id ?? '?'}`
@@ -12,10 +12,12 @@ export function validateScene(s, file) {
 	if (typeof s.datesMatter !== 'boolean') throw new Error(`${where}: datesMatter must be true or false`)
 	if (!['auto', 'guided'].includes(s.mode)) throw new Error(`${where}: mode must be auto or guided`)
 	if (typeof s.setup !== 'function') throw new Error(`${where}: setup must be a function`)
+	if (s.fixture && (typeof s.fixture.up !== 'function' || typeof s.fixture.down !== 'function')) throw new Error(`${where}: a fixture needs both up and down functions`)
 	if (!Array.isArray(s.shots) || s.shots.length === 0) throw new Error(`${where}: shots must be a non-empty list`)
 	for (const shot of s.shots) {
 		if (!/^[a-z0-9-]+(\/[a-z0-9-]+)*\.webp$/.test(shot.file ?? '')) throw new Error(`${where}: shot file must be a relative .webp path under help/images`)
 		if (!FRAMES.includes(shot.frame?.type)) throw new Error(`${where}: frame type must be one of ${FRAMES.join(', ')}`)
+		if (shot.frame.type === 'lens' && typeof shot.frame.target !== 'function') throw new Error(`${where}: a lens frame needs a target function returning the control's locator`)
 	}
 }
 

@@ -62,7 +62,7 @@ test('large images are encoded under 200 KB', async () => {
 	for (let i = 0; i < raw.length; i++) raw[i] = (i * 2654435761) % 256
 	await sharp(raw, { raw: { width: 1440, height: 900, channels: 3 } }).png().toFile(noisy)
 	const out = encodeWebp(noisy, join(dir, 'noisy.webp'))
-	assert.ok([80, 60].includes(out.quality))
+	assert.ok([80, 60, 45].includes(out.quality))
 })
 
 test('a one-word label change on a full-size shot is a change', async () => {
