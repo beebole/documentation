@@ -23,21 +23,23 @@ Because Microsoft sign-in is built in, you do not need to turn anything on for y
 ## Require Microsoft sign-in
 
 <Steps>
-  <Step title="Open integration settings">
-    Open **Settings** \> **Single Sign-On** in your Beebole account, then switch to the **Microsoft** tab.
+  <Step title="Open the Microsoft tab">
+    Go to **Settings** \> **Account Settings**, open the **Single Sign-On** panel, and select the **Microsoft** tab.
+
+    <Frame caption="The Microsoft tab of the Single Sign-On panel">
+      <img src="/help/images/integrations/microsoft-sso-panel.webp" alt="Microsoft tab of the Beebole Single Sign-On panel, with the unchecked option Disable interactive sign-in. Only Microsoft sign-in allowed." width="744" />
+    </Frame>
   </Step>
-  <Step title="Enable Microsoft SSO">
-    Locate the **Microsoft** card and click **Connect**. Follow the OAuth prompts to authorize Beebole to verify your identity through Microsoft.
+  <Step title="Test Microsoft sign-in">
+    Ask a test user to sign in with the **Microsoft** button under **Or Sign in with** on the sign-in screen, and check that they reach their account.
   </Step>
-  <Step title="Verify the connection">
-    Once connected, the Microsoft integration shows as active in your integration settings. Users in your account can now sign in using the **Sign in with Microsoft** button on the login page.
+  <Step title="Turn on enforcement">
+    Check **Disable interactive sign-in. Only Microsoft sign-in allowed.** This blocks the email-code method for your organization, so everyone authenticates through Microsoft. The setting saves automatically.
   </Step>
 </Steps>
 
-To make Microsoft the only way your team can sign in, go to **Settings** \> **Account Settings**, open the **Single Sign-On** panel, and select the **Microsoft** tab. Turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.** to block the email-code method for your organization, so everyone authenticates through Microsoft. The setting saves automatically.
-
 <Warning>
-  Before turning on **Disable interactive sign-in. Only Microsoft sign-in allowed.**, confirm Microsoft sign-in works for a test user. If Microsoft sign-in becomes unavailable while enforcement is on, your team is locked out until you turn the toggle back off.
+  Before turning on **Disable interactive sign-in. Only Microsoft sign-in allowed.**, confirm Microsoft sign-in works for a test user. If Microsoft sign-in becomes unavailable while enforcement is on, your team is locked out until you uncheck the setting.
 </Warning>
 
 ## Related content

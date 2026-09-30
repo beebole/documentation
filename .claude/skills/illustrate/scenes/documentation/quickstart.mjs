@@ -19,4 +19,16 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'quickstart-signup',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		signedOut: true,
+		async setup(page, h) {
+			await h.goto(page, '/signup')
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'quickstart/signup-form.webp', frame: { type: 'full' } }],
+	},
 ]
