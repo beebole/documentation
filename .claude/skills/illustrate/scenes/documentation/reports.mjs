@@ -116,4 +116,40 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// One column per measure (the default layout) is wider than a 1440 screen.
+		id: 'reports-budget-status-table',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 1760, height: 900 },
+		async setup(page, h) {
+			await h.goto(page, '/reports')
+			await page.getByRole('button', { name: 'Budget Status', exact: true }).click()
+			await page.getByText('Acme Corp', { exact: true }).first().waitFor()
+			await h.settle(page, 2000)
+			// Expand Acme Corp by its chevron: a click on the name opens the project's panel.
+			const table = page.locator('budget-status-table')
+			const rows = await table.locator('entity-badge').count()
+			await table.locator('div.cursor-pointer').filter({ hasText: 'Acme Corp' }).first().locator('bb-icon').first().click()
+			await page.waitForFunction((n) => document.querySelector('budget-status-table').querySelectorAll('entity-badge').length > n, rows)
+			await h.settle(page, 1000)
+		},
+		// From the report title to the bottom of the table, across to the Export button.
+		shots: [
+			{
+				file: 'reports/budget-status-table.webp',
+				frame: {
+					type: 'box',
+					pad: 24,
+					box: async (page) => {
+						const title = await page.getByText('Budget Status', { exact: true }).filter({ visible: true }).last().boundingBox()
+						const exp = await page.getByRole('button', { name: 'Export' }).boundingBox()
+						const table = await page.locator('budget-status-table').boundingBox()
+						return { x: title.x, y: title.y, width: exp.x + exp.width - title.x, height: table.y + table.height - title.y }
+					},
+				},
+			},
+		],
+	},
 ]

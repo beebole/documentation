@@ -14,4 +14,30 @@ export const scenes = [
 		},
 		shots: [{ file: 'timesheets/settings-period-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1130 }) } }],
 	},
+	{
+		id: 'timesheet-settings-time-entry',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=time-settings')
+			await page.getByText('Time entry', { exact: true }).first().click()
+			await page.getByText('Unit for time entry', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		shots: [{ file: 'timesheets/settings-time-entry-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1130 }) } }],
+	},
+	{
+		id: 'timesheet-settings-categories',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=time-settings')
+			await page.getByText('Categories', { exact: true }).first().click()
+			await page.getByText('Record time on these project categories').first().waitFor()
+			await h.settle(page, 1000)
+		},
+		shots: [{ file: 'timesheets/settings-categories-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1200 }) } }],
+	},
 ]

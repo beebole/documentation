@@ -16,4 +16,16 @@ export const scenes = [
 		},
 		shots: [{ file: 'account-settings/settings-panels.webp', frame: { type: 'full' } }],
 	},
+	{
+		id: 'account-settings-localization',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=localisation')
+			await page.getByText('Time zone', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		shots: [{ file: 'account-settings/localization-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Localization', 'Absence allowances', { right: 1110 }) } }],
+	},
 ]

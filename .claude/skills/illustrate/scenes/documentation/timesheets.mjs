@@ -349,4 +349,25 @@ export const scenes = [
 		// The panel itself (floating-timer is a zero-size host; the panel is its fixed child).
 		shots: [{ file: 'timesheets/timer-shelf.webp', frame: { type: 'element', locate: (page) => page.locator('floating-timer > div.fixed'), pad: 16 } }],
 	},
+	{
+		// The favorites' play buttons only show in the period that holds today.
+		id: 'timesheets-favorites-play',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openCurrentWeek(page, h, 'Acme Corp: Website Redesign')
+			// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
+			await page.locator('timesheet-favorites button').first().waitFor()
+			await h.settle(page, 1500)
+		},
+		// On the first chip's play button, which lights up under the mouse.
+		async mouse(page) {
+			const chip = page.locator('timesheet-favorites .group\\/chip').first()
+			const play = await chip.locator('button').last().boundingBox()
+			return { x: play.x + play.width / 2, y: play.y + play.height / 2 }
+		},
+		shots: [{ file: 'timesheets/favorites-bar-play.webp', frame: { type: 'element', locate: (page) => page.locator('timesheet-favorites'), pad: 12 } }],
+	},
 ]
