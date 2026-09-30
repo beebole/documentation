@@ -48,8 +48,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | quickstart/signup-form.webp | The Beebole sign-up form with Full name, Work email, Company name fields and Google/Microsoft buttons | medium — done (scene `quickstart-signup`, signed out, 2026-09-30) |
-| quickstart/add-project-panel.webp | Projects page with category selector and the Add [category] panel open, name field and Save new button | medium |
-| quickstart/add-person-panel.webp | People add panel showing Name/Email/Role plus the "Or add multiple entries" paste area | medium |
+| quickstart/add-project-panel.webp | Projects page with category selector and the Add [category] panel open, name field and Save new button | medium — done on the Client category (scene `quickstart-add-project-panel`, 2026-09-30) |
+| quickstart/add-person-panel.webp | People add panel showing Name/Email/Role plus the "Or add multiple entries" paste area | medium — done as `people/add-person-panel.webp`, shared with People (scene `quickstart-add-person-panel`, 2026-09-30) |
 | quickstart/first-timesheet-row.webp | Timesheet with one row added against the new project, a day cell filled and the row timer button | high — done as a lens on the Add a row button, `timesheets/add-row-button.webp` (scene `quickstart-add-row-button`, 2026-09-29); the timer button is already shown on the Timesheets page |
 | quickstart/sample-report-result.webp | Reports section with Monthly Timesheets folder open and "Hours by person & project" results displayed | medium — done with `reports/folders-and-reports.webp` (scene `reports-folder-report`, shared with Reports, 2026-09-29) |
 
@@ -74,7 +74,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high — done with a profile open and Invite by email (scene `people-list`, 2026-09-29); the list shows no roles, and Invitation pending only appears once an invitation is sent |
-| people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium |
+| people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium — done (scene `quickstart-add-person-panel`, shared with Quick start, 2026-09-30) |
 | people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium — partly shown within `people/people-list.webp` (the panel list) |
 | people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low |
 
@@ -207,8 +207,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high — done (scene `reports-folder-report`, 2026-09-29) |
-| reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium |
-| reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium |
+| reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium — done: the report header with Table and Chart on (scene `reports-view-toggles`, 2026-09-30) |
+| reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium — dropped 2026-09-30: the Reports page no longer describes scheduling a report |
 | reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low |
 
 ## help/documentation/custom-reports.mdx
@@ -323,8 +323,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| legacy-migration/migration-options.webp | The Legacy Migration tool with the Legacy API Key field and the migration options (Only active entities, Include time records from) | high |
-| legacy-migration/audit-results.webp | The Audit Results screen showing record counts and the time-record date range | medium |
+| legacy-migration/migration-options.webp | The Legacy Migration tool with the Legacy API Key field and the migration options (Only active entities, Include time records from) | high — dropped: the legacy migration tool was removed from Settings in September 2026 |
+| legacy-migration/audit-results.webp | The Audit Results screen showing record counts and the time-record date range | medium — dropped: the legacy migration tool was removed from Settings in September 2026 |
 | legacy-migration/migration-report.webp | The final migration report summary (created / skipped / failed per phase) | low |
 
 ## help/documentation/mobile.mdx
@@ -382,7 +382,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot Select your Xero organization and Enable integration once connected |
-| integrations/xero-export-invoice.webp | The invoice-export panel: Select client, Select period to export, and Create invoice | high |
+| integrations/xero-export-invoice.webp | The invoice-export panel: Select client, Select period to export, and Create invoice | high — guided: needs a connected Xero organisation on QA, as for `integrations/xero-connect.webp` |
 | integrations/xero-sync-result.webp | A Manual sync result showing the Created / Archived / Unarchived / Deleted / Renamed counts | low |
 
 ## help/integrations/bamboohr.mdx
@@ -479,9 +479,9 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| planning/staffing-view.webp | Staffing view grouped by People: booking bars, capacity strips, today line | high |
-| planning/staffing-booking-editor.webp | Inline booking editor after dragging on the timeline — project picker and allocation % | high |
-| planning/staffing-capacity-tooltip.webp | Capacity cell hover showing used/remaining for the period | medium |
+| planning/staffing-view.webp | Staffing view grouped by People: booking bars, capacity strips, today line | high — done on the Staffing plan, a Bookings planning added to the seed layer (scene `staffing-view`, 2026-09-30) |
+| planning/staffing-booking-editor.webp | Inline booking editor after dragging on the timeline — project picker and allocation % | high — done on an existing booking, opened from the bar's pencil (scene `staffing-booking-editor`, 2026-09-30); the create editor after a drag would save a booking |
+| planning/staffing-capacity-tooltip.webp | Capacity cell hover showing used/remaining for the period | medium — done on Elena Rossi's overbooked Oct 6 (scene `staffing-capacity-tooltip`, 2026-09-30) |
 | planning/staffing-managed-in-gantt.webp | "Managed in the Gantt" message on a locked booking | low |
 
 ## help/documentation/ai.mdx
@@ -558,13 +558,13 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| gantt/task-period-timed.webp | A task's **Dates** panel with **All day** unchecked, showing the **Start time** and **End time** fields and a time highlighted as outside the owner's working hours (element capture) | high |
-| staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high |
+| gantt/task-period-timed.webp | A task's **Dates** panel with **All day** unchecked, showing the **Start time** and **End time** fields and a time highlighted as outside the owner's working hours (element capture) | high — done on Fatima's 3:00 to 6:00 PM booking, the end time highlighted (scene `gantt-task-period-timed`, 2026-09-30). The reason tooltip is a native one and does not show in screenshots |
+| staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high — done: Fatima Al-Hassan's part-day bookings, view locked to a week (scene `staffing-timed-bars`, 2026-09-30) |
 | timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high — done (scene `timesheets-calendar-timer`, fixture: a running entry around the capture, 2026-09-30) |
-| ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high |
+| ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high — blocked 2026-09-30: needs Only time off can be recorded in the future switched on for the documentation account (off today, and other shots show its settings) and planned work owned by Jordan Reed, the signed-in person |
 | timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium |
 | ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium |
-| gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium |
+| gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium — done on the Gantt tab of Main plan (scene `gantt-view-period-menu`, 2026-09-30) |
 | timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium — done within `timeoff/absence-allowances-panel.webp` (scene `timeoff-allowances-panel`, 2026-09-30) |
 | reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low |
 | approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low |
@@ -580,7 +580,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | Screenshot | Description | Priority |
 |---|---|---|
 | planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Planned is left out (no planned time on QA) and no task has subtasks |
-| settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high |
+| settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high — blocked: the Settings entry is suppressed on production hosts, so there is nothing a user can be shown (see the 2026-08-31 note) |
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
 | planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
 | planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium |
@@ -599,7 +599,7 @@ No placeholder references or `[SCREENSHOT]` markers were added by this release; 
 | File | Description | Priority |
 |------|-------------|----------|
 | planning/planning-mode-picker.webp | The planning's settings dialog (gear next to **Main plan** → **Main plan settings**) with the **What this planning holds** switch showing **Tasks** and **Bookings** and their hints, the switching note beneath, and the **Task statuses** list below (element capture, ~1024 wide) | high — done as `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
-| staffing/booking-add-form.webp | The **Add Booking** form of a Bookings planning open in the side panel: **Select the owner**, the project picker, start date, duration in days, and the allocation unit switch (**%**, **h/day**, **Total**) (element capture) | high |
+| staffing/booking-add-form.webp | The **Add Booking** form of a Bookings planning open in the side panel: **Select the owner**, the project picker, start date, duration in days, and the allocation unit switch (**%**, **h/day**, **Total**) (element capture) | high — done (scene `staffing-booking-add-form`, 2026-09-30) |
 | projects/project-tasks-bookings.webp | The **Tasks and bookings** attribute on **Acme Corp**'s panel: two planning sections, each with its **Add to …** button and a couple of task/booking badges, one hovered to show **Unassign** (element capture) | high — done on **Website Redesign** (Acme Corp itself has no tasks; one Tasks planning, no hover) (scene `projects-tasks-bookings`, 2026-09-29) |
 | projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium |
 | reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium |
