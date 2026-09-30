@@ -194,6 +194,52 @@ async function ensureAllowances() {
 	}
 }
 
+// A custom field for the Custom fields page: a text pick list shown on the Client category's
+// projects (level 1, under the client) and on time records.
+const CUSTOM_FIELD = {
+	name: 'Cost center',
+	color: 13, // teal
+	placeholder: 'Pick the cost center',
+	allowedValues: ['CC-100 Engineering', 'CC-200 Design', 'CC-300 Sales'],
+	projectCategory: 'Client',
+	projectLevels: [1],
+}
+
+async function ensureCustomField() {
+	const c = CUSTOM_FIELD
+	const d = await gql(`{
+		getCustomFields(filter: [{ archived: false }]) { id name visibility { projects { categoryId levels } timeRecords { projectCategories } } textOptions { placeholder useAllowedValues allowedValues } }
+		getProjectCategories { id name }
+	}`)
+	let field = d.getCustomFields.find((f) => f.name === c.name)
+	if (!field) {
+		const r = await gql(`mutation($name: BeeboleName!, $fieldType: String!, $color: BeeboleColor) { addCustomField(name: $name, fieldType: $fieldType, color: $color) { id } }`, {
+			name: c.name,
+			fieldType: 'text',
+			color: c.color,
+		})
+		field = { id: r.addCustomField.id, visibility: { projects: [], timeRecords: null }, textOptions: { allowedValues: [] } }
+		console.log(`+ custom field ${c.name}`)
+	}
+	const id = field.id
+	await gql(`mutation($id: BeeboleId!, $placeholder: String!) { editCustomFieldTextOptionPlaceholder(id: $id, placeholder: $placeholder) { id } }`, { id, placeholder: c.placeholder })
+	await gql(`mutation($id: BeeboleId!, $useAllowedValues: Boolean!) { editCustomFieldTextOptionUseAllowedValues(id: $id, useAllowedValues: $useAllowedValues) { id } }`, { id, useAllowedValues: true })
+	for (const value of c.allowedValues) {
+		if ((field.textOptions?.allowedValues || []).includes(value)) continue
+		await gql(`mutation($id: BeeboleId!, $value: String!) { addCustomFieldTextOptionAllowedValue(id: $id, value: $value) { id } }`, { id, value })
+	}
+	const category = d.getProjectCategories.find((x) => x.name === c.projectCategory)
+	if (!category) throw new Error(`Project category not found: ${c.projectCategory}`)
+	await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityProjects(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
+	const onCategory = (field.visibility?.projects || []).some((v) => v.categoryId === category.id)
+	await gql(
+		`mutation($id: BeeboleId!, $categoryId: BeeboleId!, $levels: [Int!]!) { ${onCategory ? 'editCustomFieldVisibilityProject' : 'addCustomFieldVisibilityProject'}(id: $id, categoryId: $categoryId, levels: $levels) { id } }`,
+		{ id, categoryId: category.id, levels: c.projectLevels }
+	)
+	await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityTimeRecords(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
+	console.log(`~ custom field ${c.name}: pick list, ${c.projectCategory} projects, time records`)
+}
+
 export async function applyLayer() {
 	// Refuse before any write: run on its own, this script must not touch another organisation.
 	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
@@ -228,6 +274,7 @@ export async function applyLayer() {
 	}
 
 	await ensureAllowances()
+	await ensureCustomField()
 
 	const contract = state.categories.find((c) => c.name === 'Contract')
 	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {
