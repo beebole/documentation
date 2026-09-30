@@ -31,4 +31,30 @@ export const scenes = [
 		},
 		shots: [{ file: 'quickstart/signup-form.webp', frame: { type: 'full' } }],
 	},
+	{
+		id: 'quickstart-add-project-panel',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			await page.getByRole('button', { name: 'Add Client' }).click()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 800, y: 50 }),
+		shots: [{ file: 'quickstart/add-project-panel.webp', frame: { type: 'full' } }],
+	},
+	{
+		id: 'quickstart-add-person-panel',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('button', { name: 'Add Person' }).click()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 800, y: 50 }),
+		shots: [{ file: 'people/add-person-panel.webp', frame: { type: 'full' } }],
+	},
 ]
