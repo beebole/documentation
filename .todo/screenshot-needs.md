@@ -47,7 +47,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| quickstart/signup-form.webp | The Beebole sign-up form with Full name, Work email, Company name fields and Google/Microsoft buttons | medium |
+| quickstart/signup-form.webp | The Beebole sign-up form with Full name, Work email, Company name fields and Google/Microsoft buttons | medium — done (scene `quickstart-signup`, signed out, 2026-09-30) |
 | quickstart/add-project-panel.webp | Projects page with category selector and the Add [category] panel open, name field and Save new button | medium |
 | quickstart/add-person-panel.webp | People add panel showing Name/Email/Role plus the "Or add multiple entries" paste area | medium |
 | quickstart/first-timesheet-row.webp | Timesheet with one row added against the new project, a day cell filled and the row timer button | high — done as a lens on the Add a row button, `timesheets/add-row-button.webp` (scene `quickstart-add-row-button`, 2026-09-29); the timer button is already shown on the Timesheets page |
@@ -317,7 +317,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | audit-trail/journal-audit-feed.webp | The Journal feed showing audit messages (operation, person, timestamp) | medium |
-| audit-trail/record-logs-view.webp | A record's Modified by label with the expanded Logs change history | high |
+| audit-trail/record-logs-view.webp | A record's Modified by label with the expanded Logs change history | high — dropped 2026-09-30: the Modified by badge and its Logs link were removed from the app on 2026-02-17; a record's changes now show in its Journal panel, and the page links `journal/activity-feed.webp` |
 
 ## help/documentation/legacy-migration.mdx
 
@@ -331,9 +331,9 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high — done at 390×844 (scene `mobile-timesheet`, 2026-09-29) |
+| mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high — done at 390×844 (scene `mobile-timesheet`, 2026-09-29); replay 2026-09-30 reports it changed (15 %): QA now shows two suggestion cards on Tuesday and Wednesday. Recapture on the next release |
 | mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium |
-| mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium |
+| mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium — done (scene `mobile-timer`, fixture: a running entry around the capture, 2026-09-30) |
 | mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low |
 | mobile/dark-mode.webp | Beebole in dark mode on mobile | low |
 
@@ -359,14 +359,14 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/linear-connect.webp | Settings > Integrations > Linear showing the Connect to Linear button | high |
+| integrations/linear-connect.webp | Settings > Integrations > Linear showing the Connect to Linear button | high — done before connection: the list, the intro note and Connect to Linear (scene `linear-connect`, 2026-09-30) |
 | integrations/linear-params.webp | The Linear config panel: import-destination choice and Default role for imported employees | medium |
 
 ## help/integrations/monday.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/monday-connect.webp | Settings > Integrations > Monday.com showing the Connect to Monday.com button | high |
+| integrations/monday-connect.webp | Settings > Integrations > Monday.com showing the Connect to Monday.com button | high — done before connection: the list, the intro note and Connect to monday.com (scene `monday-connect`, 2026-09-30) |
 | integrations/monday-params.webp | The Monday.com config panel: workspace selector, Where to import your boards, and Default role | medium |
 
 ## help/integrations/quickbooks.mdx
@@ -381,7 +381,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high |
+| integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high — done before connection: the list, the intro note and Connect to Xero (scene `xero-connect`, 2026-09-30). Select your Xero organization and Enable integration need a connected Xero account: guided |
 | integrations/xero-export-invoice.webp | The invoice-export panel: Select client, Select period to export, and Create invoice | high |
 | integrations/xero-sync-result.webp | A Manual sync result showing the Created / Archived / Unarchived / Deleted / Renamed counts | low |
 
@@ -389,7 +389,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/bamboohr-connect.webp | Settings > Integrations > BambooHR showing the Company subdomain field and Connect to BambooHR button | high |
+| integrations/bamboohr-connect.webp | Settings > Integrations > BambooHR showing the Company subdomain field and Connect to BambooHR button | high — done before connection: Company subdomain and Connect to BambooHR (scene `bamboohr-connect`, 2026-09-30). The app's intro note says approved absences are exported back to BambooHR, while the code imports them from BambooHR: app copy to fix |
 | integrations/bamboohr-params.webp | The config panel after connecting: confirmed BambooHR domain, Default role, and Enable integration toggle | medium |
 
 ## help/integrations/google.mdx
@@ -397,19 +397,19 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium — the same screen is `authentication/signin-page.webp`: link it from google.mdx |
-| integrations/google-sso-panel.webp | Account Settings > Single Sign-On panel, Google tab: Linked domains, auto-provision toggle, and the SSO-only toggle | high |
+| integrations/google-sso-panel.webp | Account Settings > Single Sign-On panel, Google tab: Linked domains, auto-provision toggle, and the SSO-only toggle | high — done by linking `authentication/sso-panel.webp`, which shows the Google tab (scene `authentication-sso-panel`, 2026-09-30) |
 
 ## help/integrations/microsoft.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/microsoft-sso-panel.webp | Account Settings > Single Sign-On panel, Microsoft tab, showing the "Only Microsoft sign-in allowed" toggle | high |
+| integrations/microsoft-sso-panel.webp | Account Settings > Single Sign-On panel, Microsoft tab, showing the "Only Microsoft sign-in allowed" toggle | high — done (scene `microsoft-sso-panel`, 2026-09-30); the page's steps rewritten to match the panel |
 
 ## help/integrations/google-calendar.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/google-calendar-pane.webp | The timesheet with the external-calendar pane open, showing imported Google events grouped by day (with a Tracked badge) | high |
+| integrations/google-calendar-pane.webp | The timesheet with the external-calendar pane open, showing imported Google events grouped by day (with a Tracked badge) | high — done before sign-in by linking `integrations/microsoft-calendar-pane.webp` (scene `microsoft-calendar-pane`, 2026-09-30). Imported events with the Tracked badge need a real Google sign-in: guided |
 | integrations/google-calendar-assign.webp | Click-to-assign: a selected event with the "Click a timesheet row to assign" prompt, or an event dragged onto a highlighted row | medium |
 
 ## help/integrations/microsoft-calendar.mdx
@@ -497,7 +497,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/ai-assistants-connect.webp | Connect your AI tools card: Server URL, API key, Claude Code + JSON snippets | high |
+| integrations/ai-assistants-connect.webp | Connect your AI tools card: Server URL, API key, Claude Code + JSON snippets | high — done as `integrations/mcp-server-connect.webp` on mcp-server.mdx (ai-assistants.mdx redirects there) (scene `mcp-server-connect`, 2026-09-30); the URLs read qa.beebole.com, the app builds them from the person's server |
 | integrations/ai-assistants-connected-apps.webp | Connected apps list with an app's name, connected-since date, and Disconnect | medium |
 
 ## help/documentation/desktop-app.mdx
@@ -518,7 +518,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| troubleshooting/diagnostics-page.webp | The /diagnostics page with health checks, latency, and snapshot buttons | high |
+| troubleshooting/diagnostics-page.webp | The /diagnostics page with health checks, latency, and snapshot buttons | high — done: title, Health checks and Latency (scene `troubleshooting-diagnostics`, 2026-09-30). Durations and ping differ on every run, so replay always reports it changed: compare by eye |
 | troubleshooting/compatibility-mode-indicator.webp | Sidebar indicator "Running in slower compatibility mode" (guided — needs WebSocket blocked) | medium |
 
 ## Expanded sections on existing pages
@@ -579,7 +579,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high |
+| planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Planned is left out (no planned time on QA) and no task has subtasks |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high |
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
 | planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
