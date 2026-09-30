@@ -370,4 +370,26 @@ export const scenes = [
 		},
 		shots: [{ file: 'timesheets/favorites-bar-play.webp', frame: { type: 'element', locate: (page) => page.locator('timesheet-favorites'), pad: 12 } }],
 	},
+	{
+		// Copy the last full week, then paste it on the current week, which already has entries:
+		// the app asks Add or Replace. The copy lives in the page only; closing the dialog pastes nothing.
+		id: 'timesheets-paste-dialog',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			await (await cornerButton(page, h, 'Copy your timesheet')).click()
+			await h.settle(page, 1800)
+			await page.getByRole('button', { name: 'Next' }).click()
+			await h.settle(page, 2000)
+			await (await cornerButton(page, h, 'Paste period')).click()
+			await page.getByText('There are already time records in this period').waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		shots: [{ file: 'timesheets/paste-dialog.webp', frame: { type: 'box', box: (page, h) => h.surfaceAround(page, 'There are already time records in this period'), pad: 16 } }],
+	},
 ]
