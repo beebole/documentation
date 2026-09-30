@@ -52,3 +52,16 @@ test("a report's Table/Chart/Matrix toggle is answered silently, echoing the cha
 	assert.equal(body.data.editReportChart.id, 'r1')
 	assert.deepEqual(body.data.editReportChart.chart, chart)
 })
+
+test('an aliased mutation is known by its field name and answered under its alias', () => {
+	const query = 'mutation($id: BeeboleId!, $settings: String) {\n\tjournalSettings: editPersonJournalSettings (id: $id, settings: $settings) { journalSettings }\n}'
+	const raw = JSON.stringify({ data: JSON.stringify({ query, variables: { id: 'p1', settings: '{"f":1}' } }), type: '__request', id: 4 })
+	assert.equal(mutationIn(raw).name, 'editPersonJournalSettings')
+	const body = JSON.parse(JSON.parse(silentReply(raw)).data)
+	assert.equal(body.data.journalSettings.journalSettings, '{"f":1}')
+})
+
+test('the writes the Journal and an integration panel make on opening are answered silently', () => {
+	assert.equal(isSilent('markAllNotificationsRead'), true)
+	assert.equal(isSilent('editIntegrationQuickbooksDefaultRole'), true)
+})

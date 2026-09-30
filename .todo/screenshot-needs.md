@@ -168,7 +168,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| public-holidays/holidays-panel.webp | The Public holidays panel with Country/Region/Language selectors, Load holidays, and the imported holiday list | high |
+| public-holidays/holidays-panel.webp | The Public holidays panel with Country/Region/Language selectors, Load holidays, and the imported holiday list | high — done in Account Settings, US holidays 2026 (scene `public-holidays-panel`, 2026-09-30) |
 | public-holidays/year-selector.webp | The Year selector with the locked Country ("Reset to change country") | low |
 
 ## help/documentation/billing.mdx
@@ -183,15 +183,15 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| costs/cost-rate-card.webp | A Cost panel rate card with Cost method, Amount and From date | high |
+| costs/cost-rate-card.webp | A Cost panel rate card with Cost method, Amount and From date | high — done on Ana Pereira's Cost panel (scene `costs-rate-card`, 2026-09-30) |
 | costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium |
 
 ## help/documentation/budgets.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| budgets/budget-panel.webp | A project's Budgets panel with Billing amount / Cost amount / Hours target fields | high |
-| budgets/budget-status-report.webp | The Budget Status report with per-project progress bars, at-risk and Over budget flags | high |
+| budgets/budget-panel.webp | A project's Budgets panel with Billing amount / Cost amount / Hours target fields | high — done on Web Portal, card open (scene `budgets-panel`, 2026-09-30); larger amounts get clipped by the app's narrow amount fields, so the scene uses the smallest budget |
+| budgets/budget-status-report.webp | The Budget Status report with per-project progress bars, at-risk and Over budget flags | high — done in the stacked layout, which fits 1440 (the side-by-side layout overflows it) (scene `budgets-status-report`, 2026-09-30) |
 | budgets/budget-alert-badge.webp | A budget card showing the threshold alert / Over budget badge | low |
 
 ## help/documentation/expenses.mdx
@@ -223,7 +223,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| data-exports/export-submenu.webp | A report's ⋯ menu with the Export submenu listing all formats (Excel, CSV, PDF, Matrix variants) | high |
+| data-exports/export-submenu.webp | A report's ⋯ menu with the Export submenu listing all formats (Excel, CSV, PDF, Matrix variants) | high — done on Hours by Person, the QA-only Raw JSON item hidden (scene `data-exports-menu`, 2026-09-30) |
 | data-exports/delete-account-banner.webp | The Delete Account grace-period banner with Cancel deletion | low |
 
 ## help/documentation/excel-addin.mdx
@@ -253,8 +253,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| custom-fields/field-details-type.webp | The Custom field details panel with the Field type picker and type-specific options | high |
-| custom-fields/field-visibility-panel.webp | The Custom field visibility panel (Visible for People/Time Records/Projects/Tasks with category pickers) | high |
+| custom-fields/field-details-type.webp | The Custom field details panel with the Field type picker and type-specific options | high — done on the Cost center field (Text, predefined values), added to the seed layer (scene `custom-fields-details`, 2026-09-30) |
+| custom-fields/field-visibility-panel.webp | The Custom field visibility panel (Visible for People/Time Records/Projects/Tasks with category pickers) | high — done on Cost center: Client projects at the Project level (scene `custom-fields-visibility`, 2026-09-30) |
 | custom-fields/predefined-values.webp | A Text field with Use predefined values and the Allowed values list | low |
 
 ## help/documentation/roles-authorisations.mdx
@@ -277,7 +277,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| journal/activity-feed.webp | The Journal feed showing the chronological timeline with the "new" separator and mixed event types | high |
+| journal/activity-feed.webp | The Journal feed showing the chronological timeline with the "new" separator and mixed event types | high — done as a person's Journal (Ana Pereira: expense and time record changes) (scene `journal-feed`, 2026-09-30). The organisation Journal is empty on QA and nothing is unread, so no "new" separator; reshoot the org feed once it has events |
 | journal/message-thread.webp | A threaded message with rich text, @mention, and pin | medium |
 
 ## help/documentation/notifications.mdx
@@ -373,8 +373,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/quickbooks-connect.webp | Settings > Integrations > QuickBooks Online showing Connect to QB Online and the Default role / Enable integration controls | high |
-| integrations/quickbooks-export.webp | The Select period to export control with the Export button | high |
+| integrations/quickbooks-connect.webp | Settings > Integrations > QuickBooks Online showing Connect to QB Online and the Default role / Enable integration controls | high — done before connection: the list, the intro note and Connect to QuickBooks (scene `quickbooks-connect`, 2026-09-30). Default role and Enable integration only appear once a QuickBooks account is connected: guided |
+| integrations/quickbooks-export.webp | The Select period to export control with the Export button | high — guided: only shown once a QuickBooks Online account is connected, which QA does not have |
 | integrations/quickbooks-export-result.webp | The result panel: Entries successfully exported count and the expandable Entries not exported list | medium |
 
 ## help/integrations/xero.mdx
@@ -416,7 +416,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/microsoft-calendar-pane.webp | The timesheet with the external-calendar pane showing imported Outlook events (with Tracked badge) and the Sign in with Microsoft entry point | high |
+| integrations/microsoft-calendar-pane.webp | The timesheet with the external-calendar pane showing imported Outlook events (with Tracked badge) and the Sign in with Microsoft entry point | high — done before sign-in: the pane with the Google and Microsoft icons (scene `microsoft-calendar-pane`, 2026-09-30); can also serve google-calendar.mdx. Imported events with the Tracked badge need a real Microsoft sign-in: guided |
 
 ## help/integrations/webhooks.mdx
 

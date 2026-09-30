@@ -115,7 +115,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-entry-details',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-09-30',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
