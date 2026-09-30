@@ -58,28 +58,48 @@ export const cornerButton = (page, h, tooltip) => h.byTooltip(page, page.locator
 // A running timer is a record of today with a start time, its end set to the start of the day
 // (UTC midnight) and no duration. Start times are stored as wall-clock time in the
 // organisation's zone (New York), written as if UTC: 11:15 is 45 minutes before the frozen noon
-// (45 minutes, because the app shows running totals unrounded: 0.75 h reads cleanly).
-// The fixture removes any leftover running record first.
-const runningTimer = {
-	async up(api, { date }) {
-		const dayStart = Date.parse(`${date}T00:00:00Z`)
-		const { getPersons } = await api('{ getPersons { id name } }')
-		const personId = getPersons.find((p) => p.name === 'Jordan Reed').id
-		const { getProjects } = await api('{ getProjects { id name } }')
-		const projectIds = ['Fleet Tracker', 'Development'].map((n) => getProjects.find((p) => p.name === n).id)
-		const day = await api('query($s: BeeboleTimestamp!, $e: BeeboleTimestamp!) { getTimeRecords(startTime: $s, endTime: $e) { id startTime { ts } endTime { ts } person { id } } }', { s: dayStart, e: dayStart + 86400000 })
-		const leftovers = day.getTimeRecords.filter((r) => r.person?.id === personId && r.endTime?.ts === dayStart && r.startTime?.ts > dayStart).map((r) => r.id)
-		if (leftovers.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: leftovers })
-		const startTime = Date.parse(`${date}T11:15:00Z`)
-		const { addTimeRecord } = await api(
-			'mutation($s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $p: BeeboleId!, $ids: [BeeboleId!]!) { addTimeRecord(startTime: $s, endTime: $e, duration: 0, personId: $p, projectIds: $ids) { id } }',
-			{ s: startTime, e: dayStart, p: personId, ids: projectIds }
-		)
-		return { ids: [addTimeRecord.id] }
-	},
-	async down(api, state) {
-		if (state?.ids?.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: state.ids })
-	},
+// (45 minutes, because the app shows running totals unrounded: 0.75 h reads cleanly). A timed
+// entry that was paused is an ordinary record of the day with its duration (this account records
+// durations, not start and end times).
+// The fixture removes any leftover running record first, and returns the ids and the day start.
+function timerFixture(entries) {
+	return {
+		async up(api, { date }) {
+			const dayStart = Date.parse(`${date}T00:00:00Z`)
+			const { getPersons } = await api('{ getPersons { id name } }')
+			const personId = getPersons.find((p) => p.name === 'Jordan Reed').id
+			const { getProjects } = await api('{ getProjects { id name } }')
+			const day = await api('query($s: BeeboleTimestamp!, $e: BeeboleTimestamp!) { getTimeRecords(startTime: $s, endTime: $e) { id startTime { ts } endTime { ts } person { id } } }', { s: dayStart, e: dayStart + 86400000 })
+			const leftovers = day.getTimeRecords.filter((r) => r.person?.id === personId && r.endTime?.ts === dayStart && r.startTime?.ts > dayStart).map((r) => r.id)
+			if (leftovers.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: leftovers })
+			const ids = []
+			for (const e of entries) {
+				const projectIds = e.projects.map((n) => getProjects.find((p) => p.name === n).id)
+				const startTime = e.start ? Date.parse(`${date}T${e.start}:00Z`) : dayStart
+				const { addTimeRecord } = await api(
+					'mutation($s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $d: Float!, $p: BeeboleId!, $ids: [BeeboleId!]!) { addTimeRecord(startTime: $s, endTime: $e, duration: $d, personId: $p, projectIds: $ids) { id } }',
+					{ s: startTime, e: dayStart, d: e.start ? 0 : e.hours * 3600000, p: personId, ids: projectIds }
+				)
+				ids.push(addTimeRecord.id)
+			}
+			return { ids, dayStart }
+		},
+		async down(api, state) {
+			if (state?.ids?.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: state.ids })
+		},
+	}
+}
+
+const runningTimer = timerFixture([{ projects: ['Fleet Tracker', 'Development'], start: '11:15' }])
+
+// Opens the current week in Grid view, through the sidebar link (see openLastFullWeek).
+async function openCurrentWeek(page, h, rowName) {
+	await h.goto(page, '/persons')
+	await page.getByRole('link', { name: 'Timesheet' }).click()
+	await page.getByRole('button', { name: 'Previous' }).waitFor()
+	await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
+	await page.getByText(rowName, { exact: true }).first().waitFor()
+	await h.settle(page, 2000)
 }
 
 export const scenes = [
@@ -203,12 +223,7 @@ export const scenes = [
 		mode: 'auto',
 		fixture: runningTimer,
 		async setup(page, h) {
-			await h.goto(page, '/persons')
-			await page.getByRole('link', { name: 'Timesheet' }).click()
-			await page.getByRole('button', { name: 'Previous' }).waitFor()
-			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
-			await page.getByText('Fleet Tracker', { exact: true }).first().waitFor()
-			await h.settle(page, 2000)
+			await openCurrentWeek(page, h, 'Fleet Tracker')
 			// The floating timer opens over the date picker; drag it to the empty lower right.
 			// Its position is kept in the browser only.
 			const handle = await page.locator('floating-timer').getByText('Fleet Tracker', { exact: true }).first().boundingBox()
@@ -255,5 +270,83 @@ export const scenes = [
 			await h.settle(page, 1000)
 		},
 		shots: [{ file: 'timesheets/team-pane.webp', frame: { type: 'full' } }],
+	},
+	{
+		id: 'timesheets-calendar-timer',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		fixture: runningTimer,
+		async setup(page, h) {
+			await openCurrentWeek(page, h, 'Fleet Tracker')
+			// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
+			await page.getByText('9 AM').first().waitFor()
+			await h.settle(page, 2000)
+		},
+		// On the running entry, so its play/pause button shows.
+		async mouse(page) {
+			const entry = await page.getByText('0.75', { exact: true }).filter({ visible: true }).last().boundingBox()
+			return { x: entry.x - 40, y: entry.y + entry.height / 2 + 6 }
+		},
+		// Monday to Thursday, 8 AM to 3 PM: the running entry on today with the days around it.
+		shots: [
+			{
+				file: 'timesheets/calendar-timer-running.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						// Day headers read "Mon 28", split over separate text pieces: find them in the page.
+						const day = (name) =>
+							page.evaluate((name) => {
+								const el = [...document.querySelectorAll('div')].find((e) => new RegExp(`^${name} \\d+$`).test(e.textContent.replace(/\s+/g, ' ').trim()) && e.getBoundingClientRect().width > 0)
+								const r = el?.getBoundingClientRect()
+								return r && { x: r.x, y: r.y }
+							}, name)
+						const mon = await day('Mon')
+						const fri = await day('Fri')
+						const eight = await page.getByText('8 AM', { exact: true }).first().boundingBox()
+						const three = await page.getByText('3 PM', { exact: true }).first().boundingBox()
+						const x = eight.x - 16
+						const y = mon.y - 4
+						return { x, y, width: fri.x - x, height: three.y + three.height + 8 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		id: 'timesheets-timer-shelf',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		// Two timers running (45 and 20 minutes at the frozen noon) and one activity paused earlier.
+		fixture: timerFixture([
+			{ projects: ['Fleet Tracker', 'Development'], start: '11:15' },
+			{ projects: ['Website Redesign', 'Meeting'], start: '11:40' },
+			{ projects: ['Dashboard', 'Analysis'], hours: 1.5 },
+		]),
+		async setup(page, h, { ids, dayStart }) {
+			// The shelf lives in the browser (bb-timer-shelf): list the paused entry on it; the app adds
+			// the running ones from the server.
+			await page.addInitScript(
+				({ recordId, dayStart }) => localStorage.setItem('bb-timer-shelf', JSON.stringify([{ recordId, dayStart, running: null }])),
+				{ recordId: ids[2], dayStart }
+			)
+			await openCurrentWeek(page, h, 'Fleet Tracker')
+			await page.locator('floating-timer').getByText('Pause all').waitFor()
+			await h.settle(page, 1000)
+			// The panel opens over the date picker; drag it by its first line to the white header space
+			// right of Submit (lower down, it would sit on a section band). Its position is kept in
+			// the browser only.
+			const handle = await page.locator('floating-timer').getByText('Dashboard', { exact: true }).boundingBox()
+			await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2)
+			await page.mouse.down()
+			await page.mouse.move(1190, 34, { steps: 12 })
+			await page.mouse.up()
+			await h.settle(page, 800)
+		},
+		// The panel itself (floating-timer is a zero-size host; the panel is its fixed child).
+		shots: [{ file: 'timesheets/timer-shelf.webp', frame: { type: 'element', locate: (page) => page.locator('floating-timer > div.fixed'), pad: 16 } }],
 	},
 ]

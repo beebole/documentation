@@ -54,15 +54,17 @@ async function signIn(page) {
 	if (result !== 'ok') throw new Error(`Sign-in failed: ${result}`)
 }
 
-async function currentOrganisationId(page) {
+// The organisation the session is on, and the signed-in person's app language.
+async function currentAccount(page) {
 	return page
 		.evaluate(async () => {
 			const post = (body, csrf = '') =>
 				fetch('/graphql', { method: 'POST', credentials: 'include', headers: { 'content-type': 'application/json', csrftoken: csrf }, body: JSON.stringify(body) }).then((r) => r.json())
 			const csrf = (await post({ query: '{ currentSession { csrftoken } }' })).data?.currentSession?.csrftoken || ''
-			return (await post({ query: '{ currentOrganisation { id } }' }, csrf)).data?.currentOrganisation?.id ?? null
+			const data = (await post({ query: '{ currentOrganisation { id } currentPerson { lang } }' }, csrf)).data
+			return { org: data?.currentOrganisation?.id ?? null, lang: data?.currentPerson?.lang ?? null }
 		})
-		.catch(() => null)
+		.catch(() => ({ org: null, lang: null }))
 }
 
 // Reuse the saved session when it is signed in to the documentation organisation; otherwise
@@ -75,8 +77,14 @@ export async function ensureSession(browser) {
 		await page.goto(`${BASE_URL}/persons`)
 		await page.waitForLoadState('networkidle').catch(() => {})
 		const signedIn = !page.url().includes('/signin')
-		const org = signedIn ? await currentOrganisationId(page) : null
+		const { org, lang } = signedIn ? await currentAccount(page) : { org: null, lang: null }
 		if (org === ORG_ID) {
+			// Scenes find controls by their English labels. The account is also Yves' own sign-in,
+			// and was once left in French (2026-09-30): stop here rather than time out in every scene.
+			if (lang && lang !== 'en') {
+				await context.close()
+				throw new Error(`Jordan Reed's app language is "${lang}", scenes need "en" (set it back with editPersonLang or in the app)`)
+			}
 			await context.storageState({ path: STATE })
 			await context.close()
 			return

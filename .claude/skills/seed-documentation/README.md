@@ -7,12 +7,15 @@
 ## What builds it
 
 1. `seed.mjs full`: people, clients and projects, tasks, tags, rates, schedules, a year of time, absences, expenses, budgets. Adapted from reboot's `seed-demo.mjs` on 2026-09-29: key from the environment, organisation guard, approval guard, account-management time logged on each client's main engagement, the organisation schedule assigned through the renamed timeline mutations (`resetOrganisationScheduleTimelineRelations`, `assignScheduleTimelineToOrganisation`), absences kept off public holidays, and the wipe deleting only rates defined on each project. A `full` run ends with zero GraphQL errors; keep it that way.
-2. `layer.mjs`: organisation name, Department teams, Location offices, memberships, colours (rules from `claude-plugins/plugins/growth/skills/generate-dummy-data/references/entity-colors.md`).
+2. `layer.mjs`: organisation name, Department teams, Location offices, memberships, colours (rules from `claude-plugins/plugins/growth/skills/generate-dummy-data/references/entity-colors.md`), and the current year's time-off allowances (PTO 20 days with a 5-day carry forward limit and Sickness 10 days with negative balance allowed for everyone, PTO 25 days for the London office).
 
 ## App state the scenes rely on
 
+- Do not use this account by hand. Jordan Reed is Yves' own sign-in on QA, so opening QA in a browser can land here, and everything done in the app is saved: on 2026-09-30 a morning of manual use set the language to French, resized the details panel (`detailsPanelRatio`), pinned a timesheet row, left four Account Settings panels open, and edited the Hours by Person report. That broke 2 scenes and changed 17 shots. It was restored through the API (screen settings cleaned, report back to Person + Hours with its table on). Explore with the runner (`capture --preview`), never in the app.
+- Jordan Reed's app language is English: the runner stops at the session check otherwise (`editPersonLang` restores it).
 - Jordan Reed's timesheet opens in **Grid view** (the Timesheets scenes switch to it; a Calendar view scene must switch back in its `teardown`).
 - Elena Rossi's person panel may remember the Tags panel as open; scenes open panels idempotently.
+- Suggested entries appear on today and later days as the server generates them (first seen 2026-09-30, on the mobile timesheet and as a badge on the suggestions button). They are app data, not a manual change.
 
 ## Data rules
 
@@ -38,4 +41,5 @@ Once approvals exist, `full` refuses. A reset then means:
 ## History
 
 - 2026-09-29: created ("Illustrate 2026-09-29"), seeded with seed-demo, layer applied, renamed AnyCompany; rebuilt with `seed.mjs full` after the fixes; approvals run (see above). `full` refuses from now on.
+- 2026-09-30: account restored after manual use (see above); allowances added by the layer.
 - The seed retries network failures (QA sometimes drops connections for a few seconds).

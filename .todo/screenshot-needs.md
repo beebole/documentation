@@ -98,7 +98,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt is still open |
 | timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
 | timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — on hold: approvals exist since 2026-09-29, but every score is low because the history was submitted in one day (see `seed-documentation/README.md`) |
-| timesheets/calendar-view.webp | The calendar view with the favorites bar | done (scene `timesheets-calendar-view`, 2026-09-29; found from the page, not in the June inventory) |
+| timesheets/calendar-view.webp | The calendar view with the favorites bar | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
 | timesheets/row-menu.webp | A row's ⋯ action menu (Pin to top, Edit, Remove row) | done (scene `timesheets-row-menu`, 2026-09-29; found from the page) |
 | timesheets/team-pane.webp | The Team pane with members and their reported time | done (scene `timesheets-team-pane`, 2026-09-29; found from the page) |
 
@@ -152,9 +152,9 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| timeoff/absence-types-list.webp | The Settings > Time Off list of absence types with the Add Time Off Type button | high |
-| timeoff/absence-allowances-panel.webp | The Absence allowances panel showing Available / Consumed / Accrued balance fields on a person | high |
-| timeoff/units-paid-panel.webp | An absence type's Units panel with Hour/Day and the "Is paid (included in people costs)" checkbox | medium |
+| timeoff/absence-types-list.webp | The Settings > Time Off list of absence types with the Add Time Off Type button | high — done with PTO open on its Units panel (scene `timeoff-absence-types`, 2026-09-30) |
+| timeoff/absence-allowances-panel.webp | The Absence allowances panel showing Available / Consumed / Accrued balance fields on a person | high — done on Elena Rossi's inherited PTO allowance (scene `timeoff-allowances-panel`, 2026-09-30) |
+| timeoff/units-paid-panel.webp | An absence type's Units panel with Hour/Day and the "Is paid (included in people costs)" checkbox | medium — done within `timeoff/absence-types-list.webp` (scene `timeoff-absence-types`, 2026-09-30) |
 | timeoff/timeoff-notifications-panel.webp | The Time off notifications panel with Going negative and frequency alerts | low |
 
 ## help/documentation/accruals.mdx
@@ -206,7 +206,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high |
+| reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high — done (scene `reports-folder-report`, 2026-09-29) |
 | reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium |
 | reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium |
 | reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low |
@@ -215,9 +215,9 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| custom-reports/column-badges-menu.webp | A report's column badge row with the "Add a column…" menu open (Time/Expense/Period/Entities groups) | high |
+| custom-reports/column-badges-menu.webp | A report's column badge row with the "Add a column…" menu open (Time/Expense/Period/Entities groups) | high — done, opened from a column header menu (scene `custom-reports-column-menu`, 2026-09-30) |
 | custom-reports/chart-view.webp | The Chart view with the chart-type picker and Label/Value axis controls | medium |
-| custom-reports/matrix-view.webp | The Matrix view grid with Rows/Columns/Metric controls and heat map shading | high |
+| custom-reports/matrix-view.webp | The Matrix view grid with Rows/Columns/Metric controls and heat map shading | high — done, months as rows and clients as columns, heat map on (scene `custom-reports-matrix`, 2026-09-30) |
 
 ## help/documentation/data-exports.mdx
 
@@ -245,7 +245,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| work-schedule/schedule-details.webp | A work schedule's Details panel showing per-day Hours, Intervals, and Work From Home toggles | high |
+| work-schedule/schedule-details.webp | A work schedule's Details panel showing per-day Hours, Intervals, and Work From Home toggles | high — done, first two days of the Full Time cycle (scene `work-schedule-details`, 2026-09-30) |
 | work-schedule/assign-panel.webp | A Work schedule panel on a person/tag with the Select schedule picker and inherited-value indicator | medium |
 | work-schedule/dated-assignments.webp | Two schedule assignments with Start date pickers showing a change over time | low |
 
@@ -442,8 +442,8 @@ _Already illustrated on disk (asana-connect, asana-params, asana-updating, asana
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| api/graphiql-playground.webp | The built-in GraphiQL IDE at app.beebole.com/graphql showing the query editor and the Documentation/Explorer schema panel | high |
-| api/graphiql-apikey-header.webp | GraphiQL's HTTP headers editor with the apikey header being added before running a query | high |
+| api/graphiql-playground.webp | The built-in GraphiQL IDE at app.beebole.com/graphql showing the query editor and the Documentation/Explorer schema panel | high — done with the Docs panel, a query and its result, and the apikey header (placeholder) in one shot (scene `api-graphiql`, 2026-09-30) |
+| api/graphiql-apikey-header.webp | GraphiQL's HTTP headers editor with the apikey header being added before running a query | high — done within `api/graphiql-playground.webp` (scene `api-graphiql`, 2026-09-30) |
 
 _Other API pages (introduction, queries, mutations, examples) are code reference — no screenshots._
 
@@ -525,13 +525,13 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| timesheets/calendar-view.webp | Timesheet calendar view with entries placed by hour and a ghost suggestion | high |
+| timesheets/calendar-view.webp | Timesheet calendar view with entries placed by hour and a ghost suggestion | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
 | timesheets/clear-rows-button.webp | Section header hover revealing the Clear rows button | low |
 | timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium |
 | people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low |
 | roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium |
-| reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high |
-| reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high |
+| reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high — skipped 2026-09-30: QA shows a People / Client / Internal / Activity scope picker that production does not have, and Planned reads 0 h for Acme Corp although its tasks have planned effort. Shoot once QA matches production |
+| reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high — done (scene `reports-absence-quotas`, allowances added to the seed layer, 2026-09-30) |
 | reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low |
 
 
@@ -543,7 +543,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No mis
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| reports/report-folder-share.webp | A folder's **Share** panel expanded, with the **People** and **Tags** pickers visible (element capture) | high |
+| reports/report-folder-share.webp | A folder's **Share** panel expanded, with the **People** and **Tags** pickers visible (element capture) | high — done with the People picker open, nothing selected (scene `reports-folder-share`, 2026-09-30) |
 | ai/suggestion-tray-badges.webp | The **Suggested entries** tray with cards carrying mixed source badges (**Habit**, **Desktop**, **Planned**) and one **Why?** panel open | high |
 | budgets/budget-card-time-days.webp | A budget card showing the **Time** field with the **Days** unit picker, a **From** date, and a **Notes** line (element capture) | medium |
 | timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low |
@@ -560,12 +560,12 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 |---|---|---|
 | gantt/task-period-timed.webp | A task's **Dates** panel with **All day** unchecked, showing the **Start time** and **End time** fields and a time highlighted as outside the owner's working hours (element capture) | high |
 | staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high |
-| timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high |
+| timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high — done (scene `timesheets-calendar-timer`, fixture: a running entry around the capture, 2026-09-30) |
 | ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high |
 | timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium |
 | ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium |
 | gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium |
-| timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium |
+| timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium — done within `timeoff/absence-allowances-panel.webp` (scene `timeoff-allowances-panel`, 2026-09-30) |
 | reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low |
 | approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low |
 
@@ -581,7 +581,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 |---|---|---|
 | planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high |
-| timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high |
+| timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
 | planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
 | planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium |
 | planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium |
