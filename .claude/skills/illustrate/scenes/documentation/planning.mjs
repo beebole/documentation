@@ -36,4 +36,38 @@ export const scenes = [
 		},
 		shots: [{ file: 'planning/planning-settings-dialog.webp', frame: { type: 'box', box: (page, h) => h.surfaceAround(page, 'What this planning holds'), pad: 24 } }],
 	},
+	{
+		id: 'planning-add-task-panel',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.getByRole('button', { name: 'Add Task' }).first().click()
+			await page.getByText('Or add multiple entries').first().waitFor()
+			await h.settle(page, 1000)
+		},
+		// Off the side panel, which shows its pin and resize buttons under the mouse.
+		mouse: () => ({ x: 400, y: 850 }),
+		// The side panel, from its top to below the Paste button.
+		shots: [
+			{
+				file: 'planning/add-task-panel.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const paste = await page.getByRole('button', { name: 'Paste', exact: true }).filter({ visible: true }).first().boundingBox()
+						const left = await page.evaluate(() => {
+							let el = [...document.querySelectorAll('button')].find((b) => b.textContent.trim() === 'Add new task')
+							while (el && !(el.getBoundingClientRect().height >= window.innerHeight - 1 && el.getBoundingClientRect().width < 800)) el = el.parentElement
+							return el ? el.getBoundingClientRect().x : null
+						})
+						if (left == null) throw new Error('side panel not found')
+						return { x: left, y: 0, width: 1440 - left, height: paste.y + paste.height + 32 }
+					},
+				},
+			},
+		],
+	},
 ]
