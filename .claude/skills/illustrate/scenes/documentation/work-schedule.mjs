@@ -29,4 +29,15 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'work-schedule-assign-panel',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Elena Rossi', 'schedule-type-relations')
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'work-schedule/assign-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Work schedule', 'Absence allowances') } }],
+	},
 ]

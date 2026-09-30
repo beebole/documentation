@@ -38,4 +38,43 @@ export const scenes = [
 		},
 		shots: [{ file: 'approval/workflow-stages.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Approval workflow', 'Absence allowances') } }],
 	},
+	{
+		id: 'approval-status-breakdown',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			// Jordan Reed's own week is a draft: open the Team pane (when it is not open yet) and
+			// click Ana Pereira's Submitted badge, which opens the same stage breakdown.
+			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			const badge = member.locator('timesheet-approval-status span.rounded-full')
+			await badge.waitFor()
+			await h.settle(page, 1500)
+			await badge.click()
+			await page.getByText('Project managers').filter({ visible: true }).last().waitFor()
+			await h.settle(page, 1000)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		// Ana Pereira's entry in the Team pane and the breakdown under her badge.
+		shots: [
+			{
+				file: 'approval/status-badge-breakdown.webp',
+				frame: {
+					type: 'box',
+					pad: 12,
+					box: async (page) => {
+						const member = await page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first().boundingBox()
+						const menu = await page.locator('.stagesMenu').filter({ visible: true }).first().boundingBox()
+						const x = Math.min(member.x, menu.x)
+						const y = Math.min(member.y, menu.y)
+						return { x, y, width: Math.max(member.x + member.width, menu.x + menu.width) - x, height: Math.max(member.y + member.height, menu.y + menu.height) - y }
+					},
+				},
+			},
+		],
+	},
 ]

@@ -83,7 +83,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | tags/tag-tree-categories.webp | Tags page with the category selector (Department/Location) and the nested tag tree | high — done as `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
-| tags/who-or-what-tagged-panel.webp | A tag's "Who or what has been tagged?" panel with People/Projects/Tasks sections | medium |
+| tags/who-or-what-tagged-panel.webp | A tag's "Who or what has been tagged?" panel with People/Projects/Tasks sections | medium — done on Frontend (scene `tags-tagged-panel`, 2026-09-30) |
 | tags/tag-cascade-panels.webp | A tag detail panel showing the cascading settings panels (Work schedule, Billing, Approval workflow, etc.) | medium — done within `tags/tags-list.webp` (scene `tags-list`, 2026-09-29) |
 | tags/tags-level-names-dialog.webp | The Level names dialog of the Department category | done (scene `tags-level-names-dialog`, 2026-09-29) |
 | tags/tags-person-panel.webp | A person's Tags panel with a team, a contract type and an office | done (scene `tags-person-panel`, 2026-09-29) |
@@ -95,7 +95,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timesheets/weekly-grid.webp | The weekly timesheet grid with sections, rows, day columns, and the day-header scheduled-hours indicators | high — done (scene `timesheets-weekly-grid`, 2026-09-29) |
 | timesheets/entry-details.webp | An entry's detail popover showing Time spent, Start/End time, note, Non-billable and Work from home | medium — done (scene `timesheets-entry-details`, 2026-09-29) |
 | timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium — done (scene `timesheets-timer`, fixture: a running entry created and removed around the capture, 2026-09-29) |
-| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt is still open |
+| timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt done as `timesheets/paste-dialog.webp` (scene `timesheets-paste-dialog`, 2026-09-30). The Paste period button sits below the copy button: page corrected |
 | timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
 | timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — on hold: approvals exist since 2026-09-29, but every score is low because the history was submitted in one day (see `seed-documentation/README.md`) |
 | timesheets/calendar-view.webp | The calendar view with the favorites bar | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
@@ -117,8 +117,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | approval/pending-pane.webp | The Pending approval pane listing submitted timesheets with Approve/Reject and the Late group | high — done with Show all on (scene `approval-pending-pane`, 2026-09-29) |
 | approval/workflow-stages.webp | The Approval workflow panel with sequential stages, approver type and Any/All quorum | high — done (scene `approval-workflow-stages`, 2026-09-29) |
-| approval/status-badge-breakdown.webp | A timesheet status badge expanded into the stage breakdown (who approved, who's pending) | medium |
-| approval/journal-approval-banner.webp | The Journal "N timesheets to approve" banner expanded with Hours/Billing totals | medium |
+| approval/status-badge-breakdown.webp | A timesheet status badge expanded into the stage breakdown (who approved, who's pending) | medium — done from Ana Pereira's Submitted badge in the Team pane, since Jordan Reed's own week is a draft (scene `approval-status-breakdown`, 2026-09-30) |
+| approval/journal-approval-banner.webp | The Journal "N timesheets to approve" banner expanded with Hours/Billing totals | medium — blocked 2026-09-30: the Journal of Jordan Reed (signed in) reads All caught up, as the pending weeks wait for project managers. Needs Jordan as a current-stage approver of a pending week, a seed change to project managers that other shots show |
 | approval/reject-comment-dialog.webp | The reject dialog with the required reason comment box | low |
 
 ## help/documentation/planning.mdx
@@ -126,8 +126,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | planning/tasks-page-views.webp | The Tasks page with the saved-view tabs (Gantt / Kanban) and the task category selector | high — done as `planning/kanban-view.webp` (scene `planning-kanban-view`, 2026-09-29); the same screen can illustrate kanban.mdx (`kanban/board-columns`) |
-| planning/add-task-panel.webp | The Add Task form with name, status selector, and the "Or add multiple entries" paste area | medium |
-| planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium |
+| planning/add-task-panel.webp | The Add Task form with name, status selector, and the "Or add multiple entries" paste area | medium — done (scene `planning-add-task-panel`, 2026-09-30) |
+| planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium — blocked 2026-09-30: every Main plan task on QA runs from noon to noon, so Task details shows All day unchecked and 12:00 PM times, against the page (whole days by default), and Planned in days is empty. Needs all-day tasks in the seed, which changes the Kanban and Gantt shots |
 | planning/task-statuses-modal.webp | The Task statuses modal with statuses, colors, reorder, and Max tasks | medium — done within `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
 
 ## help/documentation/gantt.mdx
@@ -176,15 +176,15 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | billing/billing-rate-card.webp | A Billing panel rate card showing From date, Billing method, Amount and currency | high — done (scene `billing-rate-card`, 2026-09-29) |
-| billing/rate-priority.webp | Panel view illustrating which rate applies across the org → tag → project → person cascade | medium |
-| billing/rate-split.webp | A rate with Split by persons showing per-person amounts and Non-billable checkboxes | medium |
+| billing/rate-priority.webp | Panel view illustrating which rate applies across the org → tag → project → person cascade | medium — done as `billing/rate-inherited.webp`: Video Production inheriting Brightwave Media's rate, the source tooltip shown (scene `billing-rate-inherited`, 2026-09-30) |
+| billing/rate-split.webp | A rate with Split by persons showing per-person amounts and Non-billable checkboxes | medium — done on Northstar Financial, fixture: the split exists only during the capture (scene `billing-rate-split`, 2026-09-30) |
 
 ## help/documentation/costs.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
 | costs/cost-rate-card.webp | A Cost panel rate card with Cost method, Amount and From date | high — done on Ana Pereira's Cost panel (scene `costs-rate-card`, 2026-09-30) |
-| costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium |
+| costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium — blocked 2026-09-30: Margin by Client per Month only has Time: Hours on QA, although seed.mjs asks for billing and cost; adding columns in the page is a mutation the runner blocks. Fixing the report changes the custom-reports shots |
 
 ## help/documentation/budgets.mdx
 
@@ -216,7 +216,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | custom-reports/column-badges-menu.webp | A report's column badge row with the "Add a column…" menu open (Time/Expense/Period/Entities groups) | high — done, opened from a column header menu (scene `custom-reports-column-menu`, 2026-09-30) |
-| custom-reports/chart-view.webp | The Chart view with the chart-type picker and Label/Value axis controls | medium |
+| custom-reports/chart-view.webp | The Chart view with the chart-type picker and Label/Value axis controls | medium — done, Stacked bar of hours per client by month (scene `custom-reports-chart`, 2026-09-30) |
 | custom-reports/matrix-view.webp | The Matrix view grid with Rows/Columns/Metric controls and heat map shading | high — done, months as rows and clients as columns, heat map on (scene `custom-reports-matrix`, 2026-09-30) |
 
 ## help/documentation/data-exports.mdx
@@ -246,7 +246,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | work-schedule/schedule-details.webp | A work schedule's Details panel showing per-day Hours, Intervals, and Work From Home toggles | high — done, first two days of the Full Time cycle (scene `work-schedule-details`, 2026-09-30) |
-| work-schedule/assign-panel.webp | A Work schedule panel on a person/tag with the Select schedule picker and inherited-value indicator | medium |
+| work-schedule/assign-panel.webp | A Work schedule panel on a person/tag with the Select schedule picker and inherited-value indicator | medium — done on Elena Rossi, Full Time inherited from the organization (scene `work-schedule-assign-panel`, 2026-09-30) |
 | work-schedule/dated-assignments.webp | Two schedule assignments with Start date pickers showing a change over time | low |
 
 ## help/documentation/custom-fields.mdx
@@ -286,7 +286,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | notifications/preferences-panel.webp | The Notifications panel with Email/Push channels and per-event frequency selectors (Instant/Daily/Weekly/None) | high — done (scene `notifications-preferences`, 2026-09-30); the push channel and the budget alerts row are hidden in the scene, as on production hosts |
 | notifications/budget-threshold-alert.webp | The Budget threshold alert row with the percentage and "When over budget" | medium — dropped 2026-09-30: budget threshold alerts are not shown on production hosts |
-| notifications/email-templates.webp | The Email templates panel with the per-type tabs and the editor | medium |
+| notifications/email-templates.webp | The Email templates panel with the per-type tabs and the editor | medium — done in Account Settings, Sign Up tab (scene `notifications-email-templates`, 2026-09-30) |
 
 ## help/documentation/account-settings.mdx
 
@@ -302,7 +302,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | authentication/signin-email-code.webp | The Beebole sign-in page entering email and the 6-digit code prompt | high — done as `authentication/signin-page.webp` (scene `authentication-signin`, signed out, 2026-09-29); the code prompt needs a real sign-in request, which the runner blocks: not automatable |
 | authentication/sso-panel.webp | The Single Sign-On panel with Google/Microsoft/Custom OpenID tabs and Linked domains | high — done (scene `authentication-sso-panel`, 2026-09-29) |
-| authentication/api-key-page.webp | The API Key page with the masked key, Copy, and Reset | medium |
+| authentication/api-key-page.webp | The API Key page with the masked key, Copy, and Reset | medium — done as `authentication/api-key-menu.webp`: it is the Your API key submenu of the user menu, not a page; the key text is replaced by the scene (scene `authentication-api-key`, 2026-09-30). The menu label is Your API key: corrected on five pages |
 | authentication/sign-in-as.webp | The Sign in as… search box from the user menu | low |
 
 ## help/documentation/subscription.mdx
@@ -428,7 +428,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/api-key-panel.webp | The API Key panel opened from the initials button at the bottom of the sidebar, showing the key with Copy and Reset | medium |
+| integrations/api-key-panel.webp | The API Key panel opened from the initials button at the bottom of the sidebar, showing the key with Copy and Reset | medium — done with `authentication/api-key-menu.webp` (scene `authentication-api-key`, shared with Authentication, 2026-09-30) |
 
 ## help/integrations/asana.mdx
 

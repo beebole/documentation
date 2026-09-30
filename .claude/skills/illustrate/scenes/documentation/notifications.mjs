@@ -27,4 +27,18 @@ export const scenes = [
 		mouse: restInHeader,
 		shots: [{ file: 'notifications/preferences-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Notifications', 'Tags') } }],
 	},
+	{
+		id: 'notifications-email-templates',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=email-templates')
+			await page.getByText('Sign Up', { exact: true }).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		// Off the panel title, which shows its drag handle under the mouse.
+		mouse: () => ({ x: 1300, y: 860 }),
+		shots: [{ file: 'notifications/email-templates.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Email templates', 'Absence allowances', { right: 1400 }) } }],
+	},
 ]
