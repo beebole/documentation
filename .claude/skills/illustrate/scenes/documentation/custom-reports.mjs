@@ -81,4 +81,33 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'custom-reports-chart',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Year', REPORT)
+			await page.getByText(REPORT, { exact: true }).first().click()
+			await setViews(page, h, REPORT, { Table: false, Chart: true, Matrix: false })
+			await page.locator('report-chart canvas, report-chart svg').first().waitFor()
+			await h.settle(page, 2000)
+		},
+		// The report, from its title row to below the chart legend.
+		shots: [
+			{
+				file: 'custom-reports/chart-view.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText(REPORT, { exact: true }).filter({ visible: true }).last().boundingBox()
+						const chart = await page.locator('report-chart').filter({ visible: true }).first().boundingBox()
+						const x = 340
+						const y = title.y - 28
+						return { x, y, width: 1440 - 24 - x, height: chart.y + chart.height + 16 - y }
+					},
+				},
+			},
+		],
+	},
 ]
