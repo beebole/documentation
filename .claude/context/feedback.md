@@ -106,6 +106,12 @@ Accumulated editorial rules, filed directly when the user gives feedback in conv
   - **Why:** Same as desktop-app — stable per release, breaks only if the app changes paths.
   - **How to apply:** Verify against `renderExtension` on review. Expect a full rewrite of the install steps when the extension reaches the Chrome Web Store / Firefox Add-ons (the manual load-unpacked flow and the zip links both go away).
 
+### /help/documentation/timesheets
+
+- **The calendar view and the grid view are equal; neither is "the main one".** The page opens on a comparison of the two views (layout, how you enter time, good for / less suited to, timer, suggestions, calendar import), then gives each view its own section, calendar first (it is the default view, `calendarViewActive` defaults to `true` in `frontend/src/components/timesheet/calendar/calendar-state.ts`). What both views share (entry details, floating timer, copy period, undo, submit, team review) lives in shared sections that say "in either view".
+  - **Why:** Yves (2026-09-30): the old page described the timesheet as "a grid" and treated the calendar as a secondary view, while the two are equally important and the calendar view is the one Beebole now puts forward.
+  - **How to apply:** Never describe the timesheet as a grid in general terms. When a control exists in only one view, say which (row timer button, rows and sections, clear section, calendar-event import = grid only; favorites, day focus, entry keyboard shortcuts, ghost suggestions = calendar only). When the timer, suggestions or another feature behaves differently per view, explain both.
+
 ### /help/documentation/roles-authorisations
 
 - **Organize this page by permission type.** Readers look up what a specific permission means; structure the body as one section per permission group (Approval events / Approval workflow, Billing rates / Costs, Custom Fields, Expenses, People details, Project details / Tasks / Budgets, Timesheet entries / Time off / Schedules, Journal feed, Reports, admin settings), each explaining that permission's meaning and its view/manage controls. Keep sections for creating and managing roles, assigning roles to people, and best practices. Permission names come from the `authorization` labels in `labels.json` (e.g. **Approval events**, **Billing rates**, **Define Custom Fields**, **Timesheet entries**, **Time off records**).
