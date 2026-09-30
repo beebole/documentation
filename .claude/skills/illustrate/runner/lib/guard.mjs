@@ -16,7 +16,7 @@ const SILENT = new Map([
 	['editPersonJournalSettings', { field: 'journalSettings', variable: 'settings' }],
 	['editReportChart', { field: 'chart', variable: 'chart' }],
 	['markAllNotificationsRead', { field: 'id', variable: 'id' }],
-	['editIntegrationQuickbooksDefaultRole', { field: 'defaultRole', variable: 'defaultRole' }],
+	...['Asana', 'Bamboo', 'Jira', 'Linear', 'Monday', 'Quickbooks'].map((n) => [`editIntegration${n}DefaultRole`, { field: 'defaultRole', variable: 'defaultRole' }]),
 ])
 
 export function isSilent(name) {

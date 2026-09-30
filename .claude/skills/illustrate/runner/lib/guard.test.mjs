@@ -64,4 +64,5 @@ test('an aliased mutation is known by its field name and answered under its alia
 test('the writes the Journal and an integration panel make on opening are answered silently', () => {
 	assert.equal(isSilent('markAllNotificationsRead'), true)
 	assert.equal(isSilent('editIntegrationQuickbooksDefaultRole'), true)
+	assert.equal(isSilent('editIntegrationJiraDefaultRole'), true)
 })
