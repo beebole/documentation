@@ -87,6 +87,12 @@ When several billing rates could apply to the same time entry, the most specific
 
 Rates inherited from tags or from the organization count as the rate of the project or person they cascade to, so a company-wide default still applies through this same lookup. Billing rates cannot be set directly on a task; time tracked on a task is billed through the project and person rates above.
 
+An inherited rate shows in the **Billing** panel of the project or person it applies to, with a marker next to the panel title. Hover over the marker to see where the rate comes from.
+
+<Frame caption="Video Production has no rate of its own: it inherits $160 an hour from its client, Brightwave Media">
+  ![Beebole Projects page with Brightwave Media, Brand Campaign and Video Production expanded, and the Billing panel of Video Production showing an hourly rate of $160.00, with the tooltip Brightwave Media on the marker next to the panel title](/help/images/billing/rate-inherited.webp)
+</Frame>
+
 ---
 
 ## Rate splits
@@ -98,6 +104,10 @@ With an **Hourly rate** or **Daily rate**, you can replace the single amount wit
 - **Split by projects** — a separate amount for each project you add to the list. Useful on a person or tag whose work is billed differently per project.
 
 Each row in a split has its own **Amount**, and a **Non-billable** checkbox to exclude that person or project from billing entirely.
+
+<Frame caption="A client's hourly rate split by persons, with one person non-billable">
+  <img src="/help/images/billing/rate-split.webp" alt="Beebole Billing panel of Northstar Financial with an hourly rate card open, the split set to Split by persons, and rows for Marc Dubois at $160.00, Sarah Jensen marked Non-billable, and Sophie Laurent at $220.00" width="538" />
+</Frame>
 
 ---
 
