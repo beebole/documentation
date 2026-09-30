@@ -39,6 +39,10 @@ Every report in Beebole is a custom report. You build the output by adding colum
 
 A report's definition is a row of column badges above the results. Click **Add a column…** to open the column menu, which is organized into two groups.
 
+<Frame caption="The column menu, opened from Add a column… in a column header's menu; the new column's place is highlighted">
+  <img src="/help/images/custom-reports/column-badges-menu.webp" alt="Beebole report Margin by Client per Month with the column menu open, listing Expense, Period, Task: Planned, Time and Time & Expenses under Time and amounts, then Absence type, Activity, Client, Expense type, Internal, Main plan, Person and Time entity under Entities, over a highlighted empty column between Client: Name and Period: Month" width="1080" />
+</Frame>
+
 ### Time and amounts
 
 These columns carry the numbers. Each column type offers a choice of fields:
@@ -149,6 +153,10 @@ The controls above the grid configure it:
 - **Metric** — the number shown in each cell, derived from the report's numeric columns: hours, billing, cost, margin, planned effort, expense amounts, totals, and more.
 - **Heat map** — shades each cell by its value, so the largest numbers stand out at a glance.
 - The swap button (**Swap rows and columns**) flips the two axes in one click.
+
+<Frame caption="A matrix of hours per month and client, with the heat map on">
+  ![Beebole Matrix view of the Margin by Client per Month report with Rows set to Period: Month, Columns set to Client: Name, Metric set to Time: Hours and Heat map checked, showing hours for Acme Corp, Greenleaf Industries, Northstar Financial, Quantum Logistics and Silverline Retail from January to December 2026, shaded by value, with row and column totals](/help/images/custom-reports/matrix-view.webp)
+</Frame>
 
 Axes come from the report's grouping columns — people, projects, tasks, absence types, expense types, tags — or from calendar periods (day or week), which turn the matrix into a calendar-style grid. The matrix needs at least one numeric column in the report definition, and your **Rows**, **Columns**, **Metric**, and **Heat map** choices are saved with the report automatically.
 
