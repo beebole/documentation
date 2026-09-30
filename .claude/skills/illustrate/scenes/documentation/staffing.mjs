@@ -3,7 +3,7 @@
 export const page = 'help/documentation/staffing.mdx'
 
 // The planning and the view are saved as person preferences (answered by the runner's guard).
-async function openStaffing(page, h) {
+export async function openStaffing(page, h) {
 	await h.goto(page, '/tasks')
 	await page.getByText('Add a view').first().waitFor()
 	await page.locator('bb-category').getByText('Main plan').first().click()
@@ -27,7 +27,7 @@ function viewMenu(page) {
 
 // Locks the view to a fixed window from the tab's ⋯ menu (a view setting, answered by the guard).
 // The Period submenu opens while the mouse is on its row.
-async function lockPeriod(page, h, name) {
+export async function lockPeriod(page, h, name) {
 	await viewMenu(page).click()
 	await h.settle(page, 600)
 	await page.getByText('Period', { exact: true }).filter({ visible: true }).first().hover()
