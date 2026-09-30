@@ -230,7 +230,8 @@ async function ensureCustomField() {
 	}
 	const category = d.getProjectCategories.find((x) => x.name === c.projectCategory)
 	if (!category) throw new Error(`Project category not found: ${c.projectCategory}`)
-	await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityProjects(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
+	// Enabling resets the list of categories to empty: only when it is off.
+	if (!field.visibility?.projects) await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityProjects(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
 	const onCategory = (field.visibility?.projects || []).some((v) => v.categoryId === category.id)
 	await gql(
 		`mutation($id: BeeboleId!, $categoryId: BeeboleId!, $levels: [Int!]!) { ${onCategory ? 'editCustomFieldVisibilityProject' : 'addCustomFieldVisibilityProject'}(id: $id, categoryId: $categoryId, levels: $levels) { id } }`,
@@ -238,6 +239,70 @@ async function ensureCustomField() {
 	)
 	await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityTimeRecords(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
 	console.log(`~ custom field ${c.name}: pick list, ${c.projectCategory} projects, time records`)
+}
+
+// A Bookings planning for the Staffing page: people booked on client projects around the
+// weeks of 2026-09-28, at fixed dates so a replay at a scene's capturedAt shows the same bars.
+// Elena Rossi is overbooked the week of Oct 5, one booking is tentative, one has no owner, and
+// Fatima Al-Hassan has part-day bookings (hours in UTC, as the app stores them), one running past
+// her 17:00 end of day. Idempotent: a booking with the same person, project and dates is kept.
+const STAFFING = {
+	name: 'Staffing plan',
+	bookings: [
+		{ person: 'Marc Dubois', project: 'Website Redesign', from: '2026-09-28', to: '2026-10-16', ftePct: 1 },
+		{ person: 'Elena Rossi', project: 'Mobile App', from: '2026-09-21', to: '2026-10-09', ftePct: 0.6 },
+		{ person: 'Elena Rossi', project: 'Dashboard', from: '2026-10-05', to: '2026-10-23', ftePct: 0.6 },
+		{ person: 'James Chen', project: 'ERP Integration', from: '2026-09-14', to: '2026-10-30', ftePct: 0.8 },
+		{ person: 'Priya Sharma', project: 'Data Migration', from: '2026-10-01', to: '2026-10-20', ftePct: 1 },
+		{ person: 'Sarah Jensen', project: 'E-commerce Platform', from: '2026-09-28', to: '2026-10-02', ftePct: 0.5 },
+		{ person: 'Sarah Jensen', project: 'Fleet Tracker', from: '2026-10-12', to: '2026-10-23', ftePct: 1, tentative: true },
+		{ person: 'Ana Pereira', project: 'Brand Campaign', from: '2026-09-23', to: '2026-10-07', ftePct: 1 },
+		{ person: 'Yuki Tanaka', project: 'Web Portal', from: '2026-09-30', to: '2026-10-14', ftePct: 0.5 },
+		{ person: 'Fatima Al-Hassan', project: 'Website Redesign', at: ['2026-10-01T09:00', '2026-10-01T12:00'] },
+		{ person: 'Fatima Al-Hassan', project: 'Brand Campaign', at: ['2026-10-01T14:00', '2026-10-01T17:00'] },
+		{ person: 'Fatima Al-Hassan', project: 'Website Redesign', at: ['2026-10-02T15:00', '2026-10-02T18:00'] },
+		{ person: 'Sophie Laurent', project: 'Dashboard', from: '2026-10-05', to: '2026-10-30', ftePct: 1 },
+		{ person: 'Carlos Ruiz', project: 'Sales', from: '2026-10-01', to: '2026-10-16', ftePct: 1 },
+		{ person: 'Clara Fontaine', project: 'Sales', from: '2026-09-28', to: '2026-10-23', ftePct: 0.5 },
+		{ person: 'David Kim', project: 'Video Production', from: '2026-09-24', to: '2026-10-09', ftePct: 1 },
+		{ person: 'Emma Costa', project: 'Web Portal', from: '2026-09-28', to: '2026-10-16', ftePct: 0.3 },
+		{ person: null, project: 'Fleet Tracker', from: '2026-10-05', to: '2026-10-16', ftePct: 1 },
+	],
+}
+
+async function ensureStaffingPlan(state) {
+	const d = await gql(`{
+		getTaskCategories { id name }
+		getProjects { id name }
+		getTasks { startTime { ts } endTime { ts } category { id } relations { owner { value { id } } projects { value { id } } } }
+	}`)
+	let categoryId = d.getTaskCategories.find((c) => c.name === STAFFING.name)?.id
+	if (!categoryId) {
+		const r = await gql(`mutation($name: BeeboleName!, $mode: String) { addTaskCategory(name: $name, mode: $mode) { id } }`, { name: STAFFING.name, mode: 'bookings' })
+		categoryId = r.addTaskCategory.id
+		console.log(`+ planning ${STAFFING.name} (bookings)`)
+	}
+	const key = (personId, projectId, startTime, endTime) => [personId ?? '', projectId, startTime, endTime].join()
+	const existing = new Set(
+		d.getTasks
+			.filter((t) => t.category?.id === categoryId)
+			.map((t) => key(t.relations.owner?.value?.id, t.relations.projects?.[0]?.value?.id, t.startTime?.ts, t.endTime?.ts))
+	)
+	for (const b of STAFFING.bookings) {
+		const project = d.getProjects.find((p) => p.name === b.project)
+		if (!project) throw new Error(`Project not found: ${b.project}`)
+		// Whole days run from 00:00 to 23:59:59.999 UTC; part-day bookings carry their hours.
+		const [startTime, endTime] = b.at ? b.at.map((t) => Date.parse(`${t}:00Z`)) : [Date.parse(`${b.from}T00:00:00Z`), Date.parse(`${b.to}T23:59:59.999Z`)]
+		const person = b.person ? personId(state, b.person) : undefined
+		if (existing.has(key(person, project.id, startTime, endTime))) continue
+		await gql(
+			`mutation($categoryId: BeeboleId, $personId: BeeboleId, $projectIds: [BeeboleId!], $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $ftePct: Float, $tentative: Boolean) {
+				addBooking(categoryId: $categoryId, personId: $personId, projectIds: $projectIds, startTime: $startTime, endTime: $endTime, ftePct: $ftePct, tentative: $tentative) { id }
+			}`,
+			{ categoryId, personId: person, projectIds: [project.id], startTime, endTime, ftePct: b.ftePct, tentative: b.tentative }
+		)
+		console.log(`+ booking ${b.person ?? 'Unassigned'} → ${b.project}`)
+	}
 }
 
 export async function applyLayer() {
@@ -275,6 +340,7 @@ export async function applyLayer() {
 
 	await ensureAllowances()
 	await ensureCustomField()
+	await ensureStaffingPlan(state)
 
 	const contract = state.categories.find((c) => c.name === 'Contract')
 	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {
