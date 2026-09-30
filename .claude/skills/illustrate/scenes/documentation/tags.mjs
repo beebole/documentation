@@ -71,4 +71,19 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'tags-tagged-panel',
+		capturedAt: '2026-09-30',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/tags')
+			await h.expandRow(page, 'Engineering', 'Frontend')
+			await page.getByText('Frontend', { exact: true }).first().click()
+			await page.waitForURL(/\/tags\/[0-9a-f]{24}/)
+			await h.goto(page, `${page.url().match(/\/tags\/[0-9a-f]{24}/)[0]}/tagged`)
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'tags/who-or-what-tagged-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Who or what has been tagged?', 'Absence allowances') } }],
+	},
 ]
