@@ -96,6 +96,10 @@ This works with desktop GraphQL IDEs, GraphQL plugins for code editors, and comm
 
 Beebole serves a GraphiQL IDE — including the schema Explorer panel — directly at the API endpoint. Open `https://app.beebole.com/graphql` in a browser to load it. GraphiQL provides a query editor, a documentation explorer for browsing types and fields, and an Explorer panel for building queries by clicking through the schema.
 
+<Frame caption="GraphiQL at /graphql: the Docs panel, a query and its result, and the apikey header in the Headers editor">
+  ![GraphiQL IDE served by Beebole with the Docs panel listing the root types and schema types on the left, a query for currentOrganisation name and getProjects name in the editor, the Headers tab holding an apikey header with a placeholder value, and the JSON result on the right showing the organization and its projects](/help/images/api/graphiql-playground.webp)
+</Frame>
+
 <Info>
   GraphiQL sends requests to the same `POST /graphql` endpoint, so it follows the same authentication rules. Use GraphiQL's headers editor to add your `apikey` header before running introspection or queries.
 </Info>
