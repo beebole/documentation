@@ -7,19 +7,28 @@
 // Each one maps to the field it writes and the variable holding its value: the person's UI
 // settings (all through editPersonUiSettings in reboot), and a report's Table/Chart/Matrix
 // toggles and chart settings (editReportChart), which the app saves on every toggle.
+// Two screens also write on opening, and ignore the reply: the Journal marks notifications read
+// (markAllNotificationsRead), and an integration's panel saves the Employee role as its default
+// role when it has none (editIntegration<Name>DefaultRole). They get the same fake success.
 const SILENT = new Map([
 	['editPersonScreenSettings', { field: 'screenSettings', variable: 'settings' }],
 	['editPersonTaskSettings', { field: 'taskSettings', variable: 'settings' }],
 	['editPersonJournalSettings', { field: 'journalSettings', variable: 'settings' }],
 	['editReportChart', { field: 'chart', variable: 'chart' }],
+	['markAllNotificationsRead', { field: 'id', variable: 'id' }],
+	['editIntegrationQuickbooksDefaultRole', { field: 'defaultRole', variable: 'defaultRole' }],
 ])
 
 export function isSilent(name) {
 	return SILENT.has(name)
 }
 
-function nameOf(query) {
-	return query.match(/^\s*mutation\b[^{]*\{\s*([A-Za-z_]\w*)/)?.[1] ?? 'mutation'
+// The mutation's field name and the key its result comes back under: the alias when there is one
+// (`journalSettings: editPersonJournalSettings(...)`), the field name otherwise.
+function fieldOf(query) {
+	const m = query.match(/^\s*mutation\b[^{]*\{\s*([A-Za-z_]\w*)(?:\s*:\s*([A-Za-z_]\w*))?/)
+	if (!m) return { name: 'mutation', key: 'mutation' }
+	return m[2] ? { name: m[2], key: m[1] } : { name: m[1], key: m[1] }
 }
 
 // Returns { id, name } for a mutation, null for anything else. Accepts the WebSocket envelope
@@ -30,7 +39,7 @@ export function mutationIn(raw) {
 		const payload = typeof msg.data === 'string' ? JSON.parse(msg.data) : msg
 		const query = typeof payload.query === 'string' ? payload.query : ''
 		if (!/^\s*mutation\b/.test(query)) return null
-		return { id: msg.id ?? null, name: nameOf(query) }
+		return { id: msg.id ?? null, name: fieldOf(query).name }
 	} catch {
 		return null
 	}
@@ -40,10 +49,10 @@ export function mutationIn(raw) {
 export function silentReply(raw) {
 	const msg = JSON.parse(raw)
 	const payload = typeof msg.data === 'string' ? JSON.parse(msg.data) : msg
-	const name = mutationIn(raw).name
+	const { name, key } = fieldOf(payload.query)
 	const v = payload.variables ?? {}
 	const { field, variable } = SILENT.get(name)
-	const data = { [name]: { id: v.id ?? null, name: '', [field]: v[variable] ?? (variable === 'settings' ? '{}' : null) } }
+	const data = { [key]: { id: v.id ?? null, name: '', [field]: v[variable] ?? (variable === 'settings' ? '{}' : null) } }
 	return JSON.stringify({ type: '__response', id: msg.id ?? null, data: JSON.stringify({ data }) })
 }
 
