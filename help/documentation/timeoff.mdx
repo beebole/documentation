@@ -47,6 +47,10 @@ Each absence type can be configured with:
   </Step>
 </Steps>
 
+<Frame caption="The Time Off list with the PTO absence type open on its Units panel">
+  ![Beebole Settings Time Off list with the Add Time Off Type button and the PTO and Sickness absence types, and the PTO panel open on the right showing Units set to Day, Is paid (included in people costs) checked, and the Accruals, Custom fields, Time off notifications and Who has access? panels](/help/images/timeoff/absence-types-list.webp)
+</Frame>
+
 <Tip>
   Create separate absence types for each leave category your company offers. This gives you granular reporting and lets you set different allowance rules per type.
 </Tip>
@@ -100,15 +104,19 @@ The carried balance counts everywhere the allowance does: booking limits respect
 
 ## Tracking balances
 
-Beebole tracks time-off balances based on allowances, accruals, and recorded absences. **Available**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit — days or hours — in the input and in the card's summary line:
+Beebole tracks time-off balances based on allowances, accruals, and recorded absences. **Allowance**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit — days or hours — in the input and in the card's summary line:
 
 | Balance field | What it shows |
 | --- | --- |
-| **Available** | The amount of time off granted for the allowance period |
+| **Allowance** | The amount of time off granted for the allowance period |
 | **Consumed** | The time off already recorded over the period (shown when you open an allowance on a person) |
 | **Accrued** | A manual adjustment field for accrued time |
 
 The **Carry forward limit** states its unit the same way. Balances update as team members log time off on their timesheets and when you adjust the **Accrued** field on the allowance.
+
+<Frame caption="A person's PTO allowance, inherited from the organization, opened to show the days consumed">
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: summary line Allowance 20d, Accrued 0d, Consumed 12d, then Start - end 2026, Time off PTO, Allowance 20 d, Consumed 12d, Accrued, Valid until Mar 31, 2027, Carry forward limit 5 d, Allow negative balance and Repeat automatically, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
+</Frame>
 
 ---
 
