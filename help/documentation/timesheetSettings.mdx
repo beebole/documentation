@@ -102,6 +102,7 @@ The **Restrictions** list controls what time entries the timesheet accepts. New 
 | --- | --- |
 | **No overtime beyond the schedule** | Blocks time beyond the hours in the person's [work schedule](/help/documentation/work-schedule). Available in a **daily** variant (per day) and a **period** variant (per timesheet period). |
 | **Require filling the whole schedule to submit** | The timesheet can only be submitted once all scheduled time is filled — per day (**daily**) or across the period (**period**). |
+| **Require comments for submission** | The timesheet can only be submitted once its time entries carry a note. |
 | **Only time off can be recorded in the future** | Blocks time entries on future dates. Future entries are limited to time off requests, so people can still plan vacation ahead. |
 | **Only allow time entries on scheduled working time** | Blocks entries on scheduled days off and public holidays — time off entries are exempt. |
 | **Keep start/end times within the scheduled hours** | When start and end times are recorded, an entry's times must fall within the person's scheduled working hours. Available as a **warning** (the entry form warns but allows saving) or a **block** (the entry is refused, including when copying entries to other days). |
@@ -129,6 +130,10 @@ Two more rules apply to every time entry without appearing in the **Restrictions
 
 The **Time entry** tab defines what people type into a timesheet cell.
 
+<Frame caption="The Time entry tab, with hours in decimal format, the timer, and start and end times switched on">
+  <img src="/help/images/timesheets/settings-time-entry-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Time entry tab, showing Unit for time entry set to Hours, Duration format 3.25, Minimum time interval accepted 0.25, and Enable timer and Record start and end times checked, each with an unchecked Mandatory box" width="794" />
+</Frame>
+
 ### Unit for time entry
 
 **Unit for time entry** sets the unit for every timesheet cell:
@@ -146,11 +151,10 @@ When the unit is **Hours**, two more options appear:
 - **Duration format** — how hour values are displayed and typed: **3:15** (hours and minutes), **3.25** (decimal hours), or **3h15** (compact hours-and-minutes notation).
 - **Minimum time interval accepted** — the smallest increment the timesheet accepts. Durations are rounded up to the nearest multiple of this interval; new accounts start at 15 minutes.
 
-### Timer, start and end times, and comments
+### Timer and start and end times
 
 - **Enable timer** adds a timer button to each timesheet row so people can time their work as it happens — see [Using the timer](/help/documentation/timesheets#using-the-timer). Check **Mandatory** next to it to require the timer: durations can then only be recorded by running it.
 - **Record start and end times** adds **Start time** and **End time** fields to each entry's details, and Beebole calculates the duration. Check **Mandatory** next to it to require start and end times on every entry.
-- **Require comments for submission** requires a note on time entries before the timesheet can be submitted.
 
 Checking **Mandatory** switches its parent option on automatically, and disabling a parent option clears its **Mandatory** checkbox.
 
@@ -159,6 +163,10 @@ Checking **Mandatory** switches its parent option on automatically, and disablin
 ## Categories
 
 The **Categories** tab decides what people can track time on. Each choice becomes a section of rows in everyone's timesheet.
+
+<Frame caption="The Categories tab: a Client then Activity section, an Internal section, and time off allowed">
+  <img src="/help/images/timesheets/settings-categories-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Categories tab, showing Record time on these project categories with a first row of Client then Activity, a second row with Internal, the Add a row link, an empty Pick a planning field, and Allow recording time off checked" width="864" />
+</Frame>
 
 ### Project categories
 
