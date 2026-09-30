@@ -351,7 +351,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/jira-connect.webp | Settings > Integrations > Jira showing the Connect to Jira button (and the Jira Cloud URL prompt in the popup) | high — done before connection: the list, the intro note and Connect to Jira (scene `jira-connect`, 2026-09-30). The Jira Cloud URL prompt is on Atlassian's side: guided |
+| integrations/jira-connect.webp | Settings > Integrations > Jira showing the Connect to Jira button (and the Jira Cloud URL prompt in the popup) | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot the Jira config panel once connected |
 | integrations/jira-params.webp | The Jira config panel: Where to import your tasks and Default role for imported employees | medium |
 | integrations/jira-validate.webp | The Projects page with the new Jira category expanded, showing imported projects and issues | medium |
 
@@ -359,21 +359,21 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/linear-connect.webp | Settings > Integrations > Linear showing the Connect to Linear button | high — done before connection: the list, the intro note and Connect to Linear (scene `linear-connect`, 2026-09-30) |
+| integrations/linear-connect.webp | Settings > Integrations > Linear showing the Connect to Linear button | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot the Linear config panel once connected |
 | integrations/linear-params.webp | The Linear config panel: import-destination choice and Default role for imported employees | medium |
 
 ## help/integrations/monday.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/monday-connect.webp | Settings > Integrations > Monday.com showing the Connect to Monday.com button | high — done before connection: the list, the intro note and Connect to monday.com (scene `monday-connect`, 2026-09-30) |
+| integrations/monday-connect.webp | Settings > Integrations > Monday.com showing the Connect to Monday.com button | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot the monday.com config panel once connected |
 | integrations/monday-params.webp | The Monday.com config panel: workspace selector, Where to import your boards, and Default role | medium |
 
 ## help/integrations/quickbooks.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/quickbooks-connect.webp | Settings > Integrations > QuickBooks Online showing Connect to QB Online and the Default role / Enable integration controls | high — done before connection: the list, the intro note and Connect to QuickBooks (scene `quickbooks-connect`, 2026-09-30). Default role and Enable integration only appear once a QuickBooks account is connected: guided |
+| integrations/quickbooks-connect.webp | Settings > Integrations > QuickBooks Online showing Connect to QB Online and the Default role / Enable integration controls | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot Default role and Enable integration once connected |
 | integrations/quickbooks-export.webp | The Select period to export control with the Export button | high — guided: only shown once a QuickBooks Online account is connected, which QA does not have |
 | integrations/quickbooks-export-result.webp | The result panel: Entries successfully exported count and the expandable Entries not exported list | medium |
 
@@ -381,7 +381,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high — done before connection: the list, the intro note and Connect to Xero (scene `xero-connect`, 2026-09-30). Select your Xero organization and Enable integration need a connected Xero account: guided |
+| integrations/xero-connect.webp | Settings > Integrations > Xero showing Connect to Xero, the Select your Xero organization step, and Enable integration | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot Select your Xero organization and Enable integration once connected |
 | integrations/xero-export-invoice.webp | The invoice-export panel: Select client, Select period to export, and Create invoice | high |
 | integrations/xero-sync-result.webp | A Manual sync result showing the Created / Archived / Unarchived / Deleted / Renamed counts | low |
 
@@ -389,7 +389,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/bamboohr-connect.webp | Settings > Integrations > BambooHR showing the Company subdomain field and Connect to BambooHR button | high — done before connection: Company subdomain and Connect to BambooHR (scene `bamboohr-connect`, 2026-09-30). The app's intro note says approved absences are exported back to BambooHR, while the code imports them from BambooHR: app copy to fix |
+| integrations/bamboohr-connect.webp | Settings > Integrations > BambooHR showing the Company subdomain field and Connect to BambooHR button | high — guided: needs a connected account on QA. The pre-connection screen was captured and removed on 2026-09-30 (Yves): it is the same empty screen for every integration. Shoot the confirmed BambooHR domain, Default role and Enable integration once connected |
 | integrations/bamboohr-params.webp | The config panel after connecting: confirmed BambooHR domain, Default role, and Enable integration toggle | medium |
 
 ## help/integrations/google.mdx
