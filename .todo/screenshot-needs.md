@@ -67,7 +67,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | projects/project-tree-categories.webp | Projects page showing the category selector next to "Projects:" and the nested project/subproject tree | high — done as `projects/projects-tree.webp` (scene `projects-tree`, 2026-09-29) |
 | projects/add-multiple-entries.webp | The "Or add multiple entries" paste preview before clicking Add them all | medium |
 | projects/project-settings-panels.webp | A project detail panel showing the list of settings panels (Manager, Tags, Billing, Budgets, Who has access?, etc.) | medium |
-| projects/who-has-access-panel.webp | The "Who has access?" panel with the Available/Unavailable toggle and Individually / By tags fields | medium |
+| projects/who-has-access-panel.webp | The "Who has access?" panel with the Available/Unavailable toggle and Individually / By tags fields | medium — done with `assignments/who-has-access-panel.webp` (scene `assignments-who-has-access`, 2026-09-30) |
 
 ## help/documentation/people.mdx
 
@@ -134,16 +134,16 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| gantt/timeline-bars.webp | The Gantt chart with task bars on the timeline, today line, and the configurable column table on the left | high |
-| gantt/dependencies-arrows.webp | Tasks linked with dependency arrows between bars | medium |
-| gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high |
+| gantt/timeline-bars.webp | The Gantt chart with task bars on the timeline, today line, and the configurable column table on the left | high — done (scene `gantt-timeline`, 2026-09-30); shows the Row # and Task Name columns only |
+| gantt/dependencies-arrows.webp | Tasks linked with dependency arrows between bars | medium — done within `gantt/timeline-bars.webp` (scene `gantt-timeline`, 2026-09-30) |
+| gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high — blocked 2026-09-30: grouped by Owner, the header rows draw no load bars because the owners' tasks have no planned time on QA (same gap as reports/planned-vs-real.webp). Needs planned effort in the seed layer |
 | gantt/scale-columns-menu.webp | The view tab ⋯ menu showing Scale / Columns / Group by options | low |
 
 ## help/documentation/kanban.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high |
+| kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high — done with `planning/kanban-view.webp` (scene `planning-kanban-view`, shared with Planning, 2026-09-30) |
 | kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium |
 | kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium |
 | kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low |
@@ -199,7 +199,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | expenses/expense-type-details.webp | An expense type's Details panel with Currency, Billing markup %, and Impacts budget | medium |
-| expenses/expenses-panel.webp | The Expenses panel on a project/person with a record (date, category, amount, note) | high |
+| expenses/expenses-panel.webp | The Expenses panel on a project/person with a record (date, category, amount, note) | high — done on Ana Pereira with the Hotel record expanded (scene `expenses-panel`, 2026-09-30); the Show past link is hidden in the scene because its label is missing in the app (raw key `expenseRecord.showPastQuotas`) |
 | expenses/expense-report.webp | A report with Expenses as the source showing Amount/Quantity/Expense billing columns | low |
 
 ## help/documentation/reports.mdx
@@ -230,7 +230,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| excel-addin/task-pane-links.webp | The Beebole Excel task pane showing the "Beebole reports linked" table and Refresh buttons | high |
+| excel-addin/task-pane-links.webp | The Beebole Excel task pane showing the "Beebole reports linked" table and Refresh buttons | high — guided: runs inside Excel, outside the runner's browser |
 | excel-addin/add-report-link.webp | The Add Report Link form with Report and Worksheet fields | medium |
 | excel-addin/api-key-connect.webp | The task pane API Key field with Connect, plus the API Key page in Beebole showing Copy/Reset | medium |
 
@@ -238,7 +238,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| gsheets-addon/sidebar-links.webp | The Beebole Reports sidebar in Google Sheets with the linked-reports table and Refresh buttons | high |
+| gsheets-addon/sidebar-links.webp | The Beebole Reports sidebar in Google Sheets with the linked-reports table and Refresh buttons | high — guided: runs inside Google Sheets, outside the runner's browser |
 | gsheets-addon/add-report-link.webp | The Add Report Link form with Report and Sheet fields | medium |
 
 ## help/documentation/work-schedule.mdx
@@ -269,8 +269,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| assignments/show-hide-by-default.webp | The Show or hide by default panel with the six toggles | high |
-| assignments/who-has-access-panel.webp | A project's Who has access? panel with the Available/Unavailable toggle and Individually / By tags | high |
+| assignments/show-hide-by-default.webp | The Show or hide by default panel with the six toggles | high — done (scene `assignments-show-hide-by-default`, 2026-09-30) |
+| assignments/who-has-access-panel.webp | A project's Who has access? panel with the Available/Unavailable toggle and Individually / By tags | high — done on Acme Corp, available to everyone, so the sections read Excluded individually / Excluded by tags (scene `assignments-who-has-access`, 2026-09-30); also linked from Projects |
 | assignments/show-hide-person.webp | A person's Show or Hide panel showing the Show/Hide sections for projects, time off, etc. | medium |
 
 ## help/documentation/journal.mdx
@@ -284,8 +284,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| notifications/preferences-panel.webp | The Notifications panel with Email/Push channels and per-event frequency selectors (Instant/Daily/Weekly/None) | high |
-| notifications/budget-threshold-alert.webp | The Budget threshold alert row with the percentage and "When over budget" | medium |
+| notifications/preferences-panel.webp | The Notifications panel with Email/Push channels and per-event frequency selectors (Instant/Daily/Weekly/None) | high — done (scene `notifications-preferences`, 2026-09-30); the push channel and the budget alerts row are hidden in the scene, as on production hosts |
+| notifications/budget-threshold-alert.webp | The Budget threshold alert row with the percentage and "When over budget" | medium — dropped 2026-09-30: budget threshold alerts are not shown on production hosts |
 | notifications/email-templates.webp | The Email templates panel with the per-type tabs and the editor | medium |
 
 ## help/documentation/account-settings.mdx
@@ -309,7 +309,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| subscription/plans-seats.webp | The Subscription page showing the Free/Essential/Advanced plans, seat stepper, and billing interval | high |
+| subscription/plans-seats.webp | The Subscription page showing the Free/Essential/Advanced plans, seat stepper, and billing interval | high — done (scene `subscription-plans-seats`, 2026-09-30) |
 | subscription/addons.webp | The add-ons section (Costs/Expenses/Budgets and Custom fields/roles) on the Essential plan | medium |
 
 ## help/documentation/audit-trail.mdx
@@ -351,7 +351,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/jira-connect.webp | Settings > Integrations > Jira showing the Connect to Jira button (and the Jira Cloud URL prompt in the popup) | high |
+| integrations/jira-connect.webp | Settings > Integrations > Jira showing the Connect to Jira button (and the Jira Cloud URL prompt in the popup) | high — done before connection: the list, the intro note and Connect to Jira (scene `jira-connect`, 2026-09-30). The Jira Cloud URL prompt is on Atlassian's side: guided |
 | integrations/jira-params.webp | The Jira config panel: Where to import your tasks and Default role for imported employees | medium |
 | integrations/jira-validate.webp | The Projects page with the new Jira category expanded, showing imported projects and issues | medium |
 
@@ -488,9 +488,9 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| ai/assistant-page.webp | The full Assistant page: privacy line, Ask for a report, feature cards, connections | high |
-| ai/suggested-entries-tray.webp | Suggested entries tray above the timesheet with Accept / Accept all / Dismiss and Desktop/Kanban source badges | high |
-| ai/approval-review-digest.webp | Reviewing a submitted timesheet with digest flags (non-working day, overtime, unusual total) | high |
+| ai/assistant-page.webp | The full Assistant page: privacy line, Ask for a report, feature cards, connections | high — done (scene `ai-assistant-page`, 2026-09-30) |
+| ai/suggested-entries-tray.webp | Suggested entries tray above the timesheet with Accept / Accept all / Dismiss and Desktop/Kanban source badges | high — done in grid view (the calendar view shows ghosts, not the pane) with two Habit suggestions and Why? open on today's (scene `ai-suggested-entries`, 2026-09-30). Desktop and Kanban badges need those sources on QA |
+| ai/approval-review-digest.webp | Reviewing a submitted timesheet with digest flags (non-working day, overtime, unusual total) | high — done on Lucas Bernard's week of Sep 6 in the Pending pane, two Time on a non-working day flags (scene `ai-approval-review-digest`, 2026-09-30). Only that flag occurs in QA's pending weeks |
 | ai/nl-report-builder.webp | Ask for a report input with a typed request | medium |
 
 ## help/integrations/ai-assistants.mdx
@@ -544,7 +544,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No mis
 | Screenshot | Description | Priority |
 |---|---|---|
 | reports/report-folder-share.webp | A folder's **Share** panel expanded, with the **People** and **Tags** pickers visible (element capture) | high — done with the People picker open, nothing selected (scene `reports-folder-share`, 2026-09-30) |
-| ai/suggestion-tray-badges.webp | The **Suggested entries** tray with cards carrying mixed source badges (**Habit**, **Desktop**, **Planned**) and one **Why?** panel open | high |
+| ai/suggestion-tray-badges.webp | The **Suggested entries** tray with cards carrying mixed source badges (**Habit**, **Desktop**, **Planned**) and one **Why?** panel open | high — partly done within `ai/suggested-entries-tray.webp` (Habit badges, Why? open, 2026-09-30); mixed Habit/Desktop/Planned badges need Desktop and Planned suggestions on QA, which it has none of |
 | budgets/budget-card-time-days.webp | A budget card showing the **Time** field with the **Days** unit picker, a **From** date, and a **Notes** line (element capture) | medium |
 | timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low |
 
