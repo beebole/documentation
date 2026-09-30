@@ -65,8 +65,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | projects/project-tree-categories.webp | Projects page showing the category selector next to "Projects:" and the nested project/subproject tree | high — done as `projects/projects-tree.webp` (scene `projects-tree`, 2026-09-29) |
-| projects/add-multiple-entries.webp | The "Or add multiple entries" paste preview before clicking Add them all | medium |
-| projects/project-settings-panels.webp | A project detail panel showing the list of settings panels (Manager, Tags, Billing, Budgets, Who has access?, etc.) | medium |
+| projects/add-multiple-entries.webp | The "Or add multiple entries" paste preview before clicking Add them all | medium — done: two clients and four projects in the Import preview, the clipboard answered by the scene (scene `projects-add-multiple-entries`, 2026-09-30). The button is Import entries, not Add them all: corrected on every page |
+| projects/project-settings-panels.webp | A project detail panel showing the list of settings panels (Manager, Tags, Billing, Budgets, Who has access?, etc.) | medium — done on Acme Corp, panels closed (scene `projects-settings-panels`, 2026-09-30) |
 | projects/who-has-access-panel.webp | The "Who has access?" panel with the Available/Unavailable toggle and Individually / By tags fields | medium — done with `assignments/who-has-access-panel.webp` (scene `assignments-who-has-access`, 2026-09-30) |
 
 ## help/documentation/people.mdx
@@ -107,8 +107,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | timesheets/settings-period-tab.webp | Timesheet settings panel, Period & submission tab, showing period options, auto-submit and Restrictions chips | high — done (scene `timesheet-settings-period`, 2026-09-29) |
-| timesheets/settings-time-entry-tab.webp | The Time entry tab showing Unit, Duration format, timer and start/end time options | medium |
-| timesheets/settings-categories-tab.webp | The Categories tab showing chained project categories as timesheet sections | medium |
+| timesheets/settings-time-entry-tab.webp | The Time entry tab showing Unit, Duration format, timer and start/end time options | medium — done (scene `timesheet-settings-time-entry`, 2026-09-30). Require comments for submission moved to the Restrictions table: the app shows it there |
+| timesheets/settings-categories-tab.webp | The Categories tab showing chained project categories as timesheet sections | medium — done (scene `timesheet-settings-categories`, 2026-09-30) |
 | timesheets/settings-inheritance-icon.webp | A setting showing the inherited-value icon (account vs tag vs person override) | low |
 
 ## help/documentation/approval.mdx
@@ -161,7 +161,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| accruals/accruals-panel.webp | An absence type's Accruals panel with the enable toggle, Frequency, Awarded on, and Quantity | high |
+| accruals/accruals-panel.webp | An absence type's Accruals panel with the enable toggle, Frequency, Awarded on, and Quantity | high — on hold: the Accruals page is tagged Soon, the feature is not live yet |
 | accruals/carry-forward-limit.webp | An allowance card showing the Carry forward limit field | medium |
 
 ## help/documentation/public-holidays.mdx
@@ -262,7 +262,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | roles/permission-grid.webp | The Person Roles permission grid showing permissions with Edit/View target selectors | high — done (scene `roles-permission-grid`, panel widened by its resize handle, 2026-09-29) |
-| roles/target-selector.webp | A permission's target selector open (Me, My team, My projects, etc.) | medium |
+| roles/target-selector.webp | A permission's target selector open (Me, My team, My projects, etc.) | medium — done on People details, Edit (scene `roles-target-selector`, 2026-09-30) |
 | roles/admin-full-access.webp | The "Admin role (full access)" checkbox at the top of the grid | low |
 
 ## help/documentation/assignments.mdx
@@ -293,7 +293,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | account-settings/settings-panels.webp | The Account Settings page header (name, logo, accent color) above the list of settings panels | high — done (scene `account-settings-page`, QA badge hidden, 2026-09-29) |
-| account-settings/localization-panel.webp | The Localization panel with time zone, currency, formats, and first day of the week | medium |
+| account-settings/localization-panel.webp | The Localization panel with time zone, currency, formats, and first day of the week | medium — done (scene `account-settings-localization`, 2026-09-30). The account panel has no Language field: the page now says language is a personal choice |
 | account-settings/delete-account.webp | The Delete Account screen with the confirm/cancel deletion flow | low |
 
 ## help/documentation/authentication.mdx
@@ -332,7 +332,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high — done at 390×844 (scene `mobile-timesheet`, 2026-09-29); replay 2026-09-30 reports it changed (15 %): QA now shows two suggestion cards on Tuesday and Wednesday. Recapture on the next release |
-| mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium |
+| mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium — guided: the install prompt is the phone browser's own UI, outside the app page the runner captures |
 | mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium — done (scene `mobile-timer`, fixture: a running entry around the capture, 2026-09-30) |
 | mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low |
 | mobile/dark-mode.webp | Beebole in dark mode on mobile | low |
@@ -527,9 +527,9 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 |---|---|---|
 | timesheets/calendar-view.webp | Timesheet calendar view with entries placed by hour and a ghost suggestion | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
 | timesheets/clear-rows-button.webp | Section header hover revealing the Clear rows button | low |
-| timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium |
+| timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium — done within `timesheets/settings-period-tab.webp`, which shows the Lock date field (2026-09-30) |
 | people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low |
-| roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium |
+| roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium — done with Assign in the Search field (scene `roles-assignment-permissions`, 2026-09-30) |
 | reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high — skipped 2026-09-30: QA shows a People / Client / Internal / Activity scope picker that production does not have, and Planned reads 0 h for Acme Corp although its tasks have planned effort. Shoot once QA matches production |
 | reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high — done (scene `reports-absence-quotas`, allowances added to the seed layer, 2026-09-30) |
 | reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low |
@@ -562,7 +562,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 | staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high — done: Fatima Al-Hassan's part-day bookings, view locked to a week (scene `staffing-timed-bars`, 2026-09-30) |
 | timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high — done (scene `timesheets-calendar-timer`, fixture: a running entry around the capture, 2026-09-30) |
 | ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high — blocked 2026-09-30: needs Only time off can be recorded in the future switched on for the documentation account (off today, and other shots show its settings) and planned work owned by Jordan Reed, the signed-in person |
-| timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium |
+| timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium — done in the current week, the first play button under the mouse (scene `timesheets-favorites-play`, 2026-09-30). The Start timer tooltip does not show in captures |
 | ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium |
 | gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium — done on the Gantt tab of Main plan (scene `gantt-view-period-menu`, 2026-09-30) |
 | timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium — done within `timeoff/absence-allowances-panel.webp` (scene `timeoff-allowances-panel`, 2026-09-30) |
@@ -601,6 +601,6 @@ No placeholder references or `[SCREENSHOT]` markers were added by this release; 
 | planning/planning-mode-picker.webp | The planning's settings dialog (gear next to **Main plan** → **Main plan settings**) with the **What this planning holds** switch showing **Tasks** and **Bookings** and their hints, the switching note beneath, and the **Task statuses** list below (element capture, ~1024 wide) | high — done as `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
 | staffing/booking-add-form.webp | The **Add Booking** form of a Bookings planning open in the side panel: **Select the owner**, the project picker, start date, duration in days, and the allocation unit switch (**%**, **h/day**, **Total**) (element capture) | high — done (scene `staffing-booking-add-form`, 2026-09-30) |
 | projects/project-tasks-bookings.webp | The **Tasks and bookings** attribute on **Acme Corp**'s panel: two planning sections, each with its **Add to …** button and a couple of task/booking badges, one hovered to show **Unassign** (element capture) | high — done on **Website Redesign** (Acme Corp itself has no tasks; one Tasks planning, no hover) (scene `projects-tasks-bookings`, 2026-09-29) |
-| projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium |
-| reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium |
+| projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium — done (scene `projects-category-level-names`, 2026-09-30) |
+| reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium — done at 1760 wide (the column layout overflows 1440), Acme Corp expanded (scene `reports-budget-status-table`, 2026-09-30) |
 | integrations/excel-addin-data-server.webp | The Excel add-in settings screen showing **Data Server** with the detected region (**Europe** with its flag) under **Update API** (element capture; the Google Sheets sidebar shows the same section and can share the shot) | low |
