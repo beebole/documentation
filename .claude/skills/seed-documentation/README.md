@@ -7,7 +7,7 @@
 ## What builds it
 
 1. `seed.mjs full`: people, clients and projects, tasks, tags, rates, schedules, a year of time, absences, expenses, budgets. Adapted from reboot's `seed-demo.mjs` on 2026-09-29: key from the environment, organisation guard, approval guard, account-management time logged on each client's main engagement, the organisation schedule assigned through the renamed timeline mutations (`resetOrganisationScheduleTimelineRelations`, `assignScheduleTimelineToOrganisation`), absences kept off public holidays, and the wipe deleting only rates defined on each project. A `full` run ends with zero GraphQL errors; keep it that way.
-2. `layer.mjs`: organisation name, Department teams, Location offices, memberships, colours (rules from `claude-plugins/plugins/growth/skills/generate-dummy-data/references/entity-colors.md`), and the current year's time-off allowances (PTO 20 days with a 5-day carry forward limit and Sickness 10 days with negative balance allowed for everyone, PTO 25 days for the London office).
+2. `layer.mjs`: organisation name, Department teams, Location offices, memberships, colours (rules from `claude-plugins/plugins/growth/skills/generate-dummy-data/references/entity-colors.md`), and the current year's time-off allowances (PTO 20 days with a 5-day carry forward limit and Sickness 10 days with negative balance allowed for everyone, PTO 25 days for the London office), and a Cost center custom field (a text pick list on Client projects and time records, so it shows in every time entry's details).
 
 ## App state the scenes rely on
 
@@ -41,5 +41,5 @@ Once approvals exist, `full` refuses. A reset then means:
 ## History
 
 - 2026-09-29: created ("Illustrate 2026-09-29"), seeded with seed-demo, layer applied, renamed AnyCompany; rebuilt with `seed.mjs full` after the fixes; approvals run (see above). `full` refuses from now on.
-- 2026-09-30: account restored after manual use (see above); allowances added by the layer.
+- 2026-09-30: account restored after manual use (see above); allowances added by the layer; Cost center custom field added by the layer (the Timesheets entry-details shot was recaptured with it).
 - The seed retries network failures (QA sometimes drops connections for a few seconds).
