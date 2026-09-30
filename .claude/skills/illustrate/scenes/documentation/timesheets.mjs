@@ -62,7 +62,7 @@ export const cornerButton = (page, h, tooltip) => h.byTooltip(page, page.locator
 // entry that was paused is an ordinary record of the day with its duration (this account records
 // durations, not start and end times).
 // The fixture removes any leftover running record first, and returns the ids and the day start.
-function timerFixture(entries) {
+export function timerFixture(entries) {
 	return {
 		async up(api, { date }) {
 			const dayStart = Date.parse(`${date}T00:00:00Z`)
