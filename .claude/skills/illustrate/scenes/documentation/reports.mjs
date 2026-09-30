@@ -86,4 +86,34 @@ export const scenes = [
 		},
 		shots: [{ file: 'reports/absence-quota-report.webp', frame: { type: 'full' } }],
 	},
+	{
+		id: 'reports-view-toggles',
+		capturedAt: '2026-09-30',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Month', 'Hours by Person')
+			await page.getByText('Hours by Person', { exact: true }).first().click()
+			await setViews(page, h, 'Hours by Person', { Table: true, Chart: true, Matrix: false })
+			await h.settle(page, 2000)
+		},
+		// The report's header line: its close button and name, then the three toggles (one group, the
+		// Table button's parent) and the ⋯ menu.
+		shots: [
+			{
+				file: 'reports/table-chart-matrix-toggle.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const group = await page.getByRole('button', { name: 'Table', exact: true }).first().locator('xpath=..').boundingBox()
+						const name = await page.getByText('Hours by Person', { exact: true }).filter({ visible: true }).last().boundingBox()
+						const x = name.x - 80
+						const y = group.y - 20
+						return { x, y, width: group.x + group.width + 64 - x, height: group.height + 40 }
+					},
+				},
+			},
+		],
+	},
 ]
