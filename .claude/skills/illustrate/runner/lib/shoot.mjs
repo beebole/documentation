@@ -68,7 +68,7 @@ export async function shootScene(browser, { scene }, { date, outDir, capturing =
 		step = 'clock'
 		await page.clock.setFixedTime(new Date(`${date}T16:00:00Z`))
 		step = 'setup'
-		await scene.setup(page, h)
+		await scene.setup(page, h, fixtureState)
 		step = 'frame'
 		await h.hideChrome(page)
 		// A scene may say where the mouse rests (to keep a hover-only control visible).

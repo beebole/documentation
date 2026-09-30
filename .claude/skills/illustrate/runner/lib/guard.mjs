@@ -4,11 +4,14 @@
 // view, journal filters) happen on every navigation: they get a fake success echoing the
 // settings, so the page behaves as if saved (an error would make it revert the panel it just
 // opened); any other mutation gets an error and marks the scene broken.
-// Each one maps to the person field it writes (all go through editPersonUiSettings in reboot).
+// Each one maps to the field it writes and the variable holding its value: the person's UI
+// settings (all through editPersonUiSettings in reboot), and a report's Table/Chart/Matrix
+// toggles and chart settings (editReportChart), which the app saves on every toggle.
 const SILENT = new Map([
-	['editPersonScreenSettings', 'screenSettings'],
-	['editPersonTaskSettings', 'taskSettings'],
-	['editPersonJournalSettings', 'journalSettings'],
+	['editPersonScreenSettings', { field: 'screenSettings', variable: 'settings' }],
+	['editPersonTaskSettings', { field: 'taskSettings', variable: 'settings' }],
+	['editPersonJournalSettings', { field: 'journalSettings', variable: 'settings' }],
+	['editReportChart', { field: 'chart', variable: 'chart' }],
 ])
 
 export function isSilent(name) {
@@ -33,13 +36,14 @@ export function mutationIn(raw) {
 	}
 }
 
-// A success response for a screen-settings save, echoing what the page sent.
+// A success response for a view-preference save, echoing what the page sent.
 export function silentReply(raw) {
 	const msg = JSON.parse(raw)
 	const payload = typeof msg.data === 'string' ? JSON.parse(msg.data) : msg
 	const name = mutationIn(raw).name
 	const v = payload.variables ?? {}
-	const data = { [name]: { id: v.id ?? null, name: '', [SILENT.get(name)]: v.settings ?? '{}' } }
+	const { field, variable } = SILENT.get(name)
+	const data = { [name]: { id: v.id ?? null, name: '', [field]: v[variable] ?? (variable === 'settings' ? '{}' : null) } }
 	return JSON.stringify({ type: '__response', id: msg.id ?? null, data: JSON.stringify({ data }) })
 }
 

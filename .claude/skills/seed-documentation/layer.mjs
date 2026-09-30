@@ -68,6 +68,16 @@ const LOCATION = {
 
 const CONTRACT_COLORS = { Internal: 51, Contractor: 56 } // gray, stone: recede
 
+// Time-off allowances for the current year (Time off page, Absence quotas report): an
+// organisation default per absence type, and a larger PTO allowance for the London office,
+// so the report and the panels show an inherited value next to an override. Units are the
+// absence type's own (both types count in days). Added once per year, never edited.
+const ALLOWANCES = [
+	{ on: 'organisation', type: 'PTO', available: 20, carryForwardLimit: 5 },
+	{ on: 'organisation', type: 'Sickness', available: 10, allowNegativeBalance: true },
+	{ on: { tag: 'London' }, type: 'PTO', available: 25, carryForwardLimit: 5 },
+]
+
 // Obviously fictional placeholder, shown wherever the app displays the organisation. Not
 // "Acme": the docs already use Acme Corp as the example client (see .claude/context/feedback.md).
 const ORGANISATION_NAME = 'AnyCompany'
@@ -156,6 +166,34 @@ async function removeMembers(state, tag, names, label) {
 	}
 }
 
+// Same period as an allowance added in the app: the whole year, 00:00 to 23:59:59.999 UTC.
+async function ensureAllowances() {
+	const year = new Date().getUTCFullYear()
+	const startTime = Date.UTC(year, 0, 1)
+	const endTime = Date.UTC(year + 1, 0, 1) - 1
+	const quotaFields = 'absenceQuotas { value { id absenceType { id } startTime { ts } } }'
+	const d = await gql(`{ getAbsenceTypes { id name } currentOrganisation { ${quotaFields} } getTags { id name ${quotaFields} } }`)
+	for (const a of ALLOWANCES) {
+		const type = d.getAbsenceTypes.find((t) => t.name === a.type)
+		if (!type) throw new Error(`Absence type not found: ${a.type}`)
+		const tag = a.on.tag ? d.getTags.find((t) => t.name === a.on.tag) : null
+		if (a.on.tag && !tag) throw new Error(`Tag not found: ${a.on.tag}`)
+		// A tag's value may list the organisation's allowances it inherits: count only its own.
+		const orgQuotas = d.currentOrganisation.absenceQuotas?.value ?? []
+		const existing = tag ? (tag.absenceQuotas?.value ?? []).filter((q) => !orgQuotas.some((o) => o.id === q.id)) : orgQuotas
+		if (existing.some((q) => q.absenceType?.id === type.id && q.startTime?.ts === startTime)) continue
+		const { on, type: _, ...fields } = a
+		const target = tag ? { mutation: 'addTagAbsenceQuota', arg: 'tagId: $tagId, ', decl: '$tagId: BeeboleId!, ', vars: { tagId: tag.id } } : { mutation: 'addOrganisationAbsenceQuota', arg: '', decl: '', vars: {} }
+		await gql(
+			`mutation(${target.decl}$absenceId: BeeboleId!, $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $available: Int, $carryForwardLimit: Int, $allowNegativeBalance: Boolean) {
+				${target.mutation}(${target.arg}absenceId: $absenceId, startTime: $startTime, endTime: $endTime, available: $available, carryForwardLimit: $carryForwardLimit, allowNegativeBalance: $allowNegativeBalance) { id }
+			}`,
+			{ ...target.vars, absenceId: type.id, startTime, endTime, ...fields }
+		)
+		console.log(`+ allowance ${a.type} ${year} → ${tag ? tag.name : 'organisation'} (${a.available} days)`)
+	}
+}
+
 export async function applyLayer() {
 	// Refuse before any write: run on its own, this script must not touch another organisation.
 	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
@@ -188,6 +226,8 @@ export async function applyLayer() {
 		const t = await ensureTag(state, { name: office, categoryId: locId, color: conf.color })
 		await setMembers(state, t, conf.people, office)
 	}
+
+	await ensureAllowances()
 
 	const contract = state.categories.find((c) => c.name === 'Contract')
 	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {

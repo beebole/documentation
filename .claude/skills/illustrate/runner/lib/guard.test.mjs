@@ -43,3 +43,12 @@ test('task and journal view preferences are answered silently too, echoed under 
 	const raw = JSON.stringify({ data: JSON.stringify({ query: 'mutation($id: BeeboleId!, $settings: String) { editPersonTaskSettings(id: $id, settings: $settings) { name } }', variables: { id: 'p1', settings: '{"v":2}' } }), type: '__request', id: 9 })
 	assert.equal(JSON.parse(JSON.parse(silentReply(raw)).data).data.editPersonTaskSettings.taskSettings, '{"v":2}')
 })
+
+test("a report's Table/Chart/Matrix toggle is answered silently, echoing the chart settings", () => {
+	assert.equal(isSilent('editReportChart'), true)
+	const chart = { showTable: true, showChart: false }
+	const raw = JSON.stringify({ data: JSON.stringify({ query: 'mutation($id: BeeboleId!, $chart: BeeboleReportChartSettingsInput) {\n\t\t\t\teditReportChart(id: $id, chart: $chart) { id }\n\t\t\t}', variables: { id: 'r1', chart } }), type: '__request', id: 3 })
+	const body = JSON.parse(JSON.parse(silentReply(raw)).data)
+	assert.equal(body.data.editReportChart.id, 'r1')
+	assert.deepEqual(body.data.editReportChart.chart, chart)
+})

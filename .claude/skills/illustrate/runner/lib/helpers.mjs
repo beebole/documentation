@@ -63,9 +63,10 @@ export function makeHelpers() {
 			}, text)
 		},
 		// Unnamed icon buttons often carry only a hover tooltip: find the button in `scope` whose
-		// tooltip contains `text` (see missing-labels.md).
-		async byTooltip(page, scope, text) {
-			const buttons = scope.getByRole('button')
+		// tooltip contains `text` (see missing-labels.md). `selector` narrows the candidates (a
+		// disabled button without pointer events cannot be hovered).
+		async byTooltip(page, scope, text, selector) {
+			const buttons = selector ? scope.locator(selector) : scope.getByRole('button')
 			for (let i = 0; i < (await buttons.count()); i++) {
 				const b = buttons.nth(i)
 				if (!(await b.isVisible())) continue
