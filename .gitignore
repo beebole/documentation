@@ -42,7 +42,6 @@ nohup.out
 # Local environment / secrets (never commit)
 .env
 .env.local
-.features/features.md
 CLAUDE.local.md
 .claude/settings.local.json
 .claude/settings.json
