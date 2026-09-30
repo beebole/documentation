@@ -4,7 +4,7 @@ Generated: 2026-06-11 (regenerated against the fully overhauled English content)
 Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
 
 **Summary:** ~156 screenshots needed across 56 pages. Original 2026-06-11 inventory: ~132 (55 high, 52 medium, 23 low; +4 Asana shots on disk). 2026-08-04 additions: 24 more (9 high, 10 medium, 5 low) — see the dated section at the bottom.
-Capture runs in batches with `/illustrate --batch` (about 15 shots per batch: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. All needs below were derived from the current, code-accurate page content.
+Capture runs in batches with `/illustrate --batch` (10 shots per batch, one batch per session: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. All needs below were derived from the current, code-accurate page content.
 
 **Traffic (90-day `/help/*` pageviews, PostHog PROD 39108, measured 2026-09-29; refresh when older than 30 days).** Pages with open needs, most visited first: mobile 658 · integrations/introduction 223 · timesheets 187 · quickstart 171 · reports 116 · projects 103 · account-settings 92 · timesheetSettings 92 · roles-authorisations 81 · planning 80 · people 78 · approval 77 · authentication 75 · billing 74 · api/schema-explorer 71 · custom-reports 70 · work-schedule 67 · timeoff 66 · concepts 64 · budgets 61 · tags 54 · costs 50 · public-holidays 46 · integrations/quickbooks 44 · journal 43 · integrations/microsoft-calendar 43 · data-exports 42 · custom-fields 42 · integrations/custom-integrations 40 · notifications 39 · subscription 38 · integrations/jira 38 · integrations/webhooks 38 · excel-addin 38 · assignments 38 · ai 36 · gsheets-addon 35. Pages not listed had fewer than 35 views.
 
@@ -50,8 +50,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | quickstart/signup-form.webp | The Beebole sign-up form with Full name, Work email, Company name fields and Google/Microsoft buttons | medium |
 | quickstart/add-project-panel.webp | Projects page with category selector and the Add [category] panel open, name field and Save new button | medium |
 | quickstart/add-person-panel.webp | People add panel showing Name/Email/Role plus the "Or add multiple entries" paste area | medium |
-| quickstart/first-timesheet-row.webp | Timesheet with one row added against the new project, a day cell filled and the row timer button | high |
-| quickstart/sample-report-result.webp | Reports section with Monthly Timesheets folder open and "Hours by person & project" results displayed | medium |
+| quickstart/first-timesheet-row.webp | Timesheet with one row added against the new project, a day cell filled and the row timer button | high — done as a lens on the Add a row button, `timesheets/add-row-button.webp` (scene `quickstart-add-row-button`, 2026-09-29); the timer button is already shown on the Timesheets page |
+| quickstart/sample-report-result.webp | Reports section with Monthly Timesheets folder open and "Hours by person & project" results displayed | medium — done with `reports/folders-and-reports.webp` (scene `reports-folder-report`, shared with Reports, 2026-09-29) |
 
 ## help/documentation/concepts.mdx
 
@@ -64,7 +64,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| projects/project-tree-categories.webp | Projects page showing the category selector next to "Projects:" and the nested project/subproject tree | high |
+| projects/project-tree-categories.webp | Projects page showing the category selector next to "Projects:" and the nested project/subproject tree | high — done as `projects/projects-tree.webp` (scene `projects-tree`, 2026-09-29) |
 | projects/add-multiple-entries.webp | The "Or add multiple entries" paste preview before clicking Add them all | medium |
 | projects/project-settings-panels.webp | A project detail panel showing the list of settings panels (Manager, Tags, Billing, Budgets, Who has access?, etc.) | medium |
 | projects/who-has-access-panel.webp | The "Who has access?" panel with the Available/Unavailable toggle and Individually / By tags fields | medium |
@@ -73,9 +73,9 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high |
+| people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high — done with a profile open and Invite by email (scene `people-list`, 2026-09-29); the list shows no roles, and Invitation pending only appears once an invitation is sent |
 | people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium |
-| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium |
+| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium — partly shown within `people/people-list.webp` (the panel list) |
 | people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low |
 
 ## help/documentation/tags.mdx
@@ -106,7 +106,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| timesheets/settings-period-tab.webp | Timesheet settings panel, Period & submission tab, showing period options, auto-submit and Restrictions chips | high |
+| timesheets/settings-period-tab.webp | Timesheet settings panel, Period & submission tab, showing period options, auto-submit and Restrictions chips | high — done (scene `timesheet-settings-period`, 2026-09-29) |
 | timesheets/settings-time-entry-tab.webp | The Time entry tab showing Unit, Duration format, timer and start/end time options | medium |
 | timesheets/settings-categories-tab.webp | The Categories tab showing chained project categories as timesheet sections | medium |
 | timesheets/settings-inheritance-icon.webp | A setting showing the inherited-value icon (account vs tag vs person override) | low |
@@ -115,8 +115,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| approval/pending-pane.webp | The Pending approval pane listing submitted timesheets with Approve/Reject and the Late group | high |
-| approval/workflow-stages.webp | The Approval workflow panel with sequential stages, approver type and Any/All quorum | high |
+| approval/pending-pane.webp | The Pending approval pane listing submitted timesheets with Approve/Reject and the Late group | high — done with Show all on (scene `approval-pending-pane`, 2026-09-29) |
+| approval/workflow-stages.webp | The Approval workflow panel with sequential stages, approver type and Any/All quorum | high — done (scene `approval-workflow-stages`, 2026-09-29) |
 | approval/status-badge-breakdown.webp | A timesheet status badge expanded into the stage breakdown (who approved, who's pending) | medium |
 | approval/journal-approval-banner.webp | The Journal "N timesheets to approve" banner expanded with Hours/Billing totals | medium |
 | approval/reject-comment-dialog.webp | The reject dialog with the required reason comment box | low |
@@ -125,10 +125,10 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| planning/tasks-page-views.webp | The Tasks page with the saved-view tabs (Gantt / Kanban) and the task category selector | high |
+| planning/tasks-page-views.webp | The Tasks page with the saved-view tabs (Gantt / Kanban) and the task category selector | high — done as `planning/kanban-view.webp` (scene `planning-kanban-view`, 2026-09-29); the same screen can illustrate kanban.mdx (`kanban/board-columns`) |
 | planning/add-task-panel.webp | The Add Task form with name, status selector, and the "Or add multiple entries" paste area | medium |
 | planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium |
-| planning/task-statuses-modal.webp | The Task statuses modal with statuses, colors, reorder, and Max tasks | medium |
+| planning/task-statuses-modal.webp | The Task statuses modal with statuses, colors, reorder, and Max tasks | medium — done within `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
 
 ## help/documentation/gantt.mdx
 
@@ -175,7 +175,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| billing/billing-rate-card.webp | A Billing panel rate card showing From date, Billing method, Amount and currency | high |
+| billing/billing-rate-card.webp | A Billing panel rate card showing From date, Billing method, Amount and currency | high — done (scene `billing-rate-card`, 2026-09-29) |
 | billing/rate-priority.webp | Panel view illustrating which rate applies across the org → tag → project → person cascade | medium |
 | billing/rate-split.webp | A rate with Split by persons showing per-person amounts and Non-billable checkboxes | medium |
 
@@ -261,7 +261,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| roles/permission-grid.webp | The Person Roles permission grid showing permissions with Edit/View target selectors | high |
+| roles/permission-grid.webp | The Person Roles permission grid showing permissions with Edit/View target selectors | high — done (scene `roles-permission-grid`, panel widened by its resize handle, 2026-09-29) |
 | roles/target-selector.webp | A permission's target selector open (Me, My team, My projects, etc.) | medium |
 | roles/admin-full-access.webp | The "Admin role (full access)" checkbox at the top of the grid | low |
 
@@ -292,7 +292,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| account-settings/settings-panels.webp | The Account Settings page header (name, logo, accent color) above the list of settings panels | high |
+| account-settings/settings-panels.webp | The Account Settings page header (name, logo, accent color) above the list of settings panels | high — done (scene `account-settings-page`, QA badge hidden, 2026-09-29) |
 | account-settings/localization-panel.webp | The Localization panel with time zone, currency, formats, and first day of the week | medium |
 | account-settings/delete-account.webp | The Delete Account screen with the confirm/cancel deletion flow | low |
 
@@ -300,8 +300,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| authentication/signin-email-code.webp | The Beebole sign-in page entering email and the 6-digit code prompt | high |
-| authentication/sso-panel.webp | The Single Sign-On panel with Google/Microsoft/Custom OpenID tabs and Linked domains | high |
+| authentication/signin-email-code.webp | The Beebole sign-in page entering email and the 6-digit code prompt | high — done as `authentication/signin-page.webp` (scene `authentication-signin`, signed out, 2026-09-29); the code prompt needs a real sign-in request, which the runner blocks: not automatable |
+| authentication/sso-panel.webp | The Single Sign-On panel with Google/Microsoft/Custom OpenID tabs and Linked domains | high — done (scene `authentication-sso-panel`, 2026-09-29) |
 | authentication/api-key-page.webp | The API Key page with the masked key, Copy, and Reset | medium |
 | authentication/sign-in-as.webp | The Sign in as… search box from the user menu | low |
 
@@ -331,7 +331,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high |
+| mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high — done at 390×844 (scene `mobile-timesheet`, 2026-09-29) |
 | mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium |
 | mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium |
 | mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low |
@@ -345,7 +345,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/settings-integrations-list.webp | The Settings > Integrations page listing all integrations (Asana, Jira, Linear, Monday.com, QuickBooks, Xero, BambooHR, Webhooks), reached from the initials button at the bottom of the sidebar | high |
+| integrations/settings-integrations-list.webp | The Settings > Integrations page listing all integrations (Asana, Jira, Linear, Monday.com, QuickBooks, Xero, BambooHR, Webhooks), reached from the initials button at the bottom of the sidebar | high — done (scene `integrations-list`, 2026-09-29) |
 
 ## help/integrations/jira.mdx
 
@@ -396,7 +396,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium |
+| integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium — the same screen is `authentication/signin-page.webp`: link it from google.mdx |
 | integrations/google-sso-panel.webp | Account Settings > Single Sign-On panel, Google tab: Linked domains, auto-provision toggle, and the SSO-only toggle | high |
 
 ## help/integrations/microsoft.mdx
@@ -598,9 +598,9 @@ No placeholder references or `[SCREENSHOT]` markers were added by this release; 
 
 | File | Description | Priority |
 |------|-------------|----------|
-| planning/planning-mode-picker.webp | The planning's settings dialog (gear next to **Main plan** → **Main plan settings**) with the **What this planning holds** switch showing **Tasks** and **Bookings** and their hints, the switching note beneath, and the **Task statuses** list below (element capture, ~1024 wide) | high |
+| planning/planning-mode-picker.webp | The planning's settings dialog (gear next to **Main plan** → **Main plan settings**) with the **What this planning holds** switch showing **Tasks** and **Bookings** and their hints, the switching note beneath, and the **Task statuses** list below (element capture, ~1024 wide) | high — done as `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
 | staffing/booking-add-form.webp | The **Add Booking** form of a Bookings planning open in the side panel: **Select the owner**, the project picker, start date, duration in days, and the allocation unit switch (**%**, **h/day**, **Total**) (element capture) | high |
-| projects/project-tasks-bookings.webp | The **Tasks and bookings** attribute on **Acme Corp**'s panel: two planning sections, each with its **Add to …** button and a couple of task/booking badges, one hovered to show **Unassign** (element capture) | high |
+| projects/project-tasks-bookings.webp | The **Tasks and bookings** attribute on **Acme Corp**'s panel: two planning sections, each with its **Add to …** button and a couple of task/booking badges, one hovered to show **Unassign** (element capture) | high — done on **Website Redesign** (Acme Corp itself has no tasks; one Tasks planning, no hover) (scene `projects-tasks-bookings`, 2026-09-29) |
 | projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium |
 | reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium |
 | integrations/excel-addin-data-server.webp | The Excel add-in settings screen showing **Data Server** with the detected region (**Europe** with its flag) under **Update API** (element capture; the Google Sheets sidebar shows the same section and can share the shot) | low |

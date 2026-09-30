@@ -39,3 +39,14 @@ test('prepare must be a function when present', () => {
 	assert.throws(() => validateScene({ ...ok, prepare: 'x' }, 'f.mjs'), /prepare/)
 	assert.doesNotThrow(() => validateScene({ ...ok, prepare: async () => {} }, 'f.mjs'))
 })
+
+test('viewport must have positive integer width and height when present', () => {
+	assert.throws(() => validateScene({ ...ok, viewport: { width: 390 } }, 'f.mjs'), /viewport/)
+	assert.throws(() => validateScene({ ...ok, viewport: { width: 0, height: 844 } }, 'f.mjs'), /viewport/)
+	assert.doesNotThrow(() => validateScene({ ...ok, viewport: { width: 390, height: 844 } }, 'f.mjs'))
+})
+
+test('signedOut must be a boolean when present', () => {
+	assert.throws(() => validateScene({ ...ok, signedOut: 'yes' }, 'f.mjs'), /signedOut/)
+	assert.doesNotThrow(() => validateScene({ ...ok, signedOut: true }, 'f.mjs'))
+})

@@ -17,23 +17,23 @@ export class SceneError extends Error {
 	}
 }
 
-function clamp(r, pad = 0) {
+function clamp(r, pad = 0, vp = VIEWPORT) {
 	const x = Math.max(0, Math.round(r.x - pad))
 	const y = Math.max(0, Math.round(r.y - pad))
 	return {
 		x,
 		y,
-		width: Math.min(VIEWPORT.width - x, Math.round(r.width + 2 * pad)),
-		height: Math.min(VIEWPORT.height - y, Math.round(r.height + 2 * pad)),
+		width: Math.min(vp.width - x, Math.round(r.width + 2 * pad)),
+		height: Math.min(vp.height - y, Math.round(r.height + 2 * pad)),
 	}
 }
 
-async function clipFor(page, h, frame) {
+async function clipFor(page, h, frame, vp) {
 	if (frame.type === 'full') return undefined
-	if (frame.type === 'clip') return clamp(frame)
+	if (frame.type === 'clip') return clamp(frame, 0, vp)
 	const box = frame.type === 'element' ? await frame.locate(page).boundingBox() : await frame.box(page, h)
 	if (!box) throw new Error('frame target not found')
-	return clamp(box, frame.pad ?? 0)
+	return clamp(box, frame.pad ?? 0, vp)
 }
 
 // The clock is frozen at noon New York time on `date`, for captures and replays alike, so a
@@ -45,7 +45,8 @@ export async function shootScene(browser, { scene }, { date, outDir, capturing =
 	// A scene with a lens is captured once at 4x: the magnifier needs the extra pixels, and its
 	// other shots are scaled back to 2x so every published image keeps the same scale.
 	const hasLens = scene.shots.some((s) => s.frame.type === 'lens')
-	const context = await newContext(browser, { scale: hasLens ? 4 : 2 })
+	const vp = scene.viewport ?? VIEWPORT
+	const context = await newContext(browser, { scale: hasLens ? 4 : 2, viewport: vp, signedOut: scene.signedOut })
 	const page = await context.newPage()
 	const h = makeHelpers()
 	let step = 'guard'
@@ -82,14 +83,14 @@ export async function shootScene(browser, { scene }, { date, outDir, capturing =
 			step = `shot ${shot.file}`
 			const png = join(outDir, shot.file.replaceAll('/', '__').replace(/\.webp$/, '.png'))
 			if (!hasLens) {
-				await page.screenshot({ path: png, clip: await clipFor(page, h, shot.frame), scale: 'device', animations: 'disabled', caret: 'hide' })
+				await page.screenshot({ path: png, clip: await clipFor(page, h, shot.frame, vp), scale: 'device', animations: 'disabled', caret: 'hide' })
 			} else if (shot.frame.type === 'lens') {
 				const target = await (await shot.frame.target(page, h)).boundingBox()
 				if (!target) throw new Error('lens target not found')
-				const contextBox = clamp(shot.frame.context ?? { x: 0, y: 0, ...VIEWPORT })
+				const contextBox = clamp(shot.frame.context ?? { x: 0, y: 0, ...vp }, 0, vp)
 				writeFileSync(png, await composeLens(source, { context: contextBox, target, radius: shot.frame.radius }))
 			} else {
-				const c = (await clipFor(page, h, shot.frame)) ?? { x: 0, y: 0, ...VIEWPORT }
+				const c = (await clipFor(page, h, shot.frame, vp)) ?? { x: 0, y: 0, ...vp }
 				await sharp(source).extract({ left: c.x * 4, top: c.y * 4, width: c.width * 4, height: c.height * 4 }).resize(c.width * 2, c.height * 2).png().toFile(png)
 			}
 			out.push({ file: shot.file, png })

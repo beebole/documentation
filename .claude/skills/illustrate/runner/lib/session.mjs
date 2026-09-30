@@ -19,13 +19,15 @@ export async function launchBrowser() {
 	}
 }
 
-export async function newContext(browser, { scale = 2 } = {}) {
+// `viewport` overrides the desktop size (phone shots); `signedOut` opens the context without the
+// saved session (the sign-in page).
+export async function newContext(browser, { scale = 2, viewport = VIEWPORT, signedOut = false } = {}) {
 	return browser.newContext({
-		viewport: VIEWPORT,
+		viewport,
 		deviceScaleFactor: scale,
 		locale: 'en-US',
 		timezoneId: 'America/New_York',
-		storageState: existsSync(STATE) ? STATE : undefined,
+		storageState: !signedOut && existsSync(STATE) ? STATE : undefined,
 	})
 }
 

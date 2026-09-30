@@ -1,4 +1,4 @@
-import { BASE_URL, VIEWPORT } from './session.mjs'
+import { BASE_URL } from './session.mjs'
 
 export const HIDE_CSS =
 	'[class*="intercom" i],[id*="intercom" i],iframe[name*="intercom" i],beta-badge,bb-toast-stack{display:none !important;visibility:hidden !important;}'
@@ -18,7 +18,28 @@ export function makeHelpers() {
 			await page.addStyleTag({ content: HIDE_CSS })
 		},
 		async parkMouse(page) {
-			await page.mouse.move(VIEWPORT.width - 4, VIEWPORT.height - 4)
+			const { width, height } = page.viewportSize()
+			await page.mouse.move(width - 4, height - 4)
+		},
+		// Opens one settings panel of a list entry through its address (/projects/<id>/billing):
+		// clicking a panel's title depends on which panels the app remembers as open.
+		// `attribute` is the panel's key in labels.json `entityAttributes` (billing, project-tasks…).
+		async openPanel(page, listPath, name, attribute) {
+			await h.goto(page, listPath)
+			await page.getByText(name, { exact: true }).first().click()
+			const entity = new RegExp(`${listPath}/[0-9a-f]{24}`)
+			await page.waitForURL(entity)
+			await h.goto(page, `${page.url().match(entity)[0]}/${attribute}`)
+		},
+		// Box of an open settings panel: from its title down to the title of the next panel
+		// (excluded), from the panel's timeline dot to `right`.
+		async panelBox(page, title, nextTitle, { right = 1440 - 24 } = {}) {
+			const top = await page.getByText(title, { exact: true }).filter({ visible: true }).first().boundingBox()
+			const next = await page.getByText(nextTitle, { exact: true }).filter({ visible: true }).first().boundingBox()
+			if (!top || !next) throw new Error(`panel ${title} → ${nextTitle} not found`)
+			const x = top.x - 64
+			const y = top.y - 20
+			return { x, y, width: right - x, height: next.y - 28 - y }
 		},
 		listRow(page, name) {
 			return page.getByRole('listitem').filter({ has: page.getByText(name, { exact: true }) }).first()

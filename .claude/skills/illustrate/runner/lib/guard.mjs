@@ -1,10 +1,15 @@
 // Scenes must never change app data. The runner answers every GraphQL mutation itself, over
 // the app's WebSocket and over HTTP, so nothing a scene clicks can reach the server.
-// Screen-settings saves (last route, open panels, grid/calendar view) happen on every
-// navigation: they get a fake success echoing the settings, so the page behaves as if saved
-// (an error would make it revert the panel it just opened); any other mutation gets an error
-// and marks the scene broken.
-const SILENT = new Set(['editPersonScreenSettings'])
+// View-preference saves (last route, open panels, grid/calendar view, the planning's selected
+// view, journal filters) happen on every navigation: they get a fake success echoing the
+// settings, so the page behaves as if saved (an error would make it revert the panel it just
+// opened); any other mutation gets an error and marks the scene broken.
+// Each one maps to the person field it writes (all go through editPersonUiSettings in reboot).
+const SILENT = new Map([
+	['editPersonScreenSettings', 'screenSettings'],
+	['editPersonTaskSettings', 'taskSettings'],
+	['editPersonJournalSettings', 'journalSettings'],
+])
 
 export function isSilent(name) {
 	return SILENT.has(name)
@@ -34,7 +39,7 @@ export function silentReply(raw) {
 	const payload = typeof msg.data === 'string' ? JSON.parse(msg.data) : msg
 	const name = mutationIn(raw).name
 	const v = payload.variables ?? {}
-	const data = { [name]: { id: v.id ?? null, name: '', screenSettings: v.settings ?? '{}' } }
+	const data = { [name]: { id: v.id ?? null, name: '', [SILENT.get(name)]: v.settings ?? '{}' } }
 	return JSON.stringify({ type: '__response', id: msg.id ?? null, data: JSON.stringify({ data }) })
 }
 
