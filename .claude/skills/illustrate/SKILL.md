@@ -1,6 +1,6 @@
 ---
 name: illustrate
-description: 'Identify screenshot needs on documentation pages and capture them as replayable scenes from the AnyCompany QA documentation account. Default: identify needs on a page, write a scene per screenshot, capture, place. `--batch` runs the next batch of about 15 shots from the inventory; `--replay` checks every published screenshot against the live app; `--release` is the /release step (replay, refresh, repair, capture for changed pages); `--identify` lists needs only; `--optimize` recompresses images; `--arcade <url>` makes an embed snippet; `--commercial` captures PNGs for the marketing website. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
+description: 'Identify screenshot needs on documentation pages and capture them as replayable scenes from the AnyCompany QA documentation account. Default: identify needs on a page, write a scene per screenshot, capture, place. `--batch` runs the next batch of 10 shots from the inventory; `--replay` checks every published screenshot against the live app; `--release` is the /release step (replay, refresh, repair, capture for changed pages); `--identify` lists needs only; `--optimize` recompresses images; `--arcade <url>` makes an embed snippet; `--commercial` captures PNGs for the marketing website. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Illustrate — Screenshot Identification, Capture, Optimize, Embed
@@ -15,7 +15,7 @@ Make sure every page has the screenshots it needs. Identify placeholders or expl
 ## Modes
 
 - **Default:** `/illustrate <path>` — identify needs on the page, write a scene for each shot, capture it with the runner, place it in the page.
-- **`--batch`:** `/illustrate --batch` — the next batch of about 15 shots from `.todo/screenshot-needs.md`, most important first. See "Workflow — `--batch`".
+- **`--batch`:** `/illustrate --batch` — the next batch of 10 shots from `.todo/screenshot-needs.md`, most important first. See "Workflow — `--batch`".
 - **`--replay`:** `/illustrate --replay [<page|scene-id>]` — replay scenes with their frozen clock and report which published screenshots no longer match the app. Changes nothing.
 - **`--release`:** the screenshot step of `/release`. See "Workflow — `--release`".
 - **`--identify`:** `/illustrate --identify [<path>]` — list needs only; no capture. Outputs to chat. If no path, scan all `.mdx` under `help/`.
@@ -246,7 +246,7 @@ Generate a properly formatted Arcade embed for a Mintlify page.
 
 ## Workflow — `--batch`
 
-One batch of about 15 shots, sized to fit a session. Work on a branch `docs/screenshots-batch-<YYYY-MM-DD>`.
+One batch of 10 shots per session (decided by Yves, 2026-09-30): each batch runs in a fresh session, and the session ends once its PR is merged. Token cost grows with session length, since every request carries the whole conversation, so do not start a second batch in the same session, and do not resume one the next day (the prompt cache expires and the whole context is written again). Review previews as small thumbnails (`sips -Z 900`), not full 2x images. Work on a branch `docs/screenshots-batch-<YYYY-MM-DD>`.
 
 1. **Pick** the next open shots in `.todo/screenshot-needs.md`: high, then medium, then low; within a level, pages in the order of the Traffic block at the top of the inventory. Refresh that block when it is older than 30 days: PostHog project **39108 (PROD)**, `$pageview` with `$pathname LIKE '/help/%'` over 90 days (docs views land there, not in the website project).
 2. **Check** each entry against the page's current text. Adjust or drop entries that no longer fit, and merge entries that show the same screen into one scene.
