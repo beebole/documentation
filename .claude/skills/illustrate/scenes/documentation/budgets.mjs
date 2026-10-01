@@ -42,4 +42,33 @@ export const scenes = [
 		},
 		shots: [{ file: 'budgets/budget-status-report.webp', frame: { type: 'full' } }],
 	},
+	{
+		id: 'budgets-time-unit',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			await h.expandRow(page, 'Brightwave Media', 'Web Portal')
+			await page.getByText('Web Portal', { exact: true }).first().click()
+			const entity = /\/projects\/[0-9a-f]{24}/
+			await page.waitForURL(entity)
+			await h.goto(page, `${page.url().match(entity)[0]}/budget`)
+			await page.getByText(/Billing amount:/).first().click()
+			await page.getByText('Billing amount', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+			// Open the unit picker next to the Time target (display only, nothing is chosen).
+			await page.locator('input-qty bb-autocomplete').filter({ visible: true }).first().click()
+			await page.getByText('Days', { exact: true }).filter({ visible: true }).first().waitFor()
+			// Opening the picker leaves a focus ring on the From date: clear it, the picker stays open.
+			await page.evaluate(() => {
+				let el = document.activeElement
+				while (el?.shadowRoot?.activeElement) el = el.shadowRoot.activeElement
+				el?.blur()
+			})
+			await h.settle(page, 1000)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'budgets/time-unit-picker.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Budgets', 'Billing') } }],
+	},
 ]
