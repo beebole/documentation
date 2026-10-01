@@ -77,4 +77,43 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'approval-team-bulk-bar',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			// Select two submitted weeks in the Team pane: the bulk bar appears under the list. Nobody
+			// in that week is still a draft, so the bar shows Approve and Reject but no Remind.
+			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			await member.locator('timesheet-approval-status').waitFor()
+			await h.settle(page, 1500)
+			for (const name of ['Ana Pereira', 'Carlos Ruiz']) {
+				await page.locator('timesheet-member-item').filter({ hasText: name }).first().locator('input[type=checkbox]').first().click()
+			}
+			await page.getByRole('button', { name: /Approve \(2\)/ }).waitFor()
+			// The last clicked checkbox keeps a focus ring.
+			await page.evaluate(() => document.activeElement?.blur())
+			await h.settle(page, 1000)
+		},
+		// The Team pane from its search box down to the bulk bar.
+		shots: [
+			{
+				file: 'approval/team-bulk-bar.webp',
+				frame: {
+					type: 'box',
+					pad: 8,
+					box: async (page) => {
+						const search = await page.getByPlaceholder('Search', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const reject = await page.getByRole('button', { name: /Reject \(2\)/ }).boundingBox()
+						const x = Math.min(search.x, reject.x) - 8
+						const right = Math.max(search.x + search.width, reject.x + reject.width) + 8
+						return { x, y: search.y - 8, width: right - x, height: reject.y + reject.height - search.y + 16 }
+					},
+				},
+			},
+		],
+	},
 ]

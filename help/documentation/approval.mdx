@@ -106,12 +106,16 @@ Managers and administrators see an approval button (**Approval**) in the cluster
 
 The neighboring team button (**Team**) opens the **Team** pane, which lists your team members with their status for the period. People who haven't submitted yet have a **Remind** button (**Send reminder**) that emails them on the spot.
 
-Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. Every button acts only on the people it can act on, so a mixed selection is safe:
+Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. A button that applies to nobody in the selection is left out. Every button acts only on the people it can act on, so a mixed selection is safe:
 
 - **Approve** and **Reject** act on the selected timesheets submitted for the period on screen and waiting for you — as an administrator, on any submitted one.
 - **Remind** goes to the selected people who haven't submitted — their period is a draft, rejected, or empty. People whose timesheet is approved, or submitted and waiting for someone else, are never reminded. Once the reminders are sent, those people are deselected and the submitted ones stay selected for approval.
 
 The bar acts strictly on the period displayed: a person's submission from another period is never approved or rejected from here.
+
+<Frame caption="Two submitted timesheets selected in the Team pane">
+  <img src="/help/images/approval/team-bulk-bar.webp" alt="Beebole Team pane with Ana Pereira and Carlos Ruiz checked, both Submitted, other members Approved or Submitted below, and the bulk bar at the bottom with Approve (2) and Reject (2)" width="328" />
+</Frame>
 
 <Tip>
   In the **Team** pane, hold **⌘** while clicking the select-all checkbox to alternate between selecting everyone to remind and everyone to approve.
