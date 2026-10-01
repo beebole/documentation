@@ -27,4 +27,20 @@ export const scenes = [
 		mouse: restInHeader,
 		shots: [{ file: 'expenses/expenses-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Expenses', 'Tags') } }],
 	},
+	{
+		id: 'expenses-type-details',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/expenseTypes', 'Hotel', 'expense-type-details')
+			await page.getByText('Billing markup in %', { exact: true }).first().waitFor()
+			// Impacts budget is not shown on production hosts (reboot's expense-type-details.ts):
+			// hide it here too, so the panel matches what customers see.
+			await page.getByText('Impacts budget', { exact: true }).first().evaluate((e) => e.closest('label').style.setProperty('display', 'none'))
+			await h.settle(page, 1000)
+		},
+		mouse: restInHeader,
+		shots: [{ file: 'expenses/expense-type-details.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Details', 'Who has access?') } }],
+	},
 ]
