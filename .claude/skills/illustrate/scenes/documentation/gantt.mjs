@@ -90,4 +90,43 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'gantt-column-sort-menu',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openGantt(page, h)
+			// A column header opens its menu on hover (bb-column-header): rest the mouse on Task Name.
+			// The view only shows Row # and Task Name, so its menu has no Hide column.
+			const head = page.locator('gantt-column-head').filter({ hasText: 'Task Name' }).first().locator('.columnHeader')
+			const b = await head.boundingBox()
+			await page.mouse.move(b.x + 10, b.y + b.height / 2)
+			await page.waitForTimeout(500)
+			await page.mouse.move(b.x + 20, b.y + b.height / 2)
+			await page.getByText('Sort ascending', { exact: true }).filter({ visible: true }).first().waitFor({ timeout: 5000 })
+			await h.settle(page, 800)
+		},
+		async mouse(page) {
+			const b = await page.locator('gantt-column-head').filter({ hasText: 'Task Name' }).first().locator('.columnHeader').boundingBox()
+			return { x: b.x + 20, y: b.y + b.height / 2 }
+		},
+		// The task columns, from the Row # header down to the sixth row, with the menu open.
+		shots: [
+			{
+				file: 'gantt/column-sort-menu.webp',
+				frame: {
+					type: 'box',
+					pad: 12,
+					box: async (page) => {
+						const row = await page.locator('gantt-column-head').filter({ hasText: 'Row #' }).first().boundingBox()
+						const task = await page.locator('gantt-column-head').filter({ hasText: 'Task Name' }).first().boundingBox()
+						const sixth = await page.getByText('App Wireframes', { exact: true }).first().boundingBox()
+						// Stop short of the column's right edge, where the timeline starts.
+						return { x: row.x, y: row.y, width: task.x + task.width - 14 - row.x, height: sixth.y + sixth.height - row.y }
+					},
+				},
+			},
+		],
+	},
 ]
