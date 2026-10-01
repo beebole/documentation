@@ -129,4 +129,54 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The end handle of App Development dragged onto QA Testing, held before the release: the
+		// line follows the pointer and the target bar is highlighted. Nothing is linked.
+		id: 'gantt-dependency-drag',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openGantt(page, h)
+			const bar = (name) => page.locator('gantt-bar').filter({ hasText: name }).first().locator('.ganttBar').first()
+			const source = await bar('App Development').boundingBox()
+			// Hovering the bar's right half shows its end handle.
+			await page.mouse.move(source.x + source.width - 30, source.y + source.height / 2)
+			await h.settle(page, 400)
+			await page.mouse.move(source.x + source.width - 12, source.y + source.height / 2)
+			await h.settle(page, 400)
+			const handle = await page.locator('gantt-bar').filter({ hasText: 'App Development' }).first().locator('button.cursor-alias').first().boundingBox()
+			await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2)
+			await page.mouse.down()
+			const target = await bar('QA Testing').boundingBox()
+			await page.mouse.move(target.x + 60, target.y + target.height / 2, { steps: 20 })
+			await h.settle(page, 800)
+		},
+		async mouse(page) {
+			const target = await page.locator('gantt-bar').filter({ hasText: 'QA Testing' }).first().locator('.ganttBar').first().boundingBox()
+			return { x: target.x + 60, y: target.y + target.height / 2 }
+		},
+		// Released away from any bar, the handle stays armed (no link): Escape then disarms it.
+		async teardown(page) {
+			await page.mouse.move(700, 60, { steps: 10 })
+			await page.mouse.up()
+			await page.keyboard.press('Escape')
+		},
+		// The task columns and the timeline, from Row # down to System Analysis.
+		shots: [
+			{
+				file: 'gantt/dependency-drag.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const head = await page.locator('gantt-column-head').filter({ hasText: 'Row #' }).first().boundingBox()
+						const last = await page.getByText('System Analysis', { exact: true }).first().boundingBox()
+						const x = head.x - 8
+						return { x, y: head.y - 50, width: 1180 - x, height: last.y + last.height + 12 - (head.y - 50) }
+					},
+				},
+			},
+		],
+	},
 ]
