@@ -109,7 +109,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timesheets/settings-period-tab.webp | Timesheet settings panel, Period & submission tab, showing period options, auto-submit and Restrictions chips | high — done (scene `timesheet-settings-period`, 2026-09-29) |
 | timesheets/settings-time-entry-tab.webp | The Time entry tab showing Unit, Duration format, timer and start/end time options | medium — done (scene `timesheet-settings-time-entry`, 2026-09-30). Require comments for submission moved to the Restrictions table: the app shows it there |
 | timesheets/settings-categories-tab.webp | The Categories tab showing chained project categories as timesheet sections | medium — done (scene `timesheet-settings-categories`, 2026-09-30) |
-| timesheets/settings-inheritance-icon.webp | A setting showing the inherited-value icon (account vs tag vs person override) | low |
+| timesheets/settings-inheritance-icon.webp | A setting showing the inherited-value icon (account vs tag vs person override) | low — done on Marc Dubois's panel, the gear's tooltip naming Settings / Timesheet and Planning Settings (scene `timesheet-settings-inherited`, 2026-10-01) |
 
 ## help/documentation/approval.mdx
 
@@ -294,7 +294,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | account-settings/settings-panels.webp | The Account Settings page header (name, logo, accent color) above the list of settings panels | high — done (scene `account-settings-page`, QA badge hidden, 2026-09-29) |
 | account-settings/localization-panel.webp | The Localization panel with time zone, currency, formats, and first day of the week | medium — done (scene `account-settings-localization`, 2026-09-30). The account panel has no Language field: the page now says language is a personal choice |
-| account-settings/delete-account.webp | The Delete Account screen with the confirm/cancel deletion flow | low |
+| account-settings/delete-account.webp | The Delete Account screen with the confirm/cancel deletion flow | low — done before scheduling: the warning and Yes, delete my account (scene `account-settings-delete-account`, 2026-10-01). The Cancel deletion state needs a scheduled deletion |
 
 ## help/documentation/authentication.mdx
 
@@ -334,8 +334,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | mobile/mobile-timesheet.webp | The mobile timesheet day-list layout with the floating + button and a time entry card | high — done at 390×844 (scene `mobile-timesheet`, 2026-09-29); replay 2026-09-30 reports it changed (15 %): QA now shows two suggestion cards on Tuesday and Wednesday. Recapture on the next release |
 | mobile/install-prompt.webp | The Add to Home Screen / Install app prompt on a phone | medium — guided: the install prompt is the phone browser's own UI, outside the app page the runner captures |
 | mobile/mobile-timer.webp | A running timer on a mobile entry card with the header timer bar | medium — done (scene `mobile-timer`, fixture: a running entry around the capture, 2026-09-30) |
-| mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low |
-| mobile/dark-mode.webp | Beebole in dark mode on mobile | low |
+| mobile/mobile-approval-sheet.webp | The mobile approval bottom sheet with Pending / Team tabs | low — done on the Pending tab, 30 weeks with Show all on (scene `mobile-approval-sheet`, 2026-10-01) |
+| mobile/dark-mode.webp | Beebole in dark mode on mobile | low — done: the theme is Auto, the phone set to dark (scene `mobile-dark-mode`, 2026-10-01) |
 
 ---
 
@@ -519,20 +519,20 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | Screenshot | Description | Priority |
 |---|---|---|
 | troubleshooting/diagnostics-page.webp | The /diagnostics page with health checks, latency, and snapshot buttons | high — done: title, Health checks and Latency (scene `troubleshooting-diagnostics`, 2026-09-30). Durations and ping differ on every run, so replay always reports it changed: compare by eye |
-| troubleshooting/compatibility-mode-indicator.webp | Sidebar indicator "Running in slower compatibility mode" (guided — needs WebSocket blocked) | medium |
+| troubleshooting/compatibility-mode-indicator.webp | Sidebar indicator "Running in slower compatibility mode" (guided — needs WebSocket blocked) | medium — done automatically: the app's forceHttpTransport flag in localStorage switches it to the HTTP fallback (scene `troubleshooting-compatibility-mode`, 2026-10-01) |
 
 ## Expanded sections on existing pages
 
 | Screenshot | Description | Priority |
 |---|---|---|
 | timesheets/calendar-view.webp | Timesheet calendar view with entries placed by hour and a ghost suggestion | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
-| timesheets/clear-rows-button.webp | Section header hover revealing the Clear rows button | low |
+| timesheets/clear-rows-button.webp | Section header hover revealing the Clear rows button | low — done on the Client section of the current week (scene `timesheets-clear-rows`, 2026-10-01) |
 | timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium — done within `timesheets/settings-period-tab.webp`, which shows the Lock date field (2026-09-30) |
-| people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low |
+| people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low — done on Nils Eriksson, From his date of entry, no end (scene `people-validity-period`, 2026-10-01) |
 | roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium — done with Assign in the Search field (scene `roles-assignment-permissions`, 2026-09-30) |
 | reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high — skipped 2026-09-30: QA shows a People / Client / Internal / Activity scope picker that production does not have, and Planned reads 0 h for Acme Corp although its tasks have planned effort. Shoot once QA matches production |
 | reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high — done (scene `reports-absence-quotas`, allowances added to the seed layer, 2026-09-30) |
-| reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low |
+| reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low — done as the phone's Reports screen: folder and period chips over the Current Month reports (scene `reports-mobile`, 2026-10-01). A report sheet is left out: Current Month is empty on the 1st, and on QA Absences by person and Margin by Client per Month do not hold what their names say |
 
 
 ---
@@ -546,7 +546,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No mis
 | reports/report-folder-share.webp | A folder's **Share** panel expanded, with the **People** and **Tags** pickers visible (element capture) | high — done with the People picker open, nothing selected (scene `reports-folder-share`, 2026-09-30) |
 | ai/suggestion-tray-badges.webp | The **Suggested entries** tray with cards carrying mixed source badges (**Habit**, **Desktop**, **Planned**) and one **Why?** panel open | high — partly done within `ai/suggested-entries-tray.webp` (Habit badges, Why? open, 2026-09-30); mixed Habit/Desktop/Planned badges need Desktop and Planned suggestions on QA, which it has none of |
 | budgets/budget-card-time-days.webp | A budget card showing the **Time** field with the **Days** unit picker, a **From** date, and a **Notes** line (element capture) | medium — done as `budgets/time-unit-picker.webp`, the Hours/Days picker open on the Web Portal budget (scene `budgets-time-unit`, 2026-10-01) |
-| timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low |
+| timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low — done as the Add restriction menu, which lists it (scene `timesheet-settings-add-restriction`, 2026-10-01); activating it would change the account's settings |
 
 `authentication.mdx` / `desktop-app.mdx` (desktop sign-in handoff) need no shot — the flow is browser-mediated and transient.
 
@@ -563,10 +563,10 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 | timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high — done (scene `timesheets-calendar-timer`, fixture: a running entry around the capture, 2026-09-30) |
 | ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high — blocked 2026-09-30: needs Only time off can be recorded in the future switched on for the documentation account (off today, and other shots show its settings) and planned work owned by Jordan Reed, the signed-in person |
 | timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium — done in the current week, the first play button under the mouse (scene `timesheets-favorites-play`, 2026-09-30). The Start timer tooltip does not show in captures |
-| ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium |
+| ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium — card part done within `ai/suggested-entries-tray.webp` (the cards carry the project's colored avatar); the logged-vs-planned ring is blocked: no planned work owned by Jordan Reed on QA (2026-10-01) |
 | gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium — done on the Gantt tab of Main plan (scene `gantt-view-period-menu`, 2026-09-30) |
 | timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium — done within `timeoff/absence-allowances-panel.webp` (scene `timeoff-allowances-panel`, 2026-09-30) |
-| reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low |
+| reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low — done: the folder's Filters menu on Absence/working time with its three choices (scene `reports-folder-record-scope`, 2026-10-01). The highlighted button needs a scope saved on the folder |
 | approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low — done as a lens on Ana Pereira's row (scene `approval-edit-pencil`, 2026-10-01) |
 
 Master data review is deliberately excluded — the Settings entry is suppressed on production hosts, so there is nothing a user can be shown.
@@ -588,7 +588,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium — dropped 2026-10-01: the cell's clock is not drawn, so a still of the drag looks the same as a booking at rest (already shown by `staffing/staffing-timed-bars.webp`) |
 | approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium — done with two submitted weeks selected (scene `approval-team-bulk-bar`, 2026-10-01). The bar leaves out a button that applies to nobody: no Remind here, as nobody in that week is still a draft. Page corrected |
 | settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium |
-| reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low |
+| reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low — dropped 2026-10-01: `reports/budget-status-table.webp` is already sorted by % consumed, and no project sits at exactly 100% on QA (the text covers it) |
 
 Not requested, deliberately: budget threshold alerts and the push-notification channel (both stripped from notification preferences on production hosts, so there is no UI to photograph), and the legacy migration tool (removed from Settings in September 2026).
 
