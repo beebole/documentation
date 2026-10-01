@@ -53,4 +53,36 @@ export const scenes = [
 		mouse: () => ({ x: 380, y: 10 }),
 		shots: [{ file: 'mobile/mobile-timer.webp', frame: { type: 'full' } }],
 	},
+	{
+		// The team button of the header (the only secondary square button carrying a badge slot)
+		// opens the approval sheet on its Pending tab.
+		id: 'mobile-approval-sheet',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 390, height: 844 },
+		async setup(page, h) {
+			await openThisWeek(page, h)
+			await page.locator('button.relative.bb-btn-secondary.bb-btn-square').filter({ visible: true }).first().click()
+			// The sheet loads the pending weeks after opening: wait for the tab's count.
+			await page.getByText(/^\(\d+\)$/).filter({ visible: true }).first().waitFor({ timeout: 20000 })
+			await h.settle(page, 2500)
+		},
+		mouse: () => ({ x: 380, y: 10 }),
+		shots: [{ file: 'mobile/mobile-approval-sheet.webp', frame: { type: 'full' } }],
+	},
+	{
+		// The theme is Auto (the account's default), so a dark device turns the app dark.
+		id: 'mobile-dark-mode',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 390, height: 844 },
+		async setup(page, h) {
+			await page.emulateMedia({ colorScheme: 'dark' })
+			await openThisWeek(page, h)
+		},
+		mouse: () => ({ x: 380, y: 10 }),
+		shots: [{ file: 'mobile/dark-mode.webp', frame: { type: 'full' } }],
+	},
 ]
