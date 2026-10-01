@@ -57,7 +57,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| concepts/duplicate-action-menu.webp | A record's ⋯ action menu open showing the Duplicate option | low |
+| concepts/duplicate-action-menu.webp | A record's ⋯ action menu open showing the Duplicate option | low — done on Sophie Laurent's profile (scene `concepts-duplicate-menu`, 2026-10-01) |
 | concepts/version-update-banner.webp | The "Update available / Click to reload" banner in the interface | low |
 
 ## help/documentation/projects.mdx
@@ -75,8 +75,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high — done with a profile open and Invite by email (scene `people-list`, 2026-09-29); the list shows no roles, and Invitation pending only appears once an invitation is sent |
 | people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium — done (scene `quickstart-add-person-panel`, shared with Quick start, 2026-09-30) |
-| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium — partly shown within `people/people-list.webp` (the panel list) |
-| people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low |
+| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium — dropped 2026-10-01: `people/people-list.webp`, right above the section, already shows the profile's panel list, and the full list makes a strip too tall for the column |
+| people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low — done: three people checked, the bulk bar at the bottom (scene `people-bulk-actions`, 2026-10-01). It is a bar, not a menu: page corrected |
 
 ## help/documentation/tags.mdx
 
@@ -119,7 +119,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | approval/workflow-stages.webp | The Approval workflow panel with sequential stages, approver type and Any/All quorum | high — done (scene `approval-workflow-stages`, 2026-09-29) |
 | approval/status-badge-breakdown.webp | A timesheet status badge expanded into the stage breakdown (who approved, who's pending) | medium — done from Ana Pereira's Submitted badge in the Team pane, since Jordan Reed's own week is a draft (scene `approval-status-breakdown`, 2026-09-30) |
 | approval/journal-approval-banner.webp | The Journal "N timesheets to approve" banner expanded with Hours/Billing totals | medium — blocked 2026-09-30: the Journal of Jordan Reed (signed in) reads All caught up, as the pending weeks wait for project managers. Needs Jordan as a current-stage approver of a pending week, a seed change to project managers that other shots show |
-| approval/reject-comment-dialog.webp | The reject dialog with the required reason comment box | low |
+| approval/reject-comment-dialog.webp | The reject dialog with the required reason comment box | low — done with a reason typed in (scene `approval-reject-dialog`, 2026-10-01) |
 
 ## help/documentation/planning.mdx
 
@@ -144,7 +144,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high — done with `planning/kanban-view.webp` (scene `planning-kanban-view`, shared with Planning, 2026-09-30) |
-| kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium |
+| kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium — done: a card held over Queue at 3/3, red border (scene `kanban-wip-limit`, fixture: Queue's Max tasks set to 3 for the capture, 2026-10-01). The drop error is a toast, which captures hide |
 | kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium — blocked 2026-10-01: no card shows the clock on QA, because the Main plan is not among the plannings time can be recorded on (Timesheet and Planning Settings). Switching it on changes the Timesheet settings shots |
 | kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low — done on the Queue column (scene `kanban-column-menu`, 2026-10-01) |
 
@@ -209,7 +209,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high — done (scene `reports-folder-report`, 2026-09-29) |
 | reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium — done: the report header with Table and Chart on (scene `reports-view-toggles`, 2026-09-30) |
 | reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium — dropped 2026-09-30: the Reports page no longer describes scheduling a report |
-| reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low |
+| reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low — done with the period target list open (scene `reports-period-selector`, 2026-10-01). Adding a filter condition saves the folder, so the builder is not shown |
 
 ## help/documentation/custom-reports.mdx
 
@@ -263,7 +263,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | roles/permission-grid.webp | The Person Roles permission grid showing permissions with Edit/View target selectors | high — done (scene `roles-permission-grid`, panel widened by its resize handle, 2026-09-29) |
 | roles/target-selector.webp | A permission's target selector open (Me, My team, My projects, etc.) | medium — done on People details, Edit (scene `roles-target-selector`, 2026-09-30) |
-| roles/admin-full-access.webp | The "Admin role (full access)" checkbox at the top of the grid | low |
+| roles/admin-full-access.webp | The "Admin role (full access)" checkbox at the top of the grid | low — done within `roles/permission-grid.webp`, which shows the checkbox at the top of the grid (2026-10-01) |
 
 ## help/documentation/assignments.mdx
 
@@ -278,7 +278,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | journal/activity-feed.webp | The Journal feed showing the chronological timeline with the "new" separator and mixed event types | high — done as a person's Journal (Ana Pereira: expense and time record changes) (scene `journal-feed`, 2026-09-30). The organisation Journal is empty on QA and nothing is unread, so no "new" separator; reshoot the org feed once it has events |
-| journal/message-thread.webp | A threaded message with rich text, @mention, and pin | medium |
+| journal/message-thread.webp | A threaded message with rich text, @mention, and pin | medium — done as `journal/message-mention.webp`: one message with bold text and a project mention on Website Redesign (scene `journal-message-mention`, fixture, 2026-10-01). No reply: a reply's quote shows the raw key journalReplyTo.commentedOn on production. The pin button did not show under the runner's mouse. The message is dated when the fixture runs, so replay reports its age changed: compare by eye |
 
 ## help/documentation/notifications.mdx
 
@@ -303,7 +303,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | authentication/signin-email-code.webp | The Beebole sign-in page entering email and the 6-digit code prompt | high — done as `authentication/signin-page.webp` (scene `authentication-signin`, signed out, 2026-09-29); the code prompt needs a real sign-in request, which the runner blocks: not automatable |
 | authentication/sso-panel.webp | The Single Sign-On panel with Google/Microsoft/Custom OpenID tabs and Linked domains | high — done (scene `authentication-sso-panel`, 2026-09-29) |
 | authentication/api-key-page.webp | The API Key page with the masked key, Copy, and Reset | medium — done as `authentication/api-key-menu.webp`: it is the Your API key submenu of the user menu, not a page; the key text is replaced by the scene (scene `authentication-api-key`, 2026-09-30). The menu label is Your API key: corrected on five pages |
-| authentication/sign-in-as.webp | The Sign in as… search box from the user menu | low |
+| authentication/sign-in-as.webp | The Sign in as… search box from the user menu | low — done (scene `authentication-sign-in-as`, 2026-10-01) |
 
 ## help/documentation/subscription.mdx
 
@@ -316,7 +316,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| audit-trail/journal-audit-feed.webp | The Journal feed showing audit messages (operation, person, timestamp) | medium |
+| audit-trail/journal-audit-feed.webp | The Journal feed showing audit messages (operation, person, timestamp) | medium — done within `journal/activity-feed.webp`, already on the Audit trail page: the organisation's Journal is empty on the documentation account, a person's Journal shows the changes (2026-10-01) |
 | audit-trail/record-logs-view.webp | A record's Modified by label with the expanded Logs change history | high — dropped 2026-09-30: the Modified by badge and its Logs link were removed from the app on 2026-02-17; a record's changes now show in its Journal panel, and the page links `journal/activity-feed.webp` |
 
 ## help/documentation/legacy-migration.mdx
@@ -396,7 +396,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium — the same screen is `authentication/signin-page.webp`: link it from google.mdx |
+| integrations/google-signin-button.webp | The Beebole sign-in screen showing the Google button under "Or Sign in with" | medium — done: `authentication/signin-page.webp` linked from google.mdx (2026-10-01) |
 | integrations/google-sso-panel.webp | Account Settings > Single Sign-On panel, Google tab: Linked domains, auto-provision toggle, and the SSO-only toggle | high — done by linking `authentication/sso-panel.webp`, which shows the Google tab (scene `authentication-sso-panel`, 2026-09-30) |
 
 ## help/integrations/microsoft.mdx
@@ -505,7 +505,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | Screenshot | Description | Priority |
 |---|---|---|
 | ai/desktop-download-links.webp | Desktop app section on the Assistant page with the four platform download links | medium — done with the QA-only note hidden (scene `desktop-app-downloads`, 2026-10-01) |
-| ai/desktop-suggestion-why.webp | A Desktop-badged suggestion expanded with Why? evidence | medium |
+| ai/desktop-suggestion-why.webp | A Desktop-badged suggestion expanded with Why? evidence | medium — done (scene `desktop-suggestion-why`, fixture: a Desktop suggestion pushed for today and withdrawn after, 2026-10-01). Why? reads that the details stay in the desktop app, as on any other device |
 
 ## help/documentation/browser-extension.mdx
 
@@ -567,7 +567,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 | gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium — done on the Gantt tab of Main plan (scene `gantt-view-period-menu`, 2026-09-30) |
 | timeoff/allowance-card-units.webp | An allowance card with **Available**, **Consumed**, and **Accrued** at the top, each field stating its unit (element capture) | medium — done within `timeoff/absence-allowances-panel.webp` (scene `timeoff-allowances-panel`, 2026-09-30) |
 | reports/folder-record-scope.webp | A report folder's **Absence/working time** record scope control, with the filter button highlighted (element capture) | low |
-| approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low |
+| approval/edit-timesheet-pencil.webp | The **Team** pane with the **Edit timesheet** button visible on a manager-editable row (element capture) | low — done as a lens on Ana Pereira's row (scene `approval-edit-pencil`, 2026-10-01) |
 
 Master data review is deliberately excluded — the Settings entry is suppressed on production hosts, so there is nothing a user can be shown.
 
@@ -582,10 +582,10 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Planned is left out (no planned time on QA) and no task has subtasks |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high — blocked: the Settings entry is suppressed on production hosts, so there is nothing a user can be shown (see the 2026-08-31 note) |
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
-| planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
-| planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium |
+| planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium — dropped 2026-10-01: the Gantt and List pages do not describe editing a cell in place |
+| planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium — done as `gantt/dependency-drag.webp`: App Development's end handle held over QA Testing (scene `gantt-dependency-drag`, 2026-10-01) |
 | planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium — done as `gantt/column-sort-menu.webp` on Task Name (scene `gantt-column-sort-menu`, 2026-10-01). The menu opens on hover: Gantt page corrected |
-| staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium |
+| staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium — dropped 2026-10-01: the cell's clock is not drawn, so a still of the drag looks the same as a booking at rest (already shown by `staffing/staffing-timed-bars.webp`) |
 | approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium — done with two submitted weeks selected (scene `approval-team-bulk-bar`, 2026-10-01). The bar leaves out a button that applies to nobody: no Remind here, as nobody in that week is still a draft. Page corrected |
 | settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium |
 | reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low |
