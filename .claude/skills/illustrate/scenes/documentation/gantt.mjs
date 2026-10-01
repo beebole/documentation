@@ -179,4 +179,41 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The view tab's ⋯ menu with the Columns submenu open (hovering changes nothing).
+		id: 'gantt-columns-menu',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openGantt(page, h)
+			await page.getByRole('button', { name: 'Gantt', exact: true }).locator('xpath=following-sibling::button[1]').click()
+			await h.settle(page, 800)
+		},
+		// The Columns submenu opens while the mouse is on its row.
+		async mouse(page) {
+			const b = await page.getByText('Columns', { exact: true }).filter({ visible: true }).first().boundingBox()
+			return { x: b.x + b.width / 2, y: b.y + b.height / 2 }
+		},
+		// From the view tab down to the bottom of the menu and its submenu.
+		shots: [
+			{
+				file: 'gantt/columns-menu.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page, h) => {
+						const tab = await page.getByRole('button', { name: 'Gantt', exact: true }).boundingBox()
+						const menu = await page.getByText('Columns', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const sub = await h.stableBox(page, page.locator('bb-submenu'))
+						const last = await page.getByText('Delete', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const x = Math.min(tab.x, menu.x - 40) - 16
+						const y = tab.y - 16
+						const bottom = Math.max(sub.y + sub.height, last.y + last.height + 12) + 16
+						return { x, y, width: sub.x + sub.width + 16 - x, height: bottom - y }
+					},
+				},
+			},
+		],
+	},
 ]

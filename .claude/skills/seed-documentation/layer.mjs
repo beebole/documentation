@@ -305,6 +305,29 @@ async function ensureStaffingPlan(state) {
 	}
 }
 
+// A schedule change for the Work schedules page (Changing a schedule over time): Yuki Tanaka, in
+// no other shot, moves from Full Time to part-time from a fixed day in January 2027. The person
+// keeps the organisation's Full Time and gets Half Time – 5d from that day: the timeline merges
+// both by start date, so the panel shows two dated assignments and nothing changes before 2027.
+// (The backend refuses Full Time on the person itself: it is already inherited, AlreadyAssigned.)
+const SCHEDULE_CHANGE = { person: 'Yuki Tanaka', to: 'Half Time – 5d', startTime: Date.UTC(2027, 0, 4, 12) }
+
+async function ensureScheduleChange(state) {
+	const c = SCHEDULE_CHANGE
+	const d = await gql(`{ getScheduleTypes { id name } getPersons { id name relations { scheduleTimeline { value { name } } } } }`)
+	const person = d.getPersons.find((p) => p.id === personId(state, c.person))
+	if (person.relations.scheduleTimeline.some((r) => r.value.name === c.to)) return
+	const type = d.getScheduleTypes.find((x) => x.name === c.to)
+	if (!type) throw new Error(`Schedule type not found: ${c.to}`)
+	await gql(
+		`mutation($personId: BeeboleId!, $scheduleTypeId: BeeboleId!, $startTime: BeeboleTimestamp) {
+			assignScheduleTimelineToPerson(personId: $personId, scheduleTypeId: $scheduleTypeId, startTime: $startTime) { id }
+		}`,
+		{ personId: person.id, scheduleTypeId: type.id, startTime: c.startTime }
+	)
+	console.log(`+ schedule ${c.to} from ${new Date(c.startTime).toISOString().slice(0, 10)} → ${c.person}`)
+}
+
 export async function applyLayer() {
 	// Refuse before any write: run on its own, this script must not touch another organisation.
 	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
@@ -341,6 +364,7 @@ export async function applyLayer() {
 	await ensureAllowances()
 	await ensureCustomField()
 	await ensureStaffingPlan(state)
+	await ensureScheduleChange(state)
 
 	const contract = state.categories.find((c) => c.name === 'Contract')
 	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {

@@ -43,4 +43,23 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'timeoff-notifications-panel',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		// PTO's Time off notifications panel, opened through its address.
+		async setup(page, h) {
+			await h.openPanel(page, '/absenceTypes', 'PTO', 'absence-type-notification')
+			await page.getByText('Going negative').filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 400, y: 700 }),
+		shots: [
+			{
+				file: 'timeoff/timeoff-notifications-panel.webp',
+				frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Time off notifications', 'Accruals') },
+			},
+		],
+	},
 ]
