@@ -28,4 +28,32 @@ export const scenes = [
 		},
 		shots: [{ file: 'account-settings/localization-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Localization', 'Absence allowances', { right: 1110 }) } }],
 	},
+	{
+		// The Delete Account screen before anything is scheduled. Nothing is clicked.
+		id: 'account-settings-delete-account',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings/account/delete')
+			await page.getByText('Yes, delete my account', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		// The title, the warning and the button: the rest of the screen is empty.
+		shots: [
+			{
+				file: 'account-settings/delete-account.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Delete Account', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const button = await page.getByText('Yes, delete my account', { exact: true }).first().boundingBox()
+						const x = title.x - 72
+						const y = title.y - 28
+						return { x, y, width: 560, height: button.y + button.height + 32 - y }
+					},
+				},
+			},
+		],
+	},
 ]

@@ -63,4 +63,18 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// Nils Eriksson, a contractor: the seed opens his window on his date of entry, no end.
+		id: 'people-validity-period',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Nils Eriksson', 'validity-period')
+			await page.getByText('Valid period for time entry', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: restInHeader,
+		shots: [{ file: 'people/validity-period-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Valid period for time entry', 'Absence allowances', { right: 1300 }) } }],
+	},
 ]

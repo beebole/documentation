@@ -74,6 +74,70 @@ export const scenes = [
 		],
 	},
 	{
+		// The folder's Filters menu, open on the Absence/working time filter and its three choices.
+		// Add filter would save the folder's scope, so nothing is added.
+		id: 'reports-folder-record-scope',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Month', 'Hours by Person')
+			await page.getByRole('button', { name: 'Filters', exact: true }).first().click()
+			await page.getByText('Absence/working time', { exact: true }).filter({ visible: true }).first().click()
+			await page.getByText('Add filter', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		// From the Filters button down to the bottom of its menu.
+		shots: [
+			{
+				file: 'reports/folder-record-scope.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const button = await page.getByRole('button', { name: 'Filters', exact: true }).first().boundingBox()
+						const add = await page.getByText('Add filter', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const first = await page.getByText('Absence/working time', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const x = first.x - 24
+						const y = button.y - 16
+						return { x, y, width: add.x + add.width + 32 - x, height: add.y + add.height + 28 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// The Reports section on a phone, reached from the menu (as on the mobile timesheet): the
+		// folder and period chips over the Current Month folder's reports. The reports' own sheets
+		// are left out: on QA, Absences by person and Margin by Client per Month do not hold what
+		// their names say.
+		id: 'reports-mobile',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 390, height: 844 },
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('button').first().click()
+			await page.getByRole('link', { name: 'Reports' }).click()
+			await page.getByText('Hours by Person', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		mouse: () => ({ x: 380, y: 10 }),
+		// The screen down to the last report card: the rest of the phone screen is empty.
+		shots: [
+			{
+				file: 'reports/mobile-report.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const last = await page.getByText('Team Calendar', { exact: true }).filter({ visible: true }).first().boundingBox()
+						return { x: 0, y: 0, width: 390, height: last.y + last.height + 56 }
+					},
+				},
+			},
+		],
+	},
+	{
 		id: 'reports-absence-quotas',
 		capturedAt: '2026-09-30',
 		datesMatter: true,

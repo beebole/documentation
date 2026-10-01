@@ -53,6 +53,8 @@ async function cell(page, rowLabel, weekday) {
 	return el
 }
 
+const clearRows = (page) => page.locator('timesheet-section-head').first().getByRole('button', { name: 'Clear all rows in this section' })
+
 export const cornerButton = (page, h, tooltip) => h.byTooltip(page, page.locator('timesheet-corner'), tooltip)
 
 // A running timer is a record of today with a start time, its end set to the start of the day
@@ -369,6 +371,39 @@ export const scenes = [
 			return { x: play.x + play.width / 2, y: play.y + play.height / 2 }
 		},
 		shots: [{ file: 'timesheets/favorites-bar-play.webp', frame: { type: 'element', locate: (page) => page.locator('timesheet-favorites'), pad: 12 } }],
+	},
+	{
+		// The current week (a draft, so the button shows): the mouse rests on the Client section's
+		// trash button, which appears on hovering the section header.
+		id: 'timesheets-clear-rows',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openCurrentWeek(page, h, 'Acme Corp: Website Redesign')
+			await page.locator('timesheet-section-head').first().hover()
+			await h.settle(page, 600)
+		},
+		async mouse(page) {
+			const b = await clearRows(page).boundingBox()
+			return { x: b.x + b.width / 2, y: b.y + b.height / 2 }
+		},
+		shots: [
+			{
+				file: 'timesheets/clear-rows-button.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const head = await page.locator('timesheet-section-head').first().boundingBox()
+						// Up to the first day column, the label column only.
+						const dayX = await page.evaluate((left) => Math.min(...[...document.querySelectorAll('.ts-head-day')].map((d) => d.getBoundingClientRect()).filter((r) => r.width > 0 && r.x > left + 200).map((r) => r.x)), head.x)
+						const x = head.x - 12
+						const y = head.y - 56
+						return { x, y, width: dayX - 1 - x, height: head.y + head.height + 140 - y }
+					},
+				},
+			},
+		],
 	},
 	{
 		// Copy the last full week, then paste it on the current week, which already has entries:
