@@ -152,4 +152,45 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The Current Month folder's period target opened (choosing nothing changes nothing).
+		id: 'reports-period-selector',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Month', 'Hours by Person')
+			const target = page.locator('input').filter({ visible: true })
+			for (let i = 0; i < (await target.count()); i++) {
+				if ((await target.nth(i).inputValue()) === 'Current') {
+					await target.nth(i).click()
+					// The click selects the input's text: put the caret at its end (the runner hides it).
+					await target.nth(i).evaluate((el) => el.setSelectionRange(el.value.length, el.value.length))
+					break
+				}
+			}
+			await page.getByText('Last 12 months', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		// The folder's header, from its name to Share, and the open list.
+		shots: [
+			{
+				file: 'reports/period-filter-controls.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const title = await page.getByText('Current Month', { exact: true }).last().boundingBox()
+						const share = await page.getByRole('button', { name: 'Share', exact: true }).first().boundingBox()
+						const last = await page.getByText('Custom', { exact: true }).filter({ visible: true }).last().boundingBox()
+						const x = title.x - 20
+						return { x, y: 0, width: share.x + share.width + 20 - x, height: last.y + last.height + 24 }
+					},
+				},
+			},
+		],
+	},
 ]
