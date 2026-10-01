@@ -111,9 +111,13 @@ Each list in Beebole — people, projects, tasks, tags, roles, custom fields, an
 
 Use the search field to:
 
-- **Find anything by partial name.** Typing `alibr` matches "Alice Brooks" and "Aliso Bridges".
+- **Find anything by partial name.** Typing `ela` matches "Elena Rossi", and also "Sophie Laurent", where the e and the "La" are not next to each other.
 - **Filter long lists.** Searching narrows hierarchies like the project tree, expanding only the branches that contain matching entries.
 - **Move through results with the keyboard.** Press the up and down arrow keys to step through the filtered list, and **Escape** to clear the search and restore the full list.
+
+<Frame caption="Fuzzy matching in the People list: the letters you typed are underlined in each result">
+  <img src="/help/images/concepts/fuzzy-search.webp" alt="Beebole People list with ela typed in the Search by name field and two results, Elena Rossi and Sophie Laurent, with the matched letters E, l and a of Elena and e, L and a of Sophie Laurent shown in bold and underlined" width="700" />
+</Frame>
 
 Search is local to the panel you're in — there is no single search across the whole application, so use the sidebar to switch between **People**, **Projects**, **Tags**, and **Planning** when you need to look elsewhere.
 
@@ -209,6 +213,10 @@ The basic flow:
   You can only copy values set directly on a record. Inherited values can't be copied — copy from the record where the value is actually defined.
 </Info>
 
+<Frame caption="After copying Acme Corp's billing rates, the Billing panel of another client offers Paste">
+  <img src="/help/images/concepts/attribute-copy-paste.webp" alt="Beebole side panel of the Greenleaf Industries client with its Billing panel open: an Hourly rate of $175.00 from Jun 29, 2026, and below it the Add, Copy and Paste buttons" width="574" />
+</Frame>
+
 ### Attribute links
 
 When you open a person, project, tag, or task, the detail panel lists its attributes — billing rates, work schedule, custom fields, and so on. The URL follows the attribute you are reading: as you scroll, the address updates to the attribute whose header sits at the top of the panel, and clicking inside an attribute selects it too. Copy the URL at any moment and the link opens the same record with that attribute at the top of the panel.
@@ -236,6 +244,10 @@ Whatever the badge shows, hovering it gives you the complete path in a tooltip.
 ### Version update notifications
 
 When a new version of Beebole is deployed, a banner labeled **Update available** appears in the interface. Click the banner (**Click to reload**) to reload the app and apply the latest version. This ensures you always have access to new features and fixes without needing to clear your cache manually.
+
+<Frame caption="The Update available banner at the top right, over the dimmed page">
+  ![Beebole Projects page dimmed behind the Update available banner at the top right of the screen, which reads Click to reload next to a reload icon](/help/images/concepts/version-update-banner.webp)
+</Frame>
 
 The banner only appears once Beebole has confirmed that a newer build is really live, so a blocked script or a flaky connection never triggers it. If now is a bad moment to reload, press **Escape** to dismiss the banner and keep working. Beebole checks again the next time it reconnects or you return to the tab, and shows the banner again while the tab is still on the old version.
 
