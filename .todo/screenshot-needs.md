@@ -145,8 +145,8 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high — done with `planning/kanban-view.webp` (scene `planning-kanban-view`, shared with Planning, 2026-09-30) |
 | kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium |
-| kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium |
-| kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low |
+| kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium — blocked 2026-10-01: no card shows the clock on QA, because the Main plan is not among the plannings time can be recorded on (Timesheet and Planning Settings). Switching it on changes the Timesheet settings shots |
+| kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low — done on the Queue column (scene `kanban-column-menu`, 2026-10-01) |
 
 ## help/documentation/timeoff.mdx
 
@@ -198,7 +198,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| expenses/expense-type-details.webp | An expense type's Details panel with Currency, Billing markup %, and Impacts budget | medium |
+| expenses/expense-type-details.webp | An expense type's Details panel with Currency, Billing markup %, and Impacts budget | medium — done on Hotel (scene `expenses-type-details`, 2026-10-01). Impacts budget is not shown on production hosts, so the scene hides it; the Budget Status report counts every expense. Expenses and Budgets pages corrected |
 | expenses/expenses-panel.webp | The Expenses panel on a project/person with a record (date, category, amount, note) | high — done on Ana Pereira with the Hotel record expanded (scene `expenses-panel`, 2026-09-30); the Show past link is hidden in the scene because its label is missing in the app (raw key `expenseRecord.showPastQuotas`) |
 | expenses/expense-report.webp | A report with Expenses as the source showing Amount/Quantity/Expense billing columns | low |
 
@@ -271,7 +271,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | assignments/show-hide-by-default.webp | The Show or hide by default panel with the six toggles | high — done (scene `assignments-show-hide-by-default`, 2026-09-30) |
 | assignments/who-has-access-panel.webp | A project's Who has access? panel with the Available/Unavailable toggle and Individually / By tags | high — done on Acme Corp, available to everyone, so the sections read Excluded individually / Excluded by tags (scene `assignments-who-has-access`, 2026-09-30); also linked from Projects |
-| assignments/show-hide-person.webp | A person's Show or Hide panel showing the Show/Hide sections for projects, time off, etc. | medium |
+| assignments/show-hide-person.webp | A person's Show or Hide panel showing the Show/Hide sections for projects, time off, etc. | medium — done on Ana Pereira (scene `assignments-show-hide-person`, 2026-10-01) |
 
 ## help/documentation/journal.mdx
 
@@ -310,7 +310,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | subscription/plans-seats.webp | The Subscription page showing the Free/Essential/Advanced plans, seat stepper, and billing interval | high — done (scene `subscription-plans-seats`, 2026-09-30) |
-| subscription/addons.webp | The add-ons section (Costs/Expenses/Budgets and Custom fields/roles) on the Essential plan | medium |
+| subscription/addons.webp | The add-ons section (Costs/Expenses/Budgets and Custom fields/roles) on the Essential plan | medium — blocked 2026-10-01: add-ons only show for an active subscription on the Essential plan; the documentation account is on a trial |
 
 ## help/documentation/audit-trail.mdx
 
@@ -422,7 +422,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| integrations/webhooks-config.webp | Settings > Integrations > Webhooks showing the Add webhook form: Name, URL, Secret (with Regenerate), Enabled toggle, and the Events / All events selector | medium |
+| integrations/webhooks-config.webp | Settings > Integrations > Webhooks showing the Add webhook form: Name, URL, Secret (with Regenerate), Enabled toggle, and the Events / All events selector | medium — done with a temporary ERP sync webhook, added and removed by the scene's fixture (scene `webhooks-config`, 2026-10-01) |
 
 ## help/integrations/custom-integrations.mdx
 
@@ -491,7 +491,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | ai/assistant-page.webp | The full Assistant page: privacy line, Ask for a report, feature cards, connections | high — done (scene `ai-assistant-page`, 2026-09-30) |
 | ai/suggested-entries-tray.webp | Suggested entries tray above the timesheet with Accept / Accept all / Dismiss and Desktop/Kanban source badges | high — done in grid view (the calendar view shows ghosts, not the pane) with two Habit suggestions and Why? open on today's (scene `ai-suggested-entries`, 2026-09-30). Desktop and Kanban badges need those sources on QA |
 | ai/approval-review-digest.webp | Reviewing a submitted timesheet with digest flags (non-working day, overtime, unusual total) | high — done on Lucas Bernard's week of Sep 6 in the Pending pane, two Time on a non-working day flags (scene `ai-approval-review-digest`, 2026-09-30). Only that flag occurs in QA's pending weeks |
-| ai/nl-report-builder.webp | Ask for a report input with a typed request | medium |
+| ai/nl-report-builder.webp | Ask for a report input with a typed request | medium — done as `ai/report-builder-request.webp`, typed and not sent (scene `ai-report-builder-request`, 2026-10-01) |
 
 ## help/integrations/ai-assistants.mdx
 
@@ -504,14 +504,14 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| ai/desktop-download-links.webp | Desktop app section on the Assistant page with the four platform download links | medium |
+| ai/desktop-download-links.webp | Desktop app section on the Assistant page with the four platform download links | medium — done with the QA-only note hidden (scene `desktop-app-downloads`, 2026-10-01) |
 | ai/desktop-suggestion-why.webp | A Desktop-badged suggestion expanded with Why? evidence | medium |
 
 ## help/documentation/browser-extension.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| ai/extension-section.webp | Browser extension section on the Assistant page: downloads, Server address, API key | medium |
+| ai/extension-section.webp | Browser extension section on the Assistant page: downloads, Server address, API key | medium — done with the key masked and the server address shown as app.beebole.com (scene `browser-extension-section`, 2026-10-01) |
 | ai/extension-options.webp | The extension's options page: server address, API key, allowed sites (manual — needs extension loaded) | medium |
 
 ## help/documentation/troubleshooting.mdx
@@ -545,7 +545,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No mis
 |---|---|---|
 | reports/report-folder-share.webp | A folder's **Share** panel expanded, with the **People** and **Tags** pickers visible (element capture) | high — done with the People picker open, nothing selected (scene `reports-folder-share`, 2026-09-30) |
 | ai/suggestion-tray-badges.webp | The **Suggested entries** tray with cards carrying mixed source badges (**Habit**, **Desktop**, **Planned**) and one **Why?** panel open | high — partly done within `ai/suggested-entries-tray.webp` (Habit badges, Why? open, 2026-09-30); mixed Habit/Desktop/Planned badges need Desktop and Planned suggestions on QA, which it has none of |
-| budgets/budget-card-time-days.webp | A budget card showing the **Time** field with the **Days** unit picker, a **From** date, and a **Notes** line (element capture) | medium |
+| budgets/budget-card-time-days.webp | A budget card showing the **Time** field with the **Days** unit picker, a **From** date, and a **Notes** line (element capture) | medium — done as `budgets/time-unit-picker.webp`, the Hours/Days picker open on the Web Portal budget (scene `budgets-time-unit`, 2026-10-01) |
 | timesheets/timesheet-restrictions.webp | The Restrictions chip list including **Only an admin can edit someone else's timesheet** | low |
 
 `authentication.mdx` / `desktop-app.mdx` (desktop sign-in handoff) need no shot — the flow is browser-mediated and transient.
@@ -584,9 +584,9 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
 | planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium |
 | planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium |
-| planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium |
+| planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium — done as `gantt/column-sort-menu.webp` on Task Name (scene `gantt-column-sort-menu`, 2026-10-01). The menu opens on hover: Gantt page corrected |
 | staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium |
-| approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium |
+| approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium — done with two submitted weeks selected (scene `approval-team-bulk-bar`, 2026-10-01). The bar leaves out a button that applies to nobody: no Remind here, as nobody in that week is still a draft. Page corrected |
 | settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium |
 | reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low |
 
