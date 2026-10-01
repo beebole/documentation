@@ -58,7 +58,9 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | concepts/duplicate-action-menu.webp | A record's ⋯ action menu open showing the Duplicate option | low — done on Sophie Laurent's profile (scene `concepts-duplicate-menu`, 2026-10-01) |
-| concepts/version-update-banner.webp | The "Update available / Click to reload" banner in the interface | low |
+| concepts/version-update-banner.webp | The "Update available / Click to reload" banner in the interface | low — done over the Projects page: the scene answers `/version.txt` with another build after load, then fires the tab-return check, so the banner is the app's own (scene `concepts-version-banner`, 2026-10-01) |
+| concepts/fuzzy-search.webp | The People search with a fuzzy query and the matched letters highlighted | medium — added and done: `ela` matches Elena Rossi and Sophie Laurent; the page example (Alice Brooks) used names the account does not have, replaced (scene `concepts-fuzzy-search`, 2026-10-01) |
+| concepts/attribute-copy-paste.webp | Copy and Paste on an attribute panel | low — added and done: Acme Corp's billing copied, Greenleaf Industries' Billing panel showing Paste (scene `concepts-attribute-copy-paste`, 2026-10-01) |
 
 ## help/documentation/projects.mdx
 
@@ -137,7 +139,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | gantt/timeline-bars.webp | The Gantt chart with task bars on the timeline, today line, and the configurable column table on the left | high — done (scene `gantt-timeline`, 2026-09-30); shows the Row # and Task Name columns only |
 | gantt/dependencies-arrows.webp | Tasks linked with dependency arrows between bars | medium — done within `gantt/timeline-bars.webp` (scene `gantt-timeline`, 2026-09-30) |
 | gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high — blocked 2026-09-30: grouped by Owner, the header rows draw no load bars because the owners' tasks have no planned time on QA (same gap as reports/planned-vs-real.webp). Needs planned effort in the seed layer |
-| gantt/scale-columns-menu.webp | The view tab ⋯ menu showing Scale / Columns / Group by options | low |
+| gantt/scale-columns-menu.webp | The view tab ⋯ menu showing Scale / Columns / Group by options | low — done as `gantt/columns-menu.webp`, the menu with its Columns submenu (scene `gantt-columns-menu`, 2026-10-01); the menu itself is already in `gantt/view-period-weeks.webp` |
 
 ## help/documentation/kanban.mdx
 
@@ -155,21 +157,21 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timeoff/absence-types-list.webp | The Settings > Time Off list of absence types with the Add Time Off Type button | high — done with PTO open on its Units panel (scene `timeoff-absence-types`, 2026-09-30) |
 | timeoff/absence-allowances-panel.webp | The Absence allowances panel showing Available / Consumed / Accrued balance fields on a person | high — done on Elena Rossi's inherited PTO allowance (scene `timeoff-allowances-panel`, 2026-09-30) |
 | timeoff/units-paid-panel.webp | An absence type's Units panel with Hour/Day and the "Is paid (included in people costs)" checkbox | medium — done within `timeoff/absence-types-list.webp` (scene `timeoff-absence-types`, 2026-09-30) |
-| timeoff/timeoff-notifications-panel.webp | The Time off notifications panel with Going negative and frequency alerts | low |
+| timeoff/timeoff-notifications-panel.webp | The Time off notifications panel with Going negative and frequency alerts | low — done on PTO (scene `timeoff-notifications-panel`, 2026-10-01) |
 
 ## help/documentation/accruals.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
 | accruals/accruals-panel.webp | An absence type's Accruals panel with the enable toggle, Frequency, Awarded on, and Quantity | high — on hold: the Accruals page is tagged Soon, the feature is not live yet |
-| accruals/carry-forward-limit.webp | An allowance card showing the Carry forward limit field | medium |
+| accruals/carry-forward-limit.webp | An allowance card showing the Carry forward limit field | medium — done by linking `timeoff/absence-allowances-panel.webp` (Carry forward limit 5 d), 2026-10-01; the section's steps were corrected (no carry-forward switch, no unlimited option) |
 
 ## help/documentation/public-holidays.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
 | public-holidays/holidays-panel.webp | The Public holidays panel with Country/Region/Language selectors, Load holidays, and the imported holiday list | high — done in Account Settings, US holidays 2026 (scene `public-holidays-panel`, 2026-09-30) |
-| public-holidays/year-selector.webp | The Year selector with the locked Country ("Reset to change country") | low |
+| public-holidays/year-selector.webp | The Year selector with the locked Country ("Reset to change country") | low — done with the Year list open (scene `public-holidays-year-selector`, 2026-10-01). The country is no longer locked; the list also offers years past the window that already have holidays (2030), page corrected |
 
 ## help/documentation/billing.mdx
 
@@ -192,7 +194,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | budgets/budget-panel.webp | A project's Budgets panel with Billing amount / Cost amount / Hours target fields | high — done on Web Portal, card open (scene `budgets-panel`, 2026-09-30); larger amounts get clipped by the app's narrow amount fields, so the scene uses the smallest budget |
 | budgets/budget-status-report.webp | The Budget Status report with per-project progress bars, at-risk and Over budget flags | high — done in the stacked layout, which fits 1440 (the side-by-side layout overflows it) (scene `budgets-status-report`, 2026-09-30) |
-| budgets/budget-alert-badge.webp | A budget card showing the threshold alert / Over budget badge | low |
+| budgets/budget-alert-badge.webp | A budget card showing the threshold alert / Over budget badge | low — dropped 2026-10-01: budget cards have no alert badge (budget notifications are not available); At risk and Over budget show in `budgets/budget-status-report.webp` |
 
 ## help/documentation/expenses.mdx
 
@@ -218,13 +220,14 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | custom-reports/column-badges-menu.webp | A report's column badge row with the "Add a column…" menu open (Time/Expense/Period/Entities groups) | high — done, opened from a column header menu (scene `custom-reports-column-menu`, 2026-09-30) |
 | custom-reports/chart-view.webp | The Chart view with the chart-type picker and Label/Value axis controls | medium — done, Stacked bar of hours per client by month (scene `custom-reports-chart`, 2026-09-30) |
 | custom-reports/matrix-view.webp | The Matrix view grid with Rows/Columns/Metric controls and heat map shading | high — done, months as rows and clients as columns, heat map on (scene `custom-reports-matrix`, 2026-09-30) |
+| custom-reports/chart-type-picker.webp | The chart type picker open over a chart | low — added and done (scene `custom-reports-chart-type`, 2026-10-01); the list scrolls, Waterfall is below the fold |
 
 ## help/documentation/data-exports.mdx
 
 | Screenshot | Description | Priority |
 |---|---|---|
 | data-exports/export-submenu.webp | A report's ⋯ menu with the Export submenu listing all formats (Excel, CSV, PDF, Matrix variants) | high — done on Hours by Person, the QA-only Raw JSON item hidden (scene `data-exports-menu`, 2026-09-30) |
-| data-exports/delete-account-banner.webp | The Delete Account grace-period banner with Cancel deletion | low |
+| data-exports/delete-account-banner.webp | The Delete Account grace-period banner with Cancel deletion | low — blocked 2026-10-01: needs a scheduled deletion of the documentation account, a mutation the runner refuses |
 
 ## help/documentation/excel-addin.mdx
 
@@ -247,7 +250,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | work-schedule/schedule-details.webp | A work schedule's Details panel showing per-day Hours, Intervals, and Work From Home toggles | high — done, first two days of the Full Time cycle (scene `work-schedule-details`, 2026-09-30) |
 | work-schedule/assign-panel.webp | A Work schedule panel on a person/tag with the Select schedule picker and inherited-value indicator | medium — done on Elena Rossi, Full Time inherited from the organization (scene `work-schedule-assign-panel`, 2026-09-30) |
-| work-schedule/dated-assignments.webp | Two schedule assignments with Start date pickers showing a change over time | low |
+| work-schedule/dated-assignments.webp | Two schedule assignments with Start date pickers showing a change over time | low — done on Yuki Tanaka: Half Time – 5d from Jan 4, 2027 (seed layer) after the inherited Full Time (scene `work-schedule-dated-assignments`, 2026-10-01). The backend refuses a schedule the person already inherits, so only the new one is on the person |
 
 ## help/documentation/custom-fields.mdx
 
@@ -255,7 +258,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | custom-fields/field-details-type.webp | The Custom field details panel with the Field type picker and type-specific options | high — done on the Cost center field (Text, predefined values), added to the seed layer (scene `custom-fields-details`, 2026-09-30) |
 | custom-fields/field-visibility-panel.webp | The Custom field visibility panel (Visible for People/Time Records/Projects/Tasks with category pickers) | high — done on Cost center: Client projects at the Project level (scene `custom-fields-visibility`, 2026-09-30) |
-| custom-fields/predefined-values.webp | A Text field with Use predefined values and the Allowed values list | low |
+| custom-fields/predefined-values.webp | A Text field with Use predefined values and the Allowed values list | low — already shown by `custom-fields/field-details-type.webp` (Use predefined values on, three Allowed values), closed 2026-10-01 |
 
 ## help/documentation/roles-authorisations.mdx
 
@@ -325,7 +328,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | legacy-migration/migration-options.webp | The Legacy Migration tool with the Legacy API Key field and the migration options (Only active entities, Include time records from) | high — dropped: the legacy migration tool was removed from Settings in September 2026 |
 | legacy-migration/audit-results.webp | The Audit Results screen showing record counts and the time-record date range | medium — dropped: the legacy migration tool was removed from Settings in September 2026 |
-| legacy-migration/migration-report.webp | The final migration report summary (created / skipped / failed per phase) | low |
+| legacy-migration/migration-report.webp | The final migration report summary (created / skipped / failed per phase) | low — dropped 2026-10-01: the migration tool was removed from Settings in September 2026 |
 
 ## help/documentation/mobile.mdx
 
@@ -482,7 +485,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | planning/staffing-view.webp | Staffing view grouped by People: booking bars, capacity strips, today line | high — done on the Staffing plan, a Bookings planning added to the seed layer (scene `staffing-view`, 2026-09-30) |
 | planning/staffing-booking-editor.webp | Inline booking editor after dragging on the timeline — project picker and allocation % | high — done on an existing booking, opened from the bar's pencil (scene `staffing-booking-editor`, 2026-09-30); the create editor after a drag would save a booking |
 | planning/staffing-capacity-tooltip.webp | Capacity cell hover showing used/remaining for the period | medium — done on Elena Rossi's overbooked Oct 6 (scene `staffing-capacity-tooltip`, 2026-09-30) |
-| planning/staffing-managed-in-gantt.webp | "Managed in the Gantt" message on a locked booking | low |
+| planning/staffing-managed-in-gantt.webp | "Managed in the Gantt" message on a locked booking | low — blocked 2026-10-01: the message is a warning toast shown on clicking a booking that has subtasks, and no task on QA has subtasks. Needs a parent booking with a subtask in the seed layer (away from the dates other Staffing shots show), and a scene that un-hides `bb-toast-stack` |
 
 ## help/documentation/ai.mdx
 
@@ -498,7 +501,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | Screenshot | Description | Priority |
 |---|---|---|
 | integrations/ai-assistants-connect.webp | Connect your AI tools card: Server URL, API key, Claude Code + JSON snippets | high — done as `integrations/mcp-server-connect.webp` on mcp-server.mdx (ai-assistants.mdx redirects there) (scene `mcp-server-connect`, 2026-09-30); the URLs read qa.beebole.com, the app builds them from the person's server |
-| integrations/ai-assistants-connected-apps.webp | Connected apps list with an app's name, connected-since date, and Disconnect | medium |
+| integrations/ai-assistants-connected-apps.webp | Connected apps list with an app's name, connected-since date, and Disconnect | medium — blocked 2026-10-01: Jordan Reed has no connected app on QA (the list only shows once an OAuth grant exists; the Beebole QA connector is signed in to another organisation). Needs an MCP client connected as Jordan Reed |
 
 ## help/documentation/desktop-app.mdx
 
@@ -580,6 +583,8 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | Screenshot | Description | Priority |
 |---|---|---|
 | planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Planned is left out (no planned time on QA) and no task has subtasks |
+| planning/task-list-grouped.webp | The List grouped by Status, with the group headers and their counts | medium — added and done for Grouping rows (scene `task-list-grouped`, 2026-10-01) |
+| planning/task-list-selection.webp | Several rows selected with ⌘+Click for a mass edit | medium — added and done for Editing several tasks at once (scene `task-list-selection`, 2026-10-01) |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high — blocked: the Settings entry is suppressed on production hosts, so there is nothing a user can be shown (see the 2026-08-31 note) |
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
 | planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium — dropped 2026-10-01: the Gantt and List pages do not describe editing a cell in place |
@@ -587,7 +592,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium — done as `gantt/column-sort-menu.webp` on Task Name (scene `gantt-column-sort-menu`, 2026-10-01). The menu opens on hover: Gantt page corrected |
 | staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium — dropped 2026-10-01: the cell's clock is not drawn, so a still of the drag looks the same as a booking at rest (already shown by `staffing/staffing-timed-bars.webp`) |
 | approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium — done with two submitted weeks selected (scene `approval-team-bulk-bar`, 2026-10-01). The bar leaves out a button that applies to nobody: no Remind here, as nobody in that week is still a draft. Page corrected |
-| settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium |
+| settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium — blocked, as `settings/master-data-review.webp`: the Settings entry is suppressed on production hosts |
 | reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low — dropped 2026-10-01: `reports/budget-status-table.webp` is already sorted by % consumed, and no project sits at exactly 100% on QA (the text covers it) |
 
 Not requested, deliberately: budget threshold alerts and the push-notification channel (both stripped from notification preferences on production hosts, so there is no UI to photograph), and the legacy migration tool (removed from Settings in September 2026).
