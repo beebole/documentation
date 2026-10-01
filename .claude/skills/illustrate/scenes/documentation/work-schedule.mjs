@@ -40,4 +40,19 @@ export const scenes = [
 		},
 		shots: [{ file: 'work-schedule/assign-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Work schedule', 'Absence allowances') } }],
 	},
+	{
+		// Yuki Tanaka's Work schedule panel: Full Time, then Half Time – 5d from January 4, 2027
+		// (seed layer), each with its Start date.
+		id: 'work-schedule-dated-assignments',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Yuki Tanaka', 'schedule-type-relations')
+			await page.getByText('Half Time – 5d', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 400, y: 700 }),
+		shots: [{ file: 'work-schedule/dated-assignments.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Work schedule', 'Absence allowances') } }],
+	},
 ]
