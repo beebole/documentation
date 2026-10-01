@@ -110,4 +110,41 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The Chart type picker open over the chart (opening it changes nothing).
+		id: 'custom-reports-chart-type',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Year', REPORT)
+			await page.getByText(REPORT, { exact: true }).first().click()
+			await setViews(page, h, REPORT, { Table: false, Chart: true, Matrix: false })
+			await page.locator('report-chart canvas, report-chart svg').first().waitFor()
+			await h.settle(page, 2000)
+			await page.locator('report-chart button').filter({ hasText: 'Stacked bar' }).first().click()
+			await page.getByText('Waterfall', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1300, y: 860 }),
+		// The report, from its title row down to the bottom of the open menu.
+		shots: [
+			{
+				file: 'custom-reports/chart-type-picker.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText(REPORT, { exact: true }).filter({ visible: true }).last().boundingBox()
+						const last = await page.getByText('Waterfall', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const x = 340
+						const y = title.y - 28
+						return { x, y, width: 1440 - 24 - x, height: last.y + last.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
 ]
