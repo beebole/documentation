@@ -106,6 +106,38 @@ export const scenes = [
 		],
 	},
 	{
+		// The Reports section on a phone, reached from the menu (as on the mobile timesheet): the
+		// folder and period chips over the Current Month folder's reports. The reports' own sheets
+		// are left out: on QA, Absences by person and Margin by Client per Month do not hold what
+		// their names say.
+		id: 'reports-mobile',
+		capturedAt: '2026-10-01',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 390, height: 844 },
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('button').first().click()
+			await page.getByRole('link', { name: 'Reports' }).click()
+			await page.getByText('Hours by Person', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		mouse: () => ({ x: 380, y: 10 }),
+		// The screen down to the last report card: the rest of the phone screen is empty.
+		shots: [
+			{
+				file: 'reports/mobile-report.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const last = await page.getByText('Team Calendar', { exact: true }).filter({ visible: true }).first().boundingBox()
+						return { x: 0, y: 0, width: 390, height: last.y + last.height + 56 }
+					},
+				},
+			},
+		],
+	},
+	{
 		id: 'reports-absence-quotas',
 		capturedAt: '2026-09-30',
 		datesMatter: true,
