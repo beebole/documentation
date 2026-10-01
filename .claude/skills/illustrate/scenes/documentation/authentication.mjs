@@ -67,4 +67,43 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'authentication-sign-in-as',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByText('Sophie Laurent', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+			// The user menu: the initials button at the bottom of the sidebar.
+			await page.getByText('JR', { exact: true }).last().click()
+			await h.settle(page, 800)
+			await page.getByText('Sign in as…', { exact: false }).first().click()
+			await h.settle(page, 1200)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		// The dialog and the list of people under its search box.
+		shots: [
+			{
+				file: 'authentication/sign-in-as.webp',
+				frame: {
+					type: 'box',
+					pad: 4,
+					box: async (page) => {
+						const title = await page.getByText('Sign in as another person', { exact: true }).first().evaluate((leaf) => {
+							let el = leaf
+							while (el && getComputedStyle(el).backgroundColor !== 'rgb(255, 255, 255)') el = el.parentElement ?? el.getRootNode().host
+							const r = el.getBoundingClientRect()
+							return { x: r.x, y: r.y, width: r.width, height: r.height }
+						})
+						const last = await page.getByText('Lucas Bernard', { exact: true }).filter({ visible: true }).last().boundingBox()
+						return { x: title.x, y: title.y - 12, width: title.width + 12, height: last.y + last.height + 12 - (title.y - 12) }
+					},
+				},
+			},
+		],
+	},
 ]
