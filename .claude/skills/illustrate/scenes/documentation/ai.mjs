@@ -69,4 +69,35 @@ export const scenes = [
 		},
 		shots: [{ file: 'ai/approval-review-digest.webp', frame: { type: 'full' } }],
 	},
+	{
+		id: 'ai-report-builder-request',
+		capturedAt: '2026-10-01',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/ai')
+			await page.getByText('Ask for a report').first().waitFor()
+			await h.settle(page, 1500)
+			// Typed, not sent: Build would create a report.
+			const box = page.getByRole('textbox').first()
+			await box.click()
+			await box.pressSequentially('Hours by client for each person last month', { delay: 10 })
+			await h.settle(page, 800)
+		},
+		// The Ask for a report heading down to the sentence box and its Build button.
+		shots: [
+			{
+				file: 'ai/report-builder-request.webp',
+				frame: {
+					type: 'box',
+					pad: 16,
+					box: async (page) => {
+						const title = await page.getByText('Ask for a report', { exact: true }).first().boundingBox()
+						const build = await page.getByRole('button', { name: 'Build', exact: true }).boundingBox()
+						return { x: title.x, y: title.y, width: build.x + build.width - title.x, height: build.y + build.height - title.y }
+					},
+				},
+			},
+		],
+	},
 ]
