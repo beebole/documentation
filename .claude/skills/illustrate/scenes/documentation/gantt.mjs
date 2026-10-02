@@ -3,6 +3,10 @@ export const page = 'help/documentation/gantt.mdx'
 
 import { lockPeriod, openStaffing } from './staffing.mjs'
 
+// Panels are widened to 800 px: at the default width (576 at 1440)
+// Plan on non-working days wraps and the dates row is tight.
+const PANEL_WIDTH = 800
+
 async function openGantt(page, h) {
 	await h.goto(page, '/tasks')
 	await page.getByText('Add a view').first().waitFor()
@@ -39,7 +43,7 @@ export const scenes = [
 		// Fatima Al-Hassan's Friday booking in the Staffing plan runs 15:00 to 18:00, past her 17:00
 		// end of day. Opened from its bar: its id changes whenever the seed is rebuilt.
 		id: 'gantt-task-period-timed',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -62,7 +66,10 @@ export const scenes = [
 			}
 			await page.getByText('All day', { exact: true }).filter({ visible: true }).first().waitFor()
 			await h.settle(page, 1500)
+			await h.widenPanel(page, PANEL_WIDTH)
 		},
+		// Off the side panel, which shows its pin and resize buttons under the mouse.
+		mouse: () => ({ x: 400, y: 850 }),
 		shots: [{ file: 'gantt/task-period-timed.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Task details', 'Custom fields'), pad: 0 } }],
 	},
 	{
