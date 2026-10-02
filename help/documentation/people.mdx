@@ -98,11 +98,19 @@ Click a person's name to access their profile settings:
 
 ### Role assignment
 
-Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile, go to the **Email & role** panel, and pick a new role from the **Choose a role** selector. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile and go to the **Email & role** panel. Next to **Role**, hover over the current role, click the × on it, and pick a new role from the **Choose a role** selector. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+
+<Frame caption="The Choose a role selector in a person's Email & role panel">
+  <img src="/help/images/roles/person-role-selector.webp" alt="Beebole Email & role panel of Marc Dubois with his email address and the Choose a role selector open, listing the Admin, Employee, People manager and Project manager roles" width="546" />
+</Frame>
 
 ### Schedule assignment
 
-Work schedules define a person's standard working hours and days. To assign a schedule, open the person's profile and click **Work schedule**, then select an existing schedule type from the menu. Optionally set a start date so historic data is not affected. Schedules on a person override any schedule inherited from their tags or the organization default. See [Work schedules](/help/documentation/work-schedule).
+Work schedules define a person's standard working hours and days. To assign a schedule, open the person's profile, go to the **Work schedule** panel, and type the name of a schedule in the **Select schedule** picker. Optionally set a start date so historic data is not affected. Schedules on a person override any schedule inherited from their tags or the organization default. See [Work schedules](/help/documentation/work-schedule).
+
+<Frame caption="A person's Work schedule panel: Full Time comes from the organization, as the gear next to it shows">
+  <img src="/help/images/work-schedule/assign-panel.webp" alt="Beebole Work schedule panel of Elena Rossi with the Select schedule picker and the Full Time schedule below it, followed by the gear that marks a schedule inherited from the organization" width="762" />
+</Frame>
 
 ### Valid period for time entry
 
@@ -116,7 +124,13 @@ Projects can carry the same setting — see [Projects](/help/documentation/proje
 
 ### Localization per person
 
-You can override the organization's locale settings for any individual. Open the person's profile, then edit the **Localization** attribute to set their **Time zone**, **Date format**, **Time format**, **Decimal format**, and **First day of the week**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
+You can override the organization's locale settings for any individual. Open the person's profile, then the **Localization** panel, to set their **Time zone**, **First day of the week**, **Currency**, **Decimal format**, **Thousands separator**, **Time format**, and **Date format**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
+
+A gear next to a setting means its value comes from the organization. Once you change a setting on the person, the gear gives way to a reset button that brings back the inherited value.
+
+<Frame caption="A person in Tokyo: the time zone is set on her profile, the other settings come from the organization">
+  <img src="/help/images/people/person-localization-panel.webp" alt="Beebole Localization panel of Yuki Tanaka with the Time zone set to (GMT+09:00) Tokyo and a reset button next to it, while First day of the week, Currency, Decimal format, Thousands separator, Time format and Date format show the gear of inherited values" width="538" />
+</Frame>
 
 ---
 
@@ -147,6 +161,10 @@ Custom fields let you extend a person's profile with structured metadata beyond 
 </Warning>
 
 To archive a person, open their profile, click the **⋯** action menu next to their name, and select **Archive**. You can unarchive them at any time from the same menu.
+
+<Frame caption="A person's ⋯ action menu, with Archive and Unarchive">
+  <img src="/help/images/concepts/duplicate-action-menu.webp" alt="Beebole profile of Sophie Laurent with the action menu open next to her name, listing Go to timesheet, Go to tasks, Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="584" />
+</Frame>
 
 <Info>
   Unarchiving requires a free seat on your subscription. If no seats are available, the **Unarchive** option is disabled. Upgrade your plan or archive another person first.

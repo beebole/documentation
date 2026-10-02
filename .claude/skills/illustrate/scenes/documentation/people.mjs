@@ -77,4 +77,31 @@ export const scenes = [
 		mouse: restInHeader,
 		shots: [{ file: 'people/validity-period-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Valid period for time entry', 'Absence allowances', { right: 1300 }) } }],
 	},
+	{
+		// Yuki Tanaka works from Tokyo: for the capture only, her time zone is set on her own
+		// profile (the other rows keep the organization's values, marked by their gear).
+		id: 'people-localization',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: {
+			async up(api) {
+				const { getPersons } = await api('{ getPersons { id name } }')
+				const id = getPersons.find((p) => p.name === 'Yuki Tanaka').id
+				await api('mutation($id: BeeboleId!, $z: BeeboleTimeZone) { editPersonLocalisationTimeZone(id: $id, timeZone: $z) { id } }', { id, z: 'Asia/Tokyo' })
+				return { id }
+			},
+			async down(api, state) {
+				const id = state?.id ?? (await api('{ getPersons { id name } }')).getPersons.find((p) => p.name === 'Yuki Tanaka').id
+				await api('mutation($id: BeeboleId!) { editPersonLocalisationTimeZone(id: $id, timeZone: null) { id } }', { id })
+			},
+		},
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Yuki Tanaka', 'localisation')
+			await page.getByText('Time zone').filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: restInHeader,
+		shots: [{ file: 'people/person-localization-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Localization', 'Tags') } }],
+	},
 ]
