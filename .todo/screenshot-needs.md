@@ -640,3 +640,27 @@ The seed gave every task its planned hours as a number of milliseconds and ran i
 | kanban/card-menu.webp | A card's ⋯ menu | low — done on QA Testing (scene `kanban-card-menu`, 2026-10-02) |
 
 Found while checking the pages: the Journal has no Hide similar entries control on production (the label exists, nothing uses it). The bullet was removed from `journal.mdx` and the step from `audit-trail.mdx`; the timesheet-only filter is described as it works, on a person's Journal opened from the Timesheet page.
+
+## Additions 2026-10-02 (3) (batch from page sections)
+
+No automatable entry left in the inventory, so the shots came from sections of the most-visited pages that had none.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| account-settings/user-menu.webp | The user menu opened from the initials at the bottom of the sidebar | medium — done (scene `account-settings-user-menu`, 2026-10-02). The page said the other settings screens were in that menu: they are in the Settings menu of Account Settings. Page corrected |
+| roles/roles-list-menu.webp | The roles list with a role's ⋯ menu | medium — done on Project manager (scene `roles-list-menu`, 2026-10-02). The button reads Add Role, the menu also has Rename and Unarchive: page corrected |
+| reports/report-action-menu.webp | A report's ⋯ action menu | medium — done on Margin by Client per Month (scene `reports-action-menu`, 2026-10-02). Send by email is hidden on production hosts, so the scene hides it |
+| projects/change-parent.webp | A subproject's parent selector, opened from the breadcrumb | medium — done on Website Redesign (scene `projects-change-parent`, 2026-10-02) |
+| projects/project-action-menu.webp | A project's ⋯ menu in the list | low — done on Silverline Retail (scene `projects-action-menu`, 2026-10-02) |
+| timesheets/time-off-row.webp | The grid's Time Off section with a PTO row | medium — done: two days of PTO next week, by a fixture (scene `timesheets-time-off-row`, 2026-10-02) |
+| billing/rates-over-time.webp | Two rates on one project with successive From dates | medium — done on Acme Corp, $165 from January 1 by a fixture (scene `billing-rates-over-time`, 2026-10-02) |
+| billing/recurring-fixed-fee.webp | A fixed fee with Repeat on | medium — done: $2,500 a month on Mobile App, by a fixture (scene `billing-recurring-fixed-fee`, 2026-10-02). The End / Do not end control is hidden on production (repeating rates have no end date): page corrected |
+| budgets/several-budgets.webp | A project with two budgets over time | medium — done on Web Portal, a 2027 renewal by a fixture (scene `budgets-over-time`, 2026-10-02) |
+| work-schedule/two-week-cycle.webp | A work schedule with a cycle longer than a week | medium — done on Half Time – 3d-2d, 14 days (scene `work-schedule-two-week-cycle`, 2026-10-02) |
+
+Found while shooting:
+
+- The `budgets-split-by-person` fixture zeroed Web Portal's budget when it cleared the split type (2026-10-02). The budget was restored on QA (180 h, $30,000, $9,000 cost) and the fixture now writes the amounts back.
+- Jordan Reed's timesheet on QA reopens on the Team pane since about October 1 (a saved view, changed outside the runner). `timesheets/weekly-grid.webp` (captured before) replays changed; shots captured since (`clear-rows-button`, `submit-button`, likely `paste-dialog`) include the open pane. To settle in a session of its own: call `closeSidePane` in `openLastFullWeek` and `openCurrentWeek`, recapture what then changes, and fix `timesheets-team-pane`, whose loose `Team` tooltip search can hit the Approval button.
+- Already broken or changed before this batch, unrelated to the pane: `timesheets-timer`, `timesheets-calendar-timer`, `timesheets-timer-shelf` (the Fleet Tracker row never shows in the current week) and `timesheets/entry-details.webp` (100 % changed).
+- Other pages still describe the way to the settings screens loosely ("initials, then Settings > Custom Fields"): `assignments.mdx`, `billing.mdx`, `custom-fields.mdx`. The path is initials, then Account Settings, then the entry in the Settings menu.
