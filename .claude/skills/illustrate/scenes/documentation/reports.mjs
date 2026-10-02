@@ -28,6 +28,31 @@ export async function setViews(page, h, report, wanted) {
 	}
 }
 
+// Revenue at Risk only assesses projects with an end date, and none has one on the account: four
+// budgeted projects get an end date for the capture only, and lose it right after (they had no
+// validity period before). The report projects from the server's today, so replay always
+// reports it changed: compare by eye.
+const END_DATES = { 'Data Migration': '2026-10-30', 'Video Production': '2026-11-13', 'Web Portal': '2026-11-30', 'Fleet Tracker': '2026-12-18' }
+const setEndDates = async (api, end) => {
+	const { getProjects } = await api('{ getProjects { id name } }')
+	for (const [name, date] of Object.entries(END_DATES)) {
+		const id = getProjects.find((p) => p.name === name).id
+		await api('mutation($id: BeeboleId!, $e: BeeboleTimestamp) { editProjectValidityPeriod(id: $id, startTime: null, endTime: $e) { id } }', {
+			id,
+			e: end ? Date.parse(`${date}T23:59:59.999Z`) : null,
+		})
+	}
+}
+const projectEndDates = {
+	async up(api) {
+		await setEndDates(api, true)
+		return {}
+	},
+	async down(api) {
+		await setEndDates(api, false)
+	},
+}
+
 export const scenes = [
 	{
 		id: 'reports-folder-report',
@@ -256,5 +281,34 @@ export const scenes = [
 				},
 			},
 		],
+	},
+	{
+		id: 'reports-utilization',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/reports')
+			await page.getByRole('button', { name: 'Utilization', exact: true }).click()
+			await page.getByText('Ana Pereira', { exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'reports/utilization-report.webp', frame: { type: 'full' } }],
+	},
+	{
+		id: 'reports-revenue-at-risk',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		fixture: projectEndDates,
+		// The table's columns overflow a 1440 screen, as on Budget Status.
+		viewport: { width: 1760, height: 760 },
+		async setup(page, h) {
+			await h.goto(page, '/reports')
+			await page.getByRole('button', { name: 'Revenue at Risk', exact: true }).click()
+			await page.getByText('Total at risk', { exact: false }).first().waitFor()
+			await h.settle(page, 4000)
+		},
+		shots: [{ file: 'reports/revenue-at-risk.webp', frame: { type: 'full' } }],
 	},
 ]

@@ -244,6 +244,13 @@ For every project with a budget, a billing method of **Hourly** or **Daily**, an
 | **Planned to end** | Hours planned on the project's tasks between today and the end date |
 | **Projected at end** | Hours expected to remain unconsumed at the end date — the hours at risk |
 | **Implied rate** | The budget divided by its hours, used to convert hours at risk into money |
+| **Revenue at Risk** | The hours at risk converted into money at the implied rate |
+
+On screen, the end date shows under **Projected at end** and the implied rate under **Revenue at Risk**. **Logged** is in the export only.
+
+<Frame caption="The Revenue at Risk report with two hourly projects that will not use their budgeted hours by their end date">
+  ![Beebole Revenue at Risk report showing Total at risk of $25,450, 2 projects at risk and 24.7% of the portfolio, with rows for Video Production, flagged Not started, and Data Migration, each with its budget, budget hours, remaining hours, projected hours at the end date and revenue at risk](/help/images/reports/revenue-at-risk.webp)
+</Frame>
 
 Totals at the top summarize the portfolio: **Total at risk**, **Projects at risk**, and **Share of portfolio**. Rows where nothing has been logged yet are flagged **Not started**. Projects the report cannot assess are counted separately below the table — those with no end date set, and those whose budgets mix currencies.
 
@@ -259,6 +266,10 @@ The **Utilization** entry in the Reports menu shows billable hours as a share of
 - A **Projected** column estimates next month from the person's planned bookings on billable projects.
 - An **Average** summarizes each person across the period.
 - **Filters** and **Export** work as in other reports.
+
+<Frame caption="The Utilization report, one row per person and one column per month">
+  ![Beebole Utilization report from April to September 2026, with one row per person, a utilization percentage per month highlighted when above 100%, a Projected column for October 2026, and an Average column](/help/images/reports/utilization-report.webp)
+</Frame>
 
 The report appears when your subscription includes budgets and your role has the **Billable utilization** permission.
 
