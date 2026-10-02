@@ -18,3 +18,6 @@ Controls without an accessible name force scenes onto structural anchors. Each l
 | Reports (Matrix) | Swap rows and columns button | tooltip only: `h.byTooltip` inside `report-matrix` |
 | Reports (table) | Column header menu (Subtotal, Hide empty values, Add a column…, Remove) | opens on hover of `.columnHeader`; its rows are clicked with the mouse at the row's position |
 | Side panel | Resize handle on the panel's left edge | dragged by position (866, 101) in the roles scene |
+| Top bar | Journal button (speech bubble, top right) | first button of `top-bar-actions`, no accessible name |
+| Projects | Category color ball in the category menu | `button.rounded-full` inside the category's `menuitem` in `bb-category .menu` |
+| Reports | A folder's ⋯ button in the Reports menu | `bb-action-menu-button` inside `report-folder-item`, visible on hover |

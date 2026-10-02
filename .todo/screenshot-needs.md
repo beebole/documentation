@@ -715,3 +715,27 @@ Found while shooting:
 - The app has two layouts, not three: the touch layout below 1280 px wide, which covers phones and most tablets. The Responsive layout section of `mobile.mdx` was corrected; a tablet shot was taken and dropped, as it is the phone layout stretched.
 - The replay of `mobile.mdx` shows the older mobile scenes drifting since the topup of batch (5) put entries on Sep 29 to Oct 1: `mobile-timesheet` broken (current week header not found under the Sep 29 clock), `dark-mode` changed 44.8 %, `mobile-timer` 20.0 %, `mobile-approval-sheet` 0.9 %. Left for the next `/illustrate --release`.
 - Timesheet Settings' "Opening" steps were left without a shot: `account-settings/settings-panels.webp` stops above the Timesheet and Planning Settings panel.
+
+## Additions 2026-10-02 (7) (batch from page sections)
+
+No automatable entry left in the inventory, so the shots came from sections of the most-visited pages that had none.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timesheets/date-picker.webp | The date picker opened from the timesheet's date range | medium — done (scene `timesheets-date-picker`, 2026-10-02). The page now says the arrows move one period and lists the picker's shortcuts |
+| timesheets/day-focus.webp | The calendar view focused on one day, with Back | medium — done on Thursday of the last full week (scene `timesheets-day-focus`, 2026-10-02) |
+| reports/planned-vs-real.webp | The Planned vs. Real report | medium — done on Website Redesign, the project the Main plan tasks belong to (scene `reports-planned-vs-real`, 2026-10-02). By person, Real reads the same 1,536 h for everyone, so the scene steps through projects. ECharts times its line animation on the clock the runner holds still: the scene moves the fixed time 10 s ahead, or the lines stay undrawn |
+| projects/category-colors.webp | The category menu with a category's color palette open | low — done on Client (scene `projects-category-colors`, 2026-10-02) |
+| projects/validity-period-panel.webp | A project's Valid period for time entry panel with From and To | medium — done: Brand Campaign closed after June 30, 2026, by a fixture (scene `projects-validity-period`, 2026-10-02) |
+| approval/history-journal.webp | Approval events in a person's Journal | medium — done: Ana Pereira's Journal opened from her week, widened to her full history (scene `approval-history-journal`, 2026-10-02) |
+| approval/journal-banner.webp | The Journal's "timesheets to approve" banner, expanded | medium — blocked by an app bug: on QA every row's Hours, Billing and Cost read 0. The banner's totals query (runInlineReport with the week as startTime and endTime filters) returns no rows; the same person and week with a report period returns 40 h. Scene `approval-journal-banner` is written (guided, with a fixture making Jordan Reed a manager of Acme Corp and Greenleaf Industries) and can be captured once the totals show |
+| costs/split-cost-card.webp | A folded cost card split by persons, with the people's badges | medium — done: an hourly cost on Website Redesign split between Nils Eriksson and Marc Dubois, by a fixture (scene `costs-split-card`, 2026-10-02) |
+| tags/inherited-excluded-tags.webp | A subproject's Tags panel with an inherited and an excluded tag | medium — done: Acme Corp tagged New York and London, London excluded on Mobile App, by a fixture (scene `tags-inherited-excluded`, 2026-10-02) |
+| planning/subtasks-gantt.webp | A parent task expanded to its subtasks in the Gantt | medium — done: two subtasks under Frontend Development, by a fixture (scene `planning-subtasks`, 2026-10-02). The + on hover was not kept: every resting place in the Gantt shows a tooltip |
+| custom-reports/folder-paste-menu.webp | A folder's action menu offering Paste after a report was copied | low — done (scene `custom-reports-folder-paste`, 2026-10-02) |
+
+Found while shooting:
+
+- An untag on a project that does not carry the tag records an exclusion (operation `sub`) instead of doing nothing. The `tags-inherited-excluded` fixture reads Mobile App's relations before undoing them.
+- `Enable passkey` (Authentication) cannot be shot: the user menu only offers it on a device that supports passkeys, which the runner's browser is not.
+- The Margin by Client per Month report shows an empty Client: Name column on QA (seen behind the folder menu, not in the published crop).
