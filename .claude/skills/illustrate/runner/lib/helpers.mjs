@@ -41,6 +41,27 @@ export function makeHelpers() {
 			const y = top.y - 20
 			return { x, y, width: right - x, height: next.y - 28 - y }
 		},
+		// Widens the open side panel to `width` CSS pixels by dragging its Resize handle, as a user
+		// does. At its default width (about 40 % of the window, 576 px at 1440) some panels wrap
+		// their rows: a work schedule's intervals, a dated assignment's ×. The width is a view
+		// setting, which the runner answers without saving.
+		async widenPanel(page, width) {
+			// The handle (tooltip Resize) is the second of the panel's controls, after the pin. It only
+			// shows while the panel is hovered.
+			const controls = page.locator('entity-panel-controls').first()
+			const pin = await controls.boundingBox()
+			await page.mouse.move(pin.x + pin.width + 200, pin.y + 40)
+			await h.settle(page, 300)
+			const handle = controls.locator('button').nth(1)
+			await handle.waitFor()
+			const b = await handle.boundingBox()
+			const y = b.y + b.height / 2
+			await page.mouse.move(b.x + b.width / 2, y)
+			await page.mouse.down()
+			await page.mouse.move(page.viewportSize().width - width, y, { steps: 15 })
+			await page.mouse.up()
+			await h.settle(page, 800)
+		},
 		listRow(page, name) {
 			return page.getByRole('listitem').filter({ has: page.getByText(name, { exact: true }) }).first()
 		},
