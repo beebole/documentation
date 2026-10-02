@@ -4,7 +4,7 @@ export const page = 'help/documentation/timesheets.mdx'
 
 // The timesheet can reopen on a side pane (Team or Approval, both with a Show all switch): Jordan
 // Reed's saved view on QA opens the Team pane since about October 1, 2026. Close it so the grid
-// has the full width. Not yet used by openLastFullWeek: shots published since then show the pane.
+// has the full width. openLastFullWeek and openCurrentWeek close it; scenes that show a pane open it.
 // The pane's own text ("0 team") would match a loose tooltip search, so the Team button is found
 // by its exact tooltip; a click on it switches an Approval pane to Team, a second one closes it.
 export async function closeSidePane(page, h) {
@@ -30,6 +30,8 @@ export async function openLastFullWeek(page, h) {
 	const readRange = () =>
 		page.evaluate(() => [...document.querySelectorAll('input')].find((i) => i.value.includes('→') && i.getBoundingClientRect().width > 0)?.value ?? '')
 	await h.settle(page)
+	// Closing the pane brings the timesheet back to the current week: close it before going back.
+	await closeSidePane(page, h)
 	const before = await readRange()
 	if (!before) throw new Error('timesheet date range not found')
 	for (let i = 0; i < 2 && (await readRange()) === before; i++) {
@@ -116,6 +118,7 @@ async function openCurrentWeek(page, h, rowName) {
 	await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
 	await page.getByText(rowName, { exact: true }).first().waitFor()
 	await h.settle(page, 2000)
+	await closeSidePane(page, h)
 }
 
 // Two days of PTO for Jordan Reed on Monday and Tuesday of the week after the capture date,
@@ -146,7 +149,7 @@ const timeOffNextWeek = {
 export const scenes = [
 	{
 		id: 'timesheets-weekly-grid',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -156,7 +159,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-entry-details',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -175,7 +178,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-calendar-view',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -189,7 +192,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-import-calendar-button',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -204,7 +207,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-copy-button',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -219,7 +222,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-row-menu',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -259,15 +262,16 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-timer',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		fixture: runningTimer,
 		async setup(page, h) {
-			await openCurrentWeek(page, h, 'Fleet Tracker')
+			await openCurrentWeek(page, h, 'Quantum Logistics: Fleet Tracker')
 			// The floating timer opens over the date picker; drag it to the empty lower right.
-			// Its position is kept in the browser only.
-			const handle = await page.locator('floating-timer').getByText('Fleet Tracker', { exact: true }).first().boundingBox()
+			// Its position is kept in the browser only. It names the entry with the client's
+			// initials ("QL. Fleet Tracker").
+			const handle = await page.locator('floating-timer').getByText(/Fleet Tracker$/).first().boundingBox()
 			await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2)
 			await page.mouse.down()
 			await page.mouse.move(1040, 780, { steps: 12 })
@@ -296,30 +300,27 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-team-pane',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
 			await openLastFullWeek(page, h)
-			await (await cornerButton(page, h, 'Team')).click()
-			// Score rings arrive after the pane (over the app's WebSocket, which network idle does
-			// not track): wait until every member shows one.
-			await page.waitForFunction(() => {
-				const scores = document.querySelectorAll('bb-timesheet-score')
-				return scores.length > 0 && document.querySelectorAll('bb-timesheet-score svg').length === scores.length
-			})
+			await (await cornerButton(page, h, /^Team$/)).click()
+			// Approval badges arrive after the pane (over the app's WebSocket, which network idle does
+			// not track). The score ring around each avatar is gone from the app (dev, 2026-09-29).
+			await page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first().locator('timesheet-approval-status').waitFor()
 			await h.settle(page, 1000)
 		},
 		shots: [{ file: 'timesheets/team-pane.webp', frame: { type: 'full' } }],
 	},
 	{
 		id: 'timesheets-calendar-timer',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		fixture: runningTimer,
 		async setup(page, h) {
-			await openCurrentWeek(page, h, 'Fleet Tracker')
+			await openCurrentWeek(page, h, 'Quantum Logistics: Fleet Tracker')
 			// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
 			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
 			await page.getByText('9 AM').first().waitFor()
@@ -330,7 +331,8 @@ export const scenes = [
 			const entry = await page.getByText('0.75', { exact: true }).filter({ visible: true }).last().boundingBox()
 			return { x: entry.x - 40, y: entry.y + entry.height / 2 + 6 }
 		},
-		// Monday to Thursday, 8 AM to 3 PM: the running entry on today with the days around it.
+		// The whole week, 8 AM to 3 PM: the running entry on today with the days around it, on
+		// whatever weekday the capture falls.
 		shots: [
 			{
 				file: 'timesheets/calendar-timer-running.webp',
@@ -344,13 +346,15 @@ export const scenes = [
 								const r = el?.getBoundingClientRect()
 								return r && { x: r.x, y: r.y }
 							}, name)
-						const mon = await day('Mon')
+						const sun = await day('Sun')
 						const fri = await day('Fri')
+						const sat = await day('Sat')
 						const eight = await page.getByText('8 AM', { exact: true }).first().boundingBox()
 						const three = await page.getByText('3 PM', { exact: true }).first().boundingBox()
 						const x = eight.x - 16
-						const y = mon.y - 4
-						return { x, y, width: fri.x - x, height: three.y + three.height + 8 - y }
+						const y = sun.y - 4
+						// Saturday's label plus one column width: the end of the grid.
+						return { x, y, width: Math.min(sat.x + (sat.x - fri.x), 1440) - x, height: three.y + three.height + 8 - y }
 					},
 				},
 			},
@@ -358,7 +362,7 @@ export const scenes = [
 	},
 	{
 		id: 'timesheets-timer-shelf',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		// Two timers running (45 and 20 minutes at the frozen noon) and one activity paused earlier.
@@ -374,13 +378,13 @@ export const scenes = [
 				({ recordId, dayStart }) => localStorage.setItem('bb-timer-shelf', JSON.stringify([{ recordId, dayStart, running: null }])),
 				{ recordId: ids[2], dayStart }
 			)
-			await openCurrentWeek(page, h, 'Fleet Tracker')
+			await openCurrentWeek(page, h, 'Quantum Logistics: Fleet Tracker')
 			await page.locator('floating-timer').getByText('Pause all').waitFor()
 			await h.settle(page, 1000)
 			// The panel opens over the date picker; drag it by its first line to the white header space
 			// right of Submit (lower down, it would sit on a section band). Its position is kept in
 			// the browser only.
-			const handle = await page.locator('floating-timer').getByText('Dashboard', { exact: true }).boundingBox()
+			const handle = await page.locator('floating-timer').getByText(/Dashboard$/).first().boundingBox()
 			await page.mouse.move(handle.x + handle.width / 2, handle.y + handle.height / 2)
 			await page.mouse.down()
 			await page.mouse.move(1190, 34, { steps: 12 })
@@ -393,7 +397,7 @@ export const scenes = [
 	{
 		// The favorites' play buttons only show in the period that holds today.
 		id: 'timesheets-favorites-play',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -415,7 +419,7 @@ export const scenes = [
 		// The current week (a draft, so the button shows): the mouse rests on the Client section's
 		// trash button, which appears on hovering the section header.
 		id: 'timesheets-clear-rows',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -437,7 +441,7 @@ export const scenes = [
 						// Up to the first day column, the label column only.
 						const dayX = await page.evaluate((left) => Math.min(...[...document.querySelectorAll('.ts-head-day')].map((d) => d.getBoundingClientRect()).filter((r) => r.width > 0 && r.x > left + 200).map((r) => r.x)), head.x)
 						const x = head.x - 12
-						const y = head.y - 56
+						const y = head.y - 12
 						return { x, y, width: dayX - 1 - x, height: head.y + head.height + 140 - y }
 					},
 				},
@@ -448,7 +452,7 @@ export const scenes = [
 		// Copy the last full week, then paste it on the current week, which already has entries:
 		// the app asks Add or Replace. The copy lives in the page only; closing the dialog pastes nothing.
 		id: 'timesheets-paste-dialog',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
