@@ -129,7 +129,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | planning/tasks-page-views.webp | The Tasks page with the saved-view tabs (Gantt / Kanban) and the task category selector | high — done as `planning/kanban-view.webp` (scene `planning-kanban-view`, 2026-09-29); the same screen can illustrate kanban.mdx (`kanban/board-columns`) |
 | planning/add-task-panel.webp | The Add Task form with name, status selector, and the "Or add multiple entries" paste area | medium — done (scene `planning-add-task-panel`, 2026-09-30) |
-| planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium — blocked 2026-09-30: every Main plan task on QA runs from noon to noon, so Task details shows All day unchecked and 12:00 PM times, against the page (whole days by default), and Planned in days is empty. Needs all-day tasks in the seed, which changes the Kanban and Gantt shots |
+| planning/task-detail-panel.webp | A task detail panel showing Owner/% FTE, dates with lock buttons, Planned in hours, and overflow warning pill | medium — done as `planning/task-schedule-panel.webp` on QA Testing: whole days, lock buttons, Planned in hours with its capacity pill and the overload warning (scene `planning-task-schedule-panel`, 2026-10-02). Unblocked by the seed repair of 2026-10-02 (whole days, planned hours). The pill is not red: QA Testing fits its period. Owner and % FTE are in another panel |
 | planning/task-statuses-modal.webp | The Task statuses modal with statuses, colors, reorder, and Max tasks | medium — done within `planning/planning-settings-dialog.webp` (scene `planning-settings-dialog`, 2026-09-29) |
 
 ## help/documentation/gantt.mdx
@@ -138,7 +138,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | gantt/timeline-bars.webp | The Gantt chart with task bars on the timeline, today line, and the configurable column table on the left | high — done (scene `gantt-timeline`, 2026-09-30); shows the Row # and Task Name columns only |
 | gantt/dependencies-arrows.webp | Tasks linked with dependency arrows between bars | medium — done within `gantt/timeline-bars.webp` (scene `gantt-timeline`, 2026-09-30) |
-| gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high — blocked 2026-09-30: grouped by Owner, the header rows draw no load bars because the owners' tasks have no planned time on QA (same gap as reports/planned-vs-real.webp). Needs planned effort in the seed layer |
+| gantt/workload-heatmap.webp | Grouped-by-Owner view showing the workload heatmap bars with an over-capacity tooltip | high — done: grouped by Owner, Sophie Laurent's week of 5 October hovered, 306% (scene `gantt-workload-heatmap`, 2026-10-02). The blocker was a seed bug: the seed gave the planned hours as the effort, which the API reads in milliseconds (200 h became 200 ms). Repaired by `layer.mjs` on 2026-10-02 |
 | gantt/scale-columns-menu.webp | The view tab ⋯ menu showing Scale / Columns / Group by options | low — done as `gantt/columns-menu.webp`, the menu with its Columns submenu (scene `gantt-columns-menu`, 2026-10-01); the menu itself is already in `gantt/view-period-weeks.webp` |
 
 ## help/documentation/kanban.mdx
@@ -147,7 +147,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | kanban/board-columns.webp | The Kanban board with status columns and task cards (Backlog → In progress → Done) | high — done with `planning/kanban-view.webp` (scene `planning-kanban-view`, shared with Planning, 2026-09-30) |
 | kanban/wip-limit-rejected.webp | A column at its WIP limit with the red border and "at its task limit" error while dragging | medium — done: a card held over Queue at 3/3, red border (scene `kanban-wip-limit`, fixture: Queue's Max tasks set to 3 for the capture, 2026-10-01). The drop error is a toast, which captures hide |
-| kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium — blocked 2026-10-01: no card shows the clock on QA, because the Main plan is not among the plannings time can be recorded on (Timesheet and Planning Settings). Switching it on changes the Timesheet settings shots |
+| kanban/card-add-time.webp | A card hover showing the Add time clock button and the logged/planned pill (e.g. 4h / 8h) | medium — done: Frontend Development's 4 / 200 pill and Backend Development's clock under the mouse, by a fixture that lists the Main plan and logs 4 h for Jordan Reed (scene `kanban-card-add-time`, 2026-10-02). The pill reads `4 / 200`, not `4h / 8h`: Kanban and Planning pages corrected |
 | kanban/column-menu.webp | A column header ⋯ menu (Archive, Unarchive, Move left/right, Delete) | low — done on the Queue column (scene `kanban-column-menu`, 2026-10-01) |
 
 ## help/documentation/timeoff.mdx
@@ -186,7 +186,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | costs/cost-rate-card.webp | A Cost panel rate card with Cost method, Amount and From date | high — done on Ana Pereira's Cost panel (scene `costs-rate-card`, 2026-09-30) |
-| costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium — blocked 2026-09-30: Margin by Client per Month only has Time: Hours on QA, although seed.mjs asks for billing and cost; adding columns in the page is a mutation the runner blocks. Fixing the report changes the custom-reports shots |
+| costs/margin-report-columns.webp | A custom report with Billing, Cost, and Margin columns shown together | medium — done: Margin by Client per Month gets client, Hours, Billing, Cost and Margin by a fixture, put back right after (scene `costs-margin-report`, 2026-10-02). Its saved params had billing and cost but no column order, which the app needs for those columns. Margin % is left out: on QA its client rows read several hundred percent (Acme Corp 503% for 157,450 on 586,200) while the total reads 37%, a possible app bug |
 
 ## help/documentation/budgets.mdx
 
@@ -202,7 +202,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | expenses/expense-type-details.webp | An expense type's Details panel with Currency, Billing markup %, and Impacts budget | medium — done on Hotel (scene `expenses-type-details`, 2026-10-01). Impacts budget is not shown on production hosts, so the scene hides it; the Budget Status report counts every expense. Expenses and Budgets pages corrected |
 | expenses/expenses-panel.webp | The Expenses panel on a project/person with a record (date, category, amount, note) | high — done on Ana Pereira with the Hotel record expanded (scene `expenses-panel`, 2026-09-30); the Show past link is hidden in the scene because its label is missing in the app (raw key `expenseRecord.showPastQuotas`) |
-| expenses/expense-report.webp | A report with Expenses as the source showing Amount/Quantity/Expense billing columns | low |
+| expenses/expense-report.webp | A report with Expenses as the source showing Amount/Quantity/Expense billing columns | low — done: Absences by person shown as Expenses by type, by expense type with Quantity, Amount and Expense billing, by a fixture that puts back its name and params (scene `expenses-report`, 2026-10-02) |
 
 ## help/documentation/reports.mdx
 
@@ -533,7 +533,7 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | timesheet-settings/lock-date.webp | Period & submission tab with the Lock date calendar set | medium — done within `timesheets/settings-period-tab.webp`, which shows the Lock date field (2026-09-30) |
 | people/validity-period-panel.webp | Valid period for time entry panel on a person (From/To) | low — done on Nils Eriksson, From his date of entry, no end (scene `people-validity-period`, 2026-10-01) |
 | roles/assignment-permissions.webp | Permission grid scrolled to the Assign rows, with the search box in use | medium — done with Assign in the Search field (scene `roles-assignment-permissions`, 2026-09-30) |
-| reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high — skipped 2026-09-30: QA shows a People / Client / Internal / Activity scope picker that production does not have, and Planned reads 0 h for Acme Corp although its tasks have planned effort. Shoot once QA matches production |
+| reports/planned-vs-real.webp | Planned vs. Real chart with Planned, Real, and Forecast series | high — skipped again 2026-10-02: the People / category picker is in production too (a step was added to the page). The chart does not illustrate the page on QA: the budget line (33,870 h, the plan's projects) sets the scale, and each person's Real (a year of time) dwarfs their Planned (a few hundred hours). Needs planned effort in proportion to the logged time |
 | reports/absence-quota-report.webp | Absence quotas report with allowance bars and the Timeline toggle | high — done (scene `reports-absence-quotas`, allowances added to the seed layer, 2026-09-30) |
 | reports/mobile-report.webp | A report consulted on a phone viewport (390×844) | low — done as the phone's Reports screen: folder and period chips over the Current Month reports (scene `reports-mobile`, 2026-10-01). A report sheet is left out: Current Month is empty on the 1st, and on QA Absences by person and Margin by Client per Month do not hold what their names say |
 
@@ -564,7 +564,7 @@ Identified by `/illustrate --identify` on the pages this release changed. No bro
 | gantt/task-period-timed.webp | A task's **Dates** panel with **All day** unchecked, showing the **Start time** and **End time** fields and a time highlighted as outside the owner's working hours (element capture) | high — done on Fatima's 3:00 to 6:00 PM booking, the end time highlighted (scene `gantt-task-period-timed`, 2026-09-30). The reason tooltip is a native one and does not show in screenshots |
 | staffing/staffing-timed-bars.webp | Staffing timeline with bars for timed tasks drawn inside their day columns, non-working stretches hatched behind them | high — done: Fatima Al-Hassan's part-day bookings, view locked to a week (scene `staffing-timed-bars`, 2026-09-30) |
 | timesheets/calendar-timer-running.webp | The calendar view with a timer running on an entry — pulsing red dot, live duration in place, play/pause button visible on hover | high — done (scene `timesheets-calendar-timer`, fixture: a running entry around the capture, 2026-09-30) |
-| ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high — blocked 2026-09-30: needs Only time off can be recorded in the future switched on for the documentation account (off today, and other shots show its settings) and planned work owned by Jordan Reed, the signed-in person |
+| ai/suggestion-forecast-cards.webp | Future days in the calendar showing read-only planned forecast cards (muted, dashed) next to an actionable suggestion on today | high — done: next week in the calendar view, Sprint Review Prep as a forecast card each weekday, by a fixture (a task owned by Jordan Reed, half his time, and Only time off can be recorded in the future on his own settings; deleted right after, its drafts swept on the next read) (scene `ai-suggestion-forecast-cards`, 2026-10-02). No actionable card on today in the same shot: today is a Friday, next week is all future |
 | timesheets/favorites-bar-play.webp | The favorites bar with the play/pause button on a chip (element capture) | medium — done in the current week, the first play button under the mouse (scene `timesheets-favorites-play`, 2026-09-30). The Start timer tooltip does not show in captures |
 | ai/suggestion-card-entity.webp | A suggestion card carrying the project or task picture and color, and a calendar entry with the logged-vs-planned ring (element capture) | medium — card part done within `ai/suggested-entries-tray.webp` (the cards carry the project's colored avatar); the logged-vs-planned ring is blocked: no planned work owned by Jordan Reed on QA (2026-10-01) |
 | gantt/view-period-weeks.webp | The view tab's **⋯** menu open on **Period**, showing **Infinite by day**, **Infinite by week**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, **6 weeks** (element capture) | medium — done on the Gantt tab of Main plan (scene `gantt-view-period-menu`, 2026-09-30) |
@@ -582,7 +582,7 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 
 | Screenshot | Description | Priority |
 |---|---|---|
-| planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Planned is left out (no planned time on QA) and no task has subtasks |
+| planning/task-list-view.webp | **To add** — the placeholder reference was removed from `task-list.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. The List view of a planning: header row with **Row #**, **Task Name**, **Owner**, **Dates**, **Planned**, **Status**, a parent task expanded to indented subtasks, entity badges in the owner and project cells, and one column header showing its sort arrow | high — done: a new List view with Owner, Dates, Client and Status, sorted by Dates (scene `task-list-view`, 2026-09-30). Recaptured 2026-10-02 with the Planned column, now that tasks carry their planned hours. No task has subtasks |
 | planning/task-list-grouped.webp | The List grouped by Status, with the group headers and their counts | medium — added and done for Grouping rows (scene `task-list-grouped`, 2026-10-01) |
 | planning/task-list-selection.webp | Several rows selected with ⌘+Click for a mass edit | medium — added and done for Editing several tasks at once (scene `task-list-selection`, 2026-10-01) |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high — blocked: the Settings entry is suppressed on production hosts, so there is nothing a user can be shown (see the 2026-08-31 note) |
@@ -626,7 +626,17 @@ The inventory had no automatable entry left (every open one needs Excel, Google 
 | reports/revenue-at-risk.webp | The Revenue at Risk report with projects at risk | medium — done at 1760 wide: four budgeted projects get an end date by a fixture, two come out at risk (scene `reports-revenue-at-risk`, 2026-10-02). The report projects from the server's today, so replay will report it changed as time passes: compare by eye. The screen shows the end date under Projected at end and the implied rate under Revenue at Risk, and Logged only in the export: page completed |
 | budgets/budget-split-by-person.webp | A budget card split by person with two allocations | medium — done on Web Portal, split between Elena Rossi and Lucas Bernard by a fixture (scene `budgets-split-by-person`, 2026-10-02) |
 | public-holidays/tag-holidays-panel.webp | A tag's own Public holidays panel | medium — done: the London tag with the United Kingdom calendar, set by a fixture (scene `public-holidays-tag`, 2026-10-02) |
-| planning/task-schedule-panel.webp | A task's panel with owner, % FTE, dates and planned time with its capacity pill | medium — blocked: no task on QA has both an owner and planned time (same gap as `gantt/workload-heatmap.webp`) |
+| planning/task-schedule-panel.webp | A task's panel with owner, % FTE, dates and planned time with its capacity pill | medium — done (scene `planning-task-schedule-panel`, 2026-10-02), shared with `planning/task-detail-panel.webp` |
 | reports/compliance-report.webp | The Timesheet Compliance report | medium — blocked: the seed submitted every week after the fact, so everyone reads Late and the account scores 0%. Needs submissions dated on time in the seed |
+
+## Additions 2026-10-02 (2) (batch after the seed repair)
+
+The seed gave every task its planned hours as a number of milliseconds and ran its dates from noon to noon. `layer.mjs` now repairs both on QA (and `seed.mjs` creates them right), which unblocked the planned-time shots above. The other entries came from page sections with no shot.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| gantt/planned-column.webp | The Gantt Planned column with its unit button | medium — done (scene `gantt-planned-column`, 2026-10-02) |
+| kanban/show-fields-menu.webp | The Kanban view tab's Show submenu | low — done (scene `kanban-show-fields-menu`, 2026-10-02) |
+| kanban/card-menu.webp | A card's ⋯ menu | low — done on QA Testing (scene `kanban-card-menu`, 2026-10-02) |
 
 Found while checking the pages: the Journal has no Hide similar entries control on production (the label exists, nothing uses it). The bullet was removed from `journal.mdx` and the step from `audit-trail.mdx`; the timesheet-only filter is described as it works, on a person's Journal opened from the Timesheet page.
