@@ -4,6 +4,26 @@ export const page = 'help/documentation/timesheetSettings.mdx'
 // The inherited-value icon of the Timesheet period setting.
 const inheritedIcon = (page) => page.getByText('Timesheet period', { exact: true }).filter({ visible: true }).first().locator('xpath=..').locator('bb-icon').first()
 
+// Auto Timesheet from Planning, switched on for the capture only with Main plan from its
+// in-progress status to its done status, and switched off right after. Nothing is generated in
+// the meantime: the feature only reacts to tasks being created or changing status.
+const autoTimesheet = {
+	async up(api) {
+		const plan = (await api('{ getTaskCategories { id name statuses { id name } } }')).getTaskCategories.find((c) => c.name === 'Main plan')
+		const start = plan.statuses.find((s) => /progress/i.test(s.name)) ?? plan.statuses[1]
+		const end = plan.statuses.find((s) => /done/i.test(s.name)) ?? plan.statuses.at(-1)
+		await api('mutation { editOrganisationTimeSettingsEnableAutoTimesheet(enableAutoTimesheet: true) { id } }')
+		await api('mutation($e: [BeeboleAutoTimesheetEntryInput]) { editOrganisationTimeSettingsAutoTimesheet(autoTimesheet: $e) { id } }', {
+			e: [{ categoryId: plan.id, timesheetStartStatusId: start.id, timesheetEndStatusId: end.id }],
+		})
+		return {}
+	},
+	async down(api) {
+		await api('mutation { editOrganisationTimeSettingsAutoTimesheet(autoTimesheet: null) { id } }')
+		await api('mutation { editOrganisationTimeSettingsEnableAutoTimesheet(enableAutoTimesheet: null) { id } }')
+	},
+}
+
 export const scenes = [
 	{
 		id: 'timesheet-settings-period',
@@ -42,6 +62,33 @@ export const scenes = [
 			await h.settle(page, 1000)
 		},
 		shots: [{ file: 'timesheets/settings-categories-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1200 }) } }],
+	},
+	{
+		id: 'timesheet-settings-reminders',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=time-settings')
+			await page.getByText('Reminders', { exact: true }).first().click()
+			await page.getByText('Remind to submit').first().waitFor()
+			await h.settle(page, 1000)
+		},
+		shots: [{ file: 'timesheets/settings-reminders-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1130 }) } }],
+	},
+	{
+		id: 'timesheet-settings-auto-timesheet',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: autoTimesheet,
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=time-settings')
+			await page.getByText('Auto Timesheet from Planning', { exact: true }).first().click()
+			await page.getByText('Main plan', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		shots: [{ file: 'timesheets/settings-auto-timesheet-tab.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Timesheet and Planning Settings', 'Absence allowances', { right: 1130 }) } }],
 	},
 	{
 		// A person's own Timesheet and Planning Settings panel, where every value is inherited.
