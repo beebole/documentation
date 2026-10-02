@@ -257,4 +257,24 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// QA Testing's Owner panel: Sophie Laurent, her % FTE and the Tentative switch. Panels open one
+		// at a time, so only Owner is opened.
+		id: 'planning-task-owner',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.getByText('QA Testing', { exact: true }).first().click()
+			await page.waitForURL(/\/tasks\/[0-9a-f]{24}/)
+			await h.settle(page, 2000)
+			await page.getByText('Owner', { exact: true }).filter({ visible: true }).first().click()
+			await page.getByText('Tentative', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1200)
+		},
+		mouse: () => ({ x: 400, y: 850 }),
+		shots: [{ file: 'planning/task-owner-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Owner', 'Custom fields') } }],
+	},
 ]
