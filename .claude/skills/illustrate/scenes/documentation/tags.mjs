@@ -7,6 +7,37 @@ const expandAll = async (page, h) => {
 	await h.expandRow(page, 'Sales', 'Account Management')
 }
 
+// For the capture only: Acme Corp tagged New York and London, and London taken off Mobile App,
+// which records an exclusion there. `down` untags Acme Corp, then undoes what Mobile App still
+// holds: an exclusion (operation "sub") goes with a tag mutation, which deletes it, anything else
+// with an untag. An untag on a project that has no such tag records an exclusion, so it is never
+// sent blindly. The seed tags no project.
+async function tagIds(api) {
+	const { getProjects } = await api('{ getProjects { id name } }')
+	const { getTags } = await api('{ getTags { id name } }')
+	const project = (n) => getProjects.find((p) => p.name === n).id
+	const tag = (n) => getTags.find((t) => t.name === n).id
+	return { acme: project('Acme Corp'), mobile: project('Mobile App'), newYork: tag('New York'), london: tag('London') }
+}
+const TAG = 'mutation($t: BeeboleId!, $p: BeeboleId!) { tagProject(tagId: $t, projectId: $p) { id } }'
+const UNTAG = 'mutation($t: BeeboleId!, $p: BeeboleId!) { untagProject(tagId: $t, projectId: $p) { id } }'
+const excludedTag = {
+	async up(api) {
+		const ids = await tagIds(api)
+		await api(TAG, { t: ids.newYork, p: ids.acme })
+		await api(TAG, { t: ids.london, p: ids.acme })
+		await api(UNTAG, { t: ids.london, p: ids.mobile })
+		return ids
+	},
+	async down(api, state) {
+		const ids = state ?? (await tagIds(api))
+		await api(UNTAG, { t: ids.london, p: ids.acme }).catch(() => {})
+		await api(UNTAG, { t: ids.newYork, p: ids.acme }).catch(() => {})
+		const { getProjects } = await api('{ getProjects { id relations { taggedBy { operation value { id } } } } }')
+		for (const r of getProjects.find((p) => p.id === ids.mobile).relations.taggedBy ?? []) await api(r.operation === 'sub' ? TAG : UNTAG, { t: r.value.id, p: ids.mobile })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'tags-list',
@@ -85,5 +116,25 @@ export const scenes = [
 			await h.settle(page, 1500)
 		},
 		shots: [{ file: 'tags/who-or-what-tagged-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Who or what has been tagged?', 'Absence allowances') } }],
+	},
+	{
+		// Mobile App's Tags panel: New York inherited from Acme Corp, London excluded (fixture).
+		id: 'tags-inherited-excluded',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: excludedTag,
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			await h.expandRow(page, 'Acme Corp', 'Mobile App')
+			await page.getByText('Mobile App', { exact: true }).first().click()
+			const entity = /\/projects\/[0-9a-f]{24}/
+			await page.waitForURL(entity)
+			await h.goto(page, `${page.url().match(entity)[0]}/tags`)
+			await page.getByText('London', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'tags/inherited-excluded-tags.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Tags', 'Billing') } }],
 	},
 ]

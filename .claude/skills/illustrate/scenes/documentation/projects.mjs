@@ -3,6 +3,25 @@ export const page = 'help/documentation/projects.mdx'
 
 const restInHeader = () => ({ x: 800, y: 110 })
 
+// Brand Campaign closed for time entry after June 30, 2026, for the capture only (dates at
+// 00:00 UTC, as the panel's date pickers write them); down clears the window again.
+const closedProject = {
+	async up(api) {
+		const { getProjects } = await api('{ getProjects { id name } }')
+		const id = getProjects.find((p) => p.name === 'Brand Campaign').id
+		await api('mutation($id: BeeboleId!, $s: BeeboleTimestamp, $e: BeeboleTimestamp) { editProjectValidityPeriod(id: $id, startTime: $s, endTime: $e) { id } }', {
+			id,
+			s: Date.parse('2026-01-05T00:00:00Z'),
+			e: Date.parse('2026-06-30T00:00:00Z'),
+		})
+		return { id }
+	},
+	async down(api, state) {
+		const id = state?.id ?? (await api('{ getProjects { id name } }')).getProjects.find((p) => p.name === 'Brand Campaign').id
+		await api('mutation($id: BeeboleId!) { editProjectValidityPeriod(id: $id, startTime: null, endTime: null) { id } }', { id })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'projects-tree',
@@ -198,5 +217,66 @@ export const scenes = [
 				},
 			},
 		],
+	},
+	{
+		// The category menu with the Client category's color ball clicked: the palette, the
+		// current color checked. Nothing is picked.
+		id: 'projects-category-colors',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			const head = page.getByRole('heading', { name: 'Projects:' }).locator('xpath=..')
+			await head.getByRole('button').first().click()
+			const menu = page.locator('bb-category .menu').first()
+			await menu.getByRole('menuitem').first().waitFor()
+			await menu.getByRole('menuitem').filter({ hasText: 'Client' }).locator('button.rounded-full').first().click()
+			await h.settle(page, 1000)
+			await page.locator('.pictureMenu').filter({ visible: true }).first().waitFor()
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1000, y: 600 }),
+		// The menu and the palette, with the project list on the left (the header row above would
+		// cut into the search field).
+		shots: [
+			{
+				file: 'projects/category-colors.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page, h) => {
+						const head = await page.getByRole('heading', { name: 'Projects:' }).boundingBox()
+						const menu = await page.locator('bb-category .menu').first().boundingBox()
+						const palette = await h.stableBox(page, page.locator('.pictureMenu').filter({ visible: true }).first())
+						const x = head.x - 24
+						const y = menu.y - 6
+						return { x, y, width: palette.x + palette.width + 24 - x, height: Math.max(menu.y + menu.height, palette.y + palette.height) + 24 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// Brand Campaign closed after June 30, 2026 (fixture).
+		id: 'projects-validity-period',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: closedProject,
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			await h.expandRow(page, 'Brightwave Media', 'Brand Campaign')
+			await page.getByText('Brand Campaign', { exact: true }).first().click()
+			const entity = /\/projects\/[0-9a-f]{24}/
+			await page.waitForURL(entity)
+			await h.goto(page, `${page.url().match(entity)[0]}/validity-period`)
+			await page.getByText('Valid period for time entry', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: restInHeader,
+		shots: [{ file: 'projects/validity-period-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Valid period for time entry', 'Billing', { right: 1300 }) } }],
 	},
 ]
