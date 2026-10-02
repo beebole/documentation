@@ -30,7 +30,7 @@ Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bar
 Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. Task names show their full project and task path, so tasks with similar names are easy to tell apart. In a planning set to **Bookings**, each bar is a booking named after its project and person — see [Tasks or bookings](/help/documentation/planning#tasks-or-bookings). A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
 
 <Frame caption="The Gantt view of Main plan, week by week, with dependency links and today's line">
-  ![Beebole Planning page for Main plan on its Gantt view: the Row # and Task Name columns on the left, and on the timeline one colored bar per task with dates, dotted arrows linking dependent tasks, month pills for September to December 2026 and an orange vertical line marking today](/help/images/gantt/timeline-bars.webp)
+  ![Beebole Planning page for Main plan on its Gantt view: the Row # and Task Name columns on the left, and on the timeline one colored bar per task with dates, dotted arrows linking dependent tasks, month pills for September to December 2026, a load bar under each week number, and an orange vertical line marking today](/help/images/gantt/timeline-bars.webp)
 </Frame>
 
 Hover any bar for a rich tooltip: the full dates, the task name, its project with parents, the owner, the planned hours or days and allocation percentage, plus a hint about what **⌘** does on the chart.
@@ -159,6 +159,10 @@ Whichever option is active, a task that gets rescheduled lands on dates its own 
 
 The **Planned** column shows each task's planned work. The small button in the column header toggles the unit (**Planned in hours or days**); the same choice sits under **Durations in** (**Hours** or **Days**) in the view tab's **⋯** menu. A parent task shows the total planned time of its subtasks.
 
+<Frame caption="The Planned column in hours, with its unit button in the header">
+  <img src="/help/images/gantt/planned-column.webp" alt="Beebole Gantt task columns Row #, Task Name and Planned, with the H unit button in the Planned header and planned hours for the first ten Main plan tasks, from Requirements Gathering at 80 to Data Audit at 40" width="457" />
+</Frame>
+
 Switching to days does not divide by a fixed 8-hour day. Beebole converts at the length of a working day on the task's own calendar — the owner's [work schedule](/help/documentation/work-schedule), or the company's when the task has no owner yet — so for someone on 7.6-hour days, 7.6 hours reads as one day. The **Planned** cell, the bar tooltip, the live figure shown while you drag, the [workload heatmap](#workload-heatmap), and [Staffing](/help/documentation/staffing) capacity all convert the same way, so their day figures always agree.
 
 Planned time is what the [workload heatmap](#workload-heatmap) compares against each person's capacity, derived from their [work schedule](/help/documentation/work-schedule) minus their absences.
@@ -173,6 +177,10 @@ When the chart is grouped, each group header row carries one cell per period (da
 - **Grouped by anything else** — For project categories, tag categories, statuses, and the "no owner" bucket of a grouping by owner, the cell shows the group's total planned time as a figure above a bar scaled to the busiest period on that row. A capacity ratio has no meaning for a group of people, so none is drawn. Planned time that has no owner yet appears as a small red badge in the corner of the cell.
 - **Without grouping** — A single load bar sits under each day or week number in the timeline header, rolling up everyone. Click it to step the scroll through the rows driving that period's load.
 - **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32h / Capacity: 40h (80%)`), and adds a line per overloaded person with their own figures.
+
+<Frame caption="Grouped by Owner: load bars per week, and the tooltip of an overbooked week">
+  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.4h / Capacity: 40h (306%)](/help/images/gantt/workload-heatmap.webp)
+</Frame>
 
 Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.
 

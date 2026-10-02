@@ -328,6 +328,37 @@ async function ensureScheduleChange(state) {
 	console.log(`+ schedule ${c.to} from ${new Date(c.startTime).toISOString().slice(0, 10)} → ${c.person}`)
 }
 
+// Until 2026-10-02 seed.mjs created its tasks with two defects, repaired here on the tasks it made:
+// - the planned hours went in as the effort, which the API reads as milliseconds (200 h became
+//   200 ms, so no planning screen showed planned time). A task planned at under a second can only
+//   be one of those: it gets the same number of hours.
+// - the dates ran from noon to noon, which the app reads as a timed task (All day unchecked,
+//   12:00 PM in its panel). A task starting and ending at 12:00 UTC gets whole days, as the app's
+//   All day sets them: its first day from 00:00 UTC, its last to 23:59:59.999 UTC.
+const HOUR = 3600000
+async function repairSeededTasks() {
+	const d = await gql(`{ getTasks { id name effort startTime { ts } endTime { ts } } }`)
+	for (const t of d.getTasks) {
+		const [start, end] = [t.startTime?.ts, t.endTime?.ts]
+		if (start == null || end == null) continue
+		const hours = t.effort > 0 && t.effort < 1000
+		const noon = start % (24 * HOUR) === 12 * HOUR && end % (24 * HOUR) === 12 * HOUR
+		if (!hours && !noon) continue
+		await gql(
+			`mutation($id: BeeboleId!, $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $effort: Float) {
+				editTaskPeriod(id: $id, startTime: $startTime, endTime: $endTime, effort: $effort) { id }
+			}`,
+			{
+				id: t.id,
+				startTime: noon ? start - 12 * HOUR : start,
+				endTime: noon ? end + 12 * HOUR - 1 : end,
+				effort: hours ? t.effort * HOUR : t.effort,
+			}
+		)
+		console.log(`~ ${t.name}:${hours ? ` planned ${t.effort} h` : ''}${noon ? ' whole days' : ''}`)
+	}
+}
+
 export async function applyLayer() {
 	// Refuse before any write: run on its own, this script must not touch another organisation.
 	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
@@ -365,6 +396,7 @@ export async function applyLayer() {
 	await ensureCustomField()
 	await ensureStaffingPlan(state)
 	await ensureScheduleChange(state)
+	await repairSeededTasks()
 
 	const contract = state.categories.find((c) => c.name === 'Contract')
 	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {
