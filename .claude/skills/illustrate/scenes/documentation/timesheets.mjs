@@ -524,4 +524,56 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The date picker opened from the date range: two months, the shortcuts and Today. The click
+		// selects the range's text, so the selection is cleared before the shot.
+		id: 'timesheets-date-picker',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			const range = page.locator('input[name=dateOutput]').filter({ visible: true })
+			await range.click()
+			await page.locator('.bb-calendar-portal').getByText('This week').first().waitFor()
+			await range.evaluate((i) => i.setSelectionRange(0, 0))
+			await h.settle(page)
+		},
+		// From the date range down to the bottom of the picker.
+		shots: [
+			{
+				file: 'timesheets/date-picker.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page, h) => {
+						const range = await page.locator('input[name=dateOutput]').filter({ visible: true }).boundingBox()
+						const popup = await h.stableBox(page, page.locator('.bb-calendar-portal').first())
+						const x = popup.x - 24
+						const y = range.y - 20
+						return { x, y, width: Math.max(popup.x + popup.width, range.x + range.width) + 24 - x, height: popup.y + popup.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// The calendar view of the last full week, Thursday clicked: the day alone at full width,
+		// with Back and the day's date above it.
+		id: 'timesheets-day-focus',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
+			await page.getByText('9 AM').first().waitFor()
+			await h.settle(page)
+			await page.locator('div.relative.flex.items-center.justify-center').filter({ hasText: /^\s*Thu\s*\d+\s*$/ }).first().click()
+			await page.getByRole('button', { name: /Back/ }).waitFor()
+			await h.settle(page)
+		},
+		shots: [{ file: 'timesheets/day-focus.webp', frame: { type: 'full' } }],
+	},
 ]
