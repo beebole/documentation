@@ -691,3 +691,27 @@ No new shot: this batch settled the pane problem found in batch (3). 17 publishe
 - Recaptured: on Timesheets, weekly-grid, entry-details, team-pane, timer-running, calendar-timer-running, timer-shelf, favorites-bar-play, clear-rows-button (top trimmed, width 336), paste-dialog, submit-button, time-off-row, copy-button (timer-shelf width 375). calendar-view, import-calendar-button and row-menu came back identical to their Sep 29 captures. On Approval, pending-pane and edit-timesheet-pencil; on AI, suggested-entries-tray, approval-review-digest and suggestion-forecast-cards (the avatars lost their score rings). `timesheets/add-row-button.webp` (Quickstart) and `integrations/microsoft-calendar-pane.webp` replay `same` again with the pane closed.
 - The seed was topped up (Sep 29 to Oct 1, 142 records) before the capture.
 
+
+## Additions 2026-10-02 (6) (batch from page sections)
+
+No automatable entry left in the inventory, so the shots came from sections of the most-visited pages that had none, Mobile first (658 views, 4 shots).
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| mobile/mobile-sidebar.webp | The sidebar opened from the hamburger button on a phone | medium — done (scene `mobile-sidebar`, 2026-10-02) |
+| mobile/mobile-activity-picker.webp | The activity selector bottom sheet, Working activity then Client | high — done (scene `mobile-activity-drilldown`, 2026-10-02). The sheet on QA shows only Working activity and Time off (no recent rows, no planning open to time entry), so the bare first sheet was not kept. Page step 2 now says what the sheet holds |
+| mobile/mobile-editor-sheet.webp | An entry opened in the editor sheet | high — done on Thursday's Sales entry (scene `mobile-editor-sheet`, 2026-10-02) |
+| mobile/mobile-swipe-delete.webp | A left swipe revealing Delete | medium — done: the swipe is a touch gesture, so the scene sets the card's offset (scene `mobile-swipe-delete`, 2026-10-02) |
+| mobile/mobile-suggestion-row.webp | Suggestions as ghost rows in a day | medium — done: a Desktop suggestion pushed for today by a fixture, next to the two from recurring entries (scene `mobile-suggestion-row`, 2026-10-02). The rows only show once the sparkles button in the header is on: page completed |
+| mobile/mobile-suggestion-sheet.webp | A suggestion opened in its sheet (bin, play, check) | medium — done (scene `mobile-suggestion-sheet`, same fixture, 2026-10-02) |
+| mobile/mobile-approve-reject.webp | A submitted week opened from the approval sheet, Approve and Reject in the header | medium — done on Ana Pereira's week of Sep 13 (scene `mobile-approve-reject`, 2026-10-02) |
+| planning/planning-switch-menu.webp | The plannings menu with the Name of a new planning field | medium — done (scene `planning-switch-menu`, 2026-10-02) |
+| people/person-localization-panel.webp | A person's Localization panel with one setting of their own | medium — done: Yuki Tanaka in Tokyo, set by a fixture (scene `people-localization`, 2026-10-02) |
+
+Linked without a new capture: on People, `roles/person-role-selector.webp` (Role assignment), `work-schedule/assign-panel.webp` (Schedule assignment) and `concepts/duplicate-action-menu.webp` (Archiving). Their steps were aligned with the pages that own the images.
+
+Found while shooting:
+
+- The app has two layouts, not three: the touch layout below 1280 px wide, which covers phones and most tablets. The Responsive layout section of `mobile.mdx` was corrected; a tablet shot was taken and dropped, as it is the phone layout stretched.
+- The replay of `mobile.mdx` shows the older mobile scenes drifting since the topup of batch (5) put entries on Sep 29 to Oct 1: `mobile-timesheet` broken (current week header not found under the Sep 29 clock), `dark-mode` changed 44.8 %, `mobile-timer` 20.0 %, `mobile-approval-sheet` 0.9 %. Left for the next `/illustrate --release`.
+- Timesheet Settings' "Opening" steps were left without a shot: `account-settings/settings-panels.webp` stops above the Timesheet and Planning Settings panel.
