@@ -1559,9 +1559,12 @@ async function createTasks(taskCat, statuses, projectMap, personMap) {
 				}`,
 				{
 					id: taskId,
-					startTime: resolveDate(t.start),
-					endTime: resolveDate(t.end),
-					effort: t.effort ?? null,
+					// Whole days, as the app's All day sets them: the first day from 00:00 UTC, the
+					// last to 23:59:59.999 UTC (resolveDate gives noon, which reads as a timed task).
+					startTime: resolveDate(t.start) - 12 * 3600000,
+					endTime: resolveDate(t.end) + 12 * 3600000 - 1,
+					// TASKS give hours; the API takes milliseconds.
+					effort: t.effort ? t.effort * 3600000 : null,
 				}
 			)
 		}
