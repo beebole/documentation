@@ -363,4 +363,34 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		id: 'reports-planned-vs-real',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		// Tall enough for the Over/under plan per person chart under the main one.
+		viewport: { width: 1440, height: 1240 },
+		// Website Redesign, the project the Main plan tasks belong to (People would read the same
+		// Real for everyone, as Real is the time on the tasks' projects).
+		async setup(page, h) {
+			await h.goto(page, '/reports')
+			await page.getByRole('button', { name: 'Planned vs. Real', exact: true }).click()
+			await h.settle(page, 3000)
+			await page.getByRole('button', { name: 'People', exact: true }).click()
+			await page.locator('.pvrAxisMenu').getByText('Client', { exact: true }).hover()
+			await h.settle(page, 800)
+			await page.locator('.pvrAxisMenu').getByText('Project', { exact: true }).click()
+			await h.settle(page, 1500)
+			// The project list starts on Acme Corp: Mobile App; Next moves to Website Redesign.
+			await page.keyboard.press('Escape')
+			await page.getByRole('button', { name: 'Next', exact: true }).click()
+			await page.getByText('Acme Corp: Website Redesign').filter({ visible: true }).first().waitFor()
+			await h.settle(page, 3000)
+			// ECharts draws its lines with an animation timed on the clock, which the runner holds
+			// still: the lines would stay undrawn. Moving the fixed time 10 s ahead ends it.
+			await page.clock.setFixedTime(new Date(Date.parse(await page.evaluate(() => new Date().toISOString())) + 10000))
+			await h.settle(page, 2000)
+		},
+		shots: [{ file: 'reports/planned-vs-real.webp', frame: { type: 'full' } }],
+	},
 ]
