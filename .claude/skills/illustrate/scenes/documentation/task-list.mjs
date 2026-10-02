@@ -34,12 +34,11 @@ async function waitForWorkingDays(page, h) {
 export const scenes = [
 	{
 		id: 'task-list-view',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
-			// Planned is left out: the documentation account's tasks have no planned time yet.
-			await openListView(page, h, ['Owner', 'Dates', 'Client', 'Status'])
+			await openListView(page, h, ['Owner', 'Dates', 'Planned', 'Client', 'Status'])
 			// Sorted by Dates, ascending: the header shows its arrow.
 			// Clicked at its position: the header's resize handle takes the pointer over the text.
 			const dates = await page.getByText('Dates', { exact: true }).filter({ visible: true }).first().boundingBox()
