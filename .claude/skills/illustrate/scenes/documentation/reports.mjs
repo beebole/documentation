@@ -393,4 +393,41 @@ export const scenes = [
 		},
 		shots: [{ file: 'reports/planned-vs-real.webp', frame: { type: 'full' } }],
 	},
+	{
+		// The Current Month folder's Filters popup with Project and "is" picked: the project picker
+		// lists the categories first. Nothing is added (Add filter is never clicked).
+		id: 'reports-filters',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Month', 'Hours by Person')
+			await page.getByRole('button', { name: 'Filters', exact: true }).first().click()
+			const popup = page.locator('div.shadow-lg.fixed.z-50').filter({ hasText: 'Add filter' }).filter({ visible: true }).first()
+			await popup.getByText('Project', { exact: true }).click()
+			await popup.getByText('is', { exact: true }).click()
+			await page.getByText('Internal', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 600, y: 860 }),
+		// The Filters button and the popup below it.
+		shots: [
+			{
+				file: 'reports/filters-popup.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const popup = await page.locator('div.shadow-lg.fixed.z-50').filter({ hasText: 'Add filter' }).filter({ visible: true }).first().boundingBox()
+						const filters = await page.getByRole('button', { name: 'Filters', exact: true }).first().boundingBox()
+						const x = Math.min(popup.x, filters.x) - 24
+						return { x, y: 0, width: 1440 - x, height: popup.y + popup.height + 24 }
+					},
+				},
+			},
+		],
+	},
 ]
