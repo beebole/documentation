@@ -13,11 +13,14 @@ async function openView(page, h, name) {
 }
 
 // Two subtasks under Frontend Development, for the capture only: they split its period and its
-// 200 hours, so the parent's rolled-up bar and total read as before. `down` deletes them by name.
+// 200 hours, so the parent's rolled-up bar and total read as before. `down` deletes them by name,
+// then writes the parent's own period and hours back: deleting its last children clears the
+// parent's dates (seen 2026-10-02, it then dropped out of Planned vs. Real and the Gantt).
 const SUBTASKS = [
 	{ name: 'Component Library', start: '2026-08-29', end: '2026-09-28', hours: 90 },
 	{ name: 'Page Templates', start: '2026-09-29', end: '2026-10-29', hours: 110 },
 ]
+const PARENT = { start: '2026-08-29', end: '2026-10-29', hours: 200 }
 const subtasks = {
 	async up(api) {
 		const { getTasks } = await api('{ getTasks { id name category { id } status { id } } }')
@@ -43,6 +46,12 @@ const subtasks = {
 	async down(api) {
 		const { getTasks } = await api('{ getTasks { id name } }')
 		for (const t of getTasks.filter((t) => SUBTASKS.some((s) => s.name === t.name))) await api('mutation($id: BeeboleId!) { deleteTask(id: $id) { id } }', { id: t.id })
+		await api('mutation($id: BeeboleId!, $s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $f: Float) { editTaskPeriod(id: $id, startTime: $s, endTime: $e, effort: $f) { id } }', {
+			id: getTasks.find((t) => t.name === 'Frontend Development').id,
+			s: Date.parse(`${PARENT.start}T00:00:00Z`),
+			e: Date.parse(`${PARENT.end}T23:59:59.999Z`),
+			f: PARENT.hours * 3600000,
+		})
 	},
 }
 
