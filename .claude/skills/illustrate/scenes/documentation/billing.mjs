@@ -1,6 +1,10 @@
 // Scenes for help/documentation/billing.mdx.
 export const page = 'help/documentation/billing.mdx'
 
+// Panels are widened to 800 px: at the default width (576 at 1440)
+// a repeating fee's Every 1st of the month is clipped.
+const PANEL_WIDTH = 800
+
 // Northstar Financial's hourly rate, split by persons for the capture only: two people with
 // their own amount and one non-billable. `down` clears the split (the app resets its rows with
 // the split type), so the reports keep the account's single rate.
@@ -181,11 +185,13 @@ export const scenes = [
 			const entity = /\/projects\/[0-9a-f]{24}/
 			await page.waitForURL(entity)
 			await h.goto(page, `${page.url().match(entity)[0]}/billing`)
+			// Widened before the card is unfolded: resizing folds it back.
+			await h.widenPanel(page, PANEL_WIDTH)
 			await page.getByText(/2,500\.00/).first().click()
 			await page.getByText('Repeat', { exact: true }).filter({ visible: true }).first().waitFor()
 			await h.settle(page, 1000)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'billing/recurring-fixed-fee.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Billing', 'Budgets') } }],
 	},
 ]

@@ -44,7 +44,9 @@ export function makeHelpers() {
 		// Widens the open side panel to `width` CSS pixels by dragging its Resize handle, as a user
 		// does. At its default width (about 40 % of the window, 576 px at 1440) some panels wrap
 		// their rows: a work schedule's intervals, a dated assignment's ×. The width is a view
-		// setting, which the runner answers without saving.
+		// setting, which the runner answers without saving. Resizing folds an unfolded card (a
+		// budget, a rate): widen first, then unfold. Fixed-width fields (an amount, a select) do
+		// not grow with the panel.
 		async widenPanel(page, width) {
 			// The handle (tooltip Resize) is the second of the panel's controls, after the pin. It only
 			// shows while the panel is hovered.

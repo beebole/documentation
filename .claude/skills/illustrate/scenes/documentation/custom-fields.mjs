@@ -2,6 +2,10 @@
 // text pick list shown on Client projects and time records.
 export const page = 'help/documentation/custom-fields.mdx'
 
+// Panels are widened to 800 px: at the default width (576 at 1440)
+// the visibility labels break over two lines.
+const PANEL_WIDTH = 800
+
 // Opens one panel of the Cost center field through its address (Settings > Custom Fields).
 async function openFieldPanel(page, h, attribute) {
 	await h.goto(page, '/settings')
@@ -27,7 +31,7 @@ export const scenes = [
 	},
 	{
 		id: 'custom-fields-visibility',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		// The panel is taller than 900: a taller window shows it whole.
@@ -35,8 +39,9 @@ export const scenes = [
 		async setup(page, h) {
 			await openFieldPanel(page, h, 'custom-field-visibility')
 			await h.settle(page, 1500)
+			await h.widenPanel(page, PANEL_WIDTH)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'custom-fields/field-visibility-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Custom field visibility', 'Custom field details') } }],
 	},
 ]

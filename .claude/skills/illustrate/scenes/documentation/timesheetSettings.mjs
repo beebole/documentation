@@ -93,13 +93,15 @@ export const scenes = [
 	{
 		// A person's own Timesheet and Planning Settings panel, where every value is inherited.
 		id: 'timesheet-settings-inherited',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
 			await h.openPanel(page, '/persons', 'Marc Dubois', 'time-settings')
 			await page.getByText('Period & submission', { exact: true }).first().waitFor()
 			await h.settle(page, 1500)
+			// Below about 1000 px the settings tabs wrap onto two rows, and the tooltip covers the second.
+			await h.widenPanel(page, 1000)
 			await inheritedIcon(page).hover()
 			await page.getByText('Settings / Timesheet and Planning Settings').filter({ visible: true }).first().waitFor()
 		},
