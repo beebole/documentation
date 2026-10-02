@@ -124,4 +124,44 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The roles list with the Project manager role's ⋯ menu open, below the other roles (opening it
+		// changes nothing).
+		id: 'roles-list-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/roles')
+			await page.getByText('Project manager', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+			const row = h.listRow(page, 'Project manager')
+			await row.hover()
+			await h.settle(page, 300)
+			await row.locator('bb-action-menu-button button').first().click()
+			await page.getByText('Duplicate', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		// On the Project manager row, so it keeps its hover state and its ⋯ button.
+		mouse: async (page) => {
+			const b = await page.getByText('Project manager', { exact: true }).first().boundingBox()
+			return { x: b.x + 400, y: b.y + b.height / 2 }
+		},
+		// The page header, the four roles and the open menu.
+		shots: [
+			{
+				file: 'roles/roles-list-menu.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const del = await page.getByText('Delete', { exact: true }).filter({ visible: true }).first().boundingBox()
+						return { x: 72, y: 0, width: 620, height: del.y + del.height + 32 }
+					},
+				},
+			},
+		],
+	},
 ]

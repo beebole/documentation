@@ -311,4 +311,56 @@ export const scenes = [
 		},
 		shots: [{ file: 'reports/revenue-at-risk.webp', frame: { type: 'full' } }],
 	},
+	{
+		// A report's ⋯ menu, on Margin by Client per Month (it has a period of its own, so Reset
+		// period shows). Send by email is not offered on production hosts: the scene hides it.
+		id: 'reports-action-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			const report = 'Margin by Client per Month'
+			await openFolder(page, h, 'Current Year', report)
+			await page.getByText(report, { exact: true }).first().click()
+			await page.getByText('2026-01', { exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+			const row = page.getByText(report, { exact: true }).first().locator('xpath=ancestor::*[.//button[normalize-space()="Table"]][1]')
+			await row.locator('bb-action-menu-button button').first().click()
+			await page.getByText('Reset period', { exact: true }).filter({ visible: true }).first().waitFor()
+			await page.getByText('Send by email', { exact: true }).filter({ visible: true }).evaluateAll((els) =>
+				els.forEach((e) => {
+					let row = e
+					while (row.parentElement && row.parentElement.textContent.trim() === e.textContent.trim()) row = row.parentElement
+					row.style.display = 'none'
+				})
+			)
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1300, y: 850 }),
+		// From the report's title row down to the bottom of its menu.
+		shots: [
+			{
+				file: 'reports/report-action-menu.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Margin by Client per Month', { exact: true }).first().boundingBox()
+						const menu = await page
+							.getByText('Reset period', { exact: true })
+							.filter({ visible: true })
+							.first()
+							.locator('xpath=ancestor::*[.//*[normalize-space()="Duplicate"]][1]')
+							.boundingBox()
+						const update = await page.getByRole('button', { name: 'Update', exact: true }).first().boundingBox()
+						const x = title.x - 72
+						const y = title.y - 28
+						return { x, y, width: Math.max(menu.x + menu.width, update.x + update.width) + 32 - x, height: menu.y + menu.height + 28 - y }
+					},
+				},
+			},
+		],
+	},
 ]

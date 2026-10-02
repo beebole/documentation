@@ -2,6 +2,20 @@
 // before the capture date (the current week is only partly filled on a capture day).
 export const page = 'help/documentation/timesheets.mdx'
 
+// The timesheet can reopen on a side pane (Team or Approval, both with a Show all switch): Jordan
+// Reed's saved view on QA opens the Team pane since about October 1, 2026. Close it so the grid
+// has the full width. Not yet used by openLastFullWeek: shots published since then show the pane.
+// The pane's own text ("0 team") would match a loose tooltip search, so the Team button is found
+// by its exact tooltip; a click on it switches an Approval pane to Team, a second one closes it.
+export async function closeSidePane(page, h) {
+	const pane = page.getByText('Show all', { exact: true }).filter({ visible: true })
+	for (let i = 0; i < 2 && (await pane.count()); i++) {
+		await (await h.byTooltip(page, page.locator('timesheet-corner'), /^Team$/)).click()
+		await h.settle(page, 800)
+	}
+	if (await pane.count()) throw new Error('could not close the timesheet side pane')
+}
+
 export async function openLastFullWeek(page, h) {
 	// Opening /timesheet directly lands on People, so go through the sidebar link.
 	await h.goto(page, '/persons')
@@ -102,6 +116,31 @@ async function openCurrentWeek(page, h, rowName) {
 	await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
 	await page.getByText(rowName, { exact: true }).first().waitFor()
 	await h.settle(page, 2000)
+}
+
+// Two days of PTO for Jordan Reed on Monday and Tuesday of the week after the capture date,
+// booked ahead for the capture only (future time off is allowed on the account).
+const timeOffNextWeek = {
+	async up(api, { date }) {
+		const day = Date.parse(`${date}T00:00:00Z`)
+		const monday = day + ((8 - new Date(day).getUTCDay()) % 7 || 7) * 86400000
+		const { getPersons } = await api('{ getPersons { id name } }')
+		const { getAbsenceTypes } = await api('{ getAbsenceTypes { id name } }')
+		const personId = getPersons.find((p) => p.name === 'Jordan Reed').id
+		const absenceId = getAbsenceTypes.find((a) => a.name === 'PTO').id
+		const ids = []
+		for (const ts of [monday, monday + 86400000]) {
+			const { addTimeRecord } = await api(
+				'mutation($s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $d: Float!, $p: BeeboleId!, $a: BeeboleId!) { addTimeRecord(startTime: $s, endTime: $e, duration: $d, personId: $p, absenceId: $a) { id } }',
+				{ s: ts, e: ts + 86400000, d: 8 * 3600000, p: personId, a: absenceId }
+			)
+			ids.push(addTimeRecord.id)
+		}
+		return { ids }
+	},
+	async down(api, state) {
+		if (state?.ids?.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: state.ids })
+	},
 }
 
 export const scenes = [
@@ -442,6 +481,42 @@ export const scenes = [
 			{
 				file: 'timesheets/submit-button.webp',
 				frame: { type: 'lens', target: (page) => page.getByRole('button', { name: 'Submit', exact: true }).filter({ visible: true }).first(), context: { x: 68, y: 0, width: 1372, height: 560 } },
+			},
+		],
+	},
+	{
+		// Next week, with two days of PTO booked ahead on Monday and Tuesday (fixture), in Grid view
+		// with the side pane closed so the seven days fit.
+		id: 'timesheets-time-off-row',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		fixture: timeOffNextWeek,
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('link', { name: 'Timesheet' }).click()
+			await page.getByRole('button', { name: 'Next' }).waitFor()
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
+			await h.settle(page, 2000)
+			await closeSidePane(page, h)
+			const before = await page.locator('.ts-head-day').first().textContent()
+			await page.getByRole('button', { name: 'Next' }).click()
+			await page.waitForFunction((b) => document.querySelector('.ts-head-day')?.textContent !== b, before, { timeout: 15000 })
+			await page.getByText(/in days/).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		// The week down to the Time Off section.
+		shots: [
+			{
+				file: 'timesheets/time-off-row.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const row = await page.getByText(/in days/).first().boundingBox()
+						return { x: 72, y: 0, width: 1440 - 72, height: row.y + row.height + 40 }
+					},
+				},
 			},
 		],
 	},

@@ -91,4 +91,43 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The user menu, opened from Jordan Reed's initials at the bottom of the sidebar. From the
+		// Roles page, whose short list leaves the space behind the menu empty.
+		id: 'account-settings-user-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/roles')
+			await page.getByText('Project manager', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+			await page.locator('connected-person .cursor-pointer').first().click()
+			await page.getByText('Account Settings', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1200, y: 600 }),
+		// The bottom of the sidebar and the open menu.
+		shots: [
+			{
+				file: 'account-settings/user-menu.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const menu = await page
+							.getByText('Account Settings', { exact: true })
+							.filter({ visible: true })
+							.first()
+							.locator('xpath=ancestor::*[.//*[normalize-space()="Sign out"]][1]')
+							.boundingBox()
+						const y = menu.y - 24
+						return { x: 0, y, width: menu.x + menu.width + 32, height: page.viewportSize().height - y }
+					},
+				},
+			},
+		],
+	},
 ]
