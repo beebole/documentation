@@ -27,7 +27,7 @@ async function sophieWeekCell(page) {
 export const scenes = [
 	{
 		id: 'gantt-timeline',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -67,7 +67,7 @@ export const scenes = [
 	},
 	{
 		id: 'gantt-view-period-menu',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -145,7 +145,7 @@ export const scenes = [
 		// The end handle of App Development dragged onto QA Testing, held before the release: the
 		// line follows the pointer and the target bar is highlighted. Nothing is linked.
 		id: 'gantt-dependency-drag',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -221,7 +221,7 @@ export const scenes = [
 	{
 		// The view tab's ⋯ menu with the Columns submenu open (hovering changes nothing).
 		id: 'gantt-columns-menu',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
