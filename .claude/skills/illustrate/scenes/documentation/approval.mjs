@@ -6,7 +6,7 @@ export const page = 'help/documentation/approval.mdx'
 export const scenes = [
 	{
 		id: 'approval-pending-pane',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -48,7 +48,7 @@ export const scenes = [
 			// Jordan Reed's own week is a draft: open the Team pane (when it is not open yet) and
 			// click Ana Pereira's Submitted badge, which opens the same stage breakdown.
 			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
-			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
 			const badge = member.locator('timesheet-approval-status span.rounded-full')
 			await badge.waitFor()
 			await h.settle(page, 1500)
@@ -87,7 +87,7 @@ export const scenes = [
 			// Select two submitted weeks in the Team pane: the bulk bar appears under the list. Nobody
 			// in that week is still a draft, so the bar shows Approve and Reject but no Remind.
 			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
-			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
 			await member.locator('timesheet-approval-status').waitFor()
 			await h.settle(page, 1500)
 			for (const name of ['Ana Pereira', 'Carlos Ruiz']) {
@@ -126,7 +126,7 @@ export const scenes = [
 		async setup(page, h) {
 			await openLastFullWeek(page, h)
 			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
-			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
 			await member.locator('timesheet-approval-status').waitFor()
 			await h.settle(page, 1500)
 			await member.getByText('Ana Pereira', { exact: true }).click()
@@ -164,13 +164,13 @@ export const scenes = [
 	},
 	{
 		id: 'approval-edit-pencil',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
 			await openLastFullWeek(page, h)
 			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
-			if (!(await member.isVisible())) await (await cornerButton(page, h, 'Team')).click()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
 			await member.locator('timesheet-approval-status').waitFor()
 			await h.settle(page, 1500)
 		},
