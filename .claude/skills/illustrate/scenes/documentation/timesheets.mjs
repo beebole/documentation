@@ -104,6 +104,31 @@ async function openCurrentWeek(page, h, rowName) {
 	await h.settle(page, 2000)
 }
 
+// Two days of PTO for Jordan Reed on Monday and Tuesday of the week after the capture date,
+// booked ahead for the capture only (future time off is allowed on the account).
+const timeOffNextWeek = {
+	async up(api, { date }) {
+		const day = Date.parse(`${date}T00:00:00Z`)
+		const monday = day + ((8 - new Date(day).getUTCDay()) % 7 || 7) * 86400000
+		const { getPersons } = await api('{ getPersons { id name } }')
+		const { getAbsenceTypes } = await api('{ getAbsenceTypes { id name } }')
+		const personId = getPersons.find((p) => p.name === 'Jordan Reed').id
+		const absenceId = getAbsenceTypes.find((a) => a.name === 'PTO').id
+		const ids = []
+		for (const ts of [monday, monday + 86400000]) {
+			const { addTimeRecord } = await api(
+				'mutation($s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $d: Float!, $p: BeeboleId!, $a: BeeboleId!) { addTimeRecord(startTime: $s, endTime: $e, duration: $d, personId: $p, absenceId: $a) { id } }',
+				{ s: ts, e: ts + 86400000, d: 8 * 3600000, p: personId, a: absenceId }
+			)
+			ids.push(addTimeRecord.id)
+		}
+		return { ids }
+	},
+	async down(api, state) {
+		if (state?.ids?.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: state.ids })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'timesheets-weekly-grid',
@@ -442,6 +467,47 @@ export const scenes = [
 			{
 				file: 'timesheets/submit-button.webp',
 				frame: { type: 'lens', target: (page) => page.getByRole('button', { name: 'Submit', exact: true }).filter({ visible: true }).first(), context: { x: 68, y: 0, width: 1372, height: 560 } },
+			},
+		],
+	},
+	{
+		// Next week, with two days of PTO booked ahead on Monday and Tuesday (fixture), in Grid view
+		// with the Team pane closed so the seven days fit.
+		id: 'timesheets-time-off-row',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		fixture: timeOffNextWeek,
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('link', { name: 'Timesheet' }).click()
+			await page.getByRole('button', { name: 'Next' }).waitFor()
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
+			await h.settle(page, 2000)
+			// The account may reopen the timesheet on a side pane. Its own text ("0 team") would match
+			// a loose tooltip search, so the Team button is found by its exact tooltip.
+			if (await page.getByText('Show all', { exact: true }).isVisible()) {
+				await (await cornerButton(page, h, /^Team$/)).click()
+				await page.getByText('Show all', { exact: true }).waitFor({ state: 'hidden' })
+			}
+			const before = await page.locator('.ts-head-day').first().textContent()
+			await page.getByRole('button', { name: 'Next' }).click()
+			await page.waitForFunction((b) => document.querySelector('.ts-head-day')?.textContent !== b, before, { timeout: 15000 })
+			await page.getByText(/in days/).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		// The week down to the Time Off section.
+		shots: [
+			{
+				file: 'timesheets/time-off-row.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const row = await page.getByText(/in days/).first().boundingBox()
+						return { x: 72, y: 0, width: 1440 - 72, height: row.y + row.height + 40 }
+					},
+				},
 			},
 		],
 	},
