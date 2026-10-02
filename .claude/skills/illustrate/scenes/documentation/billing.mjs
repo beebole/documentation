@@ -43,6 +43,30 @@ const splitRate = {
 	},
 }
 
+// A rate added to a project for the capture only, removed right after. `monthly` turns on Repeat,
+// every 1 month.
+function addProjectRate({ project, from, cents, method, monthly }) {
+	return {
+		async up(api) {
+			const { getProjects } = await api('{ getProjects { id name } }')
+			const projectId = getProjects.find((p) => p.name === project).id
+			const { addProjectBilling } = await api(
+				'mutation($p: BeeboleId!, $s: BeeboleTimestamp!, $a: BeeboleInputAmount!, $m: BeeboleRateMethod!, $r: Boolean) { addProjectBilling(projectId: $p, startTime: $s, amount: $a, method: $m, repeatEnabled: $r) { id } }',
+				{ p: projectId, s: Date.parse(`${from}T00:00:00Z`), a: { value: cents, currency: 'USD' }, m: method, r: !!monthly }
+			)
+			const id = addProjectBilling.id
+			if (monthly) {
+				await api('mutation($id: BeeboleId!) { editBillingRepeatOccurrence(id: $id, occurrence: "month") { id } }', { id })
+				await api('mutation($id: BeeboleId!) { editBillingRepeatFrequency(id: $id, frequency: 1) { id } }', { id })
+			}
+			return { projectId, id }
+		},
+		async down(api, state) {
+			if (state?.id) await api('mutation($p: BeeboleId!, $b: BeeboleId!) { deleteProjectBilling(projectId: $p, billingId: $b) { id } }', { p: state.projectId, b: state.id })
+		},
+	}
+}
+
 export const scenes = [
 	{
 		id: 'billing-rate-card',
@@ -126,5 +150,42 @@ export const scenes = [
 		},
 		mouse: () => ({ x: 800, y: 110 }),
 		shots: [{ file: 'billing/billing-method-picker.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Billing', 'Budgets') } }],
+	},
+	{
+		// Acme Corp's $150 rate from June 29, and a $165 rate from January 1, 2027 (fixture).
+		id: 'billing-rates-over-time',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: addProjectRate({ project: 'Acme Corp', from: '2027-01-01', cents: 16500, method: 'hourly' }),
+		async setup(page, h) {
+			await h.openPanel(page, '/projects', 'Acme Corp', 'billing')
+			await page.getByText(/165\.00/).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'billing/rates-over-time.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Billing', 'Budgets') } }],
+	},
+	{
+		// A $2,500 fixed fee on Mobile App, repeating every month from October 1 (fixture), its card
+		// unfolded (display only, nothing is saved).
+		id: 'billing-recurring-fixed-fee',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: addProjectRate({ project: 'Mobile App', from: '2026-10-01', cents: 250000, method: 'fixed', monthly: true }),
+		async setup(page, h) {
+			await h.goto(page, '/projects')
+			await h.expandRow(page, 'Acme Corp', 'Mobile App')
+			await page.getByText('Mobile App', { exact: true }).first().click()
+			const entity = /\/projects\/[0-9a-f]{24}/
+			await page.waitForURL(entity)
+			await h.goto(page, `${page.url().match(entity)[0]}/billing`)
+			await page.getByText(/2,500\.00/).first().click()
+			await page.getByText('Repeat', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'billing/recurring-fixed-fee.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Billing', 'Budgets') } }],
 	},
 ]
