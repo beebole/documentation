@@ -2,6 +2,20 @@
 // before the capture date (the current week is only partly filled on a capture day).
 export const page = 'help/documentation/timesheets.mdx'
 
+// The timesheet can reopen on a side pane (Team or Approval, both with a Show all switch): Jordan
+// Reed's saved view on QA opens the Team pane since about October 1, 2026. Close it so the grid
+// has the full width. Not yet used by openLastFullWeek: shots published since then show the pane.
+// The pane's own text ("0 team") would match a loose tooltip search, so the Team button is found
+// by its exact tooltip; a click on it switches an Approval pane to Team, a second one closes it.
+export async function closeSidePane(page, h) {
+	const pane = page.getByText('Show all', { exact: true }).filter({ visible: true })
+	for (let i = 0; i < 2 && (await pane.count()); i++) {
+		await (await h.byTooltip(page, page.locator('timesheet-corner'), /^Team$/)).click()
+		await h.settle(page, 800)
+	}
+	if (await pane.count()) throw new Error('could not close the timesheet side pane')
+}
+
 export async function openLastFullWeek(page, h) {
 	// Opening /timesheet directly lands on People, so go through the sidebar link.
 	await h.goto(page, '/persons')
@@ -472,7 +486,7 @@ export const scenes = [
 	},
 	{
 		// Next week, with two days of PTO booked ahead on Monday and Tuesday (fixture), in Grid view
-		// with the Team pane closed so the seven days fit.
+		// with the side pane closed so the seven days fit.
 		id: 'timesheets-time-off-row',
 		capturedAt: '2026-10-02',
 		datesMatter: true,
@@ -484,12 +498,7 @@ export const scenes = [
 			await page.getByRole('button', { name: 'Next' }).waitFor()
 			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().click()
 			await h.settle(page, 2000)
-			// The account may reopen the timesheet on a side pane. Its own text ("0 team") would match
-			// a loose tooltip search, so the Team button is found by its exact tooltip.
-			if (await page.getByText('Show all', { exact: true }).isVisible()) {
-				await (await cornerButton(page, h, /^Team$/)).click()
-				await page.getByText('Show all', { exact: true }).waitFor({ state: 'hidden' })
-			}
+			await closeSidePane(page, h)
 			const before = await page.locator('.ts-head-day').first().textContent()
 			await page.getByRole('button', { name: 'Next' }).click()
 			await page.waitForFunction((b) => document.querySelector('.ts-head-day')?.textContent !== b, before, { timeout: 15000 })
