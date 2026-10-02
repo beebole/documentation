@@ -147,4 +147,57 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// Margin by Client per Month copied from its ⋯ menu (the app keeps it, nothing is saved),
+		// then the Current Month folder's ⋯ menu opened in the Reports menu: Paste is offered.
+		id: 'custom-reports-folder-paste',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			const report = 'Margin by Client per Month'
+			await openFolder(page, h, 'Current Year', report)
+			await page.getByText(report, { exact: true }).first().click()
+			await page.getByText('2026-01', { exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+			const row = page.getByText(report, { exact: true }).first().locator('xpath=ancestor::*[.//button[normalize-space()="Table"]][1]')
+			await row.locator('bb-action-menu-button button').first().click()
+			await page.getByText('Copy', { exact: true }).filter({ visible: true }).first().click()
+			await h.settle(page, 800)
+			// The folder's ⋯ button shows while its entry in the Reports menu is hovered.
+			const folder = page.locator('report-folder-item').filter({ hasText: 'Current Month' }).first()
+			await folder.hover()
+			await h.settle(page, 400)
+			await folder.locator('bb-action-menu-button button').first().click()
+			await page.getByText('Paste', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1300, y: 850 }),
+		// The Reports menu column, from its title down to the bottom of the folder's menu.
+		shots: [
+			{
+				file: 'custom-reports/folder-paste-menu.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const title = await page.getByText('Reports', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const item = await page.locator('report-folder-item').filter({ hasText: 'Current Month' }).first().boundingBox()
+						const menu = await page
+							.getByText('Paste', { exact: true })
+							.filter({ visible: true })
+							.first()
+							.locator('xpath=ancestor::*[.//*[normalize-space()="Duplicate"]][1]')
+							.boundingBox()
+						const x = title.x - 20
+						const y = title.y - 20
+						return { x, y, width: Math.max(item.x + item.width, menu.x + menu.width) + 4 - x, height: menu.y + menu.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
 ]
