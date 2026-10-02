@@ -12,6 +12,40 @@ async function openView(page, h, name) {
 	await page.getByText(name, { exact: true }).first().click()
 }
 
+// Two subtasks under Frontend Development, for the capture only: they split its period and its
+// 200 hours, so the parent's rolled-up bar and total read as before. `down` deletes them by name.
+const SUBTASKS = [
+	{ name: 'Component Library', start: '2026-08-29', end: '2026-09-28', hours: 90 },
+	{ name: 'Page Templates', start: '2026-09-29', end: '2026-10-29', hours: 110 },
+]
+const subtasks = {
+	async up(api) {
+		const { getTasks } = await api('{ getTasks { id name category { id } status { id } } }')
+		const parent = getTasks.find((t) => t.name === 'Frontend Development')
+		const ids = []
+		for (const t of SUBTASKS) {
+			const { addTask } = await api('mutation($n: BeeboleName!, $c: BeeboleId!, $p: BeeboleId, $s: BeeboleId) { addTask(name: $n, categoryId: $c, parentId: $p, statusId: $s) { id } }', {
+				n: t.name,
+				c: parent.category.id,
+				p: parent.id,
+				s: parent.status?.id,
+			})
+			ids.push(addTask.id)
+			await api('mutation($id: BeeboleId!, $s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $f: Float) { editTaskPeriod(id: $id, startTime: $s, endTime: $e, effort: $f) { id } }', {
+				id: addTask.id,
+				s: Date.parse(`${t.start}T00:00:00Z`),
+				e: Date.parse(`${t.end}T23:59:59.999Z`),
+				f: t.hours * 3600000,
+			})
+		}
+		return { ids }
+	},
+	async down(api) {
+		const { getTasks } = await api('{ getTasks { id name } }')
+		for (const t of getTasks.filter((t) => SUBTASKS.some((s) => s.name === t.name))) await api('mutation($id: BeeboleId!) { deleteTask(id: $id) { id } }', { id: t.id })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'planning-kanban-view',
@@ -127,6 +161,43 @@ export const scenes = [
 						const x = title.x - 16
 						const y = title.y - 16
 						return { x, y, width: add.x + add.width + 16 - x, height: menu.y + menu.height + 16 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// The Gantt of Main plan with Frontend Development expanded to its two subtasks (fixture).
+		id: 'planning-subtasks',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		fixture: subtasks,
+		async setup(page, h) {
+			await openView(page, h, 'Gantt')
+			await page.getByText('Frontend Development', { exact: true }).first().waitFor()
+			await h.settle(page, 2000)
+			// The chevron in front of the parent's name; the app remembers expanded rows (idempotent).
+			const parent = page.locator('gantt-task-name').filter({ hasText: 'Frontend Development' }).first()
+			if (!(await page.getByText('Component Library', { exact: true }).first().isVisible())) await parent.getByRole('button').first().click()
+			await page.getByText('Page Templates', { exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		// In the page header, off the Gantt: its rows and days show tooltips under the mouse.
+		mouse: () => ({ x: 1300, y: 40 }),
+		// From the month pills down to App Development, across the task list and the timeline.
+		shots: [
+			{
+				file: 'planning/subtasks-gantt.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const head = await page.locator('gantt-column-head').filter({ hasText: 'Row #' }).first().boundingBox()
+						const last = await page.getByText('App Development', { exact: true }).first().boundingBox()
+						const x = head.x - 16
+						const y = head.y - 56
+						return { x, y, width: 1440 - 16 - x, height: last.y + last.height + 14 - y }
 					},
 				},
 			},
