@@ -99,7 +99,7 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium — done (scene `timesheets-timer`, fixture: a running entry created and removed around the capture, 2026-09-29) |
 | timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt done as `timesheets/paste-dialog.webp` (scene `timesheets-paste-dialog`, 2026-09-30). The Paste period button sits below the copy button: page corrected |
 | timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
-| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — on hold: approvals exist since 2026-09-29, but every score is low because the history was submitted in one day (see `seed-documentation/README.md`) |
+| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — dropped 2026-10-02: the score ring was removed from the app on dev (commit `1d01a0372`, 2026-09-29: `bb-timesheet-score` and its labels deleted). Production still shows it until the next release, which should also remove the Timesheet score section of `timesheets.mdx` |
 | timesheets/calendar-view.webp | The calendar view with the favorites bar | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
 | timesheets/row-menu.webp | A row's ⋯ action menu (Pin to top, Edit, Remove row) | done (scene `timesheets-row-menu`, 2026-09-29; found from the page) |
 | timesheets/team-pane.webp | The Team pane with members and their reported time | done (scene `timesheets-team-pane`, 2026-09-29; found from the page) |
@@ -661,8 +661,7 @@ No automatable entry left in the inventory, so the shots came from sections of t
 Found while shooting:
 
 - The `budgets-split-by-person` fixture zeroed Web Portal's budget when it cleared the split type (2026-10-02). The budget was restored on QA (180 h, $30,000, $9,000 cost) and the fixture now writes the amounts back.
-- Jordan Reed's timesheet on QA reopens on the Team pane since about October 1 (a saved view, changed outside the runner). `timesheets/weekly-grid.webp` (captured before) replays changed; shots captured since (`clear-rows-button`, `submit-button`, likely `paste-dialog`) include the open pane. To settle in a session of its own: call `closeSidePane` in `openLastFullWeek` and `openCurrentWeek`, recapture what then changes, and fix `timesheets-team-pane`, whose loose `Team` tooltip search can hit the Approval button.
-- Already broken or changed before this batch, unrelated to the pane: `timesheets-timer`, `timesheets-calendar-timer`, `timesheets-timer-shelf` (the Fleet Tracker row never shows in the current week) and `timesheets/entry-details.webp` (100 % changed).
+- Jordan Reed's timesheet on QA reopens on the Team pane, and the timer scenes and `timesheets/entry-details.webp` were broken or changed: settled in batch 2026-10-02 (5), below.
 - Other pages still describe the way to the settings screens loosely ("initials, then Settings > Custom Fields"): `assignments.mdx`, `billing.mdx`, `custom-fields.mdx`. The path is initials, then Account Settings, then the entry in the Settings menu.
 
 ## Cramped side panels (found 2026-10-02, Yves)
@@ -681,3 +680,14 @@ At its default width (576 px on a 1440 screen) the side panel wraps or clips som
 Full-screen shots that include an open panel (for example `projects/project-settings-panels.webp`) were not reviewed.
 
 Found while recapturing (batch 2026-10-02 (4)): `budgets/budget-status-report.webp` replays changed by 0.9 % (report figures moved with the topped-up time); left for the next `/illustrate --release`.
+
+## Batch 2026-10-02 (5): Timesheets pane repair
+
+No new shot: this batch settled the pane problem found in batch (3). 17 published shots recaptured, every one replays `same`.
+
+- `openLastFullWeek` and `openCurrentWeek` close the side pane. Closing it brings the timesheet back to the current week, so `openLastFullWeek` closes it before going back (that is also why `timesheets-paste-dialog` failed once: it pasted onto an empty week). Every Team lookup uses the exact tooltip `/^Team$/`.
+- The timer scenes (`timesheets-timer`, `timesheets-calendar-timer`, `timesheets-timer-shelf`) wait on the grid's row label: the floating timer now prefixes the client's initials (QL. Fleet Tracker). The calendar timer frames the whole week, so today's entry is in it on any weekday.
+- `timesheets-team-pane` waits on the approval badges: the score ring is gone from QA (see the dropped `timesheet-score-ring` entry).
+- Recaptured: on Timesheets, weekly-grid, entry-details, team-pane, timer-running, calendar-timer-running, timer-shelf, favorites-bar-play, clear-rows-button (top trimmed, width 336), paste-dialog, submit-button, time-off-row, copy-button (timer-shelf width 375). calendar-view, import-calendar-button and row-menu came back identical to their Sep 29 captures. On Approval, pending-pane and edit-timesheet-pencil; on AI, suggested-entries-tray, approval-review-digest and suggestion-forecast-cards (the avatars lost their score rings). `timesheets/add-row-button.webp` (Quickstart) and `integrations/microsoft-calendar-pane.webp` replay `same` again with the pane closed.
+- The seed was topped up (Sep 29 to Oct 1, 142 records) before the capture.
+
