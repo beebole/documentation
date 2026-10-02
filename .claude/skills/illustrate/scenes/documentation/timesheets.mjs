@@ -427,4 +427,22 @@ export const scenes = [
 		},
 		shots: [{ file: 'timesheets/paste-dialog.webp', frame: { type: 'box', box: (page, h) => h.surfaceAround(page, 'There are already time records in this period'), pad: 16 } }],
 	},
+	{
+		// The last full week is still a draft on a capture day, so its Submit button shows. It is
+		// not clicked.
+		id: 'timesheets-submit-button',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			await page.getByRole('button', { name: 'Submit', exact: true }).filter({ visible: true }).first().waitFor()
+		},
+		shots: [
+			{
+				file: 'timesheets/submit-button.webp',
+				frame: { type: 'lens', target: (page) => page.getByRole('button', { name: 'Submit', exact: true }).filter({ visible: true }).first(), context: { x: 68, y: 0, width: 1372, height: 560 } },
+			},
+		],
+	},
 ]

@@ -56,4 +56,39 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The organization's picture menu open from the header: the color palette and the logo drop
+		// area. Nothing is picked.
+		id: 'account-settings-accent-color',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings')
+			await page.getByText('Absence allowances', { exact: true }).first().waitFor()
+			await page.getByText('QA', { exact: true }).evaluateAll((els) => els.forEach((e) => (e.style.visibility = 'hidden')))
+			await h.settle(page, 1000)
+			await page.locator('bb-picture').filter({ visible: true }).first().click()
+			await page.locator('.pictureMenu').filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		mouse: () => ({ x: 1200, y: 600 }),
+		// The header and the open menu below it.
+		shots: [
+			{
+				file: 'account-settings/accent-color-picker.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const pic = await page.locator('bb-picture').filter({ visible: true }).first().boundingBox()
+						const menu = await page.locator('.pictureMenu').filter({ visible: true }).first().boundingBox()
+						const x = Math.min(pic.x, menu.x) - 24
+						const y = pic.y - 24
+						const right = menu.x + menu.width + 24
+						return { x, y, width: right - x, height: menu.y + menu.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
 ]
