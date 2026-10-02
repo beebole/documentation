@@ -137,4 +137,21 @@ export const scenes = [
 		mouse: () => ({ x: 800, y: 110 }),
 		shots: [{ file: 'tags/inherited-excluded-tags.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Tags', 'Billing') } }],
 	},
+	{
+		// The Add Department panel, opened from the button at the top right: the name field, Save
+		// new department, and the Or add multiple entries area with its example and Paste. Nothing is typed.
+		id: 'tags-add-panel',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/tags')
+			await page.getByText('Design', { exact: true }).first().waitFor()
+			await page.getByRole('button', { name: 'Add Department', exact: true }).click()
+			await page.getByText('Or add multiple entries', { exact: true }).waitFor()
+			await h.settle(page, 1000)
+		},
+		mouse: () => ({ x: 600, y: 860 }),
+		shots: [{ file: 'tags/add-tag-panel.webp', frame: { type: 'clip', x: 68, y: 0, width: 1372, height: 640 } }],
+	},
 ]

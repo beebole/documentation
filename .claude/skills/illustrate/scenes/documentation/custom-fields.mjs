@@ -44,4 +44,19 @@ export const scenes = [
 		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'custom-fields/field-visibility-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Custom field visibility', 'Custom field details') } }],
 	},
+	{
+		// Sophie Laurent's Custom fields panel: the seed's Date of Entry and Payroll ID values, and
+		// the Cost center pick list still empty.
+		id: 'custom-fields-person-values',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Sophie Laurent', 'custom-field-values')
+			await page.getByText('Payroll ID', { exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'custom-fields/person-custom-field-values.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Custom fields', 'Email & role') } }],
+	},
 ]

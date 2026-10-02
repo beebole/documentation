@@ -138,4 +138,25 @@ export const scenes = [
 		mouse: () => ({ x: 800, y: 110 }),
 		shots: [{ file: 'costs/split-cost-card.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Cost', 'Billing') } }],
 	},
+	{
+		// Ana Pereira's cost rate card with its method picker open. Nothing is picked, so nothing is saved.
+		id: 'costs-method-picker',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Ana Pereira', 'cost')
+			await page.getByText(/No repeat/).first().click()
+			await page.getByText('Cost method', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+			const input = page.locator('bb-autocomplete:has(input[name="rateMethod"]) input:not(.hidden)').filter({ visible: true }).first()
+			await input.click()
+			await page.getByText('No cost', { exact: true }).filter({ visible: true }).first().waitFor()
+			// The click selects the input's text: put the caret at the end instead.
+			await input.evaluate((el) => el.setSelectionRange(el.value.length, el.value.length))
+			await h.settle(page, 800)
+		},
+		mouse: () => ({ x: 800, y: 110 }),
+		shots: [{ file: 'costs/cost-method-picker.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Cost', 'Email & role') } }],
+	},
 ]

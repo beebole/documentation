@@ -1,4 +1,6 @@
 // Scenes for help/documentation/journal.mdx.
+import { openLastFullWeek, cornerButton } from './timesheets.mjs'
+
 export const page = 'help/documentation/journal.mdx'
 
 // A message on Website Redesign, for the capture only: Sophie Laurent's message with bold text and
@@ -94,5 +96,29 @@ export const scenes = [
 				},
 			},
 		],
+	},
+	{
+		// Ana Pereira's Journal opened from her week (Team pane, her name, then the Journal button of
+		// the top bar): the feed shows her timesheet activity only, under the "Click to show all" line.
+		id: 'journal-timesheet-only',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
+			await member.locator('timesheet-approval-status').waitFor()
+			await h.settle(page, 1500)
+			await member.getByText('Ana Pereira', { exact: true }).click()
+			await page.getByRole('button', { name: 'Reject', exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+			// The Journal button: the first unnamed icon button of top-bar-actions (see missing-labels.md).
+			await page.locator('top-bar-actions').getByRole('button').first().click()
+			await page.getByText(/Click to show all/).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 2000)
+		},
+		mouse: () => ({ x: 600, y: 860 }),
+		shots: [{ file: 'journal/timesheet-only-feed.webp', frame: { type: 'full' } }],
 	},
 ]
