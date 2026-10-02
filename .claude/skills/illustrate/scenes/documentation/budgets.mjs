@@ -1,6 +1,10 @@
 // Scenes for help/documentation/budgets.mdx.
 export const page = 'help/documentation/budgets.mdx'
 
+// Panels are widened to 800 px: at the default width (576 at 1440)
+// the budget card's summary line is cut and the amounts clip.
+const PANEL_WIDTH = 800
+
 // Web Portal's budget (180 h, $30,000, $9,000 cost), split by persons for the capture only.
 // `down` clears the split (setting the split type empties its rows), so the Budget Status report
 // keeps one budget per project. Clearing the split type also zeroes the budget's own time and
@@ -66,7 +70,7 @@ const renewalBudget = {
 export const scenes = [
 	{
 		id: 'budgets-panel',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -78,12 +82,14 @@ export const scenes = [
 			const entity = /\/projects\/[0-9a-f]{24}/
 			await page.waitForURL(entity)
 			await h.goto(page, `${page.url().match(entity)[0]}/budget`)
+			// Widened before the card is unfolded: resizing folds it back.
+			await h.widenPanel(page, PANEL_WIDTH)
 			// Unfold the budget card to show its fields (display only, nothing is saved).
 			await page.getByText(/Billing amount:/).first().click()
 			await page.getByText('Billing amount', { exact: true }).first().waitFor()
 			await h.settle(page, 1000)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'budgets/budget-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Budgets', 'Billing') } }],
 	},
 	{
@@ -106,7 +112,7 @@ export const scenes = [
 	},
 	{
 		id: 'budgets-time-unit',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -116,6 +122,8 @@ export const scenes = [
 			const entity = /\/projects\/[0-9a-f]{24}/
 			await page.waitForURL(entity)
 			await h.goto(page, `${page.url().match(entity)[0]}/budget`)
+			// Widened before the card is unfolded: resizing folds it back.
+			await h.widenPanel(page, PANEL_WIDTH)
 			await page.getByText(/Billing amount:/).first().click()
 			await page.getByText('Billing amount', { exact: true }).first().waitFor()
 			await h.settle(page, 1000)
@@ -130,7 +138,7 @@ export const scenes = [
 			})
 			await h.settle(page, 1000)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'budgets/time-unit-picker.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Budgets', 'Billing') } }],
 	},
 	{
@@ -148,11 +156,13 @@ export const scenes = [
 			const entity = /\/projects\/[0-9a-f]{24}/
 			await page.waitForURL(entity)
 			await h.goto(page, `${page.url().match(entity)[0]}/budget`)
+			// Widened before the card is unfolded: resizing folds it back.
+			await h.widenPanel(page, PANEL_WIDTH)
 			await page.getByText(/Billing amount:/).first().click()
 			await page.getByText('Lucas Bernard', { exact: true }).filter({ visible: true }).first().waitFor()
 			await h.settle(page, 1500)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'budgets/budget-split-by-person.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Budgets', 'Billing') } }],
 	},
 	{
@@ -171,8 +181,9 @@ export const scenes = [
 			await h.goto(page, `${page.url().match(entity)[0]}/budget`)
 			await page.getByText('Renewal for 2027').first().waitFor()
 			await h.settle(page, 1500)
+			await h.widenPanel(page, PANEL_WIDTH)
 		},
-		mouse: () => ({ x: 800, y: 110 }),
+		mouse: () => ({ x: 400, y: 110 }),
 		shots: [{ file: 'budgets/several-budgets.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Budgets', 'Billing') } }],
 	},
 ]
