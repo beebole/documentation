@@ -99,4 +99,37 @@ export const scenes = [
 		mouse: () => ({ x: 400, y: 850 }),
 		shots: [{ file: 'planning/task-schedule-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Task details', 'Custom fields') } }],
 	},
+	{
+		// The planning name at the top of the page opens the menu of plannings, with the field
+		// that creates a new one.
+		id: 'planning-switch-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.locator('bb-category button.text-2xl').filter({ visible: true }).first().click()
+			await page.getByPlaceholder('Name of a new planning').waitFor()
+			await h.settle(page, 1000)
+		},
+		// From the page title to the bottom of the menu, Add Task included.
+		shots: [
+			{
+				file: 'planning/planning-switch-menu.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page, h) => {
+						const title = await page.getByRole('heading', { name: /Planning/ }).first().boundingBox()
+						const add = await page.getByRole('button', { name: 'Add Task' }).first().boundingBox()
+						const menu = await h.surfaceAround(page, 'Staffing plan')
+						const x = title.x - 16
+						const y = title.y - 16
+						return { x, y, width: add.x + add.width + 16 - x, height: menu.y + menu.height + 16 - y }
+					},
+				},
+			},
+		],
+	},
 ]
