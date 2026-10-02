@@ -135,10 +135,16 @@ Click the chart type picker to choose from 11 chart types:
 
 Once you select a chart type, use the axis controls to map your data:
 
-- **Label axis** — Choose the column that supplies the category labels (e.g., project name, person, time period).
-- **Value axis** — Select one or more numeric columns to plot (e.g., hours, billing amount).
-- **Group by** — Add a second label column to split each bar or line into separate series.
+- **Label axis** — Choose the field that supplies the category labels (e.g., project name, person, time period).
+- **Value axis** — Select the numeric field to plot (e.g., hours, billing amount).
+- **Group by** — Add a second label field to split each bar or line into separate series.
 - **Swap label axis and group by** — Click the swap button to exchange the label axis and the group-by column.
+
+**Label axis** and **Group by** open the same field list as the report's columns, and **Value axis** its **Time and amounts** fields. Picking a field that is not a column of the report yet adds it as a column.
+
+<Frame caption="The Label axis selector, open on the field the chart is labeled by">
+  <img src="/help/images/custom-reports/chart-axes.webp" alt="Beebole report chart controls: Chart type Stacked bar, Label axis Client: Name, the swap button, Group by Period: Month and Value axis Time: Hours, with the Label axis list open on Time and amounts and Entities, Client expanded to its levels and Name selected" width="1040" />
+</Frame>
 
 <Tip>
   Beebole automatically selects the best axes when you run a report. Adjust the axis controls to override the defaults and focus on the dimensions you care about.

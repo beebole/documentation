@@ -212,4 +212,69 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The Add Task panel after Paste: the Paste button reads the clipboard, which the scene
+		// answers with a short task list, one subtask level indented. Nothing is imported.
+		id: 'planning-add-multiple-tasks',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.getByRole('button', { name: 'Add Task' }).first().click()
+			await page.getByText('Or add multiple entries').first().waitFor()
+			await page.evaluate(() => {
+				const list = 'Launch Campaign\n\tLanding Page\n\tEmail Sequence\n\tPaid Ads Setup\nCustomer Onboarding Guide'
+				Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { readText: async () => list } })
+			})
+			await page.getByRole('button', { name: 'Paste', exact: true }).filter({ visible: true }).first().click()
+			await page.getByText('Launch Campaign', { exact: true }).first().waitFor()
+			// Expand the parent: its toggle is the row button without a data-path (delete).
+			const toggles = page.locator('entity-paste button.bb-btn-action:not([data-path])')
+			for (let i = 0; i < (await toggles.count()); i++) await toggles.nth(i).click()
+			await page.getByText('Paid Ads Setup', { exact: true }).first().waitFor()
+			await h.settle(page, 1000)
+		},
+		mouse: () => ({ x: 400, y: 850 }),
+		// The side panel, from its top to below Import entries.
+		shots: [
+			{
+				file: 'planning/add-multiple-tasks.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const importButton = await page.getByRole('button', { name: /^Import entries/ }).filter({ visible: true }).first().boundingBox()
+						const left = await page.evaluate(() => {
+							let el = [...document.querySelectorAll('button')].find((b) => b.textContent.trim() === 'Add new task')
+							while (el && !(el.getBoundingClientRect().height >= window.innerHeight - 1 && el.getBoundingClientRect().width < 800)) el = el.parentElement
+							return el ? el.getBoundingClientRect().x : null
+						})
+						if (left == null) throw new Error('side panel not found')
+						return { x: left, y: 0, width: 1440 - left, height: importButton.y + importButton.height + 32 }
+					},
+				},
+			},
+		],
+	},
+	{
+		// QA Testing's Owner panel: Sophie Laurent, her % FTE and the Tentative switch. Panels open one
+		// at a time, so only Owner is opened.
+		id: 'planning-task-owner',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.getByText('QA Testing', { exact: true }).first().click()
+			await page.waitForURL(/\/tasks\/[0-9a-f]{24}/)
+			await h.settle(page, 2000)
+			await page.getByText('Owner', { exact: true }).filter({ visible: true }).first().click()
+			await page.getByText('Tentative', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1200)
+		},
+		mouse: () => ({ x: 400, y: 850 }),
+		shots: [{ file: 'planning/task-owner-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Owner', 'Custom fields') } }],
+	},
 ]

@@ -279,4 +279,39 @@ export const scenes = [
 		mouse: restInHeader,
 		shots: [{ file: 'projects/validity-period-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Valid period for time entry', 'Billing', { right: 1300 }) } }],
 	},
+	{
+		// Sophie Laurent's Manages panel with the Projects selector open: the category rows can be
+		// picked whole. Nothing is picked.
+		id: 'projects-category-picker',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Sophie Laurent', 'manager')
+			await page.getByText('Manages', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+			await page.getByPlaceholder('Add a project here').filter({ visible: true }).first().click()
+			await h.settle(page, 1500)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 400, y: 700 }),
+		// The Manages panel, from its title to the Managed by row under the open list.
+		shots: [
+			{
+				file: 'projects/category-picker.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Manages', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const managedBy = await page.getByPlaceholder('Add a manager').filter({ visible: true }).first().boundingBox()
+						const x = title.x - 64
+						const y = title.y - 24
+						return { x, y, width: 1440 - 16 - x, height: managedBy.y + managedBy.height + 40 - y }
+					},
+				},
+			},
+		],
+	},
 ]

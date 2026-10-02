@@ -94,4 +94,42 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// A work schedule's ⋯ menu, next to its name in the side panel. Opening it changes nothing.
+		id: 'work-schedule-action-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/scheduleTypes', 'Full Time', 'scheduleType')
+			await page.getByText('Length in days', { exact: true }).waitFor()
+			await h.settle(page, 1500)
+			// The ⋯ next to the name, in the panel's header: the highest one on the right.
+			const buttons = page.locator('bb-action-menu-button button').filter({ visible: true })
+			const boxes = await buttons.evaluateAll((els) => els.map((e) => e.getBoundingClientRect()).map((r) => ({ x: r.x, y: r.y })))
+			const index = boxes.reduce((best, b, i) => (b.x > 1000 && (best < 0 || b.y < boxes[best].y) ? i : best), -1)
+			await buttons.nth(index).click()
+			await page.getByText('Unarchive', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 400, y: 700 }),
+		// The panel's header and the open menu.
+		shots: [
+			{
+				file: 'work-schedule/schedule-action-menu.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const del = await page.getByText('Delete', { exact: true }).filter({ visible: true }).first().boundingBox()
+						return { x: 864, y: 0, width: 576, height: del.y + del.height + 32 }
+					},
+				},
+			},
+		],
+	},
 ]

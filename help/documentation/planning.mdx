@@ -125,6 +125,10 @@ You can import a whole task list by pasting it from a spreadsheet — there is n
   </Step>
 </Steps>
 
+<Frame caption="A pasted task list in the Import preview, before Import entries">
+  <img src="/help/images/planning/add-multiple-tasks.webp" alt="Beebole Add Task panel of the Main plan with the Backlog status selected and an Import preview below it: Launch Campaign with its subtasks Landing Page, Email Sequence and Paid Ads Setup, then Customer Onboarding Guide, each with a remove button, 5 Ready to import, and the Cancel and Import entries 5 buttons" width="576" />
+</Frame>
+
 Imported tasks get the status selected in the add form. After the import you can click **Undo** to remove everything you just added, or **New import** to paste another batch.
 
 In a planning set to **Bookings**, the button reads **Add Booking** and opens the booking form instead of the name-and-status form — see [Tasks or bookings](#tasks-or-bookings).
@@ -153,8 +157,12 @@ In the modal you can:
 
 Beebole distinguishes the person responsible for a task from the people it is available to:
 
-- **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates.
+- **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates. Under the owner, **Tentative** marks the assignment as not confirmed yet: the task reserves the owner's capacity but stays out of reports until you switch it off, as for [tentative bookings](/help/documentation/staffing#tentative-bookings).
 - **Potential owners** — People or [tags](/help/documentation/tags) the task is assigned to. In filters, these appear as **Potential owner** and **Potential owner tag**.
+
+<Frame caption="A task's Owner panel: the owner, their share of working time, and Tentative">
+  <img src="/help/images/planning/task-owner-panel.webp" alt="Beebole Owner panel of the QA Testing task: Sophie Laurent as owner, the % FTE field at 100%, and the Tentative switch turned off" width="538" />
+</Frame>
 
 <Info>
   Beebole can warn everyone involved before a task with no owner starts: the task manager and the assigned people are notified — the admins when the task has no manager. Configure the number of days in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#reminders).

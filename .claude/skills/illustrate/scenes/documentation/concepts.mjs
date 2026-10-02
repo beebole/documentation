@@ -1,4 +1,5 @@
 // Scenes for help/documentation/concepts.mdx.
+import { openFolder, setViews } from './reports.mjs'
 export const page = 'help/documentation/concepts.mdx'
 
 export const scenes = [
@@ -115,6 +116,34 @@ export const scenes = [
 						const x = panel.x - 12
 						return { x, y: 0, width: 1440 - x, height: panel.y + panel.height }
 					},
+				},
+			},
+		],
+	},
+	{
+		// The undo and redo buttons of the top bar, which show once there is a change to undo: here
+		// the Chart view switched on for a report (the save is answered by the runner).
+		id: 'concepts-undo-redo',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Year', 'Margin by Client per Month')
+			await page.getByText('Margin by Client per Month', { exact: true }).first().click()
+			await setViews(page, h, 'Margin by Client per Month', { Table: true, Chart: false, Matrix: false })
+			await setViews(page, h, 'Margin by Client per Month', { Table: true, Chart: true, Matrix: false })
+			await page.locator('undo-redo button').first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 700, y: 860 }),
+		// The folder's header, the lens on the two buttons.
+		shots: [
+			{
+				file: 'concepts/undo-redo-buttons.webp',
+				frame: {
+					type: 'lens',
+					target: (page) => page.locator('undo-redo button').filter({ visible: true }).first().locator('xpath=..'),
+					context: { x: 340, y: 0, width: 1100, height: 440 },
 				},
 			},
 		],
