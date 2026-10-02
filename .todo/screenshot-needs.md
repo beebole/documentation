@@ -664,3 +664,18 @@ Found while shooting:
 - Jordan Reed's timesheet on QA reopens on the Team pane since about October 1 (a saved view, changed outside the runner). `timesheets/weekly-grid.webp` (captured before) replays changed; shots captured since (`clear-rows-button`, `submit-button`, likely `paste-dialog`) include the open pane. To settle in a session of its own: call `closeSidePane` in `openLastFullWeek` and `openCurrentWeek`, recapture what then changes, and fix `timesheets-team-pane`, whose loose `Team` tooltip search can hit the Approval button.
 - Already broken or changed before this batch, unrelated to the pane: `timesheets-timer`, `timesheets-calendar-timer`, `timesheets-timer-shelf` (the Fleet Tracker row never shows in the current week) and `timesheets/entry-details.webp` (100 % changed).
 - Other pages still describe the way to the settings screens loosely ("initials, then Settings > Custom Fields"): `assignments.mdx`, `billing.mdx`, `custom-fields.mdx`. The path is initials, then Account Settings, then the entry in the Settings menu.
+
+## Cramped side panels (found 2026-10-02, Yves)
+
+At its default width (576 px on a 1440 screen) the side panel wraps or clips some rows. The work schedule shots were recaptured with `h.widenPanel(page, 800)` (commit "Work schedules: widen the side panel…"). The others below show the same problem and should be recaptured the same way, then their `<img width>` updated from `screenshots.mjs size`:
+
+| Screenshot | What reads badly at the default width | Priority |
+|---|---|---|
+| timesheets/settings-inheritance-icon.webp | The settings tabs wrap onto two rows, and the tooltip covers the second row | high |
+| custom-fields/field-visibility-panel.webp | Labels break over two lines (Visible for Absence types, Visible for Time Records) | medium |
+| timeoff/timeoff-notifications-panel.webp | The period select (Month) drops to its own line | medium |
+| budgets/budget-panel.webp, budgets/time-unit-picker.webp, budgets/budget-split-by-person.webp, budgets/several-budgets.webp | The summary line is cut (Cost amount: $9,00…) and Billing amount reads 30,000.0C | medium — check first whether the amount field widens with the panel |
+| billing/recurring-fixed-fee.webp | Every 1st of the month is clipped | low |
+| gantt/task-period-timed.webp, planning/task-schedule-panel.webp | Plan on non-working days wraps; the dates row is tight | low |
+
+Full-screen shots that include an open panel (for example `projects/project-settings-panels.webp`) were not reviewed.
