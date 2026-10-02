@@ -576,4 +576,30 @@ export const scenes = [
 		},
 		shots: [{ file: 'timesheets/day-focus.webp', frame: { type: 'full' } }],
 	},
+	{
+		// The current week in the calendar view, with the day's suggested entries drawn as ghost
+		// entries (dashed boxes). The calendar hides them while they are collapsed (a screen setting
+		// the runner never saves): the Suggested entries button shows them.
+		id: 'timesheets-calendar-suggestions',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('link', { name: 'Timesheet' }).click()
+			await page.getByRole('button', { name: 'Previous' }).waitFor()
+			await closeSidePane(page, h)
+			// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
+			await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
+			await page.getByText('9 AM').first().waitFor()
+			await h.settle(page, 1500)
+			const dashed = () => page.evaluate(() => [...document.querySelectorAll('*')].some((e) => getComputedStyle(e).borderStyle === 'dashed' && e.getBoundingClientRect().height > 40))
+			if (!(await dashed())) {
+				await (await cornerButton(page, h, 'Suggested entries')).click()
+				await h.settle(page, 2000)
+			}
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'timesheets/calendar-suggestions.webp', frame: { type: 'full' } }],
+	},
 ]
