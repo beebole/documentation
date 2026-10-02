@@ -12,6 +12,18 @@ async function openGantt(page, h) {
 	await h.settle(page, 2000)
 }
 
+// The middle of Sophie Laurent's header row, under the week of 5 October.
+async function sophieWeekCell(page) {
+	// The timeline renders weeks off screen too: take the label inside the visible chart.
+	let week = null
+	for (const l of await page.getByText('5 - 9', { exact: true }).all()) {
+		const b = await l.boundingBox()
+		if (b && b.x > 420 && b.x < 1400) week = b
+	}
+	const owner = await page.locator('gantt-group-header').filter({ hasText: 'Sophie Laurent' }).first().boundingBox()
+	return { x: week.x + week.width / 2, y: owner.y + 10 }
+}
+
 export const scenes = [
 	{
 		id: 'gantt-timeline',
@@ -180,6 +192,33 @@ export const scenes = [
 		],
 	},
 	{
+		// Grouped by Owner: each owner's header row carries a load bar per week. Sophie Laurent owns
+		// most of the Main plan and is booked past her capacity; the mouse rests on her week of
+		// 5 October to show its tooltip (the grouping is a view setting, answered by the runner).
+		id: 'gantt-workload-heatmap',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openGantt(page, h)
+			await page.getByRole('button', { name: 'Gantt', exact: true }).locator('xpath=following-sibling::button[1]').click()
+			await page.getByText('Group by', { exact: true }).filter({ visible: true }).first().hover()
+			await h.settle(page, 500)
+			await page.locator('bb-submenu').getByText('Owner', { exact: true }).filter({ visible: true }).first().click()
+			await page.keyboard.press('Escape')
+			await page.locator('bb-load-bar').first().waitFor()
+			await h.settle(page, 2000)
+			// The tooltip opens on mouseenter: come into the cell from the task row below it.
+			const { x, y } = await sophieWeekCell(page)
+			await page.mouse.move(x, y + 40)
+			await page.mouse.move(x, y, { steps: 8 })
+			await h.settle(page, 1000)
+			await h.settle(page, 800)
+		},
+		mouse: (page) => sophieWeekCell(page),
+		shots: [{ file: 'gantt/workload-heatmap.webp', frame: { type: 'full' } }],
+	},
+	{
 		// The view tab's ⋯ menu with the Columns submenu open (hovering changes nothing).
 		id: 'gantt-columns-menu',
 		capturedAt: '2026-10-01',
@@ -211,6 +250,49 @@ export const scenes = [
 						const y = tab.y - 16
 						const bottom = Math.max(sub.y + sub.height, last.y + last.height + 12) + 16
 						return { x, y, width: sub.x + sub.width + 16 - x, height: bottom - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// The Planned column added from the view tab's Columns menu (a view setting, answered by
+		// the runner), with its unit button in the header.
+		id: 'gantt-planned-column',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openGantt(page, h)
+			await page.getByRole('button', { name: 'Gantt', exact: true }).locator('xpath=following-sibling::button[1]').click()
+			await page.getByText('Columns', { exact: true }).filter({ visible: true }).first().hover()
+			await h.settle(page, 500)
+			await page.locator('bb-submenu').getByText('Planned', { exact: true }).filter({ visible: true }).first().click()
+			await page.keyboard.press('Escape')
+			await page.locator('gantt-column-head').filter({ hasText: 'Planned' }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 1300, y: 40 }),
+		// The task columns, from the Row # header down to row 10.
+		shots: [
+			{
+				file: 'gantt/planned-column.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const row = await page.locator('gantt-column-head').filter({ hasText: 'Row #' }).first().boundingBox()
+						const planned = await page.locator('gantt-column-head').filter({ hasText: 'Planned' }).first().boundingBox()
+						// Down to the row numbered 10, found in the Row # column.
+						let tenth = null
+						for (const l of await page.getByText('10', { exact: true }).all()) {
+							const b = await l.boundingBox()
+							if (b && Math.abs(b.x + b.width / 2 - (row.x + row.width / 2)) < row.width) tenth = b
+						}
+						// Stop short of the column's right edge, where the timeline starts.
+						const x = row.x - 12
+						const y = row.y - 12
+						return { x, y, width: planned.x + planned.width - 4 - x, height: tenth.y + tenth.height + 10 - y }
 					},
 				},
 			},
