@@ -58,7 +58,7 @@ export const scenes = [
 	},
 	{
 		id: 'ai-suggested-entries',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -80,7 +80,7 @@ export const scenes = [
 	},
 	{
 		id: 'ai-approval-review-digest',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-02',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
