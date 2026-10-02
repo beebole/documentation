@@ -671,11 +671,13 @@ At its default width (576 px on a 1440 screen) the side panel wraps or clips som
 
 | Screenshot | What reads badly at the default width | Priority |
 |---|---|---|
-| timesheets/settings-inheritance-icon.webp | The settings tabs wrap onto two rows, and the tooltip covers the second row | high |
-| custom-fields/field-visibility-panel.webp | Labels break over two lines (Visible for Absence types, Visible for Time Records) | medium |
-| timeoff/timeoff-notifications-panel.webp | The period select (Month) drops to its own line | medium |
-| budgets/budget-panel.webp, budgets/time-unit-picker.webp, budgets/budget-split-by-person.webp, budgets/several-budgets.webp | The summary line is cut (Cost amount: $9,00…) and Billing amount reads 30,000.0C | medium — check first whether the amount field widens with the panel |
-| billing/recurring-fixed-fee.webp | Every 1st of the month is clipped | low |
-| gantt/task-period-timed.webp, planning/task-schedule-panel.webp | Plan on non-working days wraps; the dates row is tight | low |
+| timesheets/settings-inheritance-icon.webp | The settings tabs wrap onto two rows, and the tooltip covers the second row | high — done at 1000 px, the width at which the five tabs fit on one row; the tooltip now sits over the first two tab labels (scene `timesheet-settings-inherited`, 2026-10-02) |
+| custom-fields/field-visibility-panel.webp | Labels break over two lines (Visible for Absence types, Visible for Time Records) | medium — done at 800 (scene `custom-fields-visibility`, 2026-10-02) |
+| timeoff/timeoff-notifications-panel.webp | The period select (Month) drops to its own line | medium — done at 800 (scene `timeoff-notifications-panel`, 2026-10-02) |
+| budgets/budget-panel.webp, budgets/time-unit-picker.webp, budgets/budget-split-by-person.webp, budgets/several-budgets.webp | The summary line is cut (Cost amount: $9,00…) and Billing amount reads 30,000.0C | medium — done at 800: the summary line is whole. The amount field does not widen with the panel, so the card's Billing amount still reads 30,000.0C (an app-side clip; the split rows' fields show 17,000.00 in full). Resizing the panel folds an unfolded card, so the scenes widen before they unfold it (scenes `budgets-panel`, `budgets-time-unit`, `budgets-split-by-person`, `budgets-over-time`, 2026-10-02) |
+| billing/recurring-fixed-fee.webp | Every 1st of the month is clipped | low — done at 800: Billing method no longer drops onto its own line, but the day select has a fixed width and still clips Every 1st of the month (app-side) (scene `billing-recurring-fixed-fee`, 2026-10-02) |
+| gantt/task-period-timed.webp, planning/task-schedule-panel.webp | Plan on non-working days wraps; the dates row is tight | low — done at 800 (scenes `gantt-task-period-timed`, `planning-task-schedule-panel`, 2026-10-02) |
 
 Full-screen shots that include an open panel (for example `projects/project-settings-panels.webp`) were not reviewed.
+
+Found while recapturing (batch 2026-10-02 (4)): `budgets/budget-status-report.webp` replays changed by 0.9 % (report figures moved with the topped-up time); left for the next `/illustrate --release`.
