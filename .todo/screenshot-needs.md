@@ -609,3 +609,24 @@ No placeholder references or `[SCREENSHOT]` markers were added by this release; 
 | projects/category-level-names.webp | The **Client settings** dialog with the **Level names** list — the category row, **Project**, **Subproject**, the **×** on the deepest level, and the **Add new level** input (element capture) | medium — done (scene `projects-category-level-names`, 2026-09-30) |
 | reports/budget-status-table.webp | The **Budget Status** report in its table layout: **Time**, **Billing**, and **Costs** columns with one project expanded to its subprojects, the layout button (**Stack the measures in one column**) visible in the header (1440×900) | medium — done at 1760 wide (the column layout overflows 1440), Acme Corp expanded (scene `reports-budget-status-table`, 2026-09-30) |
 | integrations/excel-addin-data-server.webp | The Excel add-in settings screen showing **Data Server** with the detected region (**Europe** with its flag) under **Update API** (element capture; the Google Sheets sidebar shows the same section and can share the shot) | low |
+
+## Additions 2026-10-02 (batch from page sections)
+
+The inventory had no automatable entry left (every open one needs Excel, Google Sheets, the browser extension or a connected integration), so this batch was picked from sections of the most-visited pages that had no shot.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timesheets/settings-reminders-tab.webp | Timesheet and Planning Settings on the Reminders tab | medium — done (scene `timesheet-settings-reminders`, 2026-10-02) |
+| timesheets/settings-auto-timesheet-tab.webp | The Auto Timesheet from Planning tab, switched on with a planning and its Start and End statuses | medium — done: switched on for Main plan, In progress to Done, by a fixture around the capture (scene `timesheet-settings-auto-timesheet`, 2026-10-02) |
+| roles/person-role-selector.webp | A person's Email & role panel with the Choose a role selector open | medium — done on Marc Dubois (scene `roles-person-role-selector`, 2026-10-02). The selector opens from the × on the role badge, not by clicking the role: page corrected |
+| billing/billing-method-picker.webp | A rate card's billing method picker listing the four methods | medium — done on Acme Corp (scene `billing-method-picker`, 2026-10-02) |
+| account-settings/accent-color-picker.webp | The organization's color palette and logo drop area, opened from the header | medium — done (scene `account-settings-accent-color`, 2026-10-02). Logo and color are one control, the square in the header: page corrected |
+| timesheets/submit-button.webp | The Submit button at the top of a draft timesheet | medium — done as a lens on the last full week (scene `timesheets-submit-button`, 2026-10-02) |
+| reports/utilization-report.webp | The Utilization report | medium — done (scene `reports-utilization`, 2026-10-02). Projected reads 0% for everyone: no planned bookings on QA |
+| reports/revenue-at-risk.webp | The Revenue at Risk report with projects at risk | medium — done at 1760 wide: four budgeted projects get an end date by a fixture, two come out at risk (scene `reports-revenue-at-risk`, 2026-10-02). The report projects from the server's today, so replay will report it changed as time passes: compare by eye. The screen shows the end date under Projected at end and the implied rate under Revenue at Risk, and Logged only in the export: page completed |
+| budgets/budget-split-by-person.webp | A budget card split by person with two allocations | medium — done on Web Portal, split between Elena Rossi and Lucas Bernard by a fixture (scene `budgets-split-by-person`, 2026-10-02) |
+| public-holidays/tag-holidays-panel.webp | A tag's own Public holidays panel | medium — done: the London tag with the United Kingdom calendar, set by a fixture (scene `public-holidays-tag`, 2026-10-02) |
+| planning/task-schedule-panel.webp | A task's panel with owner, % FTE, dates and planned time with its capacity pill | medium — blocked: no task on QA has both an owner and planned time (same gap as `gantt/workload-heatmap.webp`) |
+| reports/compliance-report.webp | The Timesheet Compliance report | medium — blocked: the seed submitted every week after the fact, so everyone reads Late and the account scores 0%. Needs submissions dated on time in the seed |
+
+Found while checking the pages: the Journal has no Hide similar entries control on production (the label exists, nothing uses it). The bullet was removed from `journal.mdx` and the step from `audit-trail.mdx`; the timesheet-only filter is described as it works, on a person's Journal opened from the Timesheet page.
