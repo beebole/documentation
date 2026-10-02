@@ -278,4 +278,73 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The first approval stage unfolded, its approver type selector open. Nothing is picked.
+		id: 'approval-approver-types',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/settings?attributeName=approval-stages')
+			await page.getByText('Managers of projects in the timesheet').first().waitFor()
+			await page.getByText('Managers of projects in the timesheet').first().click()
+			await h.settle(page, 1500)
+			await page.locator('approval-stages-attribute bb-autocomplete input').filter({ visible: true }).first().click()
+			await page.getByText('Specific people', { exact: true }).filter({ visible: true }).first().waitFor()
+			// The click selects the field's text: put the cursor at its end instead.
+			await page.locator('approval-stages-attribute bb-autocomplete input').filter({ visible: true }).first().evaluate((i) => i.setSelectionRange(i.value.length, i.value.length))
+			await h.settle(page, 1000)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		// From the panel's title down to the bottom of the open list.
+		shots: [
+			{
+				file: 'approval/approver-types.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Approval workflow', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const last = await page.getByText('Task managers', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const x = title.x - 64
+						const y = title.y - 24
+						return { x, y, width: 1440 - 24 - x, height: last.y + last.height + 32 - y }
+					},
+				},
+			},
+		],
+	},
+	{
+		// Clara Fontaine's approved week (approved by the seed), opened from the Team pane: an
+		// admin sees Reject at the top of the timesheet. Nothing is clicked.
+		id: 'approval-reject-approved',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			const member = page.locator('timesheet-member-item').filter({ hasText: 'Clara Fontaine' }).first()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
+			await member.locator('timesheet-approval-status').waitFor()
+			await h.settle(page, 1500)
+			await member.getByText('Clara Fontaine', { exact: true }).click()
+			await page.getByRole('button', { name: 'Reject', exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		// The header with the Approved badge and Reject, the Team pane down to the next two people.
+		shots: [
+			{
+				file: 'approval/reject-approved.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const next = await page.locator('timesheet-member-item').filter({ hasText: 'Elena Rossi' }).first().boundingBox()
+						return { x: 68, y: 0, width: 1440 - 68, height: next.y + next.height + 16 }
+					},
+				},
+			},
+		],
+	},
 ]
