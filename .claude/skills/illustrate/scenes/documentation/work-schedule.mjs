@@ -55,4 +55,35 @@ export const scenes = [
 		mouse: () => ({ x: 400, y: 700 }),
 		shots: [{ file: 'work-schedule/dated-assignments.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Work schedule', 'Absence allowances') } }],
 	},
+	{
+		// Half Time – 3d-2d: a 14-day cycle, three days the first week and two the second.
+		id: 'work-schedule-two-week-cycle',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		viewport: { width: 1440, height: 1800 },
+		async setup(page, h) {
+			await h.openPanel(page, '/scheduleTypes', 'Half Time – 3d-2d', 'scheduleType')
+			await page.getByText('Length in days', { exact: true }).waitFor()
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 400, y: 1200 }),
+		// The Details panel, from its title through the second week's two working days and the
+		// day after them.
+		shots: [
+			{
+				file: 'work-schedule/two-week-cycle.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Details', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const wed = await page.getByText(/Wed/).filter({ visible: true }).nth(1).boundingBox()
+						const x = title.x - 64
+						const y = title.y - 24
+						return { x, y, width: 1440 - 16 - x, height: wed.y + wed.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
 ]
