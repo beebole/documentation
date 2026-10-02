@@ -70,4 +70,28 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// QA Testing's Task details: whole days between the two lock buttons, 60 h planned with the
+		// capacity pill, and the overload warning (Sophie Laurent's other tasks overlap it). Opened
+		// from its card.
+		id: 'planning-task-schedule-panel',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Kanban')
+			await page.getByText('Silverline Retail: E-commerce Platform', { exact: true }).first().waitFor()
+			await page.getByText('QA Testing', { exact: true }).first().click()
+			await page.waitForURL(/\/tasks\/[0-9a-f]{24}/)
+			await h.settle(page, 1500)
+			if (!(await page.getByText('All day', { exact: true }).filter({ visible: true }).count())) {
+				await page.getByText('Task details', { exact: true }).filter({ visible: true }).first().click()
+			}
+			await page.getByText('All day', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		// Off the side panel, which shows its pin and resize buttons under the mouse.
+		mouse: () => ({ x: 400, y: 850 }),
+		shots: [{ file: 'planning/task-schedule-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Task details', 'Custom fields') } }],
+	},
 ]
