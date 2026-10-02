@@ -3,6 +3,27 @@ import { openLastFullWeek, cornerButton } from './timesheets.mjs'
 
 export const page = 'help/documentation/approval.mdx'
 
+// Jordan Reed (the screenshot user) approves nothing on QA: the first stage waits on the project
+// managers, Sophie Laurent and Thomas Muller. For the capture only, Jordan also manages Acme Corp
+// and Greenleaf Industries, so the weeks pending on those projects reach the Journal banner.
+const MANAGED = ['Acme Corp', 'Greenleaf Industries']
+async function jordanAndProjects(api) {
+	const { getPersons } = await api('{ getPersons { id name } }')
+	const { getProjects } = await api('{ getProjects { id name } }')
+	return { managerId: getPersons.find((p) => p.name === 'Jordan Reed').id, projectIds: MANAGED.map((n) => getProjects.find((p) => p.name === n).id) }
+}
+const jordanManages = {
+	async up(api) {
+		const ids = await jordanAndProjects(api)
+		for (const projectId of ids.projectIds) await api('mutation($m: BeeboleId!, $p: BeeboleId!) { makeManagerOfProject(managerId: $m, projectId: $p) { id } }', { m: ids.managerId, p: projectId })
+		return ids
+	},
+	async down(api, state) {
+		const ids = state ?? (await jordanAndProjects(api))
+		for (const projectId of ids.projectIds) await api('mutation($m: BeeboleId!, $p: BeeboleId!) { removeManagerOfProject(managerId: $m, projectId: $p) { id } }', { m: ids.managerId, p: projectId })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'approval-pending-pane',
@@ -182,6 +203,77 @@ export const scenes = [
 					type: 'lens',
 					target: (page, h) => h.byTooltip(page, page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first(), 'Edit timesheet'),
 					context: { x: 68, y: 0, width: 960, height: 560 },
+				},
+			},
+		],
+	},
+	{
+		// The Journal's approval banner, expanded. Guided until the app is fixed: on QA every row's
+		// Hours, Billing and Cost read 0 (2026-10-02). The banner's totals query (runInlineReport
+		// with the week as startTime and endTime filters) returns no rows, while the same person
+		// and week with a report period returns 40 h.
+		id: 'approval-journal-banner',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'guided',
+		fixture: jordanManages,
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByRole('link', { name: 'Journal' }).click()
+			await page.getByText(/to approve/).first().waitFor()
+			await h.settle(page, 1500)
+			await page.getByText(/to approve/).first().click()
+			// The totals come from a report run after the list: wait for a row's hours.
+			await page.getByText('40', { exact: true }).first().waitFor({ timeout: 30000 })
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'approval/journal-banner.webp', frame: { type: 'full' } }],
+	},
+	{
+		// Ana Pereira's submitted week opened from the Team pane, then the Journal button: the feed
+		// widened to her full history, at her approval events (the seed's submissions and approvals).
+		id: 'approval-history-journal',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+			const member = page.locator('timesheet-member-item').filter({ hasText: 'Ana Pereira' }).first()
+			if (!(await member.isVisible())) await (await cornerButton(page, h, /^Team$/)).click()
+			await member.locator('timesheet-approval-status').waitFor()
+			await h.settle(page, 1500)
+			await member.getByText('Ana Pereira', { exact: true }).click()
+			await page.getByRole('button', { name: 'Reject', exact: true }).first().waitFor()
+			await h.settle(page, 1500)
+			// The Journal button: the first unnamed icon button of top-bar-actions, at the top right
+			// (see missing-labels.md). It opens Ana Pereira's details with her Journal.
+			await page.locator('top-bar-actions').getByRole('button').first().click()
+			await page.getByText('Journal', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 2000)
+			// Opened from a timesheet, the feed may show that timesheet's entries only: widen it.
+			const narrow = page.getByText(/Click to show all/).filter({ visible: true })
+			if (await narrow.count()) await narrow.first().click()
+			// The full feed starts with the latest record changes: scroll to the approval events.
+			const approved = page.getByText(/Approved by/).filter({ visible: true }).first()
+			await approved.waitFor()
+			await approved.evaluate((e) => e.scrollIntoView({ block: 'center' }))
+			await h.settle(page, 1500)
+		},
+		mouse: () => ({ x: 600, y: 860 }),
+		// Feed rows from the first Approved by entry down, across the details panel.
+		shots: [
+			{
+				file: 'approval/history-journal.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const title = await page.getByText('Journal', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const row = await page.getByText(/Approved by/).filter({ visible: true }).first().boundingBox()
+						const x = title.x - 4
+						const y = row.y - 22
+						return { x, y, width: 1440 - x, height: Math.min(340, 900 - y) }
+					},
 				},
 			},
 		],
