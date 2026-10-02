@@ -86,4 +86,42 @@ export const scenes = [
 		mouse: () => ({ x: 300, y: 600 }),
 		shots: [{ file: 'roles/assignment-permissions.webp', frame: { type: 'box', box: accessRights } }],
 	},
+	{
+		// Marc Dubois's Email & role panel with the role selector open. The × on the role badge only
+		// swaps the badge for the selector; nothing is saved until a role is picked, and none is.
+		id: 'roles-person-role-selector',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/persons', 'Marc Dubois', 'user')
+			const badge = page.locator('user-attribute entity-badge').first()
+			await badge.waitFor()
+			await h.settle(page, 800)
+			await badge.hover()
+			await h.settle(page, 300)
+			await badge.locator('button').first().click()
+			// The × focuses the selector, which opens its list in the app's shared popup.
+			await page.getByText('Project manager', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+			await h.settle(page, 800)
+		},
+		mouse: () => ({ x: 800, y: 50 }),
+		shots: [
+			{
+				file: 'roles/person-role-selector.webp',
+				frame: {
+					type: 'box',
+					box: async (page, h) => {
+						const title = await page.getByText('Email & role', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const list = await page.locator('role-list').filter({ visible: true }).first().boundingBox()
+						const bottom = list.y + list.height
+						const x = title.x - 64
+						const y = title.y - 20
+						return { x, y, width: 1440 - 16 - x, height: bottom + 16 - y }
+					},
+				},
+			},
+		],
+	},
 ]
