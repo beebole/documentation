@@ -200,4 +200,42 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The Label axis selector open above the chart: the report's columns that can label it.
+		// Opening it changes nothing.
+		id: 'custom-reports-chart-axes',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openFolder(page, h, 'Current Year', REPORT)
+			await page.getByText(REPORT, { exact: true }).first().click()
+			await setViews(page, h, REPORT, { Table: false, Chart: true, Matrix: false })
+			await page.locator('report-chart canvas, report-chart svg').first().waitFor()
+			await h.settle(page, 2000)
+			await page.locator('report-chart button').filter({ hasText: 'Client: Name' }).first().click()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1300, y: 860 }),
+		// From the axis controls down to the bottom of the open menu and its submenus.
+		shots: [
+			{
+				file: 'custom-reports/chart-axes.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const bar = await page.getByText('Chart type:', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const last = await page.getByText('Time entity', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const x = bar.x - 24
+						const y = bar.y - 12
+						return { x, y, width: 1440 - 24 - x, height: last.y + last.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
+
 ]
