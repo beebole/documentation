@@ -2,6 +2,10 @@
 // and Sickness 10 days for everyone, PTO 25 days for the London office).
 export const page = 'help/documentation/timeoff.mdx'
 
+// Panels are widened to 800 px: at the default width (576 at 1440)
+// the period select drops to its own line.
+const PANEL_WIDTH = 800
+
 export const scenes = [
 	{
 		id: 'timeoff-absence-types',
@@ -45,7 +49,7 @@ export const scenes = [
 	},
 	{
 		id: 'timeoff-notifications-panel',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-02',
 		datesMatter: false,
 		mode: 'auto',
 		// PTO's Time off notifications panel, opened through its address.
@@ -53,6 +57,7 @@ export const scenes = [
 			await h.openPanel(page, '/absenceTypes', 'PTO', 'absence-type-notification')
 			await page.getByText('Going negative').filter({ visible: true }).first().waitFor()
 			await h.settle(page, 1500)
+			await h.widenPanel(page, PANEL_WIDTH)
 		},
 		mouse: () => ({ x: 400, y: 700 }),
 		shots: [
