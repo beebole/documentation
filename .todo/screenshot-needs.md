@@ -739,3 +739,28 @@ Found while shooting:
 - An untag on a project that does not carry the tag records an exclusion (operation `sub`) instead of doing nothing. The `tags-inherited-excluded` fixture reads Mobile App's relations before undoing them.
 - `Enable passkey` (Authentication) cannot be shot: the user menu only offers it on a device that supports passkeys, which the runner's browser is not.
 - The Margin by Client per Month report shows an empty Client: Name column on QA (seen behind the folder menu, not in the published crop).
+
+## Additions 2026-10-02 (8) (batch from page sections)
+
+No automatable entry left in the inventory, so the shots came from sections of the most-visited pages that had none.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timeoff/absence-type-action-menu.webp | An absence type's ⋯ menu next to its name | low — done on PTO (scene `timeoff-absence-type-menu`, 2026-10-02) |
+| work-schedule/schedule-action-menu.webp | A work schedule's ⋯ menu next to its name | low — done on Full Time (scene `work-schedule-action-menu`, 2026-10-02) |
+| projects/category-picker.webp | The Projects selector of a Manages panel offering whole categories | medium — done on Sophie Laurent (scene `projects-category-picker`, 2026-10-02) |
+| custom-reports/chart-axes.webp | The chart's Label axis selector open | medium — done on Margin by Client per Month (scene `custom-reports-chart-axes`, 2026-10-02). The axis selectors open the full field list and add the picked field as a column: page corrected |
+| concepts/undo-redo-buttons.webp | The undo and redo buttons of the top bar | medium — done as a lens, after a report view toggle (scene `concepts-undo-redo`, 2026-10-02), also linked from Timesheets |
+| timesheets/calendar-suggestions.webp | Suggested entries as ghost entries in the calendar | medium — done on today's two Habit suggestions (scene `timesheets-calendar-suggestions`, 2026-10-02). The grid section links `ai/suggested-entries-tray.webp` |
+| planning/add-multiple-tasks.webp | A pasted task list in the Add Task import preview | medium — done, the clipboard answered by the scene (scene `planning-add-multiple-tasks`, 2026-10-02) |
+| approval/approver-types.webp | A stage's approver type selector | medium — done (scene `approval-approver-types`, 2026-10-02) |
+| approval/reject-approved.webp | An approved week opened from the Team pane, Reject at the top | medium — done on Clara Fontaine's week of Sep 20 (scene `approval-reject-approved`, 2026-10-02) |
+| planning/task-owner-panel.webp | A task's Owner panel with % FTE and Tentative | medium — done on QA Testing (scene `planning-task-owner`, 2026-10-02). Tentative was not on the page: added |
+
+Linked without a new capture: on Account Settings, `assignments/show-hide-by-default.webp` (the list on the page missed Show all schedules: added); on People, `timeoff/absence-allowances-panel.webp` (Absence quotas per person).
+
+Found while shooting:
+
+- Quick start step 6 named the first settings screen Admin Settings (it is Account Settings, and the other screens are in its Settings menu) and listed PTO, Sick and Seminar as the default absence types (new accounts get PTO and Sickness, `shared/i18n/config.json`): corrected.
+- `account-settings/show-hide-panel.webp` was not taken: `assignments/show-hide-by-default.webp` already shows the panel.
+- An Add a report lens was dropped: the button is large and labeled, and the existing report shots show it.
