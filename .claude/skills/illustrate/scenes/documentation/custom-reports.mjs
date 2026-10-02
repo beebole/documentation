@@ -237,5 +237,24 @@ export const scenes = [
 			},
 		],
 	},
-
+	{
+		// The Client: Name column's own menu, opened on hover (bb-column-header): Subtotal, Hide
+		// empty values, Add a column…, Remove. Nothing is picked.
+		id: 'custom-reports-badge-menu',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openReport(page, h, { Table: true, Chart: false, Matrix: false })
+			await page.locator('.columnHeader').first().hover()
+			await page.getByText('Hide empty values', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		mouse: async (page) => {
+			const b = await page.locator('.columnHeader').first().boundingBox()
+			return { x: b.x + 20, y: b.y + b.height / 2 }
+		},
+		// The report's title, its filters and the first rows, with the menu over them.
+		shots: [{ file: 'custom-reports/column-badge-options.webp', frame: { type: 'box', box: async () => ({ x: 340, y: 110, width: 1080, height: 500 }) } }],
+	},
 ]
