@@ -67,11 +67,19 @@ export const scenes = [
 			await page.getByRole('button', { name: 'Accept all' }).waitFor()
 			await page.getByText('Desktop', { exact: true }).first().waitFor()
 			await h.settle(page, 1000)
-			// Why? on the Desktop card (the last one, today's): on a machine other than the one that
+			// Why? on the Desktop card (today's): on a machine other than the one that
 			// tracked the activity, it says the details stay in the desktop app.
-			await page.getByText('Why?', { exact: true }).last().click()
+			// The Desktop card is the innermost element holding both "Desktop" and "Why?" (habit
+			// suggestions on later days may follow it).
+			const why = page
+				.locator('div')
+				.filter({ has: page.getByText('Desktop', { exact: true }) })
+				.filter({ has: page.getByText('Why?', { exact: true }) })
+				.last()
+				.getByText('Why?', { exact: true })
+			await why.click()
 			await h.settle(page, 1200)
-			await page.getByText('Why?', { exact: true }).last().scrollIntoViewIfNeeded()
+			await why.scrollIntoViewIfNeeded()
 			await h.settle(page, 800)
 		},
 		// Today's day heading and its Desktop card, with the Why? answer.
@@ -83,8 +91,10 @@ export const scenes = [
 					pad: 0,
 					box: async (page, h) => {
 						const card = await h.surfaceAround(page, 'Desktop')
-						const day = await page.getByText('October', { exact: true }).filter({ visible: true }).last().boundingBox()
-						const y = day.y - 16
+						// The day heading just above the Desktop card (later days may follow it).
+						const months = await page.getByText(/^(January|February|March|April|May|June|July|August|September|October|November|December)$/).filter({ visible: true }).all()
+						const tops = (await Promise.all(months.map((m) => m.boundingBox()))).filter((b) => b && b.y < card.y).map((b) => b.y)
+						const y = Math.max(...tops) - 16
 						return { x: card.x - 12, y, width: card.width + 24, height: card.y + card.height + 12 - y }
 					},
 				},

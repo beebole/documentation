@@ -49,8 +49,8 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | Helper           | `/seed-documentation`  | Build or top up the AnyCompany QA documentation account the screenshots come from. `topup` before date-dependent captures, `full` (refused once approvals exist), `approve` (one-way). |
 | —                | `/news`                | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                                 |
 | Orthogonal       | `/mine-conversations`  | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step.      |
-| Orthogonal       | `/check-help-snippets` | Audit the in-app contextual help snippets (`../md` + dictionary in `../reboot`) against the app's attributes/previews. Report-only → `.todo/help-snippets.md`. Runs as a `/release` step.    |
-| All-in-one       | `/release`             | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → screenshot refresh (`/illustrate --release`) → verify → conversation mining + snippet audit. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
+| Orthogonal       | `/check-help-snippets` | Audit the in-app contextual help snippets (`../md` + dictionary in `../reboot`) against the app's attributes/previews. Report → `.todo/help-snippets.md`; `--fix` (the `/release` step) also writes and pushes the snippets in `../md` and prepares `../reboot` dictionary entries for an approved commit. |
+| All-in-one       | `/release`             | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → screenshot refresh (`/illustrate --release`) → verify → conversation mining + snippet audit and fixes. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 

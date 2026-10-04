@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Release — Post-Deploy Documentation Pipeline
 
-Orchestrate the existing lifecycle skills end to end after a production deploy of the app. This skill does no content work itself — it sequences `/sync-features`, `/news`, `/find-gaps`, `/write`, `/review`, and `/illustrate --release`, commits after each step, and opens a PR for human review. Nothing reaches the live docs until the PR is merged — **the PR is the approval gate**.
+Orchestrate the existing lifecycle skills end to end after a production deploy of the app. This skill does no content work itself — it sequences `/sync-features`, `/news`, `/find-gaps`, `/write`, `/review`, `/illustrate --release`, `/mine-conversations` and `/check-help-snippets --fix`, commits after each step, and opens a PR for human review. Nothing reaches the live docs until the PR is merged — **the PR is the approval gate**.
 
 ## Unattended-run overrides
 
@@ -52,7 +52,7 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 | 6 | `/illustrate --release` | `release: refresh screenshots` |
 | 7 | `/find-gaps` — verification pass | `release: coverage verification` |
 | 8 | `/mine-conversations` | `release: conversation gaps report` |
-| 9 | `/check-help-snippets` | `release: help snippet audit` |
+| 9 | `/check-help-snippets --fix` | `release: help snippet audit and fixes` |
 
 **Step 4 detail:** run `/write` with no args to draft every **Missing** entry, then run `/write <path>` for each **Partial** entry using its `needs:` note from `.todo/gaps.md`. In a release run, Partial entries are not skipped.
 
@@ -64,7 +64,7 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 
 **Step 8 detail:** report-only, by design — its candidates are **not** drafted in this run, and never feed them into `/write` or `.todo/gaps.md`. The report is committed so the PR carries the candidates for human review; approving entries and drafting them is a separate decision after the PR. If PostHog is unreachable, skip the step and note it in the PR body — never block the release on it.
 
-**Step 9 detail:** report-only — audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews. Fixing gaps means writing in `../md` and `../reboot`, which this pipeline never does; the report is committed so the PR body carries the findings. If `../md` is unreachable, skip and note it — never block the release on it.
+**Step 9 detail:** audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews, then fixes what it finds in the same step, following "Fix mode" in the check-help-snippets skill. Snippet files (missing, incomplete language sets, stale wording) are written in `../md` and pushed to its `main`, which the app serves live. Missing dictionary entries are written in `../reboot` on `dev` but left uncommitted: that repo requires Yves' approval for each commit, so the question waits for "6. Commit the help snippet dictionary entries" below instead of blocking the run. The report, with its "Fixes applied" section, is committed to the release branch so the PR shows what changed. If `../md` or `../reboot` is unreachable or dirty, skip that part and note it — never block the release on it.
 
 ### 4. Open the PR
 
@@ -105,8 +105,8 @@ PR body template:
 ### AI-conversation gap candidates (pending review)
 <entries added by /mine-conversations this run, or "None." — these are proposals only; approve in .todo/ai-conversation-gaps.md, then draft with /write>
 
-### In-app help snippet audit
-<findings from /check-help-snippets this run, or "All clear." — fixes happen in ../md and ../reboot, outside this PR>
+### In-app help snippets
+<fixes pushed to ../md this run (commit + files), dictionary entries prepared in ../reboot (waiting for approval), findings left unfixed with the reason, or "All clear.">
 
 ### Catalog propagation
 <per-repo result from step 5: synced / already in sync / skipped: reason>
@@ -145,7 +145,11 @@ Three sibling repos keep a snapshot of `.claude/context/features.md`. After the 
 
 Propagation problems never fail the release — the PR is already open. Record every per-repo outcome (synced / already in sync / skipped: reason) in the PR body's **Catalog propagation** section and in the final output.
 
-### 6. On failure
+### 6. Commit the help snippet dictionary entries
+
+If step 9 left dictionary entries uncommitted in `../reboot`, show the `md.ts` diff and ask Yves whether to commit it on `dev` (one question, after everything else is done). On yes, commit and hand him `git -C ../reboot push`; never push it yourself. On no, leave the change in the working tree and say so in the final output. Either way, the next `/sync-features` needs a clean `../reboot`, so say what is left there.
+
+### 7. On failure
 
 If any step fails and can't be recovered:
 
@@ -155,7 +159,7 @@ If any step fails and can't be recovered:
 
 ## Rules
 
-- **Never push to the docs repo's `main`, never merge the PR.** Merging is the human's job. The only direct-to-`main` pushes are the catalog syncs of step 5, each touching a single `features.md` file in a sibling repo.
+- **Never push to the docs repo's `main`, never merge the PR.** Merging is the human's job. The only direct-to-`main` pushes are the catalog syncs of step 5, each touching a single `features.md` file in a sibling repo, and the help snippet fixes of pipeline step 9 in `../md`. `../reboot` is never pushed.
 - **One run = one branch = one PR.** Don't reuse or amend a previous release branch; a same-day re-run gets a suffixed branch name.
 - **No translations.** The site is EN-only — never invoke `/translate`.
 - **Screenshots only through scenes.** Step 6 captures with the runner from the documentation account; no hand-made captures in a release.

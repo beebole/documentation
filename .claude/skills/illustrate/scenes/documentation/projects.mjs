@@ -118,7 +118,7 @@ export const scenes = [
 	},
 	{
 		id: 'projects-category-level-names',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-04',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {

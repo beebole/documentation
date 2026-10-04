@@ -1,47 +1,17 @@
 # Screenshot Needs Inventory
 
-Generated: 2026-06-11 (regenerated against the fully overhauled English content)
-Previous version: 2026-04-07 (archived in git history; see "Changes since 2026-04-07" below)
+Generated 2026-06-11, kept current by `/illustrate` batches and `/release` runs (last update 2026-10-04). The June capture plan, the April changelog and the rows dropped since are in git history.
 
-**Summary:** ~156 screenshots needed across 56 pages. Original 2026-06-11 inventory: ~132 (55 high, 52 medium, 23 low; +4 Asana shots on disk). 2026-08-04 additions: 24 more (9 high, 10 medium, 5 low) — see the dated section at the bottom.
-Capture runs in batches with `/illustrate --batch` (10 shots per batch, one batch per session: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. All needs below were derived from the current, code-accurate page content.
+**Status (counted 2026-10-04, plus the 9 done rows of batch 2026-10-02 (9) merged after):** 268 entries, 230 done or closed, 38 open. Of the open ones: 24 need a guided session (a connected integration on QA, or Excel, Google Sheets, the phone browser or the browser extension), 11 are blocked (seed data, mutations the runner refuses, toasts the runner hides, an app bug), 1 is on hold (accruals, not live), 1 is skipped (`reports/planned-vs-real.webp`) and 1 is optional (`timesheets/calendar-fan-out.webp`). Nothing open can be captured by the runner alone.
+
+Capture runs in batches with `/illustrate --batch` (10 shots per batch, one batch per session: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. The capture spec, chrome hiding and the runner live in the `/illustrate` skill. Seed names are singular (Acme Corp, the Client/Internal/Activity categories, the Main plan): read `../reboot/shared/i18n/config.json`, not the stale plural copy under `backend/dist/`.
 
 **Traffic (90-day `/help/*` pageviews, PostHog PROD 39108, measured 2026-09-29; refresh when older than 30 days).** Pages with open needs, most visited first: mobile 658 · integrations/introduction 223 · timesheets 187 · quickstart 171 · reports 116 · projects 103 · account-settings 92 · timesheetSettings 92 · roles-authorisations 81 · planning 80 · people 78 · approval 77 · authentication 75 · billing 74 · api/schema-explorer 71 · custom-reports 70 · work-schedule 67 · timeoff 66 · concepts 64 · budgets 61 · tags 54 · costs 50 · public-holidays 46 · integrations/quickbooks 44 · journal 43 · integrations/microsoft-calendar 43 · data-exports 42 · custom-fields 42 · integrations/custom-integrations 40 · notifications 39 · subscription 38 · integrations/jira 38 · integrations/webhooks 38 · excel-addin 38 · assignments 38 · ai 36 · gsheets-addon 35. Pages not listed had fewer than 35 views.
 
-**Already on disk (do not re-capture):**
-- `help/images/index-beebole-documentation.webp` (landing hero)
-- `help/images/integrations/asana-connect.webp`, `asana-params.webp`, `asana-updating.webp`, `asana-validate.webp`
-
-## Capture spec (locked 2026-06-11 — apply to every shot)
-
-- **DPR 2** on the Playwright context (`deviceScaleFactor: 2`) — this, not the physical monitor (retina vs 4K is irrelevant), is what makes shots crisp. `browser_resize` does NOT set DPR; verify `window.devicePixelRatio === 2` before capturing.
-- **Viewport by type:** full app/dashboard = **1440×900** logical; panel/dialog/single control = element screenshot (`locator.screenshot()`) or ~**1024** wide so it fills the frame; mobile (`mobile/*`) = **390×844**.
-- **WebP:** `cwebp -q 80` → must be under 200 KB → drop to `-q 60` if over.
-- **One DPR + one viewport-set for all shots** — consistency is the priority. Mintlify renders images in a ~700px column, so 1440@2x downscales crisp everywhere; DPR 3 just bloats files.
-- **Hide app chrome before each shot:** inject a DOM-only style (no code change) hiding the Intercom launcher and the `<beta-badge>` — `[class*="intercom" i],[id*="intercom" i],iframe[name*="intercom" i],beta-badge{display:none!important}`. Re-apply after any hard reload (it's wiped on full reload but survives in-app SPA navigation). Full snippet in the `/illustrate` skill.
-- **Seed data:** capture against a seeded account so examples match the prose (**Acme Corp**, the **Client**/**Internal**/**Activity** categories, the **Main plan** planning, a pending approval, etc.). The names are singular — read `../reboot/shared/i18n/config.json`, not the stale plural copy under `backend/dist/`. Corrected 2026-09-07.
-- **Best run as a guided session** (app running locally with seed data; Playwright drives navigation/framing; operator confirms state on complex shots).
-
 ---
 
-## Changes since 2026-04-07
-
-The April inventory (210 entries) was built against the pre-overhaul pages, many of which described features that don't exist. This version is regenerated from scratch against the rewritten content, so it is not a line-by-line carryover. Key structural deltas:
-
-- **Dropped entirely** — `custom-domain.mdx` and `sso.mdx` were deleted (features don't exist / consolidated into authentication); their April screenshot entries are gone.
-- **Reframed** — `planning.mdx` April entries assumed a resource-allocation grid that never existed; replaced with real Tasks-page / Gantt / Kanban screenshots. `timesheetSettings.mdx`, `approval.mdx`, `billing.mdx`, `costs.mdx`, `reports.mdx`, `custom-reports.mdx`, `account-settings.mdx`, `authentication.mdx`, `notifications.mdx`, `roles-authorisations.mdx` entries were rebuilt around the real panels/labels.
-- **Now real (were "coming soon")** — `google-calendar.mdx` / `microsoft-calendar.mdx` now need the timesheet external-calendar-pane screenshots (not Settings pages).
-- **New page** — `xero.mdx` added (connect, invoice export, sync result).
-- **Now need none** — the API reference pages (`queries`, `mutations`, `examples`, `introduction`) are code-only; only `schema-explorer.mdx` needs the GraphiQL shots. The role guides (`employee`, `project-manager`, `team-leader`) and `migration`/`faq` link out to feature pages and need no screenshots of their own. `news/releases.mdx` is text-only.
-- **Net count** dropped from 210 → ~132 — fewer fabricated/redundant shots, tighter to real UI.
-
----
 
 # Documentation
-
-## help/index.mdx
-
-_Landing hero already on disk (`index-beebole-documentation.webp`) — no new screenshot needed._
 
 ## help/documentation/quickstart.mdx
 
@@ -77,7 +47,6 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | people/people-list.webp | The People list with avatars, roles, and an Invitation pending status | high — done with a profile open and Invite by email (scene `people-list`, 2026-09-29); the list shows no roles, and Invitation pending only appears once an invitation is sent |
 | people/add-person-panel.webp | The Add person panel showing Name/Email/Role and the "Or add multiple entries" area | medium — done (scene `quickstart-add-person-panel`, shared with Quick start, 2026-09-30) |
-| people/person-profile-panels.webp | A person's profile showing the attribute panels (Manages, Tags, Billing, Absence allowances, Localization) | medium — dropped 2026-10-01: `people/people-list.webp`, right above the section, already shows the profile's panel list, and the full list makes a strip too tall for the column |
 | people/bulk-actions-menu.webp | The list with checkboxes selected and the bulk actions menu (Invite, Archive, Unarchive, Delete) | low — done: three people checked, the bulk bar at the bottom (scene `people-bulk-actions`, 2026-10-01). It is a bar, not a menu: page corrected |
 
 ## help/documentation/tags.mdx
@@ -99,7 +68,6 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | timesheets/timer-running.webp | A row with the timer running and the floating on-screen timer | medium — done (scene `timesheets-timer`, fixture: a running entry created and removed around the capture, 2026-09-29) |
 | timesheets/copy-paste-cluster.webp | The top-left button cluster (copy, paste period, calendar, approval, team) with the Paste Add/Replace prompt | medium — copy button done as a lens `timesheets/copy-button.webp` (scene `timesheets-copy-button`); the Paste prompt done as `timesheets/paste-dialog.webp` (scene `timesheets-paste-dialog`, 2026-09-30). The Paste period button sits below the copy button: page corrected |
 | timesheets/calendar-import-pane.webp | The calendar import pane with Google/Microsoft events listed and a Tracked badge | medium — button done as a lens `timesheets/import-calendar-button.webp` (scene `timesheets-import-calendar-button`); the pane with events needs a connected Google or Microsoft calendar: guided |
-| timesheets/timesheet-score-ring.webp | A team pane avatar with the colored Timesheet score ring and its hover breakdown | low — dropped 2026-10-02: the score ring was removed from the app on dev (commit `1d01a0372`, 2026-09-29: `bb-timesheet-score` and its labels deleted). Production still shows it until the next release, which should also remove the Timesheet score section of `timesheets.mdx` |
 | timesheets/calendar-view.webp | The calendar view with the favorites bar | high — done (scene `timesheets-calendar-view`, 2026-09-29) |
 | timesheets/row-menu.webp | A row's ⋯ action menu (Pin to top, Edit, Remove row) | done (scene `timesheets-row-menu`, 2026-09-29; found from the page) |
 | timesheets/team-pane.webp | The Team pane with members and their reported time | done (scene `timesheets-team-pane`, 2026-09-29; found from the page) |
@@ -194,7 +162,6 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | budgets/budget-panel.webp | A project's Budgets panel with Billing amount / Cost amount / Hours target fields | high — done on Web Portal, card open (scene `budgets-panel`, 2026-09-30); larger amounts get clipped by the app's narrow amount fields, so the scene uses the smallest budget |
 | budgets/budget-status-report.webp | The Budget Status report with per-project progress bars, at-risk and Over budget flags | high — done in the stacked layout, which fits 1440 (the side-by-side layout overflows it) (scene `budgets-status-report`, 2026-09-30) |
-| budgets/budget-alert-badge.webp | A budget card showing the threshold alert / Over budget badge | low — dropped 2026-10-01: budget cards have no alert badge (budget notifications are not available); At risk and Over budget show in `budgets/budget-status-report.webp` |
 
 ## help/documentation/expenses.mdx
 
@@ -210,7 +177,6 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 |---|---|---|
 | reports/folders-and-reports.webp | The Reports section with the folder list, period selector, and a report open | high — done (scene `reports-folder-report`, 2026-09-29) |
 | reports/table-chart-matrix-toggle.webp | The Table / Chart / Matrix view toggle buttons next to a report name | medium — done: the report header with Table and Chart on (scene `reports-view-toggles`, 2026-09-30) |
-| reports/schedule-dialog.webp | The Schedule report dialog with Report period, Send timing, and recipients | medium — dropped 2026-09-30: the Reports page no longer describes scheduling a report |
 | reports/period-filter-controls.webp | The folder period selector and Filters condition builder | low — done with the period target list open (scene `reports-period-selector`, 2026-10-01). Adding a filter condition saves the folder, so the builder is not shown |
 
 ## help/documentation/custom-reports.mdx
@@ -288,7 +254,6 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | notifications/preferences-panel.webp | The Notifications panel with Email/Push channels and per-event frequency selectors (Instant/Daily/Weekly/None) | high — done (scene `notifications-preferences`, 2026-09-30); the push channel and the budget alerts row are hidden in the scene, as on production hosts |
-| notifications/budget-threshold-alert.webp | The Budget threshold alert row with the percentage and "When over budget" | medium — dropped 2026-09-30: budget threshold alerts are not shown on production hosts |
 | notifications/email-templates.webp | The Email templates panel with the per-type tabs and the editor | medium — done in Account Settings, Sign Up tab (scene `notifications-email-templates`, 2026-09-30) |
 
 ## help/documentation/account-settings.mdx
@@ -320,15 +285,10 @@ _Landing hero already on disk (`index-beebole-documentation.webp`) — no new sc
 | Screenshot | Description | Priority |
 |---|---|---|
 | audit-trail/journal-audit-feed.webp | The Journal feed showing audit messages (operation, person, timestamp) | medium — done within `journal/activity-feed.webp`, already on the Audit trail page: the organisation's Journal is empty on the documentation account, a person's Journal shows the changes (2026-10-01) |
-| audit-trail/record-logs-view.webp | A record's Modified by label with the expanded Logs change history | high — dropped 2026-09-30: the Modified by badge and its Logs link were removed from the app on 2026-02-17; a record's changes now show in its Journal panel, and the page links `journal/activity-feed.webp` |
 
 ## help/documentation/legacy-migration.mdx
 
-| Screenshot | Description | Priority |
-|---|---|---|
-| legacy-migration/migration-options.webp | The Legacy Migration tool with the Legacy API Key field and the migration options (Only active entities, Include time records from) | high — dropped: the legacy migration tool was removed from Settings in September 2026 |
-| legacy-migration/audit-results.webp | The Audit Results screen showing record counts and the time-record date range | medium — dropped: the legacy migration tool was removed from Settings in September 2026 |
-| legacy-migration/migration-report.webp | The final migration report summary (created / skipped / failed per phase) | low — dropped 2026-10-01: the migration tool was removed from Settings in September 2026 |
+_No screenshots: the migration tool was removed from Settings in September 2026._
 
 ## help/documentation/mobile.mdx
 
@@ -454,23 +414,10 @@ _Other API pages (introduction, queries, mutations, examples) are code reference
 
 # Pages needing no screenshots
 
+- help/index.mdx — landing page of cards
 - help/guides/employee.mdx, project-manager.mdx, team-leader.mdx, migration.mdx, faq.mdx — role walkthroughs / Q&A that link out to feature pages
 - help/api/introduction.mdx, queries.mdx, mutations.mdx, examples/example-1.mdx, examples/example-2.mdx — developer code reference
 - help/news/releases.mdx — text-only update log
-
----
-
-## Suggested first capture session (top ~20 high-priority)
-
-1. timesheets/weekly-grid.webp
-2. approval/pending-pane.webp · approval/workflow-stages.webp
-3. planning/tasks-page-views.webp · gantt/timeline-bars.webp · gantt/workload-heatmap.webp · kanban/board-columns.webp
-4. projects/project-tree-categories.webp · people/people-list.webp · tags/tag-tree-categories.webp
-5. timeoff/absence-types-list.webp · timeoff/absence-allowances-panel.webp
-6. billing/billing-rate-card.webp · budgets/budget-status-report.webp
-7. reports/folders-and-reports.webp · custom-reports/matrix-view.webp · data-exports/export-submenu.webp
-8. roles/permission-grid.webp · authentication/sso-panel.webp · mobile/mobile-timesheet.webp
-9. integrations/settings-integrations-list.webp · integrations/google-calendar-pane.webp
 
 ---
 
@@ -496,7 +443,9 @@ New pages and expanded sections from the 2026-08-04 write batch (staffing, Beebo
 | ai/approval-review-digest.webp | Reviewing a submitted timesheet with digest flags (non-working day, overtime, unusual total) | high — done on Lucas Bernard's week of Sep 6 in the Pending pane, two Time on a non-working day flags (scene `ai-approval-review-digest`, 2026-09-30). Only that flag occurs in QA's pending weeks |
 | ai/nl-report-builder.webp | Ask for a report input with a typed request | medium — done as `ai/report-builder-request.webp`, typed and not sent (scene `ai-report-builder-request`, 2026-10-01) |
 
-## help/integrations/ai-assistants.mdx
+## help/integrations/mcp-server.mdx
+
+_Was `ai-assistants.mdx` until 2026-08-05._
 
 | Screenshot | Description | Priority |
 |---|---|---|
@@ -587,13 +536,10 @@ Identified by `/illustrate --identify` across `help/**`. Two entries are **broke
 | planning/task-list-selection.webp | Several rows selected with ⌘+Click for a mass edit | medium — added and done for Editing several tasks at once (scene `task-list-selection`, 2026-10-01) |
 | settings/master-data-review.webp | **To add** — the placeholder reference was removed from `master-data.mdx` on 2026-09-07 so the release could merge with a green link check; wire the `<Frame>` back in when capturing. A master data review of **People** in Settings: the saved-reviews list at the left with one open, the table showing name plus billing rate, tags and work schedule columns, at least one cell showing an inherited value with its source link, and the filter row above the table | high — blocked: the Settings entry is suppressed on production hosts, so there is nothing a user can be shown (see the 2026-08-31 note) |
 | timesheets/timer-shelf.webp | The floating timer as a shelf with several lines — one running with a pulsing dot and live counter, one paused with its play button and **×** — and the **Pause all** button beneath (element capture) | high — done (scene `timesheets-timer-shelf`, fixture: two running entries and a paused one listed on the shelf, 2026-09-30) |
-| planning/gantt-cell-editing.webp | A Gantt cell being edited in place (owner or status), with the discreet hover control visible (element capture) | medium — dropped 2026-10-01: the Gantt and List pages do not describe editing a cell in place |
 | planning/dependency-drag.webp | A dependency being drawn by dragging the link handle from one task bar onto another, the target task highlighted and the line following the pointer | medium — done as `gantt/dependency-drag.webp`: App Development's end handle held over QA Testing (scene `gantt-dependency-drag`, 2026-10-01) |
 | planning/gantt-column-sort.webp | A Gantt or List column header menu open on **Sort ascending** / **Sort descending** / **Manual order** (element capture) | medium — done as `gantt/column-sort-menu.webp` on Task Name (scene `gantt-column-sort-menu`, 2026-10-01). The menu opens on hover: Gantt page corrected |
-| staffing/booking-intraday-drag.webp | A part-day booking being dragged on its day's clock inside the cell, snapped to the quarter hour | medium — dropped 2026-10-01: the cell's clock is not drawn, so a still of the drag looks the same as a booking at rest (already shown by `staffing/staffing-timed-bars.webp`) |
 | approval/team-bulk-bar.webp | The **Team** pane with several people selected and the bulk bar showing **Approve**, **Remind**, and **Reject** with their per-subset counts (element capture) | medium — done with two submitted weeks selected (scene `approval-team-bulk-bar`, 2026-10-01). The bar leaves out a button that applies to nobody: no Remind here, as nobody in that week is still a draft. Page corrected |
 | settings/master-data-update-preview.webp | Master data review in update mode showing the before/after preview of a bulk change, with a skipped row and its reason (element capture) | medium — blocked, as `settings/master-data-review.webp`: the Settings entry is suppressed on production hosts |
-| reports/budget-status-sorted.webp | The **Budget Status** report sorted by percent consumed, with a project at exactly 100% reading as on budget rather than over | low — dropped 2026-10-01: `reports/budget-status-table.webp` is already sorted by % consumed, and no project sits at exactly 100% on QA (the text covers it) |
 
 Not requested, deliberately: budget threshold alerts and the push-notification channel (both stripped from notification preferences on production hosts, so there is no UI to photograph), and the legacy migration tool (removed from Settings in September 2026).
 
@@ -788,3 +734,18 @@ Found while shooting:
 - The Filters popup lists twelve filter types; **Project category** and **Planning**, in the Reports page's table, are not among them: they come from ⌘-clicking a category in the Project or Task list, as the paragraph below the table says.
 - Scrolled to an earlier week, the phone header still reads the current week (Sep 27 → Oct 3, Draft, 32 / 40); the period being read shows in the blue bar under it.
 - Considered and dropped: a Timesheet Settings "Opening" shot (`timesheets/settings-period-tab.webp` already shows the panel open under its title), a mobile Submit shot (`mobile/mobile-timesheet.webp` shows it), a public holiday add row (`public-holidays/holidays-panel.webp` shows the empty row), and a Task statuses link (the settings dialog is already on the Planning page).
+
+## Release 2026-10-04 (`/illustrate --release`)
+
+Recaptured: `projects/category-level-names.webp` and `tags/tags-level-names-dialog.webp` (scenes `projects-category-level-names`, `tags-level-names-dialog`, 2026-10-04): the Level names dialog now has removable levels and the **Only named levels** switch with its hint.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| custom-fields/unique-id-options.webp | The Custom field details panel of a Unique ID field: Field type, the uniqueness note, Validation pattern (regex) and Placeholder text | medium — done on an Employee number field created and deleted around the capture by a fixture (scene `custom-fields-unique-id`, 2026-10-04) |
+| timesheets/calendar-day-add.webp | The + (Add an entry) of a day header in the calendar view | medium — done as a lens on Wednesday's header, the mouse resting on it (scene `timesheets-calendar-day-add`, 2026-10-04) |
+| timesheets/calendar-hour-zoom.webp | The calendar zoomed into one hour, with entries of a few minutes | medium — done on 10 to 11 AM, four short timed entries on Friday of the last full week by a fixture (scene `timesheets-calendar-hour-zoom`, 2026-10-04) |
+| projects/only-named-levels-message.webp | The message shown when clicking + on a row at the last named level while Only named levels is on | low — blocked 2026-10-04: the message is a toast, which the runner hides; the switch itself is shown by the two Level names shots |
+| timesheets/calendar-fan-out.webp | A run of one-minute entries fanned out side by side in the unzoomed calendar | low — doable with a fixture like `timesheets-calendar-hour-zoom` (timed one-minute entries in a row); the text is clear without it |
+| authentication/signin-code-errors.webp | The sign-in page with "The code you entered is not valid" after a wrong code | low — blocked: needs a sign-in code request, a mutation the runner refuses |
+
+Scene repairs (no new image): `mobile-timesheet` no longer fails when the list already opens on the current week (its replay now differs only by time added to that week since the capture); `desktop-suggestion-why` frames the Desktop card and its own day heading even when habit suggestions follow it on later days.

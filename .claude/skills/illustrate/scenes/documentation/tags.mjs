@@ -55,7 +55,7 @@ export const scenes = [
 	},
 	{
 		id: 'tags-level-names-dialog',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-04',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {

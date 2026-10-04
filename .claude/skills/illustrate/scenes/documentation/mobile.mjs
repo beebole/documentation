@@ -19,7 +19,19 @@ async function openThisWeek(page, h) {
 			.map((r) => r.top)
 		return Math.min(...tops)
 	})
-	if (!Number.isFinite(nextHeaderTop)) throw new Error('current week header not found')
+	if (!Number.isFinite(nextHeaderTop)) {
+		// No week header below the top bar: the list already opened on this week (its header is
+		// the sticky one at the top, and the next week is further down than the list renders).
+		const atTop = await page.evaluate(() =>
+			[...document.querySelectorAll('body *')].some((e) => {
+				if (e.childElementCount !== 0 || !/^\w{3} \d+ → \w{3} \d+, \d{4}$/.test(e.textContent.trim())) return false
+				const r = e.getBoundingClientRect()
+				return r.width > 0 && r.top <= 120
+			})
+		)
+		if (!atTop) throw new Error('current week header not found')
+		return
+	}
 	await page.mouse.move(195, 500)
 	// 108: just under the top bar, where the sticky period header sits.
 	await page.mouse.wheel(0, nextHeaderTop - 108)
