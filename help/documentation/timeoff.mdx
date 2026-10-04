@@ -14,9 +14,16 @@ Beebole's time-off management lets you define absence types, assign individual a
   Time off in Beebole is tracked through **absence types** — categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
 </Info>
 
-<div style={{position: "relative", paddingBottom: "calc(58.6934% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/ES36S84RdgWOOnlf030h?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Add Time Off Types" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Adding time off types in Beebole">
+  <iframe
+    src="https://demo.arcade.software/ES36S84RdgWOOnlf030h?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Add Time Off Types in Beebole"
+    loading="lazy"
+    allowFullScreen
+    allow="clipboard-write"
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none', colorScheme: 'light' }}
+  />
+</Frame>
 
 ---
 
@@ -28,6 +35,7 @@ Each absence type can be configured with:
 
 - **A name** — The label your team sees when logging time off (e.g., "Vacation", "Sick Leave").
 - **A unit** — Whether absences are tracked in **Hour** or **Day** units.
+- **A paid setting** — Whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
 - **An allowance** — The amount of time off each person receives per period.
 - **An accrual policy** — Rules describing how time off accumulates over the allowance period. See [Accruals](/help/documentation/accruals).
 
@@ -43,7 +51,7 @@ Each absence type can be configured with:
     Click **Add Time Off Type**, enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave"), and click **Add Time Off Type**.
   </Step>
   <Step title="Choose the unit">
-    In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. The change is saved automatically, and the new absence type is available for allowances and timesheet entry.
+    In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. Below it, **Is paid (included in people costs)** is checked by default — uncheck it for unpaid leave. Changes are saved automatically, and the new absence type is available for allowances and timesheet entry.
   </Step>
 </Steps>
 
@@ -131,17 +139,22 @@ By default, Beebole prevents people from booking more time off than their availa
 To let a balance go below zero — useful for organizations that handle overdrawn leave manually or at year-end — open the allowance in the **Absence allowances** panel and check **Allow negative balance**. The change is saved automatically. When the box is unchecked, Beebole blocks time-off entries that would push the balance below zero.
 
 <Warning>
-  If you allow negative balances, monitor them regularly. Beebole can send notifications when a person's balance goes negative — see the notifications section below.
+  If you allow negative balances, monitor them regularly, for example in the [Absence quotas report](/help/documentation/reports#absence-quotas).
 </Warning>
 
 ---
 
 ## Time off and people costs
 
-Time off counts toward people cost totals. A leave day is valued with the person's [cost rate](/help/documentation/costs) for that day — Beebole multiplies the absence duration by the rate exactly as it would for a regular time entry — so leave appears in budgets and profitability reports alongside billable work, even though no project time was tracked.
+Each absence type decides whether its time off counts as a people cost, through the **Is paid (included in people costs)** checkbox. It sits in the type's **Units** panel, right below the unit, and it is checked on every new absence type. To change it, go to **Settings** \> **Time Off**, open the absence type, and check or uncheck the box. The change is saved automatically.
+
+| Is paid (included in people costs) | What happens in cost figures |
+| --- | --- |
+| Checked | Each absence is valued with the person's [cost rate](/help/documentation/costs) for that day — Beebole multiplies the absence duration by the rate exactly as it would for a regular time entry — so paid leave appears in the people cost totals of your reports, even though no project time was tracked. Time off is never recorded on a project, so it does not draw on a project's budget. |
+| Unchecked | Absences of this type carry no cost. Their hours still show in reports, but they add nothing to cost totals. Use this for unpaid leave. |
 
 <Info>
-  There is no per-type switch for this today: every time off type is treated the same way in cost calculations. Time off never affects billing amounts — only costs.
+  Reports apply the checkbox when they run, so changing it also changes the cost of time off recorded before the change. Time off never affects billing amounts, whichever way the box is set — only costs.
 </Info>
 
 ---
@@ -158,35 +171,19 @@ Approval does not gate the balance: every recorded time-off entry counts against
 
 ---
 
-## Absence notifications
-
-Beebole can send automatic notifications related to time off to keep managers and administrators informed. They are configured per absence type, in the **Time off notifications** panel:
-
-- **Going negative** — Triggered when a person's balance drops below zero.
-- **Requesting in advance against accruals** — Triggered when someone requests time off they have not yet accrued.
-- A frequency alert — Triggered when a person takes this absence type more than a set number of occurrences in a **Month** or **Year**.
-
-<Frame caption="The Time off notifications panel of the PTO absence type">
-  <img src="/help/images/timeoff/timeoff-notifications-panel.webp" alt="Beebole Time off notifications panel of the PTO absence type with Going negative and Requesting in advance against accruals checked, and the unchecked frequency alert: more than a number of occurrences in a Month" width="762" />
-</Frame>
-
-To configure them, go to **Settings** \> **Time Off**, click the absence type, and check the alerts you want in the **Time off notifications** panel. Changes are saved automatically. See [Notifications](/help/documentation/notifications) for the full setup.
-
----
-
 ## Recording time off on the timesheet
 
-Team members record absences directly on their timesheets, just like regular time entries.
+Team members record absences directly on their timesheets, just like regular time entries, in either the calendar view or the grid view.
 
 <Steps>
   <Step title="Open the timesheet">
-    Click **Timesheet** in the sidebar and select the relevant week.
+    Click **Timesheet** in the sidebar and go to the relevant period.
   </Step>
-  <Step title="Add an absence row">
-    Click **Add a row**. Select the absence type (e.g., "Vacation") instead of a project.
+  <Step title="Add the absence">
+    In the calendar view, drag across an empty time slot and pick the absence type (e.g., "Vacation") in the activity picker. In the grid view, click the **+** button (**Add a row**) of the **Time Off** section and pick the absence type.
   </Step>
   <Step title="Enter the time off">
-    Enter the number of hours or days for each day of the week.
+    In the grid view, enter the hours or days on each day of the row. In the calendar view, the entry covers the slot you selected — drag or resize the block to change it.
   </Step>
   <Step title="Submit the timesheet">
     Click **Submit** to send the timesheet for approval. The time off counts against the balance as soon as it is recorded.

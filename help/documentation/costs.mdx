@@ -14,9 +14,16 @@ Beebole's cost rates track what work costs your organization internally. While [
   Cost rates are not included in every Beebole plan. Review your plan and add-ons on the [Subscription](/help/documentation/subscription) page. Who can view and edit them is controlled by the **Costs** permission — see [Roles & permissions](/help/documentation/roles-authorisations).
 </Info>
 
-<div style={{position: "relative", paddingBottom: "calc(64.2075% + 41px)", height: "0px", width: "100%"}}>
-  <iframe src="https://demo.arcade.software/3wV0eVBMv1hSdDc0Ix66?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Manage Costs and Billing Rates" frameBorder="0" loading="lazy" allowFullScreen allow="clipboard-write" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", colorScheme: "light"}} />
-</div>
+<Frame caption="Managing cost and billing rates in Beebole">
+  <iframe
+    src="https://demo.arcade.software/3wV0eVBMv1hSdDc0Ix66?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
+    title="Manage Costs and Billing Rates in Beebole"
+    loading="lazy"
+    allowFullScreen
+    allow="clipboard-write"
+    style={{ width: '100%', aspectRatio: '16/9', border: 'none', colorScheme: 'light' }}
+  />
+</Frame>
 
 ---
 
@@ -101,7 +108,12 @@ A **Fixed fee** cost can also repeat: turn on **Repeat** in the rate card and ch
 
 ## Time off in people costs
 
-Time off counts toward your people costs. A leave day is valued with the person's cost rate for that day, exactly as a regular time entry would be, so it shows up in cost totals in reports and budgets even though no project time was tracked. Time off never carries a billing amount. See [Time off](/help/documentation/timeoff#time-off-and-people-costs) for details.
+Whether time off counts toward your people costs depends on its absence type. Each type has an **Is paid (included in people costs)** checkbox in its **Units** panel, under **Settings** \> **Time Off**, and it is checked on every new type.
+
+- For a paid type, a leave day is valued with the person's cost rate for that day, exactly as a regular time entry would be, so it shows up in the people cost totals of your reports even though no project time was tracked. Time off is never recorded on a project, so it does not draw on a project's budget.
+- For an unpaid type, the absence carries no cost. Its hours still show in reports, but they add nothing to cost totals.
+
+A **Fixed fee** cost is shared across the hours it covers, which include paid time off but not unpaid time off. Time off never carries a billing amount, paid or not. See [Time off](/help/documentation/timeoff#time-off-and-people-costs) for details.
 
 ---
 
@@ -157,7 +169,7 @@ When both billing and cost rates are configured, [custom reports](/help/document
   </Accordion>
 
   <Accordion title="Does time off count toward costs?">
-    Yes. Beebole values the leave day with the person's cost rate and includes it in cost totals in reports and budgets, the same way a regular time entry is. Time off never carries a billing amount.
+    It depends on the absence type. When **Is paid (included in people costs)** is checked on the type — the default for every new type — Beebole values the leave day with the person's cost rate and includes it in the people cost totals of your reports, the same way a regular time entry is. When it is unchecked, as you would for unpaid leave, the absence carries no cost. Time off never carries a billing amount.
   </Accordion>
 
   <Accordion title="How do I record a salary change without rewriting history?">

@@ -764,3 +764,18 @@ Found while shooting:
 - Quick start step 6 named the first settings screen Admin Settings (it is Account Settings, and the other screens are in its Settings menu) and listed PTO, Sick and Seminar as the default absence types (new accounts get PTO and Sickness, `shared/i18n/config.json`): corrected.
 - `account-settings/show-hide-panel.webp` was not taken: `assignments/show-hide-by-default.webp` already shows the panel.
 - An Add a report lens was dropped: the button is large and labeled, and the existing report shots show it.
+
+## Release 2026-10-04 (`/illustrate --release`)
+
+Recaptured: `projects/category-level-names.webp` and `tags/tags-level-names-dialog.webp` (scenes `projects-category-level-names`, `tags-level-names-dialog`, 2026-10-04): the Level names dialog now has removable levels and the **Only named levels** switch with its hint.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| custom-fields/unique-id-options.webp | The Custom field details panel of a Unique ID field: Field type, the uniqueness note, Validation pattern (regex) and Placeholder text | medium — done on an Employee number field created and deleted around the capture by a fixture (scene `custom-fields-unique-id`, 2026-10-04) |
+| timesheets/calendar-day-add.webp | The + (Add an entry) of a day header in the calendar view | medium — done as a lens on Wednesday's header, the mouse resting on it (scene `timesheets-calendar-day-add`, 2026-10-04) |
+| timesheets/calendar-hour-zoom.webp | The calendar zoomed into one hour, with entries of a few minutes | medium — done on 10 to 11 AM, four short timed entries on Friday of the last full week by a fixture (scene `timesheets-calendar-hour-zoom`, 2026-10-04) |
+| projects/only-named-levels-message.webp | The message shown when clicking + on a row at the last named level while Only named levels is on | low — blocked 2026-10-04: the message is a toast, which the runner hides; the switch itself is shown by the two Level names shots |
+| timesheets/calendar-fan-out.webp | A run of one-minute entries fanned out side by side in the unzoomed calendar | low — doable with a fixture like `timesheets-calendar-hour-zoom` (timed one-minute entries in a row); the text is clear without it |
+| authentication/signin-code-errors.webp | The sign-in page with "The code you entered is not valid" after a wrong code | low — blocked: needs a sign-in code request, a mutation the runner refuses |
+
+Scene repairs (no new image): `mobile-timesheet` no longer fails when the list already opens on the current week (its replay now differs only by time added to that week since the capture); `desktop-suggestion-why` frames the Desktop card and its own day heading even when habit suggestions follow it on later days.

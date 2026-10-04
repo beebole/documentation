@@ -63,19 +63,22 @@ To create a whole tag tree in one go, use the **Or add multiple entries** area i
 2. Click **Paste**.
 3. Review the entries to be imported, then click **Import entries**. If something looks wrong, click **Undo**.
 
-### Renaming hierarchy levels
+### Level names
 
 Each category stores its own level names, so the interface can speak your organization's vocabulary. You edit them from the category's settings: next to the category name in the **Tags:** heading, click the gear button — its tooltip is the category name followed by **settings**, for example **Department settings**. The button is only shown to people who can manage tags.
 
-The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Division** and **Team**. From there you can:
-
 <Frame caption="Level names for the Department category">
-  <img src="/help/images/tags/tags-level-names-dialog.webp" alt="Beebole Level names dialog listing Department, Division, and Team, with the Add new level field" width="624" />
+  <img src="/help/images/tags/tags-level-names-dialog.webp" alt="Beebole Level names dialog listing Department, Division, and Team, with the Add new level field and the Only named levels toggle" width="624" />
 </Frame>
 
-- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Renaming row 1 renames the category. The new name applies to that level across the whole category.
+The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Division** and **Team**. From there you can:
+
+- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Press **Escape** to cancel the rename; the dialog stays open. Renaming row 1 renames the category. The new name applies to that level across the whole category.
 - Add a level — type its name in the **Add new level** field and press **Enter**. Until you name a deeper level, Beebole labels it after the level above with a **Sub-** prefix, for example **Sub-Team**.
-- Remove a level — only the deepest level can be removed: click the **×** at the end of the last row.
+- Remove a level — click the **×** at the end of its row. Every row below the category row can be removed, not only the last one.
+- Reorder levels — hover over a row to show its gripper on the left, then drag the row to its new place. Row 1 is the category itself and always stays first.
+
+Below the list, the **Only named levels** switch keeps the hierarchy within the levels you have named. When it is on, nothing can be added, moved, or copied below the last named level, as the hint under the switch says: **Nothing can be added below the last level. Add a level here to go deeper.** In the **Department** category, for example, a team can't get a sub-tag of its own: clicking the **\+** button on its row shows **No lower level available, see Department settings**, and moving or duplicating a tag is refused the same way when the tag, or any of its sub-tags, would land below the last level. To go deeper, add a level in the dialog. When the switch is off, there is no depth limit and deeper levels take the **Sub-** labels described above. Project categories have the same switch.
 
 ---
 
@@ -152,7 +155,7 @@ Configuration set on a tag applies to all people and projects in it, unless over
 | **Absence allowances** | Time-off allowances set on the tag apply to its people. See [Time off](/help/documentation/timeoff). |
 | **Public holidays** | A holiday calendar assigned to the tag covers its people. See [Public holidays](/help/documentation/public-holidays). |
 | **Timesheet settings** | Timesheet rules — periods, timers, reminders — set on the tag override the organization defaults for its people. |
-| **Show or Hide** | Which time off types, expense types, projects, tasks, and custom fields are available to people in the tag. See [Assignments](/help/documentation/assignments). |
+| **Show or hide** | Which time off types, expense types, projects, tasks, and custom fields are available to people in the tag. See [Assignments](/help/documentation/assignments). |
 
 Because a person can belong to tags in several categories, you can compose configuration: a work schedule from a **Location** tag and an approval workflow from a **Department** tag, for example.
 

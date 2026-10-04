@@ -18,7 +18,7 @@ Beebole uses a flexible hierarchy with three building blocks:
 
 - **Categories** — The broadest grouping. A new account starts with **Client**, **Internal**, and **Activity**. Each project belongs to exactly one category.
 - **Projects** — The engagements or work streams inside a category, such as a client account or an internal initiative.
-- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit, and each category names its own levels (for example, the **Client** category starts with the levels **Project** and **Subproject**).
+- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit unless you [limit a category to its named levels](#level-names), and each category names its own levels (for example, the **Client** category starts with the levels **Project** and **Subproject**).
 
 <Frame caption="The Client category with two clients expanded into their projects">
   ![Beebole Projects page on the Client category, with Acme Corp expanded into Mobile App and Website Redesign and Quantum Logistics expanded into Fleet Tracker](/help/images/projects/projects-tree.webp)
@@ -95,14 +95,17 @@ Click the category name next to the **Projects:** heading to open the category m
 Each category names its own hierarchy levels, and you edit them from the category's settings. Next to the category name in the **Projects:** heading, click the gear button — its tooltip is the category name followed by **settings**, for example **Client settings**. The button is only shown to people who can manage projects.
 
 <Frame caption="The Level names of the Client category">
-  <img src="/help/images/projects/category-level-names.webp" alt="Beebole Level names dialog for the Client category, listing 1 Client, 2 Project and 3 Subproject with a remove button on the last row, and an Add new level field below" width="624" />
+  <img src="/help/images/projects/category-level-names.webp" alt="Beebole Level names dialog for the Client category, listing 1 Client, 2 Project and 3 Subproject, an Add new level field, and the Only named levels toggle" width="624" />
 </Frame>
 
 The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Project** and **Subproject**. From there you can:
 
-- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Renaming row 1 renames the category. The new name applies to that level across the whole category.
+- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Press **Escape** to cancel the rename; the dialog stays open. Renaming row 1 renames the category. The new name applies to that level across the whole category.
 - Add a level — type its name in the **Add new level** field and press **Enter**. Until you name a deeper level, Beebole labels it after the level above with a **Sub-** prefix, for example **Sub-Subproject**.
-- Remove a level — only the deepest level can be removed: click the **×** at the end of the last row.
+- Remove a level — click the **×** at the end of its row. Every row below the category row can be removed, not only the last one.
+- Reorder levels — hover over a row to show its gripper on the left, then drag the row to its new place. Row 1 is the category itself and always stays first.
+
+Below the list, the **Only named levels** switch keeps the hierarchy within the levels you have named. When it is on, nothing can be added, moved, or copied below the last named level, as the hint under the switch says: **Nothing can be added below the last level. Add a level here to go deeper.** In the **Client** category, for example, a subproject can't get a child of its own: clicking the **\+** button on its row shows **No lower level available, see Client settings**, and moving or duplicating a project is refused the same way when the project, or any of its subprojects, would land below the last level. To go deeper, add a level in the dialog. When the switch is off, there is no depth limit and deeper levels take the **Sub-** labels described above. Tag categories have the same switch.
 
 ### Category colors
 
@@ -167,8 +170,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 | **Expenses** | The expenses recorded against the project. See [Expenses](/help/documentation/expenses). |
 | **Custom fields** | Values for the custom fields defined for projects. See [Custom fields](/help/documentation/custom-fields). |
 | **Who has access?** | Who can use the project — see below. |
-| **Secondary projects allowed** | Whether people can log time to a secondary project alongside this one. |
-| **Show or hide** | Which secondary projects, expense types, and custom fields are available on this project. |
+| **Show or hide** | Which secondary projects, expense types, and custom fields are available on this project. A switch at the top makes every secondary project available (**All secondary projects available**) or none of them (**No secondary projects available**). |
 | **Valid period for time entry** | **From** and **To** dates limiting when time can be recorded on the project. |
 | **Description** | Free-form notes about the project. |
 
@@ -269,7 +271,7 @@ Archived projects are hidden from the list — click **Show Archived** at the to
 
 <AccordionGroup>
   <Accordion title="How deep can the project hierarchy go in Beebole?">
-    Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. In practice, structures stay easiest to navigate and report on at four levels or fewer. Keep in mind that only the lowest level of each branch accepts time entries; the projects above it aggregate their subprojects' time in reports.
+    By default, Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. To stop a category at the levels you have named, switch on **Only named levels** in the category's settings: nothing can then be added, moved, or copied below the last named level. In practice, structures stay easiest to navigate and report on at four levels or fewer. Keep in mind that only the lowest level of each branch accepts time entries; the projects above it aggregate their subprojects' time in reports.
   </Accordion>
 
   <Accordion title="Can I move a project to a different category?">

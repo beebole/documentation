@@ -1,6 +1,6 @@
 # Documentation gaps mined from AI assistant conversations
 
-Mined through: 2026-09-28T13:30:00Z
+Mined through: 2026-10-04T18:42:00Z
 
 **Source:** Mintlify docs-assistant conversations pushed to PostHog (prod project 39108, `$ai_generation` events, trace-level analysis).
 **Window analyzed:** 2026-07-07 → 2026-08-05 (30 days).
@@ -281,4 +281,16 @@ Not a doc gap (recorded for the product and support teams):
 - **ChatGPT-generated setup instructions pasted in** (2026-09-27, two threads 14 seconds apart, "mcp" then a pasted plan saying "look under Settings → Integrations → MCP / AI / API"): the assistant corrected it to the **Assistant** page, which `mcp-server.mdx:48` documents ("Find your server URL and API key"). Covered; no change.
 
 Everything else in the window was answered from existing pages with nothing to add: editing a submitted entry to sick time and amending a timesheet entry (`approval.mdx` §Editing a submitted or approved timesheet), Google Calendar connection and drag-and-drop (`integrations/google-calendar.mdx`), time off approved with the period (`timeoff.mdx` §Absence approval), legacy import on request (`legacy-migration.mdx`), rejections in the Timesheet Compliance report (`reports.mdx`), and the Xero overview.
+
+## Pending review (run 2026-10-04)
+
+12 threads captured since 2026-09-28T13:30Z, all single exchanges (1 message each), all marked answered by Mintlify. No thread had to fight for an answer. Themes: connecting a calendar (3 threads: "calendar?", Outlook meetings, Microsoft calendar), importing data (2, one from a legacy page, one in capitals "IMPORTATION"), plus single questions on the API key, a future-entry restriction, building a semi-monthly report for one task, Master data review, bulk-updating rates from a file, approving timecards, and calendar-view entries that cannot be edited.
+
+Verified against `help/**` and `../reboot` (prod):
+
+- [x] HIGH | `help/integrations/microsoft-calendar.mdx` | (Approved by Yves 2026-10-04, fixed on the release branch: stray block deleted.) Covered but failed, doc defect: the page opens (right after the frontmatter, before the intro) with a stale duplicate `<Steps>` block that tells users to click **Connect to Microsoft Calendar**, a label that does not exist in `labels.json` or in the app; the real flow, documented further down the same page, is the calendar icon (**Import your calendar events**) then the Microsoft icon (**Sign in with Microsoft**). The block came in with the 2026-06-16 "Updated mintlify pages" dashboard commit (`ec21984`). Fix: delete the first `<Steps>` block (lines 10 to 26). — evidence: 1 conversation (2026-10-01), the assistant repeated the invented **Connect to Microsoft Calendar** step to a user asking how to connect Outlook meetings; a second thread (2026-10-02) got the correct steps. `google-calendar.mdx` does not have the stray block.
+- [ ] LOW | `help/documentation/people.mdx` | Covered but failed: two "import" questions ("can i import into beebole", "IMPORTATION") got answers that list integrations and the people paste-import, but not the CSV import that projects, tags and tasks also offer (`projects/add`, `tags/add`, `tasks/add` in the catalog). A short "Importing your data" cross-link section or FAQ on the quickstart could route these. — evidence: 2 conversations (2026-09-30, 2026-10-01).
+- Not a doc gap (assistant fine): API key, future-entry restriction (**Only time off can be recorded in the future**, documented in `timesheetSettings.mdx`), semi-monthly report period (**Semi-month**, documented in `reports.mdx`), Master data review, bulk rate changes (percentage change on rates, documented in `master-data.mdx`; no file import of rates exists, which the assistant said correctly), approving timesheets.
+- Not a doc gap (legacy-page confusion): 4 of the 12 threads started on `/help/legacy/*` pages while asking about the current app (calendar, entries that cannot be edited, importing people, approving "timecards"). Same signal as earlier runs; the legacy banner routes them.
+- Not a doc gap (too vague to act on): "all the items on calendar view are showing i can't add time to them" (2026-09-30, from a legacy page). The assistant's answer (restrictions, submitted periods) is reasonable; the user may have been looking at suggestion ghost entries or at the old favorite-click behaviour, which changed on 2026-10-04.
 

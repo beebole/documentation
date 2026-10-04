@@ -241,9 +241,9 @@ The default color is generated automatically when a record is created. To change
 
 ### Badges and parent paths
 
-Projects, tasks, and tags appear throughout Beebole as badges — in lists, on Gantt and Kanban rows, in relation and tag panels, and on task bar tooltips. A badge spells out the full parent path of what it names whenever the space available can hold it, so a subproject reads as _Acme Corp > Website Redesign_ rather than as an abbreviation. Only when the label would be clipped does the badge fall back to the initials of the parent levels, keeping the record's own name readable. Relation and tag lists give badges more room than tighter surfaces do, so paths stay spelled out there more often.
+Projects, tasks, and tags appear throughout Beebole as badges — in lists, on Gantt and Kanban rows, in relation and tag panels, and on task bar tooltips. A badge spells out the parent path of what it names, so a subproject reads as _Acme Corp: Website Redesign_. When the badge has less room than the path needs, the label is cut short with an ellipsis (…) instead of being abbreviated. Names shown as plain text rather than as a badge, such as timesheet row names, suggestion cards, and the mobile screens, spell out the path while it stays short and shorten the parent levels to their initials when it runs long (_AC. Website Redesign_), so the item's own name stays readable. The [floating timer](/help/documentation/timesheets#the-floating-timer) always uses initials, to stay compact.
 
-Whatever the badge shows, hovering it gives you the complete path in a tooltip.
+Hover a badge for more in a tooltip: the complete path whenever the badge does not show all of it, and for a project or task, its description. Project and task names in the timesheet show their description on hover too, both in the grid's row names and at the top of an entry's details.
 
 ### Version update notifications
 
