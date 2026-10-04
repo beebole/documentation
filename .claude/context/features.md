@@ -40,7 +40,7 @@
 ## Absence & Time-Off Management
 
 - `absence/types` **Configurable absence types** — Vacation, sick leave, parental leave, etc.; type pickers show only the types each person is allowed to use, including when a manager or admin books on someone's behalf
-- `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid or unpaid with the **Is paid (included in people costs)** checkbox (checked by default); paid absences are automatically included in people cost totals shown in reports and budgets (live in production since 2026-10-04)
+- `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid or unpaid with the **Is paid (included in people costs)** checkbox (checked by default); paid absences are automatically included in people cost totals shown in reports (time off never carries a project, so it does not consume project budgets) (live in production since 2026-10-04)
 - `absence/accrual` **Accrual policies** — Configurable on allowances: frequency (weekly, bi-weekly, twice-monthly, or monthly), quantity, and when within each period the credit is awarded. _(status: partial — the automatic awarding engine is NOT implemented (feature request `../reboot/docs/feature-requests/7. absence-accrual-engine.md`); accrued balances are adjusted manually via the allowance's **Accrued** field. Re-verified 2026-08-04)_
 - `absence/carry-forward` **Carry-forward rules** — Unused allowance carries forward into the next period when a "valid until" date is set, limited by the carry-forward cap (0 means no cap); booking limits and the absence quota report reflect the carried balance
 - `absence/negative-balance` **Negative balance controls** — Allow or restrict going below zero

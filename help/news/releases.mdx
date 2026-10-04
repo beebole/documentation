@@ -15,12 +15,13 @@ og:type: "website"
 
   ### Timesheets
 
-  - With start and end times on, click an hour label on the [calendar view](/help/documentation/timesheets) (**Open this hour**) to zoom into that hour: a five-minute grid makes very short entries easy to read, drag and resize. Short entries that follow each other closely now sit side by side instead of hiding one another.
-  - Each day's header on the calendar has a **+** button that adds an entry even when the day is already full. Favorite chips now create an entry only when you drag them onto the calendar; a plain click no longer adds one.
-  - The floating timer shows which project each timer belongs to, with parent projects as short initials and the full path on hover.
-  - Time fields in popups and bottom sheets have +/− buttons that move the time in 15-minute steps; hold ⌘ (Ctrl on Windows) to move by one hour.
-  - Changing a start time, end time or duration now saves as a single edit, and one undo restores the whole change. Undoing a deletion and copying entries also bring back the comment, the non-billable and work-from-home flags, and custom field values, not just the hours.
-  - On a teammate's timesheet, a task now gives you access to an entry only when you manage that task: owning it or being assigned to it is no longer enough. Managing the person or one of the entry's projects still works. See [Roles and authorizations](/help/documentation/roles-authorisations).
+  - With start and end times on, click an hour label on the [calendar view](/help/documentation/timesheets) (its tooltip reads **Open this hour**) to zoom into that hour: a five-minute grid makes very short entries easy to read, drag and resize. Very short entries that follow each other closely now fan out in a staircase, each shifted to the right of the one before, instead of hiding one another.
+  - Hover a day on the calendar and a **+** button appears in its header to add an entry, even when the day is already full. Favorite chips now create an entry only when you drag them onto the calendar; a plain click no longer adds one.
+  - The floating timer now shows where each timer sits: parent projects appear as short initials before its name, and hovering shows the full path.
+  - Time fields in popups and bottom sheets have +/− buttons that move the time in 15-minute steps; hold ⌘ or Ctrl to move by one hour.
+  - With start and end times on, changing a start time, end time or duration now saves as a single edit, and one undo restores the whole change.
+  - Undoing a deletion now brings back the comment, the non-billable and work-from-home flags and custom field values, not just the hours, and duplicating, pasting or drag-copying an entry on the calendar now copies its custom field values too.
+  - On a teammate's timesheet, a task now gives you access to an entry only when you manage that task: owning it or being assigned to it is no longer enough. Managing the person, one of the entry's projects or a project the task is linked to still works. See [Roles and authorizations](/help/documentation/roles-authorisations).
   - With start and end times on, logging time on a planned task no longer removes its [suggestion](/help/documentation/ai) for the day: the suggestion shrinks by the time you logged, and any remaining scheduled time is shared across your planned tasks.
 
   ### Planning
@@ -30,16 +31,16 @@ og:type: "website"
   ### Custom fields, time off & settings
 
   - New **Unique ID** [custom field](/help/documentation/custom-fields) type: each value can belong to only one person, project, task, tag, time entry or time-off type. Matching ignores upper and lower case and spaces before or after the value, and archived items still count. Add a validation pattern and a placeholder if you need them. When a value is already taken, the message names the item holding it if you're allowed to see it, and a field can't switch to Unique ID while its existing values contain duplicates.
-  - Number custom fields accept your local decimal format, and what you type is saved when you leave the field or close the panel.
-  - Each time-off type now has an **Is paid (included in people costs)** checkbox. It is ticked by default, so time off keeps counting in the cost figures of your [reports](/help/documentation/reports) and [budgets](/help/documentation/budgets); untick it for unpaid leave and that type's absences no longer add to costs. See [Time off](/help/documentation/timeoff#time-off-and-people-costs).
+  - Number custom fields accept a comma or a point as the decimal separator and show values in your decimal format, and what you type is no longer lost when you leave the field or close the panel right away.
+  - Each time-off type now has an **Is paid (included in people costs)** checkbox. It is ticked by default, so time off keeps counting in the people costs of your [reports](/help/documentation/reports); untick it for unpaid leave and that type's absences no longer add to costs. See [Time off](/help/documentation/timeoff#time-off-and-people-costs).
   - In a project or [tag](/help/documentation/tags) category's **Level names** window, drag levels into a new order and rename or remove any level, not just the deepest one. The new **Only named levels** setting stops anything being added, moved or copied below the last named level.
-  - Hover a project or task name, in a badge or in the timesheet popup header, to read its description. Long parent paths are now cut short with "…" instead of initials, with the full path in the tooltip.
-  - After you archive a person, project, task or type, entries and badges that use it keep showing its name. Selectors only list archived items when you're viewing archived items.
+  - Hover a project or task name, in a badge or in the timesheet popup header, to read its description. In badges, long parent paths are now cut short with "…" instead of being turned into initials, with the full path in the tooltip.
+  - After you archive a person, project, task or type, entries and badges that use it keep showing its name. Selectors only list archived items when you're viewing archived items, and the lists of linked items in a panel leave archived ones out.
 
   ### Sign-in & security
 
-  - Emailed sign-in and sign-up codes are more secure: a code only works in the browser that asked for it and stops working after several wrong attempts. Asking for a new code gives you the same one with a fresh expiry, so every email you received holds a working code, and too many requests show how many minutes to wait.
-  - [Single sign-on](/help/documentation/authentication) through Okta and other OpenID providers now works even when the provider keeps profile details outside the standard location, and issuer URLs with a trailing slash are accepted.
+  - Emailed sign-in and sign-up codes are more secure: a code is only accepted on a sign-in page that asked for a code for that email address, and it stops working after five wrong tries. Asking again, even after reloading the page or on another device, gives you the same code with a fresh expiry, so every email you received holds a working code. After too many wrong codes, a message tells you how many minutes to wait before asking again.
+  - [Single sign-on](/help/documentation/authentication) through Okta and other OpenID providers now works: Beebole finds where the provider serves user profile details from the provider's own configuration instead of assuming a fixed address, and issuer URLs with a trailing slash are accepted.
 
   {/* news-cursor: 2026-10-04 */}
 </Update>
