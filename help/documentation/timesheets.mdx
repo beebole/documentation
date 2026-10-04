@@ -1,10 +1,10 @@
 ---
 title: "Timesheets: tracking and submitting your time"
 sidebarTitle: "Timesheets"
-description: "Track time in Beebole's timesheet, in the calendar view or the grid view: place entries by the hour or type durations, run a timer, copy periods, and submit for approval."
+description: "Track time in Beebole's timesheet, in calendar or grid view: place entries by the hour or type durations, run a timer, copy periods, and submit for approval."
 keywords: ["beebole", "timesheet", "time tracking", "time entry", "calendar view", "grid view", "timer", "submit timesheet", "copy timesheet", "import time entries", "clock in", "work from home"]
 "og:title": "Tracking and Submitting Time with the Beebole Timesheet"
-"og:description": "Learn how to track time in the Beebole timesheet with the calendar view or the grid view, use the timer, import calendar events, and submit your period for approval."
+"og:description": "Learn how to track time in the Beebole timesheet with the calendar or grid view, use the timer, import calendar events, and submit your period for approval."
 "og:type": "article"
 ---
 
@@ -88,9 +88,9 @@ Click an entry to select it, then:
 
 ### Favorites
 
-Above the calendar, a favorites bar shows up to five activities you log most often: the rows of your timesheet, with the ones you [pinned](#managing-rows) in the grid view first, and your recently used projects and tasks.
+Above the calendar, a favorites bar shows up to five of your activities. The rows you [pinned](#managing-rows) in the grid view come first, followed by the rows of your timesheet and the projects and tasks you used most recently.
 
-- **Drag a favorite** onto the calendar grid to create an entry for that activity on the day and at the time where you release it. The entry takes your usual duration for that activity (or one hour when your recent entries on it vary), trimmed so it never exceeds the hours still missing for the day. Click the new entry to adjust its [details](#entry-details).
+- **Drag a favorite** onto the calendar grid to create an entry for that activity on the day and at the time where you release it. The entry takes your usual duration for that activity (or one hour when your recent entries on it vary), trimmed to the hours still missing for the day, or to one hour at most once the day is full. Click the new entry to adjust its [details](#entry-details).
 - **Drop a favorite on a suggested entry** to accept that suggestion as the favorite's activity instead.
 - **Remove a favorite** with the **×** (**Remove from favorites**) on the left of its chip. When the favorite comes from a row of your timesheet, that row is removed from the grid view too.
 
@@ -262,7 +262,7 @@ A plain click on any play button switches timers: whatever was running is paused
 
 On desktop, a floating panel appears as soon as a timer runs, whichever view or page you are on. Drag it anywhere on the page, grabbing it by any spot including the activity names, and it stays where you leave it. It lists the activities you timed today, one line each.
 
-Each line names what the timer belongs to: the project, task, or absence type, with its parent projects shortened to initials, for example AC. Website Redesign for Website Redesign under Acme Corp. Hover the name to see the full path.
+Each line names what the timer belongs to: the project or task, with its parent projects shortened to initials, for example AC. Website Redesign for Website Redesign under Acme Corp. Hover the name to see the full path.
 
 - A **running** line shows a pulsing dot, its name, a live counter, and a **Pause timer** button.
 - A **paused** line stays listed with the time saved on its entry. Its play button resumes it (a plain click pauses the others first, **⌘**-click or Ctrl-click adds it to the ones running) and the **×** (**Remove from the timer list**) takes it off the panel. A running line has no **×**: pause it first, so time is never discarded while it is still counting.
@@ -402,7 +402,7 @@ For the full review workflow, see [Approvals](/help/documentation/approval).
 
 ### Timesheet score
 
-The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet: each period scores 100 when submitted on time, loses 10 points per day late (down to 30), scores 0 when never submitted, and loses 15 points per rejection, and the score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80.
+The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80.
 
 Next to the score, each of the person's periods is marked **On time**, **Late**, or **Not submitted**, and hovering a period shows its **Deadline**, when it was **Submitted**, the **Days late**, and any **Rejections**. Click the **Score** column header to switch between worst first and best first. See [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) for the report's filters, period, and access. Developers can also read a person's score through the API's `getTimesheetScore` query, see [Queries](/help/api/queries#timesheets-and-approvals).
 
