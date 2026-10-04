@@ -70,11 +70,12 @@ Beebole is a Progressive Web App (PWA), which means you can install it directly 
 
 ## Responsive layout
 
-Beebole's interface adapts automatically to your screen size. Whether you are on a large monitor or a small phone screen, all features remain accessible:
+Beebole's interface adapts automatically to the width of your screen. It has two layouts:
 
-- **Desktop** — Full layout with sidebar navigation, detailed tables, and expanded views.
-- **Tablet** — Optimized layout that adjusts columns and spacing for medium-sized screens.
-- **Phone** — Compact layout with simplified navigation and touch-friendly controls.
+- **Desktop** — On screens 1280 pixels wide or more: sidebar navigation, the weekly grid, detailed tables, and side panels.
+- **Touch** — On narrower screens, which covers phones and most tablets: a compact layout with the sidebar behind a menu button, the timesheet as a list of days, and bottom sheets instead of pop-ups.
+
+A tablet turned sideways can cross the threshold and switch to the desktop layout.
 
 You do not need to switch between different apps or URLs. The same Beebole account works seamlessly across all devices.
 
@@ -92,6 +93,10 @@ Beebole supports three theme options to match your visual preference:
 
 To change your theme, click the button with your initials at the bottom of the sidebar to open the user menu, then pick **Light**, **Dark**, or **Auto**.
 
+<Frame caption="The timesheet on a phone in dark mode">
+  <img src="/help/images/mobile/dark-mode.webp" alt="Beebole timesheet on a phone in dark mode: a dark background with the week header, Monday's three time entries on dark cards, the October month banner and today highlighted" width="390" />
+</Frame>
+
 <Info>
   The theme setting is personal and applies only to your account. It does not affect other people in your organization.
 </Info>
@@ -102,17 +107,29 @@ To change your theme, click the button with your initials at the bottom of the s
 
 The mobile timesheet is optimized for touch interaction. It presents your time entries as a scrollable list of days rather than a weekly grid, making it easier to navigate on a small screen.
 
+<Frame caption="The timesheet on a phone: a list of days grouped by week, with the + button at the bottom">
+  <img src="/help/images/mobile/mobile-timesheet.webp" alt="Beebole timesheet on a phone showing the current week as a list of days, Monday with three time entries, today highlighted, the Submit button at the top and the floating + button at the bottom right" width="390" />
+</Frame>
+
 ### How to log hours
 
 <Steps>
   <Step title="Open your timesheet">
     Tap the hamburger menu icon in the top-left corner to open the sidebar, then tap **Timesheet**.
+
+    <Frame caption="The sidebar opened from the menu button">
+      <img src="/help/images/mobile/mobile-sidebar.webp" alt="Beebole sidebar open on a phone over the timesheet, listing People, Projects, Tags, Planning, Timesheet (selected), Reports, Journal and Assistant, with Jordan Reed at the bottom" width="390" />
+    </Frame>
   </Step>
   <Step title="Add a time entry">
-    Tap the **+** button at the bottom of the screen (floating action button) or the **+** icon next to a specific day. The activity selector opens as a bottom sheet.
+    Tap the **+** button at the bottom of the screen (floating action button) or the **+** icon next to a specific day. The activity selector opens as a bottom sheet: your recent activities under **Your activities**, and the **Working activity**, **Task**, and **Time off** buttons. **Task** and **Time off** only show when your timesheet settings let you record time on tasks or time off.
   </Step>
   <Step title="Select a project, task, or absence">
-    Choose what you worked on from the list. Tap a project, task, or absence type to open the time entry editor.
+    Tap one of your recent activities, or tap **Working activity** and work down from a category to the project, **Task** to pick a task, or **Time off** to pick an absence type. Your choice opens the time entry editor.
+
+    <Frame caption="Working activity, then the Client category: its clients, each opening its projects">
+      <img src="/help/images/mobile/mobile-activity-picker.webp" alt="Beebole activity selector bottom sheet on a phone showing the Client category with Back above it and the clients Greenleaf Industries, Quantum Logistics, Brightwave Media, Silverline Retail, Northstar Financial and Acme Corp, each with an arrow" width="390" />
+    </Frame>
   </Step>
   <Step title="Enter your time">
     In the editor bottom sheet, enter the duration or set start and end times (depending on your account configuration). Your entry saves automatically — tap the back arrow to return to the list.
@@ -123,6 +140,14 @@ The mobile timesheet is optimized for touch interaction. It presents your time e
 
 - **Tap** a time entry card to open the editor bottom sheet and update the duration, project, or comment.
 - **Swipe left** on a time entry to reveal the delete action. Confirm deletion in the dialog that appears.
+
+<Frame caption="An entry opened in the editor sheet">
+  <img src="/help/images/mobile/mobile-editor-sheet.webp" alt="Beebole editor bottom sheet on a phone for a Sales entry on Thursday the 1st: the duration 6, empty start and end times, the comment Pipeline review, the Non-billable and Work from home checkboxes and a Cost center field" width="390" />
+</Frame>
+
+<Frame caption="A left swipe on an entry reveals Delete">
+  <img src="/help/images/mobile/mobile-swipe-delete.webp" alt="Beebole timesheet on a phone with Thursday's Sales entry slid to the left, showing its 6 hours and a red Delete button with a bin icon, next to the Training entry below" width="390" />
+</Frame>
 
 <Info>
   Editing and deleting are disabled when the timesheet period is locked (submitted or approved). The swipe-to-delete gesture and tap-to-edit are both blocked until the period is unlocked.
@@ -136,9 +161,13 @@ The mobile timesheet is optimized for touch interaction. It presents your time e
   </Step>
   <Step title="Monitor the timer">
     While the timer is running, a timer bar appears at the top of the header showing the active project and elapsed time.
+
+    <Frame caption="A running timer on a phone: the timer bar at the top and the counter on today's entry">
+      ![Beebole timesheet on a phone with the timer bar at the top showing Fleet Tracker, its client path and the elapsed time on a red pause button, and today's Fleet Tracker Development entry card with its running red counter](/help/images/mobile/mobile-timer.webp)
+    </Frame>
   </Step>
   <Step title="Stop the timer">
-    Tap the red stop button in the timer bar or on the entry card. Beebole saves the elapsed time as the entry's duration.
+    Tap the red pause button in the timer bar or on the entry card. Beebole saves the elapsed time as the entry's duration.
   </Step>
 </Steps>
 
@@ -148,10 +177,18 @@ The mobile timesheet is optimized for touch interaction. It presents your time e
 
 ### Accepting suggestions on mobile
 
-[Suggested time entries](/help/documentation/ai#suggested-time-entries) reach the mobile timesheet too. They appear as ghost rows inside each day, next to your real entries, so you see the day Beebole is proposing alongside the one you have already logged.
+[Suggested time entries](/help/documentation/ai#suggested-time-entries) reach the mobile timesheet too. They appear as ghost rows inside each day, next to your real entries, so you see the day Beebole is proposing alongside the one you have already logged. The sparkles button in the header, with the number of suggestions on it, shows or hides them.
+
+<Frame caption="Three suggestions on today, with dashed borders and a check to accept each">
+  <img src="/help/images/mobile/mobile-suggestion-row.webp" alt="Beebole timesheet on a phone with three suggested entries on Friday, October 2 drawn as dashed rows (Training 4, Sales 2.5, and Website Redesign Development 1.5), each with a green check, under Thursday's logged Sales and Training entries, and the sparkles button showing 3 in the header" width="390" />
+</Frame>
 
 - **Accept it as it stands** — Tap the check on the row. The suggestion becomes a normal time entry on that day.
 - **Open it first** — Tap the row itself. It opens in a sheet where you can change the duration, set or clear the start and end times, and point it at another task or working activity. The sheet carries three actions: the bin dismisses the suggestion, the play button starts a timer on it, and the check accepts it.
+
+<Frame caption="A suggestion opened in its sheet, with the bin, play, and check actions">
+  <img src="/help/images/mobile/mobile-suggestion-sheet.webp" alt="Beebole suggestion sheet on a phone for Acme Corp: Website Redesign, Development, with a Desktop badge, Friday the 2nd, a duration of 1.5 from 9:00 AM to 10:30 AM, the bin at the bottom left and the play and check buttons at the bottom right" width="390" />
+</Frame>
 
 A suggestion that carries no project of its own — one that came from a staffing booking, or one on a task your [timesheet settings](/help/documentation/timesheetSettings) don't let you log to — opens the picker instead of accepting straight away, with the message **Choose the project to log this time on first.** Pick the project and the suggestion accepts normally, keeping its link to the planned task.
 
@@ -181,12 +218,20 @@ Managers and administrators see a team button in the header (person group icon) 
 <Steps>
   <Step title="Open the approval sheet">
     Tap the team icon in the header. The approval bottom sheet slides up with two tabs: **Pending** and **Team**.
+
+    <Frame caption="The approval sheet on its Pending tab, with each submitted week and who it waits for">
+      <img src="/help/images/mobile/mobile-approval-sheet.webp" alt="Beebole approval bottom sheet on a phone with the Pending tab selected showing 30 timesheets, a Search field, Select all and Show all, and one card per submitted week with the person, hours, how long ago it was submitted, a Submitted badge and the project managers it waits for" width="390" />
+    </Frame>
   </Step>
   <Step title="Select a timesheet">
     Tap a person's entry in the **Pending** tab to view their submitted timesheet.
   </Step>
   <Step title="Approve or reject">
     With the submitter's timesheet open, tap **Approve** or **Reject** in the header. Rejection requires a comment.
+
+    <Frame caption="A submitted week opened from the sheet, with Approve and Reject in the header">
+      <img src="/help/images/mobile/mobile-approve-reject.webp" alt="Beebole timesheet of Ana Pereira on a phone, her name in a yellow bar at the top, the week of Sep 13 to Sep 19, 2026 marked Submitted with 40 hours, the Approve and Reject buttons in the header, and her entries day by day" width="390" />
+    </Frame>
   </Step>
 </Steps>
 

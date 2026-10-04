@@ -20,6 +20,10 @@ Beebole's reports turn tracked time, expenses, and planned work into answers abo
 
 Click **Reports** in the sidebar. The Reports menu on the left lists your report folders — click a folder to see the reports inside, or click **New folder** to add one.
 
+<Frame caption="The Current Month folder with the Hours by Person report run as a table">
+  ![Beebole Reports section with the report folders on the left, the Current Month folder open with its period selector, Filters and Share buttons, and the Hours by Person report showing hours per person for September 2026](/help/images/reports/folders-and-reports.webp)
+</Frame>
+
 Folders are personal: only you see the folders you create and the reports inside them, plus any folders other people have [shared with you](#share-a-report-folder).
 
 Each folder carries three settings that apply to every report inside it:
@@ -27,6 +31,12 @@ Each folder carries three settings that apply to every report inside it:
 - **A period** — the date range the reports cover, chosen with the period selector next to the folder name.
 - **Filters** — conditions added with the **Filters** button that narrow the data for the whole folder.
 - **A record scope** — the **Absence/working time** setting, which switches every report in the folder to working time only, absences only, or both. Left unset, each report keeps whichever scope it was saved with.
+
+To set the record scope, click **Filters**, pick **Absence/working time**, choose a scope, then click **Add filter**.
+
+<Frame caption="The folder's Filters menu open on Absence/working time">
+  <img src="/help/images/reports/folder-record-scope.webp" alt="Beebole report folder Filters menu with Absence/working time selected among the filter types, its three choices Both, Absence time only and Working time only, and the Add filter button" width="552" />
+</Frame>
 
 The folder's filter button is highlighted whenever a filter or a record scope is in force, so it's clear when the numbers you're reading are narrowed.
 
@@ -40,6 +50,10 @@ Reports are shared by sharing their folder. Open the folder and click **Share** 
 - **Tags** — select a [tag](/help/documentation/tags) to include everyone tagged by it or its sub-tags.
 
 Only you and the people you share a folder with can see it and its reports. Shared folders are view-only for the recipients — they can open and run the reports, but the owner keeps full control over the folder and the reports inside. Click **Share** again to review or change who has access.
+
+<Frame caption="The Share panel of a folder, with the People picker open">
+  <img src="/help/images/reports/report-folder-share.webp" alt="Beebole Current Month report folder with the Share panel open under the folder name, explaining who can see the folder, the People field open on a list of team members, and the Tags field below" width="1116" />
+</Frame>
 
 <Info>
   Sharing a folder never overrides permissions: each viewer still only sees the projects, people, and amounts their own [role](/help/documentation/roles-authorisations) allows.
@@ -82,6 +96,10 @@ Click a report's name in the folder to open it — Beebole runs it immediately a
 - **Chart** — one of 11 chart types with configurable axes.
 - **Matrix** — a two-axis grid with a metric per cell and an optional heat map.
 
+<Frame caption="An open report with its Table and Chart views on and Matrix off">
+  <img src="/help/images/reports/table-chart-matrix-toggle.webp" alt="Beebole report header showing the Hours by Person report name with its close button, the Table, Chart and Matrix toggle buttons with Table and Chart active, and the report's more options menu" width="602" />
+</Frame>
+
 You can keep several views open at once. Beebole remembers which views each report uses — like every report setting, the choice is saved automatically. The [Custom reports](/help/documentation/custom-reports) page covers building the output and using the chart and matrix views in detail.
 
 ---
@@ -91,6 +109,10 @@ You can keep several views open at once. Beebole remembers which views each repo
 ### Set the period
 
 The period selector next to the folder name controls the date range for every report in the folder. Choose a target — **Current**, **Previous**, **Next**, **Year to date**, **Last 12 months**, or **Custom** with explicit start and end dates — and, for the first three, a granularity: **Day**, **Week**, **Bi-week**, **Semi-month**, **Month**, **Quarter**, or **Year**.
+
+<Frame caption="The period target of the Current Month folder, opened next to the granularity and the Filters button">
+  ![Beebole Reports header of the Current Month folder: Add a report, the period target list open on Current with Previous, Next, Year to date, Last 12 months and Custom, the Month granularity, Oct 2026, and the Filters and Share buttons](/help/images/reports/period-filter-controls.webp)
+</Frame>
 
 A single report can override its folder's period: open the report's **⋯** action menu and click **Period**. To drop the override and follow the folder again, click **Reset period** in the same menu.
 
@@ -130,6 +152,10 @@ Every report has a **⋯** action menu with its management actions:
 
 The action menu can also move the report straight into another folder — pick the destination from the **Move to** entry's submenu (shown when you own another folder) instead of copying and pasting.
 
+<Frame caption="A report's action menu, next to its Table, Chart and Matrix buttons">
+  <img src="/help/images/reports/report-action-menu.webp" alt="Beebole report Margin by Client per Month with its action menu open, listing Duplicate, Move to, Filter, Period, Export, Copy, Reset period and Delete" width="780" />
+</Frame>
+
 For recurring spreadsheet workflows, see [Data exports](/help/documentation/data-exports) and the [Excel add-in](/help/documentation/excel-addin) and [Google Sheets add-on](/help/documentation/gsheets-addon), which refresh saved report data from inside your spreadsheet.
 
 ---
@@ -156,6 +182,10 @@ The chosen **Sort** applies at every level of the table — top-level rows, nest
 A budget consumed to exactly 100% counts as **on budget**: only a project projected above 100% is reported as over budget, and the bar colors use the same boundary.
 
 ### Read the Budget Status table
+
+<Frame caption="Budget Status with Time, Billing and Costs in their own columns, and Acme Corp expanded to its budgeted subprojects">
+  ![Beebole Budget Status report sorted by % consumed, one row per budgeted project with a Time, a Billing and a Costs column of progress bars, over-budget bars in red and an at-risk bar in yellow, the remaining amount and percentage beside each bar, Acme Corp expanded to Mobile App and Website Redesign, and the layout button at the left of the table header](/help/images/reports/budget-status-table.webp)
+</Frame>
 
 Each measure you turn on — **Time**, **Billing**, **Costs** — gets its own column, headed by its name, so a column reads top to bottom across projects. To read a project's measures as one block instead, click the layout button in the table header, just before the first measure column — its tooltip reads **Stack the measures in one column**. The bars then sit one under the other in a single column. Click it again (**One column per measure**) to go back. Beebole remembers your choice, so the report reopens in the layout you left it in.
 
@@ -185,6 +215,9 @@ Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a ch
   <Step title="Pick the plan">
     Pick the plan to chart with the **Plan** dropdown — shown when your account has more than one planning. The plan's tasks form the planned side.
   </Step>
+  <Step title="Choose who or what to chart">
+    The chart shows one person or one project at a time. The first button picks what you step through: **People**, or a level of a project category such as **Client**. Next to it, pick the person or project from the list, or use the arrows on each side to move to the previous or next one.
+  </Step>
   <Step title="Choose the unit and view">
     Pick the **Unit** the chart reads in: **Hours**, **Days**, **Billing**, **Cost**, or **Margin** — money is shown in your organization's currency. Under **View**, switch between **Cumulative** (the running total) and **Remaining** (a burndown toward zero).
   </Step>
@@ -198,6 +231,10 @@ Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a ch
     Use **Filters** to focus on specific people, projects, or tags, and **Export** to download the results.
   </Step>
 </Steps>
+
+<Frame caption="Planned vs. Real for one project, cumulative, in hours">
+  ![Beebole Planned vs. Real report for the Acme Corp: Website Redesign project on the Main plan, in Hours and Cumulative, with the Planned, Real, Variance, Forecast and Budget figures, the chart of the Real, Planned, Forecast, Ideal and Budget lines from September 2025 to November 2026, and the Over/under plan per person bars below](/help/images/reports/planned-vs-real.webp)
+</Frame>
 
 Your chosen plan, unit, and view are remembered per user, so the report reopens the way you left it. Use it to catch plans drifting from reality early — a **Real** line running above **Planned** means the work costs more time than scheduled. Plan the work itself in the [Gantt](/help/documentation/gantt) and [Staffing](/help/documentation/staffing) views.
 
@@ -218,6 +255,13 @@ For every project with a budget, a billing method of **Hourly** or **Daily**, an
 | **Planned to end** | Hours planned on the project's tasks between today and the end date |
 | **Projected at end** | Hours expected to remain unconsumed at the end date — the hours at risk |
 | **Implied rate** | The budget divided by its hours, used to convert hours at risk into money |
+| **Revenue at Risk** | The hours at risk converted into money at the implied rate |
+
+On screen, the end date shows under **Projected at end** and the implied rate under **Revenue at Risk**. **Logged** is in the export only.
+
+<Frame caption="The Revenue at Risk report with two hourly projects that will not use their budgeted hours by their end date">
+  ![Beebole Revenue at Risk report showing Total at risk of $25,450, 2 projects at risk and 24.7% of the portfolio, with rows for Video Production, flagged Not started, and Data Migration, each with its budget, budget hours, remaining hours, projected hours at the end date and revenue at risk](/help/images/reports/revenue-at-risk.webp)
+</Frame>
 
 Totals at the top summarize the portfolio: **Total at risk**, **Projects at risk**, and **Share of portfolio**. Rows where nothing has been logged yet are flagged **Not started**. Projects the report cannot assess are counted separately below the table — those with no end date set, and those whose budgets mix currencies.
 
@@ -234,13 +278,17 @@ The **Utilization** entry in the Reports menu shows billable hours as a share of
 - An **Average** summarizes each person across the period.
 - **Filters** and **Export** work as in other reports.
 
+<Frame caption="The Utilization report, one row per person and one column per month">
+  ![Beebole Utilization report from April to September 2026, with one row per person, a utilization percentage per month highlighted when above 100%, a Projected column for October 2026, and an Average column](/help/images/reports/utilization-report.webp)
+</Frame>
+
 The report appears when your subscription includes budgets and your role has the **Billable utilization** permission.
 
 ---
 
 ## Timesheet Compliance
 
-The **Compliance** entry in the Reports menu shows whether each person submitted their timesheet on time, late, or not at all — per person and period, in a calendar-style grid. It is the detailed view behind the [timesheet score](/help/documentation/timesheets) shown on person records.
+The **Compliance** entry in the Reports menu shows whether each person submitted their timesheet on time, late, or not at all — per person and period, in a calendar-style grid. It is also where you see each person's [timesheet score](/help/documentation/timesheets#timesheet-score), the 0–100 measure of how reliably they submit.
 
 - Each row is a person with their compliance **Score**; each column is a timesheet period, marked **On time**, **Late**, or **Not submitted**.
 - Hover a cell for the details: the period's **Deadline**, when it was **Submitted**, **Days late**, and **Rejections**.
@@ -260,6 +308,10 @@ The **Absence quotas** entry in the Reports menu gives managers one consolidated
 - **Drill down** — Open a row for the detailed breakdown behind its numbers.
 - **Columns**, **Filters**, **Show archived**, **Export** — Choose the visible columns, narrow by person or tag, include archived people, and download the results.
 
+<Frame caption="The Absence quotas report for the current year, grouped by time off type">
+  ![Beebole Absence quotas report for 2026 showing the PTO group with 203 of 405 days taken, one row per person with a bar of days taken out of the allowance, the days remaining, the Valid until date, and each person's absences on a timeline of the months](/help/images/reports/absence-quota-report.webp)
+</Frame>
+
 The report appears when your subscription includes absence quotas and your role can view absence quotas. Balances follow the same rules as the allowances themselves — see [Time off](/help/documentation/timeoff).
 
 ---
@@ -267,6 +319,10 @@ The report appears when your subscription includes absence quotas and your role 
 ## Reports on your phone
 
 On a phone, the **Reports** section switches to a layout built for consulting: pick a folder, adjust the period, and read each report as a scrollable sheet. Filters and the period selector work as chips at the top of the screen.
+
+<Frame caption="Reports on a phone: the folder and period chips above the Current Month folder's reports">
+  <img src="/help/images/reports/mobile-report.webp" alt="Beebole Reports on a phone with the Oct 2026 period chip at the top right, chips for My folders, Absence quotas, Budget Status, Compliance, Planned vs. Real, Revenue at Risk and Utilization, the Current Month folder picker, and cards for the Hours by Person, Profit by Project and Team Calendar reports" width="390" />
+</Frame>
 
 Building and reconfiguring report output remains a desktop task — for example, an unconfigured matrix view asks you to open the report on desktop to pick its rows, columns, and metric.
 

@@ -1,8 +1,8 @@
 ---
 title: "Custom fields: capture extra data on your work"
 sidebarTitle: "Custom Fields"
-description: "Create custom fields in Beebole to capture extra data on people, projects, tasks, and time records — six field types with validation and visibility rules."
-keywords: ["beebole", "custom fields", "field types", "field validation", "time record fields", "project custom fields"]
+description: "Create custom fields in Beebole to capture extra data on people, projects, tasks, and time records — seven field types with validation and visibility rules."
+keywords: ["beebole", "custom fields", "field types", "field validation", "time record fields", "project custom fields", "unique ID field"]
 "og:title": "Capturing Extra Data with Custom Fields in Beebole"
 "og:description": "Learn how to create custom fields in Beebole, configure field types and validation, and choose where each field appears."
 "og:type": "article"
@@ -26,7 +26,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
     Click **Add Custom Field**, type a name — for example "Employee ID" or "Cost center" — and click **Add Custom Field** to confirm.
   </Step>
   <Step title="Choose the field type">
-    In the **Custom field details** panel, pick a **Field type**: **Text**, **Date**, **Date & time**, **Number**, **URL**, or **Boolean**.
+    In the **Custom field details** panel, pick a **Field type**: **Text**, **Date**, **Date & time**, **Number**, **URL**, **Boolean**, or **Unique ID**.
   </Step>
   <Step title="Configure the type's options">
     The options for the selected type appear below it — defaults, limits, validation. Every change is saved automatically.
@@ -40,7 +40,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
 
 ## Field types
 
-Beebole supports six field types, each suited to a different kind of data:
+Beebole supports seven field types, each suited to a different kind of data:
 
 | Type | Holds | Example use |
 | --- | --- | --- |
@@ -50,6 +50,7 @@ Beebole supports six field types, each suited to a different kind of data:
 | **Date & time** | A date with a time of day | Shift start, incident time |
 | **URL** | A web link | Link to an external tracker |
 | **Boolean** | A yes/no value with customizable labels | Remote worker, billable indicator |
+| **Unique ID** | An identifier no other item can share | Employee number, ID in your ERP or payroll system |
 
 You can change a field's **Field type** later from the **Custom field details** panel — the type-specific options switch accordingly.
 
@@ -67,14 +68,37 @@ Each type comes with its own options, all edited in the **Custom field details**
 | **Date & time** | **Earliest date & time**, **Latest date & time** |
 | **URL** | **Placeholder text** |
 | **Boolean** | **Label for 'Yes'**, **Label for 'No'** |
+| **Unique ID** | **Validation pattern (regex)**, **Placeholder text** |
 
 Custom fields don't carry default values — a field starts empty (or shows its **Placeholder text**) until someone fills it in.
 
 Turn on **Use predefined values** to restrict a text field to a fixed list: add each entry under **Allowed values**, and users pick a value from that list instead of typing freely.
 
+<Frame caption="A text field restricted to a list of predefined values">
+  <img src="/help/images/custom-fields/field-details-type.webp" alt="Beebole Custom field details panel of a Cost center field, with the Field type set to Text, the Maximum length, Minimum length, Validation pattern (regex) and Placeholder text options, Use predefined values turned on, and the Allowed values CC-100 Engineering, CC-200 Design and CC-300 Sales" width="538" />
+</Frame>
+
 <Info>
   Beebole validates values as people enter them. An entry outside the allowed range or format is flagged with an error and not saved until corrected.
 </Info>
+
+### Unique ID fields
+
+A **Unique ID** field holds an identifier that only one item can carry, such as an employee number or the code a project has in your ERP. Each non-empty value can belong to only one item across everything the field is used on, whatever its type: if a person holds `EMP-0042`, no other person, project, task, or time entry can take it.
+
+- Matching ignores upper and lower case and any spaces before or after the value, so `emp-0042 ` counts as `EMP-0042`. Beebole removes those surrounding spaces when it saves the value.
+- Archived items keep their values, so archiving an item doesn't free its ID. Deleting the item does.
+- Empty values don't count: any number of items can leave the field blank.
+
+Use **Validation pattern (regex)** to enforce a format, for example `^EMP-\d{4}$` for EMP followed by four digits. A Unique ID field has no length limits and no list of allowed values.
+
+<Frame caption="A Unique ID field for employee numbers, with a format and a placeholder">
+  <img src="/help/images/custom-fields/unique-id-options.webp" alt="Beebole Custom field details panel with the Field type set to Unique ID, the note that each non-empty value must be unique, the Validation pattern (regex) ^EMP-\d{4}$ and the Placeholder text EMP-0000" width="538" />
+</Frame>
+
+When someone types a value another item already holds, the field is flagged **Already used** and the value isn't saved. If Beebole refuses the value when saving, the message names the holder — **This ID is already used by** followed by the item's name — when that person is allowed to see the item, and reads **This ID is already used by another item.** otherwise. The same check applies to values written through the API.
+
+You can switch an existing field to **Unique ID** only if its current values contain no duplicates, compared the same way. Otherwise Beebole refuses the switch with **This field has duplicate values, so it cannot become a Unique ID field. Remove the duplicates first.**
 
 ---
 
@@ -87,6 +111,10 @@ The **Custom field visibility** panel controls which items carry the field. A si
 - **Visible for Tasks** — Turn it on, then choose the task categories where the field applies.
 - **Visible for Time Records** — The field appears when filling in a time entry's details on the timesheet. Narrow it down with **Project categories** and **Plannings**, and turn on **Absences** to also show the field on time-off entries. A field scoped to a planning applies to tasks at every level of that planning.
 - **Visible for Absence types** — The field applies to your time off types. It appears in the **Custom fields** panel of each type, and it becomes a column you can review and fill in for time off types in [Master data review](/help/documentation/master-data).
+
+<Frame caption="The Custom field visibility panel of a field shown on people, time records, Client projects and tasks">
+  <img src="/help/images/custom-fields/field-visibility-panel.webp" alt="Beebole Custom field visibility panel with Visible for People on, Visible for Absence types off, Visible for Time Records on with the Project categories and Plannings pickers and Absences ticked, Visible for Projects on with the Client category limited to the Project level, and Visible for Tasks on" width="762" />
+</Frame>
 
 ### Who a field is asked of
 
@@ -152,7 +180,7 @@ Archived fields disappear from the list. Click **Show Archived** to display them
 
 <AccordionGroup>
   <Accordion title="Which field types does Beebole support?">
-    Beebole offers six custom field types: **Text**, **Number**, **Date**, **Date & time**, **URL**, and **Boolean**. Each type has its own options, such as length limits and patterns for text or earliest and latest dates for date fields.
+    Beebole offers seven custom field types: **Text**, **Number**, **Date**, **Date & time**, **URL**, **Boolean**, and **Unique ID**. Each type has its own options, such as length limits and patterns for text or earliest and latest dates for date fields. A **Unique ID** field also makes sure no two items share the same value.
   </Accordion>
 
   <Accordion title="Do custom fields appear on the timesheet?">
@@ -168,6 +196,6 @@ Archived fields disappear from the list. Click **Show Archived** to display them
   </Accordion>
 
   <Accordion title="Can I change a custom field's type after creating it?">
-    Yes. Open the field in **Settings** \> **Custom Fields** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching.
+    Yes. Open the field in **Settings** \> **Custom Fields** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching. Beebole refuses a switch to **Unique ID** while two items hold the same value — remove the duplicates first.
   </Accordion>
 </AccordionGroup>

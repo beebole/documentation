@@ -29,6 +29,10 @@ Beebole's Gantt chart displays your [tasks](/help/documentation/planning) as bar
 
 Each task with dates appears as a horizontal bar running from its start date to its end date, in the task's color. Task names show their full project and task path, so tasks with similar names are easy to tell apart. In a planning set to **Bookings**, each bar is a booking named after its project and person — see [Tasks or bookings](/help/documentation/planning#tasks-or-bookings). A vertical line marks today, and the timeline extends as you scroll — right into the future, left into the past — with a **Today** button to jump back to the current date.
 
+<Frame caption="The Gantt view of Main plan, week by week, with dependency links and today's line">
+  ![Beebole Planning page for Main plan on its Gantt view: the Row # and Task Name columns on the left, and on the timeline one colored bar per task with dates, dotted arrows linking dependent tasks, month pills for September to December 2026, a load bar under each week number, and an orange vertical line marking today](/help/images/gantt/timeline-bars.webp)
+</Frame>
+
 Hover any bar for a rich tooltip: the full dates, the task name, its project with parents, the owner, the planned hours or days and allocation percentage, plus a hint about what **⌘** does on the chart.
 
 Where one month ends and the next begins, the timeline draws a vertical line across the chart and a pill above it with the month and year, so you keep your bearings while scrolling a long stretch of days or weeks.
@@ -39,6 +43,10 @@ Open the **⋯** menu on the active view tab and use **Period** to choose how th
 
 - **Infinite by day** or **Infinite by week** — the endless scrolling timeline, at day or week granularity.
 - **Day**, **Week**, **2 weeks**, **3 weeks**, **4 weeks**, or **6 weeks** — the chart fits that window to your screen and lists only the tasks that fall inside it (parent tasks are kept).
+
+<Frame caption="The view tab's menu open on Period">
+  <img src="/help/images/gantt/view-period-weeks.webp" alt="Beebole Gantt view tab menu with Period, Durations in, Columns, Group by, Dependent tasks, Filters, Rename, Duplicate and Delete, and the Period submenu listing Infinite by day, Infinite by week (checked), Day, Week, 2 weeks, 3 weeks, 4 weeks and 6 weeks" width="504" />
+</Frame>
 
 With a fixed window, the view pages one period at a time: swipe or scroll sideways and it snaps cleanly onto the next or previous window, and the period containing today is always reachable.
 
@@ -71,7 +79,7 @@ If the task's planned time no longer fits the new period, the task detail panel 
 
 ## Giving a task hours
 
-A task normally runs over whole days. To pin it to exact times instead, open the task's **Dates** panel and uncheck **All day** — the hint on the checkbox says it plainly: *The task runs over whole days. Uncheck to set the hours it starts and ends.*
+A task normally runs over whole days. To pin it to exact times instead, open the task's **Task details** panel and uncheck **All day** — the hint on the checkbox says it plainly: *The task runs over whole days. Uncheck to set the hours it starts and ends.*
 
 **Start time** and **End time** fields appear, pre-filled from the owner's own working hours, and the task now stretches on the clock rather than by whole days:
 
@@ -80,7 +88,11 @@ A task normally runs over whole days. To pin it to exact times instead, open the
 - The capacity a timed task consumes is measured on the hours it actually spans, so a two-hour task no longer counts as a whole day against its owner's [workload](#workload-heatmap).
 - On the [Staffing](/help/documentation/staffing) timeline, the bar is drawn at its real position inside the day column, with non-working stretches hatched behind it.
 
-Times that fall outside the owner's working hours are highlighted in the **Dates** panel, with a tooltip naming the reason — **Owner's schedule starts at …**, **Owner's schedule ends at …**, **Owner's schedule pauses from … to …**, or **Owner's schedule has no working hours that day**. When a day simply cannot hold the planned work, Beebole says **Not enough working hours on …**.
+Times that fall outside the owner's working hours are highlighted in the **Task details** panel, with a tooltip naming the reason — **Owner's schedule starts at …**, **Owner's schedule ends at …**, **Owner's schedule pauses from … to …**, or **Owner's schedule has no working hours that day**. When a day simply cannot hold the planned work, Beebole says **Not enough working hours on …**.
+
+<Frame caption="A task pinned to 3:00 PM to 6:00 PM: the end time is highlighted because the owner's day ends at 5:00 PM">
+  <img src="/help/images/gantt/task-period-timed.webp" alt="Beebole Task details panel of a booking with All day unchecked, the start time 3:00 PM and the end time 6:00 PM highlighted in yellow, Planned in days, Plan on non-working days and the Backlog status" width="762" />
+</Frame>
 
 <Info>
   Moving the anchored edge of a period slides the whole period instead of collapsing it — a task set to run 08:00–12:00 and moved to start at 18:00 becomes 18:00–22:00.
@@ -104,6 +116,10 @@ Hover a bar and a chain-link handle appears on the half of the bar you are point
 - **Hold ⌘ as you release** to keep the handle armed, so you can chain several tasks one after another without grabbing it again.
 - **Release the handle where it is** and it stays armed instead: click tasks in the list to link them, and click again to finish.
 - While a handle is armed, tasks already linked to it wear a broken-chain mark — click one to remove that link.
+
+<Frame caption="The end handle of App Development dragged onto QA Testing, before the release">
+  ![Beebole Gantt chart with a dotted link line running from the end of the App Development bar to the QA Testing bar, whose row is highlighted as the drop target](/help/images/gantt/dependency-drag.webp)
+</Frame>
 
 ### Adding dependencies from the column
 
@@ -143,6 +159,10 @@ Whichever option is active, a task that gets rescheduled lands on dates its own 
 
 The **Planned** column shows each task's planned work. The small button in the column header toggles the unit (**Planned in hours or days**); the same choice sits under **Durations in** (**Hours** or **Days**) in the view tab's **⋯** menu. A parent task shows the total planned time of its subtasks.
 
+<Frame caption="The Planned column in hours, with its unit button in the header">
+  <img src="/help/images/gantt/planned-column.webp" alt="Beebole Gantt task columns Row #, Task Name and Planned, with the H unit button in the Planned header and planned hours for the first ten Main plan tasks, from Requirements Gathering at 80 to Data Audit at 40" width="457" />
+</Frame>
+
 Switching to days does not divide by a fixed 8-hour day. Beebole converts at the length of a working day on the task's own calendar — the owner's [work schedule](/help/documentation/work-schedule), or the company's when the task has no owner yet — so for someone on 7.6-hour days, 7.6 hours reads as one day. The **Planned** cell, the bar tooltip, the live figure shown while you drag, the [workload heatmap](#workload-heatmap), and [Staffing](/help/documentation/staffing) capacity all convert the same way, so their day figures always agree.
 
 Planned time is what the [workload heatmap](#workload-heatmap) compares against each person's capacity, derived from their [work schedule](/help/documentation/work-schedule) minus their absences.
@@ -158,6 +178,10 @@ When the chart is grouped, each group header row carries one cell per period (da
 - **Without grouping** — A single load bar sits under each day or week number in the timeline header, rolling up everyone. Click it to step the scroll through the rows driving that period's load.
 - **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32h / Capacity: 40h (80%)`), and adds a line per overloaded person with their own figures.
 
+<Frame caption="Grouped by Owner: load bars per week, and the tooltip of an overbooked week">
+  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.4h / Capacity: 40h (306%)](/help/images/gantt/workload-heatmap.webp)
+</Frame>
+
 Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.
 
 ---
@@ -165,6 +189,10 @@ Use the heatmap to spot the weeks where an owner is overbooked, then move bars o
 ## Columns
 
 The left panel of the Gantt chart is a configurable table. Open the **⋯** menu on the active view tab and hover over **Columns** to show or hide columns. **Row #** and **Task Name** are always visible — a new Gantt view starts with just those two.
+
+<Frame caption="The Columns submenu: click a column to show or hide it, a dark pin marks the columns shown">
+  <img src="/help/images/gantt/columns-menu.webp" alt="Beebole Gantt view tab menu with Columns hovered and its submenu listing Activity, Client, Dates, Dependencies, Internal, Occupation, Owner, Planned, Potential owners, Status and Tags, each with a pin icon, none of them shown yet" width="536" />
+</Frame>
 
 | Column | What it shows |
 |--------|--------------|
@@ -185,9 +213,13 @@ In addition, one column per [project category](/help/documentation/projects) is 
 
 - **Reorder** — Drag a column header sideways and drop it where you want it. **Row #** and **Task Name** stay first and can't be moved.
 - **Resize** — Drag the right edge of any column header. Widths are saved with the view.
-- **Sort** — Click a column header to sort the rows by that column, click again to reverse the direction, and a third time to return to the manual order. An arrow on the header shows which column is sorted and which way. The header's own menu names the same actions: **Sort ascending**, **Sort descending**, and **Hide column**.
+- **Sort** — Click a column header to sort the rows by that column, click again to reverse the direction, and a third time to return to the manual order. An arrow on the header shows which column is sorted and which way. Hovering a header opens its menu, which names the same actions: **Sort ascending**, **Sort descending**, and **Hide column** (**Task Name** can't be hidden).
 
 Sorting and grouping work together: with a grouping active, the sort applies inside each group, and subtasks always stay under their parent. While a sort is active, the **Row #** column shows plain sequence numbers instead of the handles used to drag rows into a manual order — click the **Row #** header, or **Manual order** in its menu, to get them back.
+
+<Frame caption="The Task Name header's menu, opened by hovering it">
+  <img src="/help/images/gantt/column-sort-menu.webp" alt="Beebole Gantt task columns with the Task Name header menu open, showing Sort ascending and Sort descending over the first rows of the Main plan" width="337" />
+</Frame>
 
 <Tip>
   For long lists, the [List view](/help/documentation/task-list) shows these same columns as a full-width sortable table, without the timeline taking up half the screen.

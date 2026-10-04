@@ -1,10 +1,10 @@
 ---
 title: "Audit trail: track every change in your account"
 sidebarTitle: "Audit Trail"
-description: "Beebole's audit trail records who changed what and when, surfaced in the Journal feed and as a Logs view on individual records."
+description: "Beebole's audit trail records who changed what and when, shown in the Journal feed and in the Journal panel of each record."
 keywords: ["beebole", "audit trail", "audit log", "change tracking", "activity log", "accountability"]
 "og:title": "Track Who Changed What with the Beebole Audit Trail"
-"og:description": "See who changed what and when in Beebole. The audit trail surfaces in the Journal feed and as a Logs view on individual records."
+"og:description": "See who changed what and when in Beebole. The audit trail shows in the Journal feed and in the Journal panel of each record."
 "og:type": "article"
 ---
 
@@ -38,19 +38,18 @@ The richest view of audit activity is the **Journal** feed. Audit messages appea
   <Step title="Read the activity feed">
     Browse the messages in chronological order to see recent changes across the account.
   </Step>
-  <Step title="Filter out noise">
-    Use **Hide similar entries** to collapse repetitive audit messages of the same kind, so a bulk change doesn't flood the feed.
-  </Step>
 </Steps>
 
 ## See the change history on a record
 
-Individual records carry their own change history. When you view a project, person, task, or other record, Beebole shows who last modified it next to a **Modified by** label.
+Individual records carry their own change history. Open a person, project, task, tag, role, or work schedule and expand its **Journal** panel. Next to the messages posted on that record, it lists the changes made to it, each with who made the change and how long ago. A person's **Journal** also includes the time records added, edited, or deleted on their timesheet.
 
-Click the **Logs** link to expand the full history for that record. Each line lists an operation, who performed it, and how long ago — giving you a focused history without opening the whole Journal.
+<Frame caption="A person's Journal listing the changes made to her records">
+  <img src="/help/images/journal/activity-feed.webp" alt="Beebole Journal of the person Ana Pereira, opened from her profile, with the message editor and its formatting toolbar at the top and the feed below listing an added expense record and added time records for PTO and Sickness days, each with who made the change and when" width="598" />
+</Frame>
 
 <Tip>
-  Use the **Logs** view on a single record to confirm who made a specific edit, then switch to the **Journal** feed when you need the wider picture across the account.
+  Use a record's **Journal** to confirm who made a specific edit, then open **Journal** in the sidebar when you need the wider picture across the account.
 </Tip>
 
 ## Related content
@@ -71,7 +70,7 @@ Click the **Logs** link to expand the full history for that record. Each line li
     No. Beebole records the values submitted with each change — the new state — along with the operation, who ran it, and when. It does not display a before-and-after comparison of the field.
   </Accordion>
   <Accordion title="Where do I see audit activity in Beebole?">
-    In two places. The **Journal** feed shows audit messages across the whole account, and the **Logs** view on an individual record shows that record's own change history.
+    In two places. The **Journal** feed shows audit messages across the whole account, and the **Journal** panel of an individual record shows that record's own change history.
   </Accordion>
   <Accordion title="Does the audit trail record who viewed data, or only changes?">
     Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record.

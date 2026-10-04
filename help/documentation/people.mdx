@@ -27,15 +27,19 @@ In Beebole, **People** represents every user or team member in your account — 
     Click **People** in the left sidebar.
   </Step>
   <Step title="Add a person">
-    Click the **\+** button (**Add person**). Enter the person's **Name**, **Email**, and **Role**.
+    Click the **\+ Add Person** button. Enter the person's **Name**, **Email**, and **Role**.
   </Step>
   <Step title="Add multiple people (optional)">
-    To add a large team at once, use the **Or add multiple entries** area of the same panel. Copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and click **Add them all**.
+    To add a large team at once, use the **Or add multiple entries** area of the same panel. Copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and click **Import entries**.
   </Step>
   <Step title="Add">
-    Click **Add person**. The person's profile is now created in your account.
+    Click **Add Person**. The person's profile is now created in your account.
   </Step>
 </Steps>
+
+<Frame caption="The Add person panel: name, email and role, with the Or add multiple entries area below">
+  ![Beebole People page with the add panel open: the Name field, Email and Role fields, the Cancel and Add Person buttons, and the Or add multiple entries area with its Name then Tab then Email example and the Paste button](/help/images/people/add-person-panel.webp)
+</Frame>
 
 <Info>
   Adding a person and inviting them are two separate actions. A person's profile exists as soon as you save it, but they cannot log in until you send an invitation.
@@ -65,6 +69,10 @@ To set up a new person like an existing one, duplicate the existing profile inst
   </Step>
 </Steps>
 
+<Frame caption="A person's profile opened from the People list, with the Invite by email button">
+  ![Beebole People list with Marc Dubois selected and his profile open on the right, showing the Invite by email button and the Tags panel](/help/images/people/people-list.webp)
+</Frame>
+
 <Tip>
   You can resend invitations at any time from the person's profile if they missed the initial email.
 </Tip>
@@ -75,7 +83,7 @@ To set up a new person like an existing one, duplicate the existing profile inst
 
 ### Bulk invitation
 
-To invite several people at once, select multiple people from the list using the checkboxes, then choose **Invite** from the bulk actions menu. Beebole sends invitation emails to all selected people in a single operation. This is useful when onboarding a new team or following an import.
+To invite several people at once, select multiple people from the list using the checkboxes, then click **Invite** in the bar that appears at the bottom of the list. Beebole sends invitation emails to all selected people in a single operation. This is useful when onboarding a new team or following an import.
 
 ---
 
@@ -90,21 +98,39 @@ Click a person's name to access their profile settings:
 
 ### Role assignment
 
-Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile, go to the **Email & role** panel, and pick a new role from the **Choose a role** selector. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile and go to the **Email & role** panel. Next to **Role**, hover over the current role, click the × on it, and pick a new role from the **Choose a role** selector. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+
+<Frame caption="The Choose a role selector in a person's Email & role panel">
+  <img src="/help/images/roles/person-role-selector.webp" alt="Beebole Email & role panel of Marc Dubois with his email address and the Choose a role selector open, listing the Admin, Employee, People manager and Project manager roles" width="546" />
+</Frame>
 
 ### Schedule assignment
 
-Work schedules define a person's standard working hours and days. To assign a schedule, open the person's profile and click **Work schedule**, then select an existing schedule type from the menu. Optionally set a start date so historic data is not affected. Schedules on a person override any schedule inherited from their tags or the organization default. See [Work schedules](/help/documentation/work-schedule).
+Work schedules define a person's standard working hours and days. To assign a schedule, open the person's profile, go to the **Work schedule** panel, and type the name of a schedule in the **Select schedule** picker. Optionally set a start date so historic data is not affected. Schedules on a person override any schedule inherited from their tags or the organization default. See [Work schedules](/help/documentation/work-schedule).
+
+<Frame caption="A person's Work schedule panel: Full Time comes from the organization, as the gear next to it shows">
+  <img src="/help/images/work-schedule/assign-panel.webp" alt="Beebole Work schedule panel of Elena Rossi with the Select schedule picker and the Full Time schedule below it, followed by the gear that marks a schedule inherited from the organization" width="762" />
+</Frame>
 
 ### Valid period for time entry
 
 A person's profile can carry a **Valid period for time entry** — a **From** and/or **To** date bounding when time can be recorded for them. Set it to a contractor's engagement dates or an employee's start and end dates: entries outside the window are refused, with a message naming the person whose validity period blocks them. Leave either date empty for an open-ended window.
 
+<Frame caption="A contractor's window, open from their start date with no end date">
+  <img src="/help/images/people/validity-period-panel.webp" alt="Beebole Valid period for time entry panel on a person with From set to May 29, 2026 and To left empty, shown as an infinity sign" width="422" />
+</Frame>
+
 Projects can carry the same setting — see [Projects](/help/documentation/projects#project-settings).
 
 ### Localization per person
 
-You can override the organization's locale settings for any individual. Open the person's profile, then edit the **Localization** attribute to set their **Time zone**, **Date format**, **Time format**, **Decimal format**, and **First day of the week**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
+You can override the organization's locale settings for any individual. Open the person's profile, then the **Localization** panel, to set their **Time zone**, **First day of the week**, **Currency**, **Decimal format**, **Thousands separator**, **Time format**, and **Date format**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
+
+A gear next to a setting means its value comes from the organization. Once you change a setting on the person, the gear gives way to a reset button that brings back the inherited value.
+
+<Frame caption="A person in Tokyo: the time zone is set on her profile, the other settings come from the organization">
+  <img src="/help/images/people/person-localization-panel.webp" alt="Beebole Localization panel of Yuki Tanaka with the Time zone set to (GMT+09:00) Tokyo and a reset button next to it, while First day of the week, Currency, Decimal format, Thousands separator, Time format and Date format show the gear of inherited values" width="538" />
+</Frame>
 
 ---
 
@@ -122,6 +148,10 @@ To set a person's rates, open their profile and go to the **Billing** or **Cost*
 
 Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence allowances** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. Quotas set on a person take priority over any default defined on a tag. See [Time off](/help/documentation/timeoff).
 
+<Frame caption="A person's PTO allowance, inherited from the organization, opened to show the days consumed">
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027, Carry forward limit 5 d, Allow negative balance and Repeat automatically, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
+</Frame>
+
 ### Custom fields on persons
 
 Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** \> **Custom Fields** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
@@ -136,18 +166,26 @@ Custom fields let you extend a person's profile with structured metadata beyond 
 
 To archive a person, open their profile, click the **⋯** action menu next to their name, and select **Archive**. You can unarchive them at any time from the same menu.
 
+<Frame caption="A person's ⋯ action menu, with Archive and Unarchive">
+  <img src="/help/images/concepts/duplicate-action-menu.webp" alt="Beebole profile of Sophie Laurent with the action menu open next to her name, listing Go to timesheet, Go to tasks, Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="584" />
+</Frame>
+
 <Info>
   Unarchiving requires a free seat on your subscription. If no seats are available, the **Unarchive** option is disabled. Upgrade your plan or archive another person first.
 </Info>
 
 ### Bulk operations <Badge>Admin only</Badge>
 
-Select multiple people from the list using the checkboxes to perform actions in bulk. The following bulk actions are available from the actions menu:
+Select multiple people from the list using the checkboxes to perform actions in bulk. A bar appears at the bottom of the list with **Select All**, the number of people selected, and the bulk actions:
 
 - **Invite** — Send invitation emails to all selected people at once.
 - **Archive** — Archive multiple active people in a single step.
 - **Unarchive** — Restore multiple archived people (requires available seats).
 - **Delete** — Permanently delete multiple people. Use with caution — deletion cannot be undone, and deleted people can no longer sign in to Beebole.
+
+<Frame caption="Three people selected, with the bulk bar at the bottom of the list">
+  ![Beebole People list with Carlos Ruiz, Clara Fontaine and David Kim checked, and the bulk bar at the bottom showing Select All, Invite, Archive, Delete and 3 Selected](/help/images/people/bulk-actions-menu.webp)
+</Frame>
 
 ---
 
@@ -183,7 +221,7 @@ Select multiple people from the list using the checkboxes to perform actions in 
   </Accordion>
 
   <Accordion title="Can I add multiple people at once?">
-    Yes. Click **People** in the sidebar, then **Add person**. In the **Or add multiple entries** area, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, and confirm with **Add them all**.
+    Yes. Click **People** in the sidebar, then **Add Person**. In the **Or add multiple entries** area, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, and confirm with **Import entries**.
   </Accordion>
 
   <Accordion title="What happens if I add a person when all seats are taken?">

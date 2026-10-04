@@ -40,6 +40,10 @@ You can use any combination of these on the same budget — fields you leave emp
 
 The **Time** target is stated in the unit you pick next to the field — **Hours** or **Days** — and your last choice becomes the default for the next budget. Days are measured against each person's [work schedule](/help/documentation/work-schedule), so a day always means one person's scheduled day.
 
+<Frame caption="The unit picker next to a budget's Time target">
+  <img src="/help/images/budgets/time-unit-picker.webp" alt="Beebole budget card of the Web Portal project with the unit picker next to the 180 Time target open, offering Hours, checked, and Days" width="762" />
+</Frame>
+
 ---
 
 ## Setting up a budget
@@ -62,6 +66,10 @@ The **Time** target is stated in the unit you pick next to the field — **Hours
   </Step>
 </Steps>
 
+<Frame caption="A budget card opened in a project's Budgets panel">
+  <img src="/help/images/budgets/budget-panel.webp" alt="Beebole Budgets panel of the Web Portal project with a budget card open, showing the From date, the Type set to No split, a Time target of 180 h, a Billing amount of $30,000.00, a Cost amount of $9,000.00 and an empty Notes field" width="762" />
+</Frame>
+
 Each budget can also hold free-text **Notes** — a purchase order number or the agreement with the customer, for example — shown on the budget's card.
 
 ---
@@ -69,6 +77,10 @@ Each budget can also hold free-text **Notes** — a purchase order number or the
 ## Several budgets over time
 
 A project can hold more than one budget: click **Add** again to create the next one. Each budget applies from its own **From** date onward, so successive budgets model renewals, yearly envelopes, or a re-negotiated scope — the panel lists them in chronological order.
+
+<Frame caption="A project budget from September 29, and its renewal from January 1">
+  <img src="/help/images/budgets/several-budgets.webp" alt="Beebole Budgets panel of the Web Portal project with two budgets in date order: one from Sep 29, 2026 with Time 180h and Billing amount $30,000.00, and one from Jan 01, 2027 with Time 200h, Billing amount $36,000.00 and the note Renewal for 2027" width="762" />
+</Frame>
 
 ---
 
@@ -80,6 +92,10 @@ For more detailed tracking, you can split a budget using its **Type** field:
 - **Split by project** — Distribute the budget across projects from another category — for example, splitting a client's budget across activities.
 - **No split** — One set of targets applies to the whole project.
 
+<Frame caption="A budget split by person: each person gets their own time, billing amount, and cost amount">
+  <img src="/help/images/budgets/budget-split-by-person.webp" alt="Beebole Budgets panel of the Web Portal project with a budget card open, the Type set to Split by person, and two allocations: Elena Rossi with 100 h, $17,000.00 billing and $5,000.00 cost, and Lucas Bernard with 80 h, $13,000.00 billing and $4,000.00 cost" width="762" />
+</Frame>
+
 Budget splits let you see not just whether the overall project is on track, but whether individual contributors or work streams are within their allocation.
 
 ---
@@ -87,6 +103,10 @@ Budget splits let you see not just whether the overall project is on track, but 
 ## Monitoring budgets
 
 Click **Reports** in the sidebar, then **Budget Status**, to track every budget in one place. The report shows a progress bar per project comparing the hours, billing, and cost actually logged against your targets, rolls subproject activity up the hierarchy, and flags budgets that are at risk or over budget. See [Reports](/help/documentation/reports) for the report's filters and export options.
+
+<Frame caption="The Budget Status report with time, billing and cost bars for each project">
+  ![Beebole Budget Status report with one row per budgeted project, each showing Time, Billing and Costs progress bars against the target: over-budget bars in red, at-risk bars in yellow, the remaining amount and percentage on the right, and the All, > 80% and Over budget filters above the list](/help/images/budgets/budget-status-report.webp)
+</Frame>
 
 The report is also where a budget in trouble surfaces on its own: the status filter narrows the list to projects above the at-risk threshold (**> 80%**) or **Over budget**, and the striped forecast bar shows the planned effort still to come, so an overrun is visible before the actuals get there. Beebole tracks consumption in real time, but never blocks a time entry because a budget is exceeded — watching the report is how you catch an overrun in time to act.
 
@@ -134,7 +154,7 @@ The report is also where a budget in trouble surfaces on its own: the status fil
   </Accordion>
 
   <Accordion title="Do expenses count toward project budgets?">
-    Yes. Expense amounts contribute to a project's budget consumption alongside time-based costs — controlled per expense type by its **Impacts budget** setting. See [Expenses](/help/documentation/expenses).
+    Yes. Expenses count alongside time: an expense's amount adds to the budget's cost, and its billed amount to the budget's billing. See [Expenses](/help/documentation/expenses).
   </Accordion>
 
   <Accordion title="Can I set a budget in days instead of hours?">

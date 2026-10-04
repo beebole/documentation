@@ -41,12 +41,11 @@ Every expense record must be linked to at least a person or a project — it can
   </Step>
 </Steps>
 
-For currency-based expense types, two more settings appear in the **Details** panel:
+For currency-based expense types, the **Details** panel also shows **Billing markup in %**: the percentage applied to the expense amount when calculating the billed amount in reports. The billed amount is `expense amount × markup / 100`, so a markup of 100 bills the expense at cost.
 
-| Setting | What it does |
-|---------|--------------|
-| **Billing markup in %** | The percentage applied to the expense amount when calculating the billed amount in reports. The billed amount is `expense amount × markup / 100`, so a markup of 100 bills the expense at cost. |
-| **Impacts budget** | When enabled, expenses of this type count toward project [budgets](/help/documentation/budgets). |
+<Frame caption="The Details panel of a currency-based expense type">
+  <img src="/help/images/expenses/expense-type-details.webp" alt="Beebole Details panel of the Hotel expense type with Currency checked and Billing markup in % set to 100" width="538" />
+</Frame>
 
 ---
 
@@ -77,6 +76,10 @@ You log expense records on the **Expenses** panel of a person or a project:
   </Step>
 </Steps>
 
+<Frame caption="An expense record open in a person's Expenses panel">
+  <img src="/help/images/expenses/expenses-panel.webp" alt="Expenses panel on Ana Pereira's profile with a Hotel record open: Date Oct 06, 2025, Category Hotel, Project Silverline Retail, Amount $138.00 and the note UX research trip, above the Add button" width="538" />
+</Frame>
+
 To remove an expense record, open it in the **Expenses** panel and click the trash button (**Delete**).
 
 <Info>
@@ -89,7 +92,11 @@ To remove an expense record, open it in the **Expenses** panel and click the tra
 
 To analyze spending, click **Reports** in the sidebar and add an **Expense** column to a report. You can group expense records by expense type, person, project, tag, or period, and filter them like any other report. Expense columns include **Amount**, **Quantity**, and **Expense billing** — the billed amount with the category's markup applied (in the report matrix they appear as **Expense amount** and **Expense quantity**). See [Reports](/help/documentation/reports) for folders, charts, sharing, and exports.
 
-For expense types with **Impacts budget** enabled, expense amounts also count toward the project's budget consumption, alongside time-based costs — track them in the **Budget Status** report described in [Budgets](/help/documentation/budgets).
+<Frame caption="A report of expense records grouped by expense type">
+  ![Beebole custom report Expenses by type for the current year, with the Expense type: Name, Expense: Quantity, Expense: Amount and Expense: Expense billing columns for Hotel, Meal, Mileage and Taxi, Mileage counted as a quantity of 410, and a Total row of 1,576.00 spent and 1,415.00 billed](/help/images/expenses/expense-report.webp)
+</Frame>
+
+Expenses also count toward the project's budgets, alongside time: the expense amount adds to the budget's cost and the billed amount to its billing. Track them in the **Budget Status** report described in [Budgets](/help/documentation/budgets).
 
 ---
 

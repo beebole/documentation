@@ -43,8 +43,12 @@ For general work that isn't planned as a task, track time on projects and subpro
 Every task belongs to a planning — a separate board with its own statuses, its own level names for the hierarchy, and its own mode: [tasks or bookings](#tasks-or-bookings). New Beebole accounts start with one planning named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
 
 - **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
-- **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
+- **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**. The new planning opens in the mode you last picked, **Bookings** by default — see [Tasks or bookings](#tasks-or-bookings).
 - **Open a planning's settings** — Click the settings button next to the planning name (its tooltip reads **Main plan settings** for the **Main plan** planning). The dialog holds the planning's mode and its [statuses](#task-statuses). The button only appears if you are allowed to manage tasks.
+
+<Frame caption="The plannings menu, opened from the planning name">
+  <img src="/help/images/planning/planning-switch-menu.webp" alt="Beebole Planning page header with the planning name Main plan clicked, showing a menu with the Main plan and Staffing plan plannings, the Name of a new planning field and the Add button, next to the settings gear and the Add Task button" width="503" />
+</Frame>
 
 Statuses always belong to a planning, not to a project: each planning defines its own workflow. See [Statuses](#task-statuses) below.
 
@@ -56,12 +60,16 @@ Each planning in Beebole holds one kind of item. A **Tasks** planning is a list 
 
 To choose, open the planning's settings and pick a mode under **What this planning holds**:
 
+<Frame caption="The Main plan settings: the planning's mode, then its task statuses">
+  <img src="/help/images/planning/planning-settings-dialog.webp" alt="Beebole Main plan settings dialog with What this planning holds set to Tasks next to Bookings, each with its hint, the note on switching, and the Task statuses Backlog, Queue, In progress and Done with their Max tasks fields and the Add new status field" width="624" />
+</Frame>
+
 | Mode | What each item is | Hint shown in the dialog |
 |------|-------------------|--------------------------|
 | **Tasks** | A named item with a status | A to-do list, a to-do on a calendar, issues, tickets |
 | **Bookings** | A person on a project, with dates and an allocation | Who is on what project, a vacant position, someone expected present |
 
-Every planning starts as **Tasks**, including plannings created before this setting existed. The mode decides what the add button opens and whether items carry a name of their own:
+A planning you add from the plannings menu opens in the mode you last picked under **What this planning holds**, whichever planning you picked it on. If you have never picked one, it opens in **Bookings**. Beebole remembers this last pick for each person separately. Existing plannings keep their mode: the **Main plan** of a new account, plannings created before this setting existed, and plannings created by an Asana, Jira, Linear, or Monday import are **Tasks** until you switch them. The mode decides what the add button opens and whether items carry a name of their own:
 
 - **The add button** — In a Tasks planning it reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning it reads **Add Booking** and asks for the person (**Select the owner**) and the project — one of the two is enough — plus a start date, a duration in days, and the allocation (**%**, **h/day**, or **Total**). The new booking opens in the side panel right away. The start date and duration you used are proposed again for the next booking; a start date that has passed falls back to today.
 - **Names** — A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either — it goes on the project instead. In a Tasks planning, you name each task yourself.
@@ -91,6 +99,10 @@ Every planning starts as **Tasks**, including plannings created before this sett
   </Step>
 </Steps>
 
+<Frame caption="The add form: a name, the status selector, and the Or add multiple entries section below">
+  <img src="/help/images/planning/add-task-panel.webp" alt="Beebole side panel for a new task with an empty Name field, the status selector on Backlog, the Cancel and Add new task buttons, and below them the Or add multiple entries section with a sample indented list and the Paste button" width="576" />
+</Frame>
+
 <Tip>
   Press **⌘\+A** (Ctrl\+A on Windows) anywhere on the **Planning** page to open the add form. If a task is currently open, the new task is created as its subtask.
 </Tip>
@@ -109,9 +121,13 @@ You can import a whole task list by pasting it from a spreadsheet — there is n
     Copy rows from a spreadsheet — one entry per line, using **Tab** or spaces to indent sub-levels — then click **Paste**. Indented lines become subtasks of the line above.
   </Step>
   <Step title="Review and confirm">
-    Beebole shows the entries **Ready to import** as a tree. Remove any line you don't want, then click **Add them all**.
+    Beebole shows the entries **Ready to import** as a tree. Remove any line you don't want, then click **Import entries**.
   </Step>
 </Steps>
+
+<Frame caption="A pasted task list in the Import preview, before Import entries">
+  <img src="/help/images/planning/add-multiple-tasks.webp" alt="Beebole Add Task panel of the Main plan with the Backlog status selected and an Import preview below it: Launch Campaign with its subtasks Landing Page, Email Sequence and Paid Ads Setup, then Customer Onboarding Guide, each with a remove button, 5 Ready to import, and the Cancel and Import entries 5 buttons" width="576" />
+</Frame>
 
 Imported tasks get the status selected in the add form. After the import you can click **Undo** to remove everything you just added, or **New import** to paste another batch.
 
@@ -141,8 +157,12 @@ In the modal you can:
 
 Beebole distinguishes the person responsible for a task from the people it is available to:
 
-- **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates.
+- **Owner** — The single person doing the task. Pick them in the task detail panel (**Select the owner**); a task can only have one owner. Next to the owner you can set **% FTE**, the share of their working time dedicated to the task — Beebole uses the owner's [work schedule](/help/documentation/work-schedule) and this percentage when fitting planned time between the task's dates. Under the owner, **Tentative** marks the assignment as not confirmed yet: the task reserves the owner's capacity but stays out of reports until you switch it off, as for [tentative bookings](/help/documentation/staffing#tentative-bookings).
 - **Potential owners** — People or [tags](/help/documentation/tags) the task is assigned to. In filters, these appear as **Potential owner** and **Potential owner tag**.
+
+<Frame caption="A task's Owner panel: the owner, their share of working time, and Tentative">
+  <img src="/help/images/planning/task-owner-panel.webp" alt="Beebole Owner panel of the QA Testing task: Sophie Laurent as owner, the % FTE field at 100%, and the Tentative switch turned off" width="538" />
+</Frame>
 
 <Info>
   Beebole can warn everyone involved before a task with no owner starts: the task manager and the assigned people are notified — the admins when the task has no manager. Configure the number of days in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#reminders).
@@ -161,6 +181,10 @@ Tasks nest into subtasks, as deep as your plan requires. The hierarchy is shared
 
 A parent task rolls up its children: it shows the period spanned by its subtasks and their total **Planned in hours**, read-only.
 
+<Frame caption="A parent task expanded to its subtasks in the Gantt view">
+  ![Beebole Gantt view of the Main plan with Frontend Development expanded by its chevron into the Component Library and Page Templates subtasks, indented under it, the parent's lighter bar spanning both subtasks' bars on the timeline from September to October 2026](/help/images/planning/subtasks-gantt.webp)
+</Frame>
+
 ---
 
 ## Scheduling dates and planned time
@@ -173,6 +197,10 @@ Open a task's detail panel to set its schedule:
 
 If the owner already has another task with planned time in the same period, the panel shows an **Overlapping tasks causing overload** warning so you can rebalance.
 
+<Frame caption="A task's schedule: whole days between the lock buttons, planned time with its capacity pill, and the overload warning">
+  <img src="/help/images/planning/task-schedule-panel.webp" alt="Beebole Task details panel of QA Testing with the Oct 13 to Nov 29, 2026 date range between the Lock start date and Lock end date buttons, All day checked, Planned in hours set to 60 next to a 256h capacity pill, Plan on non-working days, the Queue status, and the Overlapping tasks causing overload list naming six other tasks" width="762" />
+</Frame>
+
 To sequence tasks — making one start after another ends — use [dependencies in the Gantt chart](/help/documentation/gantt#task-dependencies).
 
 ---
@@ -183,7 +211,7 @@ Time entries can be recorded directly against tasks:
 
 - **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project. Tasks someone owns are listed first in the add-task picker, so their own work is quickest to reach.
 - **From a suggestion** — A dated task assigned to someone reaches them as a [suggested entry](/help/documentation/ai#suggested-time-entries) rather than being added to their timesheet as a row automatically. Accepting the suggestion creates the entry and pins the row.
-- **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
+- **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time, in hours (for example `4 / 8`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
 
 Which plannings accept time entries is controlled by the **Record time on these plannings** setting, in the **Categories** tab of [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Tasks in other plannings don't show the time button.
 
@@ -221,6 +249,10 @@ Each task has a **⋯** action menu — hover over its row in the Gantt view or 
 ## Viewing tasks your way
 
 The **Planning** page shows your tasks through saved views — tabs above the task list. Click **Add a view** and pick **Gantt chart**, **Kanban**, **Staffing**, or **List**; each view remembers its own settings (columns, grouping, period, sort, or card fields). Use the **Filters** button to narrow any view by task, status, owner, potential owner, project, or tags — the button shows the active filter count, and toggling it off keeps the filters for later.
+
+<Frame caption="The Main plan planning on its Kanban view, next to the Staffing and Gantt views">
+  ![Beebole Planning page for Main plan with the Staffing, Kanban and Gantt view tabs and Add a view, showing the Kanban board with Backlog, Queue, In progress and Done columns of task cards with dates, owners and projects](/help/images/planning/kanban-view.webp)
+</Frame>
 
 <CardGroup cols={2}>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
@@ -270,7 +302,7 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
   </Accordion>
 
   <Accordion title="Can I import or export tasks in Beebole?">
-    Import, yes — by pasting. Copy rows from a spreadsheet, click **Add Task**, find **Or add multiple entries**, click **Paste**, review the list, and click **Add them all**. Indent lines with Tab to create subtasks. There is no CSV file upload. Export, not from the Planning page: the Gantt, Kanban, List, and Staffing views are working views, so build the figures you need in [Reports](/help/documentation/reports) and [download them](/help/documentation/data-exports) as Excel, CSV, or PDF.
+    Import, yes — by pasting. Copy rows from a spreadsheet, click **Add Task**, find **Or add multiple entries**, click **Paste**, review the list, and click **Import entries**. Indent lines with Tab to create subtasks. There is no CSV file upload. Export, not from the Planning page: the Gantt, Kanban, List, and Staffing views are working views, so build the figures you need in [Reports](/help/documentation/reports) and [download them](/help/documentation/data-exports) as Excel, CSV, or PDF.
   </Accordion>
 
   <Accordion title="Can people track time on any task?">
@@ -278,7 +310,7 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
   </Accordion>
 
   <Accordion title="What is the difference between a Tasks planning and a Bookings planning?">
-    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. Every Beebole planning starts as Tasks, all four views stay available in both modes, and switching keeps any stored names.
+    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. A new Beebole planning opens in the mode you last picked, Bookings by default, while existing plannings keep theirs. All four views stay available in both modes, and switching keeps any stored names.
   </Accordion>
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">

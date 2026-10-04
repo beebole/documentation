@@ -50,6 +50,10 @@ Settings made here apply account-wide. The same panel also exists on every tag a
 
 ## Period & submission
 
+<Frame caption="The Period & submission tab, with the account's weekly period and its two default restrictions">
+  <img src="/help/images/timesheets/settings-period-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Period & submission tab, showing Timesheet period set to Weekly, the Auto-submit timesheets after X days stepper, Lock date, and the Restrictions list with An absence can't be longer than a day and Require filling the whole schedule to submit (period)" width="794" />
+</Frame>
+
 ### Timesheet period
 
 The **Timesheet period** defines the stretch of time a timesheet covers — the period people fill in, submit, and have approved as one unit. It is not just a display preference: each period is one timesheet.
@@ -94,10 +98,15 @@ When several entries are deleted at once — clearing a section, or deleting a s
 
 The **Restrictions** list controls what time entries the timesheet accepts. New accounts start with two restrictions active: **An absence can't be longer than a day** and **Require filling the whole schedule to submit** (period). When none is active, the panel shows **No restrictions configured**. Pick a rule from the **Add restriction** menu to activate it; click the × on a restriction's chip to remove it.
 
+<Frame caption="The Add restriction menu, listing the rules not yet active">
+  <img src="/help/images/timesheets/timesheet-restrictions.webp" alt="Beebole Add restriction menu open under Restrictions, listing Hide the non-billable option, the block and warning variants of Keep start/end times within the scheduled hours, the daily and period variants of No overtime beyond the schedule, Only allow time entries on scheduled working time, Only an admin can edit someone else's timesheet, Only the owner or an admin can edit entries, Only time off can be recorded in the future and Require comments for submission" width="521" />
+</Frame>
+
 | Restriction | What it does |
 | --- | --- |
 | **No overtime beyond the schedule** | Blocks time beyond the hours in the person's [work schedule](/help/documentation/work-schedule). Available in a **daily** variant (per day) and a **period** variant (per timesheet period). |
 | **Require filling the whole schedule to submit** | The timesheet can only be submitted once all scheduled time is filled — per day (**daily**) or across the period (**period**). |
+| **Require comments for submission** | The timesheet can only be submitted once its time entries carry a note. |
 | **Only time off can be recorded in the future** | Blocks time entries on future dates. Future entries are limited to time off requests, so people can still plan vacation ahead. |
 | **Only allow time entries on scheduled working time** | Blocks entries on scheduled days off and public holidays — time off entries are exempt. |
 | **Keep start/end times within the scheduled hours** | When start and end times are recorded, an entry's times must fall within the person's scheduled working hours. Available as a **warning** (the entry form warns but allows saving) or a **block** (the entry is refused, including when copying entries to other days). |
@@ -125,6 +134,10 @@ Two more rules apply to every time entry without appearing in the **Restrictions
 
 The **Time entry** tab defines what people type into a timesheet cell.
 
+<Frame caption="The Time entry tab, with hours in decimal format, the timer, and start and end times switched on">
+  <img src="/help/images/timesheets/settings-time-entry-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Time entry tab, showing Unit for time entry set to Hours, Duration format 3.25, Minimum time interval accepted 0.25, and Enable timer and Record start and end times checked, each with an unchecked Mandatory box" width="794" />
+</Frame>
+
 ### Unit for time entry
 
 **Unit for time entry** sets the unit for every timesheet cell:
@@ -142,11 +155,10 @@ When the unit is **Hours**, two more options appear:
 - **Duration format** — how hour values are displayed and typed: **3:15** (hours and minutes), **3.25** (decimal hours), or **3h15** (compact hours-and-minutes notation).
 - **Minimum time interval accepted** — the smallest increment the timesheet accepts. Durations are rounded up to the nearest multiple of this interval; new accounts start at 15 minutes.
 
-### Timer, start and end times, and comments
+### Timer and start and end times
 
 - **Enable timer** adds a timer button to each timesheet row so people can time their work as it happens — see [Using the timer](/help/documentation/timesheets#using-the-timer). Check **Mandatory** next to it to require the timer: durations can then only be recorded by running it.
 - **Record start and end times** adds **Start time** and **End time** fields to each entry's details, and Beebole calculates the duration. Check **Mandatory** next to it to require start and end times on every entry.
-- **Require comments for submission** requires a note on time entries before the timesheet can be submitted.
 
 Checking **Mandatory** switches its parent option on automatically, and disabling a parent option clears its **Mandatory** checkbox.
 
@@ -155,6 +167,10 @@ Checking **Mandatory** switches its parent option on automatically, and disablin
 ## Categories
 
 The **Categories** tab decides what people can track time on. Each choice becomes a section of rows in everyone's timesheet.
+
+<Frame caption="The Categories tab: a Client then Activity section, an Internal section, and time off allowed">
+  <img src="/help/images/timesheets/settings-categories-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Categories tab, showing Record time on these project categories with a first row of Client then Activity, a second row with Internal, the Add a row link, an empty Pick a planning field, and Allow recording time off checked" width="864" />
+</Frame>
 
 ### Project categories
 
@@ -182,6 +198,10 @@ The **Categories** tab decides what people can track time on. Each choice become
 
 The **Reminders** tab configures two kinds of follow-up.
 
+<Frame caption="The Reminders tab: reminders to submit at the end of the current period at 4:00 PM, approvers reminded after 3 days">
+  <img src="/help/images/timesheets/settings-reminders-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Reminders tab, showing Remind to submit set to End of current period at 4:00 PM, Remind approvers after 3 days if not yet approved, and an empty Notify everyone involved days before an unassigned task starts" width="794" />
+</Frame>
+
 ### Reminding people to submit
 
 **Remind to submit** sends a reminder by email, following each person's [notification settings](/help/documentation/notifications), to anyone who hasn't submitted their timesheet. Choose when it goes out:
@@ -204,6 +224,10 @@ Then pick the hour. The reminder is sent at that hour in each person's time zone
 ## Auto Timesheet from Planning
 
 The **Auto Timesheet from Planning** tab turns work planned on [tasks](/help/documentation/planning) into timesheet entries, so people who did what was planned don't have to fill their timesheet by hand.
+
+<Frame caption="Auto Timesheet from Planning switched on for the Main plan planning, from In progress to Done">
+  <img src="/help/images/timesheets/settings-auto-timesheet-tab.webp" alt="Beebole Timesheet and Planning Settings panel on the Auto Timesheet from Planning tab, with Enable Auto Timesheet from planning checked, a Main plan row with Start set to In progress and End set to Done, and a Pick a planning selector below" width="794" />
+</Frame>
 
 <Steps>
   <Step title="Enable it">
@@ -228,7 +252,11 @@ Timesheet settings cascade. Values set on **Account Settings** apply to everyone
 - Set a value on a **tag** to override the account default for everyone under that tag — for example, a monthly **Timesheet period** for one department.
 - Set a value on a **person** to override both the tag and the account default for that one person.
 
-Next to each setting, an icon shows where its current value is inherited from. After overriding a value, you can reset it to fall back to the inherited one.
+Next to each setting, an icon shows where its current value is inherited from. A gear means the value comes from **Account Settings**: hover it to see the source (**Settings / Timesheet and Planning Settings**), and, as an administrator, click it to open that panel. After overriding a value, you can reset it to fall back to the inherited one.
+
+<Frame caption="A person's panel, with every value inherited from Account Settings">
+  <img src="/help/images/timesheets/settings-inheritance-icon.webp" alt="Beebole Timesheet and Planning Settings panel on a person, Period & submission tab, with a gear icon next to Timesheet period and Auto-submit timesheets after X days, and the gear's tooltip reading Settings / Timesheet and Planning Settings" width="970" />
+</Frame>
 
 ---
 

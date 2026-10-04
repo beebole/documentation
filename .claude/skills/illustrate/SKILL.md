@@ -1,6 +1,6 @@
 ---
 name: illustrate
-description: 'Identify screenshot needs on documentation pages and capture them via Playwright. Default: identify, present a plan, then capture once the user confirms the app is running. Use `--identify` to list needs only; `--capture` to run against a pre-built list; `--optimize` to recompress all images; `--arcade <url>` to generate an embed snippet; `--commercial` to capture PNGs for the marketing website (no WebP, no docs placement). Replaces the /screenshot skill with the needs/capture split made explicit. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
+description: 'Identify screenshot needs on documentation pages and capture them as replayable scenes from the AnyCompany QA documentation account. Default: identify needs on a page, write a scene per screenshot, capture, place. `--batch` runs the next batch of 10 shots from the inventory; `--replay` checks every published screenshot against the live app; `--release` is the /release step (replay, refresh, repair, capture for changed pages); `--identify` lists needs only; `--optimize` recompresses images; `--arcade <url>` makes an embed snippet; `--commercial` captures PNGs for the marketing website. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Illustrate — Screenshot Identification, Capture, Optimize, Embed
@@ -14,18 +14,45 @@ Make sure every page has the screenshots it needs. Identify placeholders or expl
 
 ## Modes
 
-- **Default:** `/illustrate <path>` — identify needs on the page, present a plan, capture once the user confirms the app is running, then place and optimize.
+- **Default:** `/illustrate <path>` — identify needs on the page, write a scene for each shot, capture it with the runner, place it in the page.
+- **`--batch`:** `/illustrate --batch` — the next batch of 10 shots from `.todo/screenshot-needs.md`, most important first. See "Workflow — `--batch`".
+- **`--replay`:** `/illustrate --replay [<page|scene-id>]` — replay scenes with their frozen clock and report which published screenshots no longer match the app. Changes nothing.
+- **`--release`:** the screenshot step of `/release`. See "Workflow — `--release`".
 - **`--identify`:** `/illustrate --identify [<path>]` — list needs only; no capture. Outputs to chat. If no path, scan all `.mdx` under `help/`.
-- **`--capture`:** `/illustrate --capture <needs-file>` — run Playwright against a list produced by `--identify` or by `/write`.
+- **`--capture`:** `/illustrate --capture <needs-file>` — write and capture scenes for a list produced by `--identify` or by `/write`.
 - **`--optimize`:** `/illustrate --optimize` — run `bash .claude/scripts/optimize-images.sh` against all images in `help/images/**`. Use when images were added manually or a batch needs recompressing.
 - **`--arcade <url>`:** generate a Mintlify-friendly Arcade embed snippet for an Arcade share URL.
 - **`--commercial`:** capture screenshots for the **marketing website** (beebole.com), not the docs. Same capture mechanics as docs shots — DPR 2, viewport, **the Intercom messenger and the Beta badge hidden** (same injected style), full/element/Mac-drop — but the output stays **PNG — do NOT convert to WebP** and do NOT place into `help/images/` or wire into any `.mdx`. The marketing site (the `website-next` sibling repo) has its own image pipeline that generates resized, compressed variants, so a high-quality PNG is the right input; no 200 KB budget applies. **Save the PNGs to a dated folder on the Desktop: `~/Desktop/screenshots-<YYYY-MM-DD>/`** (use the current date from `date +%F`; create the folder if absent). That's the handoff location — the user moves the folder's contents into the website project.
 
 ## Prerequisites
 
-- **For captures:** the Beebole app must be running locally (`npm run dev` in `../reboot` → `localhost:5173`) or a staging URL must be provided.
+- **For docs captures:** nothing to run locally. Scenes run against the AnyCompany documentation account on `qa.beebole.com` (see `../seed-documentation/README.md`). The runner needs its dependencies and its pinned Chromium once: `npm install --prefix .claude/skills/illustrate/runner` then `npx --prefix .claude/skills/illustrate/runner playwright install chromium`. The runner signs in by itself and keeps its session in `~/.cache/beebole-docs-screenshots/`.
+- **For `--commercial` captures:** the Playwright MCP browser, against the account the user names (the marketing account is separate from the documentation account).
 - **For optimization:** `cwebp` installed (`brew install webp`).
 - **For Arcade embeds:** the user provides an Arcade share URL.
+
+## Scenes and the runner (docs mode)
+
+Every docs screenshot is produced by a **scene**: a small script that brings the app into one state and takes one or more shots from it. Scenes are what make screenshots replayable, so a docs capture without a scene is a defect. Design: `docs/superpowers/specs/2026-09-29-screenshot-machine-design.md`.
+
+- **Where:** one file per docs page, `.claude/skills/illustrate/scenes/<tab>/<page>.mjs` (for example `scenes/documentation/tags.mjs`), exporting `page` (the `.mdx` path) and `scenes`.
+- **Fields:** `id` (kebab-case, unique), `capturedAt` (YYYY-MM-DD, on the line right after `id`; the runner rewrites it), `datesMatter` (true when the screen shows dates or totals to date), `mode` (`auto`, or `guided` when the API cannot create the state), `setup(page, h)`, optional `teardown(page, h)`, and `shots`: a list of `{ file, frame }` with `file` relative to `help/images/` and `frame` one of `{ type: 'full' }`, `{ type: 'element', locate: (page) => locator, pad }`, `{ type: 'box', box: async (page, h) => rect, pad }`, `{ type: 'clip', x, y, width, height }`, or `{ type: 'lens', target: async (page, h) => locator, context?: rect }` for a control too small to read (the context at 2x, a round magnifier at twice the size from a 4x capture, an orange ring and line to the control). Optional scene fields: `viewport: { width, height }` (a phone shot uses `{ width: 390, height: 844 }`; default 1440×900), `signedOut: true` (a context without the saved session, for the sign-in page), `mouse(page, h) → {x, y}` (where the mouse rests, to keep a hover-only control visible, or to keep it off a side panel, which shows its pin and resize buttons under the mouse) and `fixture: { up(api, { date }), down(api, state) }` for data needed only during the capture (for example a running timer): `up` creates it through the documentation API and returns what `down` needs (the same state is passed to `setup` as its third argument); `down` always runs; fixture scenes run alone after the others and need `BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY` in the environment.
+- **Helpers (`h`):** `goto(page, path)`, `settle(page)`, `openPanel(page, listPath, name, attribute)` (opens one panel of a list entry through its address, `attribute` being its key under `entityAttributes` in labels.json; Account Settings panels open with `/settings?attributeName=<key>`), `panelBox(page, title, nextTitle, { right })` (box of an open panel down to the next panel's title), `listRow(page, name)`, `expandRow(page, name, childName)` (idempotent), `surfaceAround(page, text)` (box of the dialog or popup around a text), `byTooltip(page, scope, text)` (the button in `scope` whose hover tooltip contains `text`), `widenPanel(page, width)` (drags the open side panel's Resize handle to `width` CSS pixels: at its default width, 576 at 1440, some panels wrap their rows, such as a work schedule's intervals; 800 keeps them on one line).
+- **Scene data, three kinds:** the seed (what `/seed-documentation` builds); a **fixture** `{ up, down }` for temporary data (a running timer: created just before, deleted right after, the scene runs alone); `prepare(api, { date })` for permanent data the capture adds and never removes (submitting or approving the week a scene shows). `prepare` runs on capture and preview, never on replay, and must be idempotent. Week bounds must match the app: first day of the organisation's week at 00:00 UTC, last day at 23:59:59.999. Fixture and prepare scenes need `BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY` (source `~/.config/beebole/.env`).
+- **What to shoot is decided by need, from the page itself:** read the page's sections and give each one a shot where seeing the screen helps the reader (a layout, a dialog, where to click, a state such as a running timer), and none where the text is enough. There is no quota. Small controls get a lens. The inventory lists needs found earlier; add what a page needs and it lacks. Framing, Intercom/Beta/toast hiding, mouse parking, DPR 2, `animations: 'disabled'` and `caret: 'hide'` are applied by the runner, not by scenes.
+- **Rules:** find elements by label, role, text or component tag, never by coordinates; make every opening step idempotent (the app remembers expanded trees and open panels); wait for data the app loads over its WebSocket (most of it) with a condition on the page, such as `page.waitForFunction` counting the elements, because network idle does not see WebSocket traffic; leave no trace: the runner answers every GraphQL mutation itself, so nothing a scene clicks reaches the server (view-preference saves, screen, planning view and journal settings, get a fake success so the page keeps working; any other mutation gets an error and makes the scene `broken` with the mutation's name). Because saved settings never change, a scene must not rely on the app remembering a view: open panels, views and weeks explicitly (a panel through its address, such as `/persons/<id>/tags`; a week by checking the date-range input's value and the grid's first day after clicking Previous). Scenes still restore what they change in the page, in `teardown`, for the next steps of the same run; add any data a scene needs to `../seed-documentation/layer.mjs`, never by clicking in the app; unnamed controls go in `runner/missing-labels.md`.
+- **One screen, several shots:** take the full view and the panel crops from the same scene. An image used on several pages is captured once and linked from each (`where-used` lists them).
+
+Runner commands (from the repo root):
+
+    node .claude/skills/illustrate/runner/screenshots.mjs list
+    node .claude/skills/illustrate/runner/screenshots.mjs capture <page|scene-id> [--preview]
+    node .claude/skills/illustrate/runner/screenshots.mjs replay [page|scene-id] [--json <path>]
+    node .claude/skills/illustrate/runner/screenshots.mjs where-used <image under help/images>
+
+**Authoring loop:** explore the screen with `capture --preview` (always, when unattended: the Playwright MCP browser has no write guard, and one exploratory click there changed an entry on 2026-09-29; attended, the MCP browser is fine for looking, not for clicking unknown controls). `capture --preview` writes PNGs to a temp folder and changes nothing. Then write the scene, `capture --preview`, look at the PNG, adjust, then `capture` (writes the WebP into `help/images/` and sets `capturedAt`). Before a date-dependent capture, run `/seed-documentation topup`. Finish with `replay <page>`: every shot must come back `same`.
+
+**Replay** freezes the browser clock at each scene's `capturedAt` (noon, New York) and compares with the published WebP: `same`, `changed` (more than 100 differing device pixels; a diff PNG is written next to the candidate), `missing` (no published image yet) or `broken` (the step that failed). The JSON report lists, for each shot, the pages that use it.
 
 ## What counts as a "screenshot need"
 
@@ -43,9 +70,12 @@ For the target page(s):
 - Parse the `.mdx` for the three patterns above.
 - For each need, extract: target file path (`/help/images/<section>/<file>.webp`), alt text, surrounding context (which section / step).
 
-Present a plan and ask: _"Ready to capture? Make sure the app is running."_
+Also consult `.todo/screenshot-needs.md`: most needs are inventoried there rather than marked in the page. Present the plan (shots, scenes, frames), then capture. No local app is needed for docs mode.
 
-### 2. Capture via Playwright MCP
+### 2. Capture
+
+**Docs mode:** write a scene per shot and capture it with the runner (see "Scenes and the runner"). The spec below is what the runner applies; the MCP-specific notes apply to exploring a screen and to `--commercial`.
+
 
 **Capture spec (locked — use for every screenshot so the set is uniform):**
 
@@ -102,6 +132,8 @@ Finding the target without the user hand-measuring:
 **`--commercial` mode skips this whole section:** the capture stays a PNG, goes to the handoff folder, and is never converted or placed in `help/images/`. The steps below are for **docs** screenshots only.
 
 **Never write raw captures into the repo working tree.** The Playwright screenshot `filename` resolves relative to the repo root, so always pass an **absolute temp path outside the repo** (e.g. `/tmp/bb-shots/<name>.png`) for the raw capture. Only the final optimized `.webp` is ever written into `help/images/`. **Watch out for two ways tracked images vanish from the working tree:** (1) an in-repo raw-capture path, and (2) a **running `mintlify dev`** — its file-watcher was observed deleting *all* of `help/images/**` (the hero + every other image). Keep raw captures in `/tmp`, and after any capture/preview session run `git status` and restore with `git checkout -- help/images/` if images show as deleted. (None of this affects committed history — the files stay safe in HEAD.)
+
+**With the runner, steps 1–3 below are done by `capture`** (raw PNGs in the OS temp dir, `cwebp -q 80` or `-q 60` over 200 KB, output in `help/images/`). They stay here for images added by hand.
 
 For each captured screenshot (docs mode):
 
@@ -211,6 +243,33 @@ Generate a properly formatted Arcade embed for a Mintlify page.
    The inline `style=` on this `<iframe>` is the deliberate exception to CLAUDE.md's "no inline styles" rule — Arcade embeds need aspect-ratio enforcement that no Mintlify component provides. Do not strip it; do not generalize the exception to other iframes.
 
 4. If a page was specified, insert at the appropriate location. Otherwise print the snippet for manual placement.
+
+## Workflow — `--batch`
+
+One batch of 10 shots per session (decided by Yves, 2026-09-30): each batch runs in a fresh session, and the session ends once its PR is merged. Token cost grows with session length, since every request carries the whole conversation, so do not start a second batch in the same session, and do not resume one the next day (the prompt cache expires and the whole context is written again). Review previews as small thumbnails (`sips -Z 900`), not full 2x images. Work on a branch `docs/screenshots-batch-<YYYY-MM-DD>`.
+
+1. **Pick** the next open shots in `.todo/screenshot-needs.md`: high, then medium, then low; within a level, pages in the order of the Traffic block at the top of the inventory. Refresh that block when it is older than 30 days: PostHog project **39108 (PROD)**, `$pageview` with `$pathname LIKE '/help/%'` over 90 days (docs views land there, not in the website project).
+2. **Check** each entry against the page's current text. Adjust or drop entries that no longer fit, and merge entries that show the same screen into one scene.
+3. **Data:** add what the scenes need to the seed layer; run `/seed-documentation topup` only if a scene is date-dependent.
+4. **Shoot** with the authoring loop above.
+5. **Place** each image in its page: `<Frame caption="...">` with descriptive alt text, per `.claude/context/mintlify-components.md`. Full screens and lens shots are markdown images; partial shots (popover, menu, dialog, panel) are `<img src="..." alt="..." width="N" />` with N from `node .claude/skills/illustrate/runner/screenshots.mjs size <image>`, so they show at the app's real size. Run `mintlify broken-links`.
+6. **Record** in the inventory: mark each entry done with its scene id; list guided shots that could not be automated.
+7. **Commit as you go** (one commit per page) and open a PR whose body shows the new images. A session that stops mid-batch loses at most the scene in progress.
+
+## Workflow — `--replay`
+
+Run `replay` (all scenes, or the page given), then summarise the report: shots `changed` (with pages and pixel counts), `missing`, `broken`. Change nothing.
+
+## Workflow — `--release`
+
+Called by `/release` step 6, unattended. The replay was started in the background at the beginning of the release and writes `.todo/replay-report.json`.
+
+1. Wait for the replay to finish, then read the report. Use it only if its `date` is today and it has no `error` field (the runner replaces the file at start and writes `error` when it cannot start: QA down, sign-in failed, browser missing). Otherwise skip the step and record the error for the PR body.
+2. If any `changed` scene has `datesMatter`, run `/seed-documentation topup` once. If it fails, skip those scenes and list them.
+3. `capture` each scene with a `changed` shot. Compare the new image with the old one yourself: above about 20 % of pixels changed, note "page text may need review".
+4. For each `broken` scene, one repair attempt (read the failing step, fix the scene, `capture --preview`, then `capture`). If it still fails, list it under "Scenes to fix".
+5. For pages added or rewritten on this release branch (`git diff --name-only main...HEAD -- 'help/**/*.mdx'`), identify needs and capture up to 10 new scenes, highest priority first. Add the rest to the inventory with a priority.
+6. Commit `release: refresh screenshots`. Return, for the PR body: refreshed (file, pages using it, pixel count, text-review flag), new, broken, queued, and guided shots whose page changed in this release.
 
 ## Image naming convention
 

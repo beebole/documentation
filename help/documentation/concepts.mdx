@@ -111,9 +111,13 @@ Each list in Beebole — people, projects, tasks, tags, roles, custom fields, an
 
 Use the search field to:
 
-- **Find anything by partial name.** Typing `alibr` matches "Alice Brooks" and "Aliso Bridges".
+- **Find anything by partial name.** Typing `ela` matches "Elena Rossi", and also "Sophie Laurent", where the e and the "La" are not next to each other.
 - **Filter long lists.** Searching narrows hierarchies like the project tree, expanding only the branches that contain matching entries.
 - **Move through results with the keyboard.** Press the up and down arrow keys to step through the filtered list, and **Escape** to clear the search and restore the full list.
+
+<Frame caption="Fuzzy matching in the People list: the letters you typed are underlined in each result">
+  <img src="/help/images/concepts/fuzzy-search.webp" alt="Beebole People list with ela typed in the Search by name field and two results, Elena Rossi and Sophie Laurent, with the matched letters E, l and a of Elena and e, L and a of Sophie Laurent shown in bold and underlined" width="700" />
+</Frame>
 
 Search is local to the panel you're in — there is no single search across the whole application, so use the sidebar to switch between **People**, **Projects**, **Tags**, and **Planning** when you need to look elsewhere.
 
@@ -143,6 +147,10 @@ Some corporate firewalls, VPNs, and proxies block the secure real-time connectio
 ### Undo and redo
 
 Beebole lets you undo and redo most changes. Press **⌘\+Z** (Ctrl\+Z on Windows/Linux) to undo, and **⌘\+Shift\+Z** (Ctrl\+Shift\+Z) to redo. Undo and redo buttons also appear in the top bar whenever there is something to undo or redo.
+
+<Frame caption="The undo and redo buttons at the top right, after a change">
+  ![Beebole Reports page after a report's Chart view was switched on: the undo button at the top right of the folder header is magnified, next to the greyed-out redo button](/help/images/concepts/undo-redo-buttons.webp)
+</Frame>
 
 Bulk changes are grouped into a single operation, so one undo reverts the whole change rather than one piece at a time.
 
@@ -176,6 +184,10 @@ Most records in Beebole support a **Duplicate** action that creates a copy with 
 
 To duplicate something, open the **⋯** action menu next to its name and select **Duplicate**. For example, duplicating a project copies its subprojects, settings, and relations, and places the copy under the same parent as the original. Historical data such as logged time stays with the original.
 
+<Frame caption="A person's ⋯ action menu, with Duplicate among its actions">
+  <img src="/help/images/concepts/duplicate-action-menu.webp" alt="Beebole profile of Sophie Laurent with the action menu open next to her name, listing Go to timesheet, Go to tasks, Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="584" />
+</Frame>
+
 <Info>
   Duplicating a person opens a small dialog where you enter a new name and email and choose a role before the copy is created. This is because each person needs unique identity fields.
 </Info>
@@ -205,6 +217,10 @@ The basic flow:
   You can only copy values set directly on a record. Inherited values can't be copied — copy from the record where the value is actually defined.
 </Info>
 
+<Frame caption="After copying Acme Corp's billing rates, the Billing panel of another client offers Paste">
+  <img src="/help/images/concepts/attribute-copy-paste.webp" alt="Beebole side panel of the Greenleaf Industries client with its Billing panel open: an Hourly rate of $175.00 from Jun 29, 2026, and below it the Add, Copy and Paste buttons" width="574" />
+</Frame>
+
 ### Attribute links
 
 When you open a person, project, tag, or task, the detail panel lists its attributes — billing rates, work schedule, custom fields, and so on. The URL follows the attribute you are reading: as you scroll, the address updates to the attribute whose header sits at the top of the panel, and clicking inside an attribute selects it too. Copy the URL at any moment and the link opens the same record with that attribute at the top of the panel.
@@ -225,13 +241,17 @@ The default color is generated automatically when a record is created. To change
 
 ### Badges and parent paths
 
-Projects, tasks, and tags appear throughout Beebole as badges — in lists, on Gantt and Kanban rows, in relation and tag panels, and on task bar tooltips. A badge spells out the full parent path of what it names whenever the space available can hold it, so a subproject reads as _Acme Corp > Website Redesign_ rather than as an abbreviation. Only when the label would be clipped does the badge fall back to the initials of the parent levels, keeping the record's own name readable. Relation and tag lists give badges more room than tighter surfaces do, so paths stay spelled out there more often.
+Projects, tasks, and tags appear throughout Beebole as badges — in lists, on Gantt and Kanban rows, in relation and tag panels, and on task bar tooltips. A badge spells out the parent path of what it names, so a subproject reads as _Acme Corp: Website Redesign_. When the badge has less room than the path needs, the label is cut short with an ellipsis (…) instead of being abbreviated. Names shown as plain text rather than as a badge, such as timesheet row names, suggestion cards, and the mobile screens, spell out the path while it stays short and shorten the parent levels to their initials when it runs long (_AC. Website Redesign_), so the item's own name stays readable. The [floating timer](/help/documentation/timesheets#the-floating-timer) always uses initials, to stay compact.
 
-Whatever the badge shows, hovering it gives you the complete path in a tooltip.
+Hover a badge for more in a tooltip: the complete path whenever the badge does not show all of it, and for a project or task, its description. Project and task names in the timesheet show their description on hover too, both in the grid's row names and at the top of an entry's details.
 
 ### Version update notifications
 
 When a new version of Beebole is deployed, a banner labeled **Update available** appears in the interface. Click the banner (**Click to reload**) to reload the app and apply the latest version. This ensures you always have access to new features and fixes without needing to clear your cache manually.
+
+<Frame caption="The Update available banner at the top right, over the dimmed page">
+  ![Beebole Projects page dimmed behind the Update available banner at the top right of the screen, which reads Click to reload next to a reload icon](/help/images/concepts/version-update-banner.webp)
+</Frame>
 
 The banner only appears once Beebole has confirmed that a newer build is really live, so a blocked script or a flaky connection never triggers it. If now is a bad moment to reload, press **Escape** to dismiss the banner and keep working. Beebole checks again the next time it reconnects or you return to the tab, and shows the banner again while the tab is still on the old version.
 

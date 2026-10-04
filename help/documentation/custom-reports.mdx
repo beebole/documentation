@@ -39,6 +39,10 @@ Every report in Beebole is a custom report. You build the output by adding colum
 
 A report's definition is a row of column badges above the results. Click **Add a column…** to open the column menu, which is organized into two groups.
 
+<Frame caption="The column menu, opened from Add a column… in a column header's menu; the new column's place is highlighted">
+  <img src="/help/images/custom-reports/column-badges-menu.webp" alt="Beebole report Margin by Client per Month with the column menu open, listing Expense, Period, Task: Planned, Time and Time & Expenses under Time and amounts, then Absence type, Activity, Client, Expense type, Internal, Main plan, Person and Time entity under Entities, over a highlighted empty column between Client: Name and Period: Month" width="1080" />
+</Frame>
+
 ### Time and amounts
 
 These columns carry the numbers. Each column type offers a choice of fields:
@@ -101,9 +105,17 @@ One scope is specific to time data: a report over time records can cover working
 
 Click **Chart** next to the report name to display results as a chart. **Table** and **Chart** can be open at the same time — the chart appears above the table.
 
+<Frame caption="A stacked bar chart of hours per client, split by month">
+  ![Beebole report Margin by Client per Month in Chart view, with Chart type set to Stacked bar, Label axis Client: Name, Group by Period: Month and Value axis Time: Hours, showing one bar per client stacked by month from January to September 2026](/help/images/custom-reports/chart-view.webp)
+</Frame>
+
 ### Switching chart type
 
 Click the chart type picker to choose from 11 chart types:
+
+<Frame caption="The chart type picker; scroll the list to reach Waterfall">
+  ![Beebole report Margin by Client per Month in Chart view with the Chart type picker open on Stacked bar, listing Bar, Line, Pie, Area, Stacked bar, Stacked area, Horizontal, Scatter, Radar and Treemap over the stacked bar chart of hours per client](/help/images/custom-reports/chart-type-picker.webp)
+</Frame>
 
 | Chart type | Best for |
 | --- | --- |
@@ -123,10 +135,16 @@ Click the chart type picker to choose from 11 chart types:
 
 Once you select a chart type, use the axis controls to map your data:
 
-- **Label axis** — Choose the column that supplies the category labels (e.g., project name, person, time period).
-- **Value axis** — Select one or more numeric columns to plot (e.g., hours, billing amount).
-- **Group by** — Add a second label column to split each bar or line into separate series.
+- **Label axis** — Choose the field that supplies the category labels (e.g., project name, person, time period).
+- **Value axis** — Select the numeric field to plot (e.g., hours, billing amount).
+- **Group by** — Add a second label field to split each bar or line into separate series.
 - **Swap label axis and group by** — Click the swap button to exchange the label axis and the group-by column.
+
+**Label axis** and **Group by** open the same field list as the report's columns, and **Value axis** its **Time and amounts** fields. Picking a field that is not a column of the report yet adds it as a column.
+
+<Frame caption="The Label axis selector, open on the field the chart is labeled by">
+  <img src="/help/images/custom-reports/chart-axes.webp" alt="Beebole report chart controls: Chart type Stacked bar, Label axis Client: Name, the swap button, Group by Period: Month and Value axis Time: Hours, with the Label axis list open on Time and amounts and Entities, Client expanded to its levels and Name selected" width="1040" />
+</Frame>
 
 <Tip>
   Beebole automatically selects the best axes when you run a report. Adjust the axis controls to override the defaults and focus on the dimensions you care about.
@@ -150,6 +168,10 @@ The controls above the grid configure it:
 - **Heat map** — shades each cell by its value, so the largest numbers stand out at a glance.
 - The swap button (**Swap rows and columns**) flips the two axes in one click.
 
+<Frame caption="A matrix of hours per month and client, with the heat map on">
+  ![Beebole Matrix view of the Margin by Client per Month report with Rows set to Period: Month, Columns set to Client: Name, Metric set to Time: Hours and Heat map checked, showing hours for Acme Corp, Greenleaf Industries, Northstar Financial, Quantum Logistics and Silverline Retail from January to December 2026, shaded by value, with row and column totals](/help/images/custom-reports/matrix-view.webp)
+</Frame>
+
 Axes come from the report's grouping columns — people, projects, tasks, absence types, expense types, tags — or from calendar periods (day or week), which turn the matrix into a calendar-style grid. The matrix needs at least one numeric column in the report definition, and your **Rows**, **Columns**, **Metric**, and **Heat map** choices are saved with the report automatically.
 
 To download the grid, open the report's **⋯** action menu and choose **Export** \> **Matrix (CSV)**, **Matrix (Excel)**, or **Matrix (PDF)**.
@@ -163,6 +185,10 @@ Folders group related reports in the Reports menu, and each folder's period and 
 - Click **New folder** at the bottom of the Reports menu to add a folder.
 - Each folder's **⋯** action menu offers **Duplicate**, **Rename**, **Filter**, **Paste** (when you have copied a report), and **Delete**. Sharing is not in the menu — click **Share** next to the folder's name, as described on the [Reports](/help/documentation/reports#share-a-report-folder) page.
 - To copy a report into another folder, open the report's **⋯** action menu, click **Copy**, then click **Paste** in the target folder's menu. **Duplicate** copies a report within its own folder, and the action menu can also move a report straight to another folder.
+
+<Frame caption="A folder's action menu after a report was copied">
+  <img src="/help/images/custom-reports/folder-paste-menu.webp" alt="Beebole Reports menu with the action menu of the Current Month folder open, listing Duplicate, Rename, Filter, Paste and Delete, Paste being offered because a report was copied" width="243" />
+</Frame>
 
 <Warning>
   Deleting a folder also deletes the reports inside it. Move reports you want to keep into another folder first using **Copy** and **Paste**.

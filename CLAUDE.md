@@ -36,7 +36,7 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news` and `/mine-conversations` as orthogonal helpers. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news`, `/mine-conversations` and `/check-help-snippets` as orthogonal helpers and `/seed-documentation` feeding `/illustrate`. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
 
 | Step             | Command                | What it does                                                                                                                                                                                 |
 | ---------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,12 +44,13 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | 2. Find gaps     | `/find-gaps`           | Compare the catalog against `help/**` and write `.todo/gaps.md` with Missing/Partial entries.                                                                                                |
 | 3. Write         | `/write`               | Autonomous default: drafts every gap from `gaps.md`. `/write <path>` for one page. `--interactive` opts into checkpoints.                                                                    |
 | 4. Review        | `/review`              | Comprehensive audit (style, SEO, GEO, FAQ, images, translations, code accuracy). Default scope: session changes. `--all` for full site.                                                      |
-| 5. Illustrate    | `/illustrate`          | Identify screenshot needs and capture via Playwright. `--identify` or `--capture` to split.                                                                                                  |
+| 5. Illustrate    | `/illustrate`          | Identify screenshot needs, write a replayable scene per shot, capture it with the runner from the documentation account on QA. `--batch` (next 10 shots), `--replay`, `--release`, `--identify`, `--capture`, `--optimize`, `--arcade`, `--commercial`. |
 | 6. Translate     | `/translate`           | Sync FR/ES with EN master. Reads `translation-notes.md` only. **Deferred** — FR/ES are currently removed (see Key conventions).                                                              |
+| Helper           | `/seed-documentation`  | Build or top up the AnyCompany QA documentation account the screenshots come from. `topup` before date-dependent captures, `full` (refused once approvals exist), `approve` (one-way). |
 | —                | `/news`                | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                                 |
 | Orthogonal       | `/mine-conversations`  | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step.      |
-| Orthogonal       | `/check-help-snippets` | Audit the in-app contextual help snippets (`../md` + dictionary in `../reboot`) against the app's attributes/previews. Report-only → `.todo/help-snippets.md`. Runs as a `/release` step.    |
-| All-in-one       | `/release`             | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → verify + snippet audit. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
+| Orthogonal       | `/check-help-snippets` | Audit the in-app contextual help snippets (`../md` + dictionary in `../reboot`) against the app's attributes/previews. Report → `.todo/help-snippets.md`; `--fix` (the `/release` step) also writes and pushes the snippets in `../md` and prepares `../reboot` dictionary entries for an approved commit. |
+| All-in-one       | `/release`             | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → screenshot refresh (`/illustrate --release`) → verify → conversation mining + snippet audit and fixes. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -58,6 +59,9 @@ Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Sk
 ```
 docs.json              # Mintlify configuration (navigation, theme, SEO, languages)
 pollen.js              # Analytics script (Pollen/GTM)
+style.css              # Custom CSS, auto-loaded by Mintlify (wide-screen layout overrides) — the only place for site styling
+robots.txt             # Crawler rules
+.mintignore            # Paths Mintlify must not publish
 help/
   index.mdx            # English landing page
   documentation/       # Core feature docs (EN)
@@ -68,20 +72,22 @@ help/
   legacy/              # Frozen archive of the previous Beebole system's docs (EN)
   images/              # Shared images
   logo/                # Site logos
+  favicon.svg          # Site favicon (referenced in docs.json)
   # fr/ and es/ were removed June 2026 — see Key conventions.
 snippets/              # Reusable content fragments (currently empty)
 .claude/
   skills/              # One subdirectory per slash command, each with SKILL.md
+                       #   illustrate/runner/ (Node + Playwright screenshot runner) and illustrate/scenes/ (one scene per screenshot)
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
   scripts/             # Shell helpers (translate, optimize-images)
-docs/                  # Internal working docs (NOT published by Mintlify)
+docs/                  # Internal working docs, excluded via .mintignore (superpowers/specs, superpowers/plans)
 .todo/                 # Working files for app change tracking and proposed updates
 ```
 
 ## File placement
 
 - **`.mcp.json`** must stay at the project root — Claude Code won't discover MCP servers if it's inside `.claude/`
-- **`.claude/settings.local.json`** is gitignored — don't attempt to `git add` it
+- **`.claude/settings.json`** and **`.claude/settings.local.json`** are gitignored — don't attempt to `git add` them
 - **Skills auto-register** as `/skill-name` slash commands — no need for files in `.claude/commands/`.
 
 ## Mintlify compliance
@@ -98,9 +104,9 @@ Mintlify automatically hosts three machine-readable endpoints at the site root, 
 
 **Banned patterns — use Mintlify equivalents instead:**
 
-- `<img>` tags → use markdown `![alt](src)` inside `<Frame>` (add `caption="..."` when helpful)
+- `<img>` tags → use markdown `![alt](src)` inside `<Frame>` (add `caption="..."` when helpful). Exception (decided by Yves, 2026-09-29): a **partial screenshot** (a popover, menu, dialog or panel, not a full screen) uses `<img src="..." alt="..." width="N" />` inside the `<Frame>`, where N is its real on-screen width (`node .claude/skills/illustrate/runner/screenshots.mjs size <image>`), so it shows at the app's size instead of being stretched to the column — see `.claude/context/mintlify-components.md`.
 - `<br/>` tags → use blank lines for paragraph breaks
-- `className=`, `style=` attributes → no inline styles for layout; use Mintlify components instead. Exception: third-party iframes (e.g., Arcade) may use inline `style` for responsive sizing — see `.claude/context/mintlify-components.md`.
+- `className=`, `style=` attributes → no inline styles for layout; use Mintlify components instead. Exceptions: third-party iframes (e.g., Arcade) may use inline `style` for responsive sizing, and partial screenshots use the `width` attribute above (not a `className`: the Tailwind build does not generate arbitrary widths) — see `.claude/context/mintlify-components.md`.
 - Raw `<iframe>` → wrap in `<Frame>`
 - Any raw HTML (`<div>`, `<span>`, `<table>`, `<ul>`, etc.) → use markdown or Mintlify components
 
@@ -159,6 +165,8 @@ Before running any skill or script, check that the required tools are installed.
 
 | Tool              | Required by                                                                       | Check command         | Install command                                         |
 | ----------------- | --------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------- |
+| `node`            | `/illustrate` (screenshot runner), `/seed-documentation`                          | `command -v node`     | `brew install node`                                     |
+| Runner deps       | `/illustrate` (Playwright + pinned Chromium, one-time)                            | `test -d .claude/skills/illustrate/runner/node_modules` | `npm install --prefix .claude/skills/illustrate/runner && npx --prefix .claude/skills/illustrate/runner playwright install chromium` |
 | `cwebp`           | `/illustrate` (image optimization)                                                | `command -v cwebp`    | `brew install webp`                                     |
 | `gh` (GitHub CLI) | `/translate`, `/news` (fallback), app terminology lookups (fallback)              | `command -v gh`       | `brew install gh && gh auth login`                      |
 | `python3`         | `/translate` (JSON escaping in scripts)                                           | `command -v python3`  | Pre-installed on macOS; otherwise `brew install python` |

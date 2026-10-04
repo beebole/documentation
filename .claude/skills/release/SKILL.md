@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Release — Post-Deploy Documentation Pipeline
 
-Orchestrate the existing lifecycle skills end to end after a production deploy of the app. This skill does no content work itself — it sequences `/sync-features`, `/news`, `/find-gaps`, `/write`, `/review`, and `/illustrate --identify`, commits after each step, and opens a PR for human review. Nothing reaches the live docs until the PR is merged — **the PR is the approval gate**.
+Orchestrate the existing lifecycle skills end to end after a production deploy of the app. This skill does no content work itself — it sequences `/sync-features`, `/news`, `/find-gaps`, `/write`, `/review`, `/illustrate --release`, `/mine-conversations` and `/check-help-snippets --fix`, commits after each step, and opens a PR for human review. Nothing reaches the live docs until the PR is merged — **the PR is the approval gate**.
 
 ## Unattended-run overrides
 
@@ -25,7 +25,8 @@ Check, in order — halt with a clear message on the first failure:
 1. `../reboot` is reachable (this skill has no GitHub-API fallback — the pipeline is too long to run degraded).
 2. The docs repo is on `main` with a clean working tree. Run `git pull --ff-only`.
 3. `gh auth status` succeeds.
-4. **There is something to release:** at least one note in `../reboot/frontend/public/release-notes/production/` with a `date` newer than the `news-cursor` marker in `help/news/releases.mdx`, or newer than the `Last updated:` date in `.claude/context/features.md`. If neither, print "Nothing to release — no production notes newer than the last covered date." and stop. Never open an empty PR.
+4. **Screenshot runner (soft check):** `npm ls --prefix .claude/skills/illustrate/runner` exits 0 (if not, run `npm install --prefix .claude/skills/illustrate/runner` and `npx --prefix .claude/skills/illustrate/runner playwright install chromium` once). A failure here never halts the release; it only disables step 6, and the PR body says why.
+5. **There is something to release:** at least one note in `../reboot/frontend/public/release-notes/production/` with a `date` newer than the `news-cursor` marker in `help/news/releases.mdx`, or newer than the `Last updated:` date in `.claude/context/features.md`. If neither, print "Nothing to release — no production notes newer than the last covered date." and stop. Never open an empty PR.
 
 ### 2. Create the release branch
 
@@ -37,6 +38,8 @@ Use today's date. If the branch already exists (second run the same day), suffix
 
 ### 3. Run the pipeline
 
+**Before step 1, start the screenshot replay in the background** (no tokens, a few minutes): `set -a && source ~/.config/beebole/.env && set +a && node .claude/skills/illustrate/runner/screenshots.mjs replay --json .todo/replay-report.json` (the key is needed by scenes with fixtures, such as the running timer). Step 6 reads its report.
+
 Invoke each skill via the Skill tool, in this order. **After each step, commit its changes** on the release branch with the message shown — one commit per step so the PR reads stage by stage. A step that changes nothing produces no commit; note it and continue.
 
 | # | Skill | Commit message |
@@ -46,22 +49,22 @@ Invoke each skill via the Skill tool, in this order. **After each step, commit i
 | 3 | `/find-gaps` | `release: gaps report` |
 | 4 | `/write` (see below) | `release: draft and update pages` |
 | 5 | `/review` (session scope, auto-apply per overrides above) | `release: apply review fixes` |
-| 6 | `/illustrate --identify` | `release: screenshot needs` (only if it writes files) |
+| 6 | `/illustrate --release` | `release: refresh screenshots` |
 | 7 | `/find-gaps` — verification pass | `release: coverage verification` |
 | 8 | `/mine-conversations` | `release: conversation gaps report` |
-| 9 | `/check-help-snippets` | `release: help snippet audit` |
+| 9 | `/check-help-snippets --fix` | `release: help snippet audit and fixes` |
 
 **Step 4 detail:** run `/write` with no args to draft every **Missing** entry, then run `/write <path>` for each **Partial** entry using its `needs:` note from `.todo/gaps.md`. In a release run, Partial entries are not skipped.
 
 **Step 5 detail:** session scope covers everything the branch changed (working tree vs `main`); if `/review`'s git-based session detection misses committed pages, pass the changed pages explicitly: `git diff --name-only main...HEAD -- 'help/**/*.mdx'`.
 
-**Step 6 detail:** identify only — never attempt capture. Keep the needs list for the PR body.
+**Step 6 detail:** follow "Workflow — `--release`" in the illustrate skill: recapture every scene whose replay shows a change (top-up first if dates matter), one repair attempt per broken scene, up to 10 new scenes for pages this release added or rewrote, the rest queued in `.todo/screenshot-needs.md`. Keep its summary for the PR body. If QA or the runner is unavailable, skip the step and say so; never block the release on screenshots.
 
 **Step 7 detail:** if the verification pass still reports Missing or Partial entries, run `/write` once more for those entries and re-run `/find-gaps`. If it is still not clean, stop retrying and list the leftovers in the PR body under "Remaining gaps" — never loop.
 
 **Step 8 detail:** report-only, by design — its candidates are **not** drafted in this run, and never feed them into `/write` or `.todo/gaps.md`. The report is committed so the PR carries the candidates for human review; approving entries and drafting them is a separate decision after the PR. If PostHog is unreachable, skip the step and note it in the PR body — never block the release on it.
 
-**Step 9 detail:** report-only — audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews. Fixing gaps means writing in `../md` and `../reboot`, which this pipeline never does; the report is committed so the PR body carries the findings. If `../md` is unreachable, skip and note it — never block the release on it.
+**Step 9 detail:** audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews, then fixes what it finds in the same step, following "Fix mode" in the check-help-snippets skill. Snippet files (missing, incomplete language sets, stale wording) are written in `../md` and pushed to its `main`, which the app serves live. Missing dictionary entries are written in `../reboot` on `dev` but left uncommitted: that repo requires Yves' approval for each commit, so the question waits for "6. Commit the help snippet dictionary entries" below instead of blocking the run. The report, with its "Fixes applied" section, is committed to the release branch so the PR shows what changed. If `../md` or `../reboot` is unreachable or dirty, skip that part and note it — never block the release on it.
 
 ### 4. Open the PR
 
@@ -89,8 +92,12 @@ PR body template:
 ### Review fixes applied
 <summary of what /review changed, grouped by check>
 
-### Screenshot needs (capture later with /illustrate --capture)
-- <page> — <shot description>
+### Screenshots
+- Refreshed: `<image>` — used on <pages> — <N> px changed <(page text may need review)>
+- New: `<image>` — <page>
+- Broken scenes to fix: <scene id> — <failing step>
+- Queued in the inventory: <page> — <shot>
+- Guided shots to check by hand (pages changed in this release): <shot>
 
 ### Remaining gaps
 <leftover Missing/Partial entries after retry, or "None — coverage verified.">
@@ -98,8 +105,8 @@ PR body template:
 ### AI-conversation gap candidates (pending review)
 <entries added by /mine-conversations this run, or "None." — these are proposals only; approve in .todo/ai-conversation-gaps.md, then draft with /write>
 
-### In-app help snippet audit
-<findings from /check-help-snippets this run, or "All clear." — fixes happen in ../md and ../reboot, outside this PR>
+### In-app help snippets
+<fixes pushed to ../md this run (commit + files), dictionary entries prepared in ../reboot (waiting for approval), findings left unfixed with the reason, or "All clear.">
 
 ### Catalog propagation
 <per-repo result from step 5: synced / already in sync / skipped: reason>
@@ -138,7 +145,11 @@ Three sibling repos keep a snapshot of `.claude/context/features.md`. After the 
 
 Propagation problems never fail the release — the PR is already open. Record every per-repo outcome (synced / already in sync / skipped: reason) in the PR body's **Catalog propagation** section and in the final output.
 
-### 6. On failure
+### 6. Commit the help snippet dictionary entries
+
+If step 9 left dictionary entries uncommitted in `../reboot`, show the `md.ts` diff and ask Yves whether to commit it on `dev` (one question, after everything else is done). On yes, commit and hand him `git -C ../reboot push`; never push it yourself. On no, leave the change in the working tree and say so in the final output. Either way, the next `/sync-features` needs a clean `../reboot`, so say what is left there.
+
+### 7. On failure
 
 If any step fails and can't be recovered:
 
@@ -148,10 +159,10 @@ If any step fails and can't be recovered:
 
 ## Rules
 
-- **Never push to the docs repo's `main`, never merge the PR.** Merging is the human's job. The only direct-to-`main` pushes are the catalog syncs of step 5, each touching a single `features.md` file in a sibling repo.
+- **Never push to the docs repo's `main`, never merge the PR.** Merging is the human's job. The only direct-to-`main` pushes are the catalog syncs of step 5, each touching a single `features.md` file in a sibling repo, and the help snippet fixes of pipeline step 9 in `../md`. `../reboot` is never pushed.
 - **One run = one branch = one PR.** Don't reuse or amend a previous release branch; a same-day re-run gets a suffixed branch name.
 - **No translations.** The site is EN-only — never invoke `/translate`.
-- **No screenshot capture.** Identify only; capture is a separate, attended `/illustrate --capture` run.
-- **Never open an empty PR.** Preflight step 4 guards this.
+- **Screenshots only through scenes.** Step 6 captures with the runner from the documentation account; no hand-made captures in a release.
+- **Never open an empty PR.** Preflight step 5 guards this.
 - **Don't duplicate sub-skill logic.** Cursor handling, curation, gap classification, review checks all live in their own skills — this file only sequences them and overrides their interactive gates.
 - **Leave the repo on `main` afterwards** (`git switch main`) so the next session starts clean.

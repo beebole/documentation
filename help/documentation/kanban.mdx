@@ -27,12 +27,22 @@ Beebole's Kanban board displays your [tasks](/help/documentation/planning) as ca
 
 ## Board layout
 
-Each column is one status of the active planning, in the order defined in the **Task statuses** modal. A column header shows:
+Each column is one status of the active planning, in the order defined in the **Task statuses** modal.
+
+<Frame caption="The Main plan planning on its Kanban view">
+  ![Beebole Planning page for Main plan with the Staffing, Kanban and Gantt view tabs and Add a view, showing the Kanban board with Backlog, Queue, In progress and Done columns of task cards with dates, owners and projects](/help/images/planning/kanban-view.webp)
+</Frame>
+
+A column header shows:
 
 - A **+** button (**Add a task**) that opens the add form with this status preselected.
 - The number of tasks in the column — displayed as `current/max` when the status has a **Max tasks** limit.
 - The status name. Click it to open the **Task statuses** modal.
 - A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move entries to left** / **Move entries to right** (move the column's tasks into the neighboring status), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the planning's only status).
+
+<Frame caption="A column's ⋯ menu">
+  <img src="/help/images/kanban/column-menu.webp" alt="Beebole Kanban Queue column header with its ⋯ menu open: Archive, Unarchive (grayed out), Move entries to left, Move entries to right and Delete" width="350" />
+</Frame>
 
 ---
 
@@ -53,9 +63,17 @@ Statuses belong to the planning — not to a project — so every planning defin
 - **Move a card** — Drag it to another column to change its status, or drop it at a different position in the same column to reorder.
 - **Act on a card** — Hover over it and click the **⋯** menu for **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
 
+<Frame caption="A card's ⋯ menu">
+  <img src="/help/images/kanban/card-menu.webp" alt="Beebole Kanban Queue column with the ⋯ menu of the QA Testing card open, listing Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="350" />
+</Frame>
+
 ### Choosing what cards display
 
 Open the **⋯** menu on the active view tab and hover over **Show** to toggle the card fields: **Parent**, **Owner**, **Assignee**, **Dates**, **Projects**, and **Tags**. Each Kanban view remembers its own selection.
+
+<Frame caption="The Show submenu of the Kanban view tab">
+  <img src="/help/images/kanban/show-fields-menu.webp" alt="Beebole Kanban view tab menu with Show, Durations in, Filters, Rename, Duplicate and Delete, and the Show submenu listing Parent, Owner, Assignee, Dates, Projects and Tags, all checked" width="480" />
+</Frame>
 
 ### Selecting multiple cards
 
@@ -78,6 +96,10 @@ The limit is enforced, not just suggested:
 - The same rule applies when changing the status from the task's detail panel, and Beebole's server enforces it too.
 - You cannot set **Max tasks** below the number of tasks currently in the column.
 
+<Frame caption="A card dragged over Queue, which holds 3 of its 3 tasks: the column border turns red">
+  ![Beebole Kanban board with the Queue column header reading 3/3 and a red border around the column, while the Frontend Development card from In progress is being dragged over it](/help/images/kanban/wip-limit-rejected.webp)
+</Frame>
+
 To allow more work in the status, raise or clear its **Max tasks** value (0 means unlimited), or move tasks out first.
 
 ---
@@ -96,7 +118,11 @@ Edits are saved automatically. The description is part of the task, so the same 
 
 ## Tracking time from a card
 
-Hover over a card and click the clock button (**Add time**) to log time on that task for today, without leaving the board. Once time has been logged, the card shows a pill with the logged total next to the planned time (for example `4h / 8h`) — click it to add more.
+Hover over a card and click the clock button (**Add time**) to log time on that task for today, without leaving the board. Once time has been logged, the card shows a pill with the logged total next to the planned time, in hours (for example `4 / 8`) — click it to add more.
+
+<Frame caption="A card with time logged and its pill, and the clock button on the card under the mouse">
+  <img src="/help/images/kanban/card-add-time.webp" alt="Beebole Kanban In progress column with the Frontend Development card showing a 4 / 200 pill for 4 hours logged out of 200 planned, and the Backend Development card under the mouse showing its clock button" width="346" />
+</Frame>
 
 The button only appears on tasks whose planning is selected under **Record time on these plannings** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 

@@ -28,6 +28,10 @@ You can configure multiple webhooks, each with its own URL, name, secret, and ev
     - **Secret** — A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
     - **Enabled** — Toggle whether this webhook is active.
     - **Events** — Choose **All events** to receive every event type, or select individual events from the list.
+
+    <Frame caption="A webhook opened for editing">
+      <img src="/help/images/integrations/webhooks-config.webp" alt="Beebole Webhooks settings with the ERP sync webhook open, marked Active: Name, URL https://erp.example.com/beebole/webhook, a masked Secret with Show and Regenerate, the Enabled toggle on, and Events limited to timeRecordUpdate, approvalEventUpdate and projectUpdate, above the Add webhook button" width="896" />
+    </Frame>
   </Step>
   <Step title="Save and test">
     Changes are saved automatically as you edit each field. Once the webhook is enabled and your endpoint is ready, trigger an event in Beebole (for example, update a project) and verify that your endpoint receives the request.

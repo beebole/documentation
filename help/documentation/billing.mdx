@@ -31,6 +31,12 @@ Each billing rate uses one of four methods:
 | **Fixed fee** | A flat amount, regardless of time spent — optionally repeating |
 | **Non-billable** | No billing amount is calculated for the time covered by this rate |
 
+You pick the method in the rate card, under **Billing method**.
+
+<Frame caption="The four billing methods in a rate card">
+  <img src="/help/images/billing/billing-method-picker.webp" alt="Beebole Billing panel of the Acme Corp project with a rate card open and the billing method picker listing Daily rate, Fixed fee, Hourly rate (selected) and Non-billable" width="538" />
+</Frame>
+
 ---
 
 ## Where to set billing rates
@@ -68,6 +74,10 @@ To open the **Billing** section at each level:
   </Step>
 </Steps>
 
+<Frame caption="An hourly rate of $150 on a project, opened to show its fields">
+  <img src="/help/images/billing/billing-rate-card.webp" alt="Beebole Billing panel of the Acme Corp project with an hourly rate card open, showing the From date, the Billing method set to Hourly rate with No split, and the Amount of $150.00" width="538" />
+</Frame>
+
 <Info>
   Rates set on the organization or on a tag cascade down: a project or person without its own rate shows the rate it inherits. Adding a rate directly on the project or person overrides the inherited one.
 </Info>
@@ -83,6 +93,12 @@ When several billing rates could apply to the same time entry, the most specific
 
 Rates inherited from tags or from the organization count as the rate of the project or person they cascade to, so a company-wide default still applies through this same lookup. Billing rates cannot be set directly on a task; time tracked on a task is billed through the project and person rates above.
 
+An inherited rate shows in the **Billing** panel of the project or person it applies to, with a marker next to the panel title. Hover over the marker to see where the rate comes from.
+
+<Frame caption="Video Production has no rate of its own: it inherits $160 an hour from its client, Brightwave Media">
+  ![Beebole Projects page with Brightwave Media, Brand Campaign and Video Production expanded, and the Billing panel of Video Production showing an hourly rate of $160.00, with the tooltip Brightwave Media on the marker next to the panel title](/help/images/billing/rate-inherited.webp)
+</Frame>
+
 ---
 
 ## Rate splits
@@ -95,6 +111,10 @@ With an **Hourly rate** or **Daily rate**, you can replace the single amount wit
 
 Each row in a split has its own **Amount**, and a **Non-billable** checkbox to exclude that person or project from billing entirely.
 
+<Frame caption="A client's hourly rate split by persons, with one person non-billable">
+  <img src="/help/images/billing/rate-split.webp" alt="Beebole Billing panel of Northstar Financial with an hourly rate card open, the split set to Split by persons, and rows for Marc Dubois at $160.00, Sarah Jensen marked Non-billable, and Sophie Laurent at $220.00" width="538" />
+</Frame>
+
 ---
 
 ## Changing rates over time
@@ -103,11 +123,19 @@ Each billing rate has a single **From** date. The rate applies to time entries d
 
 You can also click **Duplicate** inside a rate card to copy an existing rate as the starting point for the new one.
 
+<Frame caption="Two rates on one project: $150 an hour from June 29, then $165 from January 1">
+  <img src="/help/images/billing/rates-over-time.webp" alt="Beebole Billing panel of the Acme Corp project with two hourly rate cards in date order: $150.00 from Jun 29, 2026 and $165.00 from Jan 01, 2027, both marked No repeat" width="538" />
+</Frame>
+
 ---
 
 ## Recurring fixed fees
 
-A **Fixed fee** applies once. To bill it repeatedly — a monthly retainer, for example — turn on **Repeat** in the rate card and choose how often it recurs: **Every** 1 or more days, weeks, months, or years. Choose **End** to stop the repetition on a given date, or **Do not end** to let it run indefinitely.
+A **Fixed fee** applies once. To bill it repeatedly — a monthly retainer, for example — turn on **Repeat** in the rate card and choose how often it recurs: **Every** 1 or more days, weeks, months, or years. For a monthly fee, the last field sets the day it falls on, such as **Every 1st of the month**. A repeating fee has no end date.
+
+<Frame caption="A $2,500 fixed fee repeating every month">
+  <img src="/help/images/billing/recurring-fixed-fee.webp" alt="Beebole Billing panel of the Mobile App project with a Fixed fee card open: From Oct 01, 2026, Billing method Fixed fee, Amount $2,500.00, Repeat switched on, and Every 1 month on Every 1st of the month" width="762" />
+</Frame>
 
 ---
 

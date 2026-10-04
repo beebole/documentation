@@ -1,0 +1,413 @@
+#!/usr/bin/env node
+// Documentation layer, applied by seed.mjs after `full` and `topup` (or run on its own).
+// seed.mjs gives a realistic company (18 people, clients, a year of time); this adds what the
+// docs pages describe on top: the organisation name, a tag hierarchy (Division → Team), a
+// Location category, and colours chosen by the rules in claude-plugins' entity-colors.md.
+//
+// Idempotent: creates what is missing, re-applies colours and memberships, never deletes data.
+// Usage: node layer.mjs (key from BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY in the environment)
+
+import { assertDocumentationOrg } from './guards.mjs'
+
+const ENDPOINT = 'https://qa.beebole.com/graphql'
+const KEY = process.env.BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY
+if (!KEY) throw new Error('BEEBOLE_QA_DOCS_SCREENSHOTS_APIKEY is not set')
+
+// Colour indices (BeeboleColor 0-71): deep row, spread around the wheel, no indigo (the UI
+// accent), children share the parent's colour, background categories use neutrals.
+const DEPARTMENT = {
+	Engineering: {
+		color: 2, // purple
+		stay: ['Sophie Laurent', 'Jordan Reed'],
+		teams: {
+			Frontend: ['Marc Dubois', 'Elena Rossi'],
+			Backend: ['James Chen', 'Priya Sharma'],
+			'Quality Assurance': ['Sarah Jensen'],
+		},
+	},
+	Design: {
+		color: 7, // orange
+		stay: ["Liam O'Brien"],
+		teams: {
+			'Product Design': ['Ana Pereira', 'Yuki Tanaka', 'Fatima Al-Hassan'],
+			'Brand & Content': ['Marie Lefevre', 'David Kim'],
+		},
+	},
+	Sales: {
+		color: 12, // emerald
+		stay: ['Thomas Muller'],
+		teams: {
+			'Account Management': ['Clara Fontaine', 'Emma Costa', 'Lucas Bernard'],
+			'Business Development': ['Nils Eriksson', 'Carlos Ruiz'],
+		},
+	},
+}
+
+const LOCATION = {
+	levelNames: ['Office'],
+	offices: {
+		'New York': {
+			color: 15, // sky
+			people: [
+				'Jordan Reed',
+				'Sophie Laurent',
+				'Marc Dubois',
+				'Elena Rossi',
+				'Sarah Jensen',
+				"Liam O'Brien",
+				'Ana Pereira',
+				'Yuki Tanaka',
+				'Thomas Muller',
+				'Clara Fontaine',
+			],
+		},
+		London: { color: 5, people: ['James Chen', 'Marie Lefevre', 'David Kim', 'Emma Costa', 'Lucas Bernard'] }, // rose
+		Lisbon: { color: 13, people: ['Priya Sharma', 'Fatima Al-Hassan', 'Nils Eriksson', 'Carlos Ruiz'] }, // teal
+	},
+}
+
+const CONTRACT_COLORS = { Internal: 51, Contractor: 56 } // gray, stone: recede
+
+// Time-off allowances for the current year (Time off page, Absence quotas report): an
+// organisation default per absence type, and a larger PTO allowance for the London office,
+// so the report and the panels show an inherited value next to an override. Units are the
+// absence type's own (both types count in days). Added once per year, never edited.
+const ALLOWANCES = [
+	{ on: 'organisation', type: 'PTO', available: 20, carryForwardLimit: 5 },
+	{ on: 'organisation', type: 'Sickness', available: 10, allowNegativeBalance: true },
+	{ on: { tag: 'London' }, type: 'PTO', available: 25, carryForwardLimit: 5 },
+]
+
+// Obviously fictional placeholder, shown wherever the app displays the organisation. Not
+// "Acme": the docs already use Acme Corp as the example client (see .claude/context/feedback.md).
+const ORGANISATION_NAME = 'AnyCompany'
+
+async function gql(query, variables = {}) {
+	const res = await fetch(ENDPOINT, {
+		method: 'POST',
+		headers: { 'content-type': 'application/json', apikey: KEY },
+		body: JSON.stringify({ query, variables }),
+	})
+	const body = await res.json()
+	if (body.errors) throw new Error(`${body.errors[0].message}\n${query}`)
+	return body.data
+}
+
+async function readState() {
+	const d = await gql(`{
+		currentOrganisation { id name }
+		getTagCategories { id name levelNames }
+		getTags { id name level color parent { id } category { id name } relations { tagged { persons { value { id } } } } }
+		getPersons { id name }
+	}`)
+	const tags = d.getTags.map((t) => ({ ...t, personIds: t.relations.tagged.persons.map((p) => p.value.id) }))
+	return { org: d.currentOrganisation, categories: d.getTagCategories, tags, persons: d.getPersons }
+}
+
+function personId(state, name) {
+	const p = state.persons.find((x) => x.name === name)
+	if (!p) throw new Error(`Person not found: ${name} (run seed-demo first)`)
+	return p.id
+}
+
+async function ensureCategory(state, name) {
+	const found = state.categories.find((c) => c.name === name)
+	if (found) return found.id
+	const d = await gql(`mutation($name: BeeboleName!) { addTagCategory(name: $name) { id } }`, { name })
+	console.log(`+ category ${name}`)
+	return d.addTagCategory.id
+}
+
+async function ensureTag(state, { name, categoryId, parentId, color }) {
+	let tag = state.tags.find((t) => t.name === name && t.category?.id === categoryId)
+	if (!tag) {
+		const d = await gql(
+			`mutation($name: BeeboleName!, $categoryId: BeeboleId, $parentId: BeeboleId, $color: BeeboleColor) {
+				addTag(name: $name, categoryId: $categoryId, parentId: $parentId, color: $color) { id }
+			}`,
+			{ name, categoryId, parentId, color }
+		)
+		console.log(`+ tag ${name}`)
+		tag = { id: d.addTag.id, personIds: [], color }
+		state.tags.push({ ...tag, name, category: { id: categoryId } })
+	} else if (tag.color !== color) {
+		await gql(`mutation($id: BeeboleId!, $color: BeeboleColor!) { editTagColor(id: $id, color: $color) { id } }`, {
+			id: tag.id,
+			color,
+		})
+		console.log(`~ colour ${name} → ${color}`)
+	}
+	return tag
+}
+
+async function setMembers(state, tag, names, label) {
+	for (const name of names) {
+		const id = personId(state, name)
+		if (tag.personIds.includes(id)) continue
+		await gql(`mutation($tagId: BeeboleId!, $personId: BeeboleId!) { tagPerson(tagId: $tagId, personId: $personId) { id } }`, {
+			tagId: tag.id,
+			personId: id,
+		})
+		tag.personIds.push(id)
+		console.log(`+ ${name} → ${label}`)
+	}
+}
+
+async function removeMembers(state, tag, names, label) {
+	for (const name of names) {
+		const id = personId(state, name)
+		if (!tag.personIds.includes(id)) continue
+		await gql(`mutation($tagId: BeeboleId!, $personId: BeeboleId!) { untagPerson(tagId: $tagId, personId: $personId) { id } }`, {
+			tagId: tag.id,
+			personId: id,
+		})
+		tag.personIds = tag.personIds.filter((x) => x !== id)
+		console.log(`- ${name} ✕ ${label}`)
+	}
+}
+
+// Same period as an allowance added in the app: the whole year, 00:00 to 23:59:59.999 UTC.
+async function ensureAllowances() {
+	const year = new Date().getUTCFullYear()
+	const startTime = Date.UTC(year, 0, 1)
+	const endTime = Date.UTC(year + 1, 0, 1) - 1
+	const quotaFields = 'absenceQuotas { value { id absenceType { id } startTime { ts } } }'
+	const d = await gql(`{ getAbsenceTypes { id name } currentOrganisation { ${quotaFields} } getTags { id name ${quotaFields} } }`)
+	for (const a of ALLOWANCES) {
+		const type = d.getAbsenceTypes.find((t) => t.name === a.type)
+		if (!type) throw new Error(`Absence type not found: ${a.type}`)
+		const tag = a.on.tag ? d.getTags.find((t) => t.name === a.on.tag) : null
+		if (a.on.tag && !tag) throw new Error(`Tag not found: ${a.on.tag}`)
+		// A tag's value may list the organisation's allowances it inherits: count only its own.
+		const orgQuotas = d.currentOrganisation.absenceQuotas?.value ?? []
+		const existing = tag ? (tag.absenceQuotas?.value ?? []).filter((q) => !orgQuotas.some((o) => o.id === q.id)) : orgQuotas
+		if (existing.some((q) => q.absenceType?.id === type.id && q.startTime?.ts === startTime)) continue
+		const { on, type: _, ...fields } = a
+		const target = tag ? { mutation: 'addTagAbsenceQuota', arg: 'tagId: $tagId, ', decl: '$tagId: BeeboleId!, ', vars: { tagId: tag.id } } : { mutation: 'addOrganisationAbsenceQuota', arg: '', decl: '', vars: {} }
+		await gql(
+			`mutation(${target.decl}$absenceId: BeeboleId!, $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $available: Int, $carryForwardLimit: Int, $allowNegativeBalance: Boolean) {
+				${target.mutation}(${target.arg}absenceId: $absenceId, startTime: $startTime, endTime: $endTime, available: $available, carryForwardLimit: $carryForwardLimit, allowNegativeBalance: $allowNegativeBalance) { id }
+			}`,
+			{ ...target.vars, absenceId: type.id, startTime, endTime, ...fields }
+		)
+		console.log(`+ allowance ${a.type} ${year} → ${tag ? tag.name : 'organisation'} (${a.available} days)`)
+	}
+}
+
+// A custom field for the Custom fields page: a text pick list shown on the Client category's
+// projects (level 1, under the client) and on time records.
+const CUSTOM_FIELD = {
+	name: 'Cost center',
+	color: 13, // teal
+	placeholder: 'Pick the cost center',
+	allowedValues: ['CC-100 Engineering', 'CC-200 Design', 'CC-300 Sales'],
+	projectCategory: 'Client',
+	projectLevels: [1],
+}
+
+async function ensureCustomField() {
+	const c = CUSTOM_FIELD
+	const d = await gql(`{
+		getCustomFields(filter: [{ archived: false }]) { id name visibility { projects { categoryId levels } timeRecords { projectCategories } } textOptions { placeholder useAllowedValues allowedValues } }
+		getProjectCategories { id name }
+	}`)
+	let field = d.getCustomFields.find((f) => f.name === c.name)
+	if (!field) {
+		const r = await gql(`mutation($name: BeeboleName!, $fieldType: String!, $color: BeeboleColor) { addCustomField(name: $name, fieldType: $fieldType, color: $color) { id } }`, {
+			name: c.name,
+			fieldType: 'text',
+			color: c.color,
+		})
+		field = { id: r.addCustomField.id, visibility: { projects: [], timeRecords: null }, textOptions: { allowedValues: [] } }
+		console.log(`+ custom field ${c.name}`)
+	}
+	const id = field.id
+	await gql(`mutation($id: BeeboleId!, $placeholder: String!) { editCustomFieldTextOptionPlaceholder(id: $id, placeholder: $placeholder) { id } }`, { id, placeholder: c.placeholder })
+	await gql(`mutation($id: BeeboleId!, $useAllowedValues: Boolean!) { editCustomFieldTextOptionUseAllowedValues(id: $id, useAllowedValues: $useAllowedValues) { id } }`, { id, useAllowedValues: true })
+	for (const value of c.allowedValues) {
+		if ((field.textOptions?.allowedValues || []).includes(value)) continue
+		await gql(`mutation($id: BeeboleId!, $value: String!) { addCustomFieldTextOptionAllowedValue(id: $id, value: $value) { id } }`, { id, value })
+	}
+	const category = d.getProjectCategories.find((x) => x.name === c.projectCategory)
+	if (!category) throw new Error(`Project category not found: ${c.projectCategory}`)
+	// Enabling resets the list of categories to empty: only when it is off.
+	if (!field.visibility?.projects) await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityProjects(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
+	const onCategory = (field.visibility?.projects || []).some((v) => v.categoryId === category.id)
+	await gql(
+		`mutation($id: BeeboleId!, $categoryId: BeeboleId!, $levels: [Int!]!) { ${onCategory ? 'editCustomFieldVisibilityProject' : 'addCustomFieldVisibilityProject'}(id: $id, categoryId: $categoryId, levels: $levels) { id } }`,
+		{ id, categoryId: category.id, levels: c.projectLevels }
+	)
+	await gql(`mutation($id: BeeboleId!, $enabled: Boolean!) { editCustomFieldVisibilityTimeRecords(id: $id, enabled: $enabled) { id } }`, { id, enabled: true })
+	console.log(`~ custom field ${c.name}: pick list, ${c.projectCategory} projects, time records`)
+}
+
+// A Bookings planning for the Staffing page: people booked on client projects around the
+// weeks of 2026-09-28, at fixed dates so a replay at a scene's capturedAt shows the same bars.
+// Elena Rossi is overbooked the week of Oct 5, one booking is tentative, one has no owner, and
+// Fatima Al-Hassan has part-day bookings (hours in UTC, as the app stores them), one running past
+// her 17:00 end of day. Idempotent: a booking with the same person, project and dates is kept.
+const STAFFING = {
+	name: 'Staffing plan',
+	bookings: [
+		{ person: 'Marc Dubois', project: 'Website Redesign', from: '2026-09-28', to: '2026-10-16', ftePct: 1 },
+		{ person: 'Elena Rossi', project: 'Mobile App', from: '2026-09-21', to: '2026-10-09', ftePct: 0.6 },
+		{ person: 'Elena Rossi', project: 'Dashboard', from: '2026-10-05', to: '2026-10-23', ftePct: 0.6 },
+		{ person: 'James Chen', project: 'ERP Integration', from: '2026-09-14', to: '2026-10-30', ftePct: 0.8 },
+		{ person: 'Priya Sharma', project: 'Data Migration', from: '2026-10-01', to: '2026-10-20', ftePct: 1 },
+		{ person: 'Sarah Jensen', project: 'E-commerce Platform', from: '2026-09-28', to: '2026-10-02', ftePct: 0.5 },
+		{ person: 'Sarah Jensen', project: 'Fleet Tracker', from: '2026-10-12', to: '2026-10-23', ftePct: 1, tentative: true },
+		{ person: 'Ana Pereira', project: 'Brand Campaign', from: '2026-09-23', to: '2026-10-07', ftePct: 1 },
+		{ person: 'Yuki Tanaka', project: 'Web Portal', from: '2026-09-30', to: '2026-10-14', ftePct: 0.5 },
+		{ person: 'Fatima Al-Hassan', project: 'Website Redesign', at: ['2026-10-01T09:00', '2026-10-01T12:00'] },
+		{ person: 'Fatima Al-Hassan', project: 'Brand Campaign', at: ['2026-10-01T14:00', '2026-10-01T17:00'] },
+		{ person: 'Fatima Al-Hassan', project: 'Website Redesign', at: ['2026-10-02T15:00', '2026-10-02T18:00'] },
+		{ person: 'Sophie Laurent', project: 'Dashboard', from: '2026-10-05', to: '2026-10-30', ftePct: 1 },
+		{ person: 'Carlos Ruiz', project: 'Sales', from: '2026-10-01', to: '2026-10-16', ftePct: 1 },
+		{ person: 'Clara Fontaine', project: 'Sales', from: '2026-09-28', to: '2026-10-23', ftePct: 0.5 },
+		{ person: 'David Kim', project: 'Video Production', from: '2026-09-24', to: '2026-10-09', ftePct: 1 },
+		{ person: 'Emma Costa', project: 'Web Portal', from: '2026-09-28', to: '2026-10-16', ftePct: 0.3 },
+		{ person: null, project: 'Fleet Tracker', from: '2026-10-05', to: '2026-10-16', ftePct: 1 },
+	],
+}
+
+async function ensureStaffingPlan(state) {
+	const d = await gql(`{
+		getTaskCategories { id name }
+		getProjects { id name }
+		getTasks { startTime { ts } endTime { ts } category { id } relations { owner { value { id } } projects { value { id } } } }
+	}`)
+	let categoryId = d.getTaskCategories.find((c) => c.name === STAFFING.name)?.id
+	if (!categoryId) {
+		const r = await gql(`mutation($name: BeeboleName!, $mode: String) { addTaskCategory(name: $name, mode: $mode) { id } }`, { name: STAFFING.name, mode: 'bookings' })
+		categoryId = r.addTaskCategory.id
+		console.log(`+ planning ${STAFFING.name} (bookings)`)
+	}
+	const key = (personId, projectId, startTime, endTime) => [personId ?? '', projectId, startTime, endTime].join()
+	const existing = new Set(
+		d.getTasks
+			.filter((t) => t.category?.id === categoryId)
+			.map((t) => key(t.relations.owner?.value?.id, t.relations.projects?.[0]?.value?.id, t.startTime?.ts, t.endTime?.ts))
+	)
+	for (const b of STAFFING.bookings) {
+		const project = d.getProjects.find((p) => p.name === b.project)
+		if (!project) throw new Error(`Project not found: ${b.project}`)
+		// Whole days run from 00:00 to 23:59:59.999 UTC; part-day bookings carry their hours.
+		const [startTime, endTime] = b.at ? b.at.map((t) => Date.parse(`${t}:00Z`)) : [Date.parse(`${b.from}T00:00:00Z`), Date.parse(`${b.to}T23:59:59.999Z`)]
+		const person = b.person ? personId(state, b.person) : undefined
+		if (existing.has(key(person, project.id, startTime, endTime))) continue
+		await gql(
+			`mutation($categoryId: BeeboleId, $personId: BeeboleId, $projectIds: [BeeboleId!], $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $ftePct: Float, $tentative: Boolean) {
+				addBooking(categoryId: $categoryId, personId: $personId, projectIds: $projectIds, startTime: $startTime, endTime: $endTime, ftePct: $ftePct, tentative: $tentative) { id }
+			}`,
+			{ categoryId, personId: person, projectIds: [project.id], startTime, endTime, ftePct: b.ftePct, tentative: b.tentative }
+		)
+		console.log(`+ booking ${b.person ?? 'Unassigned'} → ${b.project}`)
+	}
+}
+
+// A schedule change for the Work schedules page (Changing a schedule over time): Yuki Tanaka, in
+// no other shot, moves from Full Time to part-time from a fixed day in January 2027. The person
+// keeps the organisation's Full Time and gets Half Time – 5d from that day: the timeline merges
+// both by start date, so the panel shows two dated assignments and nothing changes before 2027.
+// (The backend refuses Full Time on the person itself: it is already inherited, AlreadyAssigned.)
+const SCHEDULE_CHANGE = { person: 'Yuki Tanaka', to: 'Half Time – 5d', startTime: Date.UTC(2027, 0, 4, 12) }
+
+async function ensureScheduleChange(state) {
+	const c = SCHEDULE_CHANGE
+	const d = await gql(`{ getScheduleTypes { id name } getPersons { id name relations { scheduleTimeline { value { name } } } } }`)
+	const person = d.getPersons.find((p) => p.id === personId(state, c.person))
+	if (person.relations.scheduleTimeline.some((r) => r.value.name === c.to)) return
+	const type = d.getScheduleTypes.find((x) => x.name === c.to)
+	if (!type) throw new Error(`Schedule type not found: ${c.to}`)
+	await gql(
+		`mutation($personId: BeeboleId!, $scheduleTypeId: BeeboleId!, $startTime: BeeboleTimestamp) {
+			assignScheduleTimelineToPerson(personId: $personId, scheduleTypeId: $scheduleTypeId, startTime: $startTime) { id }
+		}`,
+		{ personId: person.id, scheduleTypeId: type.id, startTime: c.startTime }
+	)
+	console.log(`+ schedule ${c.to} from ${new Date(c.startTime).toISOString().slice(0, 10)} → ${c.person}`)
+}
+
+// Until 2026-10-02 seed.mjs created its tasks with two defects, repaired here on the tasks it made:
+// - the planned hours went in as the effort, which the API reads as milliseconds (200 h became
+//   200 ms, so no planning screen showed planned time). A task planned at under a second can only
+//   be one of those: it gets the same number of hours.
+// - the dates ran from noon to noon, which the app reads as a timed task (All day unchecked,
+//   12:00 PM in its panel). A task starting and ending at 12:00 UTC gets whole days, as the app's
+//   All day sets them: its first day from 00:00 UTC, its last to 23:59:59.999 UTC.
+const HOUR = 3600000
+async function repairSeededTasks() {
+	const d = await gql(`{ getTasks { id name effort startTime { ts } endTime { ts } } }`)
+	for (const t of d.getTasks) {
+		const [start, end] = [t.startTime?.ts, t.endTime?.ts]
+		if (start == null || end == null) continue
+		const hours = t.effort > 0 && t.effort < 1000
+		const noon = start % (24 * HOUR) === 12 * HOUR && end % (24 * HOUR) === 12 * HOUR
+		if (!hours && !noon) continue
+		await gql(
+			`mutation($id: BeeboleId!, $startTime: BeeboleTimestamp!, $endTime: BeeboleTimestamp!, $effort: Float) {
+				editTaskPeriod(id: $id, startTime: $startTime, endTime: $endTime, effort: $effort) { id }
+			}`,
+			{
+				id: t.id,
+				startTime: noon ? start - 12 * HOUR : start,
+				endTime: noon ? end + 12 * HOUR - 1 : end,
+				effort: hours ? t.effort * HOUR : t.effort,
+			}
+		)
+		console.log(`~ ${t.name}:${hours ? ` planned ${t.effort} h` : ''}${noon ? ' whole days' : ''}`)
+	}
+}
+
+export async function applyLayer() {
+	// Refuse before any write: run on its own, this script must not touch another organisation.
+	await assertDocumentationOrg(async (q) => gql(q).catch(() => null))
+	const state = await readState()
+	console.log(`Organisation: ${state.org.name}`)
+	if (state.org.name !== ORGANISATION_NAME) {
+		await gql(`mutation($name: BeeboleName!) { editOrganisationName(name: $name) { id } }`, { name: ORGANISATION_NAME })
+		console.log(`~ organisation renamed → ${ORGANISATION_NAME}`)
+	}
+
+	const deptId = await ensureCategory(state, 'Department')
+	for (const [division, conf] of Object.entries(DEPARTMENT)) {
+		const div = await ensureTag(state, { name: division, categoryId: deptId, color: conf.color })
+		// People sit in their team; only the division lead stays on the division itself. The
+		// backend refuses a team tag while the person still holds its division (AlreadyAssigned).
+		await removeMembers(state, div, Object.values(conf.teams).flat(), division)
+		for (const [team, people] of Object.entries(conf.teams)) {
+			const t = await ensureTag(state, { name: team, categoryId: deptId, parentId: div.id, color: conf.color })
+			await setMembers(state, t, people, team)
+		}
+		await setMembers(state, div, conf.stay, division)
+	}
+
+	const locId = await ensureCategory(state, 'Location')
+	await gql(`mutation($id: BeeboleId!, $levelNames: [String]) { editTagCategoryLevelNames(id: $id, levelNames: $levelNames) { id } }`, {
+		id: locId,
+		levelNames: LOCATION.levelNames,
+	})
+	for (const [office, conf] of Object.entries(LOCATION.offices)) {
+		const t = await ensureTag(state, { name: office, categoryId: locId, color: conf.color })
+		await setMembers(state, t, conf.people, office)
+	}
+
+	await ensureAllowances()
+	await ensureCustomField()
+	await ensureStaffingPlan(state)
+	await ensureScheduleChange(state)
+	await repairSeededTasks()
+
+	const contract = state.categories.find((c) => c.name === 'Contract')
+	for (const [name, color] of Object.entries(CONTRACT_COLORS)) {
+		if (contract) await ensureTag(state, { name, categoryId: contract.id, color })
+	}
+	console.log('Screenshot layer applied.')
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+	applyLayer().catch((e) => {
+		console.error(e.message)
+		process.exit(1)
+	})
+}

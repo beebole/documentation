@@ -1,188 +1,326 @@
 ---
 title: "Timesheets: tracking and submitting your time"
 sidebarTitle: "Timesheets"
-description: "Track time in Beebole's timesheet: add rows for projects, tasks, or time off, enter hours or run a timer, copy periods, and submit for approval."
-keywords: ["beebole", "timesheet", "time tracking", "time entry", "timer", "submit timesheet", "copy timesheet", "import time entries", "clock in", "work from home"]
+description: "Track time in Beebole's timesheet, in calendar or grid view: place entries by the hour or type durations, run a timer, copy periods, and submit for approval."
+keywords: ["beebole", "timesheet", "time tracking", "time entry", "calendar view", "grid view", "timer", "submit timesheet", "copy timesheet", "import time entries", "clock in", "work from home"]
 "og:title": "Tracking and Submitting Time with the Beebole Timesheet"
-"og:description": "Learn how to track time in the Beebole timesheet — add rows, enter hours, use the timer, import calendar events, and submit your period for approval."
+"og:description": "Learn how to track time in the Beebole timesheet with the calendar or grid view, use the timer, import calendar events, and submit your period for approval."
 "og:type": "article"
 ---
 
 The timesheet is where each person in Beebole records the time they spend on projects, tasks, and time off. Every entry feeds reports, budgets, billing calculations, and the approval workflow. Open it by clicking **Timesheet** in the left sidebar.
 
 <Info>
-  Your administrator chooses the **Timesheet period** — daily, weekly, bi-weekly, semi-monthly, or monthly — along with the time entry unit and any entry restrictions. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+  Your administrator chooses the **Timesheet period** (daily, weekly, bi-weekly, semi-monthly, or monthly) along with the time entry unit and any entry restrictions. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 </Info>
 
 ---
 
-## The timesheet layout
+## Calendar view and grid view
 
-The timesheet is a grid:
+The timesheet has two views of the same entries. Switch between them with the two buttons next to the **Timesheet** title, **Grid view** and **Calendar view**. The first time you open your timesheet it shows the calendar view; after that, Beebole remembers the view you used last.
 
-- **Sections** group rows by the project or task categories your administrator selected in [Timesheet and Planning Settings](/help/documentation/timesheetSettings). A **Time Off** section appears when recording time off is allowed.
-- **Rows** are what you track time against — a project (or chain of projects), a task, or an absence type.
-- **Columns** are the days of the current period. Today's date is highlighted, and each day's header shows the time reported so far against your scheduled hours.
+Neither view is the main one. They show the same period, the same entries, and the same day headers, where each day shows the time reported so far against your scheduled hours. An entry you create in one view is in the other straight away, so you can switch whenever it helps: draw your day in the calendar, then check your totals per project in the grid.
 
-Use the date picker at the top of the page to move between periods or jump back to **Today**.
+| | Calendar view | Grid view |
+|---|---|---|
+| Layout | One column per day, with each entry drawn as a block at the time it happened | One row per project, task, or absence type, and one column per day |
+| How you enter time | Drag across a time slot, click a slot, use a day's **+** button, or drag a favorite onto the calendar | Add a row, then type a duration in a day cell |
+| Good for | Seeing how your day actually went, placing meetings and blocks of work, dropping frequent activities from the favorites bar | Seeing a whole period per project at a glance with each row's total, typing a week of durations quickly |
+| Less suited to | Long periods: a bi-weekly or monthly period is wider than the screen and scrolls sideways | Recording when things happened: the grid only shows durations |
+| Timer | Play button on today's entries, on favorites, and on suggestions | Timer button on each row, for today |
+| Suggested entries | Ghost entries on the calendar | A pane next to the grid |
+| Importing calendar events | Not available, switch to the grid view | Assign events to a row |
 
-The stretch a period covers — a day, a week, two weeks, half a month, or a month — is not something you switch from the timesheet. Your administrator sets the **Timesheet period** once for the account, or for a team or a person, in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#timesheet-period), and every timesheet follows it. If you expected a day, week, or month switcher and don't see one, that is why.
+Everything else works the same in both views: the date picker, the button cluster at the top left of the timesheet (approvals, team, suggestions, calendar import, copy and paste), the [entry details](#entry-details), the [floating timer](#the-floating-timer), [undo](#undoing-and-redoing-changes), and **Submit**.
 
-With a **Daily** timesheet period, the grid shows a single day and each row displays its full entry form — duration, times, and note — inline.
+### Moving between periods
 
-The grid is one of two ways to see your timesheet: the toggle at the top of the page switches between **Grid view** and **Calendar view**. See [Calendar view](#calendar-view) below.
+Use the arrows on each side of the date range at the top of the page to move one period back or forward. Click the date range itself to open the date picker: pick any day in the two months it shows, or use a shortcut such as **This week**, **Last week**, **This month**, or **Today**.
 
----
+<Frame caption="The date picker opened from the date range">
+  <img src="/help/images/timesheets/date-picker.webp" alt="Beebole timesheet date picker opened under the date range of the week of September 20 to 26, 2026, showing September and October 2026 with the week highlighted, and the This week, Next week, Last week, Today, This month, Next month, Last month and This year shortcuts" width="588" />
+</Frame>
 
-## Entering time
-
-<Steps>
-  <Step title="Open your timesheet">
-    Click **Timesheet** in the left sidebar. The timesheet opens on the current period.
-  </Step>
-  <Step title="Add a row">
-    Click the **+** button (**Add a row**) next to a section name. Pick a project from the **Select a project** list — or a task or absence type, depending on the section. If your account chains several project categories, pick one entry for each level.
-  </Step>
-  <Step title="Type your time in a day cell">
-    Click the cell for the right day and type the time you spent. You enter time in the unit your administrator configured — hours, days, or a percentage of your schedule.
-  </Step>
-</Steps>
-
-Every change is saved automatically — there is no save button on the timesheet.
-
-<Tip>
-  Rows you use every period are worth pinning. Open the row's **⋯** action menu and click **Pin to top** so the row keeps its place at the top of its section. Click **Unpin** in the same menu to remove it.
-</Tip>
-
-### Entry details
-
-Hover over a cell and click the info icon that appears in its corner to open the entry details. Depending on your account's settings, an entry can hold:
-
-| Field | What it does |
-|-------|--------------|
-| **Time spent** | The entry's duration. |
-| **Start time** and **End time** | When you started and stopped, if your administrator enabled start and end times. The duration is calculated for you. |
-| **Add a note to your time entry** | A free-text note, visible to approvers and in reports. A small text icon marks cells that carry a note. |
-| **Non-billable** | Marks this entry as non-billable, regardless of the project's [billing rates](/help/documentation/billing). An administrator can remove this checkbox with the **Hide the non-billable option** restriction in [Timesheet settings](/help/documentation/timesheetSettings#restrictions). |
-| **Work from home** | Flags the entry as remote work. |
-| Custom fields | Any [custom fields](/help/documentation/custom-fields) your administrator defined for time entries. |
-
-The **Non-billable** and **Work from home** checkboxes apply to work entries only — they don't appear on time off entries.
+The stretch a period covers (a day, a week, two weeks, half a month, or a month) is not something you switch from the timesheet. Your administrator sets the **Timesheet period** once for the account, or for a team or a person, in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#timesheet-period), and every timesheet follows it. If you expected a day, week, or month switcher and don't see one, that is why. In the calendar view you can still look at one day at a time, see [Focusing on one day](#focusing-on-one-day).
 
 ---
 
 ## Calendar view
 
-The calendar view lays your period out day by hour, so you place entries in time instead of typing durations. It is the view you land on the first time you open your timesheet; switch between the two with the **Calendar view** and **Grid view** toggle at the top of the page, and Beebole remembers which one you used last. The day grid is tall enough for short entries to stay readable, and a full day fills its column exactly to the end of your schedule — only a genuinely over-booked day is drawn as overflowing.
+The calendar view gives each day of the period a column and draws each entry as a block, so you place time instead of typing it.
 
-The day headers are the same as in the grid view — each one shows the time reported so far against the day's scheduled hours, with its progress bar — so the two views always agree on where a day stands.
+- When your account records start and end times, each column is a day by the hour, today shows a line at the current time, and every entry sits at its real start and end.
+- When your account records durations only, there is no hour scale. Entries stack one after another from the top of each day, and the height of a block is its duration.
 
-- **Create an entry** — Click and drag across an empty time slot; the selection shows the total duration alongside the start and end times as you draw. The entry popup opens with the activity picker built in — the entry is created as soon as you pick the project, task, or absence type, and you can still drag the new block to another time or day, or resize it from either edge, before you're done.
-- **Create an entry with one click** — Click an empty slot without dragging. When your account doesn't record start and end times, the new entry is pre-filled with the time still missing from that day's schedule — the same figure the day header shows — so the last entry of the day always completes it. On a full, overrun, or unscheduled day, and whenever start and end times are on, the click places a one-hour entry instead.
-- **Move an entry** — Drag it to another slot or day. Its duration is preserved.
-- **Resize an entry** — Drag its top or bottom edge to change the start or end time. Edges snap to 15-minute steps; hold **⌘** (Ctrl on Windows/Linux) while dragging an edge to snap to whole hours instead.
-- **Give an entry a time** — When start and end times are recorded, an entry that has none yet — typed in the grid, for example — sits stacked at the top of its day. Drag it to a slot and it takes the clock time where you release it.
-- **Duplicate an entry** — Hold **⌘** (Ctrl on Windows/Linux) while dragging an entry to a new slot.
-- **Delete an entry** — Hover over it and click the delete button that appears.
-- **Work on several entries at once** — Shift-click to select a range, or **⌘**-click (Ctrl on Windows/Linux) to pick individual entries, then move, duplicate, resize, or delete the whole selection — one undo step reverses the batch.
-- **Time an entry** — Hover an entry on today and a play/pause button appears next to the delete button. See [Using the timer](#using-the-timer).
+A full day fills its column exactly to the end of your schedule; only a genuinely over-booked day is drawn as overflowing. The day grid is tall enough for short entries to stay readable.
+
+<Frame caption="A week in the calendar view, with the favorites bar above the day grid">
+  ![Beebole timesheet calendar view showing a week of time entries placed by hour, day headers with reported hours, and the favorites bar with frequent projects](/help/images/timesheets/calendar-view.webp)
+</Frame>
+
+### Adding and changing entries
+
+- **Create an entry**: click and drag across an empty time slot. The selection shows the total duration alongside the start and end times as you draw. The entry popup opens with the activity picker built in, and the entry is created as soon as you pick the project, task, or absence type. You can still drag the new block to another time or day, or resize it from either edge, before you're done.
+- **Create an entry with one click**: click an empty slot without dragging. When your account doesn't record start and end times, the new entry is pre-filled with the time still missing from that day's schedule, the same figure the day header shows, so the last entry of the day always completes it. On a full, overrun, or unscheduled day, and whenever start and end times are on, the click places a one-hour entry instead.
+- **Add an entry to any day, even a full one**: hover a day and click the **+** button (**Add an entry**) that appears at the top right of its header. The entry popup opens on a new entry for that day, so you never need an empty slot to click. Without start and end times, the entry goes after the day's last entry and is pre-filled with the time still missing from the schedule (one hour on a full day). With start and end times, it takes the first free hour from the start of your working day.
+- **Move an entry**: drag it to another slot or day. Its duration is preserved.
+- **Resize an entry**: drag its top or bottom edge to change the start or end time. Edges snap to 15-minute steps; hold **⌘** (Ctrl on Windows/Linux) while dragging an edge to snap to whole hours instead.
+- **Give an entry a time**: when start and end times are recorded, an entry that has none yet (typed in the grid view, for example) sits stacked at the top of its day. Drag it to a slot and it takes the clock time where you release it.
+- **Duplicate an entry**: hold **⌘** (Ctrl on Windows/Linux) while dragging an entry to a new slot.
+- **Edit an entry**: click it to open its [entry details](#entry-details).
+- **Delete an entry**: hover over it and click the delete button that appears.
+
+<Frame caption="The + button of a day header, shown while the mouse is over that day">
+  ![Beebole timesheet calendar view with the mouse over Wednesday's header and the plus button at its top right magnified](/help/images/timesheets/calendar-day-add.webp)
+</Frame>
+- **Work on several entries at once**: Shift-click to select a range, or **⌘**-click (Ctrl-click on Windows/Linux) to pick individual entries, then move, duplicate, resize, or delete the whole selection. One undo step reverses the batch.
+
+When your account records start and end times, entries you place in the calendar carry them, and those times can appear in reports.
+
+### Keyboard shortcuts
+
+Click an entry to select it, then:
+
+| Action | Mac | Windows / Linux |
+|--------|-----|-----------------|
+| Copy the entry | **⌘+C** | Ctrl+C |
+| Paste it on the slot under your pointer | **⌘+V** | Ctrl+V |
+| Duplicate the selected entries | **⌘+D** | Ctrl+D |
+| Delete the selected entries | **Delete** or **Backspace** | **Delete** or **Backspace** |
+| Clear the selection | **Esc** | **Esc** |
 
 ### Favorites
 
-Above the calendar, a favorites bar shows the activities you log most often — the rows you [pinned](#managing-rows) and your recently used projects, tasks, and time off types:
+Above the calendar, a favorites bar shows up to five of your activities. The rows you [pinned](#managing-rows) in the grid view come first, followed by the rows of your timesheet and the projects and tasks you used most recently.
 
-- **Click a favorite** to log it instantly: the entry lands on today (or the first visible day), starts right after your last entry of that day — or at the time you usually begin, when the day is empty — and uses your usual duration for that activity, trimmed so it never exceeds the hours still missing for the day.
-- **Drag a favorite** onto the calendar grid to place it exactly where you want it.
+- **Drag a favorite** onto the calendar grid to create an entry for that activity on the day and at the time where you release it. The entry takes your usual duration for that activity (or one hour when your recent entries on it vary), trimmed to the hours still missing for the day, or to one hour at most once the day is full. Click the new entry to adjust its [details](#entry-details).
+- **Drop a favorite on a suggested entry** to accept that suggestion as the favorite's activity instead.
+- **Remove a favorite** with the **×** (**Remove from favorites**) on the left of its chip. When the favorite comes from a row of your timesheet, that row is removed from the grid view too.
 
-Either way, the entry popup opens on the new entry so you can adjust or confirm it without a second click.
+A plain click on a favorite doesn't create anything: only the drag adds an entry, so a stray click never logs time. To start tracking a favorite right away, use its play button on the right of the chip when the timer is enabled, see [Using the timer](#using-the-timer).
+
+<Frame caption="The favorites bar in the current week, each chip with its remove button on the left and its play button on the right">
+  <img src="/help/images/timesheets/favorites-bar-play.webp" alt="Beebole favorites bar with five chips: Acme Corp: Website Redesign with Meeting, Training, Sales, Quantum Logistics: Fleet Tracker with Development, and Northstar Financial: Dashboard with Analysis, each showing an × on the left and a play button on the right, the first play button highlighted under the mouse" width="1116" />
+</Frame>
+
+### Focusing on one day
+
+Click a day header to show that day alone, at full width. Click the header again, or **Back** above the calendar, to return to the whole period. The period itself doesn't change: this only changes what the calendar shows.
+
+<Frame caption="One day at full width in the calendar view">
+  ![Beebole timesheet calendar view focused on Thursday, September 24, 2026, with the Back button and the date above the calendar, and the day's Training, Sales and Quantum Logistics: Fleet Tracker entries at full width](/help/images/timesheets/day-focus.webp)
+</Frame>
+
+### Zooming into one hour
+
+When your account records start and end times, you can blow a single hour up to fill the calendar, to work with entries of a few minutes. Hover an hour in the time column on the left of the calendar and click it (**Open this hour**).
+
+- The hour opens for every day on show: the whole period, or the one day you are [focusing on](#focusing-on-one-day).
+- The grid is marked every five minutes, and a one-minute entry is tall enough to read, click, move, and resize.
+- Dragging works in one-minute steps instead of 15 minutes, or in your administrator's **Minimum time interval accepted** if that is longer.
+- An entry that runs past the hour is cut at its edge.
+- The **+** button of a day header places the new entry from the hour on show, not at the start of your working day.
+
+A strip above the grid shows the start and end of the hour you are in. To return to the full day, click the **×** (**Back**) on that strip, or **Back** above the calendar. When you zoomed in from a focused day, **Back** returns to that day first.
+
+<Frame caption="The calendar zoomed into 10 to 11 AM, with entries of a few minutes on Friday">
+  ![Beebole timesheet calendar zoomed into the hour from 10 to 11 AM, with five-minute marks in the time column, the strip reading 10 AM – 11 AM with its close button, entries of 15, 6, 3 and 15 minutes on Friday, and longer entries on the other days cut at the edges of the hour](/help/images/timesheets/calendar-hour-zoom.webp)
+</Frame>
+
+Even without zooming, entries that follow each other too closely to be drawn apart, such as a run of one-minute entries, don't hide one another. The calendar fans them out in a staircase, each one slightly to the right of the one before and laid on top of it, so every entry keeps an edge you can see and click.
+
+### Suggested entries in the calendar
+
+[Suggested time entries](/help/documentation/ai#suggested-time-entries) show up as ghost entries in the calendar. Drag a suggestion to a time slot to schedule it, or accept it as it is. The suggestions button (**Suggested entries**) in the button cluster shows or hides them.
+
+<Frame caption="Today's two suggestions as ghost entries in the calendar">
+  ![Beebole timesheet calendar view of the week of September 27 to October 3, 2026: Monday to Thursday filled with colored entries, and today, Friday, with two dashed ghost entries, Sales for 4 hours in the morning and Training for 4 hours in the afternoon, the Suggested entries button on in the button cluster](/help/images/timesheets/calendar-suggestions.webp)
+</Frame>
+
+---
+
+## Grid view
+
+The grid view is a table of the period:
+
+- **Sections** group rows by the project or task categories your administrator selected in [Timesheet and Planning Settings](/help/documentation/timesheetSettings). A **Time Off** section appears when recording time off is allowed.
+- **Rows** are what you track time against: a project (or chain of projects), a task, or an absence type. Each row shows its total for the period.
+- **Columns** are the days of the current period. Today's date is highlighted, and each day's header shows the time reported so far against your scheduled hours.
+
+<Frame caption="A weekly timesheet in the grid view, with Client, Internal, and Time Off sections, and each day's reported hours against the schedule">
+  ![Beebole weekly timesheet grid showing client and internal project rows, day columns with 8 reported hours each, and a 40 of 40 hours weekly total](/help/images/timesheets/weekly-grid.webp)
+</Frame>
+
+With a **Daily** timesheet period, the grid shows a single day and each row displays its full entry form (duration, times, and note) inline.
+
+### Entering time in the grid
+
+<Steps>
+  <Step title="Add a row">
+    Click the **+** button (**Add a row**) next to a section name. Pick a project from the **Select a project** list, or a task or absence type, depending on the section. If your account chains several project categories, pick one entry for each level.
+  </Step>
+  <Step title="Type your time in a day cell">
+    Click the cell for the right day and type the time you spent. You enter time in the unit your administrator configured: hours, days, or a percentage of your schedule.
+  </Step>
+</Steps>
+
+Every change is saved automatically, in both views. There is no save button on the timesheet.
+
+<Tip>
+  Rows you use every period are worth pinning. Open the row's **⋯** action menu and click **Pin to top** so the row keeps its place at the top of its section. Pinned rows also appear in the calendar view's [favorites bar](#favorites).
+</Tip>
+
+### Managing rows
+
+Each row has a **⋯** action menu with:
+
+- **Pin to top** / **Unpin**: keep the row at the top of its section.
+- **Edit**: change the row's project, task, or absence type selection.
+- **Remove row**: take the row off your timesheet.
+
+<Frame caption="A row's action menu">
+  <img src="/help/images/timesheets/row-menu.webp" alt="Beebole timesheet row action menu open on Acme Corp: Website Redesign, with Pin to top, Edit, and Remove row" width="365" />
+</Frame>
+
+To clear a whole section at once, hover over the section's header and click the trash button (**Clear all rows in this section**) that appears. It removes that section's rows and their time entries for the current period. The button is hidden on locked periods and when reviewing someone else's timesheet.
+
+<Frame caption="The trash button that appears on hovering a section header">
+  <img src="/help/images/timesheets/clear-rows-button.webp" alt="Beebole timesheet Client section header hovered, showing the add row button, the row count 5 and a red trash button with the tooltip Clear all rows in this section, above the Acme Corp: Website Redesign and Northstar Financial: Dashboard rows" width="336" />
+</Frame>
+
+There is no confirmation dialog for these actions. Press **⌘+Z** (Ctrl+Z on Windows/Linux) to undo.
+
+### Suggested entries in the grid
+
+In the grid view, the suggestions button (**Suggested entries**) in the button cluster opens the [suggested time entries](/help/documentation/ai#suggested-time-entries) in a pane next to the grid.
+
+<Frame caption="The Suggested entries pane next to the grid">
+  ![Beebole timesheet in grid view with the Suggested entries pane open on the left: an Accept all link, and one card per day on Northstar Financial: Dashboard, Analysis, each with its duration, a Habit badge, accept and dismiss buttons and a Why? link](/help/images/ai/suggested-entries-tray.webp)
+</Frame>
+
+---
+
+## Entry details
+
+Every entry has the same details, whichever view you use. In the calendar view, click the entry. In the grid view, hover over a cell and click the info icon that appears in its corner. Depending on your account's settings, an entry can hold:
+
+<Frame caption="The entry details of a three-hour meeting, with a note and Work from home checked">
+  <img src="/help/images/timesheets/entry-details.webp" alt="Beebole timesheet entry details showing the time spent, empty start and end times, a note, the Non-billable and Work from home checkboxes, and an empty Cost center custom field" width="432" />
+</Frame>
+
+| Field | What it does |
+|-------|--------------|
+| **Time spent** | The entry's duration. |
+| **Start time** and **End time** | When you started and stopped, if your administrator enabled start and end times. The duration is calculated for you. |
+| **Add a note to your time entry** | A free-text note, visible to approvers and in reports. In the grid view, a small text icon marks cells that carry a note. |
+| **Non-billable** | Marks this entry as non-billable, regardless of the project's [billing rates](/help/documentation/billing). An administrator can remove this checkbox with the **Hide the non-billable option** restriction in [Timesheet settings](/help/documentation/timesheetSettings#restrictions). |
+| **Work from home** | Flags the entry as remote work. |
+| Custom fields | Any [custom fields](/help/documentation/custom-fields) your administrator defined for time entries. |
+
+The **Non-billable** and **Work from home** checkboxes apply to work entries only. They don't appear on time off entries.
 
 <Info>
-  Each time entry holds exactly one activity — a task, an absence, or projects. Switching an entry's activity replaces the previous one, so nothing counts twice in reports or totals.
+  Each time entry holds exactly one activity: a task, an absence, or projects. Switching an entry's activity replaces the previous one, so nothing counts twice in reports or totals.
 </Info>
-
-Entries created or adjusted here carry real start and end times, which can appear in reports. [Suggested time entries](/help/documentation/ai#suggested-time-entries) show up as ghost entries in the calendar — drag a suggestion to a time slot to schedule it, or accept it as-is.
 
 ---
 
 ## Using the timer
 
-When your administrator has enabled the timer, each row shows a timer button for the current day. In the [calendar view](#calendar-view), you can also start or pause the clock without leaving the grid:
+When your administrator has enabled the timer, where you start it depends on the view:
 
-- **On a calendar entry** — Hover an entry on today for a play/pause button. The entry being recorded is marked with a pulsing red dot and its duration ticks up live, in place.
-- **On a favorite chip** — Each chip in the [favorites bar](#favorites) carries its own play/pause button, so a frequent project or task starts tracking in one click.
-- **On a suggestion** — The play button on today's [suggested entries](/help/documentation/ai#suggested-time-entries) starts the clock on the suggested project or task. Without start and end times, it also accepts the suggestion in the same undoable step; when **Record start and end times** is on, the tracked time is the entry and the suggestion shrinks as that time covers it.
+| View | Where the timer is |
+|------|--------------------|
+| Calendar view | Hover an entry on today for a play/pause button, next to its delete button. Each chip in the [favorites bar](#favorites) has its own play/pause button, so a frequent project or task starts tracking in one click. Today's [suggested entries](/help/documentation/ai#suggested-time-entries) have one too. |
+| Grid view | Each row has a timer button for today. |
+| Any page | The [floating timer](#the-floating-timer) pauses and resumes what you timed today. |
+
+Time off has no timer: time off is booked, not timed.
 
 <Steps>
   <Step title="Start the timer">
-    Click the timer button (**Start timer**) on the row you are working on. The elapsed time starts counting.
+    Click the play button (**Start timer**) on the entry, favorite, or row you are working on. The elapsed time starts counting. In the calendar view, the entry being recorded is marked with a pulsing red dot and its duration grows live, in place.
   </Step>
   <Step title="Keep working">
-    The timer keeps running while you use other parts of Beebole. A floating timer stays on screen so you can check or pause it from any page — see [The floating timer](#the-floating-timer) below.
+    The timer keeps running while you use other parts of Beebole. A floating timer stays on screen so you can check or pause it from any page, see [The floating timer](#the-floating-timer) below.
   </Step>
   <Step title="Pause it when you stop">
-    Click the timer button again (**Pause timer**). Beebole saves the elapsed time to the entry, rounded up to the **Minimum time interval accepted** set by your administrator.
+    Click the button again (**Pause timer**). Beebole saves the elapsed time to the entry, rounded up to the **Minimum time interval accepted** set by your administrator.
   </Step>
 </Steps>
 
-A plain click on any play button switches timers: whatever was running is paused and its time saved, then the activity you clicked starts. To run several timers at once, hold **⌘** (Ctrl on Windows/Linux) while clicking a play button — the tooltip reads **⌘+Click to start it without stopping the others** whenever a timer is already running. Each timer counts its own time in full, so two timers running for an hour log two hours. The gesture is the same on every play button: timesheet rows, calendar entries, favorites, suggestions, and the floating timer itself.
+<Frame caption="In the calendar view, the entry being timed shows a red dot and its running total, with the pause button on hover">
+  ![Beebole timesheet calendar view from Sunday to Thursday, with a Quantum Logistics: Fleet Tracker entry on Wednesday at 11 AM marked by a red dot and 0.75 hours, its pause and delete buttons visible, next to suggested entries drawn with dashed borders](/help/images/timesheets/calendar-timer-running.webp)
+</Frame>
+
+<Frame caption="The timer button on a row in the grid view, running for 45 minutes, and the floating timer at the bottom of the page">
+  ![Beebole timesheet with a timer running for 45 minutes on the Quantum Logistics: Fleet Tracker row, a magnified view of the row's timer button with its pause badge, and the floating timer panel showing the same activity](/help/images/timesheets/timer-running.webp)
+</Frame>
+
+Starting a timer from a suggestion also works on the suggested project or task. Without start and end times, it accepts the suggestion in the same undoable step; when **Record start and end times** is on, the tracked time is the entry and the suggestion shrinks as that time covers it.
+
+A plain click on any play button switches timers: whatever was running is paused and its time saved, then the activity you clicked starts. To run several timers at once, hold **⌘** (Ctrl on Windows/Linux) while clicking a play button. The tooltip reads **⌘+Click to start it without stopping the others** whenever a timer is already running. Each timer counts its own time in full, so two timers running for an hour log two hours. The gesture is the same on every play button: calendar entries, favorites, suggestions, grid rows, and the floating timer itself.
 
 <Info>
-  When start and end times are enabled and a record for today is already finished, the row's timer button shows **Duplicate and start** — it creates a new entry on the same row and starts timing it. Administrators can also make the timer mandatory, in which case durations can only be recorded by timer.
+  When start and end times are enabled and a record for today is already finished, the play button shows **Duplicate and start**: it creates a new entry for the same activity and starts timing it. Administrators can also make the timer mandatory, in which case durations can only be recorded by timer.
 </Info>
 
 ### The floating timer
 
-On desktop, a floating panel appears as soon as a timer runs, and you can drag it anywhere on the page. It lists the activities you timed today, one line each:
+On desktop, a floating panel appears as soon as a timer runs, whichever view or page you are on. Drag it anywhere on the page, grabbing it by any spot including the activity names, and it stays where you leave it. It lists the activities you timed today, one line each.
+
+Each line names what the timer belongs to: the project or task, with its parent projects shortened to initials, for example AC. Website Redesign for Website Redesign under Acme Corp. Hover the name to see the full path.
 
 - A **running** line shows a pulsing dot, its name, a live counter, and a **Pause timer** button.
-- A **paused** line stays listed with the time saved on its entry. Its play button resumes it — a plain click pauses the others first, **⌘**-click (Ctrl-click) adds it to the ones running — and the **×** (**Remove from the timer list**) takes it off the panel. A running line has no **×**: pause it first, so time is never discarded while it is still counting.
+- A **paused** line stays listed with the time saved on its entry. Its play button resumes it (a plain click pauses the others first, **⌘**-click or Ctrl-click adds it to the ones running) and the **×** (**Remove from the timer list**) takes it off the panel. A running line has no **×**: pause it first, so time is never discarded while it is still counting.
 - When more than one timer is running, a **Pause all** button appears under the lines and stops them all at once, saving each entry's own time.
+
+<Frame caption="Two timers running and one paused activity on the floating timer">
+  <img src="/help/images/timesheets/timer-shelf.webp" alt="Beebole floating timer listing NF. Dashboard paused at 1:30:00 with its play button and remove cross, QL. Fleet Tracker running at 45:00 and AC. Website Redesign running at 20:00 with their pause buttons, and the Pause all button underneath" width="375" />
+</Frame>
 
 Click the chevron on the first line to collapse the panel to dots and counters; hover a dot for the activity's name. The panel only tracks today's activities, and when several entries exist for a day, one line stands for each activity.
 
-If a restriction refuses the time a pause would save — for example **No overtime beyond the schedule** — the timer keeps running and an error explains why, so no time is lost while you fix the day.
+If a restriction refuses the time a pause would save, for example **No overtime beyond the schedule**, the timer keeps running and an error explains why, so no time is lost while you fix the day.
 
 <Tip>
-  Your browser tab keeps you posted: its title shows the elapsed time while one timer runs, and switches to a count — **2 timers running** — when several do.
+  Your browser tab keeps you posted: its title shows the elapsed time while one timer runs, and switches to a count, **2 timers running**, when several do.
 </Tip>
-
----
-
-## Managing rows
-
-Each row has a **⋯** action menu with:
-
-- **Pin to top** / **Unpin** — keep the row at the top of its section.
-- **Edit** — change the row's project, task, or absence type selection.
-- **Remove row** — take the row off your timesheet.
-
-To clear a whole section at once, hover over the section's header and click the trash button (**Clear all rows in this section**) that appears — it removes that section's rows and their time entries for the current period. The button is hidden on locked periods and when reviewing someone else's timesheet.
-
-There is no confirmation dialog for these actions — press **⌘+Z** (Ctrl+Z on Windows/Linux) to undo.
 
 ---
 
 ## Copying a period
 
-To reuse a period's rows and entries:
+To reuse a period's rows and entries, in either view:
+
+<Frame caption="The copy button in the button cluster at the top left of the timesheet">
+  ![Beebole timesheet with a magnified view of the copy button in the top-left button cluster](/help/images/timesheets/copy-button.webp)
+</Frame>
 
 <Steps>
   <Step title="Copy the current period">
-    Click the copy button in the cluster at the top-left corner of the grid. A **Copied!** confirmation appears.
+    Click the copy button in the button cluster at the top left of the timesheet. A **Copied!** confirmation appears.
   </Step>
   <Step title="Go to another period">
     Use the date picker to open the period you want to fill.
   </Step>
   <Step title="Paste">
-    Click the **Paste period** button that now appears next to the copy button. If the period already contains time entries, Beebole asks whether to **Add** the copied entries on top or **Replace** the existing ones.
+    Click the **Paste period** button that now appears just below the copy button. If the period already contains time entries, Beebole asks whether to **Add** the copied entries on top or **Replace** the existing ones.
+
+    <Frame caption="Pasting on a period that already has time entries">
+      <img src="/help/images/timesheets/paste-dialog.webp" alt="Beebole dialog reading There are already time records in this period, with the Replace and Add buttons" width="608" />
+    </Frame>
   </Step>
 </Steps>
+
+To copy a single entry instead, use **⌘+C** and **⌘+V** in the calendar view, see [Keyboard shortcuts](#keyboard-shortcuts).
 
 ---
 
 ## Undoing and redoing changes
 
-Beebole tracks your recent changes across the app:
+Beebole tracks your recent changes across the app, in both views:
 
 | Action | Mac | Windows / Linux |
 |--------|-----|-----------------|
@@ -191,66 +329,90 @@ Beebole tracks your recent changes across the app:
 
 Undo and redo buttons also appear in the top bar whenever there is history to step through. Deleted entries and rows come back exactly as they were.
 
+<Frame caption="The undo and redo buttons at the top right, after a change">
+  ![Beebole page header after a change: the undo button at the top right is magnified, next to the greyed-out redo button](/help/images/concepts/undo-redo-buttons.webp)
+</Frame>
+
 ---
 
 ## Recording time off
 
-When your administrator allows recording time off, the timesheet shows a **Time Off** section. Click its **+** button (**Add a row**), pick an absence type, and enter the time — absence types tracked in days are entered as full or partial days. See [Time off](/help/documentation/timeoff) for absence types, allowances, and approval.
+When your administrator allows recording time off, you can record it in either view. In the calendar view, create an entry and pick an absence type in the activity picker. In the grid view, click the **+** button (**Add a row**) of the **Time Off** section, pick an absence type, and enter the time. Absence types tracked in days are entered as full or partial days. See [Time off](/help/documentation/timeoff) for absence types, allowances, and approval.
+
+<Frame caption="Two days of PTO booked ahead in the Time Off section of the grid view">
+  ![Beebole timesheet grid view for the week of October 4 to 10, 2026, with a PTO row in days under the Time Off section: Monday and Tuesday set to 1 day, the half-day and full-day buttons on the other weekdays, and those two days shaded as days off](/help/images/timesheets/time-off-row.webp)
+</Frame>
 
 ---
 
 ## Importing calendar events
 
-You can bring your Google or Microsoft calendar events into the timesheet instead of re-typing meetings.
+You can bring your Google or Microsoft calendar events into the timesheet instead of re-typing meetings. Events are assigned to a row, so this is done in the grid view.
+
+<Frame caption="The calendar button that opens the calendar pane">
+  ![Beebole timesheet with a magnified view of the Import your calendar events button in the top-left button cluster](/help/images/timesheets/import-calendar-button.webp)
+</Frame>
 
 <Steps>
   <Step title="Open the calendar pane">
-    Click the calendar button (**Import your calendar events**) in the cluster at the top-left corner of the grid.
+    In the grid view, click the calendar button (**Import your calendar events**) in the button cluster at the top left of the timesheet.
   </Step>
   <Step title="Connect your calendar">
     Click **Sign in with Google** or **Sign in with Microsoft** and authorize access. The connection is personal to you, and Beebole only reads your events.
   </Step>
   <Step title="Assign events to a row">
-    Your events for the current period appear in the pane. Click one or more events to select them, then click a timesheet row to assign them — or drag an event straight onto a row. Imported events show a **Tracked** badge.
+    Your events for the current period appear in the pane. Click one or more events to select them, then click a timesheet row to assign them, or drag an event straight onto a row. Imported events show a **Tracked** badge.
   </Step>
 </Steps>
+
+The imported entries then show in the calendar view too.
 
 ---
 
 ## Importing time entries in bulk
 
-The timesheet itself has no import button for a CSV file or a spreadsheet — pasting rows from a spreadsheet exists for adding people, projects, tags, and tasks in bulk, not for hours. Bulk import of time entries is done outside the timesheet, through Beebole's API or its MCP server, or by one of the in-app shortcuts:
+The timesheet itself has no import button for a CSV file or a spreadsheet. Pasting rows from a spreadsheet exists for adding people, projects, tags, and tasks in bulk, not for hours. Bulk import of time entries is done outside the timesheet, through Beebole's API or its MCP server, or by one of the in-app shortcuts:
 
-- **The MCP server** — connect Claude, ChatGPT, or another AI assistant to Beebole and hand it the spreadsheet: its `record_time` tool creates one entry or many at once, for you or for other people. See [MCP server](/help/integrations/mcp-server).
-- **The API** — create entries for any number of people with `addTimeRecord`, from a script that reads your file; see [Mutations](/help/api/mutations#time-records) and the [worked example](/help/api/examples/example-2).
-- **Copy a period** — reuse a person's own rows and entries from another period; see [Copying a period](#copying-a-period).
-- **Import calendar events** — turn Google or Microsoft calendar events into entries; see [Importing calendar events](#importing-calendar-events).
-- **A legacy migration** — historical time from a legacy Beebole account is imported by Beebole's support team; see [Legacy migration](/help/documentation/legacy-migration).
+- **The MCP server**: connect Claude, ChatGPT, or another AI assistant to Beebole and hand it the spreadsheet. Its `record_time` tool creates one entry or many at once, for you or for other people. See [MCP server](/help/integrations/mcp-server).
+- **The API**: create entries for any number of people with `addTimeRecord`, from a script that reads your file. See [Mutations](/help/api/mutations#time-records) and the [worked example](/help/api/examples/example-2).
+- **Copy a period**: reuse a person's own rows and entries from another period. See [Copying a period](#copying-a-period).
+- **Import calendar events**: turn Google or Microsoft calendar events into entries. See [Importing calendar events](#importing-calendar-events).
+- **A legacy migration**: historical time from a legacy Beebole account is imported by Beebole's support team. See [Legacy migration](/help/documentation/legacy-migration).
 
-People who belong to your Beebole account enter time directly in their own timesheet, and it is part of your data the moment they save it — there is nothing to import between people in the same organization.
+People who belong to your Beebole account enter time directly in their own timesheet, and it is part of your data the moment they save it. There is nothing to import between people in the same organization.
 
 ---
 
 ## Submitting your timesheet
 
-When your period is complete, click **Submit** at the top of the timesheet. The timesheet enters the [approval workflow](/help/documentation/approval) and is locked while it waits for review. If an approver rejects it, fix your entries and click **Resubmit**.
+When your period is complete, click **Submit** at the top of the timesheet, in either view, next to the period's total. The timesheet enters the [approval workflow](/help/documentation/approval) and is locked while it waits for review. If an approver rejects it, fix your entries and click **Resubmit**.
 
-Your administrator can also configure automatic submission a set number of days after the period ends, and email reminders to submit — see [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+<Frame caption="The Submit button, next to the hours logged against the hours scheduled">
+  ![Beebole timesheet for the week of September 20 to 26, 2026, marked Draft, with 40 of 40 hours logged and a magnified view of the Submit button at the top right](/help/images/timesheets/submit-button.webp)
+</Frame>
+
+Your administrator can also configure automatic submission a set number of days after the period ends, and email reminders to submit. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 
 ---
 
 ## Reviewing your team
 
-Managers and administrators see two extra buttons in the cluster at the top-left corner of the grid:
+Managers and administrators see two extra buttons in the button cluster at the top left of the timesheet:
 
 - The approval button (**Approval**) opens the **Pending** pane with timesheets waiting for review. A red badge shows how many are pending. From here you can open a person's timesheet, **Approve** or **Reject** submissions, and **Remind** people who haven't submitted.
 - The team button (**Team**) opens the **Team** pane listing your team members with their reported time for the period.
+
+<Frame caption="The Team pane next to the timesheet">
+  ![Beebole timesheet with the Team pane open, listing team members with their reported hours for the week, Submitted or Approved status, and the pending approvers of submitted weeks](/help/images/timesheets/team-pane.webp)
+</Frame>
 
 For the full review workflow, see [Approvals](/help/documentation/approval).
 
 ### Timesheet score
 
-In the team panes, a colored ring around each person's avatar shows their **Timesheet score** — a 0 to 100 measure of how reliably they submit on time. The ring is green from 80 up, amber from 50 to 79, and red below 50. Hover over it for the breakdown: **On time**, **Late submissions**, **Not submitted**, and **Rejections**.
+The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80.
+
+Next to the score, each of the person's periods is marked **On time**, **Late**, or **Not submitted**, and hovering a period shows its **Deadline**, when it was **Submitted**, the **Days late**, and any **Rejections**. Click the **Score** column header to switch between worst first and best first. See [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) for the report's filters, period, and access. Developers can also read a person's score through the API's `getTimesheetScore` query, see [Queries](/help/api/queries#timesheets-and-approvals).
 
 ---
 
@@ -276,34 +438,43 @@ In the team panes, a colored ring around each person's avatar shows their **Time
 ## Frequently asked questions
 
 <AccordionGroup>
+  <Accordion title="Should I use the calendar view or the grid view?">
+    Whichever fits the way you work, since both show the same entries and you can switch at any time with the **Grid view** and **Calendar view** buttons next to the **Timesheet** title. The calendar view suits people who think in their day: meetings, blocks of work, favorites dragged onto the right hour. The grid view suits people who think in projects: a row per project with its total for the period, and durations typed quickly. Importing calendar events is only done in the grid view.
+  </Accordion>
+  <Accordion title="Why don't I see a timer button on my rows?">
+    The row timer buttons belong to the grid view. In the calendar view, the timer is on today's entries (hover one for its play button), on each favorite, and on today's suggested entries. In both views, the timer only shows when your administrator has enabled it.
+  </Accordion>
   <Accordion title="How do I submit my timesheet in Beebole?">
     Click **Submit** at the top of the **Timesheet** page when your period is complete. The timesheet then enters Beebole's approval workflow and is locked while it waits for review. If it comes back rejected, correct your entries and click **Resubmit**.
   </Accordion>
   <Accordion title="How do I copy my timesheet from the previous period?">
-    Open the period you want to copy, click the copy button at the top-left corner of the grid, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
+    Open the period you want to copy, click the copy button in the button cluster at the top left of the timesheet, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
   </Accordion>
   <Accordion title="Why can't I add time to a certain day?">
-    Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings** — for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
+    Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings**, for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
   </Accordion>
   <Accordion title="Can I track time on my phone?">
     Yes. Beebole's timesheet adapts to small screens with a mobile layout, and you can install Beebole as an app on your phone. See [Mobile and tablet](/help/documentation/mobile).
   </Accordion>
   <Accordion title="Who decides whether I enter time in hours or days?">
-    Your administrator. The unit for time entry — hours, days, or a percentage of your schedule — is set in Beebole's **Timesheet and Planning Settings**, along with the duration format and the timesheet period. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+    Your administrator. The unit for time entry (hours, days, or a percentage of your schedule) is set in Beebole's **Timesheet and Planning Settings**, along with the duration format and the timesheet period. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
   </Accordion>
   <Accordion title="Can I bulk import time entries from a file or spreadsheet?">
-    Yes, but not from a button in the timesheet. Beebole imports time in bulk through its [MCP server](/help/integrations/mcp-server) — an AI assistant connected to your account records one entry or many from a spreadsheet you give it — or through the API's `addTimeRecord` mutation from a script. Inside the app, only people, projects, tags, and tasks can be pasted in bulk; for time, copy a period or import calendar events. See [Importing time entries in bulk](#importing-time-entries-in-bulk).
+    Yes, but not from a button in the timesheet. Beebole imports time in bulk through its [MCP server](/help/integrations/mcp-server), where an AI assistant connected to your account records one entry or many from a spreadsheet you give it, or through the API's `addTimeRecord` mutation from a script. Inside the app, only people, projects, tags, and tasks can be pasted in bulk; for time, copy a period or import calendar events. See [Importing time entries in bulk](#importing-time-entries-in-bulk).
   </Accordion>
   <Accordion title="What are the ways to record time in Beebole?">
-    Type durations in the grid, draw entries in the calendar view, run the timer on a row or from the floating timer, click a favorite, drag calendar events onto a row, or accept the suggested entries the Assistant proposes. Beebole also records time from your phone through the mobile layout, from the desktop app, and from the browser extension. There is no clock-in by badge or face recognition — face or fingerprint unlock only exists as a passkey for signing in.
+    Draw entries, use a day's **+** button, or drag a favorite in the calendar view, type durations in the grid view, run the timer from an entry, a favorite, a row, or the floating timer, drag calendar events onto a row, or accept the suggested entries the Assistant proposes. Beebole also records time from your phone through the mobile layout, from the desktop app, and from the browser extension. There is no clock-in by badge or face recognition; face or fingerprint unlock only exists as a passkey for signing in.
   </Accordion>
   <Accordion title="Can the Work from home checkbox be hidden?">
-    No. Beebole shows **Work from home** on every work entry's details, and there is no setting to remove it — unlike **Non-billable**, which the **Hide the non-billable option** restriction takes away. Leaving it unchecked has no effect on reports, so teams that don't track remote work can simply ignore it.
+    No. Beebole shows **Work from home** on every work entry's details, and there is no setting to remove it, unlike **Non-billable**, which the **Hide the non-billable option** restriction takes away. Leaving it unchecked has no effect on reports, so teams that don't track remote work can simply ignore it.
   </Accordion>
   <Accordion title="Why can't I switch my timesheet between day, week, and month?">
-    Because the period is not a personal view. Your administrator sets the **Timesheet period** for the account — or for your team or your profile — in Beebole's **Timesheet and Planning Settings**, and the grid always shows exactly one period. Ask them to change it if a different period suits your team better.
+    Because the period is not a personal view. Your administrator sets the **Timesheet period** for the account, or for your team or your profile, in Beebole's **Timesheet and Planning Settings**, and the timesheet always shows exactly one period. In the calendar view you can click a day header to look at that day alone, but the period stays the same. Ask your administrator to change it if a different period suits your team better.
+  </Accordion>
+  <Accordion title="Where do I see my team's timesheet scores?">
+    In the **Compliance** entry of Beebole's Reports menu, where the **Score** column shows each person's 0 to 100 timesheet score next to their periods marked **On time**, **Late**, or **Not submitted**. The team panes of the timesheet no longer show the score around people's pictures. See [Timesheet score](#timesheet-score).
   </Accordion>
   <Accordion title="Why is there no project to pick when I add a row?">
-    Either no project has been made available to you yet, or the project's category isn't offered in the timesheet. Ask an administrator or your manager to grant you the project under **Who has access?** — or **Show projects** on your profile — and to check **Record time on these project categories** in Beebole's **Timesheet and Planning Settings**. See [Troubleshooting](/help/documentation/troubleshooting#no-projects-to-pick-when-adding-a-row).
+    Either no project has been made available to you yet, or the project's category isn't offered in the timesheet. Ask an administrator or your manager to grant you the project under **Who has access?**, or **Show projects** on your profile, and to check **Record time on these project categories** in Beebole's **Timesheet and Planning Settings**. See [Troubleshooting](/help/documentation/troubleshooting#no-projects-to-pick-when-adding-a-row).
   </Accordion>
 </AccordionGroup>

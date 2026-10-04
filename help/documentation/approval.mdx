@@ -32,7 +32,11 @@ The timesheet's status badge shows where a period stands:
 | **Approved** | Every stage has approved. The timesheet stays locked. |
 | **Rejected** | An approver rejected the timesheet. The owner can edit and resubmit. |
 
-Click the status badge to open the stage breakdown: each stage shows its approver type, who has already approved and when, and who is still pending on the current stage. A stage with no eligible approver — for example, **People managers** when the person has no manager — shows **No manager found** and is skipped.
+Click the status badge, on the timesheet or next to a person in the **Team** pane, to open the stage breakdown: each stage shows its approver type, who has already approved and when, and who is still pending on the current stage. A stage with no eligible approver — for example, **People managers** when the person has no manager — shows **No manager found** and is skipped.
+
+<Frame caption="The stage breakdown of a submitted timesheet, opened from its badge in the Team pane">
+  <img src="/help/images/approval/status-badge-breakdown.webp" alt="Beebole Team pane entry for Ana Pereira with her Submitted badge open, showing stage 1, Project managers, still pending on Sophie Laurent and Thomas Muller" width="344" />
+</Frame>
 
 ---
 
@@ -63,6 +67,10 @@ The workflow is a list of sequential stages. It lives in the **Approval workflow
 
 Every change in the panel is saved automatically — there is no save button.
 
+<Frame caption="A two-stage workflow: the project managers, then the person's managers">
+  <img src="/help/images/approval/workflow-stages.webp" alt="Beebole Approval workflow panel with stage 1 Project managers, Any, opened to show its type selector and the All and Any quorum switch, stage 2 People managers, Any, and the Add button" width="1080" />
+</Frame>
+
 ### Approver types
 
 | Type | Who approves |
@@ -73,6 +81,10 @@ Every change in the panel is saved automatically — there is no save button.
 | **Task managers** | The managers of the tasks in the timesheet. |
 | **Tagged people** | All people tagged with the selected tag. |
 | **Specific people** | The named people you select. |
+
+<Frame caption="A stage's approver type, picked from the six types">
+  <img src="/help/images/approval/approver-types.webp" alt="Beebole Approval workflow panel with the first stage, Project managers, unfolded: its type selector open on Admins, People managers, Project managers (checked), Specific people, Tagged people and Task managers, next to the All and Any switch" width="1080" />
+</Frame>
 
 <Info>
   Beebole resolves approvers when the timesheet is submitted, based on its content. If a period contains entries on three projects, a **Project managers** stage includes the managers of all three.
@@ -92,14 +104,22 @@ Managers and administrators see an approval button (**Approval**) in the cluster
 - Click a person to open their timesheet for the submitted period. **Approve** and **Reject** buttons appear at the top of the timesheet whenever you are a pending approver — or an administrator.
 - Select several submissions with the checkboxes to act in bulk with **Approve** and **Reject**.
 
+<Frame caption="The Pending pane with Show all on, late submissions first">
+  ![Beebole timesheet with the Pending pane open and Show all turned on, listing late submitted timesheets with each person's hours, their Submitted status and the pending Project managers stage](/help/images/approval/pending-pane.webp)
+</Frame>
+
 The neighboring team button (**Team**) opens the **Team** pane, which lists your team members with their status for the period. People who haven't submitted yet have a **Remind** button (**Send reminder**) that emails them on the spot.
 
-Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. Every button acts only on the people it can act on, so a mixed selection is safe:
+Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. A button that applies to nobody in the selection is left out. Every button acts only on the people it can act on, so a mixed selection is safe:
 
 - **Approve** and **Reject** act on the selected timesheets submitted for the period on screen and waiting for you — as an administrator, on any submitted one.
 - **Remind** goes to the selected people who haven't submitted — their period is a draft, rejected, or empty. People whose timesheet is approved, or submitted and waiting for someone else, are never reminded. Once the reminders are sent, those people are deselected and the submitted ones stay selected for approval.
 
 The bar acts strictly on the period displayed: a person's submission from another period is never approved or rejected from here.
+
+<Frame caption="Two submitted timesheets selected in the Team pane">
+  <img src="/help/images/approval/team-bulk-bar.webp" alt="Beebole Team pane with Ana Pereira and Carlos Ruiz checked, both Submitted, other members Approved or Submitted below, and the bulk bar at the bottom with Approve (2) and Reject (2)" width="328" />
+</Frame>
 
 <Tip>
   In the **Team** pane, hold **⌘** while clicking the select-all checkbox to alternate between selecting everyone to remind and everyone to approve.
@@ -138,6 +158,10 @@ On a phone, the approval panes become a bottom sheet. Managers and administrator
 
 Rejecting always requires an explanation. When you click **Reject**, a dialog opens with a comment box (**Enter a reason for rejection…**) — the **Reject** button stays disabled until you write one. The reason is delivered to the person and recorded in their Journal.
 
+<Frame caption="The Reject dialog, with the reason the person will receive">
+  <img src="/help/images/approval/reject-comment-dialog.webp" alt="Beebole Reject dialog with a warning icon, a comment box holding a reason about Wednesday's hours on the Mobile App, and the Cancel and Reject buttons" width="596" />
+</Frame>
+
 A rejected timesheet unlocks for its owner. After correcting the entries, they click **Resubmit** and the workflow starts again from the first stage. Beebole records which entries were added, modified, or deleted since the previous submission, and uses that to spare approvers unnecessary work: a project or task manager who had already approved is only asked again if entries on their own projects or tasks changed.
 
 ---
@@ -161,6 +185,10 @@ Submitting locks a timesheet for its owner, but it doesn't have to be rejected t
 
 To edit on someone's behalf, open the **Pending** or **Team** pane and click the edit button (**Edit timesheet**) on the person's row. Their grid unlocks for you; the override switches off when you move to another person. Administrator edits never restart the workflow.
 
+<Frame caption="The edit button (Edit timesheet) on a person's row in the Team pane">
+  ![Beebole timesheet with the Team pane open, a magnifier on the pencil-shaped Edit timesheet button at the end of Ana Pereira's row, next to her Submitted status](/help/images/approval/edit-timesheet-pencil.webp)
+</Frame>
+
 While you are editing, the timesheet makes it impossible to forget whose entries you are touching: the grid or calendar and every row picker are washed in the same highlight tint, the edit button on the person's row fills with that color (**Stop editing this timesheet**), and an **Editing** badge appears next to the person's name at the top of the page. Click the badge or the edit button again to stop editing. The override is tied to that one person — opening another person's timesheet drops the tint and the badge along with it.
 
 The edit button is not limited to administrators — managers and approvers see it too, on the rows they are allowed to correct. Beebole decides row by row, following the table above: a timesheet that is already **Approved** stays locked for everyone but an administrator, a **Submitted** one opens only for an approver of the current stage, and the two restrictions below can take the button away entirely.
@@ -175,6 +203,10 @@ Administrators can unblock the pipeline without reconfiguring it: they can **App
 
 To reach an approved timesheet, open it from the **Team** pane, not the **Pending** pane: **Pending** only lists submissions still waiting for a decision, so an approved period is never there. Pick the person in **Team**, navigate to the approved period, and **Reject** appears at the top of their timesheet. Rejecting unlocks the period for its owner, who corrects the entries and clicks **Resubmit**. To fix an entry without sending the whole period back, use the edit button (**Edit timesheet**) described above instead.
 
+<Frame caption="An approved week opened from the Team pane, with Reject at the top">
+  ![Beebole timesheet of Clara Fontaine for the week of September 20 to 26, 2026, opened from the Team pane: the Approved badge over the date range and a Reject button next to the 40 / 40 total, her two Client rows in the grid, and the Team pane listing Ana Pereira and Carlos Ruiz as Submitted, Clara Fontaine, David Kim and Elena Rossi as Approved](/help/images/approval/reject-approved.webp)
+</Frame>
+
 ---
 
 ## Reminders and notifications
@@ -188,6 +220,10 @@ To reach an approved timesheet, open it from the **Team** pane, not the **Pendin
 ## Approval history
 
 Every approval action is logged in the person's [Journal](/help/documentation/journal) feed: **Submitted for approval**, **Approved by** and **Rejected by** entries with the approver's name and the rejection reason, plus **Auto-submitted** and **Auto-approved** events, each tagged with its stage. For who approved what on the current submission, click the timesheet's status badge to open the stage breakdown.
+
+<Frame caption="Approval events in a person's Journal">
+  <img src="/help/images/approval/history-journal.webp" alt="Beebole Journal feed of Ana Pereira listing approval events: Timesheet-2026-08-30, Timesheet-2026-08-16, Timesheet-2026-08-23 and Timesheet-2026-08-09 each Approved by Jordan Reed with Stage 2, and Timesheet-2026-08-30 Approved by Jordan Reed at the first stage" width="578" />
+</Frame>
 
 ---
 

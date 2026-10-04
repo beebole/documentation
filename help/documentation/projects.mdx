@@ -18,7 +18,11 @@ Beebole uses a flexible hierarchy with three building blocks:
 
 - **Categories** — The broadest grouping. A new account starts with **Client**, **Internal**, and **Activity**. Each project belongs to exactly one category.
 - **Projects** — The engagements or work streams inside a category, such as a client account or an internal initiative.
-- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit, and each category names its own levels (for example, the **Client** category starts with the levels **Project** and **Subproject**).
+- **Subprojects** — Smaller pieces of work nested under a project. There is no fixed depth limit unless you [limit a category to its named levels](#level-names), and each category names its own levels (for example, the **Client** category starts with the levels **Project** and **Subproject**).
+
+<Frame caption="The Client category with two clients expanded into their projects">
+  ![Beebole Projects page on the Client category, with Acme Corp expanded into Mobile App and Website Redesign and Quantum Logistics expanded into Fleet Tracker](/help/images/projects/projects-tree.webp)
+</Frame>
 
 Projects describe _what_ your team works on. To group projects and people across other dimensions — departments, locations, service lines — use [tags](/help/documentation/tags) instead of deepening the project hierarchy.
 
@@ -67,7 +71,12 @@ When the add panel is open, use the **Or add multiple entries** area below the n
 
 1. Copy rows from a spreadsheet — one entry per line, using **Tab** or spaces to indent sub-levels.
 2. Click **Paste**.
-3. Review the entries to be imported, then click **Add them all**. If something looks wrong, click **Undo**.
+3. Review the entries in the **Import preview**. Click the **×** on a row to leave it out.
+4. Click **Import entries** — the button shows how many entries will be created. If something looks wrong afterwards, click **Undo**.
+
+<Frame caption="Two clients and their projects pasted from a spreadsheet, ready to import">
+  <img src="/help/images/projects/add-multiple-entries.webp" alt="Beebole Add Client panel with the Import preview listing Globex Corporation with Brand Refresh and Mobile App, and Initech with ERP Rollout and Support Contract, a counter reading 6 Ready to import, and the Import entries 6 button" width="576" />
+</Frame>
 
 ---
 
@@ -85,19 +94,34 @@ Click the category name next to the **Projects:** heading to open the category m
 
 Each category names its own hierarchy levels, and you edit them from the category's settings. Next to the category name in the **Projects:** heading, click the gear button — its tooltip is the category name followed by **settings**, for example **Client settings**. The button is only shown to people who can manage projects.
 
+<Frame caption="The Level names of the Client category">
+  <img src="/help/images/projects/category-level-names.webp" alt="Beebole Level names dialog for the Client category, listing 1 Client, 2 Project and 3 Subproject, an Add new level field, and the Only named levels toggle" width="624" />
+</Frame>
+
 The dialog shows a **Level names** list. Row 1 is the category name itself (the root level), and the rows below it are the levels underneath, for example **Project** and **Subproject**. From there you can:
 
-- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Renaming row 1 renames the category. The new name applies to that level across the whole category.
+- Rename a level — click its row, type the new name, and press **Enter** (or click elsewhere). Press **Escape** to cancel the rename; the dialog stays open. Renaming row 1 renames the category. The new name applies to that level across the whole category.
 - Add a level — type its name in the **Add new level** field and press **Enter**. Until you name a deeper level, Beebole labels it after the level above with a **Sub-** prefix, for example **Sub-Subproject**.
-- Remove a level — only the deepest level can be removed: click the **×** at the end of the last row.
+- Remove a level — click the **×** at the end of its row. Every row below the category row can be removed, not only the last one.
+- Reorder levels — hover over a row to show its gripper on the left, then drag the row to its new place. Row 1 is the category itself and always stays first.
+
+Below the list, the **Only named levels** switch keeps the hierarchy within the levels you have named. When it is on, nothing can be added, moved, or copied below the last named level, as the hint under the switch says: **Nothing can be added below the last level. Add a level here to go deeper.** In the **Client** category, for example, a subproject can't get a child of its own: clicking the **\+** button on its row shows **No lower level available, see Client settings**, and moving or duplicating a project is refused the same way when the project, or any of its subprojects, would land below the last level. To go deeper, add a level in the dialog. When the switch is off, there is no depth limit and deeper levels take the **Sub-** labels described above. Tag categories have the same switch.
 
 ### Category colors
 
 Every project category has a color of its own. Beebole assigns one automatically when you add a category (existing categories received one too), and shows it as a colored ball in front of the category name in the category menu, on category rows in project selectors, and on the chip of a filter by project category. To change it, open the category menu, click the ball in front of the category, and pick another color from the palette. Task and tag categories work the same way.
 
+<Frame caption="The color palette of the Client category">
+  <img src="/help/images/projects/category-colors.webp" alt="Beebole Projects category menu with the Activity and Client categories, each with its colored ball, and the palette opened from the Client ball with its current color checked and a close button" width="754" />
+</Frame>
+
 ### Picking a whole category
 
 Where projects are picked one by one for a person or tag — the **Manages** panel, or the **Show projects** section of the **Show or hide** panel — the selector also offers the category rows themselves. Click a category row to pick the whole category in one click; the chevron next to it still expands the category if you want a single project instead. Once picked, the category appears as a badge in its own color and its projects are no longer offered separately. A category stands for everything inside it, including projects added later: a person given the **Client** category in the **Projects** section of their **Manages** panel manages every client project, now and in the future. Task and tag categories can be picked the same way. For giving access through a category, see [Assignments](/help/documentation/assignments).
+
+<Frame caption="The Projects selector of a person's Manages panel, offering the categories themselves">
+  <img src="/help/images/projects/category-picker.webp" alt="Beebole Manages panel of Sophie Laurent, who manages Acme Corp and Greenleaf Industries, with the Add a project here selector open on the Activity, Client and Internal categories, each with a chevron to expand it" width="546" />
+</Frame>
 
 ---
 
@@ -117,6 +141,10 @@ You move a project by changing its parent from the project's detail panel:
   </Step>
 </Steps>
 
+<Frame caption="The parent selector of a subproject, opened from the breadcrumb">
+  <img src="/help/images/projects/change-parent.webp" alt="Beebole detail panel of the Website Redesign project with the parent selector open under the Client > Acme Corp breadcrumb, listing Acme Corp, Brightwave Media, Greenleaf Industries, Northstar Financial, Quantum Logistics and Silverline Retail" width="576" />
+</Frame>
+
 <Info>
   A project can only be moved within its own category — the parent selector lists destinations from the same category and excludes the project's own subprojects.
 </Info>
@@ -126,6 +154,10 @@ You move a project by changing its parent from the project's detail panel:
 ## Project settings
 
 Clicking a project opens its detail panel, which is organized into settings panels. Open panels appear first; the remaining ones are listed below — click a panel's name to open it. Changes are saved automatically.
+
+<Frame caption="Acme Corp's detail panel with its settings panels closed, listed by name">
+  ![Beebole Projects page with the Client category list on the left and the Acme Corp detail panel open on the right, listing the Billing, Budgets, Cost, Custom fields, Description, Expenses, Managed by, Show or hide, Tags and Tasks and bookings panels](/help/images/projects/project-settings-panels.webp)
+</Frame>
 
 | Panel | What it controls |
 | --- | --- |
@@ -138,8 +170,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 | **Expenses** | The expenses recorded against the project. See [Expenses](/help/documentation/expenses). |
 | **Custom fields** | Values for the custom fields defined for projects. See [Custom fields](/help/documentation/custom-fields). |
 | **Who has access?** | Who can use the project — see below. |
-| **Secondary projects allowed** | Whether people can log time to a secondary project alongside this one. |
-| **Show or hide** | Which secondary projects, expense types, and custom fields are available on this project. |
+| **Show or hide** | Which secondary projects, expense types, and custom fields are available on this project. A switch at the top makes every secondary project available (**All secondary projects available**) or none of them (**No secondary projects available**). |
 | **Valid period for time entry** | **From** and **To** dates limiting when time can be recorded on the project. |
 | **Description** | Free-form notes about the project. |
 
@@ -150,6 +181,10 @@ Open the project's **Billing** or **Cost** panel and click **Add** to create a r
 ### Valid period for time entry
 
 The **Valid period for time entry** panel bounds when time can be recorded on the project: set a **From** and/or **To** date, and entries outside that window are refused with a message naming the project that blocks them. Use it to close a finished project without archiving it, or to open a project for booking only from its actual start date. The window set on a project also applies to its subprojects; when several projects in the chain define one, the most specific project's window wins. People can carry the same setting — see [People](/help/documentation/people#valid-period-for-time-entry).
+
+<Frame caption="A project closed for time entry after June 30">
+  <img src="/help/images/projects/validity-period-panel.webp" alt="Beebole Valid period for time entry panel of the Brand Campaign project with From set to Jan 05, 2026 and To set to Jun 30, 2026, each with a clear button" width="422" />
+</Frame>
 
 ### Custom fields on a project
 
@@ -162,6 +197,10 @@ The **Tasks and bookings** panel lists every active task and booking linked to t
 - Add one — each planning has a **\+** button (its tooltip reads **Add to** followed by the planning name, for example **Add to Main plan**). It opens the add form of that planning on the **Planning** page with the project already filled in: a Bookings planning asks for a person, a start date, and a number of days, then **Add Booking**; a Tasks planning asks for a name, then **Add Task**.
 - Remove one — hover over its badge and click **Unassign**. This only unlinks the task or booking from the project; it still exists in its planning.
 
+<Frame caption="The tasks of the Main plan planning linked to a project, and the button that adds another">
+  <img src="/help/images/projects/project-tasks-bookings.webp" alt="Beebole Tasks and bookings panel of the Website Redesign project, listing Backend Development, Frontend Development, QA Testing, Requirements Gathering and UI/UX Design under Main plan, with the plus button" width="538" />
+</Frame>
+
 ---
 
 ## Controlling who can track time on a project
@@ -171,6 +210,12 @@ The **Who has access?** panel decides who can use the project:
 - A toggle switches the project between **Available to everyone** and **Unavailable to everyone**. The default comes from your organization's **Show or hide by default** settings.
 - **Individually** — add specific people with the **Select person** field.
 - **By tags** — make the project available to everyone in a tag with the **Select tag** field.
+
+When the project is available to everyone, the two sections become exclusion lists, **Excluded individually** and **Excluded by tags**, for the people who should not use it.
+
+<Frame caption="Acme Corp is available to everyone, so the panel lists exclusions">
+  <img src="/help/images/assignments/who-has-access-panel.webp" alt="Who has access? panel on the Acme Corp project with the Available to everyone toggle on, and the Excluded individually and Excluded by tags sections with their Select person and Select tag fields" width="538" />
+</Frame>
 
 What you set here covers the project and every subproject below it. Switching **Acme Corp** to **Unavailable to everyone** applies to all of its subprojects as well, and a person or tag you add to **Acme Corp** can use every subproject under it — you don't need to repeat the setting on each subproject.
 
@@ -189,6 +234,10 @@ Each project has a **⋯** action menu — it appears when you hover over the pr
 - **Go to tasks** — open the **Planning** page filtered to this project's tasks and bookings.
 - **Archive** / **Unarchive** — retire the project or bring it back.
 - **Delete** — remove the project.
+
+<Frame caption="A project's action menu in the project list">
+  <img src="/help/images/projects/project-action-menu.webp" alt="Beebole Projects page on the Client category with the Silverline Retail action menu open, offering Duplicate, Rename, Go to tasks, Archive, Unarchive and Delete" width="600" />
+</Frame>
 
 Archived projects are hidden from the list — click **Show Archived** at the top of the page to display them (the label includes the count), and **Hide Archived** to hide them again. Their recorded time stays available in reports.
 
@@ -222,7 +271,7 @@ Archived projects are hidden from the list — click **Show Archived** at the to
 
 <AccordionGroup>
   <Accordion title="How deep can the project hierarchy go in Beebole?">
-    Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. In practice, structures stay easiest to navigate and report on at four levels or fewer. Keep in mind that only the lowest level of each branch accepts time entries; the projects above it aggregate their subprojects' time in reports.
+    By default, Beebole doesn't impose a fixed nesting limit — you can keep adding subprojects under subprojects. To stop a category at the levels you have named, switch on **Only named levels** in the category's settings: nothing can then be added, moved, or copied below the last named level. In practice, structures stay easiest to navigate and report on at four levels or fewer. Keep in mind that only the lowest level of each branch accepts time entries; the projects above it aggregate their subprojects' time in reports.
   </Accordion>
 
   <Accordion title="Can I move a project to a different category?">

@@ -27,11 +27,21 @@ You reach Account Settings from the user menu, not from the sidebar's top-level 
   </Step>
 </Steps>
 
-The other items in this menu — **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account** — open their own dedicated screens.
+<Frame caption="The user menu, opened from your initials at the bottom of the sidebar">
+  <img src="/help/images/account-settings/user-menu.webp" alt="Beebole user menu open above the JR initials at the bottom of the sidebar, listing Auto, Pick your color, English, Your API key, Sign in as..., Sign out and Account Settings" width="272" />
+</Frame>
+
+Account Settings opens with the **Settings** menu on its left. The other entries of that menu, **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account**, open their own dedicated screens.
 
 ## Organization identity
 
 The header at the top of Account Settings holds your organization's name, logo, and accent color. Each edit saves automatically.
+
+The logo and the accent color share one control: the square at the left of the header, which shows your logo or your organization's initials. Click it to open the color palette, with the logo drop area below it.
+
+<Frame caption="The organization's color palette and logo drop area, opened from the square in the header">
+  <img src="/help/images/account-settings/accent-color-picker.webp" alt="Beebole Account Settings header of AnyCompany with the initials square clicked, showing the color palette with the current color checked and the Paste, drop, or click to add the logo of your organization area below it" width="648" />
+</Frame>
 
 ### Name
 
@@ -39,11 +49,11 @@ Click the organization name in the header and type a new one. The change is save
 
 ### Logo
 
-Click the logo area in the header. You can **Paste, drop, or click to add the logo of your organization**. Beebole crops the logo to fit the header, and a crop tool lets you adjust the framing before it saves. The logo appears in the sidebar and in emails Beebole sends. To remove it, open the logo again and clear it.
+Click the square in the header. Below the palette, you can **Paste, drop, or click to add the logo of your organization**. Beebole crops the logo to fit the header, and a crop tool lets you adjust the framing before it saves. The logo appears in the sidebar and in emails Beebole sends. To remove it, open the logo again and clear it.
 
 ### Accent color
 
-Click the color swatch in the header and pick a color from the palette. The accent color updates immediately for everyone in the organization — it colors buttons, highlights, and other branded elements. To clear it, open the picker again and click the swatch that is currently selected.
+Click the square in the header and pick a color from the palette. The accent color updates immediately for everyone in the organization — it colors buttons, highlights, and other branded elements. To clear it, open the picker again and click the swatch that is currently selected.
 
 <Info>
   Each person can also choose a personal interface color from the user menu (**Pick your color**), which overrides the organization accent color for them alone.
@@ -52,6 +62,10 @@ Click the color swatch in the header and pick a color from the palette. The acce
 ## Settings panels
 
 Below the header, Account Settings is organized into panels. Each panel sets a default for the organization, and every edit saves automatically. The panels available are:
+
+<Frame caption="Account Settings, with the organization header above the settings panels and the Settings menu on the left">
+  ![Beebole Account Settings page showing the AnyCompany name and logo header, the list of settings panels from Absence allowances to Single Sign-On, and the Settings menu with Subscription, Person Roles, Integrations and the other screens](/help/images/account-settings/settings-panels.webp)
+</Frame>
 
 | Panel | What it controls |
 |-------|------------------|
@@ -75,20 +89,27 @@ Below the header, Account Settings is organized into panels. Each panel sets a d
 
 The **Localization** panel sets the regional defaults for the whole organization:
 
-- **Language** — The interface language. Beebole is available in English, Czech, German, Spanish, French, Hungarian, Italian, Dutch, Polish, and Portuguese.
 - **Time zone** — The default time zone for date and time calculations.
-- **Currency** — The currency used for billing rates, costs, budgets, and expenses.
 - **First day of the week** — Whether the week starts on Monday, Sunday, or another day. This affects timesheets, calendars, and reports.
-- **Date format** — How dates display throughout Beebole.
-- **Time format** — A 12-hour or 24-hour clock.
+- **Currency** — The currency used for billing rates, costs, budgets, and expenses.
 - **Decimal format** — The decimal separator used in numbers.
 - **Thousands separator** — The separator used to group large numbers.
+- **Time format** — A 12-hour or 24-hour clock.
+- **Date format** — How dates display throughout Beebole.
 
-A person can override their own language and some regional preferences from their profile.
+<Frame caption="The Localization panel of an organization on New York time with weeks starting on Sunday">
+  <img src="/help/images/account-settings/localization-panel.webp" alt="Beebole Account Settings Localization panel showing Time zone (GMT-05:00) Eastern Standard Time, First day of the week Sunday, Currency US dollar, Decimal format 10.56, Thousands separator 12,345, Time format 3:45 PM, and Date format Jan 26, 2026" width="774" />
+</Frame>
+
+The interface language is not an organization setting: each person picks their own from the menu behind their initials at the bottom of the sidebar. Beebole is available in English, Czech, German, Spanish, French, Hungarian, Italian, Dutch, Polish, and Portuguese. People can also override some regional preferences from their profile.
 
 ### Show or hide by default
 
-The **Show or hide by default** panel decides which optional elements are switched on across the account. You can show or hide **Show all projects**, **Show all secondary projects**, **Show all tasks**, **Show all time off**, **Show all expenses**, and **Show all custom fields**. If you disable one globally, you can still enable it for specific tags, people, or projects under their own **Show or hide** settings.
+The **Show or hide by default** panel decides which optional elements are switched on across the account. You can show or hide **Show all time off**, **Show all expenses**, **Show all schedules**, **Show all tasks**, **Show all custom fields**, **Show all secondary projects**, and **Show all projects**. If you disable one globally, you can still enable it for specific tags, people, or projects under their own **Show or hide** settings.
+
+<Frame caption="The Show or hide by default panel">
+  <img src="/help/images/assignments/show-hide-by-default.webp" alt="Beebole Show or hide by default panel with a note explaining that disabled options can be enabled per tag, person or project under Show or hide, above the Show all time off, Show all expenses, Show all schedules, Show all tasks, Show all custom fields, Show all secondary projects and Show all projects checkboxes" width="1080" />
+</Frame>
 
 ### Timesheet and Planning Settings
 
@@ -114,6 +135,10 @@ The menu item exists only for administrators: the whole settings menu behind the
   </Step>
   <Step title="Schedule the deletion">
     Click **Yes, delete my account**. Beebole schedules the account for deletion and notifies all administrators by email.
+
+    <Frame caption="The Delete Account screen, before a deletion is scheduled">
+      <img src="/help/images/account-settings/delete-account.webp" alt="Beebole Delete Account screen explaining that the account is scheduled for deletion, that all data is permanently deleted after a 7-day grace period and that all admins are notified by email, with the red Yes, delete my account button" width="560" />
+    </Frame>
   </Step>
   <Step title="Cancel if you change your mind">
     During the 7-day grace period, return to **Delete Account** and click **Cancel deletion** to keep your account. After the grace period, the data is permanently deleted.

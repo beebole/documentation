@@ -28,7 +28,11 @@ If Beebole can't open its real-time connection at all, it stops with the message
 
 ## "Running in slower compatibility mode"
 
-When the real-time connection is blocked but Beebole can still reach its servers another way, the app keeps working in a slower fallback mode and shows an indicator in the sidebar: **Running in slower compatibility mode**.
+When the real-time connection is blocked but Beebole can still reach its servers another way, the app keeps working in a slower fallback mode and shows an indicator in the sidebar: a broken-link icon above your initials, whose tooltip reads **Running in slower compatibility mode**.
+
+<Frame caption="The compatibility mode indicator in the sidebar, with its tooltip">
+  <img src="/help/images/troubleshooting/compatibility-mode-indicator.webp" alt="Beebole sidebar with an orange broken-link icon just above the initials button, and its tooltip reading Running in slower compatibility mode" width="326" />
+</Frame>
 
 Everything still functions — changes just take longer to appear, and live updates from teammates arrive with a delay. Click the indicator for the explanation: your network is blocking the real-time (WebSocket) connection, and your IT team can restore full speed by allowing secure WebSocket (`wss`) connections to your Beebole server.
 
@@ -45,6 +49,10 @@ The page runs automatically and shows:
 | **Health checks** | Whether each part of the connection to Beebole works from this browser |
 | **Latency (ping)** | How fast your network reaches the Beebole server |
 | **Environment & storage** | Browser, network, and local storage details relevant to support |
+
+<Frame caption="The Connection Diagnostics page with every health check passed">
+  <img src="/help/images/troubleshooting/diagnostics-page.webp" alt="Beebole Connection Diagnostics page reading All checks passed, with the Health checks list (server reachable, HTTP session CSRF token and authentication, WebSocket connect, simple query and startup query) each marked OK with its duration, and the Latency (ping) average, minimum, maximum and lost count" width="892" />
+</Frame>
 
 ### Share the results with support
 
