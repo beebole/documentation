@@ -36,6 +36,26 @@ async function clipFor(page, h, frame, vp) {
 	return clamp(box, frame.pad ?? 0, vp)
 }
 
+// A shot's `ignore(page, h)` returns locators (every element they match counts) or page rects
+// whose content is data, not UI. They are turned into rects in the shot's image pixels (scale 2),
+// for replay to leave out of the comparison. The published image keeps them.
+async function ignoreRects(page, h, shot, clip) {
+	if (!shot.ignore) return []
+	const found = [await shot.ignore(page, h)].flat()
+	const rects = []
+	for (const item of found) {
+		if (item && typeof item.all === 'function') {
+			for (const el of await item.all()) {
+				const box = await el.boundingBox()
+				if (box) rects.push(box)
+			}
+		} else if (item) rects.push(item)
+	}
+	return rects
+		.map((r) => ({ x: (r.x - clip.x) * 2, y: (r.y - clip.y) * 2, width: r.width * 2, height: r.height * 2 }))
+		.filter((r) => r.x < clip.width * 2 && r.y < clip.height * 2 && r.x + r.width > 0 && r.y + r.height > 0)
+}
+
 // The clock is frozen at noon New York time on `date`, for captures and replays alike, so a
 // replay renders the same "today" as the original capture.
 // `prepare` (permanent data a capture needs, e.g. approving the week it shows) runs when
@@ -82,8 +102,11 @@ export async function shootScene(browser, { scene }, { date, outDir, capturing =
 		for (const shot of scene.shots) {
 			step = `shot ${shot.file}`
 			const png = join(outDir, shot.file.replaceAll('/', '__').replace(/\.webp$/, '.png'))
+			let ignore = []
 			if (!hasLens) {
-				await page.screenshot({ path: png, clip: await clipFor(page, h, shot.frame, vp), scale: 'device', animations: 'disabled', caret: 'hide' })
+				const clip = await clipFor(page, h, shot.frame, vp)
+				ignore = await ignoreRects(page, h, shot, clip ?? { x: 0, y: 0, ...vp })
+				await page.screenshot({ path: png, clip, scale: 'device', animations: 'disabled', caret: 'hide' })
 			} else if (shot.frame.type === 'lens') {
 				const target = await (await shot.frame.target(page, h)).boundingBox()
 				if (!target) throw new Error('lens target not found')
@@ -91,9 +114,10 @@ export async function shootScene(browser, { scene }, { date, outDir, capturing =
 				writeFileSync(png, await composeLens(source, { context: contextBox, target, radius: shot.frame.radius }))
 			} else {
 				const c = (await clipFor(page, h, shot.frame, vp)) ?? { x: 0, y: 0, ...vp }
+				ignore = await ignoreRects(page, h, shot, c)
 				await sharp(source).extract({ left: c.x * 4, top: c.y * 4, width: c.width * 4, height: c.height * 4 }).resize(c.width * 2, c.height * 2).png().toFile(png)
 			}
-			out.push({ file: shot.file, png })
+			out.push({ file: shot.file, png, ignore })
 		}
 		step = 'guard'
 		if (blocked.length) throw new Error(`the scene tried to change data (${[...new Set(blocked)].join(', ')}); nothing was saved`)

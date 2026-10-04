@@ -67,7 +67,7 @@ export const scenes = [
 			await h.settle(page, 1500)
 			await h.settle(page, 1500)
 		},
-		shots: [{ file: 'reports/folders-and-reports.webp', frame: { type: 'full' } }],
+		shots: [{ file: 'reports/folders-and-reports.webp', ignore: (page, h) => h.figureCells(page), frame: { type: 'full' } }],
 	},
 	{
 		id: 'reports-folder-share',
@@ -293,7 +293,8 @@ export const scenes = [
 			await page.getByText('Ana Pereira', { exact: true }).first().waitFor()
 			await h.settle(page, 1500)
 		},
-		shots: [{ file: 'reports/utilization-report.webp', frame: { type: 'full' } }],
+		// The percentages move with every seed top-up; the replay checks the layout around them.
+		shots: [{ file: 'reports/utilization-report.webp', frame: { type: 'full' }, ignore: (page, h) => h.figureCells(page) }],
 	},
 	{
 		id: 'reports-revenue-at-risk',
@@ -309,7 +310,7 @@ export const scenes = [
 			await page.getByText('Total at risk', { exact: false }).first().waitFor()
 			await h.settle(page, 4000)
 		},
-		shots: [{ file: 'reports/revenue-at-risk.webp', frame: { type: 'full' } }],
+		shots: [{ file: 'reports/revenue-at-risk.webp', ignore: (page, h) => h.figureCells(page), frame: { type: 'full' } }],
 	},
 	{
 		// A report's ⋯ menu, on Margin by Client per Month (it has a period of its own, so Reset

@@ -38,7 +38,7 @@ export const scenes = [
 		async teardown(page) {
 			await page.keyboard.press('Escape')
 		},
-		shots: [{ file: 'custom-reports/column-badges-menu.webp', frame: { type: 'box', box: async () => ({ x: 340, y: 0, width: 1080, height: 600 }) } }],
+		shots: [{ file: 'custom-reports/column-badges-menu.webp', ignore: (page, h) => h.figureCells(page), frame: { type: 'box', box: async () => ({ x: 340, y: 0, width: 1080, height: 600 }) } }],
 	},
 	{
 		id: 'custom-reports-matrix',
@@ -67,7 +67,7 @@ export const scenes = [
 		// redo arrows over the folder header, which the frame leaves out.
 		shots: [
 			{
-				file: 'custom-reports/matrix-view.webp',
+				file: 'custom-reports/matrix-view.webp', ignore: (page, h) => h.figureCells(page),
 				frame: {
 					type: 'box',
 					box: async (page) => {

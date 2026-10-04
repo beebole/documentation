@@ -218,7 +218,7 @@ When a feature does not clearly fit any category, **do not guess**. Add it to th
 
 ## On completion
 
-After applying approved changes, update the `**Last updated:** YYYY-MM-DD` line at the top of `features.md` to today's date.
+After applying approved changes, update the `**Last updated:** YYYY-MM-DD` line at the top of `features.md` to today's date. After a **full scan** (not `--incremental`), also set the `**Last full scan:** YYYY-MM-DD` line right below it (add the line if missing). `/release` reads it to decide when the next full scan is due.
 
 ---
 

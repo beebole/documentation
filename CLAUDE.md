@@ -36,7 +36,7 @@ mintlify dev              # Start local preview at localhost:3000
 
 ## Slash commands
 
-The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news`, `/mine-conversations` and `/check-help-snippets` as orthogonal helpers and `/seed-documentation` feeding `/illustrate`. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
+The lifecycle runs **Sync features → Find gaps → Write → Review → Illustrate → Translate**, with `/news`, `/mine-conversations`, `/mine-signals` and `/check-help-snippets` as orthogonal helpers and `/seed-documentation` feeding `/illustrate`. `/release` chains the whole pipeline after a production deploy of the app and ends in a PR.
 
 | Step             | Command                | What it does                                                                                                                                                                                 |
 | ---------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,8 +49,9 @@ The lifecycle runs **Sync features → Find gaps → Write → Review → Illust
 | Helper           | `/seed-documentation`  | Build or top up the AnyCompany QA documentation account the screenshots come from. `topup` before date-dependent captures, `full` (refused once approvals exist), `approve` (one-way). |
 | —                | `/news`                | Draft monthly release notes from the app's generated production notes. Cursor is the `news-cursor` marker in `releases.mdx`.                                                                 |
 | Orthogonal       | `/mine-conversations`  | Mine docs-assistant AI conversations (PostHog) into gap candidates in `.todo/ai-conversation-gaps.md`. Report-only — human review gates any `/write`. Runs as the last `/release` step.      |
+| Orthogonal       | `/mine-signals`        | Mine Intercom support conversations, Mintlify searches with no click, page feedback and `/help/*` 404s into proposed fixes in `.todo/docs-signals.md`. Report-only (trial since 2026-10-04). Runs as a `/release` step. |
 | Orthogonal       | `/check-help-snippets` | Audit the in-app contextual help snippets (`../md` + dictionary in `../reboot`) against the app's attributes/previews. Report → `.todo/help-snippets.md`; `--fix` (the `/release` step) also writes and pushes the snippets in `../md` and prepares `../reboot` dictionary entries for an approved commit. |
-| All-in-one       | `/release`             | Post-deploy pipeline: sync → news → gaps → write → review (auto-fix) → screenshot refresh (`/illustrate --release`) → verify → conversation mining + snippet audit and fixes. Branch + PR, then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
+| All-in-one       | `/release`             | Post-deploy pipeline: sync (full every 4 weeks) → news → gaps → write → review (auto-fix) → rotation audit of the 6 pages reviewed longest ago → screenshot refresh (`/illustrate --release`) → verify → site-wide lint (`.claude/scripts/site-lint.mjs`) → conversation mining, docs signals, snippet audit and fixes. Branch + PR (with a "Needs your eyes" list and its checks awaited), then syncs `features.md` to sibling repos (`ads`, `claude-plugins`, `intranet`). |
 
 Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Skills reference conventions defined below — do not duplicate these conventions in skill files.
 
@@ -79,7 +80,7 @@ snippets/              # Reusable content fragments (currently empty)
   skills/              # One subdirectory per slash command, each with SKILL.md
                        #   illustrate/runner/ (Node + Playwright screenshot runner) and illustrate/scenes/ (one scene per screenshot)
   context/             # Editorial guidelines (brand, audiences, SEO/GEO, components)
-  scripts/             # Shell helpers (translate, optimize-images)
+  scripts/             # Helpers: site-lint.mjs (site-wide structural lint + label hints), translate, optimize-images
 docs/                  # Internal working docs, excluded via .mintignore (superpowers/specs, superpowers/plans)
 .todo/                 # Working files for app change tracking and proposed updates
 ```

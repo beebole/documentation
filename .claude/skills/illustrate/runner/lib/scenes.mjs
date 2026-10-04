@@ -20,6 +20,8 @@ export function validateScene(s, file) {
 	for (const shot of s.shots) {
 		if (!/^[a-z0-9-]+(\/[a-z0-9-]+)*\.webp$/.test(shot.file ?? '')) throw new Error(`${where}: shot file must be a relative .webp path under help/images`)
 		if (!FRAMES.includes(shot.frame?.type)) throw new Error(`${where}: frame type must be one of ${FRAMES.join(', ')}`)
+		if (shot.ignore !== undefined && typeof shot.ignore !== 'function') throw new Error(`${where}: a shot's ignore must be a function (page, h) returning locators or rects`)
+		if (shot.ignore && shot.frame.type === 'lens') throw new Error(`${where}: a lens shot cannot have ignore areas`)
 		if (shot.frame.type === 'lens' && typeof shot.frame.target !== 'function') throw new Error(`${where}: a lens frame needs a target function returning the control's locator`)
 	}
 }

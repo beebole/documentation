@@ -75,3 +75,12 @@ test('a one-word label change on a full-size shot is a change', async () => {
 	await sharp(base).composite([word]).png().toFile(b)
 	assert.equal((await compareImages(a, b)).status, 'changed')
 })
+
+test('a change inside an ignored region is not a change, one outside still is', async () => {
+	const a = await card(join(dir, 'a.png'))
+	const b = await card(join(dir, 'b.png'), { box: { left: 220, top: 40 } })
+	const around = { x: 30, y: 30, width: 320, height: 60 }
+	assert.equal((await compareImages(a, b, { ignore: [around] })).status, 'same')
+	const c = await card(join(dir, 'c.png'), { box: { left: 220, top: 40 }, label: false })
+	assert.equal((await compareImages(a, c, { ignore: [around] })).status, 'changed')
+})

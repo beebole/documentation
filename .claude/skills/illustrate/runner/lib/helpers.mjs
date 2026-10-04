@@ -64,6 +64,12 @@ export function makeHelpers() {
 			await page.mouse.up()
 			await h.settle(page, 800)
 		},
+		// The figure cells of a report table: every body and totals cell but the first column
+		// (the row's name). For a shot's `ignore`, when the figures move with seed top-ups between
+		// captures. Div-based reports (Budget Status) need their own locator.
+		figureCells(page, scope = page) {
+			return scope.locator('table tbody td:not(:first-child), table tfoot td:not(:first-child)')
+		},
 		listRow(page, name) {
 			return page.getByRole('listitem').filter({ has: page.getByText(name, { exact: true }) }).first()
 		},

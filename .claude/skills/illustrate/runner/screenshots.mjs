@@ -66,7 +66,7 @@ async function capture(target, preview) {
 	for (const entry of entries) {
 		try {
 			const shots = await shootScene(browser, entry, { date, outDir, capturing: true })
-			for (const { file, png } of shots) {
+			for (const { file, png, ignore } of shots) {
 				if (preview) {
 					console.log(`preview ${entry.scene.id}: ${png}`)
 					continue
@@ -116,7 +116,7 @@ async function replay(target, jsonPath) {
 		const row = { id: entry.scene.id, page: entry.page, capturedAt: entry.scene.capturedAt, datesMatter: entry.scene.datesMatter, shots: [] }
 		try {
 			const shots = await shootScene(browser, entry, { date: entry.scene.capturedAt, outDir })
-			for (const { file, png } of shots) {
+			for (const { file, png, ignore } of shots) {
 				const published = join(IMAGES_DIR, file)
 				if (!existsSync(published)) {
 					row.shots.push({ file, status: 'missing', usedOn: whereUsed(file) })
@@ -125,8 +125,8 @@ async function replay(target, jsonPath) {
 				const candidate = png.replace(/\.png$/, '.webp')
 				encodeWebp(png, candidate)
 				const diffPath = png.replace(/\.png$/, '.diff.png')
-				const r = await compareImages(published, candidate, { diffPath })
-				row.shots.push({ file, status: r.status, ratio: Number(r.ratio.toFixed(4)), diffPixels: r.diffPixels, reason: r.reason, candidate: png, diff: r.diffPixels ? diffPath : undefined, usedOn: whereUsed(file) })
+				const r = await compareImages(published, candidate, { diffPath, ignore })
+				row.shots.push({ file, status: r.status, ratio: Number(r.ratio.toFixed(4)), diffPixels: r.diffPixels, reason: r.reason, ignored: ignore.length || undefined, candidate: png, diff: r.diffPixels ? diffPath : undefined, usedOn: whereUsed(file) })
 			}
 			row.status = row.shots.some((s) => s.status !== 'same') ? 'changed' : 'same'
 		} catch (e) {
