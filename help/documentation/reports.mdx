@@ -363,6 +363,9 @@ Building and reconfiguring report output remains a desktop task — for example,
   <Accordion title="What formats can I export a report to?">
     Beebole exports report results as JSON, CSV, TSV, Excel (XLSX), or PDF, plus the chart as a PNG image and the matrix view in CSV, Excel, or PDF. For spreadsheets that refresh themselves, connect a saved report to the [Excel add-in](/help/documentation/excel-addin) or [Google Sheets add-on](/help/documentation/gsheets-addon).
   </Accordion>
+  <Accordion title="Why do report hours look different from my timesheet?">
+    Reports show hours as decimal numbers, whatever **Duration format** your timesheet uses. A timesheet in hours and minutes shows 3:15, and a report shows the same time as 3.25; 7:20 becomes 7.33. The totals are the same, only the notation differs. See [Duration format](/help/documentation/timesheetSettings#duration-format).
+  </Accordion>
   <Accordion title="Can I see hours, billing, and costs side by side in the Budget Status report?">
     Yes. Beebole's **Budget Status** report is a table with one row per project and a column for each measure you turn on — **Time**, **Billing**, and **Costs**. Click the layout button in the table header to stack the measures in one column instead, so each project's bars read as a block. Beebole remembers the layout you pick.
   </Accordion>

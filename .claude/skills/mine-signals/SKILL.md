@@ -97,6 +97,11 @@ As above. Keep counts per source for the report header.
 1. Grep `help/**`: is the answer missing, or present but not found?
 2. Check `../reboot` (on `prod`) when the answer depends on what the product does.
 3. Check `.todo/ai-conversation-gaps.md` and `.todo/gaps.md`: if the same gap is already there, cite it instead of repeating it.
+4. Check this report's own earlier runs (see "Tracking entries" below) before writing a new entry:
+   - **Open** (pending or approved, not yet done): do not add a new entry; append `seen again YYYY-MM-DD (+N <source>)` to the existing one, and raise its priority when the count now meets the HIGH bar.
+   - **Done**: if the signal still shows up after the done date (a 404 still hit after its redirect shipped, the same question still asked), append `still seen after the fix: YYYY-MM-DD (+N)` to the done entry and add a new entry under this run that names the old one and proposes a better fix.
+   - **Declined**: append `seen again` only; propose it again only if the evidence has clearly grown, and say why.
+5. Read the page as it is now, including its FAQ and keywords: an answer that exists but is not found is a findability fix (title, keywords, cross-link), never new content.
 
 Then classify:
 
@@ -132,8 +137,23 @@ Update `.todo/docs-signals.md`:
 ```
 
 - Priority: HIGH when several readers hit it or a page states something wrong, MEDIUM for a single clear case, LOW for a nice-to-have.
-- **Never modify or delete entries from previous runs**: ticked and annotated entries are the review record.
+- **Only add notes to entries from previous runs**, never rewrite or delete them: they are the review record. The notes are the ones listed in "Tracking entries".
 - **Privacy:** paraphrase; never copy names, emails, company names, phone numbers, tokens or attachments from a support conversation or search into the report.
+
+### Tracking entries
+
+Each entry carries its state in its checkbox and in notes appended at the end of its line, so the next run knows what was already handled:
+
+| State | How it reads | Written by |
+|-------|--------------|------------|
+| Pending | `- [ ] …` | this skill |
+| Approved | `- [x] …` | Yves, by ticking it |
+| Done | `- [x] … Done YYYY-MM-DD (PR #N).` | whoever applies the fix, in the same PR as the fix |
+| Declined | `- [ ] … Declined YYYY-MM-DD: <reason>.` | Yves, or whoever he asks to record it |
+| Seen again | `… seen again YYYY-MM-DD (+N <source>).` | this skill, step 3 |
+| Fix not working | `… still seen after the fix: YYYY-MM-DD (+N).` | this skill, step 3 |
+
+A fix applied with a different wording than proposed says so in its Done note (`Done YYYY-MM-DD (PR #N): <what was done instead>`), so the next run checks the right thing.
 
 ### 5. Hand off
 
@@ -150,6 +170,7 @@ In a `/release` run the report is committed on the release branch and the PR lis
 
 - **Report-only.** Never edits `help/**` or `docs.json`, never triggers `/write`, never writes to `.todo/gaps.md`, until Yves changes the mode in this file.
 - **Fixes first.** Every entry states the fix; evidence follows it. A signal with no fix goes under "No action" with the reason.
+- **Track, don't repeat.** A signal already in the report gets a note on its entry, not a new entry; a fix marked Done is checked against the new signals.
 - **Verify everything** against the docs and the code before proposing.
 - **Don't duplicate `/mine-conversations`.** Docs-assistant chats are its input, not this skill's.
 - **Never block a release.** A source that fails is skipped and named in the report.

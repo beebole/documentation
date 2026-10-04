@@ -4,6 +4,8 @@
   "name": "Beebole Documentation",
   "redirects": [
     { "source": "/help/integrations/ai-assistants", "destination": "/help/integrations/mcp-server" },
+    { "source": "/help/faq", "destination": "/help/guides/faq" },
+    { "source": "/help/tags", "destination": "/help/documentation/tags" },
     { "source": "/help/settings", "destination": "/help/legacy/settings" },
     { "source": "/help/entities", "destination": "/help/legacy/entities" },
     { "source": "/help/learn-the-basics", "destination": "/help/legacy/learn-the-basics" },

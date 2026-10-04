@@ -2,7 +2,7 @@
 title: "Timesheets: tracking and submitting your time"
 sidebarTitle: "Timesheets"
 description: "Track time in Beebole's timesheet, in calendar or grid view: place entries by the hour or type durations, run a timer, copy periods, and submit for approval."
-keywords: ["beebole", "timesheet", "time tracking", "time entry", "calendar view", "grid view", "timer", "submit timesheet", "copy timesheet", "import time entries", "clock in", "work from home"]
+keywords: ["beebole", "timesheet", "time tracking", "time entry", "calendar view", "grid view", "timer", "submit timesheet", "copy timesheet", "import time entries", "import hours", "import time from Excel", "CSV import", "clock in", "work from home"]
 "og:title": "Tracking and Submitting Time with the Beebole Timesheet"
 "og:description": "Learn how to track time in the Beebole timesheet with the calendar or grid view, use the timer, import calendar events, and submit your period for approval."
 "og:type": "article"
@@ -181,6 +181,7 @@ Each row has a **⋯** action menu with:
 
 - **Pin to top** / **Unpin**: keep the row at the top of its section.
 - **Edit**: change the row's project, task, or absence type selection.
+- **Set as done**: on a task row, for people allowed to manage tasks. It archives the task once its work is finished, so the row leaves your timesheet and the task leaves the active planning views. Hours already logged on the task are kept and still appear in reports. To bring the task back, use **Show Archived** and **Unarchive** on the Planning page (see [Archiving and deleting tasks](/help/documentation/planning#archiving-and-deleting-tasks)).
 - **Remove row**: take the row off your timesheet.
 
 <Frame caption="A row's action menu">
@@ -448,6 +449,9 @@ Next to the score, each of the person's periods is marked **On time**, **Late**,
   <Accordion title="Why don't I see a timer button on my rows?">
     The row timer buttons belong to the grid view. In the calendar view, the timer is on today's entries (hover one for its play button), on each favorite, and on today's suggested entries. In both views, the timer only shows when your administrator has enabled it.
   </Accordion>
+  <Accordion title="Why does the timer round my time up?">
+    Beebole saves timer time rounded up to the **Minimum time interval accepted**, the smallest increment your timesheet accepts. New accounts start at 15 minutes, so a 7-minute run is saved as 15 minutes. An administrator can lower the interval in [Timesheet settings](/help/documentation/timesheetSettings#duration-format), for the whole account or for one team or person.
+  </Accordion>
   <Accordion title="How do I submit my timesheet in Beebole?">
     Click **Submit** at the top of the **Timesheet** page when your period is complete. The timesheet then enters Beebole's approval workflow and is locked while it waits for review. If it comes back rejected, correct your entries and click **Resubmit**.
   </Accordion>
@@ -463,7 +467,7 @@ Next to the score, each of the person's periods is marked **On time**, **Late**,
   <Accordion title="Who decides whether I enter time in hours or days?">
     Your administrator. The unit for time entry (hours, days, or a percentage of your schedule) is set in Beebole's **Timesheet and Planning Settings**, along with the duration format and the timesheet period. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
   </Accordion>
-  <Accordion title="Can I bulk import time entries from a file or spreadsheet?">
+  <Accordion title="Can I import hours from Excel, a CSV file, or a spreadsheet?">
     Yes, but not from a button in the timesheet. Beebole imports time in bulk through its [MCP server](/help/integrations/mcp-server), where an AI assistant connected to your account records one entry or many from a spreadsheet you give it, or through the API's `addTimeRecord` mutation from a script. Inside the app, only people, projects, tags, and tasks can be pasted in bulk; for time, copy a period or import calendar events. See [Importing time entries in bulk](#importing-time-entries-in-bulk).
   </Accordion>
   <Accordion title="What are the ways to record time in Beebole?">
