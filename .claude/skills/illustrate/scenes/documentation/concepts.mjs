@@ -148,4 +148,43 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// Sophie Laurent's picture menu, opened from her initials at the top of her profile: the
+		// color palette and the picture drop area. Nothing is picked.
+		id: 'concepts-color-picker',
+		capturedAt: '2026-10-02',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.goto(page, '/persons')
+			await page.getByText('Sophie Laurent', { exact: true }).first().click()
+			await page.waitForURL(/\/persons\/[0-9a-f]{24}/)
+			await h.settle(page, 1500)
+			// At the default width the palette runs past the right edge of the window.
+			await h.widenPanel(page, 800)
+			await page.locator('bb-picture').filter({ visible: true }).first().click()
+			await page.locator('.pictureMenu').filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 600, y: 860 }),
+		// The panel's header and the open menu below it.
+		shots: [
+			{
+				file: 'concepts/record-color-picker.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const pic = await page.locator('bb-picture').filter({ visible: true }).first().boundingBox()
+						const menu = await page.locator('.pictureMenu').filter({ visible: true }).first().boundingBox()
+						const x = Math.min(pic.x, menu.x) - 24
+						const right = Math.max(pic.x + pic.width + 340, menu.x + menu.width + 24)
+						return { x, y: 0, width: Math.min(1440, right) - x, height: menu.y + menu.height + 24 }
+					},
+				},
+			},
+		],
+	},
 ]

@@ -656,6 +656,27 @@ export const scenes = [
 		shots: [{ file: 'timesheets/calendar-suggestions.webp', frame: { type: 'full' } }],
 	},
 	{
+		// The Grid view and Calendar view buttons next to the Timesheet title (unnamed, see
+		// missing-labels.md), in Grid view.
+		id: 'timesheets-view-toggle',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeek(page, h)
+		},
+		shots: [
+			{
+				file: 'timesheets/view-toggle.webp',
+				frame: {
+					type: 'lens',
+					target: (page) => page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').first().locator('xpath=..'),
+					context: { x: 68, y: 0, width: 960, height: 560 },
+				},
+			},
+		],
+	},
+	{
 		// The calendar zoomed into 10 to 11 AM, opened from the hour's label in the time column.
 		id: 'timesheets-calendar-hour-zoom',
 		capturedAt: '2026-10-04',

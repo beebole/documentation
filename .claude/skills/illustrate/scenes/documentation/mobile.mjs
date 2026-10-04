@@ -256,4 +256,35 @@ export const scenes = [
 		mouse: () => ({ x: 380, y: 830 }),
 		shots: [{ file: 'mobile/mobile-approve-reject.webp', frame: { type: 'full' } }],
 	},
+	{
+		// Scrolled up to the week before this one: the Today button shows in the footer, as today
+		// is out of view.
+		id: 'mobile-today-button',
+		capturedAt: '2026-10-02',
+		datesMatter: true,
+		mode: 'auto',
+		viewport: { width: 390, height: 844 },
+		async setup(page, h) {
+			await openThisWeek(page, h)
+			// Last week's Sunday row ("Sun, September 20"), scrolled up to just under the stacked
+			// period headers. (Last week's header itself stays stacked over this week's at the top.)
+			const label = await page.evaluate(() => {
+				const d = new Date()
+				const sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - d.getDay() - 7)
+				return sunday.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric' })
+			})
+			const row = page.getByText(label, { exact: true }).filter({ visible: true }).first()
+			for (let i = 0; i < 12 && !(await row.count()); i++) {
+				await page.mouse.wheel(0, -400)
+				await h.settle(page, 600)
+			}
+			const top = (await row.boundingBox())?.y
+			if (top === undefined) throw new Error(`day row ${label} not found`)
+			await page.mouse.wheel(0, top - 170)
+			await h.settle(page, 1000)
+			await page.getByText('Today', { exact: true }).filter({ visible: true }).first().waitFor()
+		},
+		mouse: () => ({ x: 380, y: 10 }),
+		shots: [{ file: 'mobile/mobile-today-button.webp', frame: { type: 'full' } }],
+	},
 ]

@@ -2,7 +2,7 @@
 
 Generated 2026-06-11, kept current by `/illustrate` batches and `/release` runs (last update 2026-10-04). The June capture plan, the April changelog and the rows dropped since are in git history.
 
-**Status (counted 2026-10-04):** 259 entries, 221 done or closed, 38 open. Of the open ones: 24 need a guided session (a connected integration on QA, or Excel, Google Sheets, the phone browser or the browser extension), 11 are blocked (seed data, mutations the runner refuses, toasts the runner hides, an app bug), 1 is on hold (accruals, not live), 1 is skipped (`reports/planned-vs-real.webp`) and 1 is optional (`timesheets/calendar-fan-out.webp`). Nothing open can be captured by the runner alone.
+**Status (counted 2026-10-04, plus the 9 done rows of batch 2026-10-02 (9) merged after):** 268 entries, 230 done or closed, 38 open. Of the open ones: 24 need a guided session (a connected integration on QA, or Excel, Google Sheets, the phone browser or the browser extension), 11 are blocked (seed data, mutations the runner refuses, toasts the runner hides, an app bug), 1 is on hold (accruals, not live), 1 is skipped (`reports/planned-vs-real.webp`) and 1 is optional (`timesheets/calendar-fan-out.webp`). Nothing open can be captured by the runner alone.
 
 Capture runs in batches with `/illustrate --batch` (10 shots per batch, one batch per session: high, then medium, then low; within a level, the most-visited pages first per the Traffic block below). Every shot is a replayable scene under `.claude/skills/illustrate/scenes/`; a done entry names its scene. The capture spec, chrome hiding and the runner live in the `/illustrate` skill. Seed names are singular (Acme Corp, the Client/Internal/Activity categories, the Main plan): read `../reboot/shared/i18n/config.json`, not the stale plural copy under `backend/dist/`.
 
@@ -710,6 +710,30 @@ Found while shooting:
 - Quick start step 6 named the first settings screen Admin Settings (it is Account Settings, and the other screens are in its Settings menu) and listed PTO, Sick and Seminar as the default absence types (new accounts get PTO and Sickness, `shared/i18n/config.json`): corrected.
 - `account-settings/show-hide-panel.webp` was not taken: `assignments/show-hide-by-default.webp` already shows the panel.
 - An Add a report lens was dropped: the button is large and labeled, and the existing report shots show it.
+
+## Additions 2026-10-02 (9) (batch from page sections)
+
+No automatable entry left in the inventory, so the shots came from sections of the most-visited pages that had none.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| timesheets/view-toggle.webp | The Grid view and Calendar view buttons next to the Timesheet title | medium — done as a lens (scene `timesheets-view-toggle`, 2026-10-02) |
+| mobile/mobile-today-button.webp | The phone timesheet scrolled up to last week, with the Today button in the footer | medium — done (scene `mobile-today-button`, 2026-10-02) |
+| reports/filters-popup.webp | A folder's Filters popup with Project and is picked, the project list starting with the categories | medium — done on Current Month, nothing added (scene `reports-filters`, 2026-10-02) |
+| custom-reports/column-badge-options.webp | A column header's menu in the results table: Subtotal, Hide empty values, Add a column…, Remove | medium — done on Client: Name of Margin by Client per Month (scene `custom-reports-badge-menu`, 2026-10-02). The page only described the badges: a line on the header menu was added |
+| tags/add-tag-panel.webp | The Add Department panel with the Or add multiple entries area | medium — done (scene `tags-add-panel`, 2026-10-02) |
+| costs/cost-method-picker.webp | A cost rate card's Cost method list | medium — done on Ana Pereira (scene `costs-method-picker`, 2026-10-02) |
+| concepts/record-color-picker.webp | A person's color palette and picture drop area, opened from their initials | low — done on Sophie Laurent, panel widened to 800 (at the default width the palette runs past the window's edge) (scene `concepts-color-picker`, 2026-10-02) |
+| custom-fields/person-custom-field-values.webp | A person's Custom fields panel with values | medium — done on Sophie Laurent: Date of Entry and Payroll ID filled, Cost center empty (scene `custom-fields-person-values`, 2026-10-02) |
+| journal/timesheet-only-feed.webp | A person's Journal opened from the timesheet, with Showing timesheet entries only. Click to show all. | medium — done on Ana Pereira's week of Sep 20 (scene `journal-timesheet-only`, 2026-10-02) |
+
+Linked without a new capture: on Planning, `kanban/card-menu.webp` (Archiving and deleting tasks); on Approval, `mobile/mobile-approve-reject.webp` (From a phone); on Time Off, `timesheets/time-off-row.webp` (Recording time off on the timesheet).
+
+Found while shooting:
+
+- The Filters popup lists twelve filter types; **Project category** and **Planning**, in the Reports page's table, are not among them: they come from ⌘-clicking a category in the Project or Task list, as the paragraph below the table says.
+- Scrolled to an earlier week, the phone header still reads the current week (Sep 27 → Oct 3, Draft, 32 / 40); the period being read shows in the blue bar under it.
+- Considered and dropped: a Timesheet Settings "Opening" shot (`timesheets/settings-period-tab.webp` already shows the panel open under its title), a mobile Submit shot (`mobile/mobile-timesheet.webp` shows it), a public holiday add row (`public-holidays/holidays-panel.webp` shows the empty row), and a Task statuses link (the settings dialog is already on the Planning page).
 
 ## Release 2026-10-04 (`/illustrate --release`)
 
