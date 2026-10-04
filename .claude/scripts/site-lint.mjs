@@ -194,7 +194,7 @@ for (const file of pageFiles) {
 	lines.forEach((l, i) => {
 		const s = l.trim()
 		if (i < fmLines) return
-		if (s.length < PROSE_MIN || /^[<|!{]/.test(s) || /^(title|description|icon)=/.test(s)) return
+		if (s.length < PROSE_MIN || /^[<|!{]/.test(s) || /^[A-Za-z][\w:-]*=/.test(s)) return
 		if (prose.has(s)) add('warning', 'repeated-prose', file, i + 1, `same line as line ${prose.get(s)}: "${s.slice(0, 70)}…"`)
 		else prose.set(s, i + 1)
 	})
