@@ -103,7 +103,7 @@ export const scenes = [
 		// The report, from its title down to the Total row.
 		shots: [
 			{
-				file: 'costs/margin-report-columns.webp',
+				file: 'costs/margin-report-columns.webp', ignore: (page, h) => h.figureCells(page),
 				frame: {
 					type: 'box',
 					pad: 0,

@@ -50,3 +50,8 @@ test('signedOut must be a boolean when present', () => {
 	assert.throws(() => validateScene({ ...ok, signedOut: 'yes' }, 'f.mjs'), /signedOut/)
 	assert.doesNotThrow(() => validateScene({ ...ok, signedOut: true }, 'f.mjs'))
 })
+test('ignore must be a function, and not on a lens shot', () => {
+	assert.doesNotThrow(() => validateScene({ ...ok, shots: [{ file: 'x/y.webp', frame: { type: 'full' }, ignore: () => [] }] }, 'f.mjs'))
+	assert.throws(() => validateScene({ ...ok, shots: [{ file: 'x/y.webp', frame: { type: 'full' }, ignore: [] }] }, 'f.mjs'), /ignore/)
+	assert.throws(() => validateScene({ ...ok, shots: [{ file: 'x/y.webp', frame: { type: 'lens', target: () => {} }, ignore: () => [] }] }, 'f.mjs'), /ignore/)
+})

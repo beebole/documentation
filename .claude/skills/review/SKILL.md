@@ -145,6 +145,14 @@ Features discoverable in code (components, entities, permissions) but not mentio
 
 Things documented but no longer in code (removed features, renamed labels). Flag as: "Stale — in docs, not in code. Consider removing or updating."
 
+Work from the page toward the code, not the other way round: take each documented setting, option, label, limit and workflow and confirm it still exists in `../reboot` on `prod`. Start from the label hints, the page's bold terms that appear nowhere in the app's English labels:
+
+```bash
+node .claude/scripts/site-lint.mjs --label-hints <page.mdx> [more pages…]
+```
+
+Most hints are fine (seed names such as **Acme Corp**, emphasis, phrases quoted from a dialog); each one that is meant as a UI label and is not in the app is a stale-label finding. Removing a section because its feature is gone is a Critical finding: quote the code evidence (file, or the commit that removed it).
+
 ### 3. Compile the report
 
 **Do NOT make any changes.** Present findings:
@@ -204,6 +212,10 @@ Only proceed after confirmation. When applying fixes:
 - Screenshots → delegate to `/illustrate`
 - Spelling/grammar/style/SEO/GEO/structure/label mismatches → apply edits directly
 - Undocumented/deprecated → propose content edits
+
+### 5. Record the review date
+
+When a page went through every check above (not a partial check), set its date in `.todo/review-rotation.md` to today, whether or not anything was fixed. `/release` re-reviews the pages with the oldest dates, so this keeps it from re-auditing a page that was just reviewed.
 
 ## Rules
 
