@@ -146,6 +146,59 @@ const timeOffNextWeek = {
 	},
 }
 
+// A day's header in the calendar view, by its weekday ("Wed").
+const dayHeader = (page, weekday) => page.locator('div.cursor-pointer.select-none').filter({ hasText: new RegExp(`^\\s*${weekday}\\b`) }).filter({ visible: true }).first()
+
+// Opens the last full week in Calendar view.
+async function openLastFullWeekCalendar(page, h) {
+	await openLastFullWeek(page, h)
+	// Second button of the unnamed Grid/Calendar toggle (see missing-labels.md).
+	await page.getByRole('heading', { name: 'Timesheet' }).locator('xpath=..').getByRole('button').nth(1).click()
+	await page.getByText('9 AM').first().waitFor()
+	await h.settle(page)
+}
+
+// A run of short entries with start and end times between 10 and 11 AM on Friday of the last
+// full week (left empty by the seed so far: its entries carry durations only and fill the day
+// from 9 AM, so they would sit under these), for the capture only: what the hour zoom is for.
+// An hour inside the schedule keeps the hatching of off-hours out of the frame. Durations of 3, 6 and 15 minutes keep the hour totals to two
+// decimals. Times are wall-clock time written as if UTC (see timerFixture).
+const SHORT_ENTRIES = [
+	{ projects: ['Website Redesign', 'Meeting'], start: '10:05', end: '10:20' },
+	{ projects: ['Dashboard', 'Analysis'], start: '10:20', end: '10:26' },
+	{ projects: ['Dashboard', 'Analysis'], start: '10:26', end: '10:29' },
+	{ projects: ['Fleet Tracker', 'Development'], start: '10:30', end: '10:45' },
+]
+const shortEntries = {
+	async up(api, { date }) {
+		const day = Date.parse(`${date}T00:00:00Z`)
+		const friday = day - new Date(day).getUTCDay() * 86400000 - 7 * 86400000 + 5 * 86400000
+		const iso = new Date(friday).toISOString().slice(0, 10)
+		const { getPersons } = await api('{ getPersons { id name } }')
+		const personId = getPersons.find((p) => p.name === 'Jordan Reed').id
+		const { getProjects } = await api('{ getProjects { id name } }')
+		const hour = Date.parse(`${iso}T10:00:00Z`)
+		const existing = await api('query($s: BeeboleTimestamp!, $e: BeeboleTimestamp!) { getTimeRecords(startTime: $s, endTime: $e) { id startTime { ts } person { id } } }', { s: friday, e: friday + 86400000 })
+		const leftovers = existing.getTimeRecords.filter((r) => r.person?.id === personId && r.startTime?.ts >= hour && r.startTime?.ts < hour + 3600000).map((r) => r.id)
+		if (leftovers.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: leftovers })
+		const ids = []
+		for (const e of SHORT_ENTRIES) {
+			const projectIds = e.projects.map((n) => getProjects.find((p) => p.name === n).id)
+			const start = Date.parse(`${iso}T${e.start}:00Z`)
+			const end = Date.parse(`${iso}T${e.end}:00Z`)
+			const { addTimeRecord } = await api(
+				'mutation($s: BeeboleTimestamp!, $e: BeeboleTimestamp!, $d: Float!, $p: BeeboleId!, $ids: [BeeboleId!]!) { addTimeRecord(startTime: $s, endTime: $e, duration: $d, personId: $p, projectIds: $ids) { id } }',
+				{ s: start, e: end, d: end - start, p: personId, ids: projectIds }
+			)
+			ids.push(addTimeRecord.id)
+		}
+		return { ids }
+	},
+	async down(api, state) {
+		if (state?.ids?.length) await api('mutation($ids: [BeeboleId!]!) { deleteTimeRecords(ids: $ids) { id } }', { ids: state.ids })
+	},
+}
+
 export const scenes = [
 	{
 		id: 'timesheets-weekly-grid',
@@ -601,5 +654,42 @@ export const scenes = [
 			await h.settle(page, 1500)
 		},
 		shots: [{ file: 'timesheets/calendar-suggestions.webp', frame: { type: 'full' } }],
+	},
+	{
+		// The calendar zoomed into 10 to 11 AM, opened from the hour's label in the time column.
+		id: 'timesheets-calendar-hour-zoom',
+		capturedAt: '2026-10-04',
+		datesMatter: true,
+		mode: 'auto',
+		fixture: shortEntries,
+		// The zoomed hour is about 900 px tall: a taller window shows it whole.
+		viewport: { width: 1440, height: 1250 },
+		async setup(page, h) {
+			await openLastFullWeekCalendar(page, h)
+			await page.getByText('10 AM', { exact: true }).first().click()
+			await page.getByText(/^10(:00)? AM – 11(:00)? AM$/).first().waitFor()
+			await h.settle(page, 1500)
+		},
+		shots: [{ file: 'timesheets/calendar-hour-zoom.webp', frame: { type: 'full' } }],
+	},
+	{
+		// The + of Wednesday's header, shown while the mouse is over that day.
+		id: 'timesheets-calendar-day-add',
+		capturedAt: '2026-10-04',
+		datesMatter: true,
+		mode: 'auto',
+		async setup(page, h) {
+			await openLastFullWeekCalendar(page, h)
+		},
+		mouse: async (page) => {
+			const b = await dayHeader(page, 'Wed').boundingBox()
+			return { x: b.x + 30, y: b.y + b.height / 2 }
+		},
+		shots: [
+			{
+				file: 'timesheets/calendar-day-add.webp',
+				frame: { type: 'lens', target: async (page) => dayHeader(page, 'Wed').locator('button'), context: { x: 300, y: 0, width: 960, height: 560 } },
+			},
+		],
 	},
 ]

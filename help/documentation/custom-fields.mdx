@@ -92,6 +92,10 @@ A **Unique ID** field holds an identifier that only one item can carry, such as 
 
 Use **Validation pattern (regex)** to enforce a format, for example `^EMP-\d{4}$` for EMP followed by four digits. A Unique ID field has no length limits and no list of allowed values.
 
+<Frame caption="A Unique ID field for employee numbers, with a format and a placeholder">
+  <img src="/help/images/custom-fields/unique-id-options.webp" alt="Beebole Custom field details panel with the Field type set to Unique ID, the note that each non-empty value must be unique, the Validation pattern (regex) ^EMP-\d{4}$ and the Placeholder text EMP-0000" width="538" />
+</Frame>
+
 When someone types a value another item already holds, the field is flagged **Already used** and the value isn't saved. If Beebole refuses the value when saving, the message names the holder — **This ID is already used by** followed by the item's name — when that person is allowed to see the item, and reads **This ID is already used by another item.** otherwise. The same check applies to values written through the API.
 
 You can switch an existing field to **Unique ID** only if its current values contain no duplicates, compared the same way. Otherwise Beebole refuses the switch with **This field has duplicate values, so it cannot become a Unique ID field. Remove the duplicates first.**
