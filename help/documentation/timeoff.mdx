@@ -139,7 +139,7 @@ By default, Beebole prevents people from booking more time off than their availa
 To let a balance go below zero — useful for organizations that handle overdrawn leave manually or at year-end — open the allowance in the **Absence allowances** panel and check **Allow negative balance**. The change is saved automatically. When the box is unchecked, Beebole blocks time-off entries that would push the balance below zero.
 
 <Warning>
-  If you allow negative balances, monitor them regularly. Beebole can send notifications when a person's balance goes negative — see the notifications section below.
+  If you allow negative balances, monitor them regularly, for example in the [Absence quotas report](/help/documentation/reports#absence-quotas).
 </Warning>
 
 ---
@@ -168,22 +168,6 @@ Approval does not gate the balance: every recorded time-off entry counts against
 <Info>
   The approval workflow for absences is part of Beebole's general timesheet approval process. See [Approvals](/help/documentation/approval) for details on configuring approval stages and managers.
 </Info>
-
----
-
-## Absence notifications
-
-Beebole can send automatic notifications related to time off to keep managers and administrators informed. They are configured per absence type, in the **Time off notifications** panel:
-
-- **Going negative** — Triggered when a person's balance drops below zero.
-- **Requesting in advance against accruals** — Triggered when someone requests time off they have not yet accrued.
-- A frequency alert — Triggered when a person takes this absence type more than a set number of occurrences in a **Month** or **Year**.
-
-<Frame caption="The Time off notifications panel of the PTO absence type">
-  <img src="/help/images/timeoff/timeoff-notifications-panel.webp" alt="Beebole Time off notifications panel of the PTO absence type with Going negative and Requesting in advance against accruals checked, and the unchecked frequency alert: more than a number of occurrences in a Month" width="762" />
-</Frame>
-
-To configure them, go to **Settings** \> **Time Off**, click the absence type, and check the alerts you want in the **Time off notifications** panel. Changes are saved automatically. See [Notifications](/help/documentation/notifications) for the full setup.
 
 ---
 
