@@ -42,3 +42,7 @@ First run, window 2026-09-04 → 2026-10-04 (30 days). All eight fixes were appr
 - Searches: 178 searches, 152 distinct strings, 51 terms after folding typing prefixes; 30 without a click.
 - Feedback: 0 votes. The Mintlify feedback API returns nothing at all (feedback collection is probably off in the Mintlify dashboard), and PostHog autocapture recorded no thumbs click on `/help/*` in the window.
 - 404s: 5 paths, 11 views (PostHog PROD).
+
+### Release follow-ups
+
+- Production release 2026-10-04: 5 internal notes left in Intercom with a draft reply (1 confirmed, 4 likely), 3 possible matches listed in the run output. Posted 2026-10-04 as a first run of the step.

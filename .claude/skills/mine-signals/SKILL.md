@@ -1,6 +1,6 @@
 ---
 name: mine-signals
-description: 'Mine reader signals outside the docs assistant (Intercom support conversations, Mintlify searches nobody clicked, page feedback, 404s on /help/*) and write a fixes-first report in `.todo/docs-signals.md` for human review. Report-only: proposals are never applied or fed to `/write`. Runs as a step of /release, or standalone when asked to mine support questions, searches, feedback or 404s. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
+description: 'Mine reader signals outside the docs assistant (Intercom support conversations, Mintlify searches nobody clicked, page feedback, 404s on /help/*) and write a fixes-first report in `.todo/docs-signals.md` for human review. Report-only: proposals are never applied or fed to `/write`. In a /release run it also finds the Intercom conversations a production release answers (a bug fixed, a request shipped) and leaves each an internal note with a draft reply. Runs as a step of /release, or standalone when asked to mine support questions, searches, feedback or 404s, or to find customers to update after a release. Run only when explicitly invoked by the user or as a step of /release — do not auto-trigger from conversation.'
 ---
 
 # Mine Signals — Fixes from Support, Search, Feedback and 404s
@@ -8,6 +8,10 @@ description: 'Mine reader signals outside the docs assistant (Intercom support c
 `/mine-conversations` mines what readers ask the docs assistant. This skill mines the other places readers show they could not find an answer: questions sent to support, searches with no click, thumbs-down, and pages that do not exist. It writes a report that leads with **proposed fixes**, each backed by its evidence, for a human to approve.
 
 **Report-only, by decision (Yves, 2026-10-04).** For its first runs this skill proposes and never applies: no edit to `help/**` or `docs.json`, no entry in `.todo/gaps.md`, no `/write`. Whether some fix kinds (a redirect for a 404, say) may later be applied unattended is Yves's call once he has seen a few reports; until he says so, the report is the whole output.
+
+The one write outside this repo is the release follow-up (see "Release follow-ups" below): an **internal note** on an Intercom conversation, which customers never see, approved by Yves on 2026-10-04. Nothing here ever replies to a customer.
+
+**This repo is public**, and so are its PRs. Customer names, emails, companies, conversation links and draft replies never go into `.todo/docs-signals.md`, a commit or a PR body: they stay in Intercom and in the terminal output.
 
 ## Data sources
 
@@ -166,9 +170,70 @@ Nothing was applied: approved fixes are made by hand or with /write <path>.
 
 In a `/release` run the report is committed on the release branch and the PR lists the proposed fixes as pending review.
 
+## Release follow-ups
+
+Run in a `/release` (or when asked "who should we tell about this release?"), after the report. Its question: which customers asked for something this production release delivers, and have not been told yet? Support often answers "we're working on it" or "I've shared it with the team", and the fix ships weeks later without anyone going back to the conversation.
+
+### 1. What shipped
+
+The release passes the production notes it covers (`../reboot/frontend/public/release-notes/production/<date>.md`, the dates listed under "Production deploys covered"). Standalone, use the notes newer than the last follow-up note date you find, or ask which release.
+
+- Each note's frontmatter has `from` and `to` commits on `prod`. List the PRs that reached production: `git -C ../reboot log --oneline <from>..<to>` and collect the `#N` references.
+- For each, `gh pr view N --repo beebole/reboot --json title,body,closingIssuesReferences`. A `#N` that is an issue rather than a PR counts as that issue.
+- Keep the note's own lines too: they are the user-facing description of every change.
+- Do not rely on issue state or PR text: issues usually stay open after their fix ships (on 2026-10-04, #2419 and #2406 were still open while PRs #2431 and #2444 were in production), PRs rarely say "closes #N", and many PR bodies are empty. Link an issue to a PR by comparing the issue's description with the PR's title, its release-note line and its diff (`gh pr diff N --repo beebole/reboot`).
+
+Only what is in that range is shipped. An issue closed on `dev` but outside the range is not live yet: never tell a customer about it.
+
+### 2. Conversations waiting for news
+
+From Intercom (same API and noise filter as source 1), take conversations updated in the last 120 days, whatever their state, where support's last word promised something: a bug acknowledged ("we can reproduce it", "I've created a ticket", "we're working on a fix"), a request passed on ("I'm sharing it with the product team", "an internal request"), or "it might come later", in any language (es: "lo estamos revisando", fr: "nous y travaillons", …). Shortlist with these phrases, then read each shortlisted thread in full.
+
+Drop a conversation when:
+
+- a later admin message already says it is fixed or available;
+- it already has a follow-up note from this step (a note whose first line starts with `Release follow-up`) about the same change, or any follow-up note newer than the customer's last message.
+
+### 3. Match and verify
+
+For each conversation, find the shipped change that answers it, then check that it really does: the issue's reproduction or expected behavior must describe what the customer reported, and when in doubt read the code on `prod`. Grade the match:
+
+- **Confirmed:** a shipped issue or PR describes the same problem or request.
+- **Likely:** a release-note line clearly covers it, with no issue to compare.
+- **Possible:** related but partial (part of a request, a similar but not identical bug). No note: list it in the terminal output only, for a human to judge.
+
+### 4. Leave the note (Confirmed and Likely)
+
+`POST https://api.eu.intercom.io/conversations/<id>/reply` with headers as for source 1 and body
+`{"message_type": "note", "type": "admin", "admin_id": "<id from GET /me>", "body": "<html>"}`. The token belongs to Yves's admin account, so the note shows as his. Never use `message_type: "comment"`: that is a reply the customer receives.
+
+The note, in English, short HTML paragraphs:
+
+1. First line: `Release follow-up: <what shipped>, live since <production date> (reboot #<issue or PR>). Match: <Confirmed | Likely>.`
+2. One or two sentences linking the customer's report to the change.
+3. `Draft reply (not sent):` then the draft.
+
+No @mention: Intercom's API strips mentions from notes (tested 2026-10-04 with both the documented `entity_mention` link and the exact HTML its own editor writes: the class is removed and no one is notified). The assignee sees the note in the conversation, and the terminal output groups the follow-ups by assignee so Yves can tell them.
+
+A note on a **snoozed** conversation unsnoozes it (Intercom records `note_and_unsnooze`), which puts it back in the assignee's inbox. That is usually right, since support snoozes these while waiting for the fix; say in the output which conversations were unsnoozed.
+
+The draft reply:
+
+- in the language the customer wrote in, with a French translation below when that language is neither French nor English;
+- plain, like a person typing: no bold, no em dashes, no headers, no sign-off slogans; short sentences;
+- says what changed and that it is live now, without overpromising: if only part of the request shipped, say which part;
+- adds a help page link (`https://beebole.com/help/...`) only when the customer needs it to use what shipped, such as a new setting to switch on; a plain bug fix gets no link;
+- opens with the customer's first name when the conversation shows it.
+
+### 5. Report
+
+- Terminal output (private): grouped by assignee, each conversation with its link (`https://app.eu.intercom.com/a/inbox/m1cir6k6/inbox/shared/all/conversation/<id>?view=List`), the change, the grade, and whether a note was left; then the Possible ones.
+- `.todo/docs-signals.md` and the release PR (both public): counts only, such as "Release follow-ups: 3 notes left in Intercom (2 confirmed, 1 likely), 1 possible match listed in the release output". No names, companies, links or quotes.
+
 ## Rules
 
-- **Report-only.** Never edits `help/**` or `docs.json`, never triggers `/write`, never writes to `.todo/gaps.md`, until Yves changes the mode in this file.
+- **Report-only.** Never edits `help/**` or `docs.json`, never triggers `/write`, never writes to `.todo/gaps.md`, until Yves changes the mode in this file. The only write is the internal follow-up note in Intercom; never a customer-visible reply.
+- **Nothing private in this public repo.** Customer details, conversation links and drafts stay in Intercom and the terminal.
 - **Fixes first.** Every entry states the fix; evidence follows it. A signal with no fix goes under "No action" with the reason.
 - **Track, don't repeat.** A signal already in the report gets a note on its entry, not a new entry; a fix marked Done is checked against the new signals.
 - **Verify everything** against the docs and the code before proposing.
