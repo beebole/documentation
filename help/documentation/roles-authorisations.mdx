@@ -97,6 +97,10 @@ The targets separate what the person *manages* from their *colleagues* — and, 
 
 For example, a team leader role could have **People details** set to **Edit: Managed people** and **View: Managed people, Project colleagues** — they can maintain their own team's profiles and see, but not change, the profiles of project colleagues.
 
+### Time entries on someone else's timesheet
+
+On another person's timesheet, only what you manage counts. Beebole lets you see, add, or change a time entry there when you reach it through the person (**Managed people**), one of the entry's projects (**Managed projects**), or its task (**Managed tasks**, or a project you manage that the task is linked to). Tasks you own or are assigned to, and projects you are only assigned to, don't count for someone else's timesheet: an entry you could reach only that way is refused. A target of **All** still covers every entry, and on your own timesheet your role's targets apply as usual.
+
 ## Timesheet, time off, and schedule permissions
 
 These permissions control day-to-day time tracking data.
@@ -291,5 +295,8 @@ The two setups combine without a third role: project managers hold **Project man
   </Accordion>
   <Accordion title="Why can't a project manager see all the hours on their project?">
     Two things must both be true in Beebole: their role must reach the people who logged the time — **People details** at **View: Managed project members**, as on the built-in **Project manager** role — and they must actually be set as the project's manager, in the **Manages** panel of their profile. A manager set only on a subproject sees that subproject; set them on the parent to cover everything beneath it.
+  </Accordion>
+  <Accordion title="Why can't I record time on a team member's task?">
+    On someone else's timesheet, Beebole only counts tasks you manage. A task you own or are assigned to isn't enough: the entry is refused unless you manage the task, a project the task is linked to, the person, or one of the entry's projects. To fix it, ask someone whose role includes **Assign task managers** to make you a manager of the task.
   </Accordion>
 </AccordionGroup>

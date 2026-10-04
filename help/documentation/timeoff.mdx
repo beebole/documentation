@@ -28,6 +28,7 @@ Each absence type can be configured with:
 
 - **A name** — The label your team sees when logging time off (e.g., "Vacation", "Sick Leave").
 - **A unit** — Whether absences are tracked in **Hour** or **Day** units.
+- **A paid setting** — Whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
 - **An allowance** — The amount of time off each person receives per period.
 - **An accrual policy** — Rules describing how time off accumulates over the allowance period. See [Accruals](/help/documentation/accruals).
 
@@ -43,7 +44,7 @@ Each absence type can be configured with:
     Click **Add Time Off Type**, enter a **Name** for the absence type (e.g., "Vacation", "Sick Leave"), and click **Add Time Off Type**.
   </Step>
   <Step title="Choose the unit">
-    In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. The change is saved automatically, and the new absence type is available for allowances and timesheet entry.
+    In the **Units** panel, select whether this absence type is tracked in **Hour** or **Day** units. Below it, **Is paid (included in people costs)** is checked by default — uncheck it for unpaid leave. Changes are saved automatically, and the new absence type is available for allowances and timesheet entry.
   </Step>
 </Steps>
 
@@ -138,10 +139,15 @@ To let a balance go below zero — useful for organizations that handle overdraw
 
 ## Time off and people costs
 
-Time off counts toward people cost totals. A leave day is valued with the person's [cost rate](/help/documentation/costs) for that day — Beebole multiplies the absence duration by the rate exactly as it would for a regular time entry — so leave appears in budgets and profitability reports alongside billable work, even though no project time was tracked.
+Each absence type decides whether its time off counts as a people cost, through the **Is paid (included in people costs)** checkbox. It sits in the type's **Units** panel, right below the unit, and it is checked on every new absence type. To change it, go to **Settings** \> **Time Off**, open the absence type, and check or uncheck the box. The change is saved automatically.
+
+| Is paid (included in people costs) | What happens in cost figures |
+| --- | --- |
+| Checked | Each absence is valued with the person's [cost rate](/help/documentation/costs) for that day — Beebole multiplies the absence duration by the rate exactly as it would for a regular time entry — so paid leave appears in cost totals in reports, budgets, and profitability figures, even though no project time was tracked. |
+| Unchecked | Absences of this type carry no cost. Their hours still show in reports, but they add nothing to cost totals. Use this for unpaid leave. |
 
 <Info>
-  There is no per-type switch for this today: every time off type is treated the same way in cost calculations. Time off never affects billing amounts — only costs.
+  Reports apply the checkbox when they run, so changing it also changes the cost of time off recorded before the change. Time off never affects billing amounts, whichever way the box is set — only costs.
 </Info>
 
 ---

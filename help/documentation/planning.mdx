@@ -43,7 +43,7 @@ For general work that isn't planned as a task, track time on projects and subpro
 Every task belongs to a planning — a separate board with its own statuses, its own level names for the hierarchy, and its own mode: [tasks or bookings](#tasks-or-bookings). New Beebole accounts start with one planning named **Main plan**, with the statuses **Backlog**, **Queue**, **In progress**, and **Done**.
 
 - **Switch plannings** — Click the planning name at the top of the **Planning** page and pick another one from the menu.
-- **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**.
+- **Create a planning** — In the same menu, type a name in the **Name of a new planning** field and click **Add**. The new planning opens in the mode you last picked, **Bookings** by default — see [Tasks or bookings](#tasks-or-bookings).
 - **Open a planning's settings** — Click the settings button next to the planning name (its tooltip reads **Main plan settings** for the **Main plan** planning). The dialog holds the planning's mode and its [statuses](#task-statuses). The button only appears if you are allowed to manage tasks.
 
 <Frame caption="The plannings menu, opened from the planning name">
@@ -69,7 +69,7 @@ To choose, open the planning's settings and pick a mode under **What this planni
 | **Tasks** | A named item with a status | A to-do list, a to-do on a calendar, issues, tickets |
 | **Bookings** | A person on a project, with dates and an allocation | Who is on what project, a vacant position, someone expected present |
 
-Every planning starts as **Tasks**, including plannings created before this setting existed. The mode decides what the add button opens and whether items carry a name of their own:
+A planning you add from the plannings menu opens in the mode you last picked under **What this planning holds** for any planning, or in **Bookings** if you have never picked one. Beebole remembers this last pick for each person separately. Existing plannings keep their mode: the **Main plan** of a new account, plannings created before this setting existed, and plannings created by an Asana, Jira, Linear, or Monday import are **Tasks** until you switch them. The mode decides what the add button opens and whether items carry a name of their own:
 
 - **The add button** — In a Tasks planning it reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning it reads **Add Booking** and asks for the person (**Select the owner**) and the project — one of the two is enough — plus a start date, a duration in days, and the allocation (**%**, **h/day**, or **Total**). The new booking opens in the side panel right away. The start date and duration you used are proposed again for the next booking; a start date that has passed falls back to today.
 - **Names** — A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either — it goes on the project instead. In a Tasks planning, you name each task yourself.
@@ -310,7 +310,7 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
   </Accordion>
 
   <Accordion title="What is the difference between a Tasks planning and a Bookings planning?">
-    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. Every Beebole planning starts as Tasks, all four views stay available in both modes, and switching keeps any stored names.
+    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. A new Beebole planning opens in the mode you last picked, Bookings by default, while existing plannings keep theirs. All four views stay available in both modes, and switching keeps any stored names.
   </Accordion>
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">

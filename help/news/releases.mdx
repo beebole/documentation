@@ -11,7 +11,7 @@ og:type: "website"
 ---
 
 <Update label="October 2026" tags={["Timesheet","Planning","Settings","Time off","Security"]}>
-  October brings a **Unique ID** custom field type, an hour-level zoom on the calendar view, paid time-off types that count in people costs, and more control over the levels of a project or tag category.
+  October brings a **Unique ID** custom field type, an hour-level zoom on the calendar view, unpaid time-off types that stay out of people costs, and more control over the levels of a project or tag category.
 
   ### Timesheets
 
@@ -20,7 +20,7 @@ og:type: "website"
   - The floating timer shows which project each timer belongs to, with parent projects as short initials and the full path on hover.
   - Time fields in popups and bottom sheets have +/− buttons that move the time in 15-minute steps; hold ⌘ to move by one hour.
   - Changing a start time, end time or duration now saves as a single edit, and one undo restores the whole change. Undoing a deletion and copying entries also bring back the comment, the non-billable and work-from-home flags, and custom field values, not just the hours.
-  - Managers can record time for other people only on tasks they manage; time on any other task is refused. See [Roles and authorizations](/help/documentation/roles-authorisations).
+  - On a teammate's timesheet, a task now gives you access to an entry only when you manage that task: owning it or being assigned to it is no longer enough. Managing the person or one of the entry's projects still works. See [Roles and authorizations](/help/documentation/roles-authorisations).
   - With start and end times on, logging time on a planned task no longer removes its [suggestion](/help/documentation/ai) for the day: the suggestion shrinks by the time you logged, and any remaining scheduled time is shared across your planned tasks.
 
   ### Planning
@@ -29,9 +29,9 @@ og:type: "website"
 
   ### Custom fields, time off & settings
 
-  - New **Unique ID** [custom field](/help/documentation/custom-fields) type: each value can belong to only one person, project, task, tag, time entry or time-off type. Matching ignores upper and lower case and extra spaces, and archived items still count. Add a validation pattern and a placeholder if you need them. When a value is already taken, the message names the item holding it if you're allowed to see it, and a field can't switch to Unique ID while its existing values contain duplicates.
+  - New **Unique ID** [custom field](/help/documentation/custom-fields) type: each value can belong to only one person, project, task, tag, time entry or time-off type. Matching ignores upper and lower case and spaces before or after the value, and archived items still count. Add a validation pattern and a placeholder if you need them. When a value is already taken, the message names the item holding it if you're allowed to see it, and a field can't switch to Unique ID while its existing values contain duplicates.
   - Number custom fields accept your local decimal format, and what you type is saved when you leave the field or close the panel.
-  - Time-off types can now count in people costs: tick **Is paid (included in people costs)** on the type and its absences are included in the cost figures of your [reports](/help/documentation/reports) and [budgets](/help/documentation/budgets). See [Time off](/help/documentation/timeoff).
+  - Each time-off type now has an **Is paid (included in people costs)** checkbox. It is ticked by default, so time off keeps counting in the cost figures of your [reports](/help/documentation/reports) and [budgets](/help/documentation/budgets); untick it for unpaid leave and that type's absences no longer add to costs. See [Time off](/help/documentation/timeoff#time-off-and-people-costs).
   - In a project or [tag](/help/documentation/tags) category's **Level names** window, drag levels into a new order and rename or remove any level, not just the deepest one. The new **Only named levels** setting stops anything being added, moved or copied below the last named level.
   - Hover a project or task name, in a badge or in the timesheet popup header, to read its description. Long parent paths are now cut short with "…" instead of initials, with the full path in the tooltip.
   - After you archive a person, project, task or type, entries and badges that use it keep showing its name. Selectors only list archived items when you're viewing archived items.

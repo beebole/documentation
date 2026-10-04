@@ -40,7 +40,7 @@
 ## Absence & Time-Off Management
 
 - `absence/types` **Configurable absence types** — Vacation, sick leave, parental leave, etc.; type pickers show only the types each person is allowed to use, including when a manager or admin books on someone's behalf
-- `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid with the **Is paid (included in people costs)** checkbox; paid absences are automatically included in people cost totals shown in reports and budgets (live in production since 2026-10-04)
+- `absence/cost-tracking` **Absence cost inclusion** — Mark each absence type as paid or unpaid with the **Is paid (included in people costs)** checkbox (checked by default); paid absences are automatically included in people cost totals shown in reports and budgets (live in production since 2026-10-04)
 - `absence/accrual` **Accrual policies** — Configurable on allowances: frequency (weekly, bi-weekly, twice-monthly, or monthly), quantity, and when within each period the credit is awarded. _(status: partial — the automatic awarding engine is NOT implemented (feature request `../reboot/docs/feature-requests/7. absence-accrual-engine.md`); accrued balances are adjusted manually via the allowance's **Accrued** field. Re-verified 2026-08-04)_
 - `absence/carry-forward` **Carry-forward rules** — Unused allowance carries forward into the next period when a "valid until" date is set, limited by the carry-forward cap (0 means no cap); booking limits and the absence quota report reflect the carried balance
 - `absence/negative-balance` **Negative balance controls** — Allow or restrict going below zero
@@ -191,7 +191,7 @@
 
 - `roles/rbac` **Role-based access control (RBAC)** — Define roles with granular permissions
 - `roles/scopes` **24+ authorization scopes** — Admin, organization, staff, projects, tasks, time tracking, absences, expenses, custom fields, budgets, billing/costs, messages, schedules, email templates, and more
-- `roles/targets` **Permission targets** — Scope access to: me only, what you manage (managed projects, tasks, people), your colleagues, or the entire organization; task access separates tasks you own from tasks you manage, and recording time on someone else's timesheet against a task is allowed only on tasks you manage
+- `roles/targets` **Permission targets** — Scope access to: me only, what you manage (managed projects, tasks, people), your colleagues, or the entire organization; task access separates tasks you own from tasks you manage, and on someone else's timesheet a task only gives access to an entry when you manage it (owned or assigned tasks don't count there; managing the person or one of the entry's projects still does)
 - `roles/view-manage` **View vs. manage split** — Separate read and write permissions, with a search box to quickly find a permission
 - `roles/assignment-permissions` **Granular assignment permissions** — Control who can assign managers (people, projects, tasks, tags), tasks, projects, schedules, time off, expenses, custom fields, and tags, and who can set the valid period for time entry; assignment controls only appear to roles allowed to manage them
 - `roles/field-level` **Field-level permissions** — Sensitive data is automatically hidden based on role
@@ -199,7 +199,7 @@
 
 ## Custom Fields
 
-- `custom-fields/types` **Multiple field types** — Text, number (typed in your local decimal format), date, datetime, URL, boolean, and **Unique ID**: each value can belong to only one person, project, task, tag, time entry, or absence type (matching ignores upper/lower case and extra spaces, and archived items still count), with an optional validation pattern and placeholder; a taken value names the item holding it when you may see it, and a field cannot switch to Unique ID while its values contain duplicates
+- `custom-fields/types` **Multiple field types** — Text, number (typed in your local decimal format), date, datetime, URL, boolean, and **Unique ID**: each value can belong to only one person, project, task, tag, time entry, or absence type (matching ignores upper/lower case and spaces before or after the value, and archived items still count), with an optional validation pattern and placeholder; a taken value names the item holding it when you may see it, and a field cannot switch to Unique ID while its values contain duplicates
 - `custom-fields/entity-visibility` **Entity visibility** — Apply fields to persons, projects, tasks, time records, absences, or absence types; a field assigned to an absence type is asked only on absences of that type, and fields on timesheet entries follow the person the timesheet belongs to and honour assignments made through people, tags, projects, tasks, and absence types
 - `custom-fields/validation` **Validation rules** — Min/max values, regex patterns, allowed value lists
 - `custom-fields/defaults` **Placeholders** — Placeholder text on custom fields; field definitions no longer carry default values

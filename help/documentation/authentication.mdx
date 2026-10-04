@@ -29,7 +29,11 @@ Every method also works for the [desktop app](/help/documentation/desktop-app): 
 
 ### Email code
 
-The email code is the default method. Enter your email address on the Beebole sign-in page, and Beebole sends a one-time 6-digit code to your inbox. Enter the code to finish signing in. The code is single-use and expires after 5 minutes — request a new one if it does not arrive, and check your spam folder.
+The email code is the default method. Enter your email address on the Beebole sign-in page, and Beebole sends a one-time 6-digit code to your inbox. Type the code on the same page to finish signing in. The code is single-use, and the email says it expires in 5 minutes.
+
+The code works on the sign-in page that asked for it. If you reload that page, or want to finish signing in on another device, enter your email address there to ask for a code again. Beebole then sends the same code with a fresh expiry rather than a new one, and so does **Didn't receive the code? Resend** under the code fields. As long as the code still works, every email you receive holds that same code, so it does not matter which one you open. If no email arrives, check your spam folder before asking again.
+
+A wrong code shows *"The code you entered is not valid. Please try again."* After 5 wrong attempts, the code stops working and Beebole shows *"The sign-in code has expired. Please request a new one."* Asking for a code then sends a new one. If five codes for the same email address get used up this way, Beebole stops sending codes for a while and shows *"Too many codes requested for this email. Please try again in N minutes."*, with the number of minutes to wait.
 
 <Frame caption="The sign-in page: your work email for a code, or Google and Microsoft">
   ![Beebole sign-in page with the Work email field, the Sign In button, and the Google and Microsoft buttons under Or sign in with](/help/images/authentication/signin-page.webp)
@@ -194,7 +198,7 @@ Administrators can sign in as another person to troubleshoot a problem or confir
     On **Account Settings**, open the **Single Sign-On** panel, select your provider's tab, and turn on its **Disable interactive sign-in** toggle. This blocks the email-code method so everyone must authenticate through the configured provider.
   </Accordion>
   <Accordion title="A team member can't sign in — what should I check?">
-    Confirm they are using the exact email address on their Beebole profile, and ask them to check their spam folder for the 6-digit code. As an administrator, you can use **Sign in as…** from your user menu to see Beebole as they do.
+    Confirm they are using the exact email address on their Beebole profile, and ask them to check their spam folder for the 6-digit code. If they asked for the code several times, any of the emails works, since Beebole resends the same code. After 5 wrong attempts the code stops working and they need to ask for a new one; if they see a message asking them to try again in a number of minutes, they have to wait that long. As an administrator, you can use **Sign in as…** from your user menu to see Beebole as they do.
   </Accordion>
   <Accordion title="How many API keys can I have?">
     One. Beebole creates a single API key per person automatically and offers **Copy** and **Reset** actions for it. Resetting revokes the old key and issues a new one — there are no multiple keys and no expiration dates to manage.
