@@ -92,7 +92,7 @@ mintlify broken-links --check-anchors --check-redirects
 
 **Step 10 detail:** report-only, by design — its candidates are **not** drafted in this run, and never feed them into `/write` or `.todo/gaps.md`. The report is committed so the PR carries the candidates for human review; approving entries and drafting them is a separate decision after the PR. If PostHog is unreachable, skip the step and note it in the PR body — never block the release on it.
 
-**Step 11 detail:** report-only as well (Intercom support conversations, Mintlify searches with no click, page feedback, 404s): its proposed fixes are listed in the PR as pending review and nothing is applied, until Yves changes the skill's mode. A source that fails is skipped and named in the report. Then run its **Release follow-ups** with the production notes this release covers: it finds the Intercom conversations this release answers (a bug support acknowledged, a request passed to the team) and leaves each confirmed or likely match an internal note with a draft reply, never a reply to the customer. This repo and its PRs are public: the PR body gets counts only, and the conversation links go in the final output.
+**Step 11 detail:** report-only as well (Intercom support conversations, Mintlify searches with no click, page feedback, 404s): its proposed fixes are listed in the PR as pending review and nothing is applied, until Yves changes the skill's mode. A source that fails is skipped and named in the report. This repo and its PRs are public: the PR body gets counts and paraphrases only, never customer names or conversation links. The release does not write to Intercom: telling customers about a fix belongs with the work that tests and tracks the open issues.
 
 **Step 12 detail:** audits the in-app contextual help snippets (`../md` + the dictionary in `../reboot/frontend/src/i18n/md.ts`) against the app's attributes and previews, then fixes what it finds in the same step, following "Fix mode" in the check-help-snippets skill. Snippet files (missing, incomplete language sets, stale wording) are written in `../md` and pushed to its `main`, which the app serves live. Missing dictionary entries are written in `../reboot` on `dev` but left uncommitted: that repo requires Yves' approval for each commit, so the question waits for section 6 below instead of blocking the run. The report, with its "Fixes applied" section, is committed to the release branch so the PR shows what changed. If `../md` or `../reboot` is unreachable or dirty, skip that part and note it — never block the release on it.
 
@@ -115,7 +115,6 @@ PR body template. **"Needs your eyes" comes first**: it is the short list of wha
 - [ ] <app behavior the docs had to describe as-is, or a doc/app mismatch found while writing>
 - [ ] <content removed by the rotation audit because the feature is gone>
 - [ ] <high-priority AI-conversation candidates and proposed signal fixes to approve>
-- [ ] <N Intercom conversations got a release follow-up note with a draft reply: send them from Intercom (links in the run's output, never here)>
 - [ ] <guided screenshots to check by hand on pages this release changed>
 - [ ] <lint errors left unfixed, a failing PR check, a decision taken unattended that changes meaning>
 
@@ -154,8 +153,6 @@ PR body template. **"Needs your eyes" comes first**: it is the short list of wha
 
 ### Docs signals (pending review)
 <proposed fixes added by /mine-signals this run, by kind, and the sources skipped — or "None." Nothing was applied; approve in .todo/docs-signals.md>
-
-Release follow-ups: <N notes left in Intercom (confirmed / likely), M possible matches in the run output, or "None.">. Counts only: no names, companies or links in this public PR.
 
 ### In-app help snippets
 <fixes pushed to ../md this run (commit + files), dictionary entries prepared in ../reboot (waiting for approval), findings left unfixed with the reason, or "All clear.">
