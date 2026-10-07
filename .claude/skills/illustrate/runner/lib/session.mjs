@@ -44,9 +44,9 @@ async function signIn(page) {
 			const accounts = (await gq('query($e: BeeboleEmail!) { getAccounts(email: $e) { id organisationId } }', { e: email })).data?.getAccounts || []
 			const account = accounts.find((a) => a.organisationId === orgId)
 			if (!account) return 'no account for the documentation organisation'
-			const pin = (await gq('mutation($e: BeeboleEmail!, $a: BeeboleId) { requestSignin(email: $e, accountId: $a) { debugPin } }', { e: email, a: account.id })).data?.requestSignin?.debugPin
-			if (!pin) return 'no debug PIN returned'
-			const res = await gq('mutation($p: Int!) { signin(pin: $p) { expire { ts } } }', { p: pin })
+			const pending = (await gq('mutation($e: BeeboleEmail!, $a: BeeboleId) { requestSignin(email: $e, accountId: $a) { token debugPin } }', { e: email, a: account.id })).data?.requestSignin
+			if (!pending?.debugPin) return 'no debug PIN returned'
+			const res = await gq('mutation($t: String!, $p: Int!) { signin(token: $t, pin: $p) { expire { ts } } }', { t: pending.token, p: pending.debugPin })
 			return res.errors ? res.errors[0].message : 'ok'
 		},
 		{ email: EMAIL, orgId: ORG_ID }
