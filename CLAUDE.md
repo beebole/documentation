@@ -60,6 +60,7 @@ Each skill's full instructions are in `.claude/skills/<skill-name>/SKILL.md`. Sk
 ```
 docs.json              # Mintlify configuration (navigation, theme, SEO, languages)
 pollen.js              # Analytics script (Pollen/GTM)
+posthog.js             # PostHog loader, beebole.com only (same settings as website-next posthogSnippet.ts and the blog's copy)
 style.css              # Custom CSS, auto-loaded by Mintlify (wide-screen layout overrides) — the only place for site styling
 robots.txt             # Crawler rules
 .mintignore            # Paths Mintlify must not publish
