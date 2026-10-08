@@ -31,7 +31,7 @@ Use this table to map app change keywords to the documentation pages they likely
 | SSO, passkey, passwordless, OAuth, sign-in, login, auth | `help/documentation/authentication.mdx` |
 | account, settings, password, profile, 2FA | `help/documentation/account-settings.mdx` |
 | subscription, plan, seat, add-on, promotion | `help/documentation/subscription.mdx` |
-| invoice, payment, billing portal | `help/documentation/billing.mdx` |
+| invoice, payment, billing portal | `help/documentation/subscription.mdx` |
 | onboarding, quickstart, setup, wizard | `help/documentation/quickstart.mdx` |
 | integration, jira, asana, linear, webhook | `help/integrations/jira.mdx`, `help/integrations/asana.mdx`, `help/integrations/linear.mdx`, `help/integrations/custom-integrations.mdx` |
 | quickbooks, qbo | `help/integrations/quickbooks.mdx` |
@@ -66,8 +66,8 @@ Use this table to map app change keywords to the documentation pages they likely
 | fast loading, local cache, caching, performance | `help/documentation/concepts.mdx` |
 | tooltip, toast, breadcrumb, in-app feedback | `help/documentation/concepts.mdx` |
 | profile picture, avatar, crop tool | `help/documentation/account-settings.mdx` |
-| archive absence type, archive schedule, archive task, unarchive | `help/documentation/timeoff.mdx`, `help/documentation/work-schedule.mdx`, `help/documentation/planning.mdx` |
-| CSV import, bulk import, import tasks, import tags | `help/documentation/planning.mdx`, `help/documentation/tags.mdx` |
+| archive absence type, archive schedule, archive expense type, unarchive | `help/documentation/timeoff.mdx`, `help/documentation/work-schedule.mdx`, `help/documentation/expenses.mdx` |
+| bulk import, paste entries, add multiple entries, import preview, import tasks, import tags, inline add, add sub-item | `help/documentation/planning.mdx`, `help/documentation/projects.mdx`, `help/documentation/tags.mdx`, `help/documentation/people.mdx` |
 | staffing, staffing view, booking, resource planning, capacity, allocation | `help/documentation/staffing.mdx` |
 | AI, Beebole AI, suggested entries, suggestion, natural language report, approval digest, AI privacy | `help/documentation/ai.mdx` |
 | MCP, MCP server, Claude, ChatGPT, AI assistant, connected apps, assistant connection | `help/integrations/mcp-server.mdx` |
@@ -98,3 +98,19 @@ Use this table to map app change keywords to the documentation pages they likely
 | planning mode, tasks or bookings, what this planning holds, bookings planning, tasks planning | `help/documentation/planning.mdx`, `help/documentation/staffing.mdx` |
 | level names, hierarchy levels, category settings, rename level | `help/documentation/projects.mdx`, `help/documentation/tags.mdx`, `help/documentation/planning.mdx` |
 | version update, update available, new version prompt, reload prompt | `help/documentation/concepts.mdx` |
+| mark task done, set as done, done, reopen, show done, hide done | `help/documentation/planning.mdx` |
+| pin column, pinned columns, keep column on the left, frozen column, sticky column | `help/documentation/task-list.mdx` |
+| mobile planning, take it, to-do tab, overdue tasks, due today | `help/documentation/mobile.mdx` |
+| PWA, progressive web app, install app, Home Screen, add to home screen | `help/documentation/mobile.mdx` |
+| record locking, who can edit, edit timesheet, force edit, override, locked timesheet | `help/documentation/approval.mdx` |
+| restriction, add restriction, DCAA, planned tasks only, owner or admin | `help/documentation/timesheetSettings.mdx` |
+| non-billable flag, non-billable entry, hide non-billable option | `help/documentation/timesheets.mdx`, `help/documentation/timesheetSettings.mdx` |
+| assignment, who has access, show or hide, show or hide by default, show all, secondary projects, whole category | `help/documentation/assignments.mdx` |
+| billing rate, hourly rate, daily rate, fixed fee, rate split, recurring fee, billing method | `help/documentation/billing.mdx` |
+| clock format, time zone, date format, decimal format, thousands separator, currency, first day of the week | `help/documentation/account-settings.mdx`, `help/documentation/people.mdx` |
+| invite, invitation, invitation pending, copy link, sign in as, takeover | `help/documentation/people.mdx` |
+| delete account, organization deletion, cancel deletion, grace period, release notes, what's new | `help/documentation/account-settings.mdx` |
+| category colour, category color, category manager, pick a whole category | `help/documentation/projects.mdx` |
+| trial, free trial, trial end, account inactive, locked account, deactivated, wire transfer, promotion code, discount code, cancel subscription | `help/documentation/subscription.mdx` |
+| pin panel, resize panel, panel width, collapse sidebar, expand sidebar, info button, in-app help, help text | `help/documentation/concepts.mdx` |
+| email template, email templates, placeholder, reset to default template | `help/documentation/notifications.mdx` |
