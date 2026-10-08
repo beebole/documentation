@@ -10,8 +10,8 @@ og:description: "New features, improvements, and changes to Beebole, updated mon
 og:type: "website"
 ---
 
-<Update label="October 2026" tags={["Timesheet","Planning","Settings","Time off","Security"]}>
-  October brings a **Unique ID** custom field type, an hour-level zoom on the calendar view, unpaid time-off types that stay out of people costs, and more control over the levels of a project or tag category.
+<Update label="October 2026" tags={["Timesheet","Planning","Settings","AI","Security"]}>
+  October brings push notifications for everyone, timesheets limited to planned tasks, tasks you mark **Done** instead of archiving, a **Unique ID** custom field type, an hour-level zoom on the calendar view, and unpaid time-off types that stay out of people costs.
 
   ### Timesheets
 
@@ -23,10 +23,21 @@ og:type: "website"
   - Undoing a deletion now brings back the comment, the non-billable and work-from-home flags and custom field values, not just the hours, and duplicating, pasting or drag-copying an entry on the calendar now copies its custom field values too.
   - On a teammate's timesheet, a task now gives you access to an entry only when you manage that task: owning it or being assigned to it is no longer enough. Managing the person, one of the entry's projects or a project the task is linked to still works. See [Roles and authorizations](/help/documentation/roles-authorisations).
   - With start and end times on, logging time on a planned task no longer removes its [suggestion](/help/documentation/ai) for the day: the suggestion shrinks by the time you logged, and any remaining scheduled time is shared across your planned tasks.
+  - New **Allow only planned tasks in the timesheet** restriction in [Timesheet settings](/help/documentation/timesheetSettings): the tasks planned for a person appear in their timesheet on their own, time can only be entered within each task's planned dates, and no other rows can be added. When time entry is limited to owned tasks, the task pickers now offer only those tasks.
+  - The **Add restriction** menu has a **DCAA compliance** choice that turns on **Only the owner or an admin can edit entries** and **Only time off can be recorded in the future** in one step. Each then shows on its own and can be removed separately. The former "Only an admin can edit someone else's timesheet" restriction is merged into **Only the owner or an admin can edit entries**, which was turned on wherever the old one was, so managers stay locked out.
+
+  ### Approvals & notifications
+
+  - Without an [approval](/help/documentation/approval) workflow, timesheets can no longer be submitted and no submit reminders go out: periods close only through **Auto-submit timesheets after X days**, when it's set. Add an approval level so people can submit their timesheets for review.
+  - Rejecting a timesheet now requires a reason, so the submitter always sees why it came back. Unless **Only the owner or an admin can edit entries** is on, managers can correct draft and rejected timesheets directly, not only the person who rejected them. Approval review also flags time logged on a task marked done.
+  - [Push notifications](/help/documentation/notifications) are available to everyone: turn them on for the organization, a tag or a person, and they're inherited like any other setting. A device section in your own notification settings turns push on for the current browser and lists your other devices, with guidance for iPhone and iPad. Notifications arrive in the recipient's language, and approval requests list only the projects and tasks the approver can see.
 
   ### Planning
 
   - New [plannings](/help/documentation/planning) open in the mode you last picked, **Bookings** by default. New bookings, including those created by dragging in [Staffing](/help/documentation/staffing), appear right away as a single action you can undo.
+  - Tasks are now marked **Done** and brought back with **Reopen** instead of being archived, in the task menu, at the end of each [List](/help/documentation/task-list) row, in the [Kanban](/help/documentation/kanban) column menu and in bulk actions. The archived toggle becomes **Show Done** / **Hide Done**, and a task's history shows **Done** and **Reopened** entries.
+  - Click the **+** on a row of a project or tag list, the [Gantt](/help/documentation/gantt) or the [List](/help/documentation/task-list) view to name a new sub-item right there. Press Enter to add another, or paste a list with one item per line, indented for nesting, to create several at once; ⌘-click still opens the full form. In the List view, pin columns to keep them on the left while you scroll sideways.
+  - The add-booking form now takes a date range and fills in the planned time from the person's working schedule, which you can change, and a booking added from a Kanban column lands in that column. The booking editor has a clearer layout, with the allocation per day or in total entered as a duration, and changing a booking's person or project moves it in one step. See [Staffing](/help/documentation/staffing).
 
   ### Custom fields, time off & settings
 
@@ -42,7 +53,12 @@ og:type: "website"
   - Emailed sign-in and sign-up codes are more secure: a code is only accepted on a sign-in page that asked for a code for that email address, and it stops working after five wrong tries. Asking again, even after reloading the page or on another device, gives you the same code with a fresh expiry, so every email you received holds a working code. After too many wrong codes, a message tells you how many minutes to wait before asking again.
   - [Single sign-on](/help/documentation/authentication) through Okta and other OpenID providers now works: Beebole finds where the provider serves user profile details from the provider's own configuration instead of assuming a fixed address, and issuer URLs with a trailing slash are accepted.
 
-  {/* news-cursor: 2026-10-04 */}
+  ### AI assistants
+
+  - Connected [AI assistants](/help/integrations/mcp-server) name projects and tasks with their full path (for example "Acme › Website"), recognize staffing bookings and log that time on the project, explain more clearly why a change is refused, and come with a built-in guide for bulk changes, timesheets, approvals and reports. Asking them, or the master data command bar, to "mark as done", "complete" or "reopen" tasks now really marks them done or reopens them.
+  - Time [suggestions](/help/documentation/ai) sent from an AI assistant show an **AI assistant** badge and take priority over the other suggestion sources. The hours you gave the assistant are kept as you said them, reduced only by time you've already logged that day.
+
+  {/* news-cursor: 2026-10-08 */}
 </Update>
 
 <Update label="September 2026" tags={["Planning","Timesheet","Reports","Settings","Integrations","AI"]}>
