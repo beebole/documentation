@@ -3,7 +3,7 @@ title: "Log Time Entries Programmatically"
 sidebarTitle: "Log time entries"
 description: "End-to-end Beebole GraphQL example: add a time record with a millisecond duration, adjust it, clone a week, and submit the timesheet for approval."
 keywords: ["beebole", "log time", "addTimeRecord", "submitTimesheet", "GraphQL mutation example", "beebole api"]
-"og:title": "Log Time Entries with the Beebole API"
+"og:title": "Log Time Entries and Submit Timesheets with the Beebole API"
 "og:description": "A write workflow over the Beebole GraphQL API — add and edit time records, clone a week, and submit a timesheet for approval."
 "og:type": "article"
 ---
@@ -21,7 +21,7 @@ This example walks through a complete write workflow with the [Beebole GraphQL A
 `addTimeRecord` creates one logged entry for a person on a given day. The required arguments are `startTime` (a Unix timestamp in milliseconds), `duration` (milliseconds), and `personId`. Pass `taskId`, `absenceId`, or `projectIds` to link the entry. Here the call logs 2 hours against a task.
 
 <Info>
-  Durations are in **milliseconds**. To log 2 hours, pass `7200000` (2 × 60 × 60 × 1000) — not `120` and not `2`.
+  Durations are in milliseconds. To log 2 hours, pass `7200000` (2 × 60 × 60 × 1000), not `120` and not `2`.
 </Info>
 
 ```bash
@@ -70,7 +70,7 @@ The mutation returns the created record, including its `id`:
 }
 ```
 
-Store the returned `id` — you will need it to update the record.
+Store the returned `id`: the edit mutations in the next step need it.
 
 ---
 
@@ -90,7 +90,7 @@ mutation {
 }
 ```
 
-Related per-field mutations follow the same shape: `editTimeRecordStartTime`, `editTimeRecordProjects`, `editTimeRecordTask`, `editTimeRecordComment`, and `editTimeRecordNonBillable`. Each takes the record `id` plus the one value to change and returns the updated record.
+Related per-field mutations follow the same shape: `editTimeRecordDay`, `editTimeRecordStartTime`, `editTimeRecordEndTime`, `editTimeRecordProjects`, `editTimeRecordTask`, `editTimeRecordAbsence`, `editTimeRecordComment`, `editTimeRecordNonBillable`, and `editTimeRecordWfh`. Each takes the record `id` plus the one value to change and returns the updated record.
 
 ---
 
@@ -149,7 +149,7 @@ The mutation returns the list of newly created records:
 
 ## Step 4 — Submit the timesheet
 
-Once the period is complete, `submitTimesheet` sends it into the approval workflow. It takes the `personId` and the `startTime` / `endTime` of the period, and returns a submit event whose `id` you pass to `approveTimesheet` or `rejectTimesheet` later.
+Once the period is complete, `submitTimesheet` sends it into the approval workflow. It takes the `personId` and the `startTime` / `endTime` of the period, and returns a submit event whose `id` you pass to `approveTimesheet` or `rejectTimesheet` later. It refuses the period with `NoApprovalWorkflow` when no approval workflow applies to the person, `timesheetPeriodLocked` when the period ends on or before the lock date, and `TimesheetAlreadySubmitted` when it is already waiting for approval.
 
 ```graphql
 mutation SubmitMonth {
@@ -177,7 +177,7 @@ mutation SubmitMonth {
 }
 ```
 
-The `status` field reports the period's approval state — `d` (draft), `s` (submitted), `a` (approved), or `r` (rejected). Beebole determines the current approval `stage` automatically.
+The `status` field is the event's action code, `s` for this submission. Other approval events carry `a` (approved), `r` (rejected), or `f` (auto-submit failed), and a period that nobody has submitted reads `d` (draft) in `getApprovalState`. When no stage of the person's workflow has an approver, Beebole approves the period at once and the event comes back with `a`. Later, `approveTimesheet` works out the current `stage` on its own, while `rejectTimesheet` also takes the `stage` to reject and a `comment`.
 
 <Warning>
   Deletions made through the API cannot be undone. `cloneTimeRecords` with `replaceExisting: true` first deletes the existing records in the target period — make sure the target window is correct before sending it.

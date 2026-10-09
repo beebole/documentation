@@ -3,12 +3,12 @@ title: "GraphQL Schema Explorer & Introspection"
 sidebarTitle: "Schema Explorer"
 description: "Explore the Beebole GraphQL schema with introspection — connect a GraphQL client to the endpoint to browse types, queries, mutations, and field docs."
 keywords: ["beebole", "GraphQL schema", "introspection", "schema explorer", "GraphQL client", "GraphiQL", "beebole api"]
-"og:title": "Exploring the Beebole GraphQL Schema"
+"og:title": "Exploring the Beebole GraphQL Schema with Introspection"
 "og:description": "Use GraphQL introspection and a GraphQL client to explore the Beebole API schema: types, queries, mutations, arguments, and field documentation."
 "og:type": "article"
 ---
 
-The Beebole GraphQL API is self-describing through introspection, so you can explore the full schema — every type, query, mutation, argument, and field — directly from a GraphQL client. Beebole does not ship a separate hosted schema browser; instead, you point any standard GraphQL tool at the API endpoint and let introspection reveal the schema.
+The Beebole GraphQL API is self-describing through introspection, so you can explore the full schema — every type, query, mutation, argument, and field — directly from a GraphQL client. Beebole serves a GraphiQL IDE at the endpoint itself, and you can also point any standard GraphQL tool at the endpoint and let introspection reveal the schema.
 
 <Info>
   Introspection is enabled for API-key requests against the Beebole GraphQL endpoint. There is nothing to turn on in your account — any GraphQL client that supports introspection can read the schema as soon as it can authenticate.
@@ -49,11 +49,11 @@ Introspection is a built-in GraphQL feature: the schema can be queried like any 
 }
 ```
 
-You can also introspect a single type to see its fields, their types, and any descriptions:
+You can also introspect a single type to see its fields, their types, and any descriptions. Most type names carry a `Beebole` prefix (`BeebolePerson`, `BeeboleTimeRecord`, `BeeboleTimeRecordFilter`), so a person is `BeebolePerson`:
 
 ```graphql
 {
-  __type(name: "Person") {
+  __type(name: "BeebolePerson") {
     name
     description
     fields {

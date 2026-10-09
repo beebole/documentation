@@ -3,7 +3,7 @@ title: "Export a Month of Time Records"
 sidebarTitle: "Export time records"
 description: "End-to-end Beebole GraphQL example: authenticate, query getTimeRecords with a typed filter and date window, and read durations in milliseconds."
 keywords: ["beebole", "export time records", "getTimeRecords", "GraphQL example", "time tracking api", "beebole api"]
-"og:title": "Export Time Records with the Beebole API"
+"og:title": "Export a Month of Time Records with the Beebole API"
 "og:description": "A read workflow over the Beebole GraphQL API — query time records for a period, filter by person, and parse the millisecond durations."
 "og:type": "article"
 ---
@@ -163,14 +163,14 @@ A successful response returns the matching records under `data.getTimeRecords`:
 
 ---
 
-## Reading the milliseconds duration
+## Read the duration in milliseconds
 
-`duration` is an integer count of **milliseconds**. To present it as hours, divide by `3600000` (1000 × 60 × 60):
+`duration` is a count of milliseconds. To present it as hours, divide by `3600000` (1000 × 60 × 60):
 
-- `7200000` ms ÷ `3600000` = **2 hours**
-- `27000000` ms ÷ `3600000` = **7.5 hours**
+- `7200000` ms ÷ `3600000` = 2 hours
+- `27000000` ms ÷ `3600000` = 7.5 hours
 
-`startTime` is an object with two fields: `ts` (a Unix timestamp in milliseconds, marking the day the time was logged) and `iso` (the same instant as an ISO 8601 string). Use `ts` with your language's date utilities (for example, `new Date(record.startTime.ts)` in JavaScript), or read `iso` directly. The `nonBillable` flag tells you whether the entry counts as billable when you build invoicing reports.
+`startTime` is an object with two fields: `ts` (a Unix timestamp in milliseconds for the start of the entry, which is midnight UTC of the day it was logged on unless the entry has a start time) and `iso` (the same instant as an ISO 8601 string). Use `ts` with your language's date utilities (for example, `new Date(record.startTime.ts)` in JavaScript), or read `iso` directly. The `nonBillable` flag tells you whether the entry counts as billable when you build invoicing reports.
 
 ---
 

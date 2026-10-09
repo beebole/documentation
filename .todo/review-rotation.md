@@ -8,18 +8,18 @@ Legacy pages are a frozen archive and are not listed.
 
 | Page | Last full review |
 |------|------------------|
-| `help/api/examples/example-1.mdx` | never |
-| `help/api/examples/example-2.mdx` | never |
+| `help/api/examples/example-1.mdx` | 2026-10-09 |
+| `help/api/examples/example-2.mdx` | 2026-10-09 |
 | `help/api/introduction.mdx` | 2026-10-09 |
-| `help/api/legacy-api.mdx` | never |
+| `help/api/legacy-api.mdx` | 2026-10-09 |
 | `help/api/mutations.mdx` | 2026-10-09 |
-| `help/api/queries.mdx` | never |
-| `help/api/schema-explorer.mdx` | never |
+| `help/api/queries.mdx` | 2026-10-09 |
+| `help/api/schema-explorer.mdx` | 2026-10-09 |
 | `help/documentation/account-settings.mdx` | 2026-10-09 |
 | `help/documentation/accruals.mdx` | 2026-10-09 |
 | `help/documentation/ai.mdx` | 2026-10-09 |
 | `help/documentation/approval.mdx` | 2026-10-09 |
-| `help/documentation/assignments.mdx` | never |
+| `help/documentation/assignments.mdx` | 2026-10-09 |
 | `help/documentation/audit-trail.mdx` | 2026-10-09 |
 | `help/documentation/authentication.mdx` | 2026-10-09 |
 | `help/documentation/billing.mdx` | never |
