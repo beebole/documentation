@@ -49,12 +49,22 @@ For currency-based expense types, the **Details** panel also shows **Billing mar
 
 ### Adding several expense types at once
 
-When the add panel is open, use the **Or add multiple entries** area below the name field:
+To create a whole list of expense types in one go, paste their names from a spreadsheet:
 
-1. Copy a list of names from a spreadsheet, one name per line.
-2. Click **Paste**.
-3. Review the entries in the **Import preview**. Click the **×** on a row to leave it out.
-4. Click **Import entries**. If something looks wrong afterwards, click **Undo**.
+<Steps>
+  <Step title="Open the add panel">
+    Click **Add Expense Type**. Below the name field, find the **Or add multiple entries** area.
+  </Step>
+  <Step title="Paste your list">
+    Copy the names from a spreadsheet, one name per line, then click **Paste**.
+  </Step>
+  <Step title="Review the preview">
+    Check the entries in the **Import preview**. Click the **×** on a row to leave it out.
+  </Step>
+  <Step title="Import the entries">
+    Click **Import entries**. If something looks wrong afterwards, click **Undo**.
+  </Step>
+</Steps>
 
 Each new expense type gets a color automatically. Like a type added on its own, it starts with **Currency** unchecked, so open the monetary ones afterwards to check **Currency** and set the **Billing markup in %**.
 
@@ -140,6 +150,8 @@ Expenses also count toward the project's budgets, alongside time: the expense am
   </Card>
 </CardGroup>
 
+---
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -151,9 +163,6 @@ Expenses also count toward the project's budgets, alongside time: the expense am
   </Accordion>
   <Accordion title="How does the billing markup work?">
     Each currency-based expense type has a **Billing markup in %** setting. In reports, the **Expense billing** column shows `expense amount × markup / 100` — so a markup of 100 bills the expense at cost, and a markup of 120 adds 20%.
-  </Accordion>
-  <Accordion title="Can I restrict who can log certain expense types?">
-    Yes. Use the expense type's **Who has access?** panel in Beebole to assign it to specific people, tags, or projects, and the organization's **Show all expenses** toggle to set the default for everyone else.
   </Accordion>
   <Accordion title="How do I stop using an expense type without losing its records?">
     Archive it. In **Settings** > **Expense Types**, click the type's **⋯** action menu, then **Archive**. Beebole removes it from the **Select expense category** picker, and its past expense records stay in reports. Deleting is refused while records use the type. Click **Show Archived**, then **Unarchive** in the type's menu, to bring it back.

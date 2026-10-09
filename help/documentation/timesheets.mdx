@@ -414,7 +414,7 @@ When your period is complete, click **Submit** at the top of the timesheet, in e
 
 Submitting checks your administrator's rules first. Beebole refuses the submission until it meets **Require comments for submission**, **Require filling the whole schedule to submit**, and **No overtime beyond the schedule**, whichever are on. A period that ends on or before the **Lock date** can't be submitted at all: Beebole answers **This period is locked and cannot be submitted for approval.**
 
-Your administrator sets up automatic submission, a set number of days after the period ends, and reminders to submit in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#auto-submit).
+Your administrator can also have Beebole submit timesheets automatically a set number of days after the period ends, and send reminders to submit. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings#auto-submit).
 
 ---
 
@@ -435,7 +435,7 @@ For the full review workflow, see [Approvals](/help/documentation/approval).
 
 ### Timesheet score
 
-The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80. People without an approval workflow have no score and are left out of the report, since they can't submit.
+The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80. The report leaves out people without an approval workflow, since they can't submit.
 
 Next to the score, each of the person's periods is marked **On time**, **Late**, or **Not submitted**, and hovering a period shows its **Deadline**, when it was **Submitted**, the **Days late**, and any **Rejections**. Click the **Score** column header to switch between worst first and best first. See [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) for the report's filters, period, and access. Developers can also read a person's score through the API's `getTimesheetScore` query, see [Queries](/help/api/queries#timesheets-and-approvals).
 

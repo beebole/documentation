@@ -106,7 +106,7 @@ If someone installs Beebole from the Google Workspace Marketplace and their emai
 
 ### Microsoft SSO
 
-On **Account Settings**, open the **Single Sign-On** panel and select the **Microsoft** tab. To require everyone to authenticate through Microsoft, turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.**
+On **Account Settings**, open the **Single Sign-On** panel and select the **Microsoft** tab. To block the email-code method for your organization, turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.**
 
 ### Custom OpenID
 
@@ -123,7 +123,7 @@ The **Custom OpenID** tab connects any OpenID Connect-compatible provider.
     Copy the **Initiate URI** and **Callback URI** shown in Beebole (each has its own **Copy** button) and paste them into your identity provider's application settings.
   </Step>
   <Step title="Require this provider (optional)">
-    Turn on **Disable interactive sign-in. Only this SSO provider allowed.** to block all other sign-in methods.
+    Turn on **Disable interactive sign-in. Only this SSO provider allowed.** to block the email-code method for your organization.
   </Step>
 </Steps>
 
@@ -161,7 +161,7 @@ Administrators can sign in as another person to troubleshoot a problem or confir
 
 <Steps>
   <Step title="Open the user menu">
-    Click the button with your initials at the bottom of the sidebar.
+    Click your initials at the bottom of the sidebar.
   </Step>
   <Step title="Choose Sign in as…">
     Click **Sign in as…**. A search box opens listing the people in your account — pick the one you want.
@@ -200,13 +200,10 @@ Administrators can sign in as another person to troubleshoot a problem or confir
 
 <AccordionGroup>
   <Accordion title="Why doesn't Beebole ask me for a password?">
-    Beebole has no passwords. You sign in with a one-time 6-digit code sent to your email, or more quickly with a passkey, your Google or Microsoft account, or your organization's SSO provider. With no password to steal or reuse, there is nothing to forget or reset.
-  </Accordion>
-  <Accordion title="Can I use more than one sign-in method?">
-    Yes. As long as your organization has not turned on a **Disable interactive sign-in** toggle, you can sign in with the email code, a passkey, or a linked Google or Microsoft account — whichever is handiest on the device you are using.
+    Beebole has no passwords. You sign in with a one-time 6-digit code sent to your email, or more quickly with a passkey, your Google or Microsoft account, or your organization's SSO provider. With no password to steal or reuse, there is nothing to forget or reset. You can use whichever method suits the device you are on. If your organization turns on a **Disable interactive sign-in** toggle, the email code is no longer accepted.
   </Accordion>
   <Accordion title="How do I make everyone sign in through SSO?">
-    On **Account Settings**, open the **Single Sign-On** panel, select your provider's tab, and turn on its **Disable interactive sign-in** toggle. This blocks the email-code method so everyone must authenticate through the configured provider.
+    In Beebole's **Account Settings**, open the **Single Sign-On** panel, select your provider's tab, and turn on its **Disable interactive sign-in** toggle. This blocks the email-code method for everyone in your organization, so people sign in through SSO instead.
   </Accordion>
   <Accordion title="A team member can't sign in — what should I check?">
     Confirm they are using the exact email address on their Beebole profile, and ask them to check their spam folder for the 6-digit code. If they asked for the code several times, any of the emails works, since Beebole resends the same code. After 5 wrong attempts the code stops working and they need to ask for a new one; if they see a message asking them to try again in a number of minutes, they have to wait that long. As an administrator, you can use **Sign in as…** from your user menu to see Beebole as they do.

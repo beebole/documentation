@@ -32,7 +32,7 @@ Each change appears in the **Journal** of the item it touched, next to the messa
 
 For changes to the account's own settings, open **Account Settings** and click **Show journal** there.
 
-A person's **Journal** also lists the time records added, edited, or deleted on their timesheet, and the changes to who manages them.
+A person's **Journal** also lists the time records added, copied, edited, or deleted on their timesheet, and the changes to who manages them or what they manage.
 
 <Frame caption="A person's Journal listing the changes made to her records">
   <img src="/help/images/journal/activity-feed.webp" alt="Beebole Journal of the person Ana Pereira, opened from her profile, with the message editor and its formatting toolbar at the top and the feed below listing an added expense record and added time records for PTO and Sickness days, each with who made the change and when" width="598" />
@@ -54,7 +54,7 @@ Each entry is named after the change it records, so you can read the history wit
 | **Tagged with**, **Untagged from** | A tag was added to or removed from the item, followed by the tag |
 | **Done**, **Reopened** | A task was marked done or reopened |
 | **Archived**, **Unarchived** | The item was archived or brought back |
-| **Added time record**, **Edited time record**, **Deleted time record** | A time entry on the person's timesheet was added, changed, or deleted |
+| **Added time record**, **Copied time record**, **Edited time record**, **Deleted time record** | A time entry on the person's timesheet was added, copied, changed, or deleted |
 
 Time entry changes spell out the duration, the project, task, or time off type, and the date of the entry. On an edit, the changed value shows as old → new, for example *Edited time record: 2h → 3h30 · Acme Corp, Website Redesign · 2026-10-05*. Durations follow your account's duration format.
 
@@ -105,10 +105,7 @@ Both work only for administrators, on plans that include the audit trail.
     Beebole shows the last 7 days of changes in each item's **Journal**. For an earlier week, an administrator can query the audit trail through the Beebole API with `getAuditTrails` and a `startTime`, or ask a connected AI assistant.
   </Accordion>
   <Accordion title="Does the audit trail record who viewed data, or only changes?">
-    Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record.
-  </Accordion>
-  <Accordion title="Can I see changes made by archived people?">
-    Yes. Changes a person made stay in the audit trail after that person is archived, and their name still appears next to their actions.
+    Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record. Changes made by someone who was later archived stay in the audit trail, with their name next to each change.
   </Accordion>
   <Accordion title="Is the audit trail available on every plan?">
     No. Beebole's audit trail is not available on the **Free** plan. It is included in the **Essential** and **Advanced** plans and during the free trial. Review your [subscription](/help/documentation/subscription) if it isn't available.

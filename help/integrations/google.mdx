@@ -3,9 +3,9 @@ title: "Sign in to Beebole with Google — SSO and Domain Links"
 sidebarTitle: "Google"
 description: "Sign in to Beebole with a Google account, link your Google Workspace domains, auto-provision people, and require Google sign-in across your organization."
 keywords: ["beebole", "Google sign-in", "Google SSO", "Google Workspace", "linked domains", "single sign-on", "authentication"]
-og:title: "Sign in to Beebole with Google Workspace and SSO Setup"
-og:description: "Use Google to sign in to Beebole, link your Workspace domains, auto-provision new people, and enforce Google-only sign-in."
-og:type: "article"
+"og:title": "Sign in to Beebole with Google Workspace and SSO Setup"
+"og:description": "Use Google to sign in to Beebole, link your Workspace domains, auto-provision new people, and enforce Google-only sign-in."
+"og:type": "article"
 ---
 
 Google sign-in lets anyone in your organization sign in to Beebole with their existing Google account, which is convenient for teams already on Google Workspace. It is a built-in sign-in option — no administrator setup is required to use it. Linking your Google domains adds organization-level controls: automatic provisioning and the option to require Google sign-in for everyone.
@@ -50,7 +50,7 @@ On the **Google** tab, turn on **Automatically create new users on first SSO log
 
 A person created this way gets the first role in your account without administrator rights. You can change it afterwards on their profile in **People**.
 
-Each new person takes a seat in your subscription, so automatic creation works only while a seat is free (there is no seat limit during the free trial). When no seat is left, the sign-in fails with the message "Your subscription's seat limit has been reached. Upgrade your plan to add more members." Add seats to your [subscription](/help/documentation/subscription), or archive people who no longer need access, then ask the person to sign in again.
+Each new person takes a seat in your subscription, so automatic creation works only while a seat is free (there is no seat limit during the free trial). When no seat is left, Beebole does not create the person and the sign-in fails. The sign-in page then shows only the generic message **Sign-in failed. Please try again.** It does not mention seats, so check your seat count when a new colleague reports this error. Add seats to your [subscription](/help/documentation/subscription), or archive people who no longer need access, then ask the person to sign in again.
 
 <Info>
   If you install Beebole from the Google Workspace Marketplace with an email that does not belong to a Beebole account yet, Beebole creates a new account for you with your domain already linked and **Automatically create new users on first SSO login** turned on.
@@ -60,7 +60,7 @@ Each new person takes a seat in your subscription, so automatic creation works o
 
 <Steps>
   <Step title="Open the Google tab">
-    Go to **Settings** \> **Account Settings**, open the **Single Sign-On** panel, and select the **Google** tab.
+    Open the **Google** tab of the **Single Sign-On** panel, in **Settings** \> **Account Settings**.
   </Step>
   <Step title="Test Google sign-in">
     Ask a test user to sign in with the **Google** button under **Or Sign in with** on the sign-in screen, and check that they reach their account.
@@ -94,7 +94,7 @@ Each new person takes a seat in your subscription, so automatic creation works o
   </Accordion>
 
   <Accordion title="Does Google sign-in create Beebole people automatically?">
-    Only if you turn on **Automatically create new users on first SSO login** on the **Google** tab of the **Single Sign-On** panel, and only for emails on one of your linked domains. The new person gets the first role in your Beebole account without administrator rights, and needs a free seat in your subscription; otherwise the sign-in fails with a seat-limit message. With the setting off, a person with a matching email must already exist in your Beebole account before they can sign in with Google. When your Beebole account was created by installing Beebole from the Google Workspace Marketplace, the setting is already on.
+    Only if you turn on **Automatically create new users on first SSO login** on the **Google** tab of the **Single Sign-On** panel, and only for emails on one of your linked domains. The new person gets the first role in your Beebole account without administrator rights, and needs a free seat in your subscription. When every seat is taken, the person is not created and the sign-in fails with a generic **Sign-in failed. Please try again.** message. With the setting off, a person with a matching email must already exist in your Beebole account before they can sign in with Google. When your Beebole account was created by installing Beebole from the Google Workspace Marketplace, the setting is already on.
   </Accordion>
 
   <Accordion title="What if my Google email is different from my Beebole email?">

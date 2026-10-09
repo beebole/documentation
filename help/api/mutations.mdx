@@ -3,7 +3,7 @@ title: "GraphQL Mutations to Create and Update"
 sidebarTitle: "Mutations"
 description: "Reference for Beebole GraphQL mutations: log time and expenses, submit and approve timesheets, manage people, projects, tasks, and custom field values."
 keywords: ["beebole", "GraphQL mutations", "API mutations", "log time record", "submit timesheet", "beebole api"]
-"og:title": "Beebole GraphQL API Mutations: Log Time, Approve, Manage Data"
+"og:title": "Beebole GraphQL Mutations: Log Time, Approve, Manage Data"
 "og:description": "Write to your Beebole account over GraphQL — log time and expenses, run the approval workflow, and manage people, projects, and tasks."
 "og:type": "article"
 ---
@@ -267,7 +267,7 @@ Tasks are independent planning entities you create, schedule, and track time aga
 
 | Mutation | Key arguments |
 |----------|---------------|
-| `addTask` | `name`, optional `categoryId`, `parentId`, `color`, `statusId` |
+| `addTask` | optional `name`, `categoryId`, `parentId`, `color`, `statusId` |
 | `deleteTask` | `id`, optional `check` (dry-run) |
 | `archiveTask` / `unarchiveTask` | `id` |
 | `archiveTasks` / `unarchiveTasks` | `ids` (array) |
@@ -276,7 +276,7 @@ Tasks are independent planning entities you create, schedule, and track time aga
 | `editTaskColor` | `id`, `color` |
 | `editTaskStatus` | `id`, `statusId` |
 | `editTaskPeriod` | `id`, optional `startTime`, `endTime`, `effort` |
-| `editTaskDuration` | `id`, `effort` (minutes) |
+| `editTaskDuration` | `id`, `effort` (milliseconds) |
 | `moveTasksToStatus` | `taskIds`, `targetStatusId`, `orderedTaskIds` |
 
 Task categories and their workflow statuses are managed with the category mutations:
@@ -293,6 +293,8 @@ Task categories and their workflow statuses are managed with the category mutati
 To move a task to another status, use `editTaskStatus` (single task) or `moveTasksToStatus` (one or more tasks). Both only move tasks between statuses of the same category: a status from another category is refused with `CantAssignStatusFromOtherCategory`, and no mutation moves a task to another category. `editCategoryTaskMove` sets the **Dependent tasks** option of the Gantt and Staffing views, which decides how dependent tasks follow when a task they depend on moves: `0` for **Free**, `1` for **Pushing**, `2` for **Together**.
 
 `archiveTask` and `unarchiveTask` (and their plural forms) are what the Beebole app shows as **Done** and **Reopen** on a task: a done task is an archived task. Archiving does not change the task's status.
+
+`addTask` without a `name` creates a nameless task, whose displayed name comes from its owner or project. In a planning set to Bookings, a name is refused with `CantNameTaskInBookingsPlanning`, since a booking is always named after its project and person.
 
 ### Create a task
 

@@ -245,7 +245,7 @@
 - `reports/budget-status` **Budget status report** — Progress-bar view of budget consumption across projects with actuals, a burn-rate forecast that warns when spending is on track to exceed a budget, hierarchy roll-up including sub-project budgets (split-by-project lines show real actuals including descendant projects, without double-counting a sub-project's own budget), drill-down detail sheets. _(Budget threshold alert notifications are status: hidden-flag — the **Budget threshold alerts** row is filtered out of notification preferences on production hosts (`visibleTypes` in `attributes/notification.ts`) and defaults to **None**, so no one can switch them on; the backend cron exists. The report itself is fully live. Flagged 2026-09-07)_; filters, sort (percent consumed, remaining, or name, applied at every level), and the archived toggle apply instantly, project and tag filters cover the whole hierarchy, and a budget consumed exactly to 100% counts as on budget; a table layout shows one row per project with each measure in its own column (**One column per measure**) or all measures stacked into a single column (**Stack the measures in one column**), with bars scaled against their parent so a project and its sub-projects can be compared at a glance
 - `reports/planning-vs-real` **Planned vs. real report** — Compare planned effort against actual timesheet data, with multiple plans per report and figures in hours, days, billing, cost, or margin; cumulative or remaining burn views with an ideal line, a budget line, a forecast carried forward from today's actuals, a pace-status headline (behind, on track, ahead), and an over/under-plan breakdown per person
 - `reports/revenue-at-risk` **Revenue at Risk report** — Lists projects at risk of not consuming their budgeted hours before their end date, with the total revenue at risk and the projects behind it
-- `reports/utilization` **Billable utilization report** — Monthly per-person billable utilization (billable hours ÷ scheduled capacity) that respects each person's real schedule, public holidays, and absences, with a projection for the coming month
+- `reports/utilization` **Billable utilization report** — Monthly per-person billable utilization (billable hours ÷ scheduled capacity) based on each person's real schedule minus their recorded absences (public holidays are not subtracted), with a projection for the coming month
 - `reports/timesheet-compliance` **Timesheet compliance report** — Calendar-style grid of timesheet hits and misses per person per period — a detailed view of the timesheet score — filterable, surfacing the people currently out of compliance, with the period defaulting to the last six full months
 - `reports/absence-quotas` **Absence quota report** — Quota consumption per person shown as bars and a timeline, with drill-down detail sheets for a single person's breakdown
 - `reports/mobile` **Reports on mobile** — Consult-and-filter experience designed for phones: pick a folder, change the period, and read each report
@@ -254,12 +254,11 @@
 
 ## Journal & Communications
 
-- `journal/activity-feed` **Activity feed** — Chronological log of team activity; a timesheet's feed shows its approval events and that timesheet's own time and expense changes by default (with an option to show the person's full history), and time record changes appear as a change trail
+- `journal/activity-feed` **Activity feed** — Chronological log of team activity; a timesheet's feed shows its approval events and that timesheet's own time and expense changes by default (with an option to show the person's full history), and time record changes appear as a change trail; change entries show only in an item's own Journal, for administrators, over the last 7 days
 - `journal/threads` **Message threads** — Post messages in the journal and **Reply** to them in threads; edit or delete your own messages
 - `journal/rich-text` **Rich text editing** — Format messages with bold, italic, links, and bulleted or numbered lists
 - `journal/attachments` **File attachments** — Add images, videos, and PDF files (up to 25 MB each) to messages by picking, dragging, or pasting them
 - `journal/mentions` **@Mentions** — Reference people and entities in messages
-- `journal/pinned` **Pinned messages** — Highlight important messages
 - `journal/search` **Message search & filtering** — Filter the journal by person, project, person tag, project tag, task tag, or message text
 - `journal/email-replies` **Inbound email replies** — Reply to journal messages via email with automatic quoted text stripping
 - `journal/watermark` **New message watermark** — A **New messages** separator in the activity feed marks where unread messages end
@@ -428,6 +427,7 @@
 
 > Previously shipped capabilities no longer in the codebase, kept so their keys stay resolvable.
 
+- `journal/pinned` **Pinned messages** — Highlight important messages at the top of the journal. _(Last seen: unknown — no pin control is rendered on prod; `journal/pinned.ts` and `journal/top.ts` are imported nowhere. Verified 2026-10-09)_
 - `audit/last-edited` **Last-edited indicators** — A "Modified by" badge with the last editor and time on each item's panel, replaced by the change entries in the item's Journal. _(Last seen: approx. 2026-02)_
 - `projects/move-category` **Move project between categories** — Reassign a root-level project and its sub-projects to a different category via the context menu. _(Last seen: approx. 2026-05)_
 - `tags/move-category` **Move tag between categories** — Reassign a root-level tag and its child tags to a different category via the context menu. _(Last seen: approx. 2026-05)_

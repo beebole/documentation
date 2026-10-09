@@ -11,7 +11,7 @@ og:type: "website"
 ---
 
 <Update label="October 2026" tags={["Timesheet","Planning","Settings","AI","Security"]}>
-  October brings push notifications for everyone, timesheets limited to planned tasks, tasks you mark **Done** instead of archiving, a **Unique ID** custom field type, an hour-level zoom on the calendar view, and unpaid time-off types that stay out of people costs.
+  October brings push notifications for everyone, an option to limit timesheets to planned tasks, tasks you mark **Done** instead of archiving, a **Unique ID** custom field type, an hour-level zoom on the calendar view, and unpaid time-off types that stay out of people costs.
 
   ### Timesheets
 
@@ -19,8 +19,7 @@ og:type: "website"
   - Hover a day on the calendar and a **+** button appears in its header to add an entry, even when the day is already full. Favorite chips now create an entry only when you drag them onto the calendar; a plain click no longer adds one.
   - The floating timer now shows where each timer sits: parent projects appear as short initials before its name, and hovering shows the full path.
   - Time fields in popups and bottom sheets have +/− buttons that move the time in 15-minute steps; hold ⌘ or Ctrl to move by one hour.
-  - With start and end times on, changing a start time, end time or duration now saves as a single edit, and one undo restores the whole change.
-  - Undoing a deletion now brings back the comment, the non-billable and work-from-home flags and custom field values, not just the hours, and duplicating, pasting or drag-copying an entry on the calendar now copies its custom field values too.
+  - Undo restores more: with start and end times on, changing a start time, end time or duration saves as a single edit that one undo reverts, and undoing a deletion brings back the comment, the non-billable and work-from-home flags and custom field values, not just the hours. Duplicating, pasting or drag-copying an entry on the calendar now copies its custom field values too.
   - On a teammate's timesheet, a task now gives you access to an entry only when you manage that task: owning it or being assigned to it is no longer enough. Managing the person, one of the entry's projects or a project the task is linked to still works. See [Roles and authorizations](/help/documentation/roles-authorisations).
   - With start and end times on, logging time on a planned task no longer removes its [suggestion](/help/documentation/ai) for the day: the suggestion shrinks by the time you logged, and any remaining scheduled time is shared across your planned tasks.
   - New **Allow only planned tasks in the timesheet** restriction in [Timesheet settings](/help/documentation/timesheetSettings): the tasks planned for a person appear in their timesheet on their own, time can only be entered within each task's planned dates, and no other rows can be added. When time entry is limited to owned tasks, the task pickers now offer only those tasks.
@@ -30,7 +29,7 @@ og:type: "website"
 
   - Without an [approval](/help/documentation/approval) workflow, timesheets can no longer be submitted and no submit reminders go out: periods close only through **Auto-submit timesheets after X days**, when it's set. Add an approval level so people can submit their timesheets for review.
   - Rejecting a timesheet now requires a reason, so the submitter always sees why it came back. Unless **Only the owner or an admin can edit entries** is on, managers can correct draft and rejected timesheets directly, not only the person who rejected them. Approval review also flags time logged on a task marked done.
-  - [Push notifications](/help/documentation/notifications) are available to everyone: turn them on for the organization, a tag or a person, and they're inherited like any other setting. A device section in your own notification settings turns push on for the current browser and lists your other devices, with guidance for iPhone and iPad. Notifications arrive in the recipient's language, and approval requests list only the projects and tasks the approver can see.
+  - [Push notifications](/help/documentation/notifications) are available to everyone: turn them on for the organization, a tag or a person, and they're inherited like any other setting. A device section in your own notification settings turns push on for the current browser and lists your other devices, with guidance for iPhone and iPad. Push notifications arrive in the recipient's language, and approval requests list only the projects and tasks the approver can see.
 
   ### Planning
 
@@ -45,8 +44,7 @@ og:type: "website"
   - Number custom fields accept a comma or a point as the decimal separator and show values in your decimal format, and what you type is no longer lost when you leave the field or close the panel right away.
   - Each time-off type now has an **Is paid (included in people costs)** checkbox. It is ticked by default, so time off keeps counting in the people costs of your [reports](/help/documentation/reports); untick it for unpaid leave and that type's absences no longer add to costs. See [Time off](/help/documentation/timeoff#time-off-and-people-costs).
   - In a project or [tag](/help/documentation/tags) category's **Level names** window, drag levels into a new order and rename or remove any level, not just the deepest one. The new **Only named levels** setting stops anything being added, moved or copied below the last named level.
-  - Hover a project or task name, in a badge or in the timesheet popup header, to read its description. In badges, long parent paths are now cut short with "…" instead of being turned into initials, with the full path in the tooltip.
-  - After you archive a person, project, task or type, entries and badges that use it keep showing its name. Selectors only list archived items when you're viewing archived items, and the lists of linked items in a panel leave archived ones out.
+  - Hover a project or task name, in a badge or in the timesheet popup header, to read its description. In badges, long parent paths are now cut short with "…" instead of being turned into initials, with the full path in the tooltip. After you archive a person, project, task or type, entries and badges that use it keep showing its name, while selectors only list archived items when you're viewing archived items.
 
   ### Sign-in & security
 
@@ -55,7 +53,7 @@ og:type: "website"
 
   ### AI assistants
 
-  - Connected [AI assistants](/help/integrations/mcp-server) name projects and tasks with their full path (for example "Acme › Website"), recognize staffing bookings and log that time on the project, explain more clearly why a change is refused, and come with a built-in guide for bulk changes, timesheets, approvals and reports. Asking them, or the master data command bar, to "mark as done", "complete" or "reopen" tasks now really marks them done or reopens them.
+  - Connected [AI assistants](/help/integrations/mcp-server) name projects and tasks with their full path (for example "Acme › Website"), recognize staffing bookings and log that time on the project, explain more clearly why a change is refused, and come with a built-in guide for bulk changes, timesheets, approvals and reports. Asking them, or the plain-language box of [Master data review](/help/documentation/master-data), to "mark as done", "complete" or "reopen" tasks now really marks them done or reopens them.
   - Time [suggestions](/help/documentation/ai) sent from an AI assistant show an **AI assistant** badge and take priority over the other suggestion sources. The hours you gave the assistant are kept as you said them, reduced only by time you've already logged that day.
 
   {/* news-cursor: 2026-10-08 */}

@@ -11,7 +11,7 @@ og:type: "article"
 Beebole's time-off management lets you define absence types, assign individual allowances, and track balances in real time. Your team records time off directly on their timesheets — each entry counts against the balance as soon as it's recorded — and the approval workflow lets managers review every absence.
 
 <Info>
-  Time off in Beebole is tracked through **absence types** — categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
+  Time off in Beebole is tracked through absence types: categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
 </Info>
 
 <Frame caption="Adding time off types in Beebole">
@@ -31,12 +31,13 @@ Beebole's time-off management lets you define absence types, assign individual a
 
 An absence type represents a category of leave your organization recognizes. Common examples include vacation, sick leave, parental leave, and personal days — but you can create as many types as you need.
 
-Each absence type can be configured with:
+Each absence type has:
 
-- **A name** — The label your team sees when logging time off (e.g., "Vacation", "Sick Leave").
-- **A unit** — Whether absences are tracked in **Hour** or **Day** units.
-- **A paid setting** — Whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
-- **An allowance** — The amount of time off each person receives per period.
+- A name, the label your team sees when logging time off (for example "Vacation" or "Sick Leave").
+- A unit: absences of the type are tracked in **Hour** or **Day** units.
+- A paid setting that decides whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
+
+The amount of time off each person receives per period for a type is an allowance. You set allowances on the organization, a tag, or a person, not on the absence type itself. See [Setting up allowances](#setting-up-allowances).
 
 ---
 
@@ -121,7 +122,7 @@ The carried balance counts everywhere the allowance does: booking limits respect
 
 ## Tracking balances
 
-Beebole tracks time-off balances from the allowances, their manual **Accrued** amounts, and the absences recorded on timesheets. **Allowance**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit — days or hours — in the input and in the card's summary line:
+Beebole tracks time-off balances from the allowances, their manual **Accrued** amounts, and the absences recorded on timesheets. **Allowance**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit (days or hours) in the input and in the card's summary line:
 
 | Balance field | What it shows |
 | --- | --- |
@@ -132,7 +133,7 @@ Beebole tracks time-off balances from the allowances, their manual **Accrued** a
 The **Carry forward limit** states its unit the same way. Balances update as team members log time off on their timesheets and when you adjust the **Accrued** field on the allowance.
 
 <Frame caption="A person's PTO allowance, inherited from the organization, opened to show the days consumed">
-  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: summary line Allowance 20d, Accrued 0d, Consumed 12d, then Start - end 2026, Time off PTO, Allowance 20 d, Consumed 12d, Accrued, Valid until Mar 31, 2027, Carry forward limit 5 d, Allow negative balance and Repeat automatically, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: summary line Allowance 20d, Accrued 0d, Consumed 12d, then Start - end 2026, Time off PTO, Allowance 20 d, Consumed 12d, Accrued, Valid until Mar 31, 2027, Carry forward limit 5 d and Allow negative balance, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
 </Frame>
 
 ---
@@ -239,11 +240,11 @@ Team members record absences directly on their timesheets, just like regular tim
   </Accordion>
 
   <Accordion title="How does time off interact with approvals?">
-    Time-off entries follow the same approval workflow as regular timesheet entries. Absences count against a person's allowance as soon as they are recorded — approval reviews and locks the timesheet but does not change the balance. See [Approvals](/help/documentation/approval).
+    In Beebole, time-off entries follow the same approval workflow as regular timesheet entries. Absences count against a person's allowance as soon as they are recorded. Approval reviews and locks the timesheet but does not change the balance. See [Approvals](/help/documentation/approval).
   </Accordion>
 
   <Accordion title="Can I track time off in both hours and days?">
-    Each absence type uses a single unit — **Hour** or **Day**. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
+    In Beebole, each absence type uses a single unit, **Hour** or **Day**. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
   </Accordion>
 
   <Accordion title="Does Beebole accrue time off automatically?">

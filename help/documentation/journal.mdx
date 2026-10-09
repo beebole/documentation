@@ -1,30 +1,38 @@
 ---
-title: "Journal: Team Activity Feed & Messaging"
+title: "Journal: team activity feed and messaging"
 sidebarTitle: "Journal"
-description: "Use the Journal in Beebole as your team's activity feed — view updates, exchange messages, and stay informed about what's happening across your account."
+description: "Use the Journal in Beebole to message your team on people, projects, tasks, and tags, follow timesheet approvals, and catch up on mentions and reminders."
 keywords: ["Beebole journal", "activity feed", "team messages", "notifications feed", "team communication", "mentions", "beebole"]
 "og:title": "Journal: Beebole's Team Activity Feed & Messaging Hub"
-"og:description": "Use the Journal in Beebole to view team activity, exchange messages, and track updates."
+"og:description": "Exchange messages on people, projects, and tasks, and follow approvals, mentions, and reminders in the Beebole Journal."
 "og:type": "article"
 ---
 
-The Journal is Beebole's built-in activity feed and communication hub. It shows a chronological log of what's happening in your account — messages, approval actions, mentions, and team updates — all in one place. To open it, click **Journal** in the sidebar.
+The Journal is Beebole's built-in messaging and activity feed. The **Journal** page gathers the messages that concern you and your timesheet approval activity, and every person, project, task, and tag has a Journal of its own where your team discusses that item. To open the page, click **Journal** in the sidebar.
 
 ---
 
 ## Activity feed
 
-The Journal displays a timeline of events across your account:
+The **Journal** page in the sidebar lists, newest first:
 
-- **Approval actions** — When timesheets are submitted, approved, or rejected.
-- **Team updates** — New members added, schedule changes, and other organizational events.
-- **Notifications** — Mentions, reminders, and alerts appear inline in the feed.
+- The messages you wrote, the messages that mention you, and the messages posted on your own Journal.
+- Timesheet approval activity. Approvers see each timesheet submitted to them. When a timesheet is fully approved or rejected, Beebole posts a message to its owner, with the reason for a rejection.
+- Timesheet reminders.
 
-Beebole marks new items with a "new" separator so you can quickly see what happened since your last visit. Unread counts appear as badge indicators.
+Approvers also see a banner at the top of the page with the number of timesheets waiting for them, and can approve or reject without leaving the page. See [Approvals](/help/documentation/approval#from-the-journal).
 
-The feed is also context-aware: opened from a timesheet, it shows that timesheet's approval events and its own time and expense changes by default — with the option to widen to the person's full history — and changes to a time record appear as a trail, so an approver can see what was edited, when, and by whom.
+A **New messages** line separates what arrived since your last visit from older items. The **Journal** item in the sidebar shows a badge with your unread mentions plus the timesheets waiting for your approval.
 
-<Frame caption="A person's Journal, with the message editor above the feed">
+### An item's own Journal
+
+Each person, project, task, and tag has its own Journal. Open the item and click **Show journal**, the button at the top right of its panel, to see the messages posted on it. Click **Show attributes** to return to its settings.
+
+Administrators also see the item's change history there: who changed what, and when, over the last 7 days. These change entries appear only in the item's own Journal, never on the **Journal** page in the sidebar. See [Audit trail](/help/documentation/audit-trail).
+
+Opened from the Timesheet page, a person's Journal also lists their timesheet approval events: submitted, approved, and rejected, with the approval stage and the reason for a rejection.
+
+<Frame caption="A person's Journal as an administrator sees it, with the message editor above the changes made to her records">
   <img src="/help/images/journal/activity-feed.webp" alt="Beebole Journal of the person Ana Pereira, opened from her profile, with the message editor and its formatting toolbar at the top and the feed below listing an added expense record and added time records for PTO and Sickness days, each with who made the change and when" width="598" />
 </Frame>
 
@@ -34,12 +42,11 @@ The feed is also context-aware: opened from a timesheet, it shows that timesheet
 
 The Journal supports threaded conversations:
 
-- **Post messages** — Share updates, ask questions, or communicate with your team.
-- **Reply to threads** — Keep conversations organized with threaded replies.
-- **Rich text** — Format messages with bold, italic, links, and lists.
-- **File attachments** — Add images, videos, and PDF files to a message, up to 25 MB each. Click the attach button in the toolbar (**Attach a file**), drag the file into the editor, or paste it.
-- **@Mentions** — Reference people, projects, and other records to notify them and link to relevant context.
-- **Pin messages** — Highlight important messages so they stay visible.
+- Post messages to share updates, ask questions, or reach your team. A message posted in an item's Journal stays attached to that item.
+- Reply to a message to keep the conversation together.
+- Format messages with bold, italic, links, and lists.
+- Add images, videos, and PDF files to a message, up to 25 MB each. Click the attach button in the toolbar (**Attach a file**), drag the file into the editor, or paste it.
+- Use @mentions to reference people, projects, and other items. A mention notifies the person, or the people who manage or are assigned to the item.
 
 Point at a message to show its buttons. Click the reply button (**Reply**) to answer it: the editor opens with **Replying to** and the original author, and your reply shows the message it answers. On a message you wrote, the edit button (**Edit**) and the trash button (**Delete**) also appear, for 30 minutes after you post it. These buttons show only when your role can manage **Journal** messages.
 
@@ -57,7 +64,7 @@ Point at a message to show its buttons. Click the reply button (**Reply**) to an
 
 On the **Journal** page, click **Filters** at the top to narrow the feed. You can filter by **Person**, **Project**, **Person tag**, **Project tag**, or **Task tag**, each with **is** or **is not**, or search the text of messages with **Message** and **contains**.
 
-You can also narrow the feed to one kind of event. Click an event, such as an edited time record, to show only events of that kind alongside the messages, and click it again to show everything. When nothing matches, the feed reads **No entries match this filter**.
+In an item's own Journal, you can narrow the feed to one kind of event instead. Click an event, such as an approval or a change entry, to show only events of that kind alongside the messages, and click it again to show everything. When nothing matches, the feed reads **No entries match this filter**.
 
 When you open a person's Journal from the Timesheet page, the feed shows only their timesheet activity, and **Showing timesheet entries only. Click to show all.** appears above it. Click it to show every event again.
 
@@ -69,21 +76,24 @@ When you open a person's Journal from the Timesheet page, the feed shows only th
 
 ## Notifications in the Journal
 
-The Journal is also where your [notifications](/help/documentation/notifications) appear. Approval alerts, mention notifications, and reminder messages all show up in the feed alongside regular messages, giving you a single place to stay informed.
+Several of your [notifications](/help/documentation/notifications) also land on the **Journal** page: timesheets submitted for your approval, messages that mention you, and timesheet reminders. They show up in the feed next to regular messages, so you have one place to catch up.
 
 ---
 
 ## Related content
 
 <CardGroup cols={2}>
-  <Card title="Notifications" href="/help/documentation/notifications">
-    Configure which events trigger notifications in the Journal feed.
+  <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
+    Choose what you are notified about and how notifications reach you, by email or push.
   </Card>
-  <Card title="People" href="/help/documentation/people">
-    Journal activity is scoped to the people you manage or work with.
+  <Card title="Approvals" icon="circle-check" href="/help/documentation/approval">
+    Review, approve, and reject timesheets, including from the Journal.
   </Card>
-  <Card title="Projects" href="/help/documentation/projects">
-    Associate Journal messages with specific projects for context.
+  <Card title="Audit Trail" icon="clock-rotate-left" href="/help/documentation/audit-trail">
+    See who changed what and when in the Journal of each item.
+  </Card>
+  <Card title="Roles & authorizations" icon="user-shield" href="/help/documentation/roles-authorisations">
+    Set who can read and post Journal messages with the Journal permission.
   </Card>
 </CardGroup>
 
@@ -93,10 +103,10 @@ The Journal is also where your [notifications](/help/documentation/notifications
 
 <AccordionGroup>
   <Accordion title="Can I use the Journal for project-specific discussions?">
-    Yes. Messages can be associated with specific projects or other records, keeping discussions contextual and easy to find.
+    Yes. Open the project in Beebole, click **Show journal**, and post your message there. It stays attached to the project, so everyone who opens the project's Journal finds the discussion in one place. The same works for people, tasks, and tags.
   </Accordion>
   <Accordion title="Who can see Journal messages?">
-    Visibility follows Beebole's [permission system](/help/documentation/roles-authorisations). People see messages relevant to their projects and teams based on their role.
+    Beebole's **Journal** page shows you the messages you wrote, the ones that mention you, and the ones posted on your own Journal. A message posted on a project, task, tag, or person appears in that item's Journal. Access depends on the **Journal** permission of your [role](/help/documentation/roles-authorisations).
   </Accordion>
   <Accordion title="Can I reply to Journal messages from email?">
     Yes. When you receive an email notification about a Journal message, you can reply directly from your email client. Beebole processes the reply and adds it to the thread.
@@ -105,6 +115,6 @@ The Journal is also where your [notifications](/help/documentation/notifications
     Yes, for messages you wrote, during the first 30 minutes after posting. Point at the message in Beebole's Journal and click **Edit** or **Delete**. After 30 minutes the buttons no longer appear on that message.
   </Accordion>
   <Accordion title="Does the Journal show approval activity?">
-    Yes. When timesheets are submitted, approved, or rejected, these actions appear in the Journal feed. This gives managers and administrators visibility into approval progress without leaving the Journal. See [Approvals](/help/documentation/approval) for details.
+    Yes. On Beebole's **Journal** page, approvers see the timesheets submitted to them and a banner with the number waiting, and people receive a message when their timesheet is fully approved or rejected. A person's Journal opened from the Timesheet page lists every submission, approval, and rejection. See [Approvals](/help/documentation/approval) for details.
   </Accordion>
 </AccordionGroup>

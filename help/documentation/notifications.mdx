@@ -25,7 +25,7 @@ Beebole sends notifications for a fixed set of events. You control each one inde
 | **Items assigned to you are mentioned** | An item assigned to you is mentioned. |
 | **Approval updates** | A timesheet is submitted for your approval. |
 
-When a timesheet you submitted is approved or rejected, Beebole posts a message to you in the Journal with the decision (and the reason, for a rejection). That message reaches you through **When you're @mentioned**.
+When a timesheet you submitted is rejected, or approved at its last stage, Beebole posts a message to you in the Journal with the decision (and the reason, for a rejection). That message reaches you through **When you're @mentioned**.
 
 A few notifications have no row of their own but still follow the channels you choose: [timesheet and approver reminders](#timesheet-reminders), the [warning before an unassigned task starts](/help/documentation/timesheetSettings#warning-about-unassigned-tasks), and the alert administrators receive when [auto-submit](/help/documentation/timesheetSettings#auto-submit) fails on a period.
 
@@ -68,7 +68,7 @@ When push is on in your settings but the device you are using isn't enabled yet,
 - Click **Enable** to turn push on for the device. The browser then asks for permission.
 - Click **Not now** to hide the prompt. The first time, it stays hidden for a month. The second time, it doesn't come back on that device.
 
-An administrator who turns **Push notifications** on for the organization, a tag, or another person sees the prompt right away when their own device isn't enabled yet, so they can enable it at the same time.
+An administrator who turns **Push notifications** on for the organization, a tag, or another person sees the prompt right away when their own device isn't enabled yet and they haven't hidden it with **Not now**, so they can enable it at the same time.
 
 ## Choosing how often you're notified
 
@@ -92,7 +92,7 @@ Daily and weekly digests reduce inbox volume by grouping events into one message
     Open your own profile, then open the **Notifications** panel.
   </Step>
   <Step title="Choose your channels">
-    Tick **Email**, **Push notifications**, or both. At least one must be on to configure events. When you tick **Push notifications**, your browser asks for permission to notify you on this device.
+    Tick **Email**, **Push notifications**, or both. At least one must be on to configure events. Ticking **Push notifications** also turns push on for the device you are using. The browser asks for your permission first if you haven't answered it before.
   </Step>
   <Step title="Set a frequency per event">
     For each event, choose **Instant**, **Daily**, **Weekly**, or **None**. For **Daily** and **Weekly** you also pick the delivery hour, and for **Weekly** the day of the week.
@@ -115,7 +115,7 @@ If another burst of the same kind follows within the next 15 minutes, it is held
 
 ## Timesheet reminders
 
-Reminders are configured by administrators in **Timesheet and Planning Settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work. They reach each person through the channels ticked in their notification settings.
+Reminders are configured by administrators in **Timesheet and Planning Settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work. They reach each person through the channels ticked in their notification settings. Reminders to submit go only to people who have an [approval workflow](/help/documentation/approval), since without one there is nothing to submit.
 
 <Steps>
   <Step title="Open Timesheet and Planning Settings">

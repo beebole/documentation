@@ -10,10 +10,10 @@ og:type: "article"
 ---
 
 <Info>
-  Accrual policies are not available yet. This page previews how they will work once they ship. Today, only the allowance's manual **Accrued** field is live: you enter earned time there by hand. The [carry-forward rules](#carry-forward-rules) and [accrued balances](#viewing-accrued-balances) described below already work.
+  Accrual policies are not available yet. This page previews how they will work once they ship. Today, you add earned time by hand in the allowance's **Accrued** field. The [carry-forward rules](#carry-forward-rules) and [accrued balances](#viewing-accrued-balances) described below already work.
 </Info>
 
-Beebole's accrual policies will let you define how time off accumulates for your team on a recurring schedule. Instead of granting the full allowance on day one, leave will build up gradually, for example every week or every month. Until then, you record accrued time on each person's allowance through its editable **Accrued** field.
+Beebole's accrual policies will let you define how time off accumulates for your team on a recurring schedule. Instead of granting the full allowance on day one, leave will build up gradually, for example every week or every month. Until then, you record earned time by hand in the allowance's editable **Accrued** field.
 
 ---
 
@@ -56,7 +56,7 @@ The accrual frequency will set the cadence at which time off accrues. The planne
 | **Monthly** | Once per month | Gradual accumulation throughout the year |
 
 <Info>
-  The total accrued over a year should match the person's overall allowance for the year. For example, if someone gets 20 days per year with monthly accruals, the quantity would be about 1.67 days per month.
+  To spread a yearly amount evenly, divide it by the number of periods in a year. For example, 20 days a year accrued monthly is about 1.67 days per month.
 </Info>
 
 ---
@@ -99,10 +99,10 @@ Once the new period starts, Beebole spends the carried balance first, before the
 </Steps>
 
 <Frame caption="A PTO allowance that carries up to 5 unused days into 2027, usable until March 31">
-  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open, showing Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027 and the Carry forward limit field set to 5 d, above the Allow negative balance and Repeat automatically options" width="538" />
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open, showing Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027 and the Carry forward limit field set to 5 d, above the Allow negative balance option" width="538" />
 </Frame>
 
-With the allowance above, Elena has 8 of her 20 days left in 2026: 5 carry into 2027 and 3 expire on December 31. Her next time off in 2027 uses the 5 carried days first, and any still unused on March 31, 2027 expire.
+With the allowance above, if Elena takes no more PTO in 2026, she ends the year with 8 of her 20 days left: 5 carry into 2027 and 3 expire on December 31. Her next time off in 2027 uses the 5 carried days first, and any still unused on March 31, 2027 expire.
 
 <Warning>
   Beebole works out carried balances from the allowance's current settings. Changing **Valid until** or **Carry forward limit** after a period has ended also changes what carried over from it, and every balance that depends on it. Review the affected balances after such a change.
@@ -153,7 +153,7 @@ Balances update as time-off entries are recorded on timesheets and when the allo
   </Accordion>
 
   <Accordion title="Can I give people different accrued amounts?">
-    Yes. The **Accrued** field belongs to each allowance, so you can enter a different amount for each person whose allowance is set on their own profile. Accrual policies, once available, will be set per absence type.
+    Yes. In Beebole, the **Accrued** field belongs to each allowance, so you can enter a different amount for each person whose allowance is set on their own profile. Accrual policies, once available, will be set per absence type.
   </Accordion>
 
   <Accordion title="What happens to unused time off at the end of the period?">
@@ -165,6 +165,6 @@ Balances update as time-off entries are recorded on timesheets and when the allo
   </Accordion>
 
   <Accordion title="Will accruals apply to all absence types?">
-    No. Accrual policies will be optional and set per absence type. You will be able to accrue some types (for example, vacation) and keep a fixed allowance for others (for example, sick leave).
+    No. Beebole's accrual policies will be optional and set per absence type. You will be able to accrue some types (for example, vacation) and keep a fixed allowance for others (for example, sick leave).
   </Accordion>
 </AccordionGroup>

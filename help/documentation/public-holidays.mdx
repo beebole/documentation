@@ -8,10 +8,10 @@ keywords: ["beebole", "public holidays", "bank holidays", "custom holidays", "ho
 "og:type": "article"
 ---
 
-Beebole's public holidays feature lets you define which days are non-working days for your team. You can load country-specific public holiday calendars and add custom holidays to match your organization's schedule. Public holidays appear on timesheets and are factored into work schedule calculations, reports, and time-off balances.
+Beebole's public holidays feature lets you define which days are non-working days for your team. You can load country-specific public holiday calendars and add custom holidays to match your organization's schedule. Public holidays show on timesheets and in Planning as days without working hours, and they never count against time-off allowances.
 
 <Info>
-  Public holidays work alongside [work schedules](/help/documentation/work-schedule). When a public holiday falls on a scheduled work day, Beebole automatically accounts for it in capacity and reporting calculations.
+  Public holidays work alongside [work schedules](/help/documentation/work-schedule). When a public holiday falls on a scheduled work day, Beebole treats that day as having no working hours: the timesheet expects no time on it, and Planning gives it no capacity.
 </Info>
 
 ---
@@ -71,8 +71,8 @@ To modify an existing holiday, click its date or name in the list and update it 
 
 By default, the calendar configured on **Account Settings** applies to everyone in your account. If your organization has teams in different countries or regions, the same **Public holidays** panel is available on tags and people:
 
-- **By tag** — Click **Tags** in the sidebar, open the tag (e.g., "US Office", "UK Office"), and configure its **Public holidays** panel so only people with that tag get those holidays.
-- **By person** — Click **People** in the sidebar, open the person, and configure their **Public holidays** panel to override the calendar for that individual.
+- For a group, click **Tags** in the sidebar, open the tag (for example "US Office" or "UK Office"), and configure its **Public holidays** panel so only people with that tag get those holidays.
+- For one person, click **People** in the sidebar, open the person, and configure their **Public holidays** panel to override the calendar for that individual.
 
 This ensures each person's timesheet reflects the correct public holidays for their location.
 
@@ -92,10 +92,10 @@ Public holidays interact with several parts of Beebole:
 
 | Area | Effect |
 |------|--------|
-| **Timesheets** | Public holidays are highlighted on the timesheet. Depending on your settings, people may or may not be required to log time on these days. |
-| **Work schedules** | Public holidays reduce the expected working hours for the period. A person's capacity calculation accounts for public holidays automatically. |
-| **Reports** | Reports that include capacity or availability metrics factor in public holidays when calculating expected versus actual hours. |
-| **Time off balances** | Public holidays do not count against a person's time-off allowance — they are separate from absence types like vacation or sick leave. Day-based time off can't be booked on a public holiday at all. |
+| Timesheets | Public holidays are highlighted on the timesheet, with the holiday's name in a tooltip, and no time is expected on them. The **Only allow time entries on scheduled working time** restriction in [Timesheet settings](/help/documentation/timesheetSettings) also blocks work entries on these days. |
+| Work schedules | Public holidays reduce the expected working hours for the period. A person's capacity calculation accounts for public holidays automatically. |
+| Planning | A public holiday holds no capacity on the person's plan, just like a scheduled day off. |
+| Time-off balances | Public holidays do not count against a person's time-off allowance. They are separate from absence types like vacation or sick leave, and day-based time off can't be booked on a public holiday at all. |
 
 ---
 
@@ -123,7 +123,7 @@ At the start of each new year:
 </Info>
 
 <Info>
-  Previous years' holiday calendars remain in the system for historical reporting. Updating the current year does not affect past data.
+  Previous years' holidays stay available under their own year in the **Year** selector. Editing the current year's holidays does not change past years.
 </Info>
 
 ---
@@ -151,10 +151,10 @@ At the start of each new year:
 
 <AccordionGroup>
   <Accordion title="Do public holidays count against a person's time-off balance?">
-    No. Public holidays are separate from absence types like vacation or sick leave. They reduce the expected working hours for a period but do not consume any time-off allowance.
+    No. In Beebole, public holidays are separate from absence types like vacation or sick leave. They reduce the expected working hours for a period but do not consume any time-off allowance.
   </Accordion>
   <Accordion title="Can I have different holiday calendars for different offices?">
-    Yes. Configure the **Public holidays** panel on a tag to give that group its own calendar. For example, load the US calendar on the "US Office" tag and the UK calendar on the "UK Office" tag.
+    Yes. In Beebole, configure the **Public holidays** panel on a tag to give that group its own calendar. For example, load the US calendar on the "US Office" tag and the UK calendar on the "UK Office" tag.
   </Accordion>
   <Accordion title="What happens if a public holiday falls on a weekend?">
     Beebole applies the holiday to the date as configured. If the holiday falls on a non-working day according to the person's work schedule, it has no effect on their expected hours. If your country observes a substitute day (e.g., the following Monday), add that substitute date as a custom holiday.
@@ -163,6 +163,6 @@ At the start of each new year:
     No. Once a country calendar is configured, Beebole loads the country's official holidays for new years automatically as they become available. Use the **Year** selector to review them, and add your custom holidays for each new year — those are defined per year.
   </Accordion>
   <Accordion title="Can I bulk-import public holidays?">
-    The fastest approach is to load a built-in country calendar, which imports all national holidays at once. You can then add or remove individual entries as needed.
+    The fastest approach in Beebole is to load a built-in country calendar, which imports all national holidays at once. You can then add or remove individual entries as needed.
   </Accordion>
 </AccordionGroup>

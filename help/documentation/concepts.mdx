@@ -33,11 +33,11 @@ Each person also has a role that controls what they can see and do. By default, 
 
 The four building blocks don't exist in isolation — they connect to create a complete picture of your organization's work:
 
-- **People work on projects — and tasks.** When someone logs time, they select a project (and optionally a subproject), or a task: time can be tracked on tasks as well as projects. This is the core relationship in Beebole.
-- **Tasks are independent planning items, not parts of a project.** Where projects model what hours go _into_, tasks model the work _to be done_. A task can optionally be linked to a project — which connects your planning and time tracking — but it exists on its own, with its own dates, owner, and status, managed in the Gantt chart and Kanban board.
-- **Projects have hierarchies.** Categories contain projects, which can contain subprojects, nested as deep as you need.
-- **Tags group people, projects, and tasks.** A tag like "Engineering" can contain the engineering team members, the engineering projects, and engineering tasks, making it easy to filter and report by department.
-- **Tags have hierarchies too.** Tags can be organized into parent/child structures (e.g., "Europe" \> "France" \> "Paris office").
+- People work on projects and tasks. When someone logs time, they select a project (and optionally a subproject), or a task: time can be tracked on tasks as well as projects. This is the core relationship in Beebole.
+- Tasks are independent planning items, not parts of a project. Where projects model what hours go _into_, tasks model the work _to be done_. A task can optionally be linked to a project — which connects your planning and time tracking — but it exists on its own, with its own dates, owner, and status, managed in the Gantt chart and Kanban board.
+- Projects have hierarchies. Categories contain projects, which can contain subprojects, nested as deep as you need.
+- Tags group people, projects, and tasks. A tag like "Engineering" can contain the engineering team members, the engineering projects, and engineering tasks, making it easy to filter and report by department.
+- Tags have hierarchies too. Tags can be organized into parent/child structures (e.g., "Europe" \> "France" \> "Paris office").
 
 <Info>
   Think of projects as _what_ your team tracks time against, tasks as _what you plan and schedule_, people as _who_ does the work, and tags as _how you organize_ everything for reporting and management.
@@ -91,13 +91,13 @@ Learn more about [assignments](/help/documentation/assignments).
 
 Here's a typical setup to illustrate how these concepts connect:
 
-1. **You create projects** organized by category (e.g., **Client** or **Internal**) and engagement (e.g., **Acme Corp** or **Website Redesign**).
-2. **You add people** and assign them roles that control their permissions.
-3. **You create tags** for departments and teams, then tag both people and projects.
-4. **You set billing rates** on projects (what you charge clients) and **cost rates** on people (what they cost internally). Tags can provide default rates for entire departments.
-5. **You assign work schedules** to define expected working hours — at the organization level for most people, with overrides on specific tags or individuals.
-6. **People log time** against projects on their timesheets. Each entry captures who, what, when, and how long.
-7. **Reports** combine all of this — showing time, costs, billing, and budgets across any combination of projects, people, and tags.
+1. You create projects organized by category (e.g., **Client** or **Internal**) and engagement (e.g., **Acme Corp** or **Website Redesign**).
+2. You add people and assign them roles that control their permissions.
+3. You create tags for departments and teams, then tag both people and projects.
+4. You set billing rates on projects (what you charge clients) and cost rates on people (what they cost internally). Tags can provide default rates for entire departments.
+5. You assign work schedules to define expected working hours — at the organization level for most people, with overrides on specific tags or individuals.
+6. People log time against projects on their timesheets. Each entry captures who, what, when, and how long.
+7. Reports combine all of this — showing time, costs, billing, and budgets across any combination of projects, people, and tags.
 
 ---
 
@@ -111,9 +111,9 @@ Each list in Beebole — people, projects, tasks, tags, roles, custom fields, an
 
 Use the search field to:
 
-- **Find anything by partial name.** Typing `ela` matches "Elena Rossi", and also "Sophie Laurent", where the e and the "La" are not next to each other.
-- **Filter long lists.** Searching narrows hierarchies like the project tree, expanding only the branches that contain matching entries.
-- **Move through results with the keyboard.** Press the up and down arrow keys to step through the filtered list, and **Escape** to clear the search and restore the full list.
+- Find anything by partial name. Typing `ela` matches "Elena Rossi", and also "Sophie Laurent", where the e and the "La" are not next to each other.
+- Filter long lists. Searching narrows hierarchies like the project tree, expanding only the branches that contain matching entries.
+- Move through results with the keyboard. Press the up and down arrow keys to step through the filtered list, and **Escape** to clear the search and restore the full list.
 
 <Frame caption="Fuzzy matching in the People list: the letters you typed are underlined in each result">
   <img src="/help/images/concepts/fuzzy-search.webp" alt="Beebole People list with ela typed in the Search by name field and two results, Elena Rossi and Sophie Laurent, with the matched letters E, l and a of Elena and e, L and a of Sophie Laurent shown in bold and underlined" width="700" />
@@ -147,10 +147,10 @@ Beebole keeps everyone in your account in sync without requiring a refresh. When
 
 Real-time sync covers:
 
-- **Record changes** — Adds, edits, archives, deletes, renames.
-- **Approval actions** — Submitted, approved, and rejected timesheets update for the approver and the submitter at the same time.
-- **Planning and Gantt updates** — Task changes propagate to the planning view and the Gantt chart in real time.
-- **Journal messages and notifications** — New mentions, replies, and notifications appear without polling.
+- Record changes: adds, edits, archives, deletes, and renames.
+- Approval actions: submitted, approved, and rejected timesheets update for the approver and the submitter at the same time.
+- Planning and Gantt updates: task changes propagate to the planning view and the Gantt chart in real time.
+- Journal messages and notifications: new mentions, replies, and notifications appear without polling.
 
 <Info>
   Real-time sync uses a persistent connection between your browser and Beebole. If your network drops temporarily, Beebole reconnects automatically and catches up on any changes you missed while offline.
@@ -193,7 +193,7 @@ Beebole refuses to delete an item that something else still depends on. Instead 
 Some refusals show a message only, because the fix is in the item itself rather than somewhere else in the account. A custom field that already holds values shows **This custom field cannot be deleted because values have been entered for it. Archive it instead.** A report folder that still contains reports shows **This folder cannot be deleted because it still contains reports. Move or delete them first.** The same applies to a tag that is still assigned, a role that is still assigned to people, a project that still has subprojects, and the last remaining task category or status.
 
 <Info>
-  When an item has history you want to keep, archive it instead of deleting it. Archived items disappear from the active lists, but every record and reference that points to them stays intact.
+  When an item has history you want to keep, archive it instead of deleting it (for a task, mark it **Done**). Archived items disappear from the active lists, but every record and reference that points to them stays intact.
 </Info>
 
 ### Duplication
@@ -243,9 +243,9 @@ The basic flow:
 
 When you open a person, project, tag, or task, the detail panel lists its attributes — billing rates, work schedule, custom fields, and so on. The URL follows the attribute you are reading: as you scroll, the address updates to the attribute whose header sits at the top of the panel, and clicking inside an attribute selects it too. Copy the URL at any moment and the link opens the same record with that attribute at the top of the panel.
 
-- **Switch records without losing your place.** When you select another person, project, tag, or task while an attribute is in the URL, the panel opens the same attribute and scrolls it into view, so you can compare one setting across several records.
-- **Links stay put while the panel loads.** An attribute opened from a link is held at the top of the panel while the rest of the content finishes loading, so sections that load later cannot push it out of view. It moves only once you scroll, click, or type inside the panel.
-- **Collapsing an attribute clears it from the URL.** The link then opens the record without a specific attribute selected.
+- Switch records without losing your place. When you select another person, project, tag, or task while an attribute is in the URL, the panel opens the same attribute and scrolls it into view, so you can compare one setting across several records.
+- Links stay put while the panel loads. An attribute opened from a link is held at the top of the panel while the rest of the content finishes loading, so sections that load later cannot push it out of view. It moves only once you scroll, click, or type inside the panel.
+- Collapsing an attribute clears it from the URL. The link then opens the record without a specific attribute selected.
 
 ### Sidebar and details panel
 

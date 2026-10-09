@@ -2,7 +2,7 @@
 title: "Account settings for your organization"
 sidebarTitle: "Account Settings"
 description: "Configure your Beebole organization's defaults from Account Settings: localization, billing, cost, public holidays, work schedule, SSO, and more."
-keywords: ["beebole", "account settings", "organization settings", "localization", "currency", "timezone", "single sign-on", "delete account", "gdpr", "personal data"]
+keywords: ["beebole", "account settings", "organization settings", "localization", "currency", "single sign-on", "delete account", "gdpr"]
 "og:title": "Configure Your Organization in Beebole Account Settings"
 "og:description": "Set your Beebole organization's defaults from Account Settings — localization, billing, cost, public holidays, work schedule, SSO, and account deletion."
 "og:type": "article"
@@ -31,7 +31,7 @@ You reach Account Settings from the user menu, not from the sidebar's top-level 
   <img src="/help/images/account-settings/user-menu.webp" alt="Beebole user menu open above the JR initials at the bottom of the sidebar, listing Auto, Pick your color, English, Your API key, Sign in as..., Sign out and Account Settings" width="272" />
 </Frame>
 
-Account Settings opens with the **Settings** menu on its left. The other entries of that menu, **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account**, open their own dedicated screens. On a phone, tap your initials, then **Account Settings**, to see the same list.
+Account Settings opens with the **Settings** menu on its left. The other entries of that menu, **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account**, open their own dedicated screens. On a phone, tap your initials, then **Account Settings**, to see the same entries, except **Master data review**.
 
 ## Organization identity
 
@@ -76,13 +76,14 @@ Below the header, Account Settings is organized into panels. Each panel sets a d
 | **Cost** | The default cost rate for the organization |
 | **Work schedule** | The expected working hours assigned at the organization level |
 | **Public holidays** | The default public holiday calendar |
+| **Absence allowances** | The default [time-off allowances](/help/documentation/timeoff) for each absence type |
 | **Approval workflow** | The default sequence of approval stages for submitted timesheets |
 | **Single Sign-On** | Google, Microsoft, and custom SSO sign-in for your members |
 | **Notifications** | The default notification settings for the account |
 | **Email templates** | The wording of emails Beebole sends on the organization's behalf |
 
 <Info>
-  Billing rates, costs, custom fields, approval workflow, and Single Sign-On depend on your subscription and may not appear on every account.
+  **Billing**, **Cost**, **Approval workflow**, and **Absence allowances** depend on your [subscription](/help/documentation/subscription). When your plan does not include one, its panel shows a short preview with an **Upgrade your plan** link instead of its settings. On the **Free** plan, the **Single Sign-On** panel offers Google and Microsoft sign-in only.
 </Info>
 
 ### Localization
@@ -180,13 +181,7 @@ The chat button is hidden on phones. From a phone, write to [support@beebole.com
 
 <AccordionGroup>
   <Accordion title="Who can change Account Settings in Beebole?">
-    Only administrators can open and edit Account Settings. The defaults set there apply to the whole organization, so changes are restricted to people with the Admin role.
-  </Accordion>
-  <Accordion title="Do I need to click Save after changing a setting?">
-    No. Beebole saves each Account Settings edit automatically as you make it — there is no separate Save button on the page.
-  </Accordion>
-  <Accordion title="Can a person override the organization's localization defaults?">
-    Yes, in part. A person can set their own language and some regional preferences in their profile, while account-wide defaults like currency apply to everyone unless overridden lower down.
+    Only administrators can open and edit Account Settings. The defaults set there apply to the whole organization, so changes are restricted to people with the Admin role. Beebole saves each edit automatically as you make it, so there is no Save button to click.
   </Accordion>
   <Accordion title="Can I undo deleting my Beebole account?">
     Yes, during the grace period. After you schedule deletion, Beebole waits 7 days before removing your data. Open **Delete Account** and click **Cancel deletion** within that window to keep your account.
