@@ -51,7 +51,7 @@ export const scenes = [
 	},
 	{
 		id: 'desktop-suggestion-why',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		fixture: desktopSuggestion,
@@ -82,7 +82,8 @@ export const scenes = [
 			await why.scrollIntoViewIfNeeded()
 			await h.settle(page, 800)
 		},
-		// Today's day heading and its Desktop card, with the Why? answer.
+		// The Desktop card with the Why? answer. Habit suggestions for the same day may come before
+		// it, so the frame holds the card alone, not the day heading.
 		shots: [
 			{
 				file: 'ai/desktop-suggestion-why.webp',
@@ -91,11 +92,7 @@ export const scenes = [
 					pad: 0,
 					box: async (page, h) => {
 						const card = await h.surfaceAround(page, 'Desktop')
-						// The day heading just above the Desktop card (later days may follow it).
-						const months = await page.getByText(/^(January|February|March|April|May|June|July|August|September|October|November|December)$/).filter({ visible: true }).all()
-						const tops = (await Promise.all(months.map((m) => m.boundingBox()))).filter((b) => b && b.y < card.y).map((b) => b.y)
-						const y = Math.max(...tops) - 16
-						return { x: card.x - 12, y, width: card.width + 24, height: card.y + card.height + 12 - y }
+						return { x: card.x - 12, y: card.y - 12, width: card.width + 24, height: card.height + 24 }
 					},
 				},
 			},

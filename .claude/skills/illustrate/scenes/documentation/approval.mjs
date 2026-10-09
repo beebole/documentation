@@ -24,6 +24,26 @@ const jordanManages = {
 	},
 }
 
+// The approvers named on a pending week ("Sophie Laurent, Thomas Muller"): data, listed in no
+// fixed order, so replay leaves them out (the published image keeps them).
+// Each one runs from the names to the right end of their line (the ellipsis is drawn there), and
+// only above the bulk Approve/Reject bar, which can cover a row's line.
+const approverNames = async (page) => {
+	const bar = await page.getByRole('button', { name: /Approve \(\d+\)/ }).filter({ visible: true }).first().boundingBox().catch(() => null)
+	const rects = []
+	for (const el of await page.getByText(/Laurent|Muller|O.Brien/).filter({ visible: true }).all()) {
+		const r = await el.evaluate((e) => {
+			const b = e.getBoundingClientRect()
+			let line = e.parentElement
+			while (line && line.getBoundingClientRect().width <= b.width + 1) line = line.parentElement
+			const l = line.getBoundingClientRect()
+			return { x: b.x - 2, y: b.y - 2, width: l.right - b.x + 2, height: b.height + 4 }
+		})
+		if (!bar || r.y + r.height < bar.y) rects.push(r)
+	}
+	return rects
+}
+
 export const scenes = [
 	{
 		id: 'approval-pending-pane',
@@ -84,6 +104,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'approval/status-badge-breakdown.webp',
+				ignore: approverNames,
 				frame: {
 					type: 'box',
 					pad: 12,
@@ -123,6 +144,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'approval/team-bulk-bar.webp',
+				ignore: approverNames,
 				frame: {
 					type: 'box',
 					pad: 8,

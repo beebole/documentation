@@ -178,10 +178,10 @@ When the chart is grouped, each group header row carries one cell per period (da
 - **Grouped by Owner** — Each owner's row shows a load bar comparing that person's planned time to their capacity for the period. The bar fills red while capacity remains, turns green when the capacity is met exactly, and turns purple as soon as the person is booked beyond it, with the overload share in a darker purple.
 - **Grouped by anything else** — For project categories, tag categories, statuses, and the "no owner" bucket of a grouping by owner, the cell shows the group's total planned time as a figure above a bar scaled to the busiest period on that row. A capacity ratio has no meaning for a group of people, so none is drawn. Planned time that has no owner yet appears as a small red badge in the corner of the cell.
 - **Without grouping** — A single load bar sits under each day or week number in the timeline header, rolling up everyone. Click it to step the scroll through the rows driving that period's load.
-- **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32h / Capacity: 40h (80%)`), and adds a line per overloaded person with their own figures.
+- **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32 / Capacity: 40 (80%)`, in your organization's duration format), and adds a line per overloaded person with their own figures.
 
 <Frame caption="Grouped by Owner: load bars per week, and the tooltip of an overbooked week">
-  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.4h / Capacity: 40h (306%)](/help/images/gantt/workload-heatmap.webp)
+  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.44 / Capacity: 40 (306%)](/help/images/gantt/workload-heatmap.webp)
 </Frame>
 
 Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.

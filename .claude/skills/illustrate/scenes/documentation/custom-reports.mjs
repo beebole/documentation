@@ -14,6 +14,46 @@ async function openReport(page, h, views) {
 	await h.settle(page, 1500)
 }
 
+// The chart's canvas (bars, axes, legend) follows the time logged: replay leaves it out, the
+// published image keeps it. With menus open over it, only the parts of the chart around them.
+async function chartAround(page, h, menuTexts = []) {
+	const c = await page.locator('report-chart canvas').filter({ visible: true }).first().boundingBox()
+	if (!menuTexts.length) return [c]
+	// Each menu is the positioned popup around one of its entries.
+	const boxes = await Promise.all(
+		menuTexts.map((t) =>
+			page
+				.getByText(t, { exact: true })
+				.filter({ visible: true })
+				.first()
+				.evaluate((leaf) => {
+					let el = leaf
+					while (el && !['fixed', 'absolute'].includes(getComputedStyle(el).position)) el = el.parentElement ?? el.getRootNode().host
+					const r = el.getBoundingClientRect()
+					return { x: r.x, y: r.y, width: r.width, height: r.height }
+				})
+		)
+	)
+	// Vertical strips cut at the menus' edges: in each strip, the chart above and below the menus
+	// that cross it.
+	const right = c.x + c.width
+	const bottom = c.y + c.height
+	const cuts = [...new Set([c.x, right, ...boxes.flatMap((b) => [b.x, b.x + b.width])])].filter((x) => x >= c.x && x <= right).sort((a, b) => a - b)
+	const rects = []
+	for (let k = 0; k < cuts.length - 1; k++) {
+		const [x0, x1] = [cuts[k], cuts[k + 1]]
+		const over = boxes.filter((b) => b.x < x1 && b.x + b.width > x0)
+		if (!over.length) {
+			rects.push({ x: x0, y: c.y, width: x1 - x0, height: c.height })
+			continue
+		}
+		const top = Math.min(...over.map((b) => b.y))
+		const end = Math.max(...over.map((b) => b.y + b.height))
+		rects.push({ x: x0, y: c.y, width: x1 - x0, height: top - c.y }, { x: x0, y: end, width: x1 - x0, height: bottom - end })
+	}
+	return rects.filter((r) => r.width > 0 && r.height > 0)
+}
+
 export const scenes = [
 	{
 		id: 'custom-reports-column-menu',
@@ -97,6 +137,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'custom-reports/chart-view.webp',
+				ignore: (page, h) => chartAround(page, h),
 				frame: {
 					type: 'box',
 					box: async (page) => {
@@ -134,6 +175,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'custom-reports/chart-type-picker.webp',
+				ignore: (page, h) => chartAround(page, h, ['Waterfall']),
 				frame: {
 					type: 'box',
 					box: async (page) => {
@@ -224,6 +266,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'custom-reports/chart-axes.webp',
+				ignore: (page, h) => chartAround(page, h, ['Time entity', 'Subproject', 'Managed by']),
 				frame: {
 					type: 'box',
 					box: async (page) => {

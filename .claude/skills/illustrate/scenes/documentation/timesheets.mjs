@@ -634,7 +634,7 @@ export const scenes = [
 		// entries (dashed boxes). The calendar hides them while they are collapsed (a screen setting
 		// the runner never saves): the Suggested entries button shows them.
 		id: 'timesheets-calendar-suggestions',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {

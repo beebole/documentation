@@ -150,7 +150,7 @@ export const scenes = [
 	{
 		// The + button opens the activity selector: Working activity, then a category, lists its clients.
 		id: 'mobile-activity-drilldown',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		viewport: { width: 390, height: 844 },
@@ -218,7 +218,7 @@ export const scenes = [
 	{
 		// Tapping the ghost row opens the suggestion in its sheet (bin, play, check).
 		id: 'mobile-suggestion-sheet',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		viewport: { width: 390, height: 844 },

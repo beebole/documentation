@@ -112,7 +112,7 @@ export const scenes = [
 	},
 	{
 		id: 'staffing-booking-editor',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -138,9 +138,11 @@ export const scenes = [
 						// bar's label and the editor's popup.
 						const bar = await page.getByText('Brightwave Media: Brand Campaign: Video Production', { exact: true }).filter({ visible: true }).first().boundingBox()
 						const editor = await h.stableBox(page, page.locator('.staffingEditor'))
+						// The editor opens below the bar, or above it when the bar sits low on the screen.
 						const x = Math.min(bar.x - 16, editor.x - 160)
-						const y = bar.y - 28
-						return { x, y, width: editor.x + editor.width + 160 - x, height: editor.y + editor.height + 24 - y }
+						const y = Math.min(bar.y, editor.y) - 28
+						const bottom = Math.max(bar.y + bar.height, editor.y + editor.height) + 24
+						return { x, y, width: editor.x + editor.width + 160 - x, height: bottom - y }
 					},
 				},
 			},
@@ -148,7 +150,7 @@ export const scenes = [
 	},
 	{
 		id: 'staffing-booking-add-form',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -174,7 +176,7 @@ export const scenes = [
 	},
 	{
 		id: 'staffing-capacity-tooltip',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {

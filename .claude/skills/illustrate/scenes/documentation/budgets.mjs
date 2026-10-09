@@ -1,4 +1,6 @@
 // Scenes for help/documentation/budgets.mdx.
+import { budgetFigures } from './reports.mjs'
+
 export const page = 'help/documentation/budgets.mdx'
 
 // Panels are widened to 800 px: at the default width (576 at 1440)
@@ -108,7 +110,7 @@ export const scenes = [
 			await stack.click()
 			await h.settle(page, 1500)
 		},
-		shots: [{ file: 'budgets/budget-status-report.webp', frame: { type: 'full' } }],
+		shots: [{ file: 'budgets/budget-status-report.webp', ignore: budgetFigures, frame: { type: 'full' } }],
 	},
 	{
 		id: 'budgets-time-unit',

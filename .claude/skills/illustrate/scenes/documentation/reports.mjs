@@ -1,6 +1,37 @@
 // Scenes for help/documentation/reports.mdx (also used on quickstart.mdx).
 export const page = 'help/documentation/reports.mdx'
 
+// Replay leaves out the figures of a report that grow with every seed top-up (the published image
+// keeps them). Budget Status: every measure cell, right of the project names column, below the
+// header row.
+export const budgetFigures = (page) =>
+	page.locator('budget-status-table').evaluate((table) => {
+		const t = table.getBoundingClientRect()
+		const badges = [...table.querySelectorAll('entity-badge')].map((b) => b.getBoundingClientRect()).filter((r) => r.width > 0)
+		const x = Math.max(...badges.map((r) => r.right)) + 8
+		// Below the measures' header (Time, or Time · Billing · Costs when stacked).
+		const header = [...table.querySelectorAll('*')].find((e) => e.childElementCount === 0 && /^Time\b/.test(e.textContent.trim()) && e.getBoundingClientRect().width)
+		const y = header ? header.getBoundingClientRect().bottom + 4 : Math.min(...badges.map((r) => r.top)) - 8
+		return { x, y, width: t.right - x, height: t.bottom - y }
+	})
+
+// The figure under each summary card's label (the label itself stays compared).
+export const cardFigures = (page, labels) =>
+	page.evaluate((labels) => {
+		const rects = []
+		for (const leaf of document.querySelectorAll('body *')) {
+			if (leaf.childElementCount !== 0 || !labels.includes(leaf.textContent.trim().toLowerCase())) continue
+			const l = leaf.getBoundingClientRect()
+			if (!l.width) continue
+			let card = leaf.parentElement
+			while (card && card.getBoundingClientRect().height < l.height + 12) card = card.parentElement
+			const c = card.getBoundingClientRect()
+			if (c.height > 140) continue
+			rects.push({ x: c.left, y: l.bottom + 1, width: c.width, height: c.bottom - l.bottom - 1 })
+		}
+		return rects
+	}, labels)
+
 // Opens a folder of the Reports menu and waits until its reports are listed.
 export async function openFolder(page, h, folder, firstReport) {
 	await h.goto(page, '/reports')
@@ -228,6 +259,7 @@ export const scenes = [
 		shots: [
 			{
 				file: 'reports/budget-status-table.webp',
+				ignore: budgetFigures,
 				frame: {
 					type: 'box',
 					pad: 24,
@@ -392,7 +424,14 @@ export const scenes = [
 			await page.clock.setFixedTime(new Date(Date.parse(await page.evaluate(() => new Date().toISOString())) + 10000))
 			await h.settle(page, 2000)
 		},
-		shots: [{ file: 'reports/planned-vs-real.webp', frame: { type: 'full' } }],
+		// The summary figures and the two charts follow the time logged: replay leaves them out.
+		shots: [
+			{
+				file: 'reports/planned-vs-real.webp',
+				ignore: async (page) => [...(await cardFigures(page, ['planned', 'real', 'variance', 'forecast', 'budget'])), page.locator('canvas')],
+				frame: { type: 'full' },
+			},
+		],
 	},
 	{
 		// The Current Month folder's Filters popup with Project and "is" picked: the project picker

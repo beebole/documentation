@@ -68,7 +68,7 @@ async function openKanban(page, h) {
 export const scenes = [
 	{
 		id: 'kanban-column-menu',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -244,7 +244,7 @@ export const scenes = [
 	{
 		// A card's ⋯ menu, opened on hover (opening it changes nothing).
 		id: 'kanban-card-menu',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {

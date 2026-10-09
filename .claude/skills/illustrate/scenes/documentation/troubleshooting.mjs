@@ -13,10 +13,11 @@ export const scenes = [
 			await h.settle(page, 1000)
 		},
 		// The title, Health checks and Latency. Durations, the build and the ping figures differ
-		// on every run, so replay reports this shot as changed: compare it by eye.
+		// on every run: replay leaves them out.
 		shots: [
 			{
 				file: 'troubleshooting/diagnostics-page.webp',
+				ignore: (page) => [page.getByText(/^\d+ ms$/), page.getByText(/^Build [0-9a-f]+$/), page.getByText(/^avg \d+ ms/)],
 				frame: {
 					type: 'box',
 					box: async (page) => {

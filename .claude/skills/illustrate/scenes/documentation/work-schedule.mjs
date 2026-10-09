@@ -132,4 +132,57 @@ export const scenes = [
 			},
 		],
 	},
+	{
+		// The first working day's ⋯ menu in the Details panel (New interval, Copy to next day,
+		// Non-working day). Opening it changes nothing.
+		id: 'work-schedule-day-menu',
+		capturedAt: '2026-10-09',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await h.openPanel(page, '/scheduleTypes', 'Full Time', 'scheduleType')
+			await page.getByText('Length in days', { exact: true }).waitFor()
+			await h.settle(page, 1500)
+			await h.widenPanel(page, PANEL_WIDTH)
+			// The day menus are the panel's ⋯ buttons below Length in days (the list on the left has
+			// its own); the highest one is the first day's.
+			const length = await page.getByText('Length in days', { exact: true }).boundingBox()
+			const buttons = page.locator('bb-action-menu-button button').filter({ visible: true })
+			const boxes = await buttons.evaluateAll((els) => els.map((e) => e.getBoundingClientRect()).map((r) => ({ x: r.x, y: r.y })))
+			const index = boxes.reduce((best, b, i) => (b.x > 640 && b.y > length.y + 10 && (best < 0 || b.y < boxes[best].y) ? i : best), -1)
+			await buttons.nth(index).click()
+			await page.getByText('Copy to next day', { exact: true }).filter({ visible: true }).first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 400, y: 700 }),
+		// The Details panel from its title down to the open menu's bottom.
+		shots: [
+			{
+				file: 'work-schedule/day-menu.webp',
+				frame: {
+					type: 'box',
+					box: async (page) => {
+						const title = await page.getByText('Details', { exact: true }).filter({ visible: true }).first().boundingBox()
+						const menu = await page
+							.getByText('Copy to next day', { exact: true })
+							.filter({ visible: true })
+							.first()
+							.evaluate((leaf) => {
+								let el = leaf
+								while (el && !['fixed', 'absolute'].includes(getComputedStyle(el).position)) el = el.parentElement ?? el.getRootNode().host
+								const r = el.getBoundingClientRect()
+								return { x: r.x, y: r.y, width: r.width, height: r.height }
+							})
+						// The menu opens to the left of its button, past the panel's edge.
+						const x = Math.min(title.x - 64, menu.x - 16)
+						const y = title.y - 24
+						return { x, y, width: 1440 - 16 - x, height: menu.y + menu.height + 24 - y }
+					},
+				},
+			},
+		],
+	},
 ]

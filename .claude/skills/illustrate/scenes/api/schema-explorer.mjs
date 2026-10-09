@@ -54,6 +54,25 @@ export const scenes = [
 			await page.getByText('Root Types').waitFor()
 			await h.settle(page, 1000)
 		},
-		shots: [{ file: 'api/graphiql-playground.webp', frame: { type: 'full' } }],
+		shots: [
+			{
+				file: 'api/graphiql-playground.webp',
+				// The All Schema Types list follows the API's schema, which grows with most deploys:
+				// replay leaves the type names out (its heading stays compared).
+				ignore: (page) =>
+					page
+						.getByText('All Schema Types')
+						.first()
+						.evaluate((heading) => {
+							let pane = heading.parentElement
+							while (pane && !/doc-explorer/.test(String(pane.className))) pane = pane.parentElement
+							const hb = heading.getBoundingClientRect()
+							const pb = (pane ?? document.body).getBoundingClientRect()
+							const bottom = Math.min(pb.bottom, window.innerHeight)
+							return { x: pb.left, y: hb.bottom + 4, width: pb.width, height: bottom - hb.bottom - 4 }
+						}),
+				frame: { type: 'full' },
+			},
+		],
 	},
 ]

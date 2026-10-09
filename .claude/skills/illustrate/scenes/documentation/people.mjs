@@ -81,7 +81,7 @@ export const scenes = [
 		// Yuki Tanaka works from Tokyo: for the capture only, her time zone is set on her own
 		// profile (the other rows keep the organization's values, marked by their gear).
 		id: 'people-localization',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		fixture: {

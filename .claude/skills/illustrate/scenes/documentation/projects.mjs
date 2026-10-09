@@ -39,7 +39,7 @@ export const scenes = [
 	{
 		// Website Redesign, not Acme Corp: the tasks are linked to the subproject.
 		id: 'projects-tasks-bookings',
-		capturedAt: '2026-09-29',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {

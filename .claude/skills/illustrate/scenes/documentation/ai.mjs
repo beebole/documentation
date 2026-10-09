@@ -58,7 +58,7 @@ export const scenes = [
 	},
 	{
 		id: 'ai-suggested-entries',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {
@@ -143,7 +143,7 @@ export const scenes = [
 	{
 		// Next week in the calendar view: the planned task's suggestions as forecast cards.
 		id: 'ai-suggestion-forecast-cards',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		fixture: forecastWeek,
