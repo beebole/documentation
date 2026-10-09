@@ -47,6 +47,17 @@ For currency-based expense types, the **Details** panel also shows **Billing mar
   <img src="/help/images/expenses/expense-type-details.webp" alt="Beebole Details panel of the Hotel expense type with Currency checked and Billing markup in % set to 100" width="538" />
 </Frame>
 
+### Adding several expense types at once
+
+When the add panel is open, use the **Or add multiple entries** area below the name field:
+
+1. Copy a list of names from a spreadsheet, one name per line.
+2. Click **Paste**.
+3. Review the entries in the **Import preview**. Click the **×** on a row to leave it out.
+4. Click **Import entries**. If something looks wrong afterwards, click **Undo**.
+
+Each new expense type gets a color automatically. Like a type added on its own, it starts with **Currency** unchecked, so open the monetary ones afterwards to check **Currency** and set the **Billing markup in %**.
+
 ---
 
 ## Controlling who can use an expense type
@@ -54,6 +65,18 @@ For currency-based expense types, the **Details** panel also shows **Billing mar
 Each expense type has a **Who has access?** panel where you assign it to specific people, tags, or projects — for example, mileage reimbursement for field staff only.
 
 The organization-wide default is the **Show all expenses** toggle in your organization's **Show or hide by default** panel: when it's on, every expense type is available unless you exclude it; when it's off, an expense type is only available where you assign it. See [Assignments](/help/documentation/assignments) for the full availability model.
+
+---
+
+## Archiving and deleting expense types
+
+To manage an existing expense type, open it in **Settings** > **Expense Types** and click the **⋯** action menu next to its name. The menu offers **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+
+Archive a type you no longer use. It leaves the list and the **Select expense category** picker, so nobody can log new expenses with it, while its past expense records stay in place and still count in reports. When archived types exist, click **Show Archived** on the **Expense Types** page to display them, then use the **⋯** action menu and **Unarchive** to restore one. **Hide Archived** hides them again.
+
+<Warning>
+  **Delete** only works on an expense type that no expense record uses. When records exist, Beebole refuses the deletion and, in most cases, names a person with expense records of that type; click the name to open their **Expenses** panel. To retire a type and keep its history, archive it instead. See [Delete protection](/help/documentation/concepts#delete-protection).
+</Warning>
 
 ---
 
@@ -96,7 +119,7 @@ To analyze spending, click **Reports** in the sidebar and add an **Expense** col
   ![Beebole custom report Expenses by type for the current year, with the Expense type: Name, Expense: Quantity, Expense: Amount and Expense: Expense billing columns for Hotel, Meal, Mileage and Taxi, Mileage counted as a quantity of 410, and a Total row of 1,576.00 spent and 1,415.00 billed](/help/images/expenses/expense-report.webp)
 </Frame>
 
-Expenses also count toward the project's budgets, alongside time: the expense amount adds to the budget's cost and the billed amount to its billing. Track them in the **Budget Status** report described in [Budgets](/help/documentation/budgets).
+Expenses also count toward the project's budgets, alongside time: the expense amount adds to the budget's cost and the billed amount to its billing. Only currency-based expenses count. Quantity-based expenses, such as mileage or units, are left out of budgets. On a budget [split by person](/help/documentation/budgets#budget-splits), an expense linked to a person counts on that person's line. Track them in the **Budget Status** report described in [Budgets](/help/documentation/budgets).
 
 ---
 
@@ -124,13 +147,16 @@ Expenses also count toward the project's budgets, alongside time: the expense am
     No. Beebole's approval workflow covers timesheets and time-off requests. Expense records are not submitted or approved — anyone with the **Expense records** permission can add and edit them directly.
   </Accordion>
   <Accordion title="Can I track mileage or other unit-based expenses?">
-    Yes. Leave the **Currency** setting unchecked on the expense type, and Beebole records a **Quantity** instead of a monetary amount — useful for kilometers, meals, or any per-unit expense.
+    Yes. Leave the **Currency** setting unchecked on the expense type, and Beebole records a **Quantity** instead of a monetary amount — useful for kilometers, meals, or any per-unit expense. Quantities show in reports but don't count toward project budgets, which only add up currency-based expenses.
   </Accordion>
   <Accordion title="How does the billing markup work?">
     Each currency-based expense type has a **Billing markup in %** setting. In reports, the **Expense billing** column shows `expense amount × markup / 100` — so a markup of 100 bills the expense at cost, and a markup of 120 adds 20%.
   </Accordion>
   <Accordion title="Can I restrict who can log certain expense types?">
     Yes. Use the expense type's **Who has access?** panel in Beebole to assign it to specific people, tags, or projects, and the organization's **Show all expenses** toggle to set the default for everyone else.
+  </Accordion>
+  <Accordion title="How do I stop using an expense type without losing its records?">
+    Archive it. In **Settings** > **Expense Types**, click the type's **⋯** action menu, then **Archive**. Beebole removes it from the **Select expense category** picker, and its past expense records stay in reports. Deleting is refused while records use the type. Click **Show Archived**, then **Unarchive** in the type's menu, to bring it back.
   </Accordion>
   <Accordion title="What currency is an expense recorded in?">
     The default is your own currency setting; you can change it on the **Amount** field.

@@ -129,10 +129,13 @@ Add filters with the folder's **Filters** button, or per report via the **⋯** 
 | **Billability**, **Marked non-billable** | Time entries by whether they are **Billable** or **Non-billable**, or marked non-billable |
 | **Work location** | **Work from home** or **On-site** time entries |
 | **Absence/working time** | **Absence time only**, **Working time only**, or **Both** |
+| **Approval status** | Time entries by the status of their timesheet: **Draft**, **Submitted**, **Approved**, or **Rejected**. Offered in a single report's **Filter** menu, not in the folder's **Filters** |
 
-Filters combine, and each condition can include (**is**) or exclude (**is not**). Filter and period changes are saved automatically and the open report re-runs.
+Filters combine, and each condition can include (**is**) or exclude (**is not**), except **Approval status**, which only offers **is**. Filter and period changes are saved automatically and the open report re-runs.
 
 To filter on a whole category, ⌘-click (Ctrl-click on Windows and Linux) the category itself in the **Project** or **Task** list instead of picking one entity — Beebole turns it into a **Project category** or **Planning** condition. What each filter actually covers is described in [Custom reports](/help/documentation/custom-reports#filter-and-scope-the-data).
+
+You can also filter on a status straight from the results. When a report shows the **Status** field of a **Time** column, click a status in that column to add it to the report as an **Approval status** filter. ⌘-click (Ctrl-click on Windows and Linux) adds it to the whole folder instead.
 
 <Frame caption="A folder's Filters with Project and is picked: the project list starts with the categories">
   <img src="/help/images/reports/filters-popup.webp" alt="Beebole Filters popup of the Current Month folder, listing the filter types from Absence/working time to Work location, with Project selected, the is option checked, and the Select project list showing the Activity, Client and Internal categories, above the Add filter button" width="568" />
@@ -299,6 +302,7 @@ The **Compliance** entry in the Reports menu shows whether each person submitted
 - Rows sort worst-first by default, so the people needing attention surface at the top.
 - Filter by person or person tag, and change the date range — the report defaults to the last six full months. **Export** downloads the grid.
 - People who have never recorded time are counted separately in a footnote — the timesheet process has not started for them, so they aren't shown as non-submitters. Click the people count in the footnote to expand the list of exactly who hasn't started tracking time.
+- People without an [approval workflow](/help/documentation/approval) don't appear at all. They can't submit a timesheet, so there is nothing to measure and they have no score.
 
 Access is a dedicated permission: your role needs **Timesheet compliance**, and managers see the people they manage — admins see everyone. See [Roles & authorizations](/help/documentation/roles-authorisations).
 

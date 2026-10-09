@@ -48,6 +48,14 @@ Linking a domain ties your Google Workspace organization to your Beebole account
 
 On the **Google** tab, turn on **Automatically create new users on first SSO login** to create a Beebole person automatically the first time someone with a matching linked domain signs in. With this setting off, a matching person must already exist in your Beebole account before they can sign in with Google. The setting saves automatically.
 
+A person created this way gets the first role in your account without administrator rights. You can change it afterwards on their profile in **People**.
+
+Each new person takes a seat in your subscription, so automatic creation works only while a seat is free (there is no seat limit during the free trial). When no seat is left, the sign-in fails with the message "Your subscription's seat limit has been reached. Upgrade your plan to add more members." Add seats to your [subscription](/help/documentation/subscription), or archive people who no longer need access, then ask the person to sign in again.
+
+<Info>
+  If you install Beebole from the Google Workspace Marketplace with an email that does not belong to a Beebole account yet, Beebole creates a new account for you with your domain already linked and **Automatically create new users on first SSO login** turned on.
+</Info>
+
 ## Require Google sign-in
 
 <Steps>
@@ -86,7 +94,7 @@ On the **Google** tab, turn on **Automatically create new users on first SSO log
   </Accordion>
 
   <Accordion title="Does Google sign-in create Beebole people automatically?">
-    Only if you turn on **Automatically create new users on first SSO login** on the **Google** tab of the **Single Sign-On** panel. With that setting off, a person with a matching email must already exist in your Beebole account before they can sign in with Google.
+    Only if you turn on **Automatically create new users on first SSO login** on the **Google** tab of the **Single Sign-On** panel, and only for emails on one of your linked domains. The new person gets the first role in your Beebole account without administrator rights, and needs a free seat in your subscription; otherwise the sign-in fails with a seat-limit message. With the setting off, a person with a matching email must already exist in your Beebole account before they can sign in with Google. When your Beebole account was created by installing Beebole from the Google Workspace Marketplace, the setting is already on.
   </Accordion>
 
   <Accordion title="What if my Google email is different from my Beebole email?">

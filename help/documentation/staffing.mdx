@@ -60,6 +60,10 @@ Open the **⋯** menu on the view tab and use **Staffing by** to choose what the
 
 **Lowest level** keeps only the projects that have nothing below them, so you never see a parent row duplicating the work of its children. When a level you picked shows a project that still has subprojects, its row stands out in the accent color with the note **Not at the lowest level: move its bookings to one of its sub-projects** — bookings belong on the projects at the bottom of the hierarchy, where time is logged. With a project grouping, an owned booking that has no row to sit on — the task is linked to no project of that category, or only to a parent — falls into the row at the top of the view, labeled **No** followed by the grouping name.
 
+### Showing tags on rows
+
+Click the tag button next to **Find capacity**, at the top of the row column (tooltip **Show tags**), and pick one or more tag categories. Each row then lists its tags from those categories next to the person's or project's name: people rows show the person's tags, project rows the project's tags. **Shift**+click a tag to add it as a filter. Each Staffing view remembers its own choice.
+
 ---
 
 ## Creating a booking
@@ -74,24 +78,29 @@ In a planning set to **Bookings**, a booking has no name of its own: Beebole nam
     The editor shows both sides of the booking: the person (**Select the owner**) and the project. The row you dragged in fills one side for you — a person's row prefills the person, a project row prefills the project — and the booking saves as soon as you pick the other, with no confirmation step. The editor then stays open on the new booking and every further change applies immediately: remove the person or project badge to pick another one, whatever the rows are grouped by.
   </Step>
   <Step title="Set the allocation">
-    Enter the allocation in whichever way you think about it: **%** for a percentage of capacity, **h/day** for hours per working day, or **Total** for planned hours over the whole booking (100% by default). Press **Enter** to confirm.
+    Enter the allocation in whichever way you think about it: **%** for a percentage of capacity, **h/day** for hours per working day, or **Total** for planned hours over the whole booking (100% by default). Only **%** takes a plain number: **h/day** and **Total** are typed as durations, in your organization's [duration format](/help/documentation/timesheetSettings#duration-format). Beebole remembers the unit you pick for your next booking. Press **Enter** to confirm.
   </Step>
 </Steps>
 
 The new bar appears immediately. If your active filters would hide it, Beebole tells you: **Booking added, but it's hidden by the current filter**.
 
-<Frame caption="The booking editor next to its bar: dates, allocation, person, project, Tentative, and the Duplicate, Split and Delete buttons">
-  <img src="/help/images/planning/staffing-booking-editor.webp" alt="Beebole booking editor opened under a booking bar, showing the date range and number of days, the allocation switch set to percent at 100, the person David Kim, the Client project picker with Brightwave Media Brand Campaign, the Tentative toggle, and the duplicate, split and delete buttons" width="777" />
+<Frame caption="The booking editor next to its bar: dates, person, project, allocation, then Tentative and the Duplicate, Split and Delete buttons">
+  <img src="/help/images/planning/staffing-booking-editor.webp" alt="Beebole booking editor opened under a booking bar, in stacked sections: the date range and number of working days, the person David Kim, the Client project picker with Brightwave Media Brand Campaign, the allocation switch set to percent at 100, and a last row with the Tentative toggle and the duplicate, split and delete buttons" width="777" />
 </Frame>
 
 ### Adding a booking without dragging
 
-In a Bookings planning, the **Add Booking** button at the top of the **Planning** page opens a form in the side panel: pick the person (**Select the owner**) and the project — one of the two is enough — then a start date, a duration in days, and the allocation.
+In a Bookings planning, the **Add Booking** button at the top of the **Planning** page opens a form in the side panel. Pick the person (**Select the owner**) and the project (one of the two is enough), then a date range, the planned time, and the allocation (**%**, **h/day**, or **Total**).
 
 <Frame caption="The Add Booking form in the side panel">
-  <img src="/help/images/staffing/booking-add-form.webp" alt="Beebole Add Booking form with the Client and Internal category switch, the Select Client project picker, the Select the owner field, the start date with a duration of 1 day, the allocation switch between percent, h/day and Total set to 100 percent, and the Cancel and Add Booking buttons" width="550" />
+  <img src="/help/images/staffing/booking-add-form.webp" alt="Beebole Add Booking form with the Client and Internal category switch, the Select Client project picker, the Select the owner field, the date range picker with the planned time next to it, the allocation switch between percent, h/day and Total set to 100 percent, and the Cancel and Add Booking buttons" width="550" />
 </Frame>
- The start date and duration you last used are proposed again for the next booking, so a run of bookings on the same week goes quickly; a start date that has already passed falls back to today. The new booking opens in the panel as soon as it is added.
+
+The planned time is filled in from the person's [work schedule](/help/documentation/work-schedule) over the date range, at the chosen allocation. Until a person is picked, it counts an 8-hour day for each working day in the range. You can type another value: as a duration in your organization's [duration format](/help/documentation/timesheetSettings#duration-format), or as a number of days when the view's **Durations in** is set to **Days**. Changing the person or the dates fills it in again.
+
+The form remembers the period you last used, so a run of bookings on the same week goes quickly; a start date that has already passed falls back to today. The new booking opens in the panel as soon as it is added.
+
+The same form opens from other places, already filled in. A booking added with the **+** of a [Kanban](/help/documentation/kanban) column is created in that column, and one added with the **+** of a task row in the Gantt or List view lands under that task.
 
 ### Tentative bookings
 
@@ -114,7 +123,7 @@ From the booking's editor you can also **Split** it in two at a chosen date — 
 - **Move between rows** — Drag a bar vertically: drop it on another person's row to reassign the booking, on another project's row to move it to that project, or on the **Unassigned** row to clear its owner. A dashed ghost previews where the bar will land, and the whole move is one undo step. The booking's working time reflows over the destination person's own schedule and absences.
 - **Work on several bookings at once** — Select multiple bars and drag them together to reschedule the group in one move, hold **⌘** (Alt on Windows/Linux) while dragging to drop dated copies, or grab any selected bar's edge to shift every selected bar's dates by the same amount — all undoable as a single step. ⌘-dragged copies land on the row you release them on, each on its own row rather than stacked on the row you dropped on. Press **Delete** (or **Backspace**) to remove every selected booking at once: one confirmation, and one undo for the whole batch.
 - **Reach beyond the visible range** — Drag a bar to the edge of the timeline and it auto-scrolls, so a booking can be moved or extended past what is currently on screen.
-- **Reassign** — Hover a bar and click its pencil to open its editor, then change the person, the project, or the allocation. Clicking the bar itself opens the booking in the side panel. Both the person and the project can be changed on any booking, whether the rows are people or projects. Changes are saved automatically.
+- **Reassign** — Hover a bar and click its pencil to open its editor, then change the person, the project, or the allocation. Clicking the bar itself opens the booking in the side panel. Both the person and the project can be changed on any booking, whether the rows are people or projects. Changes are saved automatically. A new person or project moves the booking to its new row in one step, and the view scrolls to follow it.
 
 ### Moving a booking inside its day
 
@@ -193,9 +202,12 @@ Each person's row includes a capacity strip: one cell per period comparing their
 <Frame caption="Hovering a load bar: the day, the time booked against the capacity, and the overrun">
   <img src="/help/images/planning/staffing-capacity-tooltip.webp" alt="Beebole Staffing load strip in purple over a person booked on two overlapping projects, with the tooltip Tue Oct 06, 1.2d/1 used, 0.2 over" width="520" />
 </Frame>
+
 - **Overload** — Load bars use a three-color scale: red while capacity remains, green when it is exactly met, and purple as soon as someone is booked beyond 100%. The headcount strip in the timeline header flags overloaded periods for the whole view.
-- **Step through the load** — The strip at the top of the timeline header rolls every row up into one bar per period. Click a period there to step the scroll through the rows driving that period's load, one at a time.
+- **Step through the load** — The strip at the top of the timeline header rolls every row up into one bar per period. Click a period there to step the scroll through the rows driving that period's load, one at a time. The tooltip says what the click does: **Click to step through the overbooked bookings** or **Click to step through the people with time left**.
 - **Hours or days** — Open the **⋯** menu on the view tab and use **Durations in** to switch every figure between hours and days.
+
+When **Staffing by** is set to a project category, each project row carries a headcount strip instead of a load strip: one bar per period for the people planned on the project. Its tooltip gives the period and the number of **FTE** and **People**, and adds **Someone is booked over 100%** when someone on the project is overbooked. The strip in the timeline header adds up every project row the same way.
 
 Use the free capacity to decide who takes the next booking — the gaps in the timeline are exactly the people and periods still available.
 
@@ -203,7 +215,7 @@ Use the free capacity to decide who takes the next booking — the gaps in the t
 
 ## Filtering
 
-Use the **Filters** button to narrow the view — by task, status, owner, assigned person, project, or [tags](/help/documentation/tags) on people, projects, and tasks, with the active filter count shown on the button. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible. The filters can be switched off and back on without losing them — the button toggles them rather than clearing them.
+Use the **Filters** button to narrow the view by **Task**, **Status**, **Owner**, **Potential owner**, **Project**, or [tags](/help/documentation/tags) (**Owner tag**, **Potential owner tag**, **Task tag**, **Project tag**), with the active filter count shown on the button. The Staffing view adds **Person tag** and **Person custom field**, which narrow the pool of people shown as rows. Filters on people or projects hide entire rows; other filters hide only the bars that don't match, keeping the row visible. The filters can be switched off and back on without losing them — the button toggles them rather than clearing them.
 
 ---
 

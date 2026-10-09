@@ -135,7 +135,7 @@ Beebole resolves permissions per operation. If a request asks for data or an act
 }
 ```
 
-When an account's subscription is inactive, API-key requests are blocked with HTTP `402 Payment Required` and an `AccountIsInactive` error. Browser sessions are not blocked the same way, so this only affects API access.
+When an account is locked (its trial ended without a plan, or a canceled subscription reached its end date), API-key requests are blocked with HTTP `402 Payment Required` and an `AccountIsInactive` error. The browser is locked too: people who are not administrators cannot sign in, and administrators can sign in only to subscribe again. See [When the account is locked](/help/documentation/subscription#when-the-account-is-locked).
 
 ---
 
@@ -155,7 +155,7 @@ Tokens issued by the Legacy platform (beebole-apps.com) are not recognized by `h
 
 ### `402 Payment Required` with `AccountIsInactive`
 
-The account's subscription is canceled or its trial has expired, and API keys have no way to reactivate it. An administrator restores access by renewing the subscription from the browser. The **Free** plan is not affected — see the FAQ below.
+The account's subscription is canceled or its trial has expired, and API keys have no way to reactivate it. An administrator restores access by signing in to Beebole in the browser and choosing a plan on the subscription page, as described in [When the account is locked](/help/documentation/subscription#when-the-account-is-locked). The **Free** plan is not affected (see the FAQ below).
 
 ---
 

@@ -62,7 +62,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="What happens if I forget to fill in my timesheet?">
-    If reminders are enabled, Beebole emails you. If auto-submit is configured, your timesheet submits automatically after the deadline, even if incomplete. See [Notifications](/help/documentation/notifications).
+    If reminders are enabled, Beebole reminds you by email, or with a push notification if you turned those on. If auto-submit is configured, your timesheet submits automatically after the deadline, even if incomplete. See [Notifications](/help/documentation/notifications).
   </Accordion>
 
   <Accordion title="Can I enter time for a past week?">
@@ -162,19 +162,23 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="Can I approve timesheets on my phone?">
-    Yes. The approval flow works on mobile, and you can also approve or reject directly from email notifications. See [Approvals](/help/documentation/approval).
+    Yes. The approval flow works on mobile. You can also approve straight from the notification email. Its **Reject** link opens the timesheet in Beebole with the rejection dialog, because a reason is required, and you can reject without opening Beebole by replying "reject" followed by your reason. See [Approvals](/help/documentation/approval#from-your-email).
   </Accordion>
 
   <Accordion title="Is there a record of approval actions?">
-    Yes. Beebole logs every approval action — who approved or rejected, when, and with what comment. You see this history on the timesheet itself and in the account-wide [audit trail](/help/documentation/audit-trail).
+    Yes. Beebole logs every approval action: who submitted, approved, or rejected, when, at which stage, and with what reason. Click the timesheet's status badge to see who approved each stage of the current submission, and open the person's Journal for the full [approval history](/help/documentation/approval#approval-history).
   </Accordion>
 
   <Accordion title="Can I turn off all email notifications?">
-    Yes. In your notification preferences, disable email per event type. You still see updates in the in-app [Journal](/help/documentation/journal). See [Notifications](/help/documentation/notifications).
+    Yes. Untick **Email** in your **Notifications** preferences, or click the unsubscribe link at the bottom of any notification email, which does the same. There is no email switch per event: the frequency you pick for an event applies to every channel. **Push notifications** is a separate channel, so untick it too if you want no notifications at all. You still see updates in the in-app [Journal](/help/documentation/journal). See [Notifications](/help/documentation/notifications).
+  </Accordion>
+
+  <Accordion title="Can I get Beebole notifications on my phone?">
+    Yes, as push notifications. Tick **Push notifications** in your **Notifications** preferences, then open Beebole on your phone and click **Enable on this device**, or **Enable** when Beebole offers to notify you on that device. On an iPhone or iPad, add Beebole to the Home Screen from Safari's Share menu first, and enable notifications from the installed app. See [Notifications](/help/documentation/notifications#push-notifications-on-your-devices).
   </Accordion>
 
   <Accordion title="Can I respond to approval notifications by email?">
-    Yes. Approval emails include buttons to approve or reject the timesheet directly. You can also reply to Journal notification emails to post a comment. See [Approvals](/help/documentation/approval).
+    Yes. In an approval email, **Approve** approves the timesheet directly. **Reject** opens the timesheet in Beebole with the rejection dialog, because a reason is required. You can also reply to the email with "approve", or with "reject" followed by your reason. Replies to Journal notification emails post a comment. See [Approvals](/help/documentation/approval#from-your-email).
   </Accordion>
 </AccordionGroup>
 
@@ -278,7 +282,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="Where can I see who changed what in my account?">
-    The Beebole [audit trail](/help/documentation/audit-trail) records every create, update, and delete, with who made the change and when. The Journal feed shows these messages across the account, and each record's **Journal** panel shows its own change history.
+    The Beebole [audit trail](/help/documentation/audit-trail) records changes with who made them and when. Administrators see them in the **Journal** of each item the change touched (a person, a project, a tag, and so on), and the account's own changes in **Account Settings**. Beebole shows the last 7 days there; earlier changes can be read through the API or an AI assistant connected to Beebole. The audit trail is not available on the Free plan.
   </Accordion>
 </AccordionGroup>
 

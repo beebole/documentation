@@ -263,7 +263,7 @@ mutation {
 
 ## Tasks
 
-Tasks are independent planning entities you create, schedule, and track time against. Categories organize tasks into workflow statuses.
+Tasks are independent planning entities you create, schedule, and track time against. Task categories, the plannings of the Beebole app, organize tasks into workflow statuses.
 
 | Mutation | Key arguments |
 |----------|---------------|
@@ -290,7 +290,9 @@ Task categories and their workflow statuses are managed with the category mutati
 | `editTaskCategoryStatusMaxConcurrentTasks` | `statusId`, `maxConcurrentTasks` |
 | `editCategoryTaskMove` | `categoryId`, `taskMove` |
 
-To move a task between categories or statuses, use `editTaskStatus` (single task) or `moveTasksToStatus` (one or more tasks). `editCategoryTaskMove` sets a category's task-move behavior.
+To move a task to another status, use `editTaskStatus` (single task) or `moveTasksToStatus` (one or more tasks). Both only move tasks between statuses of the same category: a status from another category is refused with `CantAssignStatusFromOtherCategory`, and no mutation moves a task to another category. `editCategoryTaskMove` sets the **Dependent tasks** option of the Gantt and Staffing views, which decides how dependent tasks follow when a task they depend on moves: `0` for **Free**, `1` for **Pushing**, `2` for **Together**.
+
+`archiveTask` and `unarchiveTask` (and their plural forms) are what the Beebole app shows as **Done** and **Reopen** on a task: a done task is an archived task. Archiving does not change the task's status.
 
 ### Create a task
 

@@ -4,7 +4,7 @@ sidebarTitle: "Kanban Board"
 description: "Move task cards between status columns on Beebole's Kanban board, set hard WIP limits per status, select multiple cards, and start time records from a card."
 keywords: ["beebole", "kanban board", "task statuses", "WIP limits", "drag and drop", "task cards", "auto timesheet"]
 "og:title": "Managing Task Statuses on the Kanban Board in Beebole"
-"og:description": "Organize Beebole tasks visually: drag cards between status columns, enforce WIP limits, archive whole columns, and log time from a card."
+"og:description": "Organize Beebole tasks visually: drag cards between status columns, enforce WIP limits, mark whole columns done, and log time from a card."
 "og:type": "article"
 ---
 
@@ -35,20 +35,20 @@ Each column is one status of the active planning, in the order defined in the **
 
 A column header shows:
 
-- A **+** button (**Add a task**) that opens the add form with this status preselected.
+- A **+** button (**Add a task**) that opens the add form with this status preselected. In a Bookings planning, it opens the **Add Booking** form, and the booking is created in that column.
 - The number of tasks in the column — displayed as `current/max` when the status has a **Max tasks** limit.
 - The status name. Click it to open the **Task statuses** modal.
-- A **⋯** menu with **Archive** (archive every task in the column), **Unarchive** (restore the column's archived tasks), **Move entries to left** / **Move entries to right** (move the column's tasks into the neighboring status), and **Delete** (only available when the column holds no tasks — including archived ones — and isn't the planning's only status).
+- A **⋯** menu with **Done** (mark every task in the column done), **Reopen** (reopen the column's done tasks), **Move entries to left** / **Move entries to right** (move the column's tasks into the neighboring status), and **Delete** (only available when the column holds no tasks, done ones included, and isn't the planning's only status).
 
 <Frame caption="A column's ⋯ menu">
-  <img src="/help/images/kanban/column-menu.webp" alt="Beebole Kanban Queue column header with its ⋯ menu open: Archive, Unarchive (grayed out), Move entries to left, Move entries to right and Delete" width="350" />
+  <img src="/help/images/kanban/column-menu.webp" alt="Beebole Kanban Queue column header with its ⋯ menu open: Done, Reopen (grayed out), Move entries to left, Move entries to right and Delete" width="350" />
 </Frame>
 
 ---
 
 ## Setting up status columns
 
-Statuses belong to the planning — not to a project — so every planning defines its own columns. Click any column's name (or the **Edit statuses** gear in a task's detail panel) to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
+Statuses belong to the planning — not to a project — so every planning defines its own columns. Click any column's name, or the settings button next to the planning name at the top of the page, to open the **Task statuses** modal, where you can add a status with the **Add new status** field, rename or recolor one, drag to reorder, set **Max tasks**, and delete empty statuses. The full options are described in [Task statuses](/help/documentation/planning#task-statuses).
 
 <Tip>
   Keep the workflow short. New Beebole accounts start with one planning, **Main plan**, and four statuses — **Backlog**, **Queue**, **In progress**, **Done** — which is enough for most teams.
@@ -58,13 +58,13 @@ Statuses belong to the planning — not to a project — so every planning defin
 
 ## Working with cards
 
-- **Create a task** — Click the **+** button at the top of a column, or the **+ Add Task** button in the page header. See [creating a task](/help/documentation/planning#creating-a-task).
+- **Create a task** — Click the **+** button at the top of a column, or the **+ Add Task** button in the page header. See [creating a task](/help/documentation/planning#creating-a-task). In a Bookings planning, the header button reads **Add Booking**, and a booking added from a column's **+** is created in that column.
 - **Open a task** — Click its card. The detail panel opens with the task's dates, status, owner, description, and custom fields.
 - **Move a card** — Drag it to another column to change its status, or drop it at a different position in the same column to reorder.
-- **Act on a card** — Hover over it and click the **⋯** menu for **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+- **Act on a card** — Hover over it and click the **⋯** menu for **Duplicate**, **Rename**, **Done**, **Reopen**, and **Delete**. **Done** takes the card off the board without losing its data; see [marking tasks done](/help/documentation/planning#marking-tasks-done-and-deleting-them).
 
 <Frame caption="A card's ⋯ menu">
-  <img src="/help/images/kanban/card-menu.webp" alt="Beebole Kanban Queue column with the ⋯ menu of the QA Testing card open, listing Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="350" />
+  <img src="/help/images/kanban/card-menu.webp" alt="Beebole Kanban Queue column with the ⋯ menu of the QA Testing card open, listing Duplicate, Rename, Done, Reopen (unavailable) and Delete" width="350" />
 </Frame>
 
 ### Choosing what cards display
@@ -82,7 +82,7 @@ Open the **⋯** menu on the active view tab and hover over **Show** to toggle t
 - Drag any selected card to move all selected cards together to the target column.
 - Press **Esc** to clear the selection.
 
-For bulk archiving, use the column's **⋯** menu instead. **Archive** and **Unarchive** act on the whole column, or on just the selected cards when a selection reaches into that column.
+To mark several cards done, use the column's **⋯** menu. **Done** and **Reopen** act on the whole column, or only on the selected cards when a selection reaches into that column.
 
 ---
 
@@ -154,7 +154,7 @@ With no card selected yet, the first arrow key lands on the first card of the fi
 
 <CardGroup cols={2}>
   <Card title="Tasks" icon="list-check" href="/help/documentation/planning">
-    What tasks are in Beebole — creating, importing, assigning, and archiving them.
+    What tasks are in Beebole: creating, importing, assigning, and marking them done.
   </Card>
   <Card title="Gantt chart" icon="chart-gantt" href="/help/documentation/gantt">
     Schedule the same tasks on a timeline with dependencies and a workload heatmap.
@@ -180,9 +180,9 @@ With no card selected yet, the first arrow key lands on the first card of the fi
     **⌘+Click** cards to build a selection (or **Shift+Click** for a range within a column), then drag any selected card — all selected cards move to the target column together, as long as the move stays within the column's WIP limit.
   </Accordion>
   <Accordion title="Do changes on the Kanban board affect the Gantt chart?">
-    Yes. The Kanban board and the Gantt chart display the same tasks from the same planning. A status change, rename, or archive done on the board is immediately reflected in the Gantt view, and vice versa.
+    Yes. The Kanban board and the Gantt chart display the same tasks from the same planning. A status change, a rename, or a task marked done on the board is immediately reflected in the Gantt view, and vice versa.
   </Accordion>
-  <Accordion title="How do I archive every task in a column?">
-    Open the column header's **⋯** menu and click **Archive**. The same menu offers **Unarchive** to restore the column's archived tasks — use **Show Archived** in the page header to see them.
+  <Accordion title="How do I mark every task in a column done?">
+    Open the column header's **⋯** menu in Beebole and click **Done**. The cards leave the board but keep their data and time records. The same menu offers **Reopen** to bring back the column's done tasks, and **Show Done** in the page header displays them.
   </Accordion>
 </AccordionGroup>

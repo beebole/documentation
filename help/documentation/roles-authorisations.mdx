@@ -58,6 +58,8 @@ There is no Save button — every change to a role is saved automatically and ap
 
 To manage an existing role, open its **⋯** action menu in the roles list: **Duplicate** copies the role with all its permissions, **Rename** changes its name, **Archive** hides it (**Unarchive** brings it back), and **Delete** removes it.
 
+A role that is still assigned to anyone can be neither archived nor deleted. Beebole refuses with "This role is still assigned to one or more people and cannot be deleted or archived." Give those people another role first (see [Assigning a role to a person](#assigning-a-role-to-a-person)), then archive or delete it.
+
 <Frame caption="The roles list with a role's action menu open">
   <img src="/help/images/roles/roles-list-menu.webp" alt="Beebole Roles page listing Admin, Employee, People manager and Project manager, with the Project manager action menu open on Duplicate, Rename, Archive, Unarchive and Delete" width="620" />
 </Frame>
@@ -67,6 +69,10 @@ To manage an existing role, open its **⋯** action menu in the roles list: **Du
 </Tip>
 
 Every new Beebole account starts with four roles: **Admin** (full access), **Employee**, **People manager**, and **Project manager**. You can edit them, duplicate them, or add your own.
+
+<Info>
+  Creating roles, with **Add Role** or **Duplicate**, requires the **Advanced** plan, or the **Custom fields, custom roles & advanced configuration** add-on on the **Essential** plan. On other plans, **Add Role** is unavailable and an upgrade button sits next to it. Every plan can edit the permissions of existing roles, and roles you created stay fully editable after a downgrade: you can still rename, archive, unarchive, or delete them.
+</Info>
 
 ## Permission scopes
 
@@ -109,7 +115,7 @@ These permissions control day-to-day time tracking data.
 | --- | --- |
 | **Timesheet entries** | Time entries on timesheets (on/off) |
 | **Timesheet and planning settings** | The timesheet and planning configuration panel on people and on the account |
-| **Valid period for time entry** | The setting that limits how far back or forward time can be entered |
+| **Valid period for time entry** | The **Valid period for time entry** panel on people, projects, and tags: the **From** and **To** dates outside which time can't be recorded |
 | **Time off balance** | People's time off allowances and balances |
 | **Public Holidays** | Public holiday calendars assigned to people |
 | **Schedule assignment** | Which work schedule is assigned to a person, tag, or the account |
@@ -205,11 +211,11 @@ These permissions cover account configuration and the access-control settings th
 
 | Permission | What it controls |
 | --- | --- |
-| **Localization** | Language, time zone, and format settings on people and the account |
+| **Localization** | The **Localization** panel on people and the account: time zone, first day of the week, currency, decimal format, thousands separator, **Clock format**, and date format. Only administrators can change the first day of the week. The interface language isn't part of it: each person picks their own from the menu behind their initials. |
 | **Templates for emails** | The email templates Beebole sends |
 | **Notification settings** | Notification preferences on people and the account |
 | **Show or hide by default** | The account-wide **Show or hide by default** settings |
-| **Description** | The description panel on people, projects, tasks, and the account |
+| **Description** | The **Description** panel on people, projects, and tasks |
 
 **Show or hide by default** sets the account-wide defaults described in [Assignments](/help/documentation/assignments). The per-item **Who has access?** panels and the per-person **Show or hide** panels follow the assignment permissions above instead — a role needs the matching **Assign …** permission to change who has access to what.
 
@@ -282,7 +288,7 @@ The two setups combine without a third role: project managers hold **Project man
     Roles control what a person can do: view or edit timesheets, billing rates, reports, and so on. Assignments control which items are available to them: which projects they can log time against, or which time off types they can pick. Beebole applies both — a person needs the permission and the item.
   </Accordion>
   <Accordion title="Can a person have more than one role?">
-    No. Each person in Beebole holds exactly one role. If someone needs a mix of permissions from two roles, duplicate one of them and adjust the copy.
+    No. Each person in Beebole holds exactly one role. If someone needs a mix of permissions from two roles, duplicate one of them and adjust the copy (creating roles requires the **Advanced** plan or the **Custom fields, custom roles & advanced configuration** add-on).
   </Accordion>
   <Accordion title="What do Edit, View, and Not allowed mean?">
     For each permission, **View** lets the role see the data and **Edit** lets it create, change, or delete it, each scoped to the targets you select. A permission with no targets selected shows **Not allowed**, and that area of Beebole is hidden from the role entirely.

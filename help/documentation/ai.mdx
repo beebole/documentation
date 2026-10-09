@@ -8,7 +8,7 @@ keywords: ["beebole", "ai", "beebole ai", "suggested time entries", "ai report b
 "og:type": "article"
 ---
 
-Beebole AI is the set of AI features built into your Beebole account: time entries suggested from your own activity, reports built from a plain-language question, and an extra pair of eyes when you review a submitted timesheet. Everything lives on the **Assistant** page — click **Assistant** in the sidebar when AI features are enabled for your account.
+Beebole AI is the set of AI features built into your Beebole account: time entries suggested from your own activity, reports built from a plain-language question, and an extra pair of eyes when you review a submitted timesheet. Everything lives on the Beebole AI page, which opens when you click **Assistant** in the sidebar (when AI features are enabled for your account).
 
 <Frame caption="The Assistant page">
   ![Beebole AI page opened from Assistant in the sidebar, with the privacy note, the Ask for a report box and its Build button, cards for Suggested time entries, Report builder, Approval review and Already working for you, and the start of the Connect your AI tools section](/help/images/ai/assistant-page.webp)
@@ -26,13 +26,14 @@ Beebole drafts time entries for you and shows them in the **Suggested entries** 
 
 | Badge | Source | How it works |
 | --- | --- | --- |
+| **AI assistant** | An assistant you connected | Entries you asked an AI assistant connected through the [MCP server](/help/integrations/mcp-server) to propose. They keep the hours you gave the assistant, reduced only by time you already logged that day. |
 | **Habit** | Your logging patterns | After a few weeks of regular use, entries are mined from your own recurring logging habits. |
 | **Desktop** | The [desktop app](/help/documentation/desktop-app) | Time spent in applications and websites on your computer becomes draft entries. |
 | **Web** | The [browser extension](/help/documentation/browser-extension) | Time on websites you choose to watch becomes draft entries. |
 | **Planned** | Your planned work | Work planned for you — dates and share of your time set in [Planning](/help/documentation/planning) — becomes suggestions on the scheduled days. |
 | **Kanban** | The Kanban board | Moving a card to its done column proposes the matching entry — when [Auto Timesheet from Planning](/help/documentation/timesheetSettings#auto-timesheet-from-planning) is enabled. |
 
-The sources work together instead of competing. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge, ranked so measured activity wins over assumptions. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the pane always reflects your current plans.
+The sources work together on one timeline per day. When two sources describe the same work, the suggestions merge into a single card showing every contributing badge. When they propose different work for the same hours, the higher source keeps the time, in this order: what you logged yourself, then **AI assistant**, **Web**, **Desktop**, **Kanban**, **Planned**, and **Habit**. What you already logged by hand is subtracted, suggestions shrink to fit the room a day still has, and they never land on locked days, public holidays, full-day absences, or already-submitted periods. Planned suggestions rebuild each time you open the timesheet, and habit suggestions refresh daily, so the pane always reflects your current plans.
 
 Each card shows the project or task it is about, with its picture and color rather than a generic icon, so you can tell at a glance what is being proposed.
 
@@ -82,10 +83,10 @@ To accept one, pick where the time should land: the card shows **Log this time a
 Reopening a past week that is still open — draft or rejected — regenerates its planned suggestions, so staffing added after the fact still shows up when you go back to that week.
 
 <Info>
-  Activity captured by the desktop app stays on that device, is never shared with anyone, and is deleted after a week. Only the entries you accept reach your timesheet.
+  Activity captured by the desktop app is kept only on your computer and deleted after a week. To turn activity into suggestions, Beebole's own AI classifies what the desktop app cannot match by itself (application names, window titles, and durations) and, from the browser extension, the site addresses, page titles, and durations of the sites you chose, together with the names of the projects and tasks to match them to. Classification runs on Beebole-operated servers in your data region, and nothing about your activity is stored there. Only the resulting suggestions reach your account, and only the ones you accept reach your timesheet.
 </Info>
 
-Accepted entries record which source they came from and go through the normal entry path — the lock date, entry restrictions, and approvals all apply. If your organization enables [auto-submit](/help/documentation/timesheetSettings#auto-submit), suggestions still pending at the deadline are converted into real entries and submitted through the normal approval flow.
+Accepted entries record which source they came from and go through the normal entry path — the lock date, entry restrictions, and approvals all apply. If your organization enables [auto-submit](/help/documentation/timesheetSettings#auto-submit), suggestions still pending at the deadline are converted into real entries and submitted through the normal approval flow. If no approval workflow applies to you, there is nothing to submit to, so the deadline approves and closes the period instead.
 
 ---
 
@@ -127,7 +128,7 @@ When you review a submitted timesheet, anything unusual is flagged before you de
 - **Time on a non-working day**
 - **More time than scheduled**
 - **Time outside working hours**
-- **Time on an archived project** / **Time on an archived task**
+- **Time on an archived project** / **Time on a task marked done**
 - **Entry right after the lock date**
 - **Task over its planned time**
 - **Period total far from usual**
@@ -136,7 +137,7 @@ When you review a submitted timesheet, anything unusual is flagged before you de
   ![Beebole timesheet of Lucas Bernard for the week of September 6, submitted with 48 hours for 32 scheduled, open from the Pending pane with Approve and Reject buttons. Under his week in the pane, two flags read Time on a non-working day, for Tuesday 8 and Wednesday 9 September, the days he also logged as sick](/help/images/ai/approval-review-digest.webp)
 </Frame>
 
-Approvers are emailed when a timesheet needs their review, with a summary of the submitted time and one-click **Approve** and **Reject** links. See [Approval workflows](/help/documentation/approval).
+Approvers are emailed when a timesheet needs their review, with a summary of the submitted time and **Approve** and **Reject** links. **Approve** approves the timesheet in one click. A rejection needs a reason, so **Reject** opens the timesheet in Beebole with the rejection dialog. See [Approval workflows](/help/documentation/approval).
 
 ---
 
@@ -177,13 +178,15 @@ Beebole also works with the AI assistant you already use. Connect Claude, ChatGP
 
     What the model sees is also deliberately small. For the report builder it is only definitions — your question, the structure of the report you have open, and the names of your categories and custom fields — never your time entries, their amounts, or your project, person, and task names.
 
+    For suggested time entries, the desktop app and the browser extension send the activity to classify (application names and window titles, or site addresses and page titles, with durations) and the names of the projects and tasks to match it to. Classification runs on Beebole-operated servers and nothing about your activity is stored there.
+
     Connecting your own assistant through Beebole's MCP server works the other way around. That assistant reads your Beebole data with your permissions, and only when you set the connection up yourself.
   </Accordion>
   <Accordion title="Who can see my suggested time entries?">
     Only you. Suggested entries in Beebole are private to you until you accept them — teammates, managers, and admins never see your suggestions or the activity behind them.
   </Accordion>
   <Accordion title="Where do time entry suggestions come from?">
-    From five sources: your own recurring logging patterns, the Beebole desktop app and browser extension if you install them, work planned for you in Planning, and Kanban cards you move to a done column. Each suggestion shows its source badge and a **Why?** explanation, overlapping suggestions merge into one card, and you decide what to accept or dismiss.
+    From six sources: an AI assistant you connected through the Beebole MCP server, your own recurring logging patterns, the Beebole desktop app and browser extension if you install them, work planned for you in Planning, and Kanban cards you move to a done column. When sources compete for the same hours, an AI assistant's suggestion comes first, then the browser extension, the desktop app, Kanban, Planning, and your habits. Each suggestion shows its source badge and a **Why?** explanation, overlapping suggestions merge into one card, and you decide what to accept or dismiss.
   </Accordion>
   <Accordion title="How do I write a report with AI in Beebole?">
     Describe what you want to know — on the **Assistant** page under **Ask for a report**, or directly on the **Reports** page. Beebole builds the report and runs it; the result is a normal saved report in a folder named **AI** that you can refine and reuse. Use the words your organization uses: the builder knows your category names and levels and your custom fields, so "by client" or "per cost center" groups on that level or field. With a report open, the same input changes that report instead of creating a new one.
@@ -191,6 +194,6 @@ Beebole also works with the AI assistant you already use. Connect Claude, ChatGP
     If a request cannot be expressed with the options a report has, Beebole replies with one short question rather than guessing — grouping rows by a tag category is the usual case, since tags filter a report but are not a grouping axis. Answer in the same input and the report is built.
   </Accordion>
   <Accordion title="What does the approval review digest check?">
-    It flags time on non-working days, overtime beyond the schedule, time outside working hours, entries on archived projects or tasks, entries right after the lock date, tasks over their planned time, and period totals far from that person's usual — all before you approve or reject.
+    It flags time on non-working days, overtime beyond the schedule, time outside working hours, entries on archived projects or on tasks marked done, entries right after the lock date, tasks over their planned time, and period totals far from that person's usual — all before you approve or reject.
   </Accordion>
 </AccordionGroup>

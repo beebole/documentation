@@ -56,7 +56,7 @@ Statuses always belong to a planning, not to a project: each planning defines it
 
 ## Tasks or bookings
 
-Each planning in Beebole holds one kind of item. A **Tasks** planning is a list of things to do — a to-do list, issues, tickets — where every item has a name of its own and a status. A **Bookings** planning puts people on projects: each item is a person booked on a project from a start date, for a duration, at an allocation. The choice belongs to the planning, not to the view: Gantt, Kanban, List, and Staffing stay available on every planning, so you can look at the same data either way.
+Each planning in Beebole holds one kind of item. A **Tasks** planning is a list of things to do — a to-do list, issues, tickets — where every item has a name of its own and a status. A **Bookings** planning puts people on projects: each item is a person booked on a project over a date range, at an allocation. The choice belongs to the planning, not to the view: Gantt, Kanban, List, and Staffing stay available on every planning, so you can look at the same data either way.
 
 To choose, open the planning's settings and pick a mode under **What this planning holds**:
 
@@ -71,10 +71,10 @@ To choose, open the planning's settings and pick a mode under **What this planni
 
 A planning you add from the plannings menu opens in the mode you last picked under **What this planning holds**, whichever planning you picked it on. If you have never picked one, it opens in **Bookings**. Beebole remembers this last pick for each person separately. Existing plannings keep their mode: the **Main plan** of a new account, plannings created before this setting existed, and plannings created by an Asana, Jira, Linear, or Monday import are **Tasks** until you switch them. The mode decides what the add button opens and whether items carry a name of their own:
 
-- **The add button** — In a Tasks planning it reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning it reads **Add Booking** and asks for the person (**Select the owner**) and the project — one of the two is enough — plus a start date, a duration in days, and the allocation (**%**, **h/day**, or **Total**). The new booking opens in the side panel right away. The start date and duration you used are proposed again for the next booking; a start date that has passed falls back to today.
-- **Names** — A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either — it goes on the project instead. In a Tasks planning, you name each task yourself.
-- **Adding from a group** — With the Gantt grouped by a project category, the add button on a project's group header opens the planning's add form with that project already filled in: the booking form in a Bookings planning, and the task form in a Tasks planning, where the task takes the project's name unless you type another. Owner and status groups prefill the owner or the status in both modes.
-- **Dragging on the Staffing timeline** — In a Bookings planning, a drag creates a booking on the spot. In a Tasks planning, it opens the add form with the dates and the person already filled in. See the [Staffing view](/help/documentation/staffing#creating-a-booking).
+- In a Tasks planning, the add button reads **Add Task** and opens the name-and-status form described in [Creating a task](#creating-a-task). In a Bookings planning, it reads **Add Booking** and asks for the person (**Select the owner**) and the project (one of the two is enough), a date range, the planned time, and the allocation (**%**, **h/day**, or **Total**). The planned time is filled in from the person's working schedule over that range at the allocation, and you can change it. The new booking opens in the side panel right away. The form remembers the period you last used for the next booking; a start date that has passed falls back to today.
+- A booking is named after its project and person, everywhere it appears, and cannot be renamed: clicking its name shows **A booking is named after its project and person**. Time is not recorded on a booking either: it goes on the project instead. In a Tasks planning, you name each task yourself.
+- In the Gantt and List views, each **+** button on a row or a group header follows the mode. In a Tasks planning, a plain click opens a name field in place, and the new task gets the row as its parent or the group's owner, status, or project (see [Adding tasks in place](#adding-tasks-in-place)). In a Bookings planning, every **+** opens the **Add Booking** form with the row's task as parent, or with the group's person, project, or status, already filled in.
+- On the Staffing timeline, a drag in a Bookings planning creates a booking on the spot. In a Tasks planning, it opens the add form with the dates and the person already filled in. See the [Staffing view](/help/documentation/staffing#creating-a-booking).
 
 <Info>
   Switching keeps every name already stored: a booking shows its project and person instead, and its own name comes back if the planning returns to **Tasks**.
@@ -109,6 +109,19 @@ A planning you add from the plannings menu opens in the mode you last picked und
 
 A new task doesn't get a color of its own. It takes the color of its project, its owner, or its parent task, and shows that same color everywhere it appears — badges, dots, timesheet section headers, timers, and mentions. Pick a color on the task itself only when you want it to stand apart from the work it belongs to.
 
+### Adding tasks in place
+
+In the [Gantt](/help/documentation/gantt) and [List](/help/documentation/task-list) views, you can name new tasks right in the task list, without opening the add form:
+
+- To add a subtask, hover over a task's row and click the **+** button next to its name. A name field opens under that row.
+- To add a task to a group, hover over the group header of a grouped view and click its **+** button (**Add Task**). The name field opens at the top of the group, and the new task gets the group's owner, status, or project.
+
+Type the name and press **Enter**: the task is saved and an empty field opens for the next one. Leaving the field also saves what you typed, and **Esc** or the **✕** at the end of the field closes it. No side panel opens: the new tasks appear in the view, ready to be opened for their dates, owner, and other details. A task added outside a status group gets the planning's first status.
+
+To add several tasks at once, paste a list into the field: one name per line, with indented lines becoming subtasks of the line above, or a single line of names separated by semicolons. The field's tooltip says the same: **Paste a list: one per line or ;-separated**.
+
+Hold **⌘** (Ctrl on Windows) when you click a **+** to open the full add form instead, with the same parent, owner, status, or project already filled in. In a Bookings planning, the **+** buttons always open the **Add Booking** form, since a booking has no name to type. The **+** buttons only appear if you are allowed to manage tasks.
+
 ### Adding many tasks at once
 
 You can import a whole task list by pasting it from a spreadsheet — there is no file upload involved.
@@ -141,7 +154,6 @@ Statuses are the steps of a planning's workflow — the same statuses that form 
 
 - At the top of the **Planning** page, click the settings button next to the planning name.
 - On the Kanban board, click a column's name.
-- In the task detail panel, click the gear button next to the status (tooltip: **Edit statuses**).
 
 In the modal you can:
 
@@ -149,7 +161,7 @@ In the modal you can:
 - **Rename or recolor a status** — Click a status to edit its name or pick a new color.
 - **Reorder statuses** — Drag a status up or down. The order defines the column order on the Kanban board.
 - **Limit a status** — Set **Max tasks** to cap how many tasks the status can hold. See [WIP limits](/help/documentation/kanban#wip-limits-are-hard-limits).
-- **Delete a status** — Only possible when the status holds no tasks (including archived ones). Every planning must keep at least one status.
+- **Delete a status** — Only possible when the status holds no tasks (including tasks marked done). Every planning must keep at least one status.
 
 ---
 
@@ -164,6 +176,8 @@ Beebole distinguishes the person responsible for a task from the people it is av
   <img src="/help/images/planning/task-owner-panel.webp" alt="Beebole Owner panel of the QA Testing task: Sophie Laurent as owner, the % FTE field at 100%, and the Tentative switch turned off" width="538" />
 </Frame>
 
+Task managers are named in the **Managed by** section of the task panel, and managing a task covers its subtasks too. A person can also manage a whole planning, picked in the **Manages** section of their [profile](/help/documentation/people), and the managers of a [tag](/help/documentation/tags) manage the tasks tagged with it. Task managers can record time for others on the tasks they manage when their [role](/help/documentation/roles-authorisations) allows it, and they approve timesheets in approval stages of type **Task managers** (see [approver types](/help/documentation/approval#approver-types)).
+
 <Info>
   Beebole can warn everyone involved before a task with no owner starts: the task manager and the assigned people are notified — the admins when the task has no manager. Configure the number of days in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#reminders).
 </Info>
@@ -174,10 +188,10 @@ Beebole distinguishes the person responsible for a task from the people it is av
 
 Tasks nest into subtasks, as deep as your plan requires. The hierarchy is shared by all views.
 
-- **Create a subtask** — Hover over a task name in the Gantt task list and click the **\+** button that appears, or select the task and press **⌘\+A**.
-- **Indent or outdent with the keyboard** — In the Gantt view, select a task and press **Tab** to make it a subtask of the task above it, or **Shift\+Tab** to move it up one level.
-- **Move a task under a different parent** — Hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same planning.
-- **Expand and collapse** — Click the chevron next to a parent task. **⌘\+Click** the chevron to expand or collapse all.
+- To create a subtask, hover over the task's row in the Gantt or List view, click the **\+** button next to its name, and type the name in the field that opens under the row (see [Adding tasks in place](#adding-tasks-in-place)). You can also select the task and press **⌘\+A** to open the add form for a subtask.
+- To indent or outdent with the keyboard, select a task in the Gantt or List view and press **Tab** to make it a subtask of the task above it, or **Shift\+Tab** to move it up one level.
+- To move a task under a different parent, hover over the breadcrumb above the task's name (in the detail panel or on a Kanban card), click the edit button (**Change parent**), and pick the new parent with **Choose a task**. The list only offers tasks from the same planning.
+- To expand or collapse a parent task, click the chevron next to it. **⌘\+Click** the chevron to expand or collapse all.
 
 A parent task rolls up its children: it shows the period spanned by its subtasks and their total **Planned in hours**, read-only.
 
@@ -195,6 +209,8 @@ Open a task's detail panel to set its schedule:
 - **Planned in hours** / **Planned in days** — Enter the planned amount of work. Next to the value, a pill shows the capacity the owner's schedule leaves between the task's dates; hover it to read the planned time against that capacity.
 - **Date locks** — Lock buttons flank the date picker (**Lock start date** and **Lock end date**). One edge is locked at a time — the start by default. When planned time no longer fits between the dates, Beebole moves the _unlocked_ edge: with the end date locked, the start moves earlier; with the start locked, the end extends. When planned time overflows the period, the pill turns red and grows two arrows: the down arrow cuts the planned time to what the period holds (its tooltip names both figures, as in **Reduce 12h to 8h**), and the up arrow moves the unlocked edge out to fit the planned time (its tooltip names the new date, as in **Change end date to 12 Mar 2026**).
 
+Below the planned time, check **Plan on non-working days** to make weekends and public holidays count as working days for the task. The task then keeps the dates you give it instead of moving to the next working day. The owner's absences stay non-working. A parent task has no such checkbox, since its dates come from its subtasks.
+
 If the owner already has another task with planned time in the same period, the panel shows an **Overlapping tasks causing overload** warning so you can rebalance.
 
 <Frame caption="A task's schedule: whole days between the lock buttons, planned time with its capacity pill, and the overload warning">
@@ -210,12 +226,12 @@ To sequence tasks — making one start after another ends — use [dependencies 
 Time entries can be recorded directly against tasks:
 
 - **From the timesheet** — People add rows in the **Tasks** section of their [timesheet](/help/documentation/timesheets) and log hours on a task, just like on a project. Tasks someone owns are listed first in the add-task picker, so their own work is quickest to reach.
-- **From a suggestion** — A dated task assigned to someone reaches them as a [suggested entry](/help/documentation/ai#suggested-time-entries) rather than being added to their timesheet as a row automatically. Accepting the suggestion creates the entry and pins the row.
+- **From a suggestion** — A dated task assigned to someone reaches them as a [suggested entry](/help/documentation/ai#suggested-time-entries) rather than being added to their timesheet as a row automatically. Accepting the suggestion creates the entry and pins the row. The exception is the **Allow only planned tasks in the timesheet** [restriction](/help/documentation/timesheetSettings#restrictions): when it is on, the tasks a person owns appear in their timesheet on their own, from every planning, and time can be entered only on those tasks and only within each task's planned dates.
 - **From a Kanban card** — Hover over a card and click the clock button (**Add time**) to log time on that task for today. Once time is logged, the card shows a pill with the logged total next to the planned time, in hours (for example `4 / 8`). See [Kanban board](/help/documentation/kanban#tracking-time-from-a-card).
 
 Which plannings accept time entries is controlled by the **Record time on these plannings** setting, in the **Categories** tab of [Timesheet and Planning Settings](/help/documentation/timesheetSettings). Tasks in other plannings don't show the time button.
 
-You can also let task statuses drive time records automatically with **Auto Timesheet from Planning** — choose a **Start** and an **End** status per planning, and moving a task into those statuses starts and ends its time records, as suggestions the person accepts or written directly into the timesheet. Set it up in the [Auto Timesheet from Planning tab](/help/documentation/timesheetSettings#auto-timesheet-from-planning).
+You can also let task statuses drive time records with **Auto Timesheet from Planning**. Choose a **Start** and an **End** status per planning: moving a task into those statuses starts and ends its time records as [suggested entries](/help/documentation/ai#suggested-time-entries), which the person accepts in their timesheet. A status move never writes an entry into the timesheet directly. Set it up in the [Auto Timesheet from Planning tab](/help/documentation/timesheetSettings#auto-timesheet-from-planning).
 
 <Info>
   From a person's or a project's action menu, **Go to tasks** jumps to the **Planning** page filtered on that person or project.
@@ -233,19 +249,32 @@ Beyond scheduling, each task carries:
 
 ---
 
-## Archiving and deleting tasks
+## Marking tasks done and deleting them
 
-Each task has a **⋯** action menu — hover over its row in the Gantt view or its Kanban card — with **Duplicate**, **Rename**, **Archive**, **Unarchive**, and **Delete**.
+Each task has a **⋯** action menu (hover over its row in the Gantt or List view, or over its Kanban card) with **Duplicate**, **Rename**, **Done**, **Reopen**, and **Delete**.
 
 <Frame caption="A task's ⋯ menu on its Kanban card">
-  <img src="/help/images/kanban/card-menu.webp" alt="Beebole Kanban Queue column with the ⋯ menu of the QA Testing card open, listing Duplicate, Rename, Archive, Unarchive (unavailable) and Delete" width="350" />
+  <img src="/help/images/kanban/card-menu.webp" alt="Beebole Kanban Queue column with the ⋯ menu of the QA Testing card open, listing Duplicate, Rename, Done, Reopen (unavailable) and Delete" width="350" />
 </Frame>
 
-- **Archive** hides the task from active views without losing its data or its time records. Use **Show Archived** in the page header to display archived tasks again, then **Unarchive** to restore one. On the Kanban board, a column's own menu can archive or unarchive every task in that status at once.
-- **Delete** removes the task permanently. A toast appears with an **Undo** button right after deletion.
+**Done** takes a finished task out of the planning views. The task keeps its data and its time records, and the hours logged on it still count in reports. When a planning holds done tasks, the page header shows **Show Done** with their number: click it to bring them back into the views, and click **Hide Done** to hide them again. To restore a task, show the done tasks and click **Reopen** in its menu.
+
+You can also mark tasks done from these places:
+
+- The buttons at the end of each row in the [List view](/help/documentation/task-list#marking-tasks-done-from-a-row): **Done**, or **Reopen** on a task already done.
+- A Kanban column's **⋯** menu, for every task in the column or only the selected cards (see [Kanban board](/help/documentation/kanban#board-layout)).
+- **Set as done** in the menu of a task row in the [timesheet](/help/documentation/timesheets), for people allowed to manage tasks.
+
+The task's history records each of these changes as **Done** or **Reopened**. When a submitted timesheet holds time on a task marked done, the [approval review](/help/documentation/ai#approval-review) flags it as **Time on a task marked done**.
+
+<Info>
+  **Done** is not a status. A task in a status named **Done**, such as the last column of the **Main plan**, stays in the views until you mark it **Done** from its menu, and marking a task **Done** leaves its status as it is.
+</Info>
+
+**Delete** removes the task permanently. A toast appears with an **Undo** button right after deletion.
 
 <Warning>
-  A task that has time records logged against it cannot be deleted — Beebole blocks the deletion and tells you whose time records are affected. Click the person's name in the notification to open their timesheet on one of those records; see [Delete protection](/help/documentation/concepts#delete-protection) for how this works across Beebole. Archive the task instead to keep historical data intact.
+  A task that has time records logged against it cannot be deleted. Beebole blocks the deletion and tells you whose time records are affected. Click the person's name in the notification to open their timesheet on one of those records; see [Delete protection](/help/documentation/concepts#delete-protection) for how this works across Beebole. Mark the task **Done** instead to keep historical data intact.
 </Warning>
 
 ---
@@ -314,7 +343,7 @@ The **Planning** page shows your tasks through saved views — tabs above the ta
   </Accordion>
 
   <Accordion title="What is the difference between a Tasks planning and a Bookings planning?">
-    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a start date, a duration, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. A new Beebole planning opens in the mode you last picked, Bookings by default, while existing plannings keep theirs. All four views stay available in both modes, and switching keeps any stored names.
+    A Tasks planning holds named items with a status — a to-do list, issues, tickets — and its add button reads **Add Task**. A Bookings planning holds people booked on projects, each with a date range, planned time, and an allocation; its add button reads **Add Booking**, and every booking is named after its project and person. Choose the mode under **What this planning holds** in the planning's settings. A new Beebole planning opens in the mode you last picked, Bookings by default, while existing plannings keep theirs. All four views stay available in both modes, and switching keeps any stored names.
   </Accordion>
 
   <Accordion title="What is the difference between the Owner and the Potential owners of a task?">

@@ -1,17 +1,17 @@
 ---
 title: "Subscription, plans, seats, and billing"
 sidebarTitle: "Subscription"
-description: "Manage your Beebole subscription: compare the Free, Essential, and Advanced plans, adjust seats, switch billing intervals, add add-ons, and manage payments."
-keywords: ["beebole", "subscription", "billing", "pricing plan", "seats", "add-ons", "Stripe"]
+description: "Manage your Beebole subscription: the 30-day free trial, the Free, Essential and Advanced plans, seats, add-ons, payment, and what happens when it locks."
+keywords: ["beebole", "subscription", "billing", "pricing plan", "free trial", "seats", "add-ons", "wire transfer"]
 "og:title": "Subscription & Billing in Beebole"
-"og:description": "Compare Beebole's Free, Essential, and Advanced plans, adjust seats, add add-ons, and manage payment through the Stripe portal."
+"og:description": "Start a Beebole plan after the free trial, compare the Free, Essential, and Advanced plans, adjust seats and add-ons, and manage payment and invoices."
 "og:type": "article"
 ---
 
-Beebole's subscription page is where an administrator chooses a plan, sets the number of seats, and manages payment. Seats are billed per person, and payment runs through Stripe, so your card details are handled securely. Open it through **Settings** > **Subscription**.
+Beebole's subscription page is where an administrator picks a plan after the free trial, sets the number of seats, and manages payment. Seats are billed per person, and card payments, invoices, and cancellation go through a secure checkout page and billing portal run by Stripe.
 
 <Info>
-  Only administrators see and manage the subscription. Open it from **Settings** > **Subscription** — the **Settings** menu opens from the button with your initials at the bottom of the sidebar.
+  Only administrators see and manage the subscription. To open it, click the button with your initials at the bottom of the sidebar, choose **Account Settings**, then click **Subscription** in the **Settings** menu on the left. On a phone, tap your initials, then **Account Settings**, then **Subscription**.
 </Info>
 
 ## Plans
@@ -21,20 +21,67 @@ Beebole has three plans. Each higher plan includes everything in the one below i
 | Plan | Who it's for | Highlights |
 | --- | --- | --- |
 | **Free** | Small teams getting organized (up to 5 seats) | Project time tracking, resource planning, time off tracking, custom reports |
-| **Essential** | Teams ready to bill clients and formalize workflows | Adds billing rates, time-off allowances, multi-level approvals, integrations, multiple currencies |
-| **Advanced** | Teams that need full financial control | Adds costs and profitability, expense tracking, project budgets, custom fields, configurable roles |
+| **Essential** | Teams ready to bill clients and formalize workflows | Adds billing rates, time-off allowances, multi-level approvals, integrations, multiple currencies, custom single sign-on, and the [audit trail](/help/documentation/audit-trail) |
+| **Advanced** | Teams that need full financial control | Adds costs and profitability, expense tracking, project budgets, custom fields, configurable roles, and advanced configurations |
 
 <Frame caption="The subscription page with the billing interval, the seat stepper and the three plans">
   ![Beebole subscription page with the Monthly and Yearly (Save 10%) switch, the seat stepper set to 19 seats, and the Free, Essential and Advanced plan cards with their price per month, a Subscribe button and the features each plan includes](/help/images/subscription/plans-seats.webp)
 </Frame>
 
-The subscription page shows each plan's monthly price for the number of seats in the stepper, in your billing currency. You can pay **Monthly** or **Yearly** — a yearly plan saves 10%.
+The subscription page shows each plan's monthly price for the number of seats in the stepper. You can pay **Monthly** or **Yearly**, and a yearly plan saves 10%.
+
+Beebole bills in one of three currencies, set from the country chosen when the account was created: pounds sterling for the United Kingdom, US dollars for the Americas, Australia and New Zealand, and euros everywhere else.
 
 <Info>
   The **Free** plan is limited to 5 seats. The paid plans bill for the number of seats you set.
 </Info>
 
-## Adjust seats
+### Features outside your plan
+
+A feature your plan does not include stays visible in Beebole, marked with an upgrade icon (its tooltip reads *Upgrade your subscription*). Opening it shows a short preview of what the feature does instead of its settings, with an **Upgrade your plan** link that takes you to the subscription page.
+
+## Free trial
+
+Every new Beebole account starts with a 30-day free trial. During the trial, every feature is available, there is no seat limit, and no credit card is needed.
+
+While the trial runs, the subscription page shows *Your trial period ends on* and the end date above the plan cards. Before that date, either [subscribe to a paid plan](#subscribe-to-a-paid-plan) or switch to the **Free** plan: on the **Free** card, click **Subscribe for 5 seats**, then **Confirm**.
+
+If you do neither, the account locks when the trial ends. See [When the account is locked](#when-the-account-is-locked).
+
+## Subscribe to a paid plan
+
+You subscribe from the plan cards, which appear during the trial, on the **Free** plan, and after an account has been deactivated.
+
+<Steps>
+  <Step title="Choose the billing interval">
+    On the subscription page, select **Monthly** or **Yearly**.
+  </Step>
+  <Step title="Set the number of seats">
+    Use the stepper next to *Add or remove seats at any time*. You cannot set fewer seats than the number of active people in your account.
+  </Step>
+  <Step title="Choose a plan">
+    Click the subscribe button on the **Essential** or **Advanced** card. It shows the seat count, for example **Subscribe for 12 seats**.
+  </Step>
+  <Step title="Pay on the checkout page">
+    Beebole opens a secure checkout page. Enter your billing address, company name, tax ID if it applies, and card details, accept the terms, and confirm the payment.
+  </Step>
+</Steps>
+
+After the payment, you return to the subscription page, which shows *Thank you for your purchase!* while Beebole confirms the payment. Your plan is active a moment later.
+
+### Promotion codes
+
+Beebole has no field for a discount code. If you have a promotion code, enter it on the checkout page when you first subscribe.
+
+### Pay by wire transfer
+
+Under the plan cards, *Wire transfer instead?* is followed by the link **We're happy to set up your account manually**, with the note *Only accepted for yearly payments*. Click the link to open a chat with the Beebole team, with a message already filled in that names the plan, billing interval and number of seats you selected, and asks for your company name, full address, and VAT or tax ID. Add those details and send the message so the team can reply with the payment details and the invoice.
+
+## Manage a paid subscription
+
+Once you subscribe, the subscription page shows a **Current plan** card with your plan, the number of seats it includes, the **Next payment** date, and a **Manage** button. The sections below it let you change the seats, the billing interval, the add-ons, and the plan.
+
+### Adjust seats
 
 Seats are not added or removed automatically when you add or archive people. You set the seat count yourself, and a paid change is confirmed before it takes effect.
 
@@ -43,7 +90,7 @@ Seats are not added or removed automatically when you add or archive people. You
     Go to **Settings** > **Subscription**.
   </Step>
   <Step title="Set the new seat count">
-    Under the seats section, use the stepper to change the number. You cannot set fewer seats than the number of active people in your account.
+    Under **Seats**, use the stepper to change the number. You cannot set fewer seats than the number of active people in your account.
   </Step>
   <Step title="Confirm the prorated charge">
     Beebole shows the prorated amount due for the rest of the current period. Click **Confirm** to authorize that amount and update your seats.
@@ -51,57 +98,76 @@ Seats are not added or removed automatically when you add or archive people. You
 </Steps>
 
 <Info>
-  To reduce your seat count, archive people first so the active count drops — the subscription page links you to **People** to do this. The seat number cannot go below the number of active people.
+  To reduce your seat count, archive people first so the active count drops. When you reach the limit, the subscription page links you to **People** to do this.
 </Info>
 
-## Change your plan
+### Billing interval
 
-Click **Change plan** on the subscription page to move between **Free**, **Essential**, and **Advanced**. Moving to a higher plan shows the prorated difference to confirm. Moving to a lower paid plan or to the free plan is a downgrade — see [Downgrade to the free plan](#downgrade-to-the-free-plan).
+Switch between **Monthly** and **Yearly** in the **Billing interval** section. Beebole shows the amount due for the change, and you click **Confirm** to apply it. A yearly plan saves 10% over paying monthly.
 
-## Billing interval
+### Add-ons
 
-Switch between **Monthly** and **Yearly** billing from the **Billing interval** control on the subscription page. A yearly plan saves 10% over paying monthly.
-
-## Add-ons
-
-Add-ons extend a plan without moving to a higher tier. Available add-ons appear on the subscription page alongside your current plan:
+Add-ons extend the **Essential** plan without moving to a higher tier. They appear under *Enhance your plan with add-ons*, priced per seat per month:
 
 | Add-on | What it adds |
 | --- | --- |
 | **Costs, Expenses & Budgets** | Track employee costs, project margins, project expenses, and budgets |
 | **Custom fields, custom roles & advanced configuration** | Add custom fields, define custom roles and permissions, and use advanced tag-based configuration |
 
+Click an add-on to select it, check the amount Beebole shows, then click **Confirm**.
+
 <Info>
-  Add-ons are offered on the **Essential** plan. On the **Advanced** plan, these capabilities are already included, so the add-ons are not shown.
+  On the **Advanced** plan, these capabilities are already included, so the add-ons are not shown.
 </Info>
 
-## Manage payment and invoices
+### Change plan
 
-Beebole uses a Stripe-hosted portal for payment details, invoices, and cancellation. Open it with the **Manage** button.
+The **Change plan** section offers the other paid plan: **Advanced** if you are on **Essential**, or **Essential** if you are on **Advanced**. Click the plan's card to see the amount. Moving up shows *Click confirm to be charged the pro-rated difference*, and moving down shows *Click confirm to finalize the change*. Click **Confirm** to switch.
+
+To leave the paid plans altogether, [convert to the free plan](#convert-to-the-free-plan) instead.
+
+### Payment details and invoices
+
+Click **Manage** on the **Current plan** card to open the billing portal. There you can update your credit card or billing information, download invoices, or cancel your subscription.
+
+## Cancel your subscription
+
+You cancel from the billing portal: click **Manage**, then cancel the subscription there. Back in Beebole, the subscription page shows *Your subscription has been canceled* and *You will still have full access to all features until* followed by the end date of the period you paid for.
+
+Everything keeps working until that date. On that date, the account locks, as described in [When the account is locked](#when-the-account-is-locked).
+
+## Convert to the free plan
+
+The **Convert to free plan (up to 5 seats)** section moves a paid subscription back to the **Free** plan. You keep access to your core data, but the features of your paid plan are no longer available.
 
 <Steps>
-  <Step title="Open the subscription page">
-    Go to **Settings** > **Subscription**.
+  <Step title="Start the conversion">
+    Click **Convert**. A warning explains that your subscription ends immediately.
   </Step>
-  <Step title="Open the portal">
-    Click **Manage** to open the Stripe billing portal.
+  <Step title="Reduce the account to 5 active people">
+    If more than 5 people are active, the warning shows *Click to archive people and reduce your seat count to 5* instead of the confirm button. Click it to open **People**, archive people until 5 remain active, then come back and click **Convert** again.
   </Step>
-  <Step title="Make your changes">
-    Update your credit card or billing information, download invoices, or cancel your subscription.
+  <Step title="Confirm">
+    Click **Confirm**. The account moves to the **Free** plan right away.
   </Step>
 </Steps>
-
-<Info>
-  Prefer to pay by wire transfer? The subscription page includes a wire-transfer option for yearly plans — it drafts an email to the Beebole team with your plan, interval, and seat count so they can set the account up manually.
-</Info>
-
-## Downgrade to the free plan
-
-You can convert a paid subscription back to the **Free** plan (up to 5 seats) from the subscription page. Click **Convert**, then **Confirm**. You keep access to your core data, but the paid features your plan included are no longer available.
 
 <Warning>
   Converting to the **Free** plan ends your paid subscription immediately. No refund is issued for the remaining period, so it is usually best to convert near the end of a billing cycle.
 </Warning>
+
+## When the account is locked
+
+A Beebole account locks when its trial ends without a plan, or when a canceled subscription reaches its end date. Nothing is deleted: your people, projects, time entries, and settings stay as they are, and subscribing again restores access for everyone.
+
+While the account is locked:
+
+- Administrators who sign in see **Account inactive**, with *Your account is currently locked. Update your subscription to restore access for your team.* **Update subscription** opens the subscription page, which shows when the trial ended or the account was deactivated, above the plan cards. **Sign out** leaves the account.
+- Everyone else sees **Account inactive** with *This account is inactive. Please contact an administrator to restore access.* and can only sign out. They cannot sign in again until the account is active.
+- API keys and connected AI assistants stop working. Requests to the [Beebole API](/help/api/introduction) answer `402 Payment Required` with `AccountIsInactive`.
+- Integrations stop syncing.
+
+To unlock the account, an administrator picks a plan on the subscription page, as in [Subscribe to a paid plan](#subscribe-to-a-paid-plan), or chooses the **Free** plan.
 
 ## Related content
 
@@ -118,18 +184,21 @@ You can convert a paid subscription back to the **Free** plan (up to 5 seats) fr
 
 <AccordionGroup>
   <Accordion title="How does seat-based pricing work in Beebole?">
-    Beebole bills per seat per month, in your billing currency. You set the seat count yourself on the subscription page — it is not adjusted automatically when you add or archive people — and you cannot set fewer seats than the number of active people in your account.
+    Beebole bills per seat per month, in pounds sterling, US dollars, or euros depending on your organization's country. You set the seat count yourself on the subscription page, it is not adjusted automatically when you add or archive people, and you cannot set fewer seats than the number of active people in your account.
+  </Accordion>
+  <Accordion title="What happens when my Beebole trial ends or my subscription is canceled?">
+    The account locks on the trial's end date, or at the end of the period you paid for after a cancellation. Administrators can still sign in to subscribe again, everyone else sees an **Account inactive** message, and API keys stop working. No data is deleted, and choosing a plan restores access for the whole team.
+  </Accordion>
+  <Accordion title="Where do I enter a promotion code?">
+    On the checkout page that opens when you first subscribe to a paid plan. Beebole itself has no field for discount codes, so keep the code at hand when you click the plan's subscribe button.
   </Accordion>
   <Accordion title="What happens when I add seats mid-cycle?">
     Beebole shows the prorated amount due for the rest of the current period before anything changes. The new seats take effect only after you click **Confirm** to authorize that charge.
   </Accordion>
-  <Accordion title="How do I switch between monthly and yearly billing?">
-    Open **Settings** > **Subscription** and use the **Billing interval** control to switch between **Monthly** and **Yearly**. A yearly plan saves 10% over paying monthly.
-  </Accordion>
   <Accordion title="Where do I find my invoices?">
-    On the subscription page, click **Manage** to open the Stripe portal. Download past invoices, update your card or billing details, or cancel from there.
+    On the subscription page, click **Manage** to open the billing portal. Download past invoices, update your card or billing details, or cancel from there.
   </Accordion>
   <Accordion title="What happens if I downgrade to the free plan?">
-    Your paid subscription ends immediately and no refund is issued for the remaining period. You keep access to your core data on the **Free** plan (up to 5 seats), but the paid features your plan included are no longer available.
+    Your paid subscription ends immediately and no refund is issued for the remaining period. You keep access to your core data on the **Free** plan (up to 5 seats), but the paid features your plan included are no longer available. If more than 5 people are active, archive some first.
   </Accordion>
 </AccordionGroup>

@@ -121,6 +121,22 @@ Use the search field to:
 
 Search is local to the panel you're in — there is no single search across the whole application, so use the sidebar to switch between **People**, **Projects**, **Tags**, and **Planning** when you need to look elsewhere.
 
+### Keyboard navigation in lists
+
+The lists on the **People**, **Projects**, and **Tags** pages, and the lists in Settings, can be used without the mouse. The keys work whenever you are not typing in a field:
+
+| Key | What it does |
+| --- | --- |
+| Up and Down arrows | Move the cursor from row to row |
+| Right arrow | Expand the row's branch and move to its first child |
+| Left arrow | Collapse the branch, or move up to the parent row |
+| **Enter** | Open the row's details panel. While the panel is open, it follows the cursor as you move. **Enter** on the row already shown closes the panel. |
+| **Space** | Select or deselect the row for bulk actions |
+| **⌘\+A** (Ctrl\+A) | Open the add form. In projects and tags, the new item goes under the selected row. |
+| **Escape** | Close the most recent notification, menu, or panel |
+
+With the mouse, **⌘\+Click** (Ctrl\+Click) on a row's expand chevron expands or collapses every row at that level, and **⌘\+Click** on a badge opens that item in a new browser tab. The Gantt chart, the task list, and the Kanban board have keys of their own, described in [Gantt](/help/documentation/gantt#keyboard-navigation), [Task list](/help/documentation/task-list#keyboard-navigation), and [Kanban](/help/documentation/kanban#keyboard-navigation). For the timesheet, see [Keyboard shortcuts](/help/documentation/timesheets#keyboard-shortcuts).
+
 ### Fast loading
 
 Beebole caches your account data locally in your browser, so lists and timesheets appear near-instantly when you open a page. Beebole shows the cached data right away, then refreshes it from the server in the background. The local cache clears itself automatically when you switch organizations or when a new version of Beebole is deployed — you never need to clean it up manually.
@@ -154,6 +170,8 @@ Beebole lets you undo and redo most changes. Press **⌘\+Z** (Ctrl\+Z on Window
 
 Bulk changes are grouped into a single operation, so one undo reverts the whole change rather than one piece at a time.
 
+When you delete something, a notification at the bottom of the screen names it with an **Undo** button. Click **Undo** within a few seconds and the item comes back where it was. On a phone, a **Last action** bar appears at the bottom of the screen after each change, with **Undo** and **Redo** buttons.
+
 ### Delete protection
 
 Beebole refuses to delete an item that something else still depends on. Instead of deleting it, Beebole shows a notification that explains what blocks the deletion and, in most cases, names the blocking item. Click the name to jump straight to the panel where the reference lives, remove it there, and try the deletion again.
@@ -168,7 +186,7 @@ Beebole refuses to delete an item that something else still depends on. Instead 
 | A person | They manage other people | The panel of a person they manage, where the manager is set |
 | A person | Approval events are recorded for them | The person's panel |
 | A work schedule | It is assigned to a person, tag, or the organization | That record's **Work schedule** panel |
-| A project or task category | It is selected in timesheet and planning settings | The **Timesheet and Planning Settings** panel of the person, tag, project, or organization using it |
+| A project or task category | It is selected in timesheet and planning settings | The **Timesheet and Planning Settings** panel of the person, tag, or organization using it |
 | A project or task category | It still contains items | One of those items |
 | A task status | Tasks still use it | The task's **Task details** panel |
 
@@ -228,6 +246,19 @@ When you open a person, project, tag, or task, the detail panel lists its attrib
 - **Switch records without losing your place.** When you select another person, project, tag, or task while an attribute is in the URL, the panel opens the same attribute and scrolls it into view, so you can compare one setting across several records.
 - **Links stay put while the panel loads.** An attribute opened from a link is held at the top of the panel while the rest of the content finishes loading, so sections that load later cannot push it out of view. It moves only once you scroll, click, or type inside the panel.
 - **Collapsing an attribute clears it from the URL.** The link then opens the record without a specific attribute selected.
+
+### Sidebar and details panel
+
+On a wide screen, the menu button at the top of the sidebar expands the sidebar to show labels next to its icons, or collapses it back to icons only. When you open an item, its details panel opens on the right, over the list. Hover the panel and two buttons appear in the middle of its left edge:
+
+- **Resize**: drag it to make the panel wider or narrower.
+- **Pin panel**: keeps the panel beside the list instead of over it, so the list stays fully visible while you work in the panel. Click **Unpin panel** to go back.
+
+Beebole saves the sidebar state, the panel width, and the pin with your profile, so they follow you from one computer to another. Phones and tablets use a different layout: see [Mobile](/help/documentation/mobile).
+
+### Help on each settings panel
+
+Each section of a details panel (on a person, project, task, tag, or in your account settings) has an info button at the right of its header. It appears when you hover an open section, and opens a short help text about that setting, in your interface language. When a section is not included in your plan, its header shows an upgrade button instead, which opens the **Subscription** page.
 
 ### Color coding
 

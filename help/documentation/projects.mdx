@@ -61,9 +61,20 @@ Time is always recorded at the bottom of a branch. A project that has active sub
     Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Client**. Enter the project name and click the **Save new…** button (its label ends with the level you are creating, for example **Save new project**).
   </Step>
   <Step title="Add subprojects (optional)">
-    In the project list, hover over the parent project's row and click the **\+** button that appears next to its **⋯** action menu (its tooltip reads **Add** followed by the level name, for example **Add Subproject**). The parent expands so the new subproject shows right below it.
+    In the project list, hover over the parent project's row and click the **\+** button that appears next to its **⋯** action menu. The parent expands and a name field opens right below it. Type the name and press **Enter**. See [Adding subprojects from the list](#adding-subprojects-from-the-list).
   </Step>
 </Steps>
+
+### Adding subprojects from the list
+
+The **\+** button on a project's row adds items under that project without leaving the list. Its tooltip reads **Add** followed by the level name, for example **Add Subproject**, and the same text is the placeholder of the name field it opens.
+
+- Press **Enter** to create the subproject. The field stays open for the next one, so you can type several names in a row.
+- Click elsewhere to create what you typed and close the field, or press **Escape** (or click the **✕** at the end of the field) to close it without adding anything.
+- Paste a list into the field to create several subprojects at once: one name per line, or names separated by semicolons on a single line. Indent lines with **Tab** or spaces to nest them under the line above. Hovering the field shows the hint **Paste a list: one per line or ;-separated**.
+- Hold **⌘** (Ctrl on Windows) and click the **\+** to open the full add form instead (**⌘+Click to open the form**).
+
+When the category is limited to its named levels, the **\+** on a row at the last level shows a message instead of the field. See [Level names](#level-names).
 
 ### Adding several projects at once
 
@@ -176,7 +187,7 @@ Clicking a project opens its detail panel, which is organized into settings pane
 
 ### Billing and cost rates per project
 
-Open the project's **Billing** or **Cost** panel and click **Add** to create a rate. Choose a method — **Hourly rate**, **Daily rate**, or **Fixed fee** — and optionally split it with **Split by persons**, **Split by projects**, or **Split by tags**. A rate set directly on a project overrides rates inherited from tags or the organization. See [Billing rates](/help/documentation/billing) for the full priority order and repeat options.
+Open the project's **Billing** or **Cost** panel and click **Add** to create a rate. Choose a method — **Hourly rate**, **Daily rate**, or **Fixed fee** — and optionally split it with **Split by persons** or **Split by projects** (the default is **No split**). A rate set directly on a project overrides rates inherited from tags or the organization. See [Billing rates](/help/documentation/billing) for the full priority order and repeat options.
 
 ### Valid period for time entry
 
@@ -192,9 +203,9 @@ The fields shown in the **Custom fields** panel come from the field definitions 
 
 ### Tasks and bookings on a project
 
-The **Tasks and bookings** panel lists every active task and booking linked to the project, grouped by [planning](/help/documentation/planning). A planning holds either tasks or bookings, depending on its mode: a task is a unit of work with a name and a status, while a booking is a person planned on a project for a period and is named after that project and person. Archived tasks and bookings are not listed. The panel is available to people who can view tasks; adding and removing require the permission to manage them.
+The **Tasks and bookings** panel lists every active task and booking linked to the project, grouped by [planning](/help/documentation/planning). A planning holds either tasks or bookings, depending on its mode: a task is a unit of work with a name and a status, while a booking is a person planned on a project for a period and is named after that project and person. Tasks and bookings marked **Done** are not listed. The panel is available to people who can view tasks; adding and removing require the permission to manage them.
 
-- Add one — each planning has a **\+** button (its tooltip reads **Add to** followed by the planning name, for example **Add to Main plan**). It opens the add form of that planning on the **Planning** page with the project already filled in: a Bookings planning asks for a person, a start date, and a number of days, then **Add Booking**; a Tasks planning asks for a name, then **Add Task**.
+- Add one — each planning has a **\+** button (its tooltip reads **Add to** followed by the planning name, for example **Add to Main plan**). It opens the add form of that planning on the **Planning** page with the project already filled in: a Bookings planning asks for a person (**Select the owner**) and a date range, fills in the planned time from that person's work schedule over the range (you can change it), then **Add Booking**; a Tasks planning asks for a name, then **Add Task**.
 - Remove one — hover over its badge and click **Unassign**. This only unlinks the task or booking from the project; it still exists in its planning.
 
 <Frame caption="The tasks of the Main plan planning linked to a project, and the button that adds another">

@@ -31,7 +31,7 @@ You reach Account Settings from the user menu, not from the sidebar's top-level 
   <img src="/help/images/account-settings/user-menu.webp" alt="Beebole user menu open above the JR initials at the bottom of the sidebar, listing Auto, Pick your color, English, Your API key, Sign in as..., Sign out and Account Settings" width="272" />
 </Frame>
 
-Account Settings opens with the **Settings** menu on its left. The other entries of that menu, **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account**, open their own dedicated screens.
+Account Settings opens with the **Settings** menu on its left. The other entries of that menu, **Subscription**, **Person Roles**, **Work Schedules**, **Integrations**, **Master data review**, **Time Off**, **Expense Types**, **Custom Fields**, **Release Notes**, and **Delete Account**, open their own dedicated screens. On a phone, tap your initials, then **Account Settings**, to see the same list.
 
 ## Organization identity
 
@@ -69,7 +69,7 @@ Below the header, Account Settings is organized into panels. Each panel sets a d
 
 | Panel | What it controls |
 |-------|------------------|
-| **Localization** | Time zone, currency, number formats, time and date formats, and first day of the week |
+| **Localization** | Time zone, currency, number formats, clock and date formats, and first day of the week |
 | **Show or hide by default** | Which optional elements are visible across the account by default |
 | **Timesheet and Planning Settings** | How your team logs time — periodicity, duration format, entry rules, categories, and reminders |
 | **Billing** | The default billing rate for the organization |
@@ -94,11 +94,11 @@ The **Localization** panel sets the regional defaults for the whole organization
 - **Currency** — The currency used for billing rates, costs, budgets, and expenses.
 - **Decimal format** — The decimal separator used in numbers.
 - **Thousands separator** — The separator used to group large numbers.
-- **Time format** — A 12-hour or 24-hour clock.
+- **Clock format**: a 12-hour clock (3:45 PM) or a 24-hour clock (15:45).
 - **Date format** — How dates display throughout Beebole.
 
 <Frame caption="The Localization panel of an organization on New York time with weeks starting on Sunday">
-  <img src="/help/images/account-settings/localization-panel.webp" alt="Beebole Account Settings Localization panel showing Time zone (GMT-05:00) Eastern Standard Time, First day of the week Sunday, Currency US dollar, Decimal format 10.56, Thousands separator 12,345, Time format 3:45 PM, and Date format Jan 26, 2026" width="774" />
+  <img src="/help/images/account-settings/localization-panel.webp" alt="Beebole Account Settings Localization panel showing Time zone (GMT-05:00) Eastern Standard Time, First day of the week Sunday, Currency US dollar, Decimal format 10.56, Thousands separator 12,345, Clock format 3:45 PM, and Date format Jan 26, 2026" width="774" />
 </Frame>
 
 The interface language is not an organization setting: each person picks their own from the menu behind their initials at the bottom of the sidebar. Beebole is available in English, Czech, German, Spanish, French, Hungarian, Italian, Dutch, Polish, and Portuguese. People can also override some regional preferences from their profile.
@@ -119,11 +119,17 @@ The **Timesheet and Planning Settings** panel controls the timesheet experience 
   For the full list of timesheet options, see [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
 </Info>
 
+## Release notes <Badge>Admin only</Badge>
+
+Click **Release Notes** in the **Settings** menu to read what changed in Beebole with each production release. Each release is listed under its date, newest first. The screen shows ten releases at a time: click **Load older** at the bottom to see earlier ones.
+
+For a monthly summary of the main changes, see [Product updates](/help/news/releases).
+
 ## Delete your account <Badge>Admin only</Badge>
 
-You can schedule your Beebole organization for deletion from the **Delete Account** menu item. Beebole does not delete everything instantly — it gives you a grace period so you can change your mind. This is also how you honor a right-to-erasure request that covers the whole organization — see [GDPR and personal data](/help/documentation/data-exports#gdpr-and-personal-data) for individual requests.
+You can schedule your Beebole organization for deletion from the **Delete Account** entry of the **Settings** menu. Beebole does not delete everything instantly: it gives you a grace period so you can change your mind. This is also how you honor a right-to-erasure request that covers the whole organization. For individual requests, see [GDPR and personal data](/help/documentation/data-exports#gdpr-and-personal-data).
 
-The menu item exists only for administrators: the whole settings menu behind the initials button stays empty for other roles, so a person who cannot find **Delete Account** either needs an administrator to do it, or is still on the Legacy platform, where the account is deleted from the *Account* module — see the [legacy FAQ](/help/legacy/faq).
+Only administrators can reach **Delete Account**: the **Account Settings** entry in the initials menu, and the **Settings** menu behind it, are not shown to other roles. A person who cannot find **Delete Account** either needs an administrator to do it, or is still on the Legacy platform, where the account is deleted from the *Account* module (see the [legacy FAQ](/help/legacy/faq)).
 
 <Warning>
   Scheduling deletion removes your entire organization — people, projects, time entries, reports, and configuration — after the grace period passes. Export any data you need first.
@@ -131,7 +137,7 @@ The menu item exists only for administrators: the whole settings menu behind the
 
 <Steps>
   <Step title="Open Delete Account">
-    Open the user menu with your initials, then click **Delete Account**.
+    Click your initials at the bottom of the sidebar, choose **Account Settings**, then click **Delete Account** at the bottom of the **Settings** menu on the left. On a phone, tap your initials, then **Account Settings**, then **Delete Account**.
   </Step>
   <Step title="Schedule the deletion">
     Click **Yes, delete my account**. Beebole schedules the account for deletion and notifies all administrators by email.
@@ -144,6 +150,14 @@ The menu item exists only for administrators: the whole settings menu behind the
     During the 7-day grace period, return to **Delete Account** and click **Cancel deletion** to keep your account. After the grace period, the data is permanently deleted.
   </Step>
 </Steps>
+
+While a deletion is pending, everyone in the account sees a red banner at the top of Beebole: *Account deletion scheduled by* followed by the administrator's name, then *Deletes in* and the time left (for example, 6d 23h). Administrators also get a **Cancel deletion** button in the banner, so they can stop the deletion from any screen. The **Delete Account** screen shows the same information, as *Deletion scheduled by* and *Account will be deleted in*, above its own **Cancel deletion** button.
+
+## Contact support
+
+To reach the Beebole team from inside Beebole, click the round chat button in the bottom-right corner of the screen. It opens a conversation with the Beebole support team. Everyone signed in to Beebole has it, whatever their role.
+
+The chat button is hidden on phones. From a phone, write to [support@beebole.com](mailto:support@beebole.com) instead. On the [Subscription](/help/documentation/subscription#pay-by-wire-transfer) page, the **We're happy to set up your account manually** link under *Wire transfer instead?* opens the same chat, with a message about paying by wire transfer already filled in.
 
 ## Related content
 
@@ -180,7 +194,10 @@ The menu item exists only for administrators: the whole settings menu behind the
   <Accordion title="Can I change the currency after I have started tracking costs?">
     Yes. You can change the currency in the **Localization** panel at any time. Beebole does not convert existing values, so review your financial data after switching.
   </Accordion>
+  <Accordion title="How do I contact Beebole support from the app?">
+    Click the round chat button in the bottom-right corner of Beebole to start a conversation with the Beebole team. The button is not shown on phones, so from a phone, email support@beebole.com.
+  </Accordion>
   <Accordion title="Why don't I see Delete Account in my menu?">
-    Two possible reasons. Either you are not an administrator — in Beebole the settings menu behind the initials button, **Delete Account** included, only appears for the Admin role, so ask an administrator to schedule the deletion. Or you are signed in to the Legacy platform at beebole-apps.com, which has no initials button at all; there, deletion is in the *Account* module of the Settings screen. See [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using).
+    Two possible reasons. Either you are not an administrator: in Beebole, **Delete Account** sits in the **Settings** menu of **Account Settings**, which only the Admin role can open, so ask an administrator to schedule the deletion. Or you are signed in to the Legacy platform at beebole-apps.com, which has no initials button at all; there, deletion is in the *Account* module of the Settings screen. See [Which Beebole am I using?](/help/guides/migration#which-beebole-am-i-using).
   </Accordion>
 </AccordionGroup>

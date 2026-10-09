@@ -126,7 +126,7 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | **Work from home flag** | Mark an individual entry as remote work directly on the entry. |
 | **Non-billable flag** | Mark individual entries as non-billable. |
 | **Auto-submit** | Configure a timesheet to submit automatically after a set number of days, so forgotten periods still lock. |
-| **Direct edits** | Admins and managers can edit submitted or approved entries directly, without rejecting first. Every change is logged. |
+| **Direct edits** | Managers correct draft and rejected timesheets directly. A submitted timesheet can be edited by an approver of its current stage (which restarts the approval chain) or by an admin, without rejecting it first, and an approved one by an admin only. Every change is logged. |
 | **Custom fields on time entries** | Capture extra structured data per entry for reporting. |
 | **Calendar in the timesheet** | Connect your Google or Microsoft Outlook calendar and drag events onto timesheet rows. The connection is per-user and one way (Calendar to Beebole) only. |
 | **Timesheet score** | A per-person compliance score (0–100) based on on-time submissions, late submissions, missed timesheets, and rejections. It appears in the **Score** column of the [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) report. |
@@ -147,7 +147,7 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | **Multi-stage workflow** | Define as many [approval](/help/documentation/approval) stages as you need (for example, project manager → team leader → admin). |
 | **Quorum rules** | Per stage, require all approvers or any single approver before advancing. |
 | **Approval history** | Each timesheet keeps a full log of approvals, rejections, and comments, so you always see where it stands. |
-| **Email actions** | Approve or reject straight from the notification email. |
+| **Email actions** | Approve straight from the notification email. To reject, reply to the email with your reason, or use its Reject link, which opens the rejection dialog in Beebole. |
 | **Approval reminders** | Approvers receive automatic reminders for pending timesheets. |
 | **Mobile approval** | Review and act on pending timesheets from a phone. |
 
@@ -209,7 +209,7 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | Topic | What's new |
 | :-- | :-- |
 | **Audit trail** | Every change is recorded in the [Audit Trail](/help/documentation/audit-trail) without a setting to switch on, unlike the Legacy checkbox. |
-| **DCAA ownership and SOX reports** | The Legacy *Timesheet Settings* toggles no longer exist under those names. The controls they stood for are the **Only the owner or an admin can edit entries** restriction in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#restrictions), which keeps managers from changing other people's hours; the [approval history](/help/documentation/approval#approval-history) kept on every timesheet; the [Lock date](/help/documentation/timesheetSettings#lock-date) that freezes closed periods; and the [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) report, which shows submissions period by period. If your auditor needs a specific extract, [support@beebole.com](mailto:support@beebole.com) can help you build the report. |
+| **DCAA ownership and SOX reports** | The Legacy *Timesheet Settings* toggles are replaced by the **DCAA compliance** choice in the **Add restriction** menu of [Timesheet and Planning Settings](/help/documentation/timesheetSettings#restrictions), which turns on **Only the owner or an admin can edit entries** (keeping managers from changing other people's hours) and **Only time off can be recorded in the future** in one step; the [approval history](/help/documentation/approval#approval-history) kept on every timesheet; the [Lock date](/help/documentation/timesheetSettings#lock-date) that freezes closed periods; and the [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) report, which shows submissions period by period. If your auditor needs a specific extract, [support@beebole.com](mailto:support@beebole.com) can help you build the report. |
 
 ### Communication and platform
 
@@ -219,11 +219,12 @@ The tables below summarize the main changes from the Legacy system. Most will fe
 | **Email reply-to-comment** | Reply to a Journal notification email to post a comment. |
 | **Email templates** | Customize the content of system emails, with dynamic placeholders. |
 | **Notifications** | Choose emails to be sent in a daily or weekly digest. |
+| **Push notifications** | Receive mentions, approval requests, and reminders as notifications on your computer or phone, alongside email or instead of it. See [Notifications](/help/documentation/notifications). |
 | **Passwordless sign-in** | Sign in with a one-time email code, a passkey, Google, Microsoft, or SSO — no passwords. See [Authentication](/help/documentation/authentication). |
 | **Organization branding** | Upload your organization's logo (it appears in the sidebar and on outgoing emails) and set an accent color for the interface. |
 | **Undo/redo** | A global undo/redo across the app. |
 | **Copy/paste setup** | Duplicate a project's configuration to reuse as a template, and add people, projects, or tags in bulk by pasting spreadsheet rows. |
-| **Integrations** | Native [integrations](/help/integrations/introduction) include Asana, Jira, monday.com, Linear, QuickBooks, Xero, and BambooHR, plus webhooks. |
+| **Integrations** | Native [integrations](/help/integrations/introduction) include Asana, monday.com, Linear, QuickBooks, Xero, and BambooHR, plus webhooks. |
 
 ## Related content
 
@@ -281,6 +282,6 @@ The tables below summarize the main changes from the Legacy system. Most will fe
   </Accordion>
 
   <Accordion title="Does the new Beebole have DCAA ownership and SOX reports like Legacy?">
-    Not as named toggles. The new platform records every change in the audit trail without a setting, keeps the approval history of each timesheet, and lets you stop managers from editing other people's hours with the **Only the owner or an admin can edit entries** restriction — the rule Legacy called DCAA ownership. Submission compliance per period is in the Timesheet Compliance report. Whether that covers your audit requirements is for your compliance team to confirm; support can walk you through the controls.
+    Not as the same toggles. For DCAA, the timesheet **Add restriction** menu offers a **DCAA compliance** choice. It turns on **Only the owner or an admin can edit entries**, the rule Legacy called DCAA ownership, which stops managers from editing other people's hours, together with **Only time off can be recorded in the future**. There is no SOX setting: the new platform records every change in the audit trail without one, keeps the approval history of each timesheet, and shows submission compliance per period in the Timesheet Compliance report. Whether that covers your audit requirements is for your compliance team to confirm; support can walk you through the controls.
   </Accordion>
 </AccordionGroup>
