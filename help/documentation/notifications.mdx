@@ -1,17 +1,17 @@
 ---
-title: "Notifications: email alerts and reminders"
+title: "Notifications: email, push notifications, and reminders"
 sidebarTitle: "Notifications"
-description: "Set up Beebole email notifications for mentions and approval updates, choose instant, daily, or weekly delivery, and configure account-wide timesheet reminders."
-keywords: ["beebole notifications", "email notifications", "timesheet reminders", "approval updates", "notification frequency", "email templates"]
-"og:title": "Beebole Email Notifications, Digests, and Reminders"
-"og:description": "Configure Beebole email notifications for mentions, approval updates, and timesheet reminders, and customize the emails your team receives."
+description: "Set up Beebole email and push notifications for mentions and approvals, pick instant, daily, or weekly delivery, enable push on your devices, and set reminders."
+keywords: ["beebole notifications", "email notifications", "push notifications", "timesheet reminders", "approval updates", "notification frequency", "email templates"]
+"og:title": "Beebole Email and Push Notifications, Digests, and Reminders"
+"og:description": "Configure Beebole email and push notifications for mentions, approvals, and timesheet reminders, enable push on your devices, and customize the emails sent."
 "og:type": "article"
 ---
 
-Beebole's notifications keep you informed about mentions and approval updates by email. Each person chooses which events to receive and how often — **Instant**, **Daily**, **Weekly**, or **None**. Administrators configure account-wide timesheet reminders and the email content people receive.
+Beebole's notifications keep you informed about mentions and approval requests, by email and as push notifications on your computer or phone. Each person chooses which events to receive and how often: **Instant**, **Daily**, **Weekly**, or **None**. Administrators configure account-wide timesheet reminders and the email content people receive.
 
 <Info>
-  Notification preferences are personal. You set yours from your own profile, and they cascade down through tags the same way other settings do — so a default can be set once on the organization or a tag and inherited by everyone beneath it.
+  Notification preferences are personal. You set yours from your own profile, and they cascade down through tags the same way other settings do, so a default can be set once on the organization or a tag and inherited by everyone beneath it. When nothing is set anywhere, both channels are on and every event is **Instant**.
 </Info>
 
 ## What you get notified about
@@ -23,22 +23,59 @@ Beebole sends notifications for a fixed set of events. You control each one inde
 | **When you're @mentioned** | Someone @mentions you in a Journal message. |
 | **Items you manage are mentioned** | A project, person, or other item you manage is mentioned. |
 | **Items assigned to you are mentioned** | An item assigned to you is mentioned. |
-| **Approval updates** | A timesheet you submitted is approved or rejected, or one is submitted for your approval. |
+| **Approval updates** | A timesheet is submitted for your approval. |
+
+When a timesheet you submitted is rejected, or approved at its last stage, Beebole posts a message to you in the Journal with the decision (and the reason, for a rejection). That message reaches you through **When you're @mentioned**.
+
+A few notifications have no row of their own but still follow the channels you choose: [timesheet and approver reminders](#timesheet-reminders), the [warning before an unassigned task starts](/help/documentation/timesheetSettings#warning-about-unassigned-tasks), and the alert administrators receive when [auto-submit](/help/documentation/timesheetSettings#auto-submit) fails on a period.
 
 ## How notifications reach you
 
-Beebole delivers notifications by **Email**: they arrive in your inbox, approval emails include action buttons so you can approve or reject without opening Beebole, and you can reply to a Journal message straight from the email.
+Beebole delivers notifications through two channels, **Email** and **Push notifications**. Tick either or both at the top of the **Notifications** panel. Like the rest of the panel, the channels can be set on the organization, a tag, or a person, and are inherited like any other setting.
+
+- **Email** notifications arrive in your inbox. Approval emails include **Approve** and **Reject** links: **Approve** acts straight from the email and opens the timesheet it approved, while **Reject** opens the timesheet in Beebole with the rejection dialog ready, because a reason is always required. To reject without opening Beebole, reply to the email with "reject" followed by your reason. See [deciding from your email](/help/documentation/approval#from-your-email). You can also reply to a Journal message email, and Beebole adds your reply to the right thread.
+- **Push notifications** appear on your computer or phone even when Beebole is closed, in your own language. They cover mentions, approval requests, and reminders. Clicking one opens Beebole on the related page. A push notification only reaches the devices where you enabled it. See [Push notifications on your devices](#push-notifications-on-your-devices).
 
 <Info>
-  **Email** must be on to receive notifications. Turn it off and the per-event preferences are hidden, because there is nowhere to deliver them.
+  At least one channel must be on to receive notifications. Turn both off and the per-event preferences are hidden, because there is nowhere to deliver them.
 </Info>
+
+### Unsubscribing from emails
+
+Every notification email ends with an **Unsubscribe** link, and mail clients that offer one-click unsubscribe show their own button for it. Either one turns off the **Email** channel in your own notification settings. Push notifications are not affected. To receive emails again, tick **Email** in your **Notifications** panel.
+
+## Push notifications on your devices
+
+Ticking **Push notifications** turns the channel on, but each device also has to be enabled once, because the browser asks for your permission before Beebole can notify you there. When **Push notifications** is ticked in your own **Notifications** panel, a device list appears below the channels:
+
+- **This device** shows whether the browser you are using is **Receiving notifications** or **Not receiving notifications**. Click **Enable on this device** to turn push on for it (the browser asks for permission), or **Remove** to stop push on it.
+- **Other devices** lists the other browsers and devices where you enabled push, with the date each one was added. To stop push on one of them, open Beebole on that device and click **Remove** there.
+
+Ticking **Push notifications** in your own panel also enables the device you are using right away. If the browser can't take part, the device list says so instead:
+
+| Message | What to do |
+|---------|------------|
+| **Notifications are blocked for Beebole in this browser. Allow them in the browser's site settings to turn them on here.** | Notifications for Beebole were refused in this browser earlier. Allow them in the browser's site settings, then come back to the panel. |
+| **This browser can't receive push notifications.** | Use another browser on this device, or rely on email. |
+| **To get notifications on an iPhone or iPad, add Beebole to the Home Screen from the Share menu and enable them from there.** | On iPhone and iPad, push notifications only work in Beebole installed on the Home Screen. [Add Beebole to your Home Screen](/help/documentation/mobile#on-iphone-or-ipad), open it from there, and enable push in your **Notifications** panel. |
+
+Beebole drops a device on its own when its browser no longer accepts notifications. Signing out stops your notifications on that device, and signing in again brings them back without a new permission request.
+
+### The Get notified on this device prompt
+
+When push is on in your settings but the device you are using isn't enabled yet, Beebole offers to enable it with a **Get notified on this device** prompt in the top-right corner. It appears once you come back to Beebole on that device on a second day, and only while the browser hasn't yet allowed or blocked notifications for Beebole.
+
+- Click **Enable** to turn push on for the device. The browser then asks for permission.
+- Click **Not now** to hide the prompt. The first time, it stays hidden for a month. The second time, it doesn't come back on that device.
+
+An administrator who turns **Push notifications** on for the organization, a tag, or another person sees the prompt right away when their own device isn't enabled yet and they haven't hidden it with **Not now**, so they can enable it at the same time.
 
 ## Choosing how often you're notified
 
-For each event, you pick how often Beebole emails you:
+For each event, you pick how often Beebole notifies you. The frequency applies to both channels:
 
-<Frame caption="Your Notifications panel, with a frequency for each event">
-  <img src="/help/images/notifications/preferences-panel.webp" alt="Beebole Notifications panel on a person's profile with the Email checkbox ticked and a None, Instant, Daily or Weekly choice for each event: when you're @mentioned, items you manage are mentioned, items assigned to you are mentioned, and approval updates" width="538" />
+<Frame caption="Your Notifications panel, with both channels and a frequency for each event">
+  <img src="/help/images/notifications/preferences-panel.webp" alt="Beebole Notifications panel on your own profile with the Email and Push notifications checkboxes ticked, the device list below them, and a None, Instant, Daily or Weekly choice for each event: when you're @mentioned, items you manage are mentioned, items assigned to you are mentioned, and approval updates" width="538" />
 </Frame>
 
 | Frequency | What it does |
@@ -48,14 +85,14 @@ For each event, you pick how often Beebole emails you:
 | **Weekly** | Batches the week's events into one digest, sent on the day and hour you choose. |
 | **None** | Turns the event off entirely. |
 
-Daily and weekly digests reduce inbox volume by grouping events into one message instead of sending one email per event.
+Daily and weekly digests reduce inbox volume by grouping events into one message instead of sending one email per event. On push, a digest arrives as one notification that says how many new notifications are waiting.
 
 <Steps>
   <Step title="Open your Notifications preferences">
     Open your own profile, then open the **Notifications** panel.
   </Step>
-  <Step title="Enable email">
-    Tick **Email**. It must be on to configure events.
+  <Step title="Choose your channels">
+    Tick **Email**, **Push notifications**, or both. At least one must be on to configure events. Ticking **Push notifications** also turns push on for the device you are using. The browser asks for your permission first if you haven't answered it before.
   </Step>
   <Step title="Set a frequency per event">
     For each event, choose **Instant**, **Daily**, **Weekly**, or **None**. For **Daily** and **Weekly** you also pick the delivery hour, and for **Weekly** the day of the week.
@@ -68,17 +105,17 @@ Daily and weekly digests reduce inbox volume by grouping events into one message
 
 ### When many alerts fire at once
 
-**Instant** never floods your inbox. When more than three notifications of the same kind are waiting for you at the same moment — a whole team submitting their timesheets, for example — Beebole collapses them into one summary instead of one email each. The summary uses the same layout as a digest: it lists the first eight items of each kind, then a count of the rest, with a link to open Beebole.
+**Instant** never floods your inbox or your notification center. When more than three notifications of the same kind are waiting for you at the same moment (a whole team submitting their timesheets, for example), Beebole collapses them into one summary instead of one message each. By email, the summary uses the same layout as a digest: it lists the first eight items of each kind, then a count of the rest, with a link to open Beebole. On push, it is a single notification that says how many are waiting.
 
 If another burst of the same kind follows within the next 15 minutes, it is held and delivered as one further summary once that window closes, so a long-running import or a busy afternoon never turns into a stream of near-identical emails.
 
 <Info>
-  Summaries are built from the **Digest** email template, so any wording you customize there also applies to these bursts.
+  Email summaries are built from the **Digest** email template, so any wording you customize there also applies to these bursts.
 </Info>
 
 ## Timesheet reminders
 
-Reminders are configured by administrators in **Timesheet and Planning Settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work.
+Reminders are configured by administrators in **Timesheet and Planning Settings**, not in personal preferences. They prompt people to submit their timesheets and nudge approvers about pending work. They reach each person through the channels ticked in their notification settings. Reminders to submit go only to people who have an [approval workflow](/help/documentation/approval), since without one there is nothing to submit.
 
 <Steps>
   <Step title="Open Timesheet and Planning Settings">
@@ -106,7 +143,7 @@ Administrators can customize the wording of the emails Beebole sends. Email temp
 
 <Steps>
   <Step title="Open Email templates">
-    Open the organization, a tag, or a person, then open the **Email templates** panel.
+    Open the organization or a tag, then open the **Email templates** panel.
   </Step>
   <Step title="Pick the email type">
     Select the tab for the email you want to change.
@@ -124,7 +161,7 @@ Administrators can customize the wording of the emails Beebole sends. Email temp
 
 Beebole delivers notifications through a background queue so a temporary network or service hiccup does not lose them. If a notification fails to send, Beebole retries it automatically up to three times before marking it as failed. No action is needed on your side — delayed notifications are redelivered once the issue clears.
 
-Emails only go to people who actually belong to the organization — an active account or a still-valid invitation. Archived people are excluded, so departed team members never receive notifications about an account they left.
+Notifications only go to people who actually belong to the organization, with an active account or a still-valid invitation. Archived people are excluded, so departed team members never receive notifications about an account they left.
 
 ## Related content
 
@@ -135,6 +172,9 @@ Emails only go to people who actually belong to the organization — an active a
   <Card title="Approval" icon="circle-check" href="/help/documentation/approval">
     Approval updates and approver reminders are tied to the timesheet approval workflow.
   </Card>
+  <Card title="Mobile" icon="mobile" href="/help/documentation/mobile">
+    Install Beebole on your phone, including on the iPhone Home Screen for push notifications.
+  </Card>
   <Card title="Budget Status report" icon="chart-simple" href="/help/documentation/reports#budget-status">
     Where projects approaching or over their budget are flagged, with no setting to switch on.
   </Card>
@@ -144,15 +184,18 @@ Emails only go to people who actually belong to the organization — an active a
 
 <AccordionGroup>
   <Accordion title="Can I turn off all notifications?">
-    Yes. In your **Notifications** preferences in Beebole, turn **Email** off, or set every event to **None**. Either way you stop receiving notifications for those events.
+    Yes. In your **Notifications** preferences in Beebole, untick both **Email** and **Push notifications**, or set every event to **None**. Either way you stop receiving notifications for those events. The unsubscribe link in a notification email turns off email only, and push notifications keep coming until you untick **Push notifications** too.
+  </Accordion>
+  <Accordion title="How do I get Beebole notifications on my phone?">
+    Tick **Push notifications** in your **Notifications** panel, then open Beebole on your phone and click **Enable on this device** in the same panel, or **Enable** in the **Get notified on this device** prompt. On an iPhone or iPad, first add Beebole to the Home Screen from Safari's Share menu and open it from there, because push notifications don't work in a Safari tab. See [installing Beebole on iPhone or iPad](/help/documentation/mobile#on-iphone-or-ipad).
   </Accordion>
   <Accordion title="What is the difference between instant and digest notifications?">
-    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour — and, for weekly, the day — you choose. Digests cut down on inbox volume while still keeping you informed. Even with **Instant**, a burst of more than three alerts of the same kind arrives as one summary rather than one message each.
+    In Beebole, **Instant** sends a notification the moment an event happens. **Daily** and **Weekly** instead batch events into a single digest sent at the hour (and, for weekly, the day) you choose, by email and by push alike. Digests cut down on inbox volume while still keeping you informed. Even with **Instant**, a burst of more than three alerts of the same kind arrives as one summary rather than one message each.
   </Accordion>
   <Accordion title="Who sets up timesheet reminders?">
     Administrators set timesheet reminders in Beebole's **Timesheet and Planning Settings** panel, on the **Reminders** tab. Reminders prompt people to submit timesheets and chase approvers about pending work, and they cascade from the organization down through tags and people.
   </Accordion>
   <Accordion title="Can I respond to a notification by email?">
-    Yes. Beebole's approval emails include buttons to approve or reject a timesheet without opening Beebole. You can also reply to a Journal message email directly, and Beebole adds your reply to the right thread.
+    Yes. In Beebole's approval emails, **Approve** approves the timesheet straight from your inbox. **Reject** opens the timesheet in Beebole with the rejection dialog, because a reason is required, or you can reply to the email with "reject" followed by your reason. You can also reply to a Journal message email directly, and Beebole adds your reply to the right thread.
   </Accordion>
 </AccordionGroup>

@@ -9,13 +9,25 @@ const PANEL_WIDTH = 800
 export const scenes = [
 	{
 		id: 'timeoff-absence-types',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		// The Time Off list with PTO open on its Units panel: the list alone is two lines.
 		async setup(page, h) {
 			await h.openPanel(page, '/absenceTypes', 'PTO', 'absence-type-unit')
 			await page.getByText('Units', { exact: true }).filter({ visible: true }).first().waitFor()
+			await page.getByText('Time off notifications', { exact: true }).filter({ visible: true }).first().waitFor()
+			// Production hosts do not have the Accruals and Time off notifications panels
+			// (isProduction() in reboot's services/entity/attributes.ts); QA does.
+			await page.evaluate(() => {
+				const leaf = (t) => [...document.querySelectorAll('body *')].find((e) => e.childElementCount === 0 && e.textContent.trim() === t)
+				for (const title of ['Accruals', 'Time off notifications']) {
+					// The whole panel entry: climb to the child of the list that holds every panel.
+					let row = leaf(title)
+					while (!(row.parentElement.textContent.includes('Units') && row.parentElement.textContent.includes('Who has access?'))) row = row.parentElement
+					row.style.display = 'none'
+				}
+			})
 			await h.settle(page, 1500)
 		},
 		// Off the side panel, which shows its pin and resize buttons under the mouse.
@@ -24,7 +36,7 @@ export const scenes = [
 	},
 	{
 		id: 'timeoff-allowances-panel',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		// Elena Rossi's PTO allowance opened, with Available, Consumed and Accrued at the top.
@@ -38,6 +50,12 @@ export const scenes = [
 				await card.click()
 				await page.getByText('Carry forward limit').filter({ visible: true }).first().waitFor()
 			}
+			// Production hosts do not show Repeat automatically (isProduction() in reboot's
+			// attributes/absence-type-quota.ts); QA does. Its row is the label's parent.
+			await page.evaluate(() => {
+				const leaf = [...document.querySelectorAll('body *')].find((e) => e.childElementCount === 0 && e.textContent.trim() === 'Repeat automatically')
+				if (leaf) leaf.parentElement.style.display = 'none'
+			})
 			await h.settle(page, 1000)
 		},
 		shots: [

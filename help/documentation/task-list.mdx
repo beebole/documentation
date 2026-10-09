@@ -8,7 +8,7 @@ keywords: ["beebole", "task list", "list view", "table view", "sortable tasks", 
 "og:type": "article"
 ---
 
-Beebole's List view shows your [tasks](/help/documentation/planning) as a plain table — one header row, then one row per task — using the same columns as the Gantt chart, but sortable and without a timeline taking up half the screen. Use it when you want to work the list rather than look at it: find the tasks nobody owns, order everything by date, or change a field on twenty tasks at once. It is one of the four views of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt), the [Kanban board](/help/documentation/kanban), and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
+Beebole's List view shows your [tasks](/help/documentation/planning) as a plain table — one header row, then one row per task — using the same columns as the Gantt chart, but without a timeline taking up half the screen. Use it when you want to work the list rather than look at it: find the tasks nobody owns, order everything by date, or change a field on twenty tasks at once. It is one of the four views of the **Planning** page, alongside the [Gantt chart](/help/documentation/gantt), the [Kanban board](/help/documentation/kanban), and the [Staffing view](/help/documentation/staffing) — all show the same tasks, so a change in one view appears instantly in the others.
 
 ---
 
@@ -27,7 +27,7 @@ Beebole's List view shows your [tasks](/help/documentation/planning) as a plain 
 
 ## Reading the table
 
-Every task you can see is one row. The header row stays visible while you scroll down, and the table scrolls sideways inside its own area when the columns are wider than the screen — the page itself never scrolls horizontally.
+Every task you can see is one row. The header row stays visible while you scroll down. When the columns are wider than the screen, the table scrolls sideways inside its own area and the page itself never scrolls horizontally, while **Row #**, **Task Name**, and any column you pin stay on the left (see [Pinning columns](#pinning-columns)).
 
 <Frame caption="A List view sorted by Dates">
   ![Beebole List view of the Main plan planning with the Row #, Task Name, Owner, Dates, Planned, Client and Status columns, sorted by Dates as the arrow on its header shows, with each owner and client project drawn as a badge](/help/images/planning/task-list-view.webp)
@@ -46,7 +46,11 @@ Every task you can see is one row. The header row stays visible while you scroll
 
 ## Choosing columns
 
-Open the **⋯** menu on the active view tab and hover over **Columns** to show or hide columns. Selected columns appear first in the submenu, the rest below in alphabetical order.
+Open the **⋯** menu on the active view tab and hover over **Columns**. Click a column's name to show or hide it: a tick marks the columns shown. The pin button at the end of each line keeps that column on the left while the table scrolls sideways. Selected columns appear first in the submenu, the rest below in alphabetical order.
+
+<Frame caption="The Columns submenu: the columns shown first, with their tick, then the others, each with its pin button">
+  <img src="/help/images/planning/task-list-columns-menu.webp" alt="Beebole List view tab menu open with Durations in, Columns, Group by, Filters, Rename, Duplicate and Delete, and the Columns submenu listing Owner, Dates and Status ticked, then Activity, Client, Dependencies, Internal, Occupation, Planned, Potential owners and Tags, each line ending with a pin button" width="512" />
+</Frame>
 
 | Column | What it shows |
 |--------|--------------|
@@ -65,9 +69,13 @@ In addition, one column per [project category](/help/documentation/projects) is 
 
 The **Planned** figures follow the unit chosen under **Durations in** in the same menu — **Hours** or **Days**.
 
+### Pinning columns
+
+Pinned columns stay on the left of the table while the other columns scroll sideways, like frozen columns in a spreadsheet. **Row #** and **Task Name** are always pinned. To pin another column, click the pin button next to its name in the **Columns** submenu (tooltip **Keep this column on the left when scrolling**), and click it again (**Stop keeping this column on the left**) to unpin it. Pinning a hidden column also shows it. Pinned columns sit right after **Task Name**, and hiding a column unpins it.
+
 ### Reordering and resizing columns
 
-- **Reorder** — Drag a column header sideways and drop it where you want it. **Row #** and **Task Name** stay first and can't be moved.
+- **Reorder** — Drag a column header sideways and drop it where you want it. **Row #** and **Task Name** stay first and can't be moved. A column dropped among the pinned columns becomes pinned, and a pinned column dropped among the others is unpinned.
 - **Resize** — Drag the right edge of any column header. Widths are saved with the view.
 
 ---
@@ -107,8 +115,10 @@ Open the **⋯** menu on the active view tab and hover over **Group by** to rest
 
 Select **None** to remove grouping. Each group gets a header line with the group as a badge and the number of tasks in it; click the header to collapse or expand that group, or hold **⌘** while clicking to collapse or expand them all. With a grouping active, **Show all groups** also displays the empty ones — useful to see owners or statuses that currently have no tasks.
 
+Hovering a group header also shows its **+** button (**Add Task**). It adds a task at the top of the group, with the group's owner, status, or project already set; see [Adding tasks in place](#adding-tasks-in-place).
+
 <Frame caption="The Main plan List grouped by Status, each header showing the status and its number of tasks">
-  ![Beebole List view of the Main plan grouped by Status, with the Backlog (1), Queue (3), In progress (10) and Done (10) group headers, each followed by its tasks and their Owner, Dates and Status columns](/help/images/planning/task-list-grouped.webp)
+  ![Beebole List view of the Main plan grouped by Status, with the Backlog (1), Queue (3), In progress (10) and Done (10) group headers, each followed by its tasks with their Owner, Dates and Status columns and the Done and Delete buttons at the end of each row](/help/images/planning/task-list-grouped.webp)
 </Frame>
 
 ---
@@ -134,6 +144,12 @@ Changes are saved as you make them. Editing a value never re-sorts the table und
   A parent task shows its subtasks' totals rather than its own values, so **Planned**, **Occupation**, and **Dates** aren't editable on a parent row. Change the subtasks instead.
 </Tip>
 
+### Adding tasks in place
+
+Hover over a row and click the **+** button next to the task's name: a name field opens under the row, and what you type becomes a subtask of that task. The **+** on a group header works the same way at the top of the group, and the new task gets the group's owner, status, or project. Press **Enter** to save the task and open a field for the next one, or paste a list to add several at once.
+
+Hold **⌘** (Ctrl on Windows) as you click a **+** to open the full add form instead, with the same values filled in. In a Bookings planning, both buttons open the **Add Booking** form. See [Adding tasks in place](/help/documentation/planning#adding-tasks-in-place) for the details.
+
 ### Editing several tasks at once
 
 Build a selection first, then edit any row inside it — the change applies to every selected task:
@@ -144,14 +160,22 @@ Build a selection first, then edit any row inside it — the change applies to e
 - Press **Esc** to clear the selection, or **Delete** (or **Backspace**) to delete every selected task.
 
 <Frame caption="Three tasks selected with ⌘+Click: a change on any of these rows applies to all three">
-  ![Beebole List view of the Main plan with three rows highlighted as a selection, Requirements Gathering, UI/UX Design and System Analysis, among the other tasks with their Owner, Dates and Status](/help/images/planning/task-list-selection.webp)
+  ![Beebole List view of the Main plan with three rows highlighted as a selection, Requirements Gathering, UI/UX Design and System Analysis, among the other tasks with their Owner, Dates and Status and the Done and Delete buttons at the end of each row](/help/images/planning/task-list-selection.webp)
 </Frame>
 
 A mass change is a single undo step, however many tasks it touched: **⌘Z** brings all of them back at once, **⇧⌘Z** reapplies them.
 
 <Warning>
-  A task that has time records logged against it cannot be deleted, so a bulk delete stops on it. Archive those tasks instead, from the task's **⋯** menu.
+  A task that has time records logged against it cannot be deleted, so a bulk delete stops on it. Mark those tasks **Done** instead, with the button at the end of the row or from the task's **⋯** menu.
 </Warning>
+
+### Marking tasks done from a row
+
+If you are allowed to manage tasks, each row ends with two icon buttons, which brighten when you hover over the row. Their tooltips name them: **Done** marks the task done (on a task already done, the tooltip reads **Reopen**), and **Delete** deletes it. They do the same as the matching entries of the task's **⋯** menu. A done task leaves the table until you click **Show Done** in the page header; see [Marking tasks done and deleting them](/help/documentation/planning#marking-tasks-done-and-deleting-them).
+
+<Frame caption="The Done and Delete buttons at the end of a task row, brighter on the row under the mouse">
+  ![Beebole List view of the Main plan with the Owner, Dates and Status columns, and a magnifier on the end of the App Development row, In progress, showing its Done button (a ticked circle) and its Delete button (a bin), brighter than on the other rows](/help/images/planning/task-list-row-actions.webp)
+</Frame>
 
 ---
 
@@ -218,10 +242,10 @@ The tabs above the task list are saved views, and a planning can hold as many Li
     Yes. **⌘+Click** rows to build a selection (or **Shift+Click** for a range), then change the value on any row inside the selection — every selected task in Beebole gets it, as one undo step. **Delete** removes the whole selection at once.
   </Accordion>
   <Accordion title="What is the difference between the List view and the Gantt chart?">
-    Both show the same tasks with the same columns. The Gantt chart pairs those columns with bars on a timeline, for scheduling and dependencies. The List view drops the timeline and gives the columns the whole width, adds sorting, and lets you reorder and resize them — better for finding, checking, and mass-editing tasks.
+    Both show the same tasks with the same columns, which you can sort, reorder, and resize in either view. The Gantt chart pairs those columns with bars on a timeline, for scheduling and dependencies. The List view drops the timeline, gives the columns the whole width, and lets you pin columns so they stay on the left while the table scrolls sideways. That makes it better for finding, checking, and mass-editing tasks.
   </Accordion>
   <Accordion title="Why can't I move the Row # and Task Name columns?">
-    Those two are fixed in Beebole: **Row #** carries the numbers dependencies point to, and **Task Name** carries the hierarchy chevron, so both stay at the left of the table. Every other column can be dragged into any order and resized.
+    Those two are fixed in Beebole: **Row #** carries the numbers dependencies point to, and **Task Name** carries the hierarchy chevron, so both stay at the left of the table and are always pinned there while you scroll sideways. Every other column can be dragged into any order, resized, and pinned.
   </Accordion>
   <Accordion title="Can I export the List view?">
     Not from the view itself — the List view in Beebole is a working table, not an export. Build the figures you need in [Reports](/help/documentation/reports) instead, then [download them](/help/documentation/data-exports) as Excel, CSV, or PDF.

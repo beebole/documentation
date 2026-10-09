@@ -6,17 +6,16 @@ const restInHeader = () => ({ x: 800, y: 50 })
 export const scenes = [
 	{
 		id: 'notifications-preferences',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
 			await h.openPanel(page, '/persons', 'Jordan Reed', 'notification')
 			await page.getByText('Instant', { exact: true }).first().waitFor()
-			// Production hosts show neither the push channel nor the budget alerts (isProduction() in
-			// reboot's attributes/notification.ts); QA shows both.
+			// Production hosts do not show the budget alerts (isProduction() in reboot's
+			// attributes/notification.ts); QA does. The push channel shows on both since 2026-10-08.
 			await page.evaluate(() => {
 				const leaf = (t) => [...document.querySelectorAll('body *')].find((e) => e.childElementCount === 0 && e.textContent.trim() === t)
-				leaf('Push notifications').closest('label').style.display = 'none'
 				// The whole row: climb to the child of the list that holds every event row.
 				let row = leaf('Budget threshold alerts')
 				while (!row.parentElement.textContent.includes('@mentioned')) row = row.parentElement

@@ -130,7 +130,7 @@ export const scenes = [
 	{
 		// The account's Add restriction menu open. Picking a rule would save it, so nothing is picked.
 		id: 'timesheet-settings-add-restriction',
-		capturedAt: '2026-10-01',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {
@@ -138,7 +138,7 @@ export const scenes = [
 			await page.getByText('Period & submission', { exact: true }).first().waitFor()
 			await h.settle(page, 1500)
 			await page.getByPlaceholder('Add restriction').filter({ visible: true }).first().click()
-			await page.getByText("Only an admin can edit someone else's timesheet", { exact: true }).filter({ visible: true }).first().waitFor()
+			await page.getByText('Only the owner or an admin can edit entries', { exact: true }).filter({ visible: true }).first().waitFor()
 			await h.settle(page, 800)
 		},
 		mouse: () => ({ x: 800, y: 50 }),

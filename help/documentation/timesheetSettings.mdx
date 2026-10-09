@@ -4,7 +4,7 @@ sidebarTitle: "Timesheet Settings"
 description: "Configure the Beebole timesheet for your team: period and auto-submit, entry restrictions, time entry unit and timer, categories, and reminders."
 keywords: ["beebole", "timesheet settings", "timesheet period", "time entry restrictions", "timesheet reminders", "auto-submit timesheet", "auto timesheet from planning", "duration format"]
 "og:title": "Configuring Timesheet Settings in Your Beebole Account"
-"og:description": "Set the timesheet period, time entry unit, timer, restrictions, categories, and reminder emails for your team in Beebole."
+"og:description": "Set the timesheet period, time entry unit, timer, restrictions, categories, and reminders to submit for your team in Beebole."
 "og:type": "article"
 ---
 
@@ -74,6 +74,8 @@ The **Timesheet period** defines the stretch of time a timesheet covers — the 
 
 **Auto-submit timesheets after X days** submits unsubmitted timesheets automatically once the configured number of days has passed since the period ended. The auto-submitted timesheet enters the [approval workflow](/help/documentation/approval) like a manual submission. Leave the value at 0 to disable auto-submit.
 
+For people with no approval workflow, auto-submit approves and locks the period directly, without notifying anyone. It is the only way their periods close: they have no **Submit** button, since there is nobody to submit to.
+
 At the deadline, [suggested time entries](/help/documentation/ai) still pending on the period are converted into real entries before the submission, so a timesheet assembled from suggestions submits itself. Every entry still respects the entry rules — a suggestion a restriction refuses is trimmed to fit the day's remaining scheduled time, or skipped if it still doesn't fit. [Timesheet reminders](#reminding-people-to-submit) announce the deadline in advance, so nobody is surprised by an automatic submission.
 
 Auto-submit only ever acts on one period per person: the most recent one whose deadline has passed. Older periods are never revisited, so switching the setting on doesn't submit months of history at once. A period that already has a status — submitted, approved, or rejected — is left alone, and an empty period is never submitted: if it holds no time entries and no suggestion could be converted, nothing is sent to approvers.
@@ -99,7 +101,7 @@ When several entries are deleted at once — clearing a section, or deleting a s
 The **Restrictions** list controls what time entries the timesheet accepts. New accounts start with two restrictions active: **An absence can't be longer than a day** and **Require filling the whole schedule to submit** (period). When none is active, the panel shows **No restrictions configured**. Pick a rule from the **Add restriction** menu to activate it; click the × on a restriction's chip to remove it.
 
 <Frame caption="The Add restriction menu, listing the rules not yet active">
-  <img src="/help/images/timesheets/timesheet-restrictions.webp" alt="Beebole Add restriction menu open under Restrictions, listing Hide the non-billable option, the block and warning variants of Keep start/end times within the scheduled hours, the daily and period variants of No overtime beyond the schedule, Only allow time entries on scheduled working time, Only an admin can edit someone else's timesheet, Only the owner or an admin can edit entries, Only time off can be recorded in the future and Require comments for submission" width="521" />
+  <img src="/help/images/timesheets/timesheet-restrictions.webp" alt="Beebole Add restriction menu open under Restrictions, listing Allow only planned tasks in the timesheet, DCAA compliance — only the owner or an admin can edit entries, no future time except time off, Hide the non-billable option, the block and warning variants of Keep start/end times within the scheduled hours, the daily and period variants of No overtime beyond the schedule, Only allow time entries on scheduled working time, Only the owner or an admin can edit entries and Only time off can be recorded in the future, with more rules further down the list" width="770" />
 </Frame>
 
 | Restriction | What it does |
@@ -112,10 +114,14 @@ The **Restrictions** list controls what time entries the timesheet accepts. New 
 | **Keep start/end times within the scheduled hours** | When start and end times are recorded, an entry's times must fall within the person's scheduled working hours. Available as a **warning** (the entry form warns but allows saving) or a **block** (the entry is refused, including when copying entries to other days). |
 | **An absence can't be longer than a day** | Caps a single time off entry at one day. |
 | **Hide the non-billable option** | Removes the **Non-billable** checkbox from the entry details, so nobody can mark a time entry as non-billable. |
-| **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. |
-| **Only an admin can edit someone else's timesheet** | Managers can still view their team's timesheets, but adding or editing entries on someone else's timesheet is reserved for admins. |
+| **Only the owner or an admin can edit entries** | Only the person the timesheet belongs to, or an admin, can add or edit its entries. Managers and approvers can still view the timesheet but can't change it at any stage: not while it is a draft or was rejected, and not while it waits for their approval. |
+| **Allow only planned tasks in the timesheet** | Ties each person's timesheet to their plan. The tasks they own appear on their own and take time only on their planned dates, and no other row can be added. Task pickers and favorites offer only the person's own tasks, a suggestion on any other task can't be accepted, period copy and paste is off, and time off stays available. Time on another task or on a project is refused. See [When only planned tasks are allowed](/help/documentation/timesheets#when-only-planned-tasks-are-allowed). |
 
 Restrictions with **daily** and **period** variants show each active variant as a tag on the chip, and you can activate one or both. The **warning** and **block** variants are exclusive — activating one replaces the other.
+
+The **Add restriction** menu also offers **DCAA compliance — only the owner or an admin can edit entries, no future time except time off**. Picking it turns on **Only the owner or an admin can edit entries** and **Only time off can be recorded in the future** in one step. Each then shows as its own chip and can be removed separately, and a single undo reverts both. The choice stays in the menu while either of the two is off.
+
+**Only the owner or an admin can edit entries** replaced the former "Only an admin can edit someone else's timesheet" restriction, which only kept managers out of draft and rejected periods. Wherever the old restriction was on, Beebole switched this one on automatically, so managers stay locked out.
 
 **Hide the non-billable option** also protects the data behind the form. Any attempt to mark an entry as non-billable — from the timesheet or through the API — is refused with **Your timesheet settings do not offer the non-billable option.** Entries marked before you activated the restriction keep their flag, and clearing it stays allowed. When entries are copied to another period, the copies arrive without the non-billable flag, even if the originals carried it. The setting follows the timesheet owner: like every restriction, it is resolved through the account, the person's tags, and the person, so a rule set on a tag applies to everyone under it.
 
@@ -184,6 +190,8 @@ The **Categories** tab decides what people can track time on. Each choice become
 
 **Record time on these plannings** does the same for [tasks](/help/documentation/planning): people can add timesheet rows for tasks in the selected plannings (task categories). Add one with **Pick a planning**.
 
+While the **Allow only planned tasks in the timesheet** restriction is on, the plan decides instead. **Record time on these plannings** becomes read-only, with the note **Only planned tasks are available: every planning counts.** The tasks a person owns reach their timesheet whatever their planning. **Record time on these project categories** shows **Only used to justify a booking's time on a project.** People can't add project rows then, and these categories only serve to log the time of a [booking](/help/documentation/planning#tasks-or-bookings) on its project.
+
 ### Time off
 
 **Allow recording time off** controls whether a **Time Off** section appears in the timesheet, where people add rows for absence types. See [Time off](/help/documentation/timeoff).
@@ -204,12 +212,12 @@ The **Reminders** tab configures two kinds of follow-up.
 
 ### Reminding people to submit
 
-**Remind to submit** sends a reminder by email, following each person's [notification settings](/help/documentation/notifications), to anyone who hasn't submitted their timesheet. Choose when it goes out:
+**Remind to submit** sends a reminder by email, by push, or both, following each person's [notification settings](/help/documentation/notifications). It goes only to people who have an approval workflow and whose timesheet for the period is still a draft or was rejected: without a workflow there is nothing to submit, so no reminder is sent. Choose when it goes out:
 
 - **Start of next period** — on the first day of the new period, about the period that just ended.
 - **End of current period** — on the last day of the period being filled.
 
-Then pick the hour. The reminder is sent at that hour in each person's time zone, includes a summary of their timesheet, and lets them submit directly from the email. People who already submitted are skipped, and reminders don't apply when the timesheet period is **Daily**.
+Then pick the hour. The reminder is sent at that hour in each person's time zone. The email includes a summary of their timesheet and lets them submit directly from it. People whose timesheet is already submitted or approved are skipped, and reminders don't apply when the timesheet period is **Daily**.
 
 ### Reminding approvers
 
@@ -240,6 +248,8 @@ The **Auto Timesheet from Planning** tab turns work planned on [tasks](/help/doc
     Generated entries always arrive as [suggestions](/help/documentation/ai) — badged **Kanban** — that the person reviews and accepts. Nothing is written into the timesheet without their say (or, if [auto-submit](#auto-submit) is enabled, until the deadline converts pending suggestions).
   </Step>
 </Steps>
+
+The suggestions go to the timesheet of the task's **Owner**. When the task has no owner, the person who moves it to the start or end status becomes its owner and gets them. Beebole reads this tab for that person, so an override on their tag or profile applies.
 
 When several tasks finish the same day, the day is split between them. Entries the person logged manually are never touched — automatic entries rebalance around them, and each accepted entry records which source it came from.
 
@@ -298,7 +308,7 @@ Next to each setting, an icon shows where its current value is inherited from. A
   </Accordion>
 
   <Accordion title="What happens if someone forgets to submit their timesheet?">
-    Two Beebole settings cover this. **Remind to submit** emails anyone who hasn't submitted, at the hour you choose, with a link to submit directly from the email, announcing the auto-submit deadline when one is set. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended, converting any pending suggested entries into real entries first.
+    Two Beebole settings cover this. **Remind to submit** reminds people whose timesheet is still a draft or was rejected, by email or push at the hour you choose, announcing the auto-submit deadline when one is set; the email lets them submit directly. **Auto-submit timesheets after X days** then submits the timesheet automatically once the configured number of days has passed since the period ended, converting any pending suggested entries into real entries first. People without an approval workflow get no reminder, and for them auto-submit approves and locks the period directly, the only way it closes.
   </Accordion>
 
   <Accordion title="How do I change the first day of the week?">

@@ -2,92 +2,50 @@
 title: "Time-off accruals: frequency and carry-forward"
 sidebarTitle: "Accruals"
 tag: "Soon"
-description: "Configure time-off accrual policies in Beebole: choose accrual frequency, set carry-forward limits, and control when allowances are awarded."
+description: "Preview of Beebole's upcoming time-off accrual policies, plus the carry-forward rules and manual Accrued field that already work on allowances today."
 keywords: ["beebole", "accruals", "time off accrual", "leave accrual", "carry forward", "PTO accrual", "allowance rollover"]
 og:title: "Time-Off Accrual Policies and Carry-Forward in Beebole"
-og:description: "Configure time-off accrual policies with flexible frequency, carry-forward, and award timing options."
+og:description: "Preview upcoming time-off accrual policies in Beebole and learn how carry-forward and the manual Accrued field work on allowances today."
 og:type: "article"
 ---
 
-Beebole's accrual policies let you define how time off accumulates for your team on a recurring schedule. Instead of granting the full annual allowance on day one, you can configure policies where leave builds up gradually — monthly, weekly, or at whatever frequency matches your company's rules. Accrued time is reflected on each person's allowance through its editable **Accrued** field.
-
 <Info>
-  Accrual policies are linked to absence types. Each absence type can have its own accrual policy with independent settings for frequency, quantity, and award timing.
+  Accrual policies are not available yet. This page previews how they will work once they ship. Today, you add earned time by hand in the allowance's **Accrued** field. The [carry-forward rules](#carry-forward-rules) and [accrued balances](#viewing-accrued-balances) described below already work.
 </Info>
 
----
-
-## How accruals work
-
-An accrual policy defines three things:
-
-1. **How much** time off is awarded per period (the **Quantity**).
-2. **How often** the accrual is awarded (the **Frequency**).
-3. **When** within each period the accrual is credited to the person's balance (the **Awarded on** setting).
-
-The policy defines how much time a person earns as each accrual period completes. Earned time is reflected on the person's allowance through its **Accrued** field — an editable adjustment to the accrued balance that appears on their profile and in time-off reports.
+Beebole's accrual policies will let you define how time off accumulates for your team on a recurring schedule. Instead of granting the full allowance on day one, leave will build up gradually, for example every week or every month. Until then, you record earned time by hand in the allowance's editable **Accrued** field.
 
 ---
 
-## Creating an accrual policy
+## How accruals will work
 
-<Steps>
-  <Step title="Open the absence type">
-    Go to **Settings** \> **Time Off** and click the absence type you want to configure accruals for.
-  </Step>
-  <Step title="Enable accruals">
-    In the **Accruals** panel, turn on the toggle to reveal the accrual settings.
-  </Step>
-  <Step title="Set the accrual amount">
-    Enter the number of hours or days to award per accrual period. This amount is added to each person's balance at the configured frequency.
-  </Step>
-  <Step title="Choose the frequency">
-    Select how often the accrual is awarded. Common options include monthly, quarterly, semi-annually, or annually.
-  </Step>
-  <Step title="Set the award timing">
-    Choose when the accrual is credited within each period:
+An accrual policy will belong to an absence type and define three things:
 
-    - **First day of the period** — The balance is credited at the start.
-    - **Last day of the period** — The balance is credited at the end.
-    - **Day after the period** — The balance is credited on the first day of the next period.
-  </Step>
-  <Step title="Set the quantity">
-    Enter the number of hours or days to award per accrual period in **Quantity**. Every change is saved automatically — the accrual policy is now defined for this absence type.
-  </Step>
-</Steps>
+1. How much time off is awarded per period (the **Quantity**).
+2. How often the accrual is awarded (the **Frequency**).
+3. When, within each period, the accrual is credited to the person's balance (the **Awarded on** setting).
 
-<Tip>
-  Choose **first day of the period** if you want people to use their accrued time immediately. Choose **last day of the period** or **day after the period** if you want them to earn the time before they can use it.
-</Tip>
+Each absence type will have its own policy, and policies will be optional: some types can accrue (vacation, for example) while others keep a fixed allowance. Earned time will be added to the person's balance, alongside the **Accrued** amount you can already enter by hand.
 
 ---
 
-## Carry-forward rules
+## Planned policy settings
 
-Carry-forward controls what happens to unused time off when an allowance period ends. It is configured on the allowance, not on the accrual policy: each allowance has a **Carry forward limit** field — the maximum number of hours or days that can roll over to the next period. The default is 0, so unused time off expires at the end of the period ("use it or lose it"). Any unused balance above the limit is forfeited.
+The policy is planned as an **Accruals** panel on each absence type, under **Settings** \> **Time Off**, switched on and off with a toggle. Once it is on, it will offer these settings:
 
-<Steps>
-  <Step title="Open the allowance">
-    Open the **Absence allowances** panel — on **Settings** \> **Account Settings** for the organization default, or on a person or tag — and click the relevant allowance.
-  </Step>
-  <Step title="Set the limit">
-    Enter the maximum amount that can roll over in **Carry forward limit**. The change is saved automatically and applies at the end of the allowance period.
-  </Step>
-</Steps>
-
-<Frame caption="A PTO allowance that lets up to 5 days roll over to the next year">
-  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open, showing Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027 and the Carry forward limit field set to 5 d, above the Allow negative balance and Repeat automatically options" width="538" />
-</Frame>
-
-<Warning>
-  Changing the **Carry forward limit** mid-period may affect balances that have already rolled over. Review individual balances after making changes to ensure they reflect your intent.
-</Warning>
+| Setting | What it will do |
+| --- | --- |
+| **Frequency** | How often time is credited. See [Frequency settings](#frequency-settings). |
+| **Accruing from first** | For **Weekly** and **Bi-weekly** frequencies only, the weekday each accrual period starts on. |
+| **Awarded on** | When within each period the credit lands: **first day of the period**, **last day of the period**, or **day after the period**. See [Award timing explained](#award-timing-explained). |
+| **Quantity** | The number of hours or days credited per period, in the absence type's unit. |
+| **Allow for future time-off requests against accruals** | Lets people book time off ahead of the accruals that will cover it. |
 
 ---
 
 ## Frequency settings
 
-The accrual frequency determines the cadence at which time off accrues. Choose a frequency that aligns with your organization's leave policy:
+The accrual frequency will set the cadence at which time off accrues. The planned options are:
 
 | Frequency | Accrual occurs | Best for |
 | --- | --- | --- |
@@ -95,42 +53,77 @@ The accrual frequency determines the cadence at which time off accrues. Choose a
 | **Weekly** | Once per week | Hourly or shift-based teams that accrue with each pay week |
 | **Bi-weekly** | Every two weeks | Organizations on a bi-weekly payroll cycle |
 | **Semi-monthly** | Twice per month | Organizations that pay on the 15th and end of month |
-| **Monthly** | Once per month | Most common; gradual accumulation throughout the year |
+| **Monthly** | Once per month | Gradual accumulation throughout the year |
 
 <Info>
-  The total annual accrual should match the person's overall allowance for the year. For example, if someone gets 20 days per year with monthly accruals, set the accrual amount to approximately 1.67 days per month.
+  To spread a yearly amount evenly, divide it by the number of periods in a year. For example, 20 days a year accrued monthly is about 1.67 days per month.
 </Info>
 
 ---
 
 ## Award timing explained
 
-The **Awarded on** setting controls the exact moment within each accrual period when the time is credited:
+The **Awarded on** setting will control the moment within each accrual period when the time is credited:
 
-- **first day of the period** — Time is available immediately when the period starts. For monthly accruals, this means the 1st of each month.
-- **last day of the period** — Time is credited on the final day of the period. The person earns the time at the end of the accrual window.
-- **day after the period** — Time is credited on the first day of the following period. This ensures the person has fully completed the period before receiving their accrual.
+- **first day of the period**: the time is available as soon as the period starts. For monthly accruals, this means the 1st of each month.
+- **last day of the period**: the time is credited on the final day of the period, so the person earns it by the end of the accrual window.
+- **day after the period**: the time is credited on the first day of the following period, once the person has fully completed the period.
 
 <Info>
-  Award timing affects when a person can use accrued time off. If you choose **day after the period**, January's accrual becomes available on February 1st — not during January.
+  Award timing decides when a person can use accrued time off. With **day after the period**, January's accrual becomes available on February 1, not during January. Pick **first day of the period** if people should use their time right away.
 </Info>
+
+---
+
+## Carry-forward rules
+
+Carry-forward decides what happens to unused time off when an allowance period ends. It already works today, and it is set on the allowance, not on the accrual policy. Two fields on each allowance control it:
+
+| Field | What it does |
+| --- | --- |
+| **Valid until** | Unused time carries over only when this date falls after the end of the allowance's period. The carried time then stays usable until that date and expires after it. Without a **Valid until** date, nothing carries over: unused time off expires when the period ends. |
+| **Carry forward limit** | The maximum amount that carries over. Anything above the limit expires at the end of the period. A limit of 0 means no cap, so the whole remaining balance carries. |
+
+Once the new period starts, Beebole spends the carried balance first, before the new period's allowance, so the time that expires soonest is used first. A negative balance at the end of a period carries nothing. Any **Accrued** amount is part of the balance, so it carries over under the same rules.
+
+<Steps>
+  <Step title="Open the allowance">
+    Open the **Absence allowances** panel (in **Settings** \> **Account Settings** for the organization default, or on a person or tag) and click the relevant allowance.
+  </Step>
+  <Step title="Set the validity date">
+    In **Valid until**, pick the last day the carried time can be used. It must fall after the end of the allowance's period.
+  </Step>
+  <Step title="Set the limit">
+    Enter the maximum amount that can roll over in **Carry forward limit**, or leave it at 0 for no cap. Every change is saved automatically.
+  </Step>
+</Steps>
+
+<Frame caption="A PTO allowance that carries up to 5 unused days into 2027, usable until March 31">
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open, showing Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027 and the Carry forward limit field set to 5 d, above the Allow negative balance option" width="538" />
+</Frame>
+
+With the allowance above, if Elena takes no more PTO in 2026, she ends the year with 8 of her 20 days left: 5 carry into 2027 and 3 expire on December 31. Her next time off in 2027 uses the 5 carried days first, and any still unused on March 31, 2027 expire.
+
+<Warning>
+  Beebole works out carried balances from the allowance's current settings. Changing **Valid until** or **Carry forward limit** after a period has ended also changes what carried over from it, and every balance that depends on it. Review the affected balances after such a change.
+</Warning>
 
 ---
 
 ## Viewing accrued balances
 
-You can check any person's accrued balance from their profile:
+You can check any person's balance, including the **Accrued** amount, from their profile:
 
 <Steps>
   <Step title="Open the person's profile">
-    Go to **People** and click the person's name.
+    Click **People** in the sidebar and open the person's profile.
   </Step>
   <Step title="Review the balance">
-    The **Absence allowances** panel shows each allowance with its **Allowance** and **Accrued** amounts. Open an allowance to also see **Consumed** — the time off recorded over the period.
+    In the **Absence allowances** panel, each allowance's summary line shows its **Allowance**, **Accrued**, and **Consumed** amounts. Click an allowance to open all of its fields. An allowance inherited from a tag or the organization is read-only on the person.
   </Step>
 </Steps>
 
-Balances update as time-off entries are recorded on timesheets and when the allowance's **Accrued** field is adjusted.
+Balances update as time-off entries are recorded on timesheets and when the allowance's **Accrued** field is adjusted. For everyone at once, use the [Absence quotas report](/help/documentation/reports#absence-quotas).
 
 ---
 
@@ -138,7 +131,7 @@ Balances update as time-off entries are recorded on timesheets and when the allo
 
 <CardGroup cols={2}>
   <Card title="Time Off" icon="calendar" href="/help/documentation/timeoff">
-    Configure absence types and allowances that accrual policies are linked to.
+    Configure absence types and allowances, track balances, and record time off on the timesheet.
   </Card>
 
   <Card title="Public Holidays" icon="clock" href="/help/documentation/public-holidays">
@@ -146,7 +139,7 @@ Balances update as time-off entries are recorded on timesheets and when the allo
   </Card>
 
   <Card title="Work Schedule" icon="users" href="/help/documentation/work-schedule">
-    Set working hours used to calculate day-based accrual amounts.
+    Set working hours used to calculate day-based time off.
   </Card>
 </CardGroup>
 
@@ -155,23 +148,23 @@ Balances update as time-off entries are recorded on timesheets and when the allo
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Can I set different accrual rates for different people?">
-    Accrual policies are configured at the absence type level and apply to everyone with an allowance for that type. To give someone a different accrual rate, create a separate absence type with its own accrual policy.
+  <Accordion title="Are accrual policies available in Beebole today?">
+    Not yet. Automatic accrual policies are coming soon to Beebole. Today, each allowance has a manual **Accrued** field: enter the time a person has earned there, and Beebole adds it to their balance. Carry-forward on allowances already works.
   </Accordion>
 
-  <Accordion title="What happens if I change the accrual frequency mid-year?">
-    The updated policy applies from the next accrual period onward. Amounts already reflected in the **Accrued** field are not recalculated. Review individual balances to ensure they are correct after the change.
+  <Accordion title="Can I give people different accrued amounts?">
+    Yes. In Beebole, the **Accrued** field belongs to each allowance, so you can enter a different amount for each person whose allowance is set on their own profile. Accrual policies, once available, will be set per absence type.
   </Accordion>
 
-  <Accordion title="Can I use accruals with carry-forward at the same time?">
-    Yes. Accruals and carry-forward work together. The accrual policy defines how time accumulates throughout the period, and the allowance's **Carry forward limit** determines how much unused time rolls over when the period ends.
+  <Accordion title="What happens to unused time off at the end of the period?">
+    It depends on the allowance. Without a **Valid until** date after the period end, unused time off expires when the period ends. With one, the unused balance carries over until that date, capped by the **Carry forward limit** when it is above 0, and Beebole spends it before the next period's allowance.
   </Accordion>
 
-  <Accordion title="Do accruals apply to all absence types?">
-    No. Accrual policies are optional and configured per absence type. You can have some types with accruals (e.g., vacation) and others without (e.g., sick leave with an unlimited or fixed annual grant).
+  <Accordion title="Does a Carry forward limit of 0 mean nothing carries over?">
+    No. In Beebole, a **Carry forward limit** of 0 means no cap: the whole remaining balance carries over, as long as the allowance has a **Valid until** date after the end of its period. To let nothing carry over, leave **Valid until** empty.
   </Accordion>
 
-  <Accordion title="How do I stop accruals for someone who has left the company?">
-    End the person's allowance: open the **Absence allowances** panel on their profile and set the allowance's **Start - end** period to finish on their last day. You can also archive their profile to free the seat — see [People](/help/documentation/people).
+  <Accordion title="Will accruals apply to all absence types?">
+    No. Beebole's accrual policies will be optional and set per absence type. You will be able to accrue some types (for example, vacation) and keep a fixed allowance for others (for example, sick leave).
   </Accordion>
 </AccordionGroup>

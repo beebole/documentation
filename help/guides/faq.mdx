@@ -38,11 +38,11 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="What is a seat?">
-    A seat represents one active person in your Beebole account, and your subscription is billed per active person. Adding a person bills another seat; archiving a person releases the seat at the next billing cycle. See [Subscription and billing](/help/documentation/subscription).
+    A seat is one active person in your Beebole account, and a paid plan bills for the number of seats you set on the subscription page. Seats don't change on their own when you add or archive people: you adjust the count yourself, and it can't go below the number of active people. When every seat is taken, a person you add is created archived, and you unarchive them once a seat is free. See [Subscription and billing](/help/documentation/subscription#adjust-seats).
   </Accordion>
 
   <Accordion title="Can I switch between monthly and annual billing?">
-    Yes. Go to **Settings** > **Subscription** and open the billing portal to change your billing interval. See [Subscription and billing](/help/documentation/subscription).
+    Yes. Go to **Settings** > **Subscription** and switch between **Monthly** and **Yearly** in the **Billing interval** section. Beebole shows the amount due for the change, and you click **Confirm** to apply it. See [Subscription and billing](/help/documentation/subscription#billing-interval).
   </Accordion>
 
   <Accordion title="What happens if my payment fails?">
@@ -50,7 +50,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="Can I cancel my subscription at any time?">
-    Yes. Cancel from the billing portal under **Settings** > **Subscription**. Your account stays active until the end of the current billing period, then converts to the free plan. See [Subscription and billing](/help/documentation/subscription).
+    Yes. Go to **Settings** > **Subscription**, click **Manage** to open the billing portal, and cancel there. Your account keeps full access until the end of the period you paid for, then locks until you subscribe again. No data is deleted. To keep using Beebole for free instead, use **Convert to free plan (up to 5 seats)** on the same page. See [Subscription and billing](/help/documentation/subscription#cancel-your-subscription).
   </Accordion>
 </AccordionGroup>
 
@@ -62,7 +62,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="What happens if I forget to fill in my timesheet?">
-    If reminders are enabled, Beebole emails you. If auto-submit is configured, your timesheet submits automatically after the deadline, even if incomplete. See [Notifications](/help/documentation/notifications).
+    If your administrator turned on reminders, Beebole reminds you to submit through your notification channels: by email, and as a push notification on the devices where you enabled push. If auto-submit is configured, your timesheet submits automatically after the deadline, even if incomplete. See [Notifications](/help/documentation/notifications#timesheet-reminders).
   </Accordion>
 
   <Accordion title="Can I enter time for a past week?">
@@ -74,11 +74,11 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="Where is the timesheet period configured?">
-    Your administrator sets the timesheet period and entry rules in **Timesheet settings**. The new platform uses a single configurable period (weekly, bi-weekly, 1st–15th, and so on) rather than separate daily and weekly views. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+    Your administrator sets the timesheet period and entry rules in **Timesheet and Planning Settings**. Each timesheet covers one period (daily, weekly, bi-weekly, semi-monthly, or monthly), and that period is what you submit for approval. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings#timesheet-period).
   </Accordion>
 
   <Accordion title="Can I change the duration format after my team has started tracking time?">
-    Yes. Changing the format updates how values display going forward; existing time data is preserved and shown in the new format. The duration format is an account-wide setting, so it applies to everyone for consistency across reports and approvals.
+    Yes. Changing the **Duration format** only changes how durations are shown and typed: existing time data is kept and displayed in the new format. You set it in **Timesheet and Planning Settings**, for the whole organization or, like other timesheet settings, for a tag or a person. See [Duration format](/help/documentation/timesheetSettings#duration-format).
   </Accordion>
 </AccordionGroup>
 
@@ -114,7 +114,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="What happens when someone leaves the company?">
-    Archive their profile instead of deleting it. Archiving preserves their historical time data for reports while releasing their seat on your subscription. See [People](/help/documentation/people).
+    Archive their profile instead of deleting it. Archiving keeps their historical time data for reports and frees their seat for someone else. The number of seats you pay for only changes when you adjust it on the subscription page. See [People](/help/documentation/people).
   </Accordion>
 
   <Accordion title="Can one person have multiple roles?">
@@ -134,7 +134,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="Can I set different time-off allowances for different people?">
-    Yes. Override the default allowance for any person from their profile under **People**. The per-person allowance takes priority over the default set on the absence type. See [Time off](/help/documentation/timeoff).
+    Yes. Allowances can be set for the whole organization, a tag, or a person, in the **Absence allowances** panel. A person uses the allowances of the most specific level that has any: their own, then their tags', then the organization's. Once a person has one allowance of their own, they stop inheriting the others, so copy the full set to their profile before changing one. See [Time off](/help/documentation/timeoff#setting-up-allowances).
   </Accordion>
 
   <Accordion title="What happens when someone exceeds their time-off balance?">
@@ -162,19 +162,23 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="Can I approve timesheets on my phone?">
-    Yes. The approval flow works on mobile, and you can also approve or reject directly from email notifications. See [Approvals](/help/documentation/approval).
+    Yes. The approval flow works on mobile. You can also approve straight from the notification email. Its **Reject** link opens the timesheet in Beebole with the rejection dialog, because a reason is required, and you can reject without opening Beebole by replying "reject" followed by your reason. See [Approvals](/help/documentation/approval#from-your-email).
   </Accordion>
 
   <Accordion title="Is there a record of approval actions?">
-    Yes. Beebole logs every approval action — who approved or rejected, when, and with what comment. You see this history on the timesheet itself and in the account-wide [audit trail](/help/documentation/audit-trail).
+    Yes. Beebole logs every approval action: who submitted, approved, or rejected, when, at which stage, and with what reason. Click the timesheet's status badge to see who approved each stage of the current submission, and open the person's Journal for the full [approval history](/help/documentation/approval#approval-history).
   </Accordion>
 
   <Accordion title="Can I turn off all email notifications?">
-    Yes. In your notification preferences, disable email per event type. You still see updates in the in-app [Journal](/help/documentation/journal). See [Notifications](/help/documentation/notifications).
+    Yes. Untick **Email** in your **Notifications** preferences, or click the unsubscribe link at the bottom of any notification email, which does the same. There is no email switch per event: the frequency you pick for an event applies to every channel. **Push notifications** is a separate channel, so untick it too if you want no notifications at all. You still see updates in the in-app [Journal](/help/documentation/journal). See [Notifications](/help/documentation/notifications).
+  </Accordion>
+
+  <Accordion title="Can I get Beebole notifications on my phone?">
+    Yes, as push notifications. Tick **Push notifications** in your **Notifications** preferences, then open Beebole on your phone and click **Enable on this device**, or **Enable** when Beebole offers to notify you on that device. On an iPhone or iPad, add Beebole to the Home Screen from Safari's Share menu first, and enable notifications from the installed app. See [Notifications](/help/documentation/notifications#push-notifications-on-your-devices).
   </Accordion>
 
   <Accordion title="Can I respond to approval notifications by email?">
-    Yes. Approval emails include buttons to approve or reject the timesheet directly. You can also reply to Journal notification emails to post a comment. See [Approvals](/help/documentation/approval).
+    Yes. In an approval email, **Approve** approves the timesheet directly. **Reject** opens the timesheet in Beebole with the rejection dialog, because a reason is required. You can also reply to the email with "approve", or with "reject" followed by your reason. Replies to Journal notification emails post a comment. See [Approvals](/help/documentation/approval#from-your-email).
   </Accordion>
 </AccordionGroup>
 
@@ -242,7 +246,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
 
 <AccordionGroup>
   <Accordion title="Where do I find integrations in Beebole?">
-    All integrations are managed under **Settings** > **Integrations**. You need administrative access to reach this page. See [Integrations](/help/integrations/introduction).
+    Most integrations, such as Asana, QuickBooks, Xero, BambooHR, and webhooks, are set up under **Settings** > **Integrations**, which needs a role with administrative permissions. The Google and Microsoft calendar connection is the exception: each person connects their own calendar from the timesheet. See [Integrations](/help/integrations/introduction).
   </Accordion>
 
   <Accordion title="Can I use multiple integrations at the same time?">
@@ -278,7 +282,7 @@ Beebole is a project time-tracking app that teams use to log hours, manage time 
   </Accordion>
 
   <Accordion title="Where can I see who changed what in my account?">
-    The Beebole [audit trail](/help/documentation/audit-trail) records every create, update, and delete, with who made the change and when. The Journal feed shows these messages across the account, and each record's **Journal** panel shows its own change history.
+    The Beebole [audit trail](/help/documentation/audit-trail) records changes with who made them and when. Administrators see them in the **Journal** of each item the change touched (a person, a project, a tag, and so on), and the account's own changes in **Account Settings**. The **Journal** in the sidebar doesn't list them. Beebole shows the last 7 days; earlier changes can be read through the API or an AI assistant connected to Beebole. The audit trail is not available on the Free plan.
   </Accordion>
 </AccordionGroup>
 

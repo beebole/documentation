@@ -277,4 +277,54 @@ export const scenes = [
 		mouse: () => ({ x: 400, y: 850 }),
 		shots: [{ file: 'planning/task-owner-panel.webp', frame: { type: 'box', box: (page, h) => h.panelBox(page, 'Owner', 'Custom fields') } }],
 	},
+	{
+		// A task row's + button clicked in the Gantt: the name field opens under the row. Nothing is
+		// typed, so nothing is saved.
+		id: 'planning-inline-name-field',
+		capturedAt: '2026-10-09',
+		datesMatter: false,
+		mode: 'auto',
+		async setup(page, h) {
+			await openView(page, h, 'Gantt')
+			const name = page.getByText('Fleet Dashboard', { exact: true }).filter({ visible: true }).first()
+			await name.waitFor()
+			await h.settle(page, 2000)
+			await name.hover()
+			await h.settle(page, 500)
+			// The + is the first button right of the name on the same line (unnamed: its tooltip is
+			// shown on hover); marked with a DOM attribute to click it.
+			await name.evaluate((leaf) => {
+				const n = leaf.getBoundingClientRect()
+				const mid = n.top + n.height / 2
+				const buttons = [...document.querySelectorAll('button')]
+					.map((b) => ({ b, r: b.getBoundingClientRect() }))
+					.filter(({ r }) => r.width > 0 && r.left >= n.right - 4 && r.top <= mid && r.bottom >= mid)
+					.sort((a, b) => a.r.left - b.r.left)
+				buttons[0].b.setAttribute('data-docs-plus', '')
+			})
+			await page.locator('[data-docs-plus]').click()
+			await page.locator('input:focus, textarea:focus').first().waitFor()
+			await h.settle(page, 800)
+		},
+		async teardown(page) {
+			await page.keyboard.press('Escape')
+		},
+		mouse: () => ({ x: 1300, y: 860 }),
+		// A few rows above and below the field, with the start of the chart.
+		shots: [
+			{
+				file: 'planning/inline-name-field.webp',
+				frame: {
+					type: 'box',
+					pad: 0,
+					box: async (page) => {
+						const field = await page.locator('input:focus, textarea:focus').first().boundingBox()
+						const x = 72
+						const y = field.y - 140
+						return { x, y, width: 900 - x, height: field.y + field.height + 90 - y }
+					},
+				},
+			},
+		],
+	},
 ]

@@ -25,7 +25,7 @@ Read account-level data with `currentOrganisation` and `getAuditTrails`.
 | Query | Arguments | Returns |
 | --- | --- | --- |
 | `currentOrganisation` | none | The organization linked to the authenticated API key |
-| `getAuditTrails` | `startTime`, `fromPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organization |
+| `getAuditTrails` | `startTime`, `fromPersonId`, `affectedPersonId`, `operations`, `argumentMatch`, `responseMatch` | Audit trail entries for the organization |
 
 ```graphql
 query {
@@ -37,7 +37,7 @@ query {
 }
 ```
 
-`getAuditTrails` returns mutations performed in the account. With no `startTime`, it covers the last seven days; `startTime` selects a different seven-day window.
+`getAuditTrails` returns the changes recorded in the account's [audit trail](/help/documentation/audit-trail). It works only for administrators, on plans that include the audit trail (not the **Free** plan). With no `startTime`, it covers the last seven days; a `startTime` returns the seven days that follow it. `fromPersonId` keeps the changes one person made, and `affectedPersonId` keeps the changes made to one person's time entries, whoever made them.
 
 ```graphql
 query {
@@ -112,7 +112,7 @@ query {
 
 ## Projects
 
-Read projects with `getProject`, `getProjects`, `countProjects`, and `filterProjectIds`. `getProjectCategories` lists the top-level groupings projects are organised into.
+Read projects with `getProject`, `getProjects`, `countProjects`, and `filterProjectIds`. `getProjectCategories` lists the project categories projects are organized into, such as **Client** or **Internal**.
 
 | Query | Arguments | Returns |
 | --- | --- | --- |
@@ -161,15 +161,17 @@ query {
 
 ## Tasks
 
-Read tasks with `getTask`, `getTasks`, `countTasks`, and `filterTaskIds`. `getTaskCategories` lists the categories (boards) tasks belong to.
+Read tasks with `getTask`, `getTasks`, `countTasks`, and `filterTaskIds`. `getTaskCategories` lists the task categories, which Beebole calls plannings.
 
 | Query | Arguments | Returns |
 | --- | --- | --- |
 | `getTask` | `id` | A single task |
-| `getTasks` | `filter`, `archived`, `categoryId` | A list of tasks |
-| `countTasks` | `filter`, `archived`, `categoryId` | The number of matching tasks |
+| `getTasks` | `filter`, `archived`, `startTime`, `endTime`, `categoryId` | A list of tasks |
+| `countTasks` | `filter`, `archived`, `startTime`, `endTime`, `categoryId` | The number of matching tasks |
 | `filterTaskIds` | `filter`, `archived`, `categoryId` | Only the IDs of matching tasks |
 | `getTaskCategories` | none | All task categories |
+
+On `getTasks` and `countTasks`, `startTime` keeps the tasks that start at or after a millisecond timestamp, and `endTime` the tasks that end at or before one.
 
 ```graphql
 query {
@@ -234,22 +236,22 @@ query {
 
 ## Time records
 
-A time record is a logged time entry for one person on a specific day, linked to projects, a task, or an absence type. Read them with `getTimeRecord`, `getTimeRecords`, and `countTimeRecords`. `getAbsenceConsumed` returns how much of an absence type a person has used in a window.
+A time record is a logged time entry for one person on a specific day, linked to projects, a task, or an absence type. Read them with `getTimeRecord`, `getTimeRecords`, and `countTimeRecords`. `getAbsenceQuotaConsumed` returns how much of each of a person's time off allowances they have used.
 
 | Query | Arguments | Returns |
 | --- | --- | --- |
 | `getTimeRecord` | `id` | A single time record |
 | `getTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | A list of time records |
 | `countTimeRecords` | `startTime`, `endTime`, `time`, `absence`, `wfh`, `filter` | The number of matching time records |
-| `getAbsenceConsumed` | `personId`, `absenceId`, `startTime`, `endTime` | Absence consumed in the window, in the type's unit |
+| `getAbsenceQuotaConsumed` | `personId`, `absenceQuotaIds` | Time off consumed per allowance, in each allowance's unit (days or hours) |
 
 `getTimeRecords` and `countTimeRecords` accept top-level arguments alongside `filter`:
 
-- **`startTime`** / **`endTime`** — Unix timestamps in milliseconds bounding the period.
-- **`time`** — when `true`, return only worked time (entries without an absence type).
-- **`absence`** — when `true`, return only absence entries (entries with an absence type).
-- **`wfh`** — when `true`, return only entries logged as working from home.
-- **`filter`** — a typed filter array (see [Filtering results](#filtering-results)).
+- `startTime` / `endTime`: Unix timestamps in milliseconds bounding the period. A record is returned when it starts at or after `startTime` and ends at or before `endTime`.
+- `time`: when `true`, return only worked time (entries without an absence type).
+- `absence`: when `true`, return only absence entries (entries with an absence type).
+- `wfh`: when `true`, return only entries logged as working from home.
+- `filter`: a typed filter array (see [Filtering results](#filtering-results)).
 
 ```graphql
 query {
@@ -273,24 +275,51 @@ query {
 }
 ```
 
-`duration` is an integer in milliseconds. `startTime` and `endTime` are `BeeboleTime` objects — select their subfields `ts` (a Unix timestamp in milliseconds) and `iso` (an ISO 8601 string). The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
+`duration` is a number of milliseconds. `startTime` and `endTime` are `BeeboleTime` objects: select their subfields `ts` (a Unix timestamp in milliseconds) and `iso` (an ISO 8601 string). The `person`, `projects`, `task`, and `absence` fields resolve the related entities inline.
+
+`getAbsenceQuotaConsumed` takes the IDs of the person's allowances, which you read from the person's `absenceQuotas` attribute (it includes allowances inherited from tags and the organization):
 
 ```graphql
 query {
-  getAbsenceConsumed(
+  getPerson(id: "64a1b2c3d4e5f6a7b8c9d0e1") {
+    absenceQuotas {
+      value {
+        id
+        startTime {
+          iso
+        }
+        endTime {
+          iso
+        }
+        absenceType {
+          id
+          name
+          unit
+        }
+      }
+    }
+  }
+}
+```
+
+Then pass the allowance IDs you want to measure:
+
+```graphql
+query {
+  getAbsenceQuotaConsumed(
     personId: "64a1b2c3d4e5f6a7b8c9d0e1"
-    absenceId: "64a1b2c3d4e5f6a7b8c9d0e2"
-    startTime: 1704067200000
-    endTime: 1735689600000
+    absenceQuotaIds: ["64a1b2c3d4e5f6a7b8c9d0e4", "64a1b2c3d4e5f6a7b8c9d0e5"]
   )
 }
 ```
+
+It returns one number per ID, in the order you sent them, in the unit of each allowance's absence type. The count follows the carry-forward rules: a day taken while a carried-over balance is still valid is charged to that balance and never counted twice. An ID that is not one of the person's allowances returns `0`.
 
 ---
 
 ## Timesheets and approvals
 
-A timesheet is one person's time records over one timesheet period, and its approval status — draft, submitted, approved, or rejected — belongs to the period, not to the individual records. Time records carry no status field, so `getTimeRecords` has no status filter. Read approval data with these queries instead:
+A timesheet is one person's time records over one timesheet period, and its approval status — draft, submitted, approved, or rejected — belongs to the period, not to the individual records. Time records carry no status field, and `getTimeRecords` ignores the `status` input that the schema lists on its filter type. Read approval data with these queries instead:
 
 | Query | Arguments | Returns |
 | --- | --- | --- |
@@ -305,7 +334,7 @@ A timesheet is one person's time records over one timesheet period, and its appr
 | `getTimesheetScore` | `personId`, `periods` | The person's timesheet score over recent periods (12 by default) |
 | `canApproveTimesheets` | none | Whether the key's owner may use the approval and team panes |
 
-The `status` field on approval states and events uses one-letter codes: `d` (draft), `s` (submitted), `a` (approved), and `r` (rejected).
+The `status` field on approval states and events uses one-letter codes: `d` (draft), `s` (submitted), `a` (approved), and `r` (rejected). An approval event can also carry `f`, which marks a period that auto-submit could not process: the period stays a draft.
 
 ### List timesheets awaiting approval
 
@@ -387,7 +416,7 @@ query {
 }
 ```
 
-`date` is a `BeeboleTime` object (`ts` in milliseconds, `iso` as an ISO 8601 string). `amount` is an object with `value` (an integer in the currency's smallest unit) and `currency`.
+`date` is a `BeeboleTime` object (`ts` in milliseconds, `iso` as an ISO 8601 string). `amount` is an object with `value` (an integer in the currency's smallest unit) and `currency` (an ISO 4217 code).
 
 ---
 
@@ -412,6 +441,8 @@ query {
 }
 ```
 
+`unit` is `day` or `hour`.
+
 ---
 
 ## Custom fields
@@ -427,7 +458,7 @@ Custom field definitions and the values stored on records are separate entities.
 | `getCustomFieldValues` | `filter` | Stored values, optionally filtered by field, entity type, or entity |
 | `countCustomFieldValues` | `filter` | The number of matching values |
 
-A value's `entityType` is one of `Person`, `Project`, `Task`, `Tag`, `TimeRecord`, or `AbsenceType`, and `entityId` is the record it sits on. The value itself lives in the field matching the definition's `fieldType`: `textValue`, `numberValue`, `dateValue`, `dateTimeValue`, `urlValue`, or `booleanValue`. The `person`, `project`, `task`, `tag`, `timeRecord`, and `absenceType` fields resolve the owning record inline — only the one matching `entityType` is set.
+A value's `entityType` is one of `Person`, `Project`, `Task`, `Tag`, `TimeRecord`, or `AbsenceType`, and `entityId` is the record it sits on. The definition's `fieldType` is `text`, `number`, `date`, `datetime`, `url`, `boolean`, or `uniqueId`, and the value itself lives in the matching field: `textValue` (for `text` and `uniqueId`), `numberValue`, `dateValue`, `dateTimeValue`, `urlValue`, or `booleanValue`. The `person`, `project`, `task`, `tag`, `timeRecord`, and `absenceType` fields resolve the owning record inline — only the one matching `entityType` is set.
 
 ```graphql
 query {
@@ -442,16 +473,17 @@ query {
 
 ### Look up records by an external identifier
 
-Beebole has no built-in external ID attribute: an identifier from another system lives in a text custom field (a [migrated legacy account](/help/documentation/legacy-migration) gets one named **External ID**). The value filter matches on `customFieldId`, `entityType`, and `entityId` — not on the value itself — so fetch the field's values once and match them on your side:
+Beebole has no built-in external ID attribute: an identifier from another system lives in a text or [Unique ID](/help/documentation/custom-fields#unique-id-fields) custom field (a [migrated legacy account](/help/documentation/legacy-migration) gets a text field named **External ID**). To find the record that carries a given identifier, filter the field's values on `customFieldId` and `textValue`. The `textValue` filter matches the whole stored value, ignoring upper and lower case and any spaces around it:
 
 ```graphql
 query {
   getCustomFieldValues(
     filter: [
       { customFieldId: "64a1b2c3d4e5f6a7b8c9d0e1", following: AND }
-      { entityType: "Person" }
+      { textValue: "EMP-0042" }
     ]
   ) {
+    entityType
     entityId
     textValue
     person {
@@ -463,13 +495,13 @@ query {
 }
 ```
 
-Pick the row whose `textValue` equals your identifier; its `entityId` — and the resolved `person` — is the Beebole record. To read the values on one known record instead, filter by `entityType` and `entityId`. Writing values is covered under [Custom fields](/help/api/mutations#custom-fields) on the Mutations page.
+The matching row's `entityId` is the Beebole record, and `person` resolves it inline when `entityType` is `Person` (use `project`, `task`, and the other entity fields for other types). On a Unique ID field, at most one record matches. To read the values on one known record instead, filter by `entityType` and `entityId`. Writing values is covered under [Custom fields](/help/api/mutations#custom-fields) on the Mutations page.
 
 ---
 
 ## Filtering results
 
-The `filter` argument is **a list of typed input objects** — not a list of `field`/`value` pairs. Each entity has its own filter input type, such as `BeeboleTimeRecordFilter`, `BeebolePersonFilter`, or `BeeboleProjectFilter`. You set the named fields you want to match directly on each object.
+The `filter` argument is a list of typed input objects, not a list of `field`/`value` pairs. Each entity has its own filter input type, such as `BeeboleTimeRecordFilter`, `BeebolePersonFilter`, or `BeeboleProjectFilter`. You set the named fields you want to match directly on each object.
 
 ```graphql
 query {
@@ -484,7 +516,7 @@ query {
 }
 ```
 
-Each object in the array should set a single matching field. To combine conditions, add a `following` value of `AND` or `OR` to chain one condition to the next:
+Each object in the array sets exactly one matching field: an object with two fields fails with `OnlyOnePropertyPerFilterAllowed`. To combine conditions, add a `following` value of `AND` or `OR` to chain one condition to the next, and leave `following` off the last object (an object without it anywhere else fails with `IncorrectFilter`). `AND` binds before `OR`, so `A AND B OR C` reads as `(A AND B) OR C`:
 
 ```graphql
 query {
@@ -509,19 +541,22 @@ query {
 | `id` / `notId` | ID | A specific time record, or all but one |
 | `personId` / `notPersonId` | ID | Records for (or excluding) one person |
 | `personIds` | `[ID]` | Records for any of several people |
-| `startTime` / `endTime` | Timestamp | Records starting after / ending before a millisecond timestamp |
+| `startTime` / `endTime` | Timestamp | Records starting at or after / ending at or before a millisecond timestamp |
 | `projectIds` / `notProjectIds` | `[ID]` | Records on (or excluding) projects, including their subprojects |
 | `taskIds` / `notTaskIds` | `[ID]` | Records on (or excluding) tasks |
 | `projectTagIds` / `projectNotTagIds` | `[ID]` | Records whose projects carry (or lack) given tags |
 | `personTagIds` / `personNotTagIds` | `[ID]` | Records whose person carries (or lacks) given tags |
 | `projectCategoryIds` / `notProjectCategoryIds` | `[ID]` | Records by project category |
 | `taskCategoryIds` / `notTaskCategoryIds` | `[ID]` | Records by task category |
-| `isAbsence` | Boolean | Whether the record is an absence |
+| `wfh` | Boolean | Records logged (or not) as working from home |
+| `nonBillable` | Boolean | Records marked (or not) as non-billable |
 | `following` | `AND` / `OR` | Logical operator chaining this condition to the next |
+
+The schema also lists `isAbsence`, `status`, and `billable` on this input, but `getTimeRecords` and `countTimeRecords` don't filter on them: `status` and `billable` are ignored, and `isAbsence` matches no record. Separate worked time from absences with the top-level `time` and `absence` arguments, and read approval status with the queries under [Timesheets and approvals](#timesheets-and-approvals).
 
 ### Other filter types
 
-Every other entity exposes a filter input tuned to its own fields. All fields are optional, `name` is a case-insensitive match, and `following` chains conditions the same way.
+Every other entity exposes a filter input tuned to its own fields. All fields are optional, `name` is a case-insensitive regular expression (so `Acme` also matches **Acme Corp**), and `following` chains conditions the same way.
 
 | Filter input | Fields |
 | --- | --- |
@@ -530,10 +565,11 @@ Every other entity exposes a filter input tuned to its own fields. All fields ar
 | `BeeboleTaskFilter` | `id`, `notId`, `name`, `level`, `archived`, `categoryId`, `statusId`, `notStatusId`, `ownerId`, `ownerIds`, `notOwnerId`, `ownerTagId`, `notOwnerTagId`, `assignedPersonId`, `notAssignedPersonId`, `assignedTagId`, `notAssignedTagId`, `projectId`, `projectIds`, `notProjectId`, `assignedProjectId`, `childrenOfId`, `startsBefore`, `endsAfter`, `tagIds`, `notTagIds`, `taskTagIds`, `notTaskTagIds`, `personTagIds`, `notPersonTagIds`, `projectTagIds`, `notProjectTagIds`, `projectCategoryIds`, `notProjectCategoryIds`, `taskCategoryIds`, `notTaskCategoryIds` |
 | `BeeboleTagFilter` | `id`, `notId`, `name`, `level`, `archived`, `categoryId`, `scheduleId`, `taggedPersonId`, `taggedProjectId`, `taggedTaskId` |
 | `BeeboleExpenseRecordFilter` | `id`, `notId`, `personId`, `notPersonId`, `projectId`, `notProjectId`, `projectTagIds`, `projectNotTagIds`, `personTagIds`, `personNotTagIds` |
+| `BeeboleAbsenceFilter` | `id`, `notId`, `name`, `archived` |
 | `BeeboleCustomFieldFilter` | `id`, `name`, `archived` |
-| `BeeboleCustomFieldValueFilter` | `id`, `customFieldId`, `entityType`, `entityId` |
+| `BeeboleCustomFieldValueFilter` | `id`, `customFieldId`, `entityType`, `entityId`, `notEntityId`, `textValue` |
 
-For example, the projects a person manages — the same scope a manager sees in the [Budget Status](/help/documentation/reports#budget-status) report:
+For example, the projects that have a given person among their managers:
 
 ```graphql
 query {
@@ -550,10 +586,10 @@ Browse every filter type and its fields in the [Schema explorer](/help/api/schem
 
 ## Counting and ID-only queries
 
-For each major entity, alongside the full `get…` query you also get a counterpart that returns just a count, and (for people, projects, tasks, and tags) one that returns only matching IDs.
+For most entities (expense records are the exception), alongside the full `get…` query you also get a counterpart that returns just a count, and (for people, projects, tasks, and tags) one that returns only matching IDs.
 
-- **`count…`** queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`, `countCustomFields`, `countCustomFieldValues`) return an integer. Use them to size a result set before fetching it.
-- **`filter…Ids`** queries (`filterPersonIds`, `filterProjectIds`, `filterTaskIds`, `filterTagIds`) return an array of IDs instead of full objects, which is lighter when you only need identifiers.
+- The `count…` queries (`countPersons`, `countProjects`, `countTasks`, `countTags`, `countTimeRecords`, `countAbsenceTypes`, `countCustomFields`, `countCustomFieldValues`) return an integer. Use them to size a result set before fetching it.
+- The `filter…Ids` queries (`filterPersonIds`, `filterProjectIds`, `filterTaskIds`, `filterTagIds`) return an array of IDs instead of full objects, which is lighter when you only need identifiers.
 
 ```graphql
 query {

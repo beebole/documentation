@@ -2,7 +2,7 @@
 title: "Timesheet and time off approval workflows"
 sidebarTitle: "Approval Workflows"
 description: "Set up multi-stage timesheet approval in Beebole: configure approval stages and quorum, approve or reject submissions, and follow up with reminders."
-keywords: ["beebole", "timesheet approval", "approval workflow", "multi-stage approval", "approve timesheets", "reject timesheet", "reopen approved timesheet", "approve on mobile", "time off approval"]
+keywords: ["beebole", "timesheet approval", "approval workflow", "multi-stage approval", "reject timesheet", "reopen approved timesheet", "approve on mobile", "time off approval"]
 "og:title": "Timesheet and Time Off Approval Workflows in Beebole"
 "og:description": "Learn how to configure Beebole's multi-stage approval workflow, review and approve your team's timesheets, and handle rejections and reminders."
 "og:type": "article"
@@ -11,14 +11,14 @@ keywords: ["beebole", "timesheet approval", "approval workflow", "multi-stage ap
 Beebole's approval workflow lets you review and lock your team's timesheets — work time and time off alike — before they feed reports, billing, and payroll. Approvers check each submitted period and either **Approve** it or **Reject** it with a comment, stage by stage, following the workflow you configure.
 
 <Info>
-  Approval workflows are part of Beebole's paid plans. If no workflow is configured, timesheets are approved automatically the moment they are submitted.
+  Approval workflows are part of Beebole's paid plans. A person can submit a timesheet only when an approval workflow applies to them: without one there is no **Submit** button, and a period closes only through **Auto-submit timesheets after X days**, when it is set, which approves it directly without notifying anyone. New organizations start with a single **Admins** stage, with the quorum **Any**, so administrators review every timesheet until you change the workflow.
 </Info>
 
 ---
 
 ## How approval works
 
-1. A person completes their [timesheet](/help/documentation/timesheets) and clicks **Submit** at the top of the page. The timesheet locks and enters the first approval stage.
+1. A person completes their [timesheet](/help/documentation/timesheets) and clicks **Submit** at the top of the page. The button appears only when an approval workflow applies to them. The timesheet locks and enters the first approval stage.
 2. The stage's approvers are notified. Depending on the stage's quorum, either any one of them or all of them must approve.
 3. Once the stage is complete, the timesheet advances to the next stage. When the last stage approves, the timesheet is **Approved**.
 4. If any approver rejects — a comment is always required — the timesheet becomes **Rejected** and returns to its owner, who can correct it and click **Resubmit**.
@@ -32,7 +32,7 @@ The timesheet's status badge shows where a period stands:
 | **Approved** | Every stage has approved. The timesheet stays locked. |
 | **Rejected** | An approver rejected the timesheet. The owner can edit and resubmit. |
 
-Click the status badge, on the timesheet or next to a person in the **Team** pane, to open the stage breakdown: each stage shows its approver type, who has already approved and when, and who is still pending on the current stage. A stage with no eligible approver — for example, **People managers** when the person has no manager — shows **No manager found** and is skipped.
+Click the status badge, on the timesheet or next to a person in the **Team** pane, to open the stage breakdown: each stage shows its approver type, who has already approved and when, and who is still pending on the current stage. A stage with no eligible approver — for example, **People managers** when the person has no manager — shows **No manager found** and is skipped. If every stage finds no approver, the timesheet is approved as soon as it is submitted.
 
 <Frame caption="The stage breakdown of a submitted timesheet, opened from its badge in the Team pane">
   <img src="/help/images/approval/status-badge-breakdown.webp" alt="Beebole Team pane entry for Ana Pereira with her Submitted badge open, showing stage 1, Project managers, still pending on Sophie Laurent and Thomas Muller" width="344" />
@@ -52,7 +52,7 @@ The workflow is a list of sequential stages. It lives in the **Approval workflow
     Click **Account Settings** to open your organization's settings. To define a workflow for one team or one person instead, open the same panel on a tag or on a person's profile.
   </Step>
   <Step title="Open the Approval workflow panel">
-    If no workflow exists yet, the panel explains that timesheets are automatically approved when submitted.
+    If the panel has no stage, it says that nobody can submit a timesheet and that periods close only through **Auto-submit timesheets after X days**, when set.
   </Step>
   <Step title="Add a stage">
     Click **Add**. A new stage appears with **Project managers** as its type and **Any** as its quorum.
@@ -98,7 +98,7 @@ Approvers can act from four places: the **Timesheet** page, the **Journal**, dir
 
 ### From the Timesheet page
 
-Managers and administrators see an approval button (**Approval**) in the cluster at the top-left corner of the timesheet grid, with a red badge counting submissions waiting for them. It opens the **Pending** pane:
+Managers and administrators see an approval button (**Approval**) in the button cluster at the top-left corner of the timesheet, in either view, with a red badge counting submissions waiting for them. It opens the **Pending** pane:
 
 - The pane lists each timesheet waiting for your approval, with **Late** submissions grouped at the top. Turn on **Show all** to include every pending submission you are allowed to see, not just those waiting for you.
 - Click a person to open their timesheet for the submitted period. **Approve** and **Reject** buttons appear at the top of the timesheet whenever you are a pending approver — or an administrator.
@@ -108,12 +108,12 @@ Managers and administrators see an approval button (**Approval**) in the cluster
   ![Beebole timesheet with the Pending pane open and Show all turned on, listing late submitted timesheets with each person's hours, their Submitted status and the pending Project managers stage](/help/images/approval/pending-pane.webp)
 </Frame>
 
-The neighboring team button (**Team**) opens the **Team** pane, which lists your team members with their status for the period. People who haven't submitted yet have a **Remind** button (**Send reminder**) that emails them on the spot.
+The neighboring team button (**Team**) opens the **Team** pane, which lists your team members with their status for the period. People who have an approval workflow and haven't submitted yet (their period is a draft or rejected) have a **Remind** button (**Send reminder**) that reminds them on the spot.
 
 Select people with the checkboxes — or **Select all** — and a bulk bar appears with **Approve**, **Remind**, and **Reject**, each followed by the number of people it applies to. A button that applies to nobody in the selection is left out. Every button acts only on the people it can act on, so a mixed selection is safe:
 
 - **Approve** and **Reject** act on the selected timesheets submitted for the period on screen and waiting for you — as an administrator, on any submitted one.
-- **Remind** goes to the selected people who haven't submitted — their period is a draft, rejected, or empty. People whose timesheet is approved, or submitted and waiting for someone else, are never reminded. Once the reminders are sent, those people are deselected and the submitted ones stay selected for approval.
+- **Remind** goes to the selected people who have an approval workflow and whose period is a draft (empty or not) or rejected. People without a workflow have nothing to submit, so they are skipped, and people whose timesheet is approved, or submitted and waiting for someone else, are never reminded. Once the reminders are sent, those people are deselected and the submitted ones stay selected for approval.
 
 The bar acts strictly on the period displayed: a person's submission from another period is never approved or rejected from here.
 
@@ -180,14 +180,18 @@ Time off goes through the same workflow as work time. When someone records an ab
 
 Submitting locks a timesheet for its owner, but it doesn't have to be rejected to be corrected:
 
-| Status | Owner | Current-stage approver | Administrator |
-|--------|-------|------------------------|---------------|
-| **Draft** | Can edit | — | Can edit |
-| **Submitted** | Locked | Can edit — the workflow restarts from the first stage | Can edit |
-| **Approved** | Locked | — | Can edit |
-| **Rejected** | Can edit | The rejecting approver can correct entries in place | Can edit |
+| Status | Owner | Manager | Current-stage approver | Administrator |
+|--------|-------|---------|------------------------|---------------|
+| **Draft** | Can edit | Can edit | — | Can edit |
+| **Submitted** | Locked | Locked | Can edit, and the workflow restarts from the first stage | Can edit |
+| **Approved** | Locked | Locked | — | Can edit |
+| **Rejected** | Can edit | Can edit | — | Can edit |
 
-To edit on someone's behalf, open the **Pending** or **Team** pane and click the edit button (**Edit timesheet**) on the person's row. Their grid unlocks for you; the override switches off when you move to another person. Administrator edits never restart the workflow.
+Managers are the people who see the person in their **Team** pane and whose role lets them change that person's time entries. A rejected timesheet has left the workflow, so it has no current stage: the owner and their managers correct it before it is resubmitted.
+
+The **Lock date** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#lock-date) overrides this table: entries on or before it can't be changed by anyone, administrators included.
+
+To edit on someone's behalf, open the **Pending** or **Team** pane and click the edit button (**Edit timesheet**) on the person's row. Their timesheet unlocks for you; the override switches off when you move to another person. Administrator and manager edits never restart the workflow. Only a current-stage approver's edit on a submitted timesheet sends it back to the first stage.
 
 <Frame caption="The edit button (Edit timesheet) on a person's row in the Team pane">
   ![Beebole timesheet with the Team pane open, a magnifier on the pencil-shaped Edit timesheet button at the end of Ana Pereira's row, next to her Submitted status](/help/images/approval/edit-timesheet-pencil.webp)
@@ -195,15 +199,15 @@ To edit on someone's behalf, open the **Pending** or **Team** pane and click the
 
 While you are editing, the timesheet makes it impossible to forget whose entries you are touching: the grid or calendar and every row picker are washed in the same highlight tint, the edit button on the person's row fills with that color (**Stop editing this timesheet**), and an **Editing** badge appears next to the person's name at the top of the page. Click the badge or the edit button again to stop editing. The override is tied to that one person — opening another person's timesheet drops the tint and the badge along with it.
 
-The edit button is not limited to administrators — managers and approvers see it too, on the rows they are allowed to correct. Beebole decides row by row, following the table above: a timesheet that is already **Approved** stays locked for everyone but an administrator, a **Submitted** one opens only for an approver of the current stage, and the two restrictions below can take the button away entirely.
+The edit button is not limited to administrators. Managers see it on **Draft** and **Rejected** timesheets, and approvers of the current stage see it on the **Submitted** timesheets waiting for them. Beebole decides row by row, following the table above: a timesheet that is already **Approved** stays locked for everyone but an administrator, a **Submitted** one opens only for an approver of the current stage, and the restriction below can take the button away entirely.
 
 <Info>
-  Two settings in [Timesheet and Planning Settings](/help/documentation/timesheetSettings) narrow this further. **Only the owner or an admin can edit entries** removes the approver column above, so only the owner and administrators can change entries. **Only an admin can edit someone else's timesheet** leaves the owner's own editing untouched but reserves every edit on another person's timesheet for administrators.
+  The **Only the owner or an admin can edit entries** restriction in [Timesheet and Planning Settings](/help/documentation/timesheetSettings) narrows this further. It removes the manager and approver columns above at every stage, so only the owner and administrators can change entries.
 </Info>
 
 ### Force approve and reject <Badge>Admin only</Badge>
 
-Administrators can unblock the pipeline without reconfiguring it: they can **Approve** or **Reject** any submitted timesheet, even when they are not approvers for the current stage. An already-approved timesheet can also be rejected — by an administrator, or by someone who was an approver on its last stage — which sends it back to its owner.
+Administrators can unblock the pipeline without reconfiguring it: they can **Approve** or **Reject** any submitted timesheet, even when they are not approvers for the current stage. When an administrator approves a stage they are not an approver of, their approval completes that stage whatever its quorum, but it doesn't skip the stages after it: each later stage still needs its own approvers (or another administrator approval). An already-approved timesheet can also be rejected — by an administrator, or by someone who was an approver on its last stage — which sends it back to its owner.
 
 To reach an approved timesheet, open it from the **Team** pane, not the **Pending** pane: **Pending** only lists submissions still waiting for a decision, so an approved period is never there. Pick the person in **Team**, navigate to the approved period, and **Reject** appears at the top of their timesheet. Rejecting unlocks the period for its owner, who corrects the entries and clicks **Resubmit**. To fix an entry without sending the whole period back, use the edit button (**Edit timesheet**) described above instead.
 
@@ -215,9 +219,9 @@ To reach an approved timesheet, open it from the **Team** pane, not the **Pendin
 
 ## Reminders and notifications
 
-- **Remind approvers after** a number of **days if not yet approved** — found in the **Reminders** tab of the **Timesheet and Planning Settings** panel — automatically follows up on submissions still waiting for review. Set it account-wide in **Account Settings**, or override it on a tag or a person, just like the approval workflow itself.
-- The **Remind** button in the **Team** pane sends a one-off reminder to anyone who hasn't submitted.
-- Each person controls how they receive **Approval updates** — instantly or as a digest — in their notification settings. See [Notifications](/help/documentation/notifications).
+- **Remind approvers after** a number of **days if not yet approved**, in the **Reminders** tab of the **Timesheet and Planning Settings** panel, automatically follows up on submissions still waiting for review. While a timesheet stays pending, Beebole sends each pending approver up to four reminders, at growing intervals, then alerts the administrators five days after the last one. Set it account-wide in **Account Settings**, or override it on a tag or a person, just like the approval workflow itself.
+- The **Remind** button in the **Team** pane sends a one-off reminder to people who have an approval workflow and haven't submitted.
+- Each person controls how they receive **Approval updates** in their notification settings: by email, as push notifications, or both, and instantly or as a digest. See [Notifications](/help/documentation/notifications).
 
 ---
 
@@ -235,7 +239,7 @@ Every approval action is logged in the person's [Journal](/help/documentation/jo
 
 <CardGroup cols={2}>
   <Card title="Timesheets" icon="clock" href="/help/documentation/timesheets">
-    Track time, submit your period, and review your team from the timesheet grid.
+    Track time in the calendar or grid view, submit your period, and review your team.
   </Card>
   <Card title="Timesheet and Planning Settings" icon="sliders" href="/help/documentation/timesheetSettings">
     Configure the timesheet period, auto-submit, entry restrictions, and reminders.
@@ -263,7 +267,7 @@ Every approval action is logged in the person's [Journal](/help/documentation/jo
     Yes. The **Approval workflow** panel exists on the organization's **Account Settings**, on every tag, and on every person's profile. A workflow defined on a tag applies to everyone under that tag, and a workflow on a person overrides everything else — so each team can follow its own sign-off process.
   </Accordion>
   <Accordion title="What happens if no approval workflow is configured?">
-    Beebole approves timesheets automatically the moment they are submitted. Add at least one approval stage in the **Approval workflow** panel to require a review before timesheets are locked.
+    Nobody can submit a timesheet: Beebole shows no **Submit** button and sends no reminders to submit. A period closes only through **Auto-submit timesheets after X days**, when it is set, and is then approved directly without notifying anyone. Add at least one stage in the **Approval workflow** panel to let people submit their timesheets for review. New organizations start with a single **Admins** stage.
   </Accordion>
   <Accordion title="Does time off go through the same approval as work time?">
     Yes. Absences recorded on the timesheet are submitted and approved together with the rest of the period, through the same approval stages. The time off counts against the person's allowance as soon as it is recorded, even before it is approved.

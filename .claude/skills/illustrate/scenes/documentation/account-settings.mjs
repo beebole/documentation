@@ -18,7 +18,7 @@ export const scenes = [
 	},
 	{
 		id: 'account-settings-localization',
-		capturedAt: '2026-09-30',
+		capturedAt: '2026-10-09',
 		datesMatter: false,
 		mode: 'auto',
 		async setup(page, h) {

@@ -139,7 +139,7 @@ Even without zooming, entries that follow each other too closely to be drawn apa
 [Suggested time entries](/help/documentation/ai#suggested-time-entries) show up as ghost entries in the calendar. Drag a suggestion to a time slot to schedule it, or accept it as it is. The suggestions button (**Suggested entries**) in the button cluster shows or hides them.
 
 <Frame caption="Today's two suggestions as ghost entries in the calendar">
-  ![Beebole timesheet calendar view of the week of September 27 to October 3, 2026: Monday to Thursday filled with colored entries, and today, Friday, with two dashed ghost entries, Sales for 4 hours in the morning and Training for 4 hours in the afternoon, the Suggested entries button on in the button cluster](/help/images/timesheets/calendar-suggestions.webp)
+  ![Beebole timesheet calendar view of the week of October 4 to 10, 2026: Tuesday to Thursday filled with colored entries, and today, Friday, with two dashed ghost entries, Quantum Logistics: Fleet Tracker, Development for 2 hours and Sales for 4 hours, the Suggested entries button on in the button cluster](/help/images/timesheets/calendar-suggestions.webp)
 </Frame>
 
 ---
@@ -181,7 +181,7 @@ Each row has a **⋯** action menu with:
 
 - **Pin to top** / **Unpin**: keep the row at the top of its section.
 - **Edit**: change the row's project, task, or absence type selection.
-- **Set as done**: on a task row, for people allowed to manage tasks. It archives the task once its work is finished, so the row leaves your timesheet and the task leaves the active planning views. Hours already logged on the task are kept and still appear in reports. To bring the task back, use **Show Archived** and **Unarchive** on the Planning page (see [Archiving and deleting tasks](/help/documentation/planning#archiving-and-deleting-tasks)).
+- **Set as done**: on a task row, for people allowed to manage tasks. It marks the task **Done** once its work is finished, so the row leaves your timesheet and the task leaves the active planning views. Hours already logged on the task are kept and still appear in reports. To bring the task back, click **Show Done** on the Planning page, then **Reopen** the task (see [Marking tasks done and deleting them](/help/documentation/planning#marking-tasks-done-and-deleting-them)).
 - **Remove row**: take the row off your timesheet.
 
 <Frame caption="A row's action menu">
@@ -201,7 +201,7 @@ There is no confirmation dialog for these actions. Press **⌘+Z** (Ctrl+Z on Wi
 In the grid view, the suggestions button (**Suggested entries**) in the button cluster opens the [suggested time entries](/help/documentation/ai#suggested-time-entries) in a pane next to the grid.
 
 <Frame caption="The Suggested entries pane next to the grid">
-  ![Beebole timesheet in grid view with the Suggested entries pane open on the left: an Accept all link, and one card per day on Northstar Financial: Dashboard, Analysis, each with its duration, a Habit badge, accept and dismiss buttons and a Why? link](/help/images/ai/suggested-entries-tray.webp)
+  ![Beebole timesheet in grid view with the Suggested entries pane open on the left: an Accept all link, and two cards for today on Sales and on Quantum Logistics: Fleet Tracker, Development, each with its duration, a Habit badge, accept and delete buttons and a Why? link](/help/images/ai/suggested-entries-tray.webp)
 </Frame>
 
 ---
@@ -350,6 +350,20 @@ When your administrator allows recording time off, you can record it in either v
 
 ---
 
+## When only planned tasks are allowed
+
+Your administrator can tie your timesheet to your plan with the **Allow only planned tasks in the timesheet** restriction in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#restrictions). You then record time only on the tasks you own (the tasks where you are the **Owner**), and only on their planned dates.
+
+- In the grid view, each task you own appears on its own as a row, in a section for its planning, in every period its planned dates reach. Its cells take time only on its planned dates; the other days are locked, and a task without planned dates takes no time. Project sections no longer appear, except one that already holds your entries.
+- No row can be added. The **+** button (**Add a row**) is gone from the project and task sections, and hovering a section name explains why. A row's **⋯** action menu has no **Edit** either, since each row is its planned task.
+- In the calendar view, the activity picker offers only your own tasks planned for that day, and the favorites bar keeps only your own tasks. The suggested entries stay on show: the suggestions button doesn't hide them.
+- The copy and **Paste period** buttons disappear, so periods can't be copied.
+- Time off works as usual, in both views.
+
+Time on someone else's task or on a project is refused with **Your timesheet settings only allow time on the tasks planned for you.**
+
+---
+
 ## Importing calendar events
 
 You can bring your Google or Microsoft calendar events into the timesheet instead of re-typing meetings. Events are assigned to a row, so this is done in the grid view.
@@ -396,7 +410,11 @@ When your period is complete, click **Submit** at the top of the timesheet, in e
   ![Beebole timesheet for the week of September 20 to 26, 2026, marked Draft, with 40 of 40 hours logged and a magnified view of the Submit button at the top right](/help/images/timesheets/submit-button.webp)
 </Frame>
 
-Your administrator can also configure automatic submission a set number of days after the period ends, and email reminders to submit. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings).
+**Submit** only shows when an approval workflow applies to you. Without one, Beebole has nobody to send your timesheet to, so there is no **Submit** button and no reminder to submit. Your period then closes only if your administrator set **Auto-submit timesheets after X days**: once those days have passed, Beebole approves and locks the period on its own.
+
+Submitting checks your administrator's rules first. Beebole refuses the submission until it meets **Require comments for submission**, **Require filling the whole schedule to submit**, and **No overtime beyond the schedule**, whichever are on. A period that ends on or before the **Lock date** can't be submitted at all: Beebole answers **This period is locked and cannot be submitted for approval.**
+
+Your administrator can also have Beebole submit timesheets automatically a set number of days after the period ends, and send reminders to submit. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings#auto-submit).
 
 ---
 
@@ -404,8 +422,10 @@ Your administrator can also configure automatic submission a set number of days 
 
 Managers and administrators see two extra buttons in the button cluster at the top left of the timesheet:
 
-- The approval button (**Approval**) opens the **Pending** pane with timesheets waiting for review. A red badge shows how many are pending. From here you can open a person's timesheet, **Approve** or **Reject** submissions, and **Remind** people who haven't submitted.
-- The team button (**Team**) opens the **Team** pane listing your team members with their reported time for the period.
+- The approval button (**Approval**) opens the **Pending** pane with timesheets waiting for review. A red badge shows how many are pending. From here you can open a person's timesheet and **Approve** or **Reject** submissions. A rejection needs a comment, so the person knows what to fix.
+- The team button (**Team**) opens the **Team** pane listing your team members with their reported time for the period. For someone who has an approval workflow and whose timesheet is still a draft or was rejected, the bell button (**Send reminder**) reminds them to submit. Select several people to **Remind** them all at once.
+
+Unless your administrator turned on **Only the owner or an admin can edit entries**, managers can correct a team member's draft or rejected timesheet: click the pencil button (**Edit timesheet**) on their line in the **Team** pane.
 
 <Frame caption="The Team pane next to the timesheet">
   ![Beebole timesheet with the Team pane open, listing team members with their reported hours for the week, Submitted or Approved status, and the pending approvers of submitted weeks](/help/images/timesheets/team-pane.webp)
@@ -415,7 +435,7 @@ For the full review workflow, see [Approvals](/help/documentation/approval).
 
 ### Timesheet score
 
-The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80.
+The timesheet score is a 0 to 100 measure of how reliably a person submits their timesheet. Each period scores 100 when submitted on time and loses 10 points per day late, down to 30. A period never submitted scores 0, and each rejection takes off 15 points. The score is the average over the periods. The team panes don't show it. Open the **Compliance** entry in the Reports menu instead, where the **Score** column gives each person's score as a colored badge: green from 95, yellow from 80 to 94, and red below 80. The report leaves out people without an approval workflow, since they can't submit.
 
 Next to the score, each of the person's periods is marked **On time**, **Late**, or **Not submitted**, and hovering a period shows its **Deadline**, when it was **Submitted**, the **Days late**, and any **Rejections**. Click the **Score** column header to switch between worst first and best first. See [Timesheet Compliance](/help/documentation/reports#timesheet-compliance) for the report's filters, period, and access. Developers can also read a person's score through the API's `getTimesheetScore` query, see [Queries](/help/api/queries#timesheets-and-approvals).
 
@@ -453,13 +473,19 @@ Next to the score, each of the person's periods is marked **On time**, **Late**,
     Beebole saves timer time rounded up to the **Minimum time interval accepted**, the smallest increment your timesheet accepts. New accounts start at 15 minutes, so a 7-minute run is saved as 15 minutes. An administrator can lower the interval in [Timesheet settings](/help/documentation/timesheetSettings#duration-format), for the whole account or for one team or person.
   </Accordion>
   <Accordion title="How do I submit my timesheet in Beebole?">
-    Click **Submit** at the top of the **Timesheet** page when your period is complete. The timesheet then enters Beebole's approval workflow and is locked while it waits for review. If it comes back rejected, correct your entries and click **Resubmit**.
+    Click **Submit** at the top of the **Timesheet** page when your period is complete. The timesheet then enters Beebole's approval workflow and is locked while it waits for review. If it comes back rejected, correct your entries and click **Resubmit**. **Submit** only appears when an approval workflow applies to you.
+  </Accordion>
+  <Accordion title="Why is there no Submit button on my timesheet?">
+    Either the period is already submitted or approved, or no approval workflow applies to you. Without a workflow, Beebole has nobody to send your timesheet to, so there is no **Submit** button and no reminder to submit. The period closes on its own if your administrator set **Auto-submit timesheets after X days**, which approves and locks it once those days have passed. Ask your administrator for an approval workflow if your timesheets should be reviewed. See [Approvals](/help/documentation/approval).
   </Accordion>
   <Accordion title="How do I copy my timesheet from the previous period?">
     Open the period you want to copy, click the copy button in the button cluster at the top left of the timesheet, navigate to the new period, and click **Paste period**. If the new period already has entries, Beebole asks whether to **Add** or **Replace**.
   </Accordion>
   <Accordion title="Why can't I add time to a certain day?">
-    Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings**, for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. A submitted or approved period is also locked until it is rejected or reopened.
+    Your administrator may have added restrictions in Beebole's **Timesheet and Planning Settings**, for example blocking time entries on future dates, on non-working days, or beyond your scheduled hours. With **Allow only planned tasks in the timesheet**, a task takes time only on its planned dates. A submitted or approved period is also locked until it is rejected or reopened, and nothing on or before the **Lock date** can change, whoever you are.
+  </Accordion>
+  <Accordion title="Why can't I add a row to my timesheet?">
+    If the **+** button (**Add a row**) is missing next to a section, your administrator may have turned on **Allow only planned tasks in the timesheet**. Beebole then fills your timesheet with the tasks you own on their planned dates, and no other row can be added, while time off stays available. The section's category may also have been removed from your timesheet settings. In both cases the section name is grayed out and hovering it explains why. No row can be added to a submitted or approved period either. See [When only planned tasks are allowed](#when-only-planned-tasks-are-allowed).
   </Accordion>
   <Accordion title="Can I track time on my phone?">
     Yes. Beebole's timesheet adapts to small screens with a mobile layout, and you can install Beebole as an app on your phone. See [Mobile and tablet](/help/documentation/mobile).

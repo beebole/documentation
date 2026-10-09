@@ -1,22 +1,22 @@
 ---
 title: "Asana integration: import projects and tasks"
 sidebarTitle: "Asana"
-description: "Import Asana projects, tasks, and sub-tasks into Beebole for time tracking. Automatic webhook-based sync keeps your Asana workspace and Beebole account in sync."
+description: "Import Asana projects, tasks, and subtasks into Beebole for time tracking. Automatic webhook-based sync keeps your Asana workspace and Beebole account in sync."
 keywords: ["beebole", "Asana", "integration", "project management", "task sync", "time tracking", "webhook"]
-og:title: "Asana Integration for Project Time Tracking with Beebole"
-og:description: "Import Asana projects, tasks, and sub-tasks into Beebole for time tracking with automatic sync."
-og:type: "article"
+"og:title": "Asana Integration for Project Time Tracking with Beebole"
+"og:description": "Import Asana projects, tasks, and subtasks into Beebole for time tracking with automatic sync."
+"og:type": "article"
 ---
 
-Beebole's Asana integration imports your Asana projects, tasks, and sub-tasks into Beebole so your team can track time against their Asana work. The integration keeps your Asana workspace and Beebole account in sync automatically — when a project or task is created or renamed in Asana, the change is reflected in Beebole.
+Beebole's Asana integration imports your Asana projects, tasks, and subtasks into Beebole so your team can track time against their Asana work. The integration keeps your Asana workspace and Beebole account in sync automatically — when a project or task is created or renamed in Asana, the change is reflected in Beebole.
 
 You can import your Asana structure into Beebole's **Projects and activities** for time tracking with costs, billing, and expenses, or into **Planning and tasks** for resource assignment.
 
 | Asana | Projects and activities | Planning and tasks |
 | --- | --- | --- |
 | Project | Project | Task |
-| Task | Subproject | Sub-task |
-| Sub-task | Sub-subproject | Sub-sub-task |
+| Task | Subproject | Subtask |
+| Subtask | Sub-subproject | Sub-subtask |
 
 ---
 
@@ -29,8 +29,8 @@ You can import your Asana structure into Beebole's **Projects and activities** f
 | What syncs from Asana | What stays in Beebole |
 | --- | --- |
 | **Projects:** Imported as Beebole projects or tasks. | **Approval workflows:** Beebole handles the timesheet lifecycle. |
-| **Tasks:** Imported as Beebole subprojects or sub-tasks. | **Billing rates:** Managed exclusively in Beebole. |
-| **Sub-tasks:** Imported as Beebole sub-subprojects or sub-sub-tasks. | **Budgets:** Set within Beebole's billing and budget settings. |
+| **Tasks:** Imported as Beebole subprojects or subtasks. | **Billing rates:** Managed exclusively in Beebole. |
+| **Subtasks:** Imported as Beebole sub-subprojects or sub-subtasks. | **Budgets:** Set within Beebole's billing and budget settings. |
 | **Users:** Asana active users are mapped as Beebole people. |  |
 
 ---
@@ -38,8 +38,8 @@ You can import your Asana structure into Beebole's **Projects and activities** f
 ## What's included
 
 <AccordionGroup>
-  <Accordion title="Asana projects, tasks, and sub-tasks">
-    Active projects, tasks, and sub-tasks at the time of enabling the integration are created in Beebole. Any name change to those items is reflected in Beebole while the integration is active. New projects and tasks created in Asana are also automatically added to Beebole.
+  <Accordion title="Asana projects, tasks, and subtasks">
+    Active projects, tasks, and subtasks at the time of enabling the integration are created in Beebole. Any name change to those items is reflected in Beebole while the integration is active. New projects and tasks created in Asana are also automatically added to Beebole.
   </Accordion>
 
   <Accordion title="Asana users">
@@ -51,7 +51,7 @@ You can import your Asana structure into Beebole's **Projects and activities** f
   </Accordion>
 
   <Accordion title="Deletions and moves">
-    Deleting an Asana project or task that already has time logged against it in Beebole archives the Beebole record instead of removing it, so the tracked history is preserved. Tasks moved between projects in Asana keep syncing to their new parent.
+    Deleting an Asana project or task that already has time logged against it in Beebole keeps the Beebole record instead of removing it, so the tracked history is preserved: a Beebole project is archived, and a Beebole task is marked **Done**. Restoring the item in Asana brings it back. Tasks moved between projects in Asana keep syncing to their new parent.
   </Accordion>
 </AccordionGroup>
 
@@ -87,7 +87,7 @@ Beebole recognizes repeated or retried deliveries from Asana and processes each 
     </Tip>
   </Step>
   <Step title="Enable the integration">
-    Click the toggle to **Enable integration**. Beebole imports all your active Asana projects, tasks, and sub-tasks.
+    Click the toggle to **Enable integration**. Beebole imports all your active Asana projects, tasks, and subtasks.
 
     <Frame caption="Beebole Asana integration updating">
       ![Beebole Asana integration updating](/help/images/integrations/asana-updating.webp)
@@ -100,14 +100,14 @@ Beebole recognizes repeated or retried deliveries from Asana and processes each 
     Once complete, the integration is active. All future changes in Asana are automatically reflected in Beebole.
   </Step>
   <Step title="Validate the integration">
-    Click **Projects** in the sidebar to open the Projects page. Expand the categories — you should see a new category called **Asana** containing all your imported projects and tasks. You can rename this category if needed.
+    Click **Projects** in the sidebar to open the Projects page. Expand the categories — you should see a new category called **Asana** containing all your imported projects and tasks. You can rename this category if needed. If you chose **Planning and tasks**, click **Planning** in the sidebar instead: the import is a new planning named **Asana**.
 
     <Frame caption="Beebole projects page showing imported Asana category">
       ![Beebole projects page showing imported Asana category](/help/images/integrations/asana-validate.webp)
     </Frame>
   </Step>
   <Step title="Configure the timesheet">
-    If you want the new Asana category to appear in the timesheet, go to **Settings** \> **Account Settings** \> **Timesheet settings** \> **Categories** and select the Asana category.
+    If you want the new Asana category to appear in the timesheet, go to **Settings** \> **Account Settings**, open the **Timesheet and Planning Settings** panel, and in its **Categories** tab select the Asana category under **Record time on these project categories**, or the Asana planning under **Record time on these plannings**. See [Timesheet and Planning Settings](/help/documentation/timesheetSettings#categories).
   </Step>
 </Steps>
 

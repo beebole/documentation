@@ -29,7 +29,7 @@ Custom fields in Beebole add your own data fields to people, projects, tasks, an
     In the **Custom field details** panel, pick a **Field type**: **Text**, **Date**, **Date & time**, **Number**, **URL**, **Boolean**, or **Unique ID**.
   </Step>
   <Step title="Configure the type's options">
-    The options for the selected type appear below it — defaults, limits, validation. Every change is saved automatically.
+    The options for the selected type appear below it: limits, validation, and for some types a **Placeholder text**. Every change is saved automatically.
   </Step>
   <Step title="Choose where the field appears">
     In the **Custom field visibility** panel, turn on **Visible for People**, **Visible for Absence types**, **Visible for Time Records**, **Visible for Projects**, or **Visible for Tasks**. A single field can apply to several. The field then appears on the matching records — see [Choosing where a field appears](#choosing-where-a-field-appears).
@@ -136,7 +136,12 @@ Once a field is visible for a given type, it appears automatically on every matc
 
 ## Custom fields in reports
 
-Custom field values flow into reporting. When you build a [custom report](/help/documentation/custom-reports), any custom field visible on people, projects, or tasks is available as a column for that type — so a field like a client reference or region becomes a regular report dimension.
+Custom field values flow into reporting. When you build a [custom report](/help/documentation/custom-reports), a custom field is offered at the bottom of the field list of the report columns that match its visibility, so a field like a client reference or region becomes a regular report dimension:
+
+- Fields visible for people appear in the **Person** column.
+- Fields visible for projects appear in the column of each project category they apply to, at the levels you ticked. Fields visible for tasks appear in the column of each planning they apply to.
+- Fields visible for time records appear in the **Time** column.
+- Fields visible for absence types appear in the **Absence type** column.
 
 ---
 
@@ -200,6 +205,6 @@ Archived fields disappear from the list. Click **Show Archived** to display them
   </Accordion>
 
   <Accordion title="Can I change a custom field's type after creating it?">
-    Yes. Open the field in **Settings** \> **Custom Fields** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review limits and defaults after switching. Beebole refuses a switch to **Unique ID** while two items hold the same value — remove the duplicates first.
+    Yes. Open the field in **Settings** \> **Custom Fields** and pick another **Field type** in the **Custom field details** panel. The type-specific options change with it, so review the limits, validation, and **Placeholder text** after switching. Beebole refuses a switch to **Unique ID** while two items hold the same value — remove the duplicates first.
   </Accordion>
 </AccordionGroup>

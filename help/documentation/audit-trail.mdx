@@ -1,62 +1,91 @@
 ---
 title: "Audit trail: track every change in your account"
 sidebarTitle: "Audit Trail"
-description: "Beebole's audit trail records who changed what and when, shown in the Journal feed and in the Journal panel of each record."
+description: "Beebole's audit trail records who changed what and when. Administrators see each change in the Journal of the item it touched, and older weeks through the API."
 keywords: ["beebole", "audit trail", "audit log", "change tracking", "activity log", "accountability"]
 "og:title": "Track Who Changed What with the Beebole Audit Trail"
-"og:description": "See who changed what and when in Beebole. The audit trail shows in the Journal feed and in the Journal panel of each record."
+"og:description": "See who changed what and when in Beebole. Administrators find each change in the Journal of the person, project, task, or setting it touched."
 "og:type": "article"
 ---
 
-Beebole's audit trail records every change made to your account's data — who made it and when. It gives administrators an accountable history of edits across people, projects, tasks, time, and configuration, so you can trace any modification back to a person and a moment in time.
+Beebole's audit trail records the changes made to your account's data: what changed, who made the change, and when. It gives administrators an accountable history of edits to people, projects, tasks, time entries, and configuration, so you can trace a modification back to a person and a moment in time.
 
 <Info>
-  The audit trail is part of higher-tier subscriptions and is not available on the entry-level plan. If you don't see it, check your [subscription](/help/documentation/subscription).
+  The audit trail is not available on the **Free** plan. It is part of the **Essential** and **Advanced** plans and of the free trial. If you don't see it, check your [subscription](/help/documentation/subscription).
 </Info>
 
-## What the audit trail records
+## Where to find the audit trail <Badge>Admin only</Badge>
 
-Each audit trail entry captures the operation that ran, who performed it, when it happened, and the values that were submitted with the change.
-
-| Detail | Description |
-|--------|-------------|
-| **Operation** | The action that ran, such as adding, editing, or removing a record |
-| **Person** | Who performed the action |
-| **Timestamp** | When the action occurred |
-| **Submitted values** | The argument names and values passed with the operation |
-
-Beebole records the values submitted with a change — the new state, not a before-and-after comparison. So the audit trail tells you what was set and by whom, rather than displaying the prior value side by side.
-
-## View audit activity in the Journal
-
-The richest view of audit activity is the **Journal** feed. Audit messages appear there alongside other account activity, newest first.
+Each change appears in the **Journal** of the item it touched, next to the messages posted on that item. The **Journal** in the sidebar does not list these changes.
 
 <Steps>
-  <Step title="Open the Journal">
-    Click **Journal** in the sidebar.
+  <Step title="Open the item">
+    Open the person, project, task, tag, role, work schedule, time off type, expense type, or custom field whose history you want to see. For example, click **People** in the sidebar, then click the person.
   </Step>
-  <Step title="Read the activity feed">
-    Browse the messages in chronological order to see recent changes across the account.
+  <Step title="Switch to its Journal">
+    Click **Show journal**, the button at the top right of the item's panel. Click it again (**Show attributes**) to return to the item's settings.
+  </Step>
+  <Step title="Read the changes">
+    Changes are listed newest first, each with who made it and how long ago.
   </Step>
 </Steps>
 
-## See the change history on a record
+For changes to the account's own settings, open **Account Settings** and click **Show journal** there.
 
-Individual records carry their own change history. Open a person, project, task, tag, role, or work schedule and expand its **Journal** panel. Next to the messages posted on that record, it lists the changes made to it, each with who made the change and how long ago. A person's **Journal** also includes the time records added, edited, or deleted on their timesheet.
+A person's **Journal** also lists the time records added, copied, edited, or deleted on their timesheet, and the changes to who manages them or what they manage.
 
 <Frame caption="A person's Journal listing the changes made to her records">
   <img src="/help/images/journal/activity-feed.webp" alt="Beebole Journal of the person Ana Pereira, opened from her profile, with the message editor and its formatting toolbar at the top and the feed below listing an added expense record and added time records for PTO and Sickness days, each with who made the change and when" width="598" />
 </Frame>
 
-<Tip>
-  Use a record's **Journal** to confirm who made a specific edit, then open **Journal** in the sidebar when you need the wider picture across the account.
-</Tip>
+<Info>
+  Only administrators see change entries. Other people who open an item's **Journal** see its messages, not its change history.
+</Info>
+
+## What each entry shows
+
+Each entry is named after the change it records, so you can read the history without opening anything. When the change involves another item, the entry names it too.
+
+| Entry | What it records |
+|-------|-----------------|
+| **Name change**, **Description change**, **Color change** | The item was renamed, or its description or color changed |
+| **Parent change** | The item was moved under another parent |
+| **Changed role to** | A person's role changed, followed by the new role |
+| **Tagged with**, **Untagged from** | A tag was added to or removed from the item, followed by the tag |
+| **Done**, **Reopened** | A task was marked done or reopened |
+| **Archived**, **Unarchived** | The item was archived or brought back |
+| **Added time record**, **Copied time record**, **Edited time record**, **Deleted time record** | A time entry on the person's timesheet was added, copied, changed, or deleted |
+
+Time entry changes spell out the duration, the project, task, or time off type, and the date of the entry. On an edit, the changed value shows as old → new, for example *Edited time record: 2h → 3h30 · Acme Corp, Website Redesign · 2026-10-05*. Durations follow your account's duration format.
+
+### Show one kind of change
+
+Click a change entry to show only the changes of the same kind, such as every **Tagged with** and **Untagged from** entry on a person. Messages stay visible. Click the entry again to show everything.
+
+### Changes made while signed in as someone else
+
+When an administrator uses **Sign in as…** and changes something on another person's behalf, the entry names the administrator who made the change, not the person they were signed in as. See [Sign in as another person](/help/documentation/authentication#sign-in-as-another-person).
+
+## Look further back
+
+The **Journal** shows the changes of the last 7 days. To look at an earlier week, or to list every change one person made, use one of these:
+
+- The [Beebole API](/help/api/queries): the `getAuditTrails` query returns a 7-day window starting at the `startTime` you pass, and `fromPersonId` limits it to the changes made by one person.
+- A [connected AI assistant](/help/integrations/mcp-server): ask it who changed something in a given week, or for every change a person made. It reads the same audit trail.
+
+Both work only for administrators, on plans that include the audit trail.
 
 ## Related content
 
 <CardGroup cols={2}>
+  <Card title="Journal" icon="comments" href="/help/documentation/journal">
+    Post messages, follow team activity, and filter the feed.
+  </Card>
   <Card title="Roles & permissions" icon="user-shield" href="/help/documentation/roles-authorisations">
     Control who has admin access to view audit activity.
+  </Card>
+  <Card title="API queries" icon="code" href="/help/api/queries">
+    Read the audit trail and other account data with the GraphQL API.
   </Card>
   <Card title="Data Exports" icon="file-export" href="/help/documentation/data-exports">
     Export your organization's data for reporting and record-keeping.
@@ -67,18 +96,18 @@ Individual records carry their own change history. Open a person, project, task,
 
 <AccordionGroup>
   <Accordion title="Does Beebole's audit trail show the previous value of a field?">
-    No. Beebole records the values submitted with each change — the new state — along with the operation, who ran it, and when. It does not display a before-and-after comparison of the field.
+    For time entries, yes: an edited entry shows the changed value as old → new, along with the entry's duration, project or task, and date. For other items, Beebole names the kind of change, such as **Name change** or **Changed role to**, with who made it and when, but does not show the old and new values side by side.
   </Accordion>
   <Accordion title="Where do I see audit activity in Beebole?">
-    In two places. The **Journal** feed shows audit messages across the whole account, and the **Journal** panel of an individual record shows that record's own change history.
+    In the **Journal** of the item that changed: open a person, project, task, tag, role, work schedule, time off type, expense type, or custom field and click **Show journal**. Changes to the account's settings are in the **Account Settings** journal. Only administrators see change entries, and the **Journal** in the sidebar does not list them.
+  </Accordion>
+  <Accordion title="How far back can I see changes in Beebole?">
+    Beebole shows the last 7 days of changes in each item's **Journal**. For an earlier week, an administrator can query the audit trail through the Beebole API with `getAuditTrails` and a `startTime`, or ask a connected AI assistant.
   </Accordion>
   <Accordion title="Does the audit trail record who viewed data, or only changes?">
-    Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record.
-  </Accordion>
-  <Accordion title="Can I see changes made by archived people?">
-    Yes. Changes a person made stay in the audit trail after that person is archived, and their name still appears next to their actions.
+    Only changes. Beebole's audit trail records actions that modify data, such as adds, edits, and removals. It does not track who viewed or accessed a record. Changes made by someone who was later archived stay in the audit trail, with their name next to each change.
   </Accordion>
   <Accordion title="Is the audit trail available on every plan?">
-    No. The audit trail is part of higher-tier Beebole subscriptions and is excluded from the entry-level plan. Review your [subscription](/help/documentation/subscription) if it isn't available.
+    No. Beebole's audit trail is not available on the **Free** plan. It is included in the **Essential** and **Advanced** plans and during the free trial. Review your [subscription](/help/documentation/subscription) if it isn't available.
   </Accordion>
 </AccordionGroup>

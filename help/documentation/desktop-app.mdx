@@ -8,10 +8,10 @@ keywords: ["beebole", "desktop app", "automatic time tracking", "activity tracki
 "og:type": "article"
 ---
 
-The Beebole desktop app is a companion application for macOS, Windows, and Linux that drafts time entries from what you work on. Activity tracking is opt-in — nothing is watched or recorded until you explicitly turn it on. When tracking is on, the app reads only application names and window titles — never your screen or audio — and stores them on your machine only. Beebole turns that activity into [suggested time entries](/help/documentation/ai#suggested-time-entries), and only the entries you accept reach your timesheet.
+The Beebole desktop app is a companion application for macOS, Windows, and Linux that drafts time entries from what you work on. Activity tracking is opt-in — nothing is watched or recorded until you explicitly turn it on. When tracking is on, the app reads only application names and window titles (never your screen or audio) and keeps them in a local database on your computer. Beebole turns that activity into [suggested time entries](/help/documentation/ai#suggested-time-entries), and only the entries you accept reach your timesheet.
 
 <Info>
-  Activity data stays on the device, is never shared with anyone, and is deleted after a week. Suggestions are private to you until you accept them.
+  Your activity is kept only on your computer and deleted after a week. Activity the app cannot match on its own is classified by Beebole's AI on Beebole-operated servers in your data region, which store nothing of it. Only the resulting suggestions (project or task, and duration) reach your account, and they stay private to you until you accept them.
 </Info>
 
 ---
@@ -20,14 +20,14 @@ The Beebole desktop app is a companion application for macOS, Windows, and Linux
 
 <Steps>
   <Step title="Open the Assistant page">
-    Click **Assistant** in the sidebar and scroll to the **Desktop app** section.
+    Click **Assistant** in the sidebar to open the Beebole AI page, and scroll to the **Desktop app** section.
 
     <Frame caption="The Desktop app section of the Assistant page">
       <img src="/help/images/ai/desktop-download-links.webp" alt="Beebole Desktop app section with download links for macOS, Windows, Linux (AppImage) and Linux (deb), the note about unsigned installers and the Open the desktop app button" width="864" />
     </Frame>
   </Step>
   <Step title="Download the installer">
-    Pick your platform next to **Download**: **macOS** (`.dmg`), **Windows** (`.exe`), or **Linux** (`.AppImage` or `.deb`). You can also download the current build directly:
+    Pick your platform next to **Download**: **macOS** (`.dmg`), **Windows** (`.exe`), **Linux (AppImage)**, or **Linux (deb)**. You can also download the current build directly:
 
     | Platform | Direct download |
     | --- | --- |
@@ -36,10 +36,10 @@ The Beebole desktop app is a companion application for macOS, Windows, and Linux
     | Linux (AppImage) | [beebole-desktop-linux.AppImage](https://app.beebole.com/downloads/desktop/beebole-desktop-linux.AppImage) |
     | Linux (deb) | [beebole-desktop-linux.deb](https://app.beebole.com/downloads/desktop/beebole-desktop-linux.deb) |
 
-    The links always serve the latest version — the same files the **Assistant** page offers.
+    The links always serve the latest version, the same files the Beebole AI page offers.
   </Step>
   <Step title="Install and launch">
-    Run the installer and open the app. Signing in from the app hands off to your browser — complete the sign-in there with any method, [passkeys and SSO included](/help/documentation/authentication), and you return to the app signed in. Use **Open the desktop app** on the **Assistant** page in your browser to bring the app up anytime.
+    Run the installer and open the app. Signing in from the app hands off to your browser — complete the sign-in there with any method, [passkeys and SSO included](/help/documentation/authentication), and you return to the app signed in. Use **Open the desktop app** on the Beebole AI page in your browser to bring the app up anytime.
   </Step>
 </Steps>
 
@@ -51,11 +51,11 @@ The Beebole desktop app is a companion application for macOS, Windows, and Linux
 
 ## Turning tracking on
 
-The app never starts watching on its own. After your first hour with the app, a dialog titled **Automatic timesheet suggestions** opens when you view your timesheet, explaining what would be observed (which applications and windows you use), what stays on your computer, and what is sent to your account — only the resulting suggestions: project, task, and duration.
+The app never starts watching on its own. After your first hour with the app, a dialog titled **Automatic timesheet suggestions** opens when you view your timesheet. It explains what would be observed (which applications and windows you use), that only the resulting suggestions (project, task, and duration) are sent to your Beebole account, and where activity is classified: **Classification runs on Beebole-operated servers and nothing about your activity is stored there.**
 
 - Click **Enable tracking** to turn it on. Suggestions start appearing after a few hours of activity.
 - Click **No thanks** to keep tracking off — nothing is recorded, and Beebole never asks again.
-- Turn tracking on, pause it, or switch it back off anytime from the Beebole icon in the menu bar (macOS) or system tray (Windows/Linux). The [Beebole AI](/help/documentation/ai) page also shows whether tracking is on or off and lets you switch it.
+- Turn tracking on, pause it, or switch it back off anytime from the Beebole icon in the menu bar (macOS) or system tray (Windows/Linux). Inside the desktop app, the [Beebole AI](/help/documentation/ai) page also shows whether tracking is on or off and lets you switch it.
 
 <Info>
   On macOS, Beebole asks for **Screen Recording** access so it can read window titles — it never records your screen or audio. If access was refused, suggestions are less precise; the Beebole AI page warns you and opens the right System Settings pane.
@@ -65,7 +65,7 @@ The app never starts watching on its own. After your first hour with the app, a 
 
 ## How suggestions work
 
-With tracking on, the app watches which applications and windows you actively use and how long. Beebole groups that activity into draft time entries and shows them in the **Suggested entries** pane beside your timesheet grid, badged **Desktop**.
+With tracking on, the app watches which applications and windows you actively use and how long. Beebole groups that activity into draft time entries and shows them in the **Suggested entries** pane beside your timesheet, badged **Desktop**.
 
 - **Accept**, **Accept all**, or **Dismiss** each suggestion — nothing is logged without your say-so.
 - Click **Why?** on a suggestion to see the activity behind it. The details live on the machine that captured them; on another device Beebole shows **These details are only available in the desktop app, on the computer where the activity was tracked.**
@@ -98,13 +98,13 @@ With tracking on, the app watches which applications and windows you actively us
 
 <AccordionGroup>
   <Accordion title="What does the Beebole desktop app track?">
-    Nothing until you enable tracking. Once on, it reads only application names and window titles — never your screen or audio. The captured activity is stored on your machine, never shared with anyone, and deleted after a week. It exists solely to draft time entry suggestions for you.
+    Nothing until you enable tracking. Once on, it reads only application names and window titles, never your screen or audio. The captured activity is kept in a local database on your computer and deleted after a week. Activity the app cannot match to a project or task on its own is sent to Beebole's AI for classification, together with the names of the projects and tasks to match it to. Classification runs on Beebole-operated servers and nothing about your activity is stored there. The activity exists solely to draft time entry suggestions for you.
   </Accordion>
   <Accordion title="Can my manager see my desktop activity?">
-    No. Activity stays on your device, and the suggestions built from it are private to you. Your manager only ever sees the time entries you explicitly accept onto your timesheet — the same as entries you type by hand.
+    No. Your activity is kept only on your computer, Beebole's servers store nothing of it after classifying it, and the suggestions built from it are private to you. Your manager only ever sees the time entries you explicitly accept onto your timesheet — the same as entries you type by hand.
   </Accordion>
   <Accordion title="Which platforms does the desktop app support?">
-    macOS (`.dmg`), Windows (`.exe`), and Linux (both `.AppImage` and `.deb` packages). Download the installer from the **Assistant** page in Beebole.
+    macOS (`.dmg`), Windows (`.exe`), and Linux (both `.AppImage` and `.deb` packages). Download the installer from the Beebole AI page (click **Assistant** in the sidebar).
   </Accordion>
   <Accordion title="Why does my system warn me when installing the app?">
     The installers are not yet signed with Apple and Microsoft while Beebole completes their registration processes. On macOS, allow the app under **System Settings** → **Privacy & Security** after the first blocked launch; on Windows, choose **More info** → **Run anyway**.

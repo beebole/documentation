@@ -11,7 +11,7 @@ og:type: "article"
 Beebole's time-off management lets you define absence types, assign individual allowances, and track balances in real time. Your team records time off directly on their timesheets — each entry counts against the balance as soon as it's recorded — and the approval workflow lets managers review every absence.
 
 <Info>
-  Time off in Beebole is tracked through **absence types** — categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
+  Time off in Beebole is tracked through absence types: categories like vacation, sick leave, or parental leave that you define to match your organization's policies.
 </Info>
 
 <Frame caption="Adding time off types in Beebole">
@@ -31,13 +31,13 @@ Beebole's time-off management lets you define absence types, assign individual a
 
 An absence type represents a category of leave your organization recognizes. Common examples include vacation, sick leave, parental leave, and personal days — but you can create as many types as you need.
 
-Each absence type can be configured with:
+Each absence type has:
 
-- **A name** — The label your team sees when logging time off (e.g., "Vacation", "Sick Leave").
-- **A unit** — Whether absences are tracked in **Hour** or **Day** units.
-- **A paid setting** — Whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
-- **An allowance** — The amount of time off each person receives per period.
-- **An accrual policy** — Rules describing how time off accumulates over the allowance period. See [Accruals](/help/documentation/accruals).
+- A name, the label your team sees when logging time off (for example "Vacation" or "Sick Leave").
+- A unit: absences of the type are tracked in **Hour** or **Day** units.
+- A paid setting that decides whether absences of this type count toward people costs. See [Time off and people costs](#time-off-and-people-costs).
+
+The amount of time off each person receives per period for a type is an allowance. You set allowances on the organization, a tag, or a person, not on the absence type itself. See [Setting up allowances](#setting-up-allowances).
 
 ---
 
@@ -56,7 +56,7 @@ Each absence type can be configured with:
 </Steps>
 
 <Frame caption="The Time Off list with the PTO absence type open on its Units panel">
-  ![Beebole Settings Time Off list with the Add Time Off Type button and the PTO and Sickness absence types, and the PTO panel open on the right showing Units set to Day, Is paid (included in people costs) checked, and the Accruals, Custom fields, Time off notifications and Who has access? panels](/help/images/timeoff/absence-types-list.webp)
+  ![Beebole Settings Time Off list with the Add Time Off Type button and the PTO and Sickness absence types, and the PTO panel open on the right showing Units set to Day and Is paid (included in people costs) checked](/help/images/timeoff/absence-types-list.webp)
 </Frame>
 
 <Tip>
@@ -99,16 +99,22 @@ An allowance — Beebole's term for a time-off quota or entitlement — defines 
   </Step>
 </Steps>
 
+The panel lists the allowances that start in the current year or later. Older ones are hidden: click **Show past allowances** (the badge counts them) to see them, and **Hide past allowances** to collapse them again.
+
 <Info>
-  To give specific people a different allowance, add one on their profile under **People** — person-level allowances override tag-level ones, which override the organization default. See [People](/help/documentation/people).
+  A person uses the allowances of the most specific level that has any: their own profile first, then their tags, then the organization. Beebole takes that level's whole set and does not combine levels per absence type. As soon as you add one allowance on a person's profile, that person stops inheriting every allowance from their tags and the organization, and any absence type without an allowance on their profile has no limit for them. To change a single allowance for someone, click **Copy** in the **Absence allowances** panel where the allowances are defined (**Account Settings** or the tag), click **Paste** in the person's panel, then adjust the one that differs. See [Attribute copy and paste](/help/documentation/concepts#attribute-copy-and-paste).
 </Info>
 
 ### Carrying unused time off forward
 
-Unused allowance can carry into the next period. Two fields on the allowance control it:
+Unused allowance carries into the next period only when the allowance has a **Valid until** date after the end of its period. Without one, nothing carries over, and whatever is left expires when the period ends. Two fields on the allowance control carry-forward:
 
-- **Valid until** — How long the carried balance remains usable after the period ends.
-- **Carry forward limit** — The maximum amount that carries over. Leave it at 0 for no cap.
+- **Valid until**: the last day the carried balance can be used. Carried time still unused after that date expires.
+- **Carry forward limit**: the maximum amount that carries over. Anything above the limit expires at the end of the period. Leave it at 0 for no cap, so the whole remaining balance carries.
+
+Once the new period starts, Beebole spends the carried balance first, before the new period's allowance, so the time that expires soonest is used first. A negative balance at the end of a period carries nothing.
+
+For example, take a 20-day allowance for 2026 with a **Carry forward limit** of 5 days and **Valid until** set to March 31, 2027. A person who took 12 days in 2026 has 8 days left: 5 carry into 2027 and 3 expire on December 31. Their next time off in 2027 uses those 5 carried days first, and any of them still unused on March 31 expire.
 
 The carried balance counts everywhere the allowance does: booking limits respect it, and the [Absence quotas report](/help/documentation/reports#absence-quotas) shows it per person, including the **Valid until** and **Carry forward limit** columns.
 
@@ -116,18 +122,18 @@ The carried balance counts everywhere the allowance does: booking limits respect
 
 ## Tracking balances
 
-Beebole tracks time-off balances based on allowances, accruals, and recorded absences. **Allowance**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit — days or hours — in the input and in the card's summary line:
+Beebole tracks time-off balances from the allowances, their manual **Accrued** amounts, and the absences recorded on timesheets. **Allowance**, **Consumed**, and **Accrued** sit at the top of each card in the **Absence allowances** panel, right after the absence type, and every figure carries its unit (days or hours) in the input and in the card's summary line:
 
 | Balance field | What it shows |
 | --- | --- |
 | **Allowance** | The amount of time off granted for the allowance period |
-| **Consumed** | The time off already recorded over the period (shown when you open an allowance on a person) |
-| **Accrued** | A manual adjustment field for accrued time |
+| **Consumed** | The time off already recorded over the period (shown on a person's allowances) |
+| **Accrued** | Extra time you add to the allowance by hand, for example time earned during the period. Beebole does not calculate it: automatic accrual policies are not available yet. |
 
 The **Carry forward limit** states its unit the same way. Balances update as team members log time off on their timesheets and when you adjust the **Accrued** field on the allowance.
 
 <Frame caption="A person's PTO allowance, inherited from the organization, opened to show the days consumed">
-  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: summary line Allowance 20d, Accrued 0d, Consumed 12d, then Start - end 2026, Time off PTO, Allowance 20 d, Consumed 12d, Accrued, Valid until Mar 31, 2027, Carry forward limit 5 d, Allow negative balance and Repeat automatically, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: summary line Allowance 20d, Accrued 0d, Consumed 12d, then Start - end 2026, Time off PTO, Allowance 20 d, Consumed 12d, Accrued, Valid until Mar 31, 2027, Carry forward limit 5 d and Allow negative balance, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
 </Frame>
 
 ---
@@ -183,7 +189,7 @@ Team members record absences directly on their timesheets, just like regular tim
     In the calendar view, drag across an empty time slot and pick the absence type (e.g., "Vacation") in the activity picker. In the grid view, click the **+** button (**Add a row**) of the **Time Off** section and pick the absence type.
   </Step>
   <Step title="Enter the time off">
-    In the grid view, enter the hours or days on each day of the row. In the calendar view, the entry covers the slot you selected — drag or resize the block to change it.
+    In the grid view, enter the hours on each day of the row for an hour-based type. For a day-based type, each day offers two buttons instead: ½ (**Half day**) and 1 (**Full day**). Click the selected button again to clear the day. In the calendar view, the entry covers the slot you selected: drag or resize the block to change it. A day-based block snaps to a half or a full day.
   </Step>
   <Step title="Submit the timesheet">
     Click **Submit** to send the timesheet for approval. The time off counts against the balance as soon as it is recorded.
@@ -194,9 +200,9 @@ Team members record absences directly on their timesheets, just like regular tim
   ![Beebole timesheet grid view for the week of October 4 to 10, 2026, with a PTO row in days under the Time Off section: Monday and Tuesday set to 1 day, the half-day and full-day buttons on the other weekdays, and those two days shaded as days off](/help/images/timesheets/time-off-row.webp)
 </Frame>
 
-<Tip>
-  If your organization tracks absences in days, a full day off equals the number of hours defined in the person's [work schedule](/help/documentation/work-schedule).
-</Tip>
+<Info>
+  Day-based time off follows the person's [work schedule](/help/documentation/work-schedule): a **Full day** equals the hours scheduled that day, and a **Half day** half of them. Beebole refuses any other amount. Day-based time off also can't be booked on a public holiday or on a scheduled day off, since those days have no working hours to take off. Hour-based time off is not affected by these two rules.
+</Info>
 
 ---
 
@@ -204,7 +210,7 @@ Team members record absences directly on their timesheets, just like regular tim
 
 <CardGroup cols={2}>
   <Card title="Accruals" icon="calendar" href="/help/documentation/accruals">
-    Configure how time-off allowances accrue on a recurring schedule.
+    Coming soon: a preview of automatic accrual policies, plus the carry-forward rules that already apply to allowances.
   </Card>
 
   <Card title="Public Holidays" icon="clock" href="/help/documentation/public-holidays">
@@ -226,7 +232,7 @@ Team members record absences directly on their timesheets, just like regular tim
 
 <AccordionGroup>
   <Accordion title="Can I set different time-off allowances for different people?">
-    Yes. Add an allowance in the **Absence allowances** panel of a person's profile under **People**. Person-level allowances take priority over tag-level ones and the organization default.
+    Yes. Add allowances in the **Absence allowances** panel of a person's profile under **People**, or on a tag for a whole group. Beebole uses the whole set of allowances from the most specific level that has any: the person, then their tags, then the organization. Once a person has one allowance of their own, they no longer inherit any allowance from their tags or the organization, so copy the inherited allowances onto the person first and then adjust the one that differs.
   </Accordion>
 
   <Accordion title="What happens when someone exceeds their time-off balance?">
@@ -234,15 +240,19 @@ Team members record absences directly on their timesheets, just like regular tim
   </Accordion>
 
   <Accordion title="How does time off interact with approvals?">
-    Time-off entries follow the same approval workflow as regular timesheet entries. Absences count against a person's allowance as soon as they are recorded — approval reviews and locks the timesheet but does not change the balance. See [Approvals](/help/documentation/approval).
+    In Beebole, time-off entries follow the same approval workflow as regular timesheet entries. Absences count against a person's allowance as soon as they are recorded. Approval reviews and locks the timesheet but does not change the balance. See [Approvals](/help/documentation/approval).
   </Accordion>
 
   <Accordion title="Can I track time off in both hours and days?">
-    Each absence type uses a single unit — **Hour** or **Day**. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
+    In Beebole, each absence type uses a single unit, **Hour** or **Day**. If you need both, create separate absence types (e.g., "Vacation (days)" and "Medical appointments (hours)").
   </Accordion>
 
-  <Accordion title="How do accruals work with time-off allowances?">
-    Accrual policies describe how leave accumulates over time rather than being granted all at once. Accrued time is reflected on the allowance through its editable **Accrued** field, a manual adjustment to the accrued balance. See [Accruals](/help/documentation/accruals).
+  <Accordion title="Does Beebole accrue time off automatically?">
+    Not yet. Automatic accrual policies are coming soon to Beebole, and the [Accruals](/help/documentation/accruals) page previews how they will work. Today, each allowance has a manual **Accrued** field: enter the time a person has earned there, and Beebole adds it to their balance.
+  </Accordion>
+
+  <Accordion title="Why can't I book a day off on a public holiday?">
+    In Beebole, day-based time off is a share of the person's scheduled working day, and a public holiday has no working hours to take off. In the grid view, a day-based row shows no **Half day** or **Full day** buttons on that day, and any other attempt is refused with the message "You cannot record time on a public holiday." The same goes for a scheduled day off in the person's work schedule, such as a weekend. Public holidays never count against an allowance, so there is nothing to book for them.
   </Accordion>
 
   <Accordion title="Where do I find absence quotas in Beebole?">

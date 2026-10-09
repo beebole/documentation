@@ -3,9 +3,9 @@ title: "Outgoing Webhooks for Real-Time Notifications"
 sidebarTitle: "Webhooks"
 description: "Configure outgoing webhooks in Beebole to receive real-time notifications when data changes. Signed POST requests with HMAC-SHA256 and automatic retry."
 keywords: ["beebole", "webhooks", "outgoing webhooks", "integrations", "automation", "HMAC", "real-time notifications", "API"]
-og:title: "Beebole Outgoing Webhooks with HMAC-SHA256 Signing"
-og:description: "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
-og:type: "article"
+"og:title": "Beebole Outgoing Webhooks with HMAC-SHA256 Signing"
+"og:description": "Configure outgoing webhooks to receive real-time Beebole data change notifications with HMAC-SHA256 payload signing."
+"og:type": "article"
 ---
 
 Beebole's outgoing webhooks let you subscribe to real-time notifications whenever data changes in your organization. Each webhook delivers a signed POST request to a URL you control, allowing external systems, automations, and integrations to react instantly to changes in Beebole.
@@ -24,7 +24,7 @@ You can configure multiple webhooks, each with its own URL, name, secret, and ev
     Fill in the following fields for your new webhook:
 
     - **Name** — A label to identify this webhook (for example, "Slack notifications" or "ERP sync").
-    - **URL** — The HTTPS endpoint that will receive POST requests from Beebole.
+    - **URL** — The HTTPS endpoint that receives POST requests from Beebole.
     - **Secret** — A secret key used to sign the payload. Beebole generates one automatically. You can regenerate it at any time by clicking **Regenerate**.
     - **Enabled** — Toggle whether this webhook is active.
     - **Events** — Choose **All events** to receive every event type, or select individual events from the list.
@@ -106,7 +106,7 @@ The following event names can be subscribed to individually or via **All events*
 
 Every request from Beebole includes an `X-Beebole-Signature` header containing a hex-encoded HMAC-SHA256 signature of the raw request body, prefixed with `sha256=`. Use your webhook's **Secret** to verify this signature before processing the payload.
 
-**Example verification in Node.js:**
+Example verification in Node.js:
 
 ```javascript
 const crypto = require('crypto')
@@ -149,10 +149,10 @@ After 5 failed attempts, Beebole stops retrying and abandons the delivery. There
 
 ## Managing webhooks
 
-- To **edit** a webhook, click to expand its card in the list and update the fields. Changes save automatically.
-- To **disable** a webhook temporarily without deleting it, toggle the **Enabled** switch off.
-- To **regenerate** the secret (for example, if it has been compromised), click **Regenerate** in the **Secret** field. Update your endpoint with the new secret before re-enabling the webhook.
-- To **delete** a webhook, click **Remove** from the webhook card.
+- To edit a webhook, click to expand its card in the list and update the fields. Changes save automatically.
+- To disable a webhook temporarily without deleting it, toggle the **Enabled** switch off.
+- To regenerate the secret (for example, if it has been compromised), click **Regenerate** in the **Secret** field. Update your endpoint with the new secret before re-enabling the webhook.
+- To delete a webhook, click **Remove** from the webhook card.
 
 ---
 
@@ -193,7 +193,7 @@ After 5 failed attempts, Beebole stops retrying and abandons the delivery. There
     Beebole retries failed deliveries up to 5 times over approximately 95 seconds. If all retries fail, the delivery is abandoned. Events are not queued indefinitely. To avoid missing events during downtime, ensure your endpoint is highly available or implement a polling strategy with the Beebole API as a fallback.
   </Accordion>
 
-  <Accordion title="Can I use webhooks to react to changes made by integrations like Jira or monday.com?">
-    Yes. Events triggered by any source — including integrations, the Beebole web app, and the API — will fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a Monday.com sync.
+  <Accordion title="Can I use webhooks to react to changes made by integrations like Asana or monday.com?">
+    Yes. Events triggered by any source — including integrations, the Beebole web app, and the API — fire webhooks if a matching subscription is active. For example, a `projectUpdate` event fires whether a project is renamed directly in Beebole or via a monday.com sync.
   </Accordion>
 </AccordionGroup>

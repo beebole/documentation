@@ -2,8 +2,8 @@
 title: "Mobile: install Beebole on your phone or tablet"
 sidebarTitle: "Mobile"
 description: "Install Beebole as a progressive web app on your phone, tablet, or desktop and use the responsive layout, dark mode, and on-the-go time tracking."
-keywords: ["beebole", "mobile app", "PWA", "progressive web app", "install app", "dark mode", "responsive", "mobile time tracking"]
-"og:title": "Installing Beebole on Your Phone or Tablet (PWA)"
+keywords: ["beebole", "mobile app", "PWA", "install app", "dark mode", "mobile time tracking", "mobile planning", "push notifications iPhone"]
+"og:title": "Installing and Using Beebole on Your Phone or Tablet"
 "og:description": "Install Beebole as an app on your phone, tablet, or desktop. Learn about the responsive layout and theme options."
 "og:type": "article"
 ---
@@ -33,6 +33,8 @@ Beebole is a Progressive Web App (PWA), which means you can install it directly 
     Scroll down and tap **Add to Home Screen**. Give the app a name and tap **Add**.
   </Step>
 </Steps>
+
+Adding Beebole to the Home Screen is also what lets an iPhone or iPad receive push notifications: Safari doesn't deliver them to a browser tab. Open Beebole from its Home Screen icon and, in your own **Notifications** panel, check **Push notifications**. If it is already checked, tap **Enable on this device** under it. Opened in a Safari tab, the panel shows a reminder to add Beebole to the Home Screen instead. See [Push notifications on your devices](/help/documentation/notifications#push-notifications-on-your-devices).
 
 ### On Android
 
@@ -73,7 +75,7 @@ Beebole is a Progressive Web App (PWA), which means you can install it directly 
 Beebole's interface adapts automatically to the width of your screen. It has two layouts:
 
 - **Desktop** — On screens 1280 pixels wide or more: sidebar navigation, the weekly grid, detailed tables, and side panels.
-- **Touch** — On narrower screens, which covers phones and most tablets: a compact layout with the sidebar behind a menu button, the timesheet as a list of days, and bottom sheets instead of pop-ups.
+- **Touch** — On narrower screens, which covers phones and most tablets: a compact layout with the sidebar behind a menu button and bottom sheets instead of pop-ups. Below 1024 pixels, the timesheet also becomes a list of days and the **Planning** page a list of your own tasks (see [Planning on mobile](#planning-on-mobile)).
 
 A tablet turned sideways can cross the threshold and switch to the desktop layout.
 
@@ -122,13 +124,13 @@ The mobile timesheet is optimized for touch interaction. It presents your time e
     </Frame>
   </Step>
   <Step title="Add a time entry">
-    Tap the **+** button at the bottom of the screen (floating action button) or the **+** icon next to a specific day. The activity selector opens as a bottom sheet: your recent activities under **Your activities**, and the **Working activity**, **Task**, and **Time off** buttons. **Task** and **Time off** only show when your timesheet settings let you record time on tasks or time off.
+    Tap the **+** button at the bottom of the screen (floating action button) or the **+** icon next to a specific day. The activity selector opens as a bottom sheet: your recent activities under **Your activities**, and the **Working activity**, **Task**, and **Time off** buttons. **Task** and **Time off** only show when your timesheet settings let you record time on tasks or time off. With the **Allow only planned tasks in the timesheet** restriction, **Working activity** is gone and **Task** offers only your own tasks planned for that day.
   </Step>
   <Step title="Select a project, task, or absence">
     Tap one of your recent activities, or tap **Working activity** and work down from a category to the project, **Task** to pick a task, or **Time off** to pick an absence type. Your choice opens the time entry editor.
 
     <Frame caption="Working activity, then the Client category: its clients, each opening its projects">
-      <img src="/help/images/mobile/mobile-activity-picker.webp" alt="Beebole activity selector bottom sheet on a phone showing the Client category with Back above it and the clients Greenleaf Industries, Quantum Logistics, Brightwave Media, Silverline Retail, Northstar Financial and Acme Corp, each with an arrow" width="390" />
+      <img src="/help/images/mobile/mobile-activity-picker.webp" alt="Beebole activity selector bottom sheet on a phone showing the Client category with Back above it and the clients in alphabetical order, Acme Corp, Brightwave Media, Greenleaf Industries, Northstar Financial, Quantum Logistics and Silverline Retail, each with an arrow" width="390" />
     </Frame>
   </Step>
   <Step title="Enter your time">
@@ -187,7 +189,7 @@ The mobile timesheet is optimized for touch interaction. It presents your time e
 - **Open it first** — Tap the row itself. It opens in a sheet where you can change the duration, set or clear the start and end times, and point it at another task or working activity. The sheet carries three actions: the bin dismisses the suggestion, the play button starts a timer on it, and the check accepts it.
 
 <Frame caption="A suggestion opened in its sheet, with the bin, play, and check actions">
-  <img src="/help/images/mobile/mobile-suggestion-sheet.webp" alt="Beebole suggestion sheet on a phone for Acme Corp: Website Redesign, Development, with a Desktop badge, Friday the 2nd, a duration of 1.5 from 9:00 AM to 10:30 AM, the bin at the bottom left and the play and check buttons at the bottom right" width="390" />
+  <img src="/help/images/mobile/mobile-suggestion-sheet.webp" alt="Beebole suggestion sheet on a phone for Acme Corp: Website Redesign, Development, with a Desktop badge, Friday the 9th, a duration of 1.50 from 9:00 AM to 10:30 AM, the bin at the bottom left and the play and check buttons at the bottom right" width="390" />
 </Frame>
 
 A suggestion that carries no project of its own — one that came from a staffing booking, or one on a task your [timesheet settings](/help/documentation/timesheetSettings) don't let you log to — opens the picker instead of accepting straight away, with the message **Choose the project to log this time on first.** Pick the project and the suggestion accepts normally, keeping its link to the planned task.
@@ -198,7 +200,7 @@ A suggestion that carries no project of its own — one that came from a staffin
 
 ### Submitting timesheets on mobile
 
-When your timesheet is ready for approval, tap the **Submit** button in the header. The button is visible when the period is in draft or rejected state and you are viewing your own timesheet.
+When your timesheet is ready for approval, tap the **Submit** button in the header. The button is visible when the period is in draft or rejected state, you are viewing your own timesheet, and an approval workflow applies to you.
 
 After submission, the period is locked and the header shows the **Submitted** status badge. If your approver rejects the timesheet, the period unlocks and a **Resubmit** button appears in its place.
 
@@ -243,6 +245,31 @@ You can also select multiple timesheets using checkboxes and bulk-approve or bul
 
 ---
 
+## Planning on mobile
+
+On a phone, or any screen narrower than 1024 pixels, Beebole's **Planning** page becomes a personal list of your own work instead of the Gantt, Kanban, List, and Staffing views. Open it from the menu button in the top-left corner, then tap **Planning**. Creating and organizing tasks is done on a larger screen.
+
+The page has two tabs:
+
+- **Calendar** shows your dated tasks day by day: the tasks you own, and the tasks with no owner yet that you could take. Each month opens with a banner giving its number of tasks, a task spanning several days shows on each of them, and a task card shows the time you logged on it that day. Scroll down to load the following months, pull down from the top to load the previous one, and tap **Today** in the footer to jump back to the current day. The tab only appears when you have at least one dated task.
+- **To-do** lists the same kind of tasks when they have no start date: overdue ones first, then by deadline, then the ones without a deadline. A deadline reads **Overdue** with its date in red, **Due today**, or just the date. When the list is empty, it reads **All caught up**.
+
+A task with no owner that is assigned to you, directly or through one of your tags, shows a **+** button (**Take it**) on its card when your role lets you manage tasks. Tap it to become the task's owner.
+
+### Task details and adding time
+
+Tap a task to open its details in a bottom sheet. Each line appears when the task has a value for it:
+
+- **Status**: tap it to move the task to another status of its planning, if your role lets you manage tasks.
+- **Owner**, **Assignee** (the other people the task is assigned to), **Dates**, its projects, and **Tags**.
+- **Planned**: the planned time, with a bar comparing it to the time you logged.
+- **Description**.
+- The time you logged on the task **Today**, **This week**, and in **Total**.
+
+Tap **Add time** at the bottom of the sheet to log time on the task for the day you opened it from (today, from the **To-do** tab). The time entry editor opens, on your existing entry for that day when there is one. On a task you can still take, **Take it** replaces **Add time**.
+
+---
+
 ## Related content
 
 <CardGroup cols={2}>
@@ -251,6 +278,12 @@ You can also select multiple timesheets using checkboxes and bulk-approve or bul
   </Card>
   <Card title="Approvals" icon="check" href="/help/documentation/approval">
     Submit and approve timesheets from any device, including directly from email.
+  </Card>
+  <Card title="Planning" icon="list-check" href="/help/documentation/planning">
+    Create tasks, choose their owner and potential owners, and schedule their dates and planned time.
+  </Card>
+  <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
+    Choose how Beebole notifies you, by email or push, and enable push on your devices.
   </Card>
 </CardGroup>
 
@@ -263,7 +296,7 @@ You can also select multiple timesheets using checkboxes and bulk-approve or bul
     No. Beebole is a Progressive Web App (PWA) that you install directly from your browser. There is no app store download required.
   </Accordion>
   <Accordion title="What can I do in Beebole on mobile?">
-    The mobile layout is focused on day-to-day time tracking: logging and editing time entries, running the timer, submitting your timesheet for approval, and (for managers) approving or rejecting team timesheets. More detailed configuration and reporting are best handled on a larger screen.
+    The mobile layout is focused on day-to-day work: logging and editing time entries, running the timer, submitting your timesheet for approval, (for managers) approving or rejecting team timesheets, and following your own tasks on the **Planning** page, where you can change a task's status, take an unowned task, and add time to it. More detailed configuration, planning, and reporting are best handled on a larger screen.
   </Accordion>
   <Accordion title="Can I use Beebole offline?">
     Beebole requires an internet connection to sync your data. However, the installed PWA may cache some interface elements for faster loading when you reconnect.

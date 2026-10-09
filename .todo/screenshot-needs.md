@@ -749,3 +749,19 @@ Recaptured: `projects/category-level-names.webp` and `tags/tags-level-names-dial
 | authentication/signin-code-errors.webp | The sign-in page with "The code you entered is not valid" after a wrong code | low — blocked: needs a sign-in code request, a mutation the runner refuses |
 
 Scene repairs (no new image): `mobile-timesheet` no longer fails when the list already opens on the current week (its replay now differs only by time added to that week since the capture); `desktop-suggestion-why` frames the Desktop card and its own day heading even when habit suggestions follow it on later days.
+
+## Release 2026-10-08 (`/illustrate --release`, run 2026-10-09)
+
+Recaptured for the 2026-10-08 deploy (UI changes): the Kanban column and card menus (**Done** / **Reopen**), the Add restriction menu, the booking editor and Add Booking form, the Staffing capacity tooltip, the Gantt workload tooltip (durations in the organisation's format), the Notifications panel (push channel and device line), both Localization panels (**Clock format**), the project's Tasks and bookings panel (bookings now listed), the mobile activity picker (alphabetical) and suggestion sheet, and the List grouped and selection shots (Done and Delete buttons at the end of each row). The List scenes now wait for a visible clamped date, which made `task-list-grouped` fail at random. Production-hidden controls are now hidden by their scenes: the absence type's **Accruals** and **Time off notifications** panels (`timeoff-absence-types`) and the allowance's **Repeat automatically** (`timeoff-allowances-panel`). The four suggestion scenes were recaptured on today's week: the seed top-up fills Jordan Reed's days, which removes the suggestions of past weeks.
+
+| Screenshot | Description | Priority |
+|---|---|---|
+| planning/task-list-columns-menu.webp | The List view tab's ⋯ menu with the Columns submenu: shown columns ticked first, the others below, each with its pin button | medium — done (scene `task-list-columns-menu`, 2026-10-09) |
+| planning/task-list-row-actions.webp | The Done and Delete buttons at the end of a List row | medium — done as a lens on App Development's Done button, the mouse on the row (scene `task-list-row-actions`, 2026-10-09) |
+| work-schedule/day-menu.webp | A day's ⋯ menu in a work schedule's Details panel: New interval, Copy to next day, Non-working day | medium — done on Full Time, Monday the 28th (scene `work-schedule-day-menu`, 2026-10-09) |
+| planning/inline-name-field.webp | The name field opened under a task's row by its + button (Adding tasks in place) | medium — done in the Gantt under Fleet Dashboard (scene `planning-inline-name-field`, 2026-10-09) |
+| mobile/mobile-planning-calendar.webp | The mobile Planning page: the Calendar and To-do tabs with the signed-in person's tasks | medium — blocked: Jordan Reed owns no task, so the page only reads All caught up. Needs tasks owned by Jordan Reed in the seed, kept out of the Main plan views the other scenes show (a separate planning) |
+| planning/show-done-header.webp | The Show Done button with its count in the Planning page header, and Hide Done | medium — blocked: no planning holds a done task; marking one done in the seed changes the Gantt, Kanban and List shots |
+| people/paste-role-dialog.webp | The Choose a role dialog after Paste in the add panel's Or add multiple entries area | low — blocked: Paste reads the clipboard, which the runner does not fill |
+| notifications/device-list.webp | The device list under the channels with This device and Other devices | low — the panel shot shows This device; Other devices needs a second enrolled browser (guided) |
+| subscription/trial-banner.webp | The trial banner on the Subscription page | low — blocked: the documentation account is not on a trial |

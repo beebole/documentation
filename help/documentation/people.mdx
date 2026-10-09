@@ -3,16 +3,12 @@ title: "People: add, invite, and manage your team"
 sidebarTitle: "People"
 description: "Add, invite, and manage your team members in Beebole. Configure profiles, assign roles, and set up schedules and rates for each person."
 keywords: ["Beebole people", "add team members", "invite users", "user management", "employee profiles", "how to add people", "duplicate person", "invite button missing"]
-og:title: "Adding, Inviting, and Managing Your Team in Beebole"
-og:description: "Learn how to add, invite, and manage your team members in Beebole."
-og:type: "article"
+"og:title": "Adding, Inviting, and Managing Your Team in Beebole"
+"og:description": "Learn how to add, invite, and manage your team members in Beebole."
+"og:type": "article"
 ---
 
 In Beebole, **People** represents every user or team member in your account — anyone who tracks time, manages projects, or views reports. Each person has a profile that combines their user account with configuration data like rates, schedules, and permissions.
-
-<Info>
-  Every person is assigned a role that determines what they can see and do. Beebole includes four default roles — **Admin**, **Employee**, **People manager**, and **Project manager** — and you can create custom roles to match your organization's structure. See [Roles & permissions](/help/documentation/roles-authorisations).
-</Info>
 
 ---
 
@@ -36,9 +32,6 @@ In Beebole, **People** represents every user or team member in your account — 
   <Step title="Add a person">
     Click the **\+ Add Person** button. Enter the person's **Name**, **Email**, and **Role**.
   </Step>
-  <Step title="Add multiple people (optional)">
-    To add a large team at once, use the **Or add multiple entries** area of the same panel. Copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, review the entries, and click **Import entries**.
-  </Step>
   <Step title="Add">
     Click **Add Person**. The person's profile is now created in your account.
   </Step>
@@ -56,6 +49,17 @@ In Beebole, **People** represents every user or team member in your account — 
   If your subscription has no available seats, Beebole creates the new person as archived automatically. You see a warning message confirming this. Unarchive them once you have a free seat, or upgrade your plan first.
 </Warning>
 
+### Adding several people at once
+
+To add a large team in one go, use the **Or add multiple entries** area of the same add panel:
+
+1. Copy rows from a spreadsheet, one person per line: name, then **Tab**, then email.
+2. Click **Paste**. Beebole first asks you to pick a role ("Please select a role for the people you want to add"): choose it in the **Choose a role** selector. That one role applies to everyone in the batch, and you can change it per person later.
+3. Check the rows in the **Import preview**, which shows each person's name, email, and role.
+4. Click **Import entries**. The button shows how many people will be created. If something went wrong, click **Undo** to remove every person the import created.
+
+The new people are created without an invitation. Select them in the list and send all the invitations at once, as described in [Bulk invitation](#bulk-invitation).
+
 ### Duplicating a person
 
 To set up a new person like an existing one, duplicate the existing profile instead of configuring the new one from scratch. Open the person's profile, click the **⋯** action menu next to their name, and choose **Duplicate**. Enter the new person's name — Beebole proposes an email address on the same domain, which you can change — pick a **Role** if it differs from the original's, and click **Duplicate**. The copy carries over the original's settings and links, such as tags, managers, and project access; the profile picture and the tasks the original owns are not copied. The new person is created without an invitation, so send one when they are ready to sign in.
@@ -70,6 +74,9 @@ To set up a new person like an existing one, duplicate the existing profile inst
   </Step>
   <Step title="Send the invitation">
     Click **Invite by email**. Beebole emails a secure invitation link so they can access their account — no password to set, as sign-in works with one-time email codes or a passkey.
+  </Step>
+  <Step title="Share the link if needed">
+    The panel confirms "A message was sent to the email provided" and shows the invitation link. If the email doesn't arrive, click **Copy link** and send the link to the person yourself.
   </Step>
   <Step title="Track status">
     The profile shows an **Invitation pending** status until the person completes their sign-up.
@@ -92,20 +99,42 @@ To set up a new person like an existing one, duplicate the existing profile inst
 
 To invite several people at once, select multiple people from the list using the checkboxes, then click **Invite** in the bar that appears at the bottom of the list. Beebole sends invitation emails to all selected people in a single operation. This is useful when onboarding a new team or following an import.
 
+Notifications then report the result: how many invitations were sent, how many selected people are already in the organization, and how many have no email address. Beebole skips the people already in the organization, since they already have access. It also skips the people with no email address: add one to their profile, then invite them again.
+
 ---
 
 ## Configuring person profiles
 
-Click a person's name to access their profile settings:
+Click a person's name to access their profile settings, for example:
 
-- **Manages** — See who this person is **Managed by**, plus the team members, projects, tasks, and tags they manage.
-- **Tags** — Organize people into departments, teams, or locations. See [Tags](/help/documentation/tags).
-- **Custom fields** — Add metadata like "Employee ID", "Office Location", or "Department". See [Custom fields](/help/documentation/custom-fields).
-- **Localization** — Set individual timezone and date format preferences.
+- **Manages**: who this person manages and who manages them. See [Managers and the Manages panel](#managers-and-the-manages-panel).
+- **Tags**: the departments, teams, or locations the person belongs to. See [Tags](/help/documentation/tags).
+- **Custom fields**: your own data on the person, like an employee ID or an office location. See [Custom fields on persons](#custom-fields-on-persons).
+- **Localization**: the person's own time zone, number, clock, and date formats. See [Localization per person](#localization-per-person).
+- **Description**: free notes about the person, written in a rich-text editor.
+
+### Managers and the Manages panel
+
+The **Manages** panel of a person's profile sets what this person manages and who manages them. It has four lists:
+
+- **Team members**: the people this person manages. Add one with **Add a person here**.
+- **Projects**: the projects they manage, added with **Add a project here**.
+- **Tasks**: the tasks they manage, added with **Select task**.
+- **Entities tagged with**: the tags they manage, added with **Add a tag here**. People, projects, and tasks that carry one of these tags, or a tag below it, count as managed by this person. Managing a team tag therefore puts everyone tagged with it in their team.
+
+In the **Projects**, **Tasks**, and **Entities tagged with** lists, the selector also offers whole categories: pick one and the person manages everything in it, including items added later. See [Picking a whole category](/help/documentation/projects#picking-a-whole-category).
+
+Below the four lists, **Managed by** shows the person's own managers. Add one with **Add a manager**, or remove a badge to take a manager off. A person can be their own manager: an icon on their badge marks it, with the tooltip **Self manager**. A manager who comes from one of the person's tags shows which tag it comes from and has no remove button here; change it in that tag's **Managed by** panel instead.
+
+Each list appears only if your role includes the matching permission (**Assign people managers**, **Assign project managers**, **Assign task managers**, or **Assign tag managers**). What a manager can then see and do for their team and projects depends on their own role. See [Roles & permissions](/help/documentation/roles-authorisations).
 
 ### Role assignment
 
 Each person is assigned a role that controls what they can see and do in Beebole. You set the role when creating a person, but you can change it at any time. Open the person's profile and go to the **Email & role** panel. Next to **Role**, hover over the current role, click the × on it, and pick a new role from the **Choose a role** selector. The change takes effect immediately — the person's next page load reflects their updated permissions. See [Roles & permissions](/help/documentation/roles-authorisations) for details on what each role can access.
+
+<Info>
+  Beebole includes four default roles (**Admin**, **Employee**, **People manager**, and **Project manager**), and you can create custom roles to match your organization's structure.
+</Info>
 
 <Frame caption="The Choose a role selector in a person's Email & role panel">
   <img src="/help/images/roles/person-role-selector.webp" alt="Beebole Email & role panel of Marc Dubois with his email address and the Choose a role selector open, listing the Admin, Employee, People manager and Project manager roles" width="546" />
@@ -131,12 +160,12 @@ Projects can carry the same setting — see [Projects](/help/documentation/proje
 
 ### Localization per person
 
-You can override the organization's locale settings for any individual. Open the person's profile, then the **Localization** panel, to set their **Time zone**, **First day of the week**, **Currency**, **Decimal format**, **Thousands separator**, **Time format**, and **Date format**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format.
+You can override the organization's locale settings for any individual. Open the person's profile, then the **Localization** panel, to set their **Time zone**, **First day of the week**, **Currency**, **Decimal format**, **Thousands separator**, **Clock format** (3:45 PM or 15:45), and **Date format**. These settings affect how the app displays dates and times for that person only — useful for team members in different countries or who prefer a specific format. Only administrators can change **First day of the week**, since it decides where the person's timesheet periods start.
 
-A gear next to a setting means its value comes from the organization. Once you change a setting on the person, the gear gives way to a reset button that brings back the inherited value.
+A gear next to a setting means its value comes from the organization. Once you change a setting on the person, the gear gives way to a reset button that brings back the inherited value. A tag can carry the same settings for everyone tagged with it, which saves setting them person by person for a whole office. See [Tags](/help/documentation/tags#what-cascades-through-tags).
 
 <Frame caption="A person in Tokyo: the time zone is set on her profile, the other settings come from the organization">
-  <img src="/help/images/people/person-localization-panel.webp" alt="Beebole Localization panel of Yuki Tanaka with the Time zone set to (GMT+09:00) Tokyo and a reset button next to it, while First day of the week, Currency, Decimal format, Thousands separator, Time format and Date format show the gear of inherited values" width="538" />
+  <img src="/help/images/people/person-localization-panel.webp" alt="Beebole Localization panel of Yuki Tanaka with the Time zone set to (GMT+09:00) Tokyo and a reset button next to it, while First day of the week, Currency, Decimal format, Thousands separator, Clock format and Date format show the gear of inherited values" width="538" />
 </Frame>
 
 ---
@@ -153,15 +182,19 @@ To set a person's rates, open their profile and go to the **Billing** or **Cost*
 
 ### Absence quotas per person
 
-Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence allowances** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. Quotas set on a person take priority over any default defined on a tag. See [Time off](/help/documentation/timeoff).
+Absence quotas define how much time off a person is entitled to for each absence type (for example, 20 days of annual leave). To configure a person's allowances, open their profile and go to the **Absence allowances** attribute section. Click **Add new allowance**, select the absence type, enter the amount, and set the validity period. You can also enable carry-forward and allow negative balances depending on your policy. See [Time off](/help/documentation/timeoff).
+
+A person's own allowances replace the whole set they would otherwise inherit, not only the allowance for the same absence type. Beebole uses the allowances of the most specific level that has any: the person, then their tags, then the organization. So if the organization grants PTO and Sickness and you add a single PTO allowance on a person, that person no longer inherits the Sickness allowance, and Sickness has no limit for them. To change one allowance for someone, click **Copy** in the **Absence allowances** panel where the set is defined (**Account Settings** or the tag), click **Paste** in the person's panel, then adjust the allowance that differs. See [Attribute copy and paste](/help/documentation/concepts#attribute-copy-and-paste).
 
 <Frame caption="A person's PTO allowance, inherited from the organization, opened to show the days consumed">
-  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027, Carry forward limit 5 d, Allow negative balance and Repeat automatically, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
+  <img src="/help/images/timeoff/absence-allowances-panel.webp" alt="Beebole Absence allowances panel of Elena Rossi with the PTO 2026 card open: Allowance 20 d, Consumed 12d, Valid until Mar 31, 2027, Carry forward limit 5 d and Allow negative balance, followed by a collapsed Sickness card and the Add new allowance button" width="538" />
 </Frame>
 
 ### Custom fields on persons
 
-Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill in any custom fields that appear in the **Attributes** section. The available fields are defined globally in **Settings** \> **Custom Fields** and apply to all people. See [Custom fields](/help/documentation/custom-fields).
+Custom fields let you extend a person's profile with structured metadata beyond the built-in fields. Common uses include storing an employee ID, cost center, office location, or contract type. To add a value, open the person's profile and fill it in the **Custom fields** panel; values are saved automatically.
+
+The fields themselves are defined in **Settings** \> **Custom Fields**, and not every field appears on every person. A field shows on a person only when **Visible for People** is on for it and the person is covered by the field's **Who has access?** list, directly or through a tag, or when **Show all custom fields** is on in your **Show or hide by default** settings. See [Who a field is asked of](/help/documentation/custom-fields#who-a-field-is-asked-of).
 
 ---
 
@@ -220,15 +253,15 @@ Select multiple people from the list using the checkboxes to perform actions in 
 
 <AccordionGroup>
   <Accordion title="What happens when someone leaves the company?">
-    Archive their profile instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription.
+    Archive their profile in Beebole instead of deleting it. This preserves all their historical time data for your reports while freeing up the user seat on your subscription.
   </Accordion>
 
   <Accordion title="Can I create custom roles beyond the four built-in ones?">
-    Yes. Go to **Settings** \> **Person Roles** to create custom roles with granular permissions, or duplicate **Admin**, **Employee**, **People manager**, or **Project manager** and adjust the copy. See [Roles & permissions](/help/documentation/roles-authorisations).
+    Yes. In Beebole, go to **Settings** \> **Person Roles** to create custom roles with granular permissions, or duplicate **Admin**, **Employee**, **People manager**, or **Project manager** and adjust the copy. Creating roles requires the **Advanced** plan, or the **Custom fields, custom roles & advanced configuration** add-on on **Essential**. See [Roles & permissions](/help/documentation/roles-authorisations).
   </Accordion>
 
   <Accordion title="Can I add multiple people at once?">
-    Yes. Click **People** in the sidebar, then **Add Person**. In the **Or add multiple entries** area, copy rows from a spreadsheet — one person per line: name, then **Tab**, then email — click **Paste**, and confirm with **Import entries**.
+    Yes. Click **People** in the sidebar, then **Add Person**. In the **Or add multiple entries** area, copy rows from a spreadsheet (one person per line: name, then **Tab**, then email) and click **Paste**. Beebole asks for one role for the whole batch, shows the rows in the **Import preview**, and creates them when you click **Import entries**. **Undo** removes the whole import if needed. Beebole doesn't invite the new people automatically, so select them in the list and click **Invite** when they are ready.
   </Accordion>
 
   <Accordion title="What happens if I add a person when all seats are taken?">
@@ -236,7 +269,7 @@ Select multiple people from the list using the checkboxes to perform actions in 
   </Accordion>
 
   <Accordion title="Can I sign in as another user for troubleshooting?">
-    Yes. Administrators can use the **Sign in as…** <Badge>Admin only</Badge> action to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
+    Yes. Beebole administrators can use the **Sign in as…** <Badge>Admin only</Badge> action to sign in as another person. This is useful for diagnosing issues or verifying what a team member sees.
   </Accordion>
 
   <Accordion title="How do I copy an existing person's setup to a new person?">

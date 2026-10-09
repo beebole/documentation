@@ -11,7 +11,7 @@ keywords: ["beebole", "sign-in", "login", "forgot password", "single sign-on", "
 Beebole signs everyone in without passwords. Instead, you confirm your identity with a one-time code emailed to you, a passkey, your Google or Microsoft account, or your organization's single sign-on (SSO) provider. Because there is no password to create, forget, or reset, there is nothing for an attacker to steal or reuse.
 
 <Info>
-  Every sign-in method matches against the email address on a person's Beebole profile. To sign in, that email must already belong to an active person in your Beebole account — unless your organization enables automatic user creation for SSO.
+  Every sign-in method matches against the email address on a person's Beebole profile. To sign in, that email must already belong to an active person in your Beebole account. The one exception is Google sign-in when your organization turns on automatic user creation (see [Google SSO](#google-sso)).
 </Info>
 
 ## Sign-in methods
@@ -23,7 +23,7 @@ Every method also works for the [desktop app](/help/documentation/desktop-app): 
 | Method | How it works | Setup needed |
 | --- | --- | --- |
 | Email code | Beebole emails a one-time 6-digit code; you enter it to sign in | None — available by default |
-| Passkey | Your device unlocks sign-in with a fingerprint, face, or hardware key | Enable once from your user menu |
+| Passkey | Your device unlocks sign-in with a fingerprint, face, screen lock, or hardware key | Set up once, when Beebole offers it after a code sign-in or from your user menu |
 | Google or Microsoft | You sign in through your existing Google or Microsoft account | None for the person; for Google, an admin can link the domain for SSO enforcement |
 | SSO | You sign in through your organization's identity provider | An admin configures it on **Account Settings** |
 
@@ -39,24 +39,28 @@ A wrong code shows *"The code you entered is not valid. Please try again."* Afte
   ![Beebole sign-in page with the Work email field, the Sign In button, and the Google and Microsoft buttons under Or sign in with](/help/images/authentication/signin-page.webp)
 </Frame>
 
+### When your email belongs to several accounts
+
+The same email address can belong to more than one Beebole account, for example if you work for two organizations. In that case, an **Account** list appears under the email field once you have typed your email. It lists each account by organization name, with the one you used most recently already selected. Keep it and click **Sign In**, or pick another account in the list, which continues the sign-in with that account. Beebole sends the code, or opens the passkey dialog, for the account you chose.
+
+The same choice appears after you sign in with Google, Microsoft, or your organization's SSO provider: Beebole returns you to the sign-in page with the list under *Choose which existing account to sign in with*, and picking an account completes the sign-in.
+
 ### Passkey
 
-A passkey signs you in with your device's built-in security — a fingerprint, face recognition, or a hardware security key — so you skip the email code entirely. Passkeys are phishing-resistant because the credential never leaves your device.
+A passkey signs you in with your device's built-in security (a fingerprint, face recognition, your screen lock, or a hardware security key), so you skip the email code entirely. Passkeys are phishing-resistant because they only work on Beebole's own site. A passkey is not necessarily tied to one device: one saved in a password manager follows you to your other devices.
 
-Enable a passkey from your user menu:
+There are two ways to set up a passkey:
 
-<Steps>
-  <Step title="Open the user menu">
-    Click the button with your initials at the bottom of the sidebar.
-  </Step>
-  <Step title="Enable the passkey">
-    Click **Enable passkey** and follow your browser's prompts to register a fingerprint, face, or hardware key.
-  </Step>
-</Steps>
+- After you sign in with an email code on a device that supports passkeys, Beebole shows **Set up faster sign-in**. Click **Set up passkey** and follow your browser's prompts. Click **Not now** to skip it: Beebole then stops offering it for that email in that browser.
+- At any time, click the button with your initials at the bottom of the sidebar, then click **Enable passkey** and follow your browser's prompts.
 
 <Info>
   **Enable passkey** appears in the user menu only on devices that support passkeys and only when your account does not already have one registered.
 </Info>
+
+Once you have a passkey, type your email on the sign-in page and click **Sign In**. Your browser's passkey dialog opens by itself, and no code is sent. If you cancel the dialog, Beebole emails you a code instead. When you then finish signing in with that code, Beebole removes the passkeys registered for your email and stops suggesting one in that browser, so the dialog does not keep coming back. You can set up a new one with **Enable passkey**.
+
+In the [desktop app](/help/documentation/desktop-app), click **Your browser (passkey)** on the sign-in screen to complete the sign-in with your passkey in your browser.
 
 ### Google and Microsoft sign-in
 
@@ -70,7 +74,7 @@ Single sign-on lets your whole team authenticate through your organization's ide
   Open the **Single Sign-On** panel from **Account Settings** — the page you reach through **Settings** > **Account Settings**. SSO is configured on the organization itself, not as a separate menu item. All SSO settings save automatically as you change them.
 </Info>
 
-The **Custom OpenID** tab is available on higher-tier plans. If your plan does not include it, only the **Google** and **Microsoft** tabs appear. See [Subscription & Billing](/help/documentation/subscription) for what each plan includes.
+The **Custom OpenID** tab is part of every paid plan and of the free trial. On the **Free** plan, only the **Google** and **Microsoft** tabs appear. See [Subscription & Billing](/help/documentation/subscription) for what each plan includes.
 
 <Frame caption="The Single Sign-On panel on its Google tab">
   <img src="/help/images/authentication/sso-panel.webp" alt="Beebole Single Sign-On panel with the Google, Microsoft and Custom OpenID tabs, the Linked domains field with its Add button, and the options to create new users on first SSO login and to allow only Google sign-in" width="744" />
@@ -83,19 +87,26 @@ The **Custom OpenID** tab is available on higher-tier plans. If your plan does n
     On **Account Settings**, open the **Single Sign-On** panel and select the **Google** tab.
   </Step>
   <Step title="Link a domain">
-    Type your organization's email domain in the **Linked domains** field and click **Add**. People whose email matches a linked domain are sent to Google sign-in. Click **Remove** next to a domain to unlink it.
+    Type your organization's email domain in the **Linked domains** field and click **Add**. People whose email matches a linked domain are sent to Google sign-in. To unlink a domain, click the trash icon next to it (**Remove**).
+  </Step>
+  <Step title="Finish the setup in the Google Workspace Marketplace">
+    Once a domain is linked, the panel shows *Your accounts are now linked. Go to Google Marketplace to finish the setup.* Click **Go to Google Marketplace** to open Beebole's listing there and complete the setup for your Google Workspace.
   </Step>
   <Step title="Provision new people automatically (optional)">
-    Turn on **Automatically create new users on first SSO login** to create a person automatically the first time someone with a matching domain signs in.
+    Turn on **Automatically create new users on first SSO login** to create a person automatically the first time someone with a matching domain signs in with Google.
   </Step>
   <Step title="Require Google sign-in (optional)">
     Turn on **Disable interactive sign-in. Only Google sign-in allowed.** to block the email-code method for your organization.
   </Step>
 </Steps>
 
+Automatic user creation works with Google sign-in only. Signing in with Microsoft or a **Custom OpenID** provider never creates a person, so those people must be added in **People** first. A person created this way gets the first role of your account that does not have admin rights, which you can change on their profile. Beebole creates them only while your subscription has a free seat (there is no seat limit during the free trial). When every seat is taken, the person is not created and the sign-in fails until you add seats or archive someone.
+
+If someone installs Beebole from the Google Workspace Marketplace and their email is not in Beebole yet, Beebole creates a new account for their domain, with that domain already linked and **Automatically create new users on first SSO login** turned on.
+
 ### Microsoft SSO
 
-On **Account Settings**, open the **Single Sign-On** panel and select the **Microsoft** tab. To require everyone to authenticate through Microsoft, turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.**
+On **Account Settings**, open the **Single Sign-On** panel and select the **Microsoft** tab. To block the email-code method for your organization, turn on **Disable interactive sign-in. Only Microsoft sign-in allowed.**
 
 ### Custom OpenID
 
@@ -112,7 +123,7 @@ The **Custom OpenID** tab connects any OpenID Connect-compatible provider.
     Copy the **Initiate URI** and **Callback URI** shown in Beebole (each has its own **Copy** button) and paste them into your identity provider's application settings.
   </Step>
   <Step title="Require this provider (optional)">
-    Turn on **Disable interactive sign-in. Only this SSO provider allowed.** to block all other sign-in methods.
+    Turn on **Disable interactive sign-in. Only this SSO provider allowed.** to block the email-code method for your organization.
   </Step>
 </Steps>
 
@@ -150,7 +161,7 @@ Administrators can sign in as another person to troubleshoot a problem or confir
 
 <Steps>
   <Step title="Open the user menu">
-    Click the button with your initials at the bottom of the sidebar.
+    Click your initials at the bottom of the sidebar.
   </Step>
   <Step title="Choose Sign in as…">
     Click **Sign in as…**. A search box opens listing the people in your account — pick the one you want.
@@ -189,16 +200,16 @@ Administrators can sign in as another person to troubleshoot a problem or confir
 
 <AccordionGroup>
   <Accordion title="Why doesn't Beebole ask me for a password?">
-    Beebole has no passwords. You sign in with a one-time 6-digit code sent to your email, or more quickly with a passkey, your Google or Microsoft account, or your organization's SSO provider. With no password to steal or reuse, there is nothing to forget or reset.
-  </Accordion>
-  <Accordion title="Can I use more than one sign-in method?">
-    Yes. As long as your organization has not turned on a **Disable interactive sign-in** toggle, you can sign in with the email code, a passkey, or a linked Google or Microsoft account — whichever is handiest on the device you are using.
+    Beebole has no passwords. You sign in with a one-time 6-digit code sent to your email, or more quickly with a passkey, your Google or Microsoft account, or your organization's SSO provider. With no password to steal or reuse, there is nothing to forget or reset. You can use whichever method suits the device you are on. If your organization turns on a **Disable interactive sign-in** toggle, the email code is no longer accepted.
   </Accordion>
   <Accordion title="How do I make everyone sign in through SSO?">
-    On **Account Settings**, open the **Single Sign-On** panel, select your provider's tab, and turn on its **Disable interactive sign-in** toggle. This blocks the email-code method so everyone must authenticate through the configured provider.
+    In Beebole's **Account Settings**, open the **Single Sign-On** panel, select your provider's tab, and turn on its **Disable interactive sign-in** toggle. This blocks the email-code method for everyone in your organization, so people sign in through SSO instead.
   </Accordion>
   <Accordion title="A team member can't sign in — what should I check?">
     Confirm they are using the exact email address on their Beebole profile, and ask them to check their spam folder for the 6-digit code. If they asked for the code several times, any of the emails works, since Beebole resends the same code. After 5 wrong attempts the code stops working and they need to ask for a new one; if they see a message asking them to try again in a number of minutes, they have to wait that long. As an administrator, you can use **Sign in as…** from your user menu to see Beebole as they do.
+  </Accordion>
+  <Accordion title="My email belongs to two Beebole accounts. How do I choose which one to sign in to?">
+    Type your email on the Beebole sign-in page and an **Account** list appears under it, with the account you used last already selected. Keep it and click **Sign In**, or pick the other account. After Google, Microsoft, or SSO sign-in, Beebole shows the same list under *Choose which existing account to sign in with*.
   </Accordion>
   <Accordion title="How many API keys can I have?">
     One. Beebole creates a single API key per person automatically and offers **Copy** and **Reset** actions for it. Resetting revokes the old key and issues a new one — there are no multiple keys and no expiration dates to manage.

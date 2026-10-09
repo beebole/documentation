@@ -2,7 +2,7 @@
 title: "Reports: analyze time, billing, and costs"
 sidebarTitle: "Reports"
 description: "Run reports in Beebole to analyze tracked time, billing, costs, and budgets — filter and group data, share folders with your team, and export results."
-keywords: ["beebole", "time tracking reports", "project reports", "timesheet reports", "budget status report", "revenue at risk", "billable utilization", "timesheet compliance", "report folders"]
+keywords: ["beebole", "time tracking reports", "project reports", "budget status report", "revenue at risk", "billable utilization", "timesheet compliance", "report folders"]
 "og:title": "Beebole Reports: Analyze Tracked Time and Spending"
 "og:description": "Run reports in Beebole to analyze time, billing, costs, and budgets — filter, group, share folders, and export results."
 "og:type": "article"
@@ -28,9 +28,9 @@ Folders are personal: only you see the folders you create and the reports inside
 
 Each folder carries three settings that apply to every report inside it:
 
-- **A period** — the date range the reports cover, chosen with the period selector next to the folder name.
-- **Filters** — conditions added with the **Filters** button that narrow the data for the whole folder.
-- **A record scope** — the **Absence/working time** setting, which switches every report in the folder to working time only, absences only, or both. Left unset, each report keeps whichever scope it was saved with.
+- A period: the date range the reports cover, chosen with the period selector next to the folder name.
+- Filters: conditions added with the **Filters** button that narrow the data for the whole folder.
+- A record scope: the **Absence/working time** setting, which switches every report in the folder to working time only, absences only, or both. Left unset, each report keeps whichever scope it was saved with.
 
 To set the record scope, click **Filters**, pick **Absence/working time**, choose a scope, then click **Add filter**.
 
@@ -129,10 +129,13 @@ Add filters with the folder's **Filters** button, or per report via the **⋯** 
 | **Billability**, **Marked non-billable** | Time entries by whether they are **Billable** or **Non-billable**, or marked non-billable |
 | **Work location** | **Work from home** or **On-site** time entries |
 | **Absence/working time** | **Absence time only**, **Working time only**, or **Both** |
+| **Approval status** | Time entries by the status of their timesheet: **Draft**, **Submitted**, **Approved**, or **Rejected**. Offered in a single report's **Filter** menu, not in the folder's **Filters** |
 
-Filters combine, and each condition can include (**is**) or exclude (**is not**). Filter and period changes are saved automatically and the open report re-runs.
+Filters combine, and each condition can include (**is**) or exclude (**is not**), except **Approval status**, which only offers **is**. Filter and period changes are saved automatically and the open report re-runs.
 
 To filter on a whole category, ⌘-click (Ctrl-click on Windows and Linux) the category itself in the **Project** or **Task** list instead of picking one entity — Beebole turns it into a **Project category** or **Planning** condition. What each filter actually covers is described in [Custom reports](/help/documentation/custom-reports#filter-and-scope-the-data).
+
+You can also filter on a status straight from the results. When a report shows the **Status** field of a **Time** column, click a status in that column to add it to the report as an **Approval status** filter. ⌘-click (Ctrl-click on Windows and Linux) adds it to the whole folder instead.
 
 <Frame caption="A folder's Filters with Project and is picked: the project list starts with the categories">
   <img src="/help/images/reports/filters-popup.webp" alt="Beebole Filters popup of the Current Month folder, listing the filter types from Absence/working time to Work location, with Project selected, the is option checked, and the Select project list showing the Activity, Client and Internal categories, above the Add filter button" width="568" />
@@ -166,7 +169,7 @@ For recurring spreadsheet workflows, see [Data exports](/help/documentation/data
 
 ## Budget Status
 
-When your subscription includes budgets and your role can view budgets, a **Budget Status** entry appears at the top of the Reports menu. It lists every project that has a [budget](/help/documentation/budgets) as a table — one row per project, with a progress bar for each measure you display. The solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Time logged on subprojects counts toward the parent project's bars, and budgeted subprojects nest under their parent's row — when two or more budgeted subprojects share a parent that has no budget of its own, Beebole adds a grouping row for the parent that sums their budgets.
+When your subscription includes budgets and your role can view budgets, a **Budget Status** entry appears among the built-in reports at the top of the Reports menu. It lists every project that has a [budget](/help/documentation/budgets) as a table — one row per project, with a progress bar for each measure you display. The solid bar is actual consumption, and a striped forecast bar extends it based on the planned effort of tasks linked to the project. Time logged on subprojects counts toward the parent project's bars, and budgeted subprojects nest under their parent's row — when two or more budgeted subprojects share a parent that has no budget of its own, Beebole adds a grouping row for the parent that sums their budgets.
 
 Controls at the top of the page:
 
@@ -174,16 +177,16 @@ Controls at the top of the page:
 |---------|---------|
 | View | **Time**, **Billing**, **Costs** — toggle any combination |
 | Status filter | **All**, **> 80%** (at risk), **Over budget** |
-| **Sort:** | **% consumed**, **Name**, **Remaining** |
+| Sort order | **% consumed**, **Name**, **Remaining** |
 | **Filters** | Narrow by project or project tag |
 | **Show archived** | Include archived projects |
 | **Export** | **JSON**, **CSV**, **TSV**, **Excel (XLSX)**, **PDF** |
 
 These controls all work on data the page already has, so the table re-orders and re-filters as you click — nothing is reloaded. The **Filters** cover the whole project hierarchy: filter on a client or a parent project and every project underneath it is included, and a project-tag filter also matches tags below the one you picked, plus every project under a tagged parent. Each condition can include (**is**) or exclude (**is not**).
 
-The chosen **Sort** applies at every level of the table — top-level rows, nested subprojects, and the per-person or per-project lines inside a split — and the project name breaks ties, so rows that read the same (all the untouched budgets at 0%, for example) keep a stable order.
+The chosen sort order applies at every level of the table — top-level rows, nested subprojects, and the per-person or per-project lines inside a split — and the project name breaks ties, so rows that read the same (all the untouched budgets at 0%, for example) keep a stable order.
 
-A budget consumed to exactly 100% counts as **on budget**: only a project projected above 100% is reported as over budget, and the bar colors use the same boundary.
+A budget consumed to exactly 100% counts as on budget: only a project projected above 100% is reported as over budget, and the bar colors use the same boundary.
 
 ### Read the Budget Status table
 
@@ -213,7 +216,7 @@ This report is where budget trouble surfaces: it always flags projects approachi
 
 ## Planned vs. Real
 
-Next to **Budget Status**, the Reports menu offers **Planned vs. Real** — a chart comparing the work you planned with the time actually logged, period by period.
+Among the built-in reports, the Reports menu also offers **Planned vs. Real**, a chart comparing the work you planned with the time actually logged, period by period.
 
 <Steps>
   <Step title="Pick the plan">
@@ -299,6 +302,7 @@ The **Compliance** entry in the Reports menu shows whether each person submitted
 - Rows sort worst-first by default, so the people needing attention surface at the top.
 - Filter by person or person tag, and change the date range — the report defaults to the last six full months. **Export** downloads the grid.
 - People who have never recorded time are counted separately in a footnote — the timesheet process has not started for them, so they aren't shown as non-submitters. Click the people count in the footnote to expand the list of exactly who hasn't started tracking time.
+- People without an [approval workflow](/help/documentation/approval) don't appear at all. They can't submit a timesheet, so there is nothing to measure and they have no score.
 
 Access is a dedicated permission: your role needs **Timesheet compliance**, and managers see the people they manage — admins see everyone. See [Roles & authorizations](/help/documentation/roles-authorisations).
 
@@ -309,7 +313,7 @@ Access is a dedicated permission: your role needs **Timesheet compliance**, and 
 The **Absence quotas** entry in the Reports menu gives managers one consolidated view of everyone's time-off allowances — no more opening profiles one by one. Each row is a person's allowance for a time off type, with columns for **Allowance**, **Accrued**, **Carry forward limit**, **Valid until**, **Taken**, **Planned**, **Pending**, **Remaining**, and **Allow negative balance**.
 
 - **Timeline** — Switch to the timeline to see consumption over the allowance's period instead of totals.
-- **Drill down** — Open a row for the detailed breakdown behind its numbers.
+- Open a row to see the detailed breakdown behind its numbers.
 - **Columns**, **Filters**, **Show archived**, **Export** — Choose the visible columns, narrow by person or tag, include archived people, and download the results.
 
 <Frame caption="The Absence quotas report for the current year, grouped by time off type">

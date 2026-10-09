@@ -51,13 +51,24 @@ A person, project, or task can hold tags from several categories at once — som
     Click the **Add \[category\]** button at the top right — its label shows the active category, for example **Add Department**. Enter the tag name and click the **Save new…** button (its label ends with the level you are creating).
   </Step>
   <Step title="Add sub-tags (optional)">
-    In the tag list, hover over the parent tag's row and click the **\+** button that appears next to its **⋯** action menu (its tooltip reads **Add** followed by the level name, for example **Add Team**). The parent expands so the new sub-tag shows right below it.
+    In the tag list, hover over the parent tag's row and click the **\+** button that appears next to its **⋯** action menu. The parent expands and a name field opens right below it. Type the name and press **Enter**. See [Adding sub-tags from the list](#adding-sub-tags-from-the-list).
   </Step>
 </Steps>
 
 <Frame caption="The Add Department panel: a name field, and an area to paste a whole tag tree">
   ![Beebole Tags page on the Department category with the Add Department panel open on the right, showing the Name field, Cancel and Save new department, and below it the Or add multiple entries area with an indented example and the Paste button](/help/images/tags/add-tag-panel.webp)
 </Frame>
+
+### Adding sub-tags from the list
+
+The **\+** button on a tag's row adds tags under that tag without leaving the list. Its tooltip reads **Add** followed by the level name, for example **Add Team**, and the same text is the placeholder of the name field it opens.
+
+- Press **Enter** to create the sub-tag. The field stays open for the next one, so you can type several names in a row.
+- Click elsewhere to create what you typed and close the field, or press **Escape** (or click the **✕** at the end of the field) to close it without adding anything.
+- Paste a list into the field to create several sub-tags at once: one name per line, or names separated by semicolons on a single line. Indent lines with **Tab** or spaces to nest them under the line above, which builds a whole sub-tree in one paste. Hovering the field shows the hint **Paste a list: one per line or ;-separated**.
+- Hold **⌘** (Ctrl on Windows) and click the **\+** to open the full add form instead (**⌘+Click to open the form**).
+
+When the category is limited to its named levels, the **\+** on a row at the last level shows a message instead of the field. See [Level names](#level-names).
 
 ### Importing multiple tags at once
 
@@ -156,15 +167,19 @@ Configuration set on a tag applies to all people and projects in it, unless over
 | **Work schedule** | People in the tag follow the tag's schedule. See [Work schedules](/help/documentation/work-schedule). |
 | **Billing** and **Cost** | Tag-level rates apply to tagged people and projects. See [Billing rates](/help/documentation/billing) and [Cost rates](/help/documentation/costs). |
 | **Approval workflow** | Approval stages defined on the tag apply to its members. See [Approval](/help/documentation/approval). |
-| **Absence allowances** | Time-off allowances set on the tag apply to its people. See [Time off](/help/documentation/timeoff). |
+| **Absence allowances** | Time-off allowances set on the tag apply to its people, unless a person has allowances of their own: those replace the tag's whole set. See [Time off](/help/documentation/timeoff). |
 | **Public holidays** | A holiday calendar assigned to the tag covers its people. See [Public holidays](/help/documentation/public-holidays). |
-| **Timesheet settings** | Timesheet rules — periods, timers, reminders — set on the tag override the organization defaults for its people. |
-| **Show or hide** | Which time off types, expense types, projects, tasks, and custom fields are available to people in the tag. See [Assignments](/help/documentation/assignments). |
+| **Timesheet and Planning Settings** | Timesheet rules set on the tag, such as periods, timers, and reminders, override the organization defaults for its people. See [Timesheet settings](/help/documentation/timesheetSettings). |
+| **Valid period for time entry** | The **From** and **To** dates bounding when time can be recorded apply to the people and projects in the tag. |
+| **Localization** | Time zone, first day of the week, currency, number formats, **Clock format**, and date format for the people in the tag. See [People](/help/documentation/people#localization-per-person). |
+| **Notifications** | Notification settings for the people in the tag, including whether push notifications are on. See [Notifications](/help/documentation/notifications). |
+| **Email templates** | The wording of the emails Beebole sends to the people in the tag. See [Email templates](/help/documentation/notifications#email-templates). |
+| **Show or hide** | Which time off types, expense types, work schedules, projects, tasks, and custom fields are available to people in the tag. See [Assignments](/help/documentation/assignments). |
 
 Because a person can belong to tags in several categories, you can compose configuration: a work schedule from a **Location** tag and an approval workflow from a **Department** tag, for example.
 
 <Info>
-  Configuring these settings on tags is available on higher-tier Beebole plans. Creating tags and tagging people, projects, and tasks works on every plan.
+  Configuring these settings on tags requires the **Advanced** plan, or the **Custom fields, custom roles & advanced configuration** add-on on the **Essential** plan. Without it, the tag's settings panels show an upgrade button and a preview of the feature instead of their settings. Creating tags and tagging people, projects, and tasks works on every plan.
 </Info>
 
 ---
@@ -227,6 +242,6 @@ Archived tags are hidden from the list — click **Show Archived** at the top of
   </Accordion>
 
   <Accordion title="How do I create many tags at once?">
-    Use the **Or add multiple entries** area in Beebole's add panel: copy your tag list from a spreadsheet — one tag per line, indenting sub-levels with **Tab** or spaces — click **Paste**, review the preview, and click **Import entries**.
+    Use the **Or add multiple entries** area in Beebole's add panel: copy your tag list from a spreadsheet (one tag per line, indenting sub-levels with **Tab** or spaces), click **Paste**, review the preview, and click **Import entries**. To add a few sub-tags under an existing tag, click the **\+** on its row in the list and type the names, pressing **Enter** after each, or paste the list into that field.
   </Accordion>
 </AccordionGroup>

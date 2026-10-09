@@ -98,6 +98,8 @@ Times that fall outside the owner's working hours are highlighted in the **Task 
   Moving the anchored edge of a period slides the whole period instead of collapsing it — a task set to run 08:00–12:00 and moved to start at 18:00 becomes 18:00–22:00.
 </Info>
 
+To keep a task on weekends and public holidays instead of moving it to the next working day, check **Plan on non-working days** in the same panel. See [scheduling dates and planned time](/help/documentation/planning#scheduling-dates-and-planned-time).
+
 <Tip>
   A parent task has no dates panel of its own — its dates are the span of its subtasks. Set hours on the subtasks instead.
 </Tip>
@@ -176,10 +178,10 @@ When the chart is grouped, each group header row carries one cell per period (da
 - **Grouped by Owner** — Each owner's row shows a load bar comparing that person's planned time to their capacity for the period. The bar fills red while capacity remains, turns green when the capacity is met exactly, and turns purple as soon as the person is booked beyond it, with the overload share in a darker purple.
 - **Grouped by anything else** — For project categories, tag categories, statuses, and the "no owner" bucket of a grouping by owner, the cell shows the group's total planned time as a figure above a bar scaled to the busiest period on that row. A capacity ratio has no meaning for a group of people, so none is drawn. Planned time that has no owner yet appears as a small red badge in the corner of the cell.
 - **Without grouping** — A single load bar sits under each day or week number in the timeline header, rolling up everyone. Click it to step the scroll through the rows driving that period's load.
-- **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32h / Capacity: 40h (80%)`), and adds a line per overloaded person with their own figures.
+- **Hover for details** — A tooltip names the period, then the planned time against capacity (for example `Planned: 32 / Capacity: 40 (80%)`, in your organization's duration format), and adds a line per overloaded person with their own figures.
 
 <Frame caption="Grouped by Owner: load bars per week, and the tooltip of an overbooked week">
-  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.4h / Capacity: 40h (306%)](/help/images/gantt/workload-heatmap.webp)
+  ![Beebole Gantt of the Main plan grouped by Owner, with weekly load bars on the James Chen, Liam O'Brien and Sophie Laurent header rows, red where capacity remains and purple where Sophie Laurent is booked beyond it, and a tooltip reading 03-10, Planned: 122.44 / Capacity: 40 (306%)](/help/images/gantt/workload-heatmap.webp)
 </Frame>
 
 Use the heatmap to spot the weeks where an owner is overbooked, then move bars or planned time to rebalance.
@@ -244,6 +246,12 @@ To change several tasks in one go, **⌘+Click** (Ctrl+Click on Windows) rows to
   When a task's bar sits outside the visible timeline, hovering its **Dates** cell shows an arrow pointing left or right — click it (**Show in the chart**) to scroll straight to the bar. This works even when the task lies outside a fixed period: the window moves onto the period holding the task first, keeping the period length you chose.
 </Tip>
 
+### Adding tasks in place
+
+You can name new tasks straight in the task list. Hover over a row and click the **+** button next to the task's name: a name field opens under the row, and what you type becomes a subtask of that task. When the chart is grouped, each group header has its own **+** button (**Add Task**), which opens the field at the top of the group; the new task gets the group's owner, status, or project.
+
+Press **Enter** to save the task and open a field for the next one, or paste a list to add several at once. Hold **⌘** (Ctrl on Windows) as you click a **+** to open the full add form instead, with the same values filled in. In a Bookings planning, both buttons open the **Add Booking** form. See [Adding tasks in place](/help/documentation/planning#adding-tasks-in-place) for the details.
+
 ---
 
 ## Row grouping
@@ -256,6 +264,8 @@ Open the **⋯** menu on the active view tab and hover over **Group by** to rest
 - **Tag categories** — Group by a level of any [tag](/help/documentation/tags) category
 
 Select **None** to remove grouping. With a grouping active, **Show all groups** also displays empty groups — useful to see owners or statuses that currently have no tasks.
+
+Hover over a group header to show its **+** button, which adds a task at the top of that group with the group's owner, status, or project already set. See [Adding tasks in place](#adding-tasks-in-place).
 
 ---
 

@@ -203,7 +203,7 @@ export const scenes = [
 		// most of the Main plan and is booked past her capacity; the mouse rests on her week of
 		// 5 October to show its tooltip (the grouping is a view setting, answered by the runner).
 		id: 'gantt-workload-heatmap',
-		capturedAt: '2026-10-02',
+		capturedAt: '2026-10-09',
 		datesMatter: true,
 		mode: 'auto',
 		async setup(page, h) {

@@ -80,6 +80,8 @@ If the **Select a project** list is empty when you add a row — or the timeshee
 - **Project access.** A project appears only if it is available to you: either **Show all projects** is on in the account's **Show or hide by default**, or the project — or its whole category — was granted to you or to one of your tags. An administrator or your manager adds it under **Who has access?** on the project, or under **Show projects** on your profile. See [Assignments](/help/documentation/assignments).
 - **Timesheet categories.** A row can only be added for the project categories listed under **Record time on these project categories** in [Timesheet and Planning Settings](/help/documentation/timesheetSettings#project-categories). A category left out there never appears, whatever your access.
 
+When the **Allow only planned tasks in the timesheet** restriction is on, the project sections disappear (except one that already holds your entries) and the task sections lose their **+** button (**Add a row**), whatever your access. Hovering a section name then reads **Your timesheet settings only allow the tasks planned for you: they appear by themselves on their dates, and no other row can be added.** The tasks you own fill your timesheet on their planned dates, and time off stays available. See [When only planned tasks are allowed](/help/documentation/timesheets#when-only-planned-tasks-are-allowed).
+
 ### A task is missing from one person's timesheet
 
 A task assigned to a tag — the tag is one of its **Potential owners** — is available to everyone in that tag. Being a potential owner does grant the task; it is not just a display. When the task still shows for some tagged people and not for one of them, check that person, in this order:
@@ -89,6 +91,8 @@ A task assigned to a tag — the tag is one of its **Potential owners** — is a
 3. **Does their role cover assigned tasks?** The **Tasks** permission of their [role](/help/documentation/roles-authorisations) must include **Assigned tasks** under **View**. The built-in roles do; a custom role may not.
 
 Once the three checks pass, the task appears in the person's task section the next time they add a row.
+
+These checks don't apply when the person's timesheet has the **Allow only planned tasks in the timesheet** restriction. Their timesheet then shows only the tasks they own, on their planned dates, and **Record time on these plannings** no longer filters anything. Being a potential owner, directly or through a tag, isn't enough. Check that the person is the task's **Owner**, and that the task's dates cover the days they want to log. A task without dates never appears.
 
 ---
 
@@ -105,7 +109,7 @@ To give Beebole full speed on a managed network, allow outbound secure WebSocket
     How Beebole's real-time sync and local caching work in normal operation.
   </Card>
   <Card title="Mobile app (PWA)" icon="mobile" href="/help/documentation/mobile">
-    Install Beebole on your device — and what to check when the installed app misbehaves.
+    Install Beebole on your phone or tablet, then log time, approve timesheets, and follow your tasks there.
   </Card>
   <Card title="Notifications" icon="bell" href="/help/documentation/notifications">
     Web push and email notifications, and their delivery settings.
@@ -128,6 +132,6 @@ To give Beebole full speed on a managed network, allow outbound secure WebSocket
     A diagnostics snapshot. Open `/diagnostics` on your server address, let the checks finish, click **Copy snapshot** or **Download snapshot (.json)**, and include it in your email to support@beebole.com along with what you were doing when the problem appeared.
   </Accordion>
   <Accordion title="Why does my timesheet show no projects, only time off?">
-    Because no project is available to you yet, or the project's category isn't offered in the timesheet. In Beebole a project has to be granted — under **Who has access?** on the project or **Show projects** on your profile, unless **Show all projects** is on for the account — and its category must be listed under **Record time on these project categories** in Timesheet and Planning Settings. Ask an administrator to check both.
+    Because no project is available to you yet, or the project's category isn't offered in the timesheet. In Beebole a project has to be granted — under **Who has access?** on the project or **Show projects** on your profile, unless **Show all projects** is on for the account — and its category must be listed under **Record time on these project categories** in Timesheet and Planning Settings. Ask an administrator to check both. If the project sections are gone and the task sections have no **+** button on a period you haven't submitted, the **Allow only planned tasks in the timesheet** restriction is on instead: your timesheet then only shows the tasks you own, on their planned dates, plus time off.
   </Accordion>
 </AccordionGroup>
